@@ -38,7 +38,7 @@ export interface Props extends StackProps {
   vpcConfig?: {
     /**
      * The CIDR block for the VPC
-     * @default 10.0.0.0/16
+     * @default 10.138.125.0/24
      */
     cidrBlock?: string
 
@@ -136,29 +136,8 @@ export class DataStoreStack extends Stack {
     }
 
     // create the VPC
-    this.vpc = new Vpc(this, 'Vpc', {
-      cidr: cidrBlock,
-      maxAzs: maxAzs,
-      enableDnsHostnames: false,
-      enableDnsSupport: true,
-      natGateways: natGatewaysCount,
-      subnetConfiguration: [
-        {
-          cidrMask: 28,
-          name: 'isolated',
-          subnetType: SubnetType.ISOLATED,
-        },
-        {
-          cidrMask: 28,
-          name: 'private',
-          subnetType: SubnetType.PRIVATE,
-        },
-        {
-          cidrMask: 28,
-          name: 'public',
-          subnetType: SubnetType.PUBLIC,
-        },
-      ],
+    this.vpc = Vpc.fromLookup(this, 'Vpc', {
+      vpcId: 'vpc-01b009799423f8eea',
     })
 
     // create the root DB credentials
@@ -184,7 +163,7 @@ export class DataStoreStack extends Stack {
     // configure RDS subnet group
     const rdsSubnetGroup = new CfnDBSubnetGroup(this, 'RdsSubnetGroup', {
       dbSubnetGroupDescription: `Subnet group for RDS ${this.stackName}`,
-      subnetIds: this.vpc.isolatedSubnets.map((s) => s.subnetId),
+      subnetIds: this.vpc.privateSubnets.map((s) => s.subnetId),
     })
 
     // configure RDS security group

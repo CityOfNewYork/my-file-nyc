@@ -630,10 +630,10 @@ export class CityStack extends Stack {
   private createUploadsBucket(kmsKey: IKey, corsOrigins: string[]) {
     const bucket = new Bucket(this, 'DocumentsBucket', {
       blockPublicAccess: {
-        blockPublicAcls: true,
-        blockPublicPolicy: true,
-        ignorePublicAcls: true,
-        restrictPublicBuckets: true,
+        blockPublicAcls: false,
+        blockPublicPolicy: false,
+        ignorePublicAcls: false,
+        restrictPublicBuckets: false,
       },
       encryptionKey: kmsKey,
       removalPolicy: RemovalPolicy.RETAIN,
@@ -978,16 +978,16 @@ export class CityStack extends Stack {
     }
 
     // Random part included for easier update if needed
-    const bucketName = `${this.stackName}-${appName}-AEBE24AF`.toLowerCase()
+    const bucketName = `${this.stackName}-${appName}-AEBE24AFA`.toLowerCase()
     this.bucketNames[appName] = bucketName
 
     // Create App Bucket
     const bucket = new Bucket(this, `${appName}Bucket`, {
       blockPublicAccess: {
-        blockPublicAcls: true,
-        blockPublicPolicy: true,
-        ignorePublicAcls: true,
-        restrictPublicBuckets: true,
+        blockPublicAcls: false,
+        blockPublicPolicy: false,
+        ignorePublicAcls: false,
+        restrictPublicBuckets: false,
       },
       bucketName,
     })
@@ -2389,7 +2389,9 @@ export class CityStack extends Stack {
         serviceToken: runMigrationsResourceProvider.serviceToken,
         properties: {
           // Dynamic prop to force execution each time
-          Execution: Math.random().toString(36).substr(2),
+          Execution: Math.random()
+            .toString(36)
+            .substr(2),
         },
       }),
     }
