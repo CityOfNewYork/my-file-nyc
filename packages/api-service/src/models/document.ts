@@ -22,6 +22,7 @@ export class Document extends BaseModel {
   public updatedAt: Date
   public updatedBy: string
   public thumbnailPath?: string
+  public scanStatus: string
 
   // navigation property
   public files?: File[]
@@ -33,7 +34,7 @@ export class Document extends BaseModel {
   static get modifiers() {
     return {
       fieldsForList(query: QueryBuilder<Document>) {
-        const fields = ['id', 'name', 'createdAt', 'thumbnailPath', 'updatedAt']
+        const fields = ['id', 'name', 'createdAt', 'thumbnailPath', 'updatedAt', 'scanStatus']
         return query.select(...fields.map((f) => Document.ref(f)))
       },
       fieldsForSingle(query: QueryBuilder<Document>) {
@@ -44,6 +45,7 @@ export class Document extends BaseModel {
           'thumbnailPath',
           'createdAt',
           'ownerId',
+          'scanStatus'
         ]
         return query
           .select(...fields.map((f) => Document.ref(f)))

@@ -14,6 +14,7 @@ export class File extends BaseModel {
   public sha256Checksum: string
   public createdAt: Date
   public createdBy: string
+  public scanStatus: string
 
   static get tableName() {
     return 'files'
