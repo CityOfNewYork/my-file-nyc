@@ -34,7 +34,14 @@ export class Document extends BaseModel {
   static get modifiers() {
     return {
       fieldsForList(query: QueryBuilder<Document>) {
-        const fields = ['id', 'name', 'createdAt', 'thumbnailPath', 'updatedAt', 'scanStatus']
+        const fields = [
+          'id',
+          'name',
+          'createdAt',
+          'thumbnailPath',
+          'updatedAt',
+          'scanStatus',
+        ]
         return query.select(...fields.map((f) => Document.ref(f)))
       },
       fieldsForSingle(query: QueryBuilder<Document>) {
@@ -45,7 +52,7 @@ export class Document extends BaseModel {
           'thumbnailPath',
           'createdAt',
           'ownerId',
-          'scanStatus'
+          'scanStatus',
         ]
         return query
           .select(...fields.map((f) => Document.ref(f)))
@@ -76,6 +83,7 @@ export class Document extends BaseModel {
         source: { type: 'string', maxLength: 255 },
         format: { type: 'string', maxLength: 255 },
         type: { type: 'string', maxLength: 255 },
+        scanStatus: { type: 'string', maxLength: 255 },
         expiryDate: { type: 'date-time' },
         updatedBy: { type: 'string', minLength: 1, maxLength: 255 },
         createdBy: { type: 'string', minLength: 1, maxLength: 255 },
