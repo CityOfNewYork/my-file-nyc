@@ -57,6 +57,7 @@ export class File extends BaseModel {
         order: { type: 'number' },
         received: { type: 'boolean' },
         contentType: { type: 'string', maxLength: 255 },
+        scanStatus: { type: 'string', maxLength: 255 },
         contentLength: {
           type: 'integer',
           minimum: 1,
@@ -113,4 +114,18 @@ export const getFilesByDocumentId = async (documentId: string) => {
 
 export const getFilesByDocumentIds = async (documentIds: string[]) => {
   return await File.query().whereIn('documentId', documentIds).orderBy('order')
+}
+
+export interface DocumentScanStatus {
+  documentId: string
+  scanStatus: string
+}
+
+// This should be invoked by the AntiVirus Lambda
+export const updateScanStatus = async (
+  documentScanStatus: DocumentScanStatus,
+) => {
+  await File.query()
+    .patch({ scanStatus: documentScanStatus.scanStatus })
+    .where({ id: documentScanStatus.documentId })
 }
