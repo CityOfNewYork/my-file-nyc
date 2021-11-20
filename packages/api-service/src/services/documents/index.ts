@@ -120,7 +120,7 @@ export const singleDocumentResult = (
         sha256Checksum: f.sha256Checksum,
         contentType: f.contentType as FileContentTypeEnum,
         contentLength: f.contentLength,
-        scanStatus: document.scanStatus
+        scanStatus: document.scanStatus,
       }),
     ),
     links: links,

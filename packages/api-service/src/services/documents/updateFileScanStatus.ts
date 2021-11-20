@@ -16,6 +16,8 @@ export const handler = wrapAsyncHandler(
     console.log('scanStatus', scanStatus)
 
     const updatedDate = new Date()
+
+    return { success: true }
   },
 )
 

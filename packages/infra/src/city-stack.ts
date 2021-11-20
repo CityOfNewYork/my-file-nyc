@@ -1830,6 +1830,16 @@ export class CityStack extends Stack {
       throttlingSettings: ReadRouteDefaultThrottling,
     })
 
+    // update Scan Status for Files
+    const updateFileScanStatus = this.createLambda(
+      'updateFileScanStatus',
+      pathToApiServiceLambda('documents/updateFileScanStatus'),
+      {
+        dbSecret,
+        layers: [mySqlLayer],
+      },
+    )
+
     // update thumbnail path for document
     const attachThumbnailToDocument = this.createLambda(
       'AttachThumbnailToDocument',
