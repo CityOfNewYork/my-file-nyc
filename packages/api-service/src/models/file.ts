@@ -154,5 +154,5 @@ export const updateScanStatusByDocumentId = async (
 ) => {
   await File.query()
     .patch({ scanStatus: documentScanStatus.scanStatus })
-    .where({ id: documentScanStatus.documentId })
+    .where({ documentId: documentScanStatus.documentId })
 }
