@@ -91,8 +91,12 @@ export class File extends BaseModel {
 }
 
 export const markFileReceived = async (path: string) => {
-  await File.query().patch({ received: true }).where({ path })
-  return await File.query().where({ path }).first()
+  await File.query()
+    .patch({ received: true })
+    .where({ path })
+  return await File.query()
+    .where({ path })
+    .first()
 }
 
 export const getFileByIdAndDocumentId = async (
@@ -107,22 +111,45 @@ export const getFileByIdAndDocumentId = async (
     .first()
   return file ? file : null
 }
+export const getFileById = async (fileId: string) => {
+  const file = await File.query()
+    .where({
+      id: fileId,
+    })
+    .first()
+  return file ? file : null
+}
 
 export const getFilesByDocumentId = async (documentId: string) => {
-  return await File.query().where({ documentId }).orderBy('order')
+  return await File.query()
+    .where({ documentId })
+    .orderBy('order')
 }
 
 export const getFilesByDocumentIds = async (documentIds: string[]) => {
-  return await File.query().whereIn('documentId', documentIds).orderBy('order')
+  return await File.query()
+    .whereIn('documentId', documentIds)
+    .orderBy('order')
+}
+export interface FileScanStatus {
+  fileId: string
+  scanStatus: string
+}
+// This should be invoked by the AntiVirus Lambda
+export const updateScanStatusByFileId = async (
+  fileScanStatus: FileScanStatus,
+) => {
+  await File.query()
+    .patch({ scanStatus: fileScanStatus.scanStatus })
+    .where({ id: fileScanStatus.fileId })
 }
 
 export interface DocumentScanStatus {
   documentId: string
   scanStatus: string
 }
-
 // This should be invoked by the AntiVirus Lambda
-export const updateScanStatus = async (
+export const updateScanStatusByDocumentId = async (
   documentScanStatus: DocumentScanStatus,
 ) => {
   await File.query()
