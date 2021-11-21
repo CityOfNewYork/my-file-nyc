@@ -125,7 +125,11 @@ export class Document extends BaseModel {
 }
 
 export const getDocumentById = async (id: string): Promise<Document | null> => {
-  return (await Document.query().modify('byId', id).first()) || null
+  return (
+    (await Document.query()
+      .modify('byId', id)
+      .first()) || null
+  )
 }
 
 export const getSingleDocumentById = async (
@@ -173,7 +177,9 @@ export const documentIsInCollectionWithGrant = async (
     .where({ requirementType, requirementValue })
     .whereIn(
       'collectionId',
-      CollectionDocument.query().select('collectionId').where({ documentId }),
+      CollectionDocument.query()
+        .select('collectionId')
+        .where({ documentId }),
     )
     .first())
 }
@@ -225,7 +231,9 @@ export const documentsInAnyCollectionWithGrantAndOwner = async (
 }
 
 export const setDocumentThumbnailPath = async (id: string, path: string) => {
-  return await Document.query().patch({ thumbnailPath: path }).where({ id })
+  return await Document.query()
+    .patch({ thumbnailPath: path })
+    .where({ id })
 }
 
 export interface CreateDocumentInput {
@@ -268,11 +276,32 @@ export const updateDocument = async (
   id: string,
   documentDetails: UpdateDocumentInput,
 ) => {
-  return await Document.query().patch(documentDetails).where({ id })
+  return await Document.query()
+    .patch(documentDetails)
+    .where({ id })
+}
+
+export interface DocumentScanStatus {
+  documentId: string
+  scanStatus: string
+}
+
+export const updateScanStatusByDocumentId = async (
+  documentScanStatus: DocumentScanStatus,
+) => {
+  await Document.query()
+    .patch({ scanStatus: documentScanStatus.scanStatus })
+    .where({ documentId: documentScanStatus.documentId })
 }
 
 export const deleteDocument = async (id: string) => {
-  await File.query().delete().where({ documentId: id })
-  await CollectionDocument.query().delete().where({ documentId: id })
-  return await Document.query().delete().where({ id })
+  await File.query()
+    .delete()
+    .where({ documentId: id })
+  await CollectionDocument.query()
+    .delete()
+    .where({ documentId: id })
+  return await Document.query()
+    .delete()
+    .where({ id })
 }

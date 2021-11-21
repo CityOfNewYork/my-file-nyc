@@ -1,6 +1,8 @@
 import { connectDatabase } from '@/utils/database'
 import { wrapAsyncHandler } from '@/utils/sentry'
-import { updateScanStatusByDocumentId } from '@/models/file'
+import { updateScanStatusByDocumentId as updateFileScanStatusByDocumentId } from '@/models/file'
+import { updateScanStatusByDocumentId as updateDocumentScanStatusByDocumentId } from '@/models/document'
+
 connectDatabase()
 
 export interface FileScannedResponse {
@@ -12,10 +14,12 @@ export const handler = wrapAsyncHandler(
   async (parameters: FileScannedResponse): Promise<any> => {
     const { fileName, scanStatus } = parameters
 
-    console.log('fileName', fileName)
-    console.log('scanStatus', scanStatus)
+    await updateDocumentScanStatusByDocumentId({
+      documentId: fileName,
+      scanStatus,
+    })
 
-    await updateScanStatusByDocumentId({
+    await updateFileScanStatusByDocumentId({
       documentId: fileName,
       scanStatus,
     })
