@@ -282,7 +282,7 @@ export const updateDocument = async (
 }
 
 export interface DocumentScanStatus {
-  documentId: string
+  path: string
   scanStatus: string
 }
 
@@ -291,7 +291,7 @@ export const updateScanStatusByDocumentId = async (
 ) => {
   await Document.query()
     .patch({ scanStatus: documentScanStatus.scanStatus })
-    .where({ documentId: documentScanStatus.documentId })
+    .where({ path: documentScanStatus.path })
 }
 
 export const deleteDocument = async (id: string) => {

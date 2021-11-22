@@ -145,7 +145,7 @@ export const updateScanStatusByFileId = async (
 }
 
 export interface DocumentScanStatus {
-  documentId: string
+  path: string
   scanStatus: string
 }
 // This should be invoked by the AntiVirus Lambda
@@ -154,5 +154,5 @@ export const updateScanStatusByDocumentId = async (
 ) => {
   await File.query()
     .patch({ scanStatus: documentScanStatus.scanStatus })
-    .where({ documentId: documentScanStatus.documentId })
+    .where({ path: documentScanStatus.path })
 }
