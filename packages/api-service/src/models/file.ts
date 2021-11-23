@@ -132,31 +132,18 @@ export const getFilesByDocumentIds = async (documentIds: string[]) => {
     .orderBy('order')
 }
 export interface FileScanStatus {
-  fileId: string
+  path: string
   scanStatus: string
 }
-// This should be invoked by the AntiVirus Lambda
-export const updateScanStatusByFileId = async (
+
+export const updateScanStatusByPath = async (
   fileScanStatus: FileScanStatus,
 ) => {
   await File.query()
     .patch({ scanStatus: fileScanStatus.scanStatus })
-    .where({ id: fileScanStatus.fileId })
-}
-
-export interface DocumentScanStatus {
-  path: string
-  scanStatus: string
-}
-// This should be invoked by the AntiVirus Lambda
-export const updateScanStatusByDocumentId = async (
-  documentScanStatus: DocumentScanStatus,
-) => {
-  await File.query()
-    .patch({ scanStatus: documentScanStatus.scanStatus })
-    .where({ path: documentScanStatus.path })
+    .where({ path: fileScanStatus.path })
 
   return await File.query()
-    .where({ path: documentScanStatus.path })
+    .where({ path: fileScanStatus.path })
     .first()
 }
