@@ -155,4 +155,8 @@ export const updateScanStatusByDocumentId = async (
   await File.query()
     .patch({ scanStatus: documentScanStatus.scanStatus })
     .where({ path: documentScanStatus.path })
+
+  return await File.query()
+    .where({ path: documentScanStatus.path })
+    .first()
 }

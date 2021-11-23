@@ -14,13 +14,13 @@ export const handler = wrapAsyncHandler(
   async (parameters: FileScannedResponse): Promise<any> => {
     const { fileName, scanStatus } = parameters
 
-    await updateDocumentScanStatusByDocumentId({
+    const file = await updateFileScanStatusByDocumentId({
       path: fileName,
       scanStatus,
     })
 
-    await updateFileScanStatusByDocumentId({
-      path: fileName,
+    await updateDocumentScanStatusByDocumentId({
+      documentId: file.documentId,
       scanStatus,
     })
   },
