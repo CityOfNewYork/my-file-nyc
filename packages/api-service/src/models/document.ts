@@ -289,6 +289,9 @@ export interface DocumentScanStatus {
 export const updateScanStatusByDocumentId = async (
   documentScanStatus: DocumentScanStatus,
 ) => {
+
+  console.log('documentScanStatus', documentScanStatus)
+
   await Document.query()
     .patch({ scanStatus: documentScanStatus.scanStatus })
     .where({ id: documentScanStatus.documentId })
