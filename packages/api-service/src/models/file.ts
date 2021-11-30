@@ -139,11 +139,11 @@ export interface FileScanStatus {
 export const updateScanStatusByPath = async (
   fileScanStatus: FileScanStatus,
 ) => {
-  console.log('updateScanStatusByPath', fileScanStatus)
+
   await File.query()
     .patch({ scanStatus: fileScanStatus.scanStatus })
     .where({ path: fileScanStatus.path })
-  console.log('step 1 complete')
+
   return await File.query()
     .where({ path: fileScanStatus.path })
     .first()
