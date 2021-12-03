@@ -110,6 +110,7 @@ export const singleDocumentResult = (
     name,
     description,
     id,
+    scanStatus: document.scanStatus,
     files: files.map(
       (f): DocumentFileContract => ({
         id: f.id,
@@ -119,6 +120,7 @@ export const singleDocumentResult = (
         sha256Checksum: f.sha256Checksum,
         contentType: f.contentType as FileContentTypeEnum,
         contentLength: f.contentLength,
+        scanStatus: document.scanStatus,
       }),
     ),
     links: links,
