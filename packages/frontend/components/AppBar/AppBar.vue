@@ -218,10 +218,13 @@ export default class AppBar extends mixins(Navigation) {
 
 <style scoped lang="scss">
 .v-app-bar {
+  // top: var(--application-header-height);
+
   &::v-deep .v-toolbar__extension {
     padding: 2px 0;
     background: white;
   }
+
   .row-extension {
     width: 100%;
   }
