@@ -1,5 +1,7 @@
 <template>
-  <v-main class="blue-super-light">
+  <div>
+    <ApplicationHeader />
+
     <AppBar>
       <template v-slot:extensions>
         <v-row no-gutters class="white" outlined rounded="0">
@@ -11,9 +13,13 @@
         </v-row>
       </template>
     </AppBar>
-    <DesktopSideBar />
-    <SharedOwnerList />
-  </v-main>
+
+    <v-main>
+      <DesktopSideBar />
+
+      <SharedOwnerList />
+    </v-main>
+  </div>
 </template>
 
 <script lang="ts">
