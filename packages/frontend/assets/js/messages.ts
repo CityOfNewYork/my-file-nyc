@@ -113,7 +113,7 @@ export default merge(
 
         disclaimerTitle: 'Reminder',
         shareDocumentDisclaimer:
-          'MyFile NYC lets you share files only with emails ending in @nycopportunity.nyc.gov and @blenderbox.com',
+          'MyFile NYC lets you share files only with emails ending in @nycopportunity.nyc.gov, @dhs.nyc.gov, @hra.nyc.gov, @dss.nyc.gov, and @doitt.nyc.gov',
 
         // on the confirmation step, could be "recipient" or "recipients" depending on number of items
         confirmRecipientsLabel: 'Recipient | Recipients',
@@ -140,7 +140,8 @@ export default merge(
         addConfirmationBody:
           'They will be able to upload and share files for you. They cannot delete files. You can always remove their access to your account.',
         addConfirmationAction: 'Yes, Give Access',
-        removeConfirmationTitle: 'Remove this person from accessing your account?',
+        removeConfirmationTitle:
+          'Remove this person from accessing your account?',
         removeConfirmationBody:
           'They will no longer be able to manage or share files for you. You can always give them access to your files again in the Account menu settings.',
         removeConfirmationAction: 'Yes, Remove',
@@ -199,8 +200,7 @@ export default merge(
         noClientActionLabel: 'Not a case manager?',
         noClientActionText:
           'If you are seeking permanent supportive housing, click here.',
-        removeConfirmationTitle:
-          'Remove this client from your MyFile NYC?',
+        removeConfirmationTitle: 'Remove this client from your MyFile NYC?',
         removeConfirmationBody:
           'You will no longer be able to view, manage, or share files on their behalf. This cannot be undone.',
         removeConfirmationAction: 'Yes, Remove',
