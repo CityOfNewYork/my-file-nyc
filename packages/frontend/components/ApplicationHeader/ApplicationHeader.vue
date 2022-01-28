@@ -63,10 +63,9 @@
 }
 
 .application-header {
-  font-size: var(--application-header-font-size);
-  font-weight: var(--application-header-font-weight);
-  font-family: var(--application-header-font-family);
-  font-weight: var(--application-header-font-weight);
+  font-size: var(--application-header-font-size) !important;
+  font-family: var(--application-header-font-family) !important;
+  font-weight: var(--application-header-font-weight) !important;
 
   color: var(--application-header-color) !important;
   background-color: var(--application-header-background-color) !important;
@@ -77,10 +76,10 @@
   // z-index: var(--application-header-index);
 
   width: 100%;
-  align-items: stretch;
+  align-items: stretch !important;
 
-  padding-left: var(--application-header-wrap);
-  padding-right: var(--application-header-wrap);
+  padding-left: var(--application-header-wrap) !important;
+  padding-right: var(--application-header-wrap) !important;
 }
 
 .application-header__link {
