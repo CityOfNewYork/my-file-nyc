@@ -216,7 +216,7 @@ if (process.env.MOBILE_TESTING === '1') {
   Object.assign(config, {
     server: {
       port: 3000,
-      host: '0.0.0.0',
+      host: 'localhost',
       timing: false,
       https: {
         key: fs.readFileSync(path.resolve(__dirname, 'local/localhost.key')),

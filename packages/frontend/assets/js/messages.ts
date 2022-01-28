@@ -27,7 +27,11 @@ export default merge(
       },
 
       login: {
-        getStarted: 'Get Started',
+        getStarted: {
+          client: 'Get Started',
+          cityEmployee: 'City Employee Login',
+          cboWorker: 'CBO Worker Login',
+        },
         welcomeTitle: 'Welcome',
         footerLogoAlt: 'Footer logo',
       },
@@ -140,7 +144,8 @@ export default merge(
         addConfirmationBody:
           'They will be able to upload and share files for you. They cannot delete files. You can always remove their access to your account.',
         addConfirmationAction: 'Yes, Give Access',
-        removeConfirmationTitle: 'Remove this person from accessing your account?',
+        removeConfirmationTitle:
+          'Remove this person from accessing your account?',
         removeConfirmationBody:
           'They will no longer be able to manage or share files for you. You can always give them access to your files again in the Account menu settings.',
         removeConfirmationAction: 'Yes, Remove',
@@ -199,8 +204,7 @@ export default merge(
         noClientActionLabel: 'Not a case manager?',
         noClientActionText:
           'If you are seeking permanent supportive housing, click here.',
-        removeConfirmationTitle:
-          'Remove this client from your MyFile NYC?',
+        removeConfirmationTitle: 'Remove this client from your MyFile NYC?',
         removeConfirmationBody:
           'You will no longer be able to view, manage, or share files on their behalf. This cannot be undone.',
         removeConfirmationAction: 'Yes, Remove',
