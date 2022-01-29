@@ -25,6 +25,7 @@ export default class ButtonLarge extends Vue {
   transition: all 0.2s ease;
   font-size: 1.0625rem;
   letter-spacing: -0.03em;
+  margin: 6px;
 
   &:hover,
   &:focus {

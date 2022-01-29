@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <AppBar :empty="true">
+    <AppBar v-if="this.$router.currentRoute.path !== '/'" :empty="true">
       <template v-slot:nav-action>
         <BackButton tabindex="0" />
       </template>

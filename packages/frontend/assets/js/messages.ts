@@ -27,7 +27,11 @@ export default merge(
       },
 
       login: {
-        getStarted: 'Get Started',
+        getStarted: {
+          client: 'Get Started',
+          cityEmployee: 'City Employee Login',
+          cboWorker: 'CBO Worker Login',
+        },
         welcomeTitle: 'Welcome',
         footerLogoAlt: 'Footer logo',
       },
