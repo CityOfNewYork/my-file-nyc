@@ -35,12 +35,10 @@ export default async ({
   if (store.state.auth.loggedIn) {
     const promises: Promise<any>[] = []
     if (!userStore.userId) {
-      console.log('--- 1 ---')
       const claims = decode($auth.getToken($config.authStrategy))
       await userStore.setUserId(claims[$config.authTokenIdClaim])
     }
     if (!userStore.profile) {
-      console.log('--- 2 ---')
       promises.push(userStore.fetchProfile())
     }
     await Promise.all(promises)
@@ -50,7 +48,6 @@ export default async ({
         .map((r) => app.localePath(r))
         .includes(route.path)
     ) {
-      console.log('--- 3 ---')
       redirect(app.localePath('/terms-of-use'))
     }
 
@@ -59,7 +56,6 @@ export default async ({
         .map((r) => app.localePath(r))
         .includes(route.path)
     ) {
-      console.log('--- 4 ---')
       redirect(app.localePath('/dashboard'))
     }
   }
