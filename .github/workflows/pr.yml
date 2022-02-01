@@ -1,0 +1,35 @@
+name: Continues Integration (PR)
+
+on:
+  pull_request:
+    branches: [prod, dev, qa, stage, main, 'dev-*']
+
+# Initializes environment variables for the workflow
+env:
+  AWS_DEFAULT_REGION: us-east-1 # Deployment Region
+
+jobs:
+  build:
+    name: Build & Test
+    runs-on: ubuntu-latest
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+
+      # - name: Install NPM dependencies
+      #   run: npm ci
+
+      # - name: Static code analysis
+      #   run: npm run tsc && npm run lint
+
+      # - name: Build from sources
+      #   run: npm run build
+
+#      - name: Run tests
+#        run: npm run test
