@@ -55,7 +55,8 @@ export default async ({
       ['/client', '/agency', '/community', '/']
         .map((r) => app.localePath(r))
         .includes(route.path)
-    )
+    ) {
       redirect(app.localePath('/dashboard'))
+    }
   }
 }

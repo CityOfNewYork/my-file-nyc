@@ -17,7 +17,7 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
-import { userStore } from '@/plugins/store-accessor'
+import { userStore } from '../plugins/store-accessor'
 
 @Component({
   auth: false,
@@ -26,7 +26,9 @@ export default class DefaultLayout extends Vue {
   auth: false
 
   get title() {
-    if (userStore.isCbo) {
+    if (!this.$auth.loggedIn) {
+      return ''
+    } else if (userStore.isCbo) {
       return 'landing.community'
     } else if (userStore.isAgent) {
       return 'landing.agency'
