@@ -1,6 +1,8 @@
 <template>
   <v-skeleton-loader v-if="loading" type="image"></v-skeleton-loader>
-  <div v-else-if="isInfected">File is infected and should not be downloaded</div>
+  <div v-else-if="isInfected">
+    File is infected and should not be downloaded
+  </div>
   <iframe
     v-else-if="isPdf"
     :src="url"
@@ -57,6 +59,7 @@ export default class DocumentFile extends Vue {
   get isTiff() {
     return this.file.contentType === FileContentTypeEnum.ImageTiff
   }
+
   get isInfected() {
     return this.file.scanStatus === 'infected'
   }

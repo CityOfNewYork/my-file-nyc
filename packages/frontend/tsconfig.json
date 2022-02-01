@@ -23,3 +23,31 @@
   },
   "exclude": ["node_modules", ".nuxt", "dist"]
 }
+
+/*
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "esModuleInterop": true,
+    "declaration": false,
+    "paths": {
+      "@/*": ["./*"]
+    },
+    "baseUrl": "./src",
+    "types": [
+      "@types/jest",
+      "@nuxt/types",
+      "nuxt-i18n",
+      "@nuxtjs/vuetify",
+      "@types/nuxtjs__auth",
+      "@nuxt/content"
+    ]
+  },
+  "exclude": [
+    "node_modules",
+    "dist",
+    ".nuxt"
+  ]
+}
+*/
