@@ -46,10 +46,11 @@ import {
 import { IKey, Key } from '@aws-cdk/aws-kms'
 import { Certificate } from '@aws-cdk/aws-certificatemanager'
 import {
-  DefaultDomainMappingOptions,
+  DomainMappingOptions,
   DomainName,
   HttpApi,
   HttpMethod,
+  CorsHttpMethod,
   CfnRoute,
   CfnAuthorizer,
   CfnIntegration,
@@ -776,7 +777,7 @@ export class CityStack extends Stack {
           includeDelete: true,
         },
       },
-    )
+    );
     lambda.addEventSource(
       new SqsEventSource(emailProcessorQueue, {
         batchSize: 10,
@@ -1262,7 +1263,7 @@ export class CityStack extends Stack {
     apiDomainConfig || {}
 
     // register custom domain name if we can
-    let defaultDomainMapping: DefaultDomainMappingOptions | undefined
+    let defaultDomainMapping: DomainMappingOptions | undefined
     if (domain && certificateArn) {
       const certificate = Certificate.fromCertificateArn(
         this,
@@ -1297,11 +1298,11 @@ export class CityStack extends Stack {
       apiName: `${this.stackName}Api`,
       corsPreflight: {
         allowMethods: [
-          HttpMethod.GET,
-          HttpMethod.DELETE,
-          HttpMethod.OPTIONS,
-          HttpMethod.POST,
-          HttpMethod.PUT,
+          CorsHttpMethod.GET,
+          CorsHttpMethod.DELETE,
+          CorsHttpMethod.OPTIONS,
+          CorsHttpMethod.POST,
+          CorsHttpMethod.PUT,
         ],
         allowOrigins: corsOrigins,
         allowHeaders: ['authorization', 'content-type'],
@@ -1656,7 +1657,7 @@ export class CityStack extends Stack {
         layers: [mySqlLayer],
         extraEnvironmentVariables: [
           ...authEnvironmentVariables,
-          EnvironmentVariables.WEB_APP_DOMAIN,
+          // EnvironmentVariables.WEB_APP_DOMAIN, -- need to fix incorrect domain issue for processing email template
           EnvironmentVariables.ACTIVITY_RECORD_SQS_QUEUE_URL,
           EnvironmentVariables.EMAIL_PROCESSOR_SQS_QUEUE_URL,
         ],
@@ -1667,7 +1668,13 @@ export class CityStack extends Stack {
           includeWrite: true,
         },
       },
-    )
+    );
+    
+    /* TEMPORARY BUILD FIX / CHECK -- NEED TO SET ENV VAR BASED ON ENVIRONMENT SPECIFIC SECRETS */
+    createCollectionFunction.addEnvironment('WEB_APP_DOMAIN', 'd3gtg3qw3q3xz9.cloudfront.net');
+    /* END TEMPORARY BUILD FIX */
+
+
     createCollectionFunction.addToRolePolicy(
       new PolicyStatement({
         actions: ['ses:SendEmail'],
