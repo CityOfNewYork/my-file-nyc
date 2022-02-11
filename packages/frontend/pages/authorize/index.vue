@@ -17,6 +17,10 @@ import { Vue, Component } from 'nuxt-property-decorator'
 @Component({
   layout: 'centered',
 
+  mounted() {
+    console.log(`https://localhost:3000/authorize${location.hash}`);
+  }
+
   head() {
     return {
       title: this.$t('tabTitles.authorizing') as string,
