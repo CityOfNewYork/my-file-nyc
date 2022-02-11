@@ -137,6 +137,7 @@ export default merge(
       },
 
       delegateAccess: {
+        disabledNotice: 'The delegation feature is currently disabled.',
         pageTitle: 'Account Access', // title in account menu and page title of delegation flow
         menuTitle: 'Who Can Manage My Files', // title in account menu and page title of delegation flow
         emailPlaceholder: 'Add people via email',
