@@ -7,10 +7,10 @@
     <MarkdownContent id="welcome-copy" :content-path="welcomeMarkdown" />
     <ButtonLarge
       :label="$t('login.getStarted.client')"
-      @click.native="logIn"
+      @click.native="logIn(0)"
       @keydown.native.enter="logIn"
     />
-    <ButtonLarge
+    <ButtonLarge v-if="this.$config.features.delegates"
       :label="$t('login.getStarted.cboWorker')"
       style="background-color: #777"
       @click.native="logIn(1)"
@@ -65,6 +65,7 @@ export default class LandingMessage extends Vue {
   }
 
   logIn(role: UserRole = UserRole.CLIENT) {
+    localStorage.setItem('entry-role', role.toString())
     this.$router.push(this.localePath(`/login?loginAs=${role}`))
   }
 }

@@ -12,6 +12,10 @@ export const envConfig = {
     authTokenIdClaim: process.env.AUTH_TOKEN_ID_CLAIM || 'sub',
     footerLogo: process.env.FOOTER_LOGO,
     maxFileSize: 10000000,
+
+    features: {
+      delegates: false,
+    }
   },
 }
 /**

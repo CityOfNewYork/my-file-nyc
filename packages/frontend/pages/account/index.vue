@@ -22,7 +22,10 @@
     </AppBar>
 
     <v-main>
-      <v-window v-model="step" touchless class="pa-8">
+      <v-window v-if="!this.$config.features.delegates" style="margin: 1em;">
+              {{ $t('delegateAccess.disabledNotice') }}
+      </v-window>
+      <v-window v-else v-model="step" touchless class="pa-8">
         <v-window-item value="top-level">
           <div class="window-container mx-auto">
             <v-btn
