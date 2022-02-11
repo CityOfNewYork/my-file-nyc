@@ -1,16 +1,14 @@
 <template>
   <div>
-    <v-img
+    <!-- <v-img
       alt=""
       :max-width="imageSize"
       class="mx-auto"
       :src="require('@/assets/images/upload.svg')"
-    />
+    /> -->
     <div v-if="title || body" style="max-width: 256px" class="mx-auto">
       <p v-if="title" class="text-center font-weight-bold">{{ $t(title) }}</p>
-      <p v-if="body" class="text-center" style="white-space: pre-line">
-        {{ $t(body) }}
-      </p>
+      <p v-if="body" class="text-center">{{ $t(body) }}</p>
       <slot name="action" />
     </div>
   </div>
