@@ -1,3 +1,5 @@
+## Terms of Use
+
 Please read the following terms of use (Terms) carefully before using this NYC Datalocker. By accessing this NYC Datalocker, you understand and agree to these terms.
 
 I. Definitions
