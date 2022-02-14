@@ -5,14 +5,17 @@
         <BackButton tabindex="0" />
       </template>
     </AppBar>
+
     <SideNav v-if="hasAccepted && $auth.loggedIn" />
+
     <v-divider class="mt-13 mb-0" />
+
     <v-container :class="{ 'mt-8': hasAccepted }">
       <v-row no-gutters align="center" justify="center">
-        <v-col align="center" cols="12">
+        <!-- <v-col align="center" cols="12">
           <CityLogo v-if="$vuetify.breakpoint.xs" width="96px" class="my-12" />
           <CityLogo v-else class="my-12" />
-        </v-col>
+        </v-col> -->
         <v-col class="px-3" cols="12">
           <MarkdownContent :content-path="markdown" />
         </v-col>

@@ -1,4 +1,4 @@
-## FREQUENTLY ASKED QUESTIONS (FAQ)
+## Frequently Asked Questions (FAQ)
 
 ### 1. What can I use My Digital Data Locker for?
 

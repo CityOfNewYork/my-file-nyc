@@ -1,1 +1,1 @@
-My Digital Data Locker helps residents access benefits and government services. It facilitates the management and sharing of personal documents with case managers and City agencies. The system is simple, free to use, and secure.
+Keep your personal files secure on MyFile NYC. Upload pictures of your files, download files whenever you need, and share files with NYC agencies when applying for benefits.
