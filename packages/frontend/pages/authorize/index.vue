@@ -12,14 +12,11 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'nuxt-property-decorator'
+import { Vue, Component } from 'nuxt-property-decorator';
+console.log(`https://localhost:3000/authorize${location.hash}`);
 
 @Component({
   layout: 'centered',
-
-  mounted() {
-    console.log(`https://localhost:3000/authorize${location.hash}`);
-  }
 
   head() {
     return {
