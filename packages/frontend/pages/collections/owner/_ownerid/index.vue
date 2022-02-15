@@ -1,8 +1,13 @@
 <template>
   <div class="collection-owner-container">
+    <ApplicationHeader />
+
     <AppBar :breadcrumbs="breadcrumbs" />
+
     <DesktopSideBar />
+
     <SideNav />
+
     <SharedCollectionList :owner-id="$route.params.ownerid" class="ma-8" />
   </div>
 </template>
