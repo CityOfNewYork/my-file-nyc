@@ -1,9 +1,7 @@
 <template>
-  <v-window
-    v-model="step"
-    :class="{ 'pt-12': $vuetify.breakpoint.smAndUp }"
-    :touch="onSwipe"
-  >
+  <div>
+    <ApplicationHeader />
+
     <AppBar :empty="$vuetify.breakpoint.xs" :title="toolbarTitle">
       <template v-if="$vuetify.breakpoint.xs" v-slot:nav-action>
         <BackButton v-show="step === 0" tabindex="0" class="mt-1" />
@@ -18,6 +16,7 @@
           <v-icon small class="mr-2">$chevron-left</v-icon>
         </v-btn>
       </template>
+
       <template v-if="$vuetify.breakpoint.xs" v-slot:actions>
         <v-btn
           color="primary"
@@ -28,6 +27,7 @@
           {{ $t(step === 2 ? 'controls.done' : 'controls.next') }}
         </v-btn>
       </template>
+
       <template v-else-if="$vuetify.breakpoint.smAndUp" v-slot:actionsBeneath>
         <v-btn
           text
@@ -49,167 +49,178 @@
         </v-btn>
       </template>
     </AppBar>
-    <v-window-item
-      :class="[{ mobile: $vuetify.breakpoint.xs }, 'blue-super-light']"
-    >
-      <div class="window-container pt-3">
-        <DocumentList
-          v-model="selectedDocs"
-          :selectable="true"
-          :pre-selected="preSelected"
-          :show-actions="false"
-          class="mx-8"
-        />
-      </div>
-    </v-window-item>
-    <v-window-item
-      :class="[{ mobile: $vuetify.breakpoint.xs }]"
-      style="min-height: 100%"
-    >
-      <div class="d-flex flex-column" style="min-height: calc(100vh - 88px)">
-        <div
-          class="window-container px-8 pt-8 mb-2 flex-grow-1"
-          style="max-width: 564px; width: 100%"
+
+    <v-main>
+      <v-window v-model="step" :touch="onSwipe">
+        <v-window-item
+          :class="[{ mobile: $vuetify.breakpoint.xs }, 'blue-super-light']"
         >
-          <v-row>
-            <v-col cols="auto" class="pr-0">
-              <v-icon v-if="true" class="mb-2">$profile</v-icon>
-            </v-col>
-            <v-col class="font-weight-medium">
-              {{ $t('sharing.recipients') }}
-            </v-col>
-          </v-row>
-          <ValidationObserver ref="observer">
-            <v-form @submit.prevent>
-              <ValidationProvider
-                v-slot="{ errors }"
-                mode="aggressive"
-                name="email"
-                :rules="emailValidationRules"
+          <div class="window-container pt-3">
+            <DocumentList
+              v-model="selectedDocs"
+              :selectable="true"
+              :pre-selected="preSelected"
+              :show-actions="false"
+              class="mx-8"
+            />
+          </div>
+        </v-window-item>
+
+        <v-window-item
+          :class="[{ mobile: $vuetify.breakpoint.xs }]"
+          style="min-height: 100%"
+        >
+          <div
+            class="d-flex flex-column"
+            style="min-height: calc(100vh - 88px)"
+          >
+            <div
+              class="window-container px-8 pt-8 mb-2 flex-grow-1"
+              style="max-width: 564px; width: 100%"
+            >
+              <v-row>
+                <v-col cols="auto" class="pr-0">
+                  <v-icon v-if="true" class="mb-2">$profile</v-icon>
+                </v-col>
+                <v-col class="font-weight-medium">
+                  {{ $t('sharing.recipients') }}
+                </v-col>
+              </v-row>
+              <ValidationObserver ref="observer">
+                <v-form @submit.prevent>
+                  <ValidationProvider
+                    v-slot="{ errors }"
+                    mode="aggressive"
+                    name="email"
+                    :rules="emailValidationRules"
+                  >
+                    <v-text-field
+                      v-model="email"
+                      :error-messages="
+                        individualEmailAddresses.length >= 10
+                          ? [$tc('sharing.tooManyRecipients', 10)]
+                          : errors
+                      "
+                      outlined
+                      :placeholder="$t('sharing.addRecipientPlaceholder')"
+                      type="email"
+                      :disabled="individualEmailAddresses.length >= 10"
+                      @keydown.enter="addEmail"
+                      @blur="addEmail"
+                    />
+                  </ValidationProvider>
+                </v-form>
+              </ValidationObserver>
+              <v-card
+                v-for="(email, i) in individualEmailAddresses"
+                :key="i"
+                rounded
+                class="invitee px-4 py-1 mb-2 grey-2"
               >
-                <v-text-field
-                  v-model="email"
-                  :error-messages="
-                    individualEmailAddresses.length >= 10
-                      ? [$tc('sharing.tooManyRecipients', 10)]
-                      : errors
-                  "
-                  outlined
-                  :placeholder="$t('sharing.addRecipientPlaceholder')"
-                  type="email"
-                  :disabled="individualEmailAddresses.length >= 10"
-                  @keydown.enter="addEmail"
-                  @blur="addEmail"
-                />
-              </ValidationProvider>
-            </v-form>
-          </ValidationObserver>
-          <v-card
-            v-for="(email, i) in individualEmailAddresses"
-            :key="i"
-            rounded
-            class="invitee px-4 py-1 mb-2 grey-2"
-          >
-            <v-row align="center" no-gutters>
-              <v-col>
-                <span>{{ email }}</span>
-              </v-col>
-              <v-col cols="auto">
-                <v-btn
-                  :title="`${$t('navigation.close')}`"
-                  icon
-                  @click="removeEmail(i)"
-                >
-                  <v-icon>$close</v-icon>
-                </v-btn>
-              </v-col>
-            </v-row>
-          </v-card>
-        </div>
-        <FooterCard
-          class="d-flex align-self-end mx-auto"
-          title="sharing.disclaimerTitle"
-          :body="
-            $t('sharing.shareDocumentDisclaimer', {
-              emails: !!domainsList ? domainsList : [],
-            })
-          "
-        />
-      </div>
-    </v-window-item>
-    <v-window-item>
-      <div class="window-container px-8 pt-12 d-flex justify-center">
-        <div>
-          <p class="font-weight-bold pt-4">
-            {{ $tc('sharing.confirmSharedFiles', selectedDocs.length) }}
-          </p>
-          <v-card
-            v-for="(doc, i) in selectedDocs.slice(0, sliceFiles)"
-            :key="`file-${i}`"
-            rounded
-            class="invitee px-4 py-4 mb-2 grey-2"
-          >
-            <v-row align="center" no-gutters>
-              <v-col class="pr-4" cols="auto">
-                <v-icon>$document</v-icon>
-              </v-col>
-              <v-col>
-                <span>{{ doc.name }}</span>
-              </v-col>
-            </v-row>
-          </v-card>
-          <v-btn
-            v-if="selectedDocs.length > sliceFiles"
-            class="float-right"
-            text
-            @click="sliceFiles = 100"
-          >
-            {{ $tc('sharing.plusNMore', selectedDocs.length - sliceFiles) }}
-          </v-btn>
-          <p class="font-weight-bold pt-8">
-            {{
-              $tc(
-                'sharing.confirmRecipientsLabel',
-                individualEmailAddresses.length,
-              )
-            }}
-          </p>
-          <v-card
-            v-for="(email, i) in individualEmailAddresses.slice(
-              0,
-              sliceRecipients,
-            )"
-            :key="`recipient-${i}`"
-            rounded
-            class="invitee px-4 py-4 mb-2 d-flex grey-2"
-          >
-            <v-row align="center" no-gutters>
-              <v-col class="pr-4" cols="auto">
-                <v-icon>$profile</v-icon>
-              </v-col>
-              <v-col>
-                <span>{{ email }}</span>
-              </v-col>
-            </v-row>
-          </v-card>
-          <v-btn
-            v-if="individualEmailAddresses.length > sliceRecipients"
-            class="float-right"
-            text
-            @click="sliceRecipients = 10"
-          >
-            {{
-              $tc(
-                'sharing.plusNMore',
-                individualEmailAddresses.length - sliceRecipients,
-              )
-            }}
-          </v-btn>
-        </div>
-      </div>
-    </v-window-item>
+                <v-row align="center" no-gutters>
+                  <v-col>
+                    <span>{{ email }}</span>
+                  </v-col>
+                  <v-col cols="auto">
+                    <v-btn
+                      :title="`${$t('navigation.close')}`"
+                      icon
+                      @click="removeEmail(i)"
+                    >
+                      <v-icon>$close</v-icon>
+                    </v-btn>
+                  </v-col>
+                </v-row>
+              </v-card>
+            </div>
+            <FooterCard
+              class="d-flex align-self-end mx-auto"
+              title="sharing.disclaimerTitle"
+              :body="
+                $t('sharing.shareDocumentDisclaimer', {
+                  emails: !!domainsList ? domainsList : [],
+                })
+              "
+            />
+          </div>
+        </v-window-item>
+
+        <v-window-item>
+          <div class="window-container px-8 d-flex justify-center">
+            <div>
+              <p class="font-weight-bold pt-4">
+                {{ $tc('sharing.confirmSharedFiles', selectedDocs.length) }}
+              </p>
+              <v-card
+                v-for="(doc, i) in selectedDocs.slice(0, sliceFiles)"
+                :key="`file-${i}`"
+                rounded
+                class="invitee px-4 py-4 mb-2 grey-2"
+              >
+                <v-row align="center" no-gutters>
+                  <v-col class="pr-4" cols="auto">
+                    <v-icon>$document</v-icon>
+                  </v-col>
+                  <v-col>
+                    <span>{{ doc.name }}</span>
+                  </v-col>
+                </v-row>
+              </v-card>
+              <v-btn
+                v-if="selectedDocs.length > sliceFiles"
+                class="float-right"
+                text
+                @click="sliceFiles = 100"
+              >
+                {{ $tc('sharing.plusNMore', selectedDocs.length - sliceFiles) }}
+              </v-btn>
+              <p class="font-weight-bold pt-8">
+                {{
+                  $tc(
+                    'sharing.confirmRecipientsLabel',
+                    individualEmailAddresses.length,
+                  )
+                }}
+              </p>
+              <v-card
+                v-for="(email, i) in individualEmailAddresses.slice(
+                  0,
+                  sliceRecipients,
+                )"
+                :key="`recipient-${i}`"
+                rounded
+                class="invitee px-4 py-4 mb-2 d-flex grey-2"
+              >
+                <v-row align="center" no-gutters>
+                  <v-col class="pr-4" cols="auto">
+                    <v-icon>$profile</v-icon>
+                  </v-col>
+                  <v-col>
+                    <span>{{ email }}</span>
+                  </v-col>
+                </v-row>
+              </v-card>
+              <v-btn
+                v-if="individualEmailAddresses.length > sliceRecipients"
+                class="float-right"
+                text
+                @click="sliceRecipients = 10"
+              >
+                {{
+                  $tc(
+                    'sharing.plusNMore',
+                    individualEmailAddresses.length - sliceRecipients,
+                  )
+                }}
+              </v-btn>
+            </div>
+          </div>
+        </v-window-item>
+      </v-window>
+    </v-main>
+
     <FooterLinks />
-  </v-window>
+  </div>
 </template>
 
 <script lang="ts">
@@ -422,10 +433,12 @@ export default class Share extends Vue {
 <style lang="scss">
 .v-window {
   height: 100vh;
+
   .window-container {
-    margin: 4rem auto 6rem auto;
+    margin: 0 auto 6rem auto;
   }
 }
+
 .v-card.invitee {
   max-width: 40rem;
 }

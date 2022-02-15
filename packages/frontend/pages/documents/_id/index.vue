@@ -1,5 +1,7 @@
 <template>
   <div>
+    <ApplicationHeader />
+
     <AppBar :empty="$vuetify.breakpoint.xs" :breadcrumbs="breadcrumbs">
       <template v-if="$vuetify.breakpoint.xs" v-slot:nav-action>
         <BackButton tabindex="0" />
