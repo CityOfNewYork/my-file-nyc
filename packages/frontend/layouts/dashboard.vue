@@ -1,11 +1,30 @@
 <template>
   <v-app>
+
     <v-overlay style="text-align: center" :z-index="10000" :value="overlay">
       <p>You are required to login again if using MyFile more than 1 hour.</p>
       <v-btn class="white--text" color="teal" @click="logout()">
         Login Again
       </v-btn>
     </v-overlay>
+    <v-snackbar
+      v-model="showTimeoutWarningMessage"
+      :timeout="warningMsgTimeoutMs"
+      color="red"
+      text
+    >
+      {{ timeoutWarningMessage }}
+
+        <v-btn
+          color="blue"
+          text
+          v-bind="attrs"
+          @click="snackbar = false"
+        >
+          Close
+        </v-btn>
+    </v-snackbar>
+
     <SideNav />
     <nuxt />
     <FooterLinks />
@@ -21,8 +40,10 @@ import { parseJwt } from '../lib/utils'
 export default class DashboardLayout extends Vue {
   overlay = false
   authTokenKey = 'auth._token.oauth2'
-  logoutUrl =
-    'https://accounts-nonprd.nyc.gov/account/idpLogout.htm?x-frames-allow-from=https%3A%2F%2Fd3gtg3qw3q3xz9.cloudfront.net'
+  logoutUrl = 'https://accounts-nonprd.nyc.gov/account/idpLogout.htm?x-frames-allow-from=https%3A%2F%2Fd3gtg3qw3q3xz9.cloudfront.net'
+  warningMsgTimeoutMs = 10000
+  showTimeoutWarningMessage = false
+  timeoutWarningMessage = ''
 
   mounted() {
     if (this.$route.params.showSnack) {
@@ -81,10 +102,14 @@ export default class DashboardLayout extends Vue {
         console.log(`${minutes}m ${seconds}s remaining.`)
         if (timeRemaining <= warning1AtMinute && !warning1Displayed) {
           warning1Displayed = true
-          console.log(`less than ${warning1AtMinute} minutes remaining`)
+          this.timeoutWarningMessage = `You will be forced to login again in less than ${warning1AtMinute - timeoutAtMinute} minutes.`
+          this.showTimeoutWarningMessage = true
+          console.log(this.timeoutWarningMessage)
         } else if (timeRemaining < warning2AtMinute && !warning2Displayed) {
           warning2Displayed = true
-          console.log(`less than ${warning2AtMinute} minutes remaining`)
+          this.timeoutWarningMessage = `You will be forced to login again in less than ${warning2AtMinute - timeoutAtMinute} minutes.`
+          this.showTimeoutWarningMessage = true
+          console.log(this.timeoutWarningMessage)
         } else if (timeRemaining <= timeoutAtMinute && !forceLoginModalOpen) {
           console.log('Pop up modal and force login')
           clearInterval(intervalId as number)
