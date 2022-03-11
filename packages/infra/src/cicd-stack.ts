@@ -202,7 +202,7 @@ export class CiCdStack extends Stack {
     const handler = new Function(this, 'BuildBucketNotificationLambda', {
       code: Code.fromAsset(path.join('build', 'builds-bucket-event.zip')),
       handler: 'index.handler',
-      runtime: Runtime.NODEJS_12_X,
+      runtime: Runtime.NODEJS_14_X,
     })
 
     // allow handler to execute a copy within S3

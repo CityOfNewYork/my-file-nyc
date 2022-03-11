@@ -105,7 +105,12 @@ export class DataStoreStack extends Stack {
       backupRetentionDays = 30,
       minCapacity = 1,
       maxCapacity = 8,
-    } = rdsConfig
+    } = rdsConfig;
+
+
+    const {
+      DEPLOYMENT_TARGET,
+    } = process.env;
 
     let kmsKey: IKey
     if (providedKmsKey) {
@@ -137,15 +142,15 @@ export class DataStoreStack extends Stack {
 
     // create the VPC
     this.vpc = Vpc.fromLookup(this, 'Vpc', {
-      vpcId: 'vpc-01b009799423f8eea',
-    })
+      vpcId: process.env.VPC_ID,
+    });
 
     // create the root DB credentials
     const rdsRootCredentialsSecret = new Secret(
       this,
       'RdsClusterCredentialsSecret',
       {
-        secretName: `${this.stackName}-rds-root-credentials`,
+        secretName: `/myfile/${DEPLOYMENT_TARGET}/rds-root-credentials`,
         generateSecretString: {
           secretStringTemplate: JSON.stringify({
             username: 'root',
@@ -238,7 +243,7 @@ export class DataStoreStack extends Stack {
     this.createDbUserFunction = new Function(this, 'CreateDbUserFunction', {
       code: Code.fromAsset(path.join('build', 'create-db-and-user.zip')),
       handler: 'index.handler',
-      runtime: Runtime.NODEJS_12_X,
+      runtime: Runtime.NODEJS_14_X,
       vpc: this.vpc,
       timeout: Duration.seconds(60),
       securityGroups: [this.rdsAccessSecurityGroup],
@@ -265,7 +270,7 @@ export class DataStoreStack extends Stack {
         code: Code.fromAsset(
           path.join(__dirname, 'lambdas', 'sql-layer', 'layer.zip'),
         ),
-        compatibleRuntimes: [Runtime.NODEJS_12_X],
+        compatibleRuntimes: [Runtime.NODEJS_14_X],
       }),
     }
   }

@@ -1,121 +1,113 @@
+const {
+  AWS_ACCOUNT_ID,
+  AWS_DEFAULT_REGION,
+  DATASTORE_STACK_NAME,
+  CITY_STACK_NAME,
+  SNS_TOPIC_ARN_PIPELINE_NOTIFICATION,
+  AGENCY_EMAIL_DOMAIN_WHITELIST,
+  EMAIL_SENDER_ADDRESS,
+  EMAIL_SENDER_NAME,
+  JWT_AUTH_INTEGRATION_TYPE,
+  JWT_AUTH_SIGNING_KEY_PARAMETER_PATH,
+  JWT_AUTH_USER_INFO_ENDPOINT,
+  JWT_AUTH_EMAIL_UNVERIFIED_REDIRECT_ENDPOINT,
+  ASSETS_OVERRIDE_PATH,
+  API_DOMAIN,
+  API_CERTIFICATE_ARN,
+  WEB_APP_DOMAIN,
+  WEB_APP_CERTIFICATE_ARN,
+  WEB_APP_API_URL,
+  WEB_APP_AUTH_URL,
+  WEB_APP_AUTH_CLIENT_ID,
+  WEB_APP_AUTH_LOGOUT_URL,
+  WEB_APP_GOOGLE_ANALYTICS_TRACKING_ID,
+  WEB_APP_SENTRY_DSN,
+  WEB_APP_AUTH_TOKEN_ID_CLAIM,
+  WEB_APP_CSP_CONNECT_SRC,
+  WEB_APP_CSP_SCRIPT_SRC,
+  WEB_APP_CSP_IMG_SRC,
+  WEB_APP_CSP_FRAME_SRC,
+  WEB_APP_FOOTER_LOGO,
+  MONITORING_SENTRY_DSN,
+  SNS_TOPIC_ARN_MONITORING_ALERTS,
+} = process.env;
+
 export default {
-  "pipeline": {
-    "env": {
-      "account": "010393621324",
-      "region": "us-east-1"
+  pipeline: {
+    env: {
+      account: AWS_ACCOUNT_ID,
+      region: AWS_DEFAULT_REGION,
     },
-    "pipelineNotificationsSnsTopicArn": "arn:aws:sns:us-east-1:010393621324:twobulls-slack-topic",
-    "developStageConfiguration": {
-      "dataStoreStackProps": {
-        "name": "NonProdDataStore",
-        "props": {
-          "env": {
-            "account": "010393621324",
-            "region": "us-east-1"
+    pipelineNotificationsSnsTopicArn: SNS_TOPIC_ARN_PIPELINE_NOTIFICATION,
+    developStageConfiguration: {
+      dataStoreStackProps: {
+        name: DATASTORE_STACK_NAME,
+        props: {
+          env: {
+            account: AWS_ACCOUNT_ID,
+            region: AWS_DEFAULT_REGION,
           },
-          "vpcConfig": {
-            "natGatewaysCount": 1,
-            "maxAzs": 2
+          vpcConfig: {
+            natGatewaysCount: 1,
+            maxAzs: 2
           },
-          "rdsConfig": {
-            "backupRetentionDays": 7,
-            "maxCapacity": 2
+          rdsConfig: {
+            backupRetentionDays: 7,
+            maxCapacity: 2
           }
         }
       },
-      "cityStacksProps": [
+      cityStacksProps: [
         {
-          "name": "NycStaging",
-          "props": {
-            "env": {
-              "account": "010393621324",
-              "region": "us-east-1"
+          name: CITY_STACK_NAME,
+          props: {
+            env: {
+              account: AWS_ACCOUNT_ID,
+              region: AWS_DEFAULT_REGION,
             },
-            "dataStoreStackName": "NonProdDataStore",
-            "jwtAuth": {
-              "integrationType": "NYCID_OAUTH",
-              "signingKeyParameterPath": "/nycId/signingKey",
-              "userInfoEndpoint": "https://accounts-nonprd.nyc.gov/account/api/oauth/user.htm?userName=data-locker",
-              "emailUnverifiedRedirectEndpoint": "https://accounts-nonprd.nyc.gov/account/validateEmail.htm"
+            dataStoreStackName: DATASTORE_STACK_NAME,
+            jwtAuth: {
+              integrationType: JWT_AUTH_INTEGRATION_TYPE,
+              signingKeyParameterPath: JWT_AUTH_SIGNING_KEY_PARAMETER_PATH,
+              userInfoEndpoint: JWT_AUTH_USER_INFO_ENDPOINT,
+              emailUnverifiedRedirectEndpoint: JWT_AUTH_EMAIL_UNVERIFIED_REDIRECT_ENDPOINT,
             },
-            "webAppBuildVariables": {
-              "API_URL": "https://4dzmcdsnml.execute-api.us-east-1.amazonaws.com",
-              "AUTH_URL": "https://accounts-nonprd.nyc.gov/account/api/oauth/authorize.htm",
-              "AUTH_CLIENT_ID": "data-locker",
-              "AUTH_LOGOUT_URL": "https://accounts-nonprd.nyc.gov/account/idpLogout.htm?x-frames-allow-from=https%3A%2F%2Fd3gtg3qw3q3xz9.cloudfront.net",
-              "GOOGLE_ANALYTICS_TRACKING_ID": "UA-182942417-2",
-              "SENTRY_DSN": "https://50eb97183e8f4cb8880bfecbb1479354@o880553.ingest.sentry.io/5834299",
-              "AUTH_TOKEN_ID_CLAIM": "GUID",
-              "CSP_CONNECT_SRC": "https://s3.us-east-1.amazonaws.com,https://nycstaging-documentsbucket9ec9deb9-1p3yvyeegriek.s3.us-east-1.amazonaws.com,https://*.sentry-cdn.com,https://*.sentry.io,https://browser.sentry-cdn.com,https://www.google-analytics.com",
-              "CSP_SCRIPT_SRC": "https://*.sentry-cdn.com,https://*.sentry.io,https://browser.sentry-cdn.com,https://www.google-analytics.com",
-              "CSP_IMG_SRC": "https://nycstaging-documentsbucket9ec9deb9-1p3yvyeegriek.s3.us-east-1.amazonaws.com,https://www.google-analytics.com",
-              "CSP_FRAME_SRC": "https://nycstaging-documentsbucket9ec9deb9-1p3yvyeegriek.s3.us-east-1.amazonaws.com",
-              "FOOTER_LOGO": "0"
+            webAppBuildVariables: {
+              API_URL: WEB_APP_API_URL,
+              AUTH_URL: WEB_APP_AUTH_URL,
+              AUTH_CLIENT_ID: WEB_APP_AUTH_CLIENT_ID,
+              AUTH_LOGOUT_URL: WEB_APP_AUTH_LOGOUT_URL,
+              GOOGLE_ANALYTICS_TRACKING_ID: WEB_APP_GOOGLE_ANALYTICS_TRACKING_ID,
+              SENTRY_DSN: WEB_APP_SENTRY_DSN,
+              AUTH_TOKEN_ID_CLAIM: WEB_APP_AUTH_TOKEN_ID_CLAIM,
+              CSP_CONNECT_SRC: WEB_APP_CSP_CONNECT_SRC,
+              CSP_SCRIPT_SRC: WEB_APP_CSP_SCRIPT_SRC,
+              CSP_IMG_SRC: WEB_APP_CSP_IMG_SRC,
+              CSP_FRAME_SRC: WEB_APP_CSP_FRAME_SRC,
+              FOOTER_LOGO: WEB_APP_FOOTER_LOGO,
             },
-            "assetsOverridePath": "nyc",
-            "apiDomainConfig": {
-              "certificateArn": "arn:aws:acm:us-east-1:010393621324:certificate/ba3a7034-04bb-40b9-8a25-4780df3d2075",
-              "domain": "myfile-api-stg.cityofnewyork.us",
-              "corsAllowAnyHost": true
+            assetsOverridePath: ASSETS_OVERRIDE_PATH,
+            apiDomainConfig: {
+              certificateArn: API_CERTIFICATE_ARN,
+              domain: API_DOMAIN,
+              corsAllowAnyHost: true
             },
-            "webAppDomainConfig": {
-              "certificateArn": "arn:aws:acm:us-east-1:010393621324:certificate/ebf7837f-0b7f-4227-800e-1fb6da7d065b",
-              "domain": "myfile-stg.cityofnewyork.us"
+            webAppDomainConfig: {
+              certificateArn: WEB_APP_CERTIFICATE_ARN,
+              domain: WEB_APP_DOMAIN,
             },
-            "emailSender": {
-              "address": "myfile-noreply@nycopportunity.nyc.gov",
-              "name": "Datalocker"
+            emailSender: {
+              address: EMAIL_SENDER_ADDRESS,
+              name: EMAIL_SENDER_NAME,
             },
-            "agencyEmailDomainsWhitelist": [
-              "@nycopportunity.nyc.gov",
-              "@dss.nyc.gov",
-              "@dhs.nyc.gov",
-              "@hra.nyc.gov",
-              "@doitt.nyc.gov"
-            ],
-            "monitoring": {
-              "sentryDsn": "https://50eb97183e8f4cb8880bfecbb1479354@o880553.ingest.sentry.io/5834299",
-              "alertsSnsTopicArn": "arn:aws:sns:us-east-1:010393621324:NonProdAlerts"
+            agencyEmailDomainsWhitelist: AGENCY_EMAIL_DOMAIN_WHITELIST?.split(','),
+            monitoring: {
+              sentryDsn: MONITORING_SENTRY_DSN,
+              alertsSnsTopicArn: SNS_TOPIC_ARN_MONITORING_ALERTS,
             }
           }
         }
       ]
     }
   },
-  "context": {
-    "availability-zones:account=950483335150:region=us-east-1": [
-      "us-east-1a",
-      "us-east-1b",
-      "us-east-1c",
-      "us-east-1d",
-      "us-east-1e",
-      "us-east-1f"
-    ],
-    "vpc-provider:account=010393621324:filter.vpc-id=vpc-01b009799423f8eea:region=us-east-1:returnAsymmetricSubnets=true": {
-      "vpcId": "vpc-01b009799423f8eea",
-      "vpcCidrBlock": "10.138.125.0/24",
-      "availabilityZones": [],
-      "vpnGatewayId": "vgw-046977544b9eb44a5",
-      "subnetGroups": [
-        {
-          "name": "Private",
-          "type": "Private",
-          "subnets": [
-            {
-              "subnetId": "subnet-0530569cac77e9ee2",
-              "cidr": "10.138.125.0/25",
-              "availabilityZone": "us-east-1a",
-              "routeTableId": "rtb-0796473404855a0ac"
-            },
-            {
-              "subnetId": "subnet-040074ac5e7f46642",
-              "cidr": "10.138.125.128/25",
-              "availabilityZone": "us-east-1b",
-              "routeTableId": "rtb-0796473404855a0ac"
-            }
-          ]
-        }
-      ]
-    }
-  }
 }
