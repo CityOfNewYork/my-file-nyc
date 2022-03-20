@@ -121,6 +121,7 @@ export const handler = createAuthenticatedApiGatewayHandler(
         name: userName(user),
       },
       emails: individualEmailAddresses,
+      ownerUser: user,
     })
 
     // return response
