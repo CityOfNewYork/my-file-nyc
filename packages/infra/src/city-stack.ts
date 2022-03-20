@@ -441,7 +441,7 @@ export class CityStack extends Stack {
     this.addAccountDelegateRoutes(apiProps)
 
     // add database migrations
-    // this.runMigrations(dbSecretRetrieved, mySqlLayer)
+    this.runMigrations(dbSecretRetrieved, mySqlLayer)
 
     // set up throttling
     this.configureThrottling(defaultStage, throttling)
@@ -2285,6 +2285,7 @@ export class CityStack extends Stack {
       code: Code.fromAsset(
         join(__dirname, '..', '..', 'api-service', 'dist', 'migrator'),
       ),
+      functionName: 'db-migrator',
       handler: 'index.handler',
       runtime: Runtime.NODEJS_14_X,
       vpc: this.lambdaVpc,
@@ -2294,11 +2295,11 @@ export class CityStack extends Stack {
       memorySize: 512,
       environment: {
         DB_HOST: this.rdsEndpoint,
-        DB_USER: 'root', //dbSecret.secretValueFromJson('username').toString(),
-        DB_PASSWORD: 'i2FSBZy3u8JzQqqjYjyFXLTI1kvgbY', //dbSecret.secretValueFromJson('password').toString(),
-        DB_NAME: 'root', //dbSecret.secretValueFromJson('username').toString(),
+        DB_USER: dbSecret.secretValueFromJson('username').toString(),
+        DB_PASSWORD: dbSecret.secretValueFromJson('password').toString(),
+        DB_NAME: dbSecret.secretValueFromJson('username').toString(),
       },
-    })
+    });
 
     // create a custom resource provider
     const runMigrationsResourceProvider = new Provider(
