@@ -29,6 +29,7 @@ export const handler: EventHandler = async (event: Event) => {
 
   const knexConfig = {
     client: 'mysql2',
+    debug: true,
     connection: {
       host: process.env.DB_HOST,
       database: process.env.DB_NAME,
@@ -41,6 +42,7 @@ export const handler: EventHandler = async (event: Event) => {
     },
   }
 
+  console.log(knexConfig);
   console.log('Running migration to latest')
   const knex = Knex(knexConfig)
   await knex.migrate.latest()
