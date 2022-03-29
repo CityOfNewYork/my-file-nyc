@@ -24,6 +24,7 @@ import {
   OriginAccessIdentity,
   CloudFrontWebDistribution,
   SecurityPolicyProtocol,
+  Distribution,
 } from '@aws-cdk/aws-cloudfront'
 import { DataStoreStack } from './data-store-stack'
 import { AuthStack } from './auth-stack'
@@ -214,6 +215,8 @@ export interface Props extends StackProps {
    * Please see the readme for how to configure this key.
    */
   providedKmsKey?: ProvidedKeyDetails
+
+  cloudfront?: any
 }
 export class CityStack extends Stack {
   public bucketNames: { [index: string]: string }
@@ -250,6 +253,7 @@ export class CityStack extends Stack {
       monitoring = {},
       throttling = {},
       providedKmsKey,
+      cloudfront = {},
     } = props
 
     // check jwt auth is given if auth stack is not
@@ -316,6 +320,7 @@ export class CityStack extends Stack {
     // add hosting for the web app
     const { domain: webAppDomain } = this.addHosting(
       'WebApp',
+      cloudfront.CLOUDFRONT_DISTRIBUTION_ID,
       webAppDomainConfig,
       hostedZone,
     )
@@ -864,8 +869,9 @@ export class CityStack extends Stack {
    */
   private addHosting(
     appName: string,
+    cloudfrontDistributionId: string,
     hostedDomainConfig?: HostedDomain,
-    hostedZone?: IHostedZone,
+    hostedZone?: IHostedZone
   ) {
     //Create Certificate
     let viewerCertificate: ViewerCertificate | undefined
@@ -907,10 +913,11 @@ export class CityStack extends Stack {
     // bucket.grantRead(originAccessIdentity)
 
     // Create App CloudFront Distribution
-    // CloudFrontWebDistribution.fromDistributionAttributes(this, 'sdf', {
-    //   distributionId: 'id from DOITT',
-    //   domainName: 'domain name',
-    // });
+    const cloudFrontDistribution = CloudFrontWebDistribution.fromDistributionAttributes(this, 'sdf', {
+      distributionId: cloudfrontDistributionId,
+      domainName: 'd3gtg3qw3q3xz9.cloudfront.net',
+    });
+    
 
     // const cloudFrontDistribution = new CloudFrontWebDistribution(
     //   this,
@@ -971,12 +978,12 @@ export class CityStack extends Stack {
     //   aliasRecord.node.addDependency(cloudFrontDistribution)
     // }
 
-    // return {
-    //   domain: hostedDomainConfig
-    //     ? hostedDomainConfig.domain
-    //     : cloudFrontDistribution.distributionDomainName,
-    // }
-    return { domain: 'placeholder-dev.myfile.nyc.gov' };
+    return {
+      domain: hostedDomainConfig
+        ? hostedDomainConfig.domain
+        : cloudFrontDistribution.distributionDomainName,
+    }
+    // return { domain: 'placeholder-dev.myfile.nyc.gov' };
   }
 
   /**

@@ -49,7 +49,7 @@ export const getQueryStringParameter = (
 ): string | undefined => {
   return event.queryStringParameters &&
     event.queryStringParameters[parameterName]
-    ? decodeURIComponent(event.queryStringParameters[parameterName])
+    ? decodeURIComponent(event.queryStringParameters[parameterName]!)
     : undefined
 }
 

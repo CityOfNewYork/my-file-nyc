@@ -14,6 +14,8 @@ const {
   ASSETS_OVERRIDE_PATH,
   API_DOMAIN,
   API_CERTIFICATE_ARN,
+  CLOUDFRONT_DISTRIBUTION_ID,
+  VPC_ID,
   WEB_APP_DOMAIN,
   WEB_APP_CERTIFICATE_ARN,
   WEB_APP_API_URL,
@@ -71,6 +73,10 @@ export default {
               signingKeyParameterPath: JWT_AUTH_SIGNING_KEY_PARAMETER_PATH,
               userInfoEndpoint: JWT_AUTH_USER_INFO_ENDPOINT,
               emailUnverifiedRedirectEndpoint: JWT_AUTH_EMAIL_UNVERIFIED_REDIRECT_ENDPOINT,
+            },
+            cloudfront: {
+              CLOUDFRONT_DISTRIBUTION_ID,
+              VPC_ID,
             },
             webAppBuildVariables: {
               API_URL: WEB_APP_API_URL,
