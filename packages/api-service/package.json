@@ -17,7 +17,7 @@
   },
   "devDependencies": {
     "@types/archiver": "^3.1.1",
-    "@types/aws-lambda": "^8.10.62",
+    "@types/aws-lambda": "8.10.62",
     "@types/gm": "^1.18.9",
     "@types/http-errors": "^1.8.0",
     "@types/lodash": "^4.14.165",
@@ -53,7 +53,7 @@
     "date-fns-tz": "^1.0.12",
     "gm": "^1.23.1",
     "http-errors": "^1.8.0",
-    "joi": "^17.2.1",
+    "joi": "17.2.1",
     "json-web-token": "^3.2.0",
     "knex": "^0.21.6",
     "lodash": "^4.17.20",

@@ -67,7 +67,6 @@
     "@aws-cdk/custom-resources": "1.147.0",
     "@aws-cdk/pipelines": "1.147.0",
     "aws-sdk": "^2.757.0",
-    "constructs": "^3.2.0",
     "copy-webpack-plugin": "^6.3.2",
     "mysql2": "^2.2.5",
     "source-map-support": "^0.5.16",
