@@ -191,7 +191,8 @@ export default class DocumentList extends Vue {
         }) as RawLocation,
       )
     } else if (userStore.isCbo && userStore.isActingAsDelegate) {
-      const delegate: DelegatedClient | null = await userStore.fetchImpersonatedDelegate()
+      const delegate: DelegatedClient | null =
+        await userStore.fetchImpersonatedDelegate()
       this.$router.push(
         this.localeRoute({
           path: `/documents/${document.id}`,

@@ -42,6 +42,7 @@ const mockUploadStore = new Vuex.Store({
                   createdDate: '2020-01-01T10:10:10Z',
                   files: [],
                   links: [],
+                  scanStatus: 'scan-status',
                 })
               }
             }, 250)

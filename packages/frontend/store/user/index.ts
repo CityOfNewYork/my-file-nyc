@@ -297,17 +297,16 @@ export default class User extends VuexModule {
   getSharedCollections(): Promise<SharedCollectionListItem[]> {
     if (!this._userId) return Promise.reject(new Error('UserID not set'))
     return api.user.listUserCollectionsShared(this._userId).then((response) => {
-      return (response.data.sharedCollections
-        ? response.data.sharedCollections
-        : []
+      return (
+        response.data.sharedCollections ? response.data.sharedCollections : []
       ).map(
         (c) =>
-          (Object.assign({}, c, {
+          Object.assign({}, c, {
             collection: {
               ...c.collection,
               createdDate: new Date(c.collection.createdDate),
             },
-          }) as unknown) as SharedCollectionListItem,
+          }) as unknown as SharedCollectionListItem,
       )
     })
   }

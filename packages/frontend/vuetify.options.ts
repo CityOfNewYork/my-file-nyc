@@ -159,7 +159,7 @@ const vuetifyOptions = (ctx: Context): Options => {
     lang: {
       locales: {},
       current: '',
-      t: (key, ...params) => ctx.app.i18n.t(key, params) as string,
+      t: (key: string, ...params: any) => ctx.app.i18n.t(key, params) as string,
     },
   }
 }

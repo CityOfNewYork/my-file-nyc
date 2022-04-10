@@ -10,7 +10,8 @@
       @click.native="logIn(0)"
       @keydown.native.enter="logIn"
     />
-    <ButtonLarge v-if="this.$config.features.delegates"
+    <ButtonLarge
+      v-if="this.$config.features.delegates"
       :label="$t('login.getStarted.cboWorker')"
       style="background-color: #777"
       @click.native="logIn(1)"

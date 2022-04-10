@@ -60,6 +60,7 @@ jest.mock('@/plugins/api-accessor', () => ({
               name: documentCreate.name,
               description: 'my test document',
               createdDate: Date.now().toLocaleString(),
+              scanStatus: 'scan-status',
               files: [
                 {
                   name: documentCreate.files[0].name,
@@ -69,6 +70,7 @@ jest.mock('@/plugins/api-accessor', () => ({
                   contentType: 'image/jpeg',
                   contentLength: 2000,
                   createdDate: '2020-01-12T10:11:12.123Z',
+                  scanStatus: 'scan-status',
                   links: [
                     {
                       href: 'uploadUrl',

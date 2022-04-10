@@ -68,6 +68,7 @@ test('DocumentStore.downloadFile [Happy case]', async () => {
     contentLength: 1,
     createdDate: '2020-11-22T00:00:00.000Z',
     links: [],
+    scanStatus: 'scan-status',
   } as DocumentFile
   await store.dispatch('document/downloadFile', {
     document: {
@@ -77,6 +78,7 @@ test('DocumentStore.downloadFile [Happy case]', async () => {
       createdDate: '2020-11-22T00:00:00.000Z',
       files: [documentFile],
       links: [],
+      scanStatus: 'scan-status',
     } as Document,
     file: documentFile,
     disposition: FileDownloadDispositionTypeEnum.Attachment,
