@@ -6,11 +6,22 @@ import { envConfig } from './plugins/env-config.ts'
 import { getSrc } from './assets/js/csp.ts'
 
 const config = {
+  /**
+   * Server Side Rendering: https://nuxtjs.org/docs/configuration-glossary/configuration-ssr#the-ssr-property
+   */
   ssr: false,
+
+  /**
+   * Deployment target: https://nuxtjs.org/docs/configuration-glossary/configuration-target#the-target-property
+   */
   target: 'static',
+
+  /**
+   * Global page headers: https://go.nuxtjs.dev/config-head
+   */
   head: {
     title: 'Loading...',
-    titleTemplate: '%s | My Digital Data Locker',
+    titleTemplate: '%s | My File NYC',
     meta: [
       {
         name: 'viewport',
@@ -30,7 +41,15 @@ const config = {
       },
     ],
   },
+
+  /**
+   * Global CSS: https://go.nuxtjs.dev/config-css
+   */
   css: ['@/assets/scss/main.scss'],
+
+  /**
+   * StyleResources: @nuxtjs/style-resources https://github.com/nuxt-community/style-resources-module
+   */
   styleResources: {
     scss: [
       '@/assets/scss/_colors.scss',
@@ -38,35 +57,66 @@ const config = {
       '@/assets/scss/_helpers.scss',
     ],
   },
+
+  /**
+   * Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
+   */
   plugins: [
     '@/plugins/vee-validate.js',
-    // consider re-enabling when https://github.com/vue-a11y/vue-axe/issues/32 is resolved
+    // TODO: consider re-enabling when https://github.com/vue-a11y/vue-axe/issues/32 is resolved
     // {
     //   src: '@/plugins/axe.ts',
     //   mode: 'client',
     // },
   ],
+
+  /**
+   * Auto import components: https://go.nuxtjs.dev/config-components
+   */
   components: true,
+
+  /**
+   * Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
+   */
   buildModules: [
+    // https://go.nuxtjs.dev/typescript
     '@nuxt/typescript-build',
+    // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
+    // https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
+    // https://google-analytics.nuxtjs.org
     '@nuxtjs/google-analytics',
+    // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
   ],
+
+  /**
+   * Modules: https://go.nuxtjs.dev/config-modules
+   */
   modules: [
+    // https://github.com/nuxt-community/style-resources-module
     '@nuxtjs/style-resources',
+    // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    // https://auth.nuxtjs.org
     '@nuxtjs/auth',
+    // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
+    // https://i18n.nuxtjs.org
     'nuxt-i18n',
+    // https://sentry.nuxtjs.org
     '@nuxtjs/sentry',
   ],
+
+  /**
+   * PWA module configuration: https://go.nuxtjs.dev/pwa
+   */
   pwa: {
     // TODO: other PWA features like icon and colour scheme
     manifest: {
-      name: 'My Digital Data Locker',
-      short_name: 'My Digital Data Locker',
+      name: 'My File NYC',
+      short_name: 'My File NYC',
       useWebmanifestExtension: true,
       display: 'fullscreen',
     },
@@ -74,6 +124,10 @@ const config = {
       sizes: [64, 120, 144, 152, 192, 384, 512],
     },
   },
+
+  /**
+   * i18n module configuration: https://i18n.nuxtjs.org
+   */
   i18n: {
     locales: ['en'],
     defaultLocale: 'en',
@@ -83,14 +137,25 @@ const config = {
     },
     strategy: 'no_prefix',
   },
+
+  /**
+   * Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
+   */
   vuetify: {
     treeShake: true,
     defaultAssets: false,
     customVariables: ['@/assets/scss/_vuetifyVariables.scss'],
     optionsPath: './vuetify.options.ts',
   },
+
+  /**
+   * Value of this object is accessible from both client and server using $config: https://nuxtjs.org/docs/configuration-glossary/configuration-runtime-config#publicruntimeconfig
+   */
   publicRuntimeConfig: envConfig,
 
+  /**
+   * Build Configuration: https://go.nuxtjs.dev/config-build
+   */
   build: {
     transpile: ['vee-validate/dist/rules'],
     extractCSS: {
@@ -103,6 +168,7 @@ const config = {
       if (isClient) {
         config.devtool = 'inline-source-map' // prevents eval() execution - see: https://github.com/webpack/webpack/issues/5627#issuecomment-374386048
       }
+
       config.module.rules.push({
         test: /\.md$/,
         loader: 'raw-loader',
@@ -155,10 +221,12 @@ const config = {
         },
       ),
     ],
+    // devtools: true,
   },
   generate: {
     dir: 'dist/' + process.env.OUTPUT_DIR,
   },
+
   /*
    ** Enforce auth for all routes
    ** Can be disabled by adding property `auth: false` to your page component
@@ -175,9 +243,9 @@ const config = {
       }
     },
   },
+
   /*
-   ** Auth Config
-   ** See https://auth.nuxtjs.org/schemes/oauth2.html#usage
+   ** Auth Config: https://github.com/nuxt-community/auth-module/blob/v4.9.1/docs/schemes/oauth2.md#usage
    */
   auth: {
     strategies: {
