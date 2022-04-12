@@ -12,12 +12,12 @@
       "@/*": ["./*"]
     },
     "types": [
-      "@types/jest",
       "@nuxt/types",
-      "nuxt-i18n",
       "@nuxtjs/vuetify",
+      "@types/jest",
+      "@types/lodash",
       "@types/nuxtjs__auth",
-      "@nuxt/content"
+      "nuxt-i18n"
     ],
     "typeRoots": ["./types"]
   },
