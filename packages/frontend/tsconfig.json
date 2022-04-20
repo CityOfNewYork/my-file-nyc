@@ -16,6 +16,8 @@
       "@nuxtjs/vuetify",
       "@types/jest",
       "@types/lodash",
+      "@types/lodash.clonedeep",
+      "@types/lodash.isequal",
       "@types/nuxtjs__auth",
       "nuxt-i18n"
     ],
