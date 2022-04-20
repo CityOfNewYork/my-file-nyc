@@ -188,7 +188,9 @@ import {
   ResourceMetadata,
 } from '@/types/activity'
 import { format, getUnixTime, parseISO, getISODay } from 'date-fns'
-import { cloneDeep, isEqual } from 'lodash'
+// import { cloneDeep, isEqual } from 'lodash'
+import cloneDeep from 'lodash.clonedeep';
+import isEqual from 'lodash.isequal';
 
 @Component({
   components: { InfiniteLoading },
