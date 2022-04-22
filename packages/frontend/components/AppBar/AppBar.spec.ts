@@ -1,4 +1,4 @@
-import { shallowMount } from '@vue/test-utils'
+import { shallowMount, mount } from '@vue/test-utils'
 import AppBar from '@/components/AppBar/AppBar.vue'
 import Vuetify from 'vuetify'
 
@@ -18,7 +18,7 @@ describe('AppBar component', () => {
   })
 
   it('exports a valid component', () => {
-    const wrapper = shallowMount(AppBar, {
+    const wrapper = mount(AppBar, {
       vuetify,
     })
     expect(wrapper.html()).toBeTruthy()
