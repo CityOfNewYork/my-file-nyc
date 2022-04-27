@@ -18,7 +18,7 @@
         @keydown.enter="focusDocumentMenuList"
         @keydown.space="focusDocumentMenuList"
       >
-        <v-icon>$dots-horizontal</v-icon>
+        <v-btn>Modify</v-btn>
       </v-btn>
     </template>
 
