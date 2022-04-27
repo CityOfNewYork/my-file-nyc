@@ -130,11 +130,12 @@
           class="d-flex align-self-end mx-auto"
           title="sharing.disclaimerTitle"
           :body="
-            $t('sharing.shareDocumentDisclaimer', {
+            $t('sharing.shareDocumentDisclaimer[0]', {
               emails: !!domainsList ? domainsList : [],
             })
           "
         />
+        
       </div>
     </v-window-item>
     <v-window-item>
@@ -207,6 +208,11 @@
           </v-btn>
         </div>
       </div>
+      <FooterCard
+        class="d-flex align-self-end mx-auto"
+        title="sharing.disclaimerTitle"
+        body="sharing.shareDocumentDisclaimer[1]"
+      />
     </v-window-item>
     <FooterLinks />
   </v-window>
@@ -243,6 +249,7 @@ export default class Share extends Vue {
   step = 0
   length = 3
 
+  disclamer = ''
   email = ''
   recompute = false
   isLoading = false
@@ -252,6 +259,7 @@ export default class Share extends Vue {
   emailValidationRules = ''
 
   async mounted() {
+    console.log(this.emailValidationRules)
     const collections = await this.$store.dispatch('user/getCollections')
     this.name = this.$t('sharing.defaultName', {
       date: format(Date.now(), 'LLL d, yyyy - k:mm'),
