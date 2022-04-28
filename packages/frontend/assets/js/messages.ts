@@ -12,7 +12,7 @@ export default merge(
       dateAdded: 'Date Added',
 
       application: {
-        title: 'My Digital Data Locker | Bullville',
+        title: 'MyFile NYC',
       },
 
       toast: {
@@ -27,15 +27,19 @@ export default merge(
       },
 
       login: {
-        getStarted: 'Get Started',
+        getStarted: {
+          client: 'Get Started',
+          cityEmployee: 'City Employee Login',
+          cboWorker: 'CBO Worker Login',
+        },
         welcomeTitle: 'Welcome',
         footerLogoAlt: 'Footer logo',
       },
 
       navigation: {
         about: 'About',
-        account: 'Account',
-        activity: 'Activity',
+        account: 'My Account Managers',
+        activity: 'Activity Log',
         back: 'Back',
         clients: 'Clients', // navigate back to agent view desktop
         close: 'Close',
@@ -61,8 +65,8 @@ export default merge(
         downloadPdf: 'Download PDF',
         description: 'Description', // displayed beneath the document and expands to show description (if any)
         editDetailsTitle: 'Edit Details', // page title on edit details screen
-        enterNamePlaceholder: 'Enter a new file name',
-        enterDescriptionPlaceholder: 'Enter description',
+        enterNamePlaceholder: 'Give this file a name',
+        enterDescriptionPlaceholder: 'Describe this file',
         fileName: 'File Name', // shown as a label on edit details screen
 
         noDocuments: 'There are no files saved to your account yet.', // shown on dashboard when there are no documents
@@ -74,7 +78,7 @@ export default merge(
       controls: {
         accept: 'Accept', // eg. accept terms of use
         add: 'Add', // eg. add a delegate
-        allFiles: 'All Files', // shown as tab label on the dashboard
+        allFiles: 'Your Files', // shown as tab label on the dashboard
         cancel: 'Cancel', // cancel button
         confirm: 'Confirm',
         confirmDelete: 'Yes, Delete',
@@ -84,9 +88,9 @@ export default merge(
         download: 'Download', // edit document kebab item and button text
         editDetails: 'Edit Details', // edit document kebab item
         next: 'Next',
-        share: 'Share', // share button
-        shared: 'Shared', // label of shared tab on dashboard
-        upload: 'Add',
+        share: 'Share a File', // share button
+        shared: 'Shared Files', // label of shared tab on dashboard
+        upload: 'Upload a File',
         view: 'View',
       },
 
@@ -107,8 +111,8 @@ export default merge(
         addRecipientPlaceholder: 'Enter email address',
 
         // step titles in the share flow
-        confirmTitle: 'Confirm Sharing',
-        addRecipientsTitle: 'Share With',
+        confirmTitle: 'Are you sure you want to share these files?',
+        addRecipientsTitle: 'Who are you sharing these file(s) with?',
         selectFilesTitle: 'Select Files',
 
         disclaimerTitle: 'Reminder',
@@ -135,20 +139,22 @@ export default merge(
       },
 
       delegateAccess: {
+        disabledNotice: 'The delegation feature is currently disabled.',
         pageTitle: 'Account Access', // title in account menu and page title of delegation flow
-        menuTitle: 'Who Can Access Your Account', // title in account menu and page title of delegation flow
+        menuTitle: 'Who Can Manage My Files', // title in account menu and page title of delegation flow
         emailPlaceholder: 'Add people via email',
-        addConfirmationTitle: 'Give this person access to your account?',
+        addConfirmationTitle: 'Let this person manage files on your account?',
         addConfirmationBody:
-          'They will be able to manage and share files for you. You can always manage or take away access to your files in the Account menu settings.',
+          'They will be able to upload and share files for you. They cannot delete files. You can always remove their access to your account.',
         addConfirmationAction: 'Yes, Give Access',
-        removeConfirmationTitle: 'Remove this person from your account?',
+        removeConfirmationTitle:
+          'Remove this person from accessing your account?',
         removeConfirmationBody:
           'They will no longer be able to manage or share files for you. You can always give them access to your files again in the Account menu settings.',
         removeConfirmationAction: 'Yes, Remove',
         uninviteConfirmationTitle: 'Cancel this invitation?',
         uninviteConfirmationBody:
-          'You can resend at any time in the Account menu settings.',
+          'You can invite someone to manage your account from the Account menu settings.',
         uninviteConfirmationAction: 'Yes, Cancel',
         tooManyDelegates: 'Up to {count} people can access your account',
         invitePending: 'Invitation pending',
@@ -195,14 +201,13 @@ export default merge(
         selectClient: 'Select a client to access their account',
         clickToRemove: 'Click {close} to remove a client',
         noClientsTitle:
-          'You have not been added to any client My Digital Data Locker accounts',
+          'You have not been added to any client MyFile NYC accounts',
         noClientsBody:
-          "Once a client adds you to their My Digital Data Locker account, you'll be able to manage and share files on their behalf from this screen.\n\nA client can provide access to their files in the Account menu settings in My Digital Data Locker.",
+          "Once a client adds you to their MyFile NYC account, you'll be able to manage and share files on their behalf from this screen.\n\nA client can provide access to their files in the Account menu settings in MyFile NYC.",
         noClientActionLabel: 'Not a case manager?',
         noClientActionText:
           'If you are seeking permanent supportive housing, click here.',
-        removeConfirmationTitle:
-          'Remove this client from your My Digital Data Locker?',
+        removeConfirmationTitle: 'Remove this client from your MyFile NYC?',
         removeConfirmationBody:
           'You will no longer be able to view, manage, or share files on their behalf. This cannot be undone.',
         removeConfirmationAction: 'Yes, Remove',

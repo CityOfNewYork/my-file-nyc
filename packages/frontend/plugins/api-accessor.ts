@@ -102,7 +102,10 @@ export default async (
         window.location = err.response.data.location
         return
       }
-      if (err.response && [401, 403].includes(err.response.status)) {
+      if (err.response && err.response.status === 401) {
+        // custom authorizer throws a 403
+        $auth.login()
+      } else if (err.response && err.response.status === 403) {
         // custom authorizer throws a 403
         $auth.login()
       }

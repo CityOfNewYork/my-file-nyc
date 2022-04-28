@@ -1,10 +1,11 @@
 <template>
-  <v-img
+  <!-- <v-img
     img="role"
     :alt="`${$t('myDigitalDataLocker')}`"
     :src="cityLogo"
     :width="width"
-  />
+  /> -->
+  <div></div>
 </template>
 
 <script lang="ts">

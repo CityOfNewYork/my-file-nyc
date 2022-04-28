@@ -14,6 +14,7 @@ export class File extends BaseModel {
   public sha256Checksum: string
   public createdAt: Date
   public createdBy: string
+  public scanStatus: string
 
   static get tableName() {
     return 'files'
@@ -56,6 +57,7 @@ export class File extends BaseModel {
         order: { type: 'number' },
         received: { type: 'boolean' },
         contentType: { type: 'string', maxLength: 255 },
+        scanStatus: { type: 'string', maxLength: 255 },
         contentLength: {
           type: 'integer',
           minimum: 1,
@@ -89,8 +91,12 @@ export class File extends BaseModel {
 }
 
 export const markFileReceived = async (path: string) => {
-  await File.query().patch({ received: true }).where({ path })
-  return await File.query().where({ path }).first()
+  await File.query()
+    .patch({ received: true })
+    .where({ path })
+  return await File.query()
+    .where({ path })
+    .first()
 }
 
 export const getFileByIdAndDocumentId = async (
@@ -105,11 +111,40 @@ export const getFileByIdAndDocumentId = async (
     .first()
   return file ? file : null
 }
+export const getFileById = async (fileId: string) => {
+  const file = await File.query()
+    .where({
+      id: fileId,
+    })
+    .first()
+  return file ? file : null
+}
 
 export const getFilesByDocumentId = async (documentId: string) => {
-  return await File.query().where({ documentId }).orderBy('order')
+  return await File.query()
+    .where({ documentId })
+    .orderBy('order')
 }
 
 export const getFilesByDocumentIds = async (documentIds: string[]) => {
-  return await File.query().whereIn('documentId', documentIds).orderBy('order')
+  return await File.query()
+    .whereIn('documentId', documentIds)
+    .orderBy('order')
+}
+export interface FileScanStatus {
+  path: string
+  scanStatus: string
+}
+
+export const updateScanStatusByPath = async (
+  fileScanStatus: FileScanStatus,
+) => {
+
+  await File.query()
+    .patch({ scanStatus: fileScanStatus.scanStatus })
+    .where({ path: fileScanStatus.path })
+
+  return await File.query()
+    .where({ path: fileScanStatus.path })
+    .first()
 }

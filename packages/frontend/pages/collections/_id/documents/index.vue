@@ -6,6 +6,8 @@
     />
   </div>
   <div v-else class="px-sm-8 pt-8 blue-super-light">
+    <ApplicationHeader />
+
     <AppBar :custom-mobile-nav="true" :breadcrumbs="breadcrumbs">
       <template v-if="$vuetify.breakpoint.xs" v-slot:nav-action>
         <BackButton tabindex="0" />
@@ -141,6 +143,20 @@ export default class ViewCollection extends Vue {
   delegatedClient: DelegatedClient | null = null
 
   async mounted() {
+    /* Ensure the user role is set from querystring role param if passed from incoming link */
+    console.log('--- viewing shared document ---')
+    const { role } = this.$route.query
+    console.log(this.$route)
+    console.log(role)
+    if (
+      role &&
+      parseInt(role as string) >= 0 &&
+      parseInt(role as string) <= 2
+    ) {
+      console.log('setting "entry-role" storage item')
+      localStorage.setItem('entry-role', role as string)
+    }
+
     this.title = this.$t('tabTitles.shared') as string
     if (this.$route.query.owner !== userStore.ownerId && userStore.isCbo) {
       await userStore.setOwnerId(this.$route.query.owner as string)

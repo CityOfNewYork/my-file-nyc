@@ -1,4 +1,5 @@
 import { EnvironmentVariable, requireConfiguration } from '@/config'
+import { User } from '@/models/user'
 import { putMessage } from '@/utils/sqs'
 import { SendRequest } from './validation'
 
@@ -12,7 +13,8 @@ const sendEmailRequest = async (sendRequest: SendRequest) => {
 }
 
 type SendSharedCollectionOptions = {
-  emails: string[]
+  ownerUser: User,
+  emails: string[],
   collection: {
     name: string
     link: string
@@ -22,13 +24,21 @@ type SendSharedCollectionOptions = {
 export const queueSharedCollectionNotification = async (
   opts: SendSharedCollectionOptions,
 ) => {
-  const { emails, collection } = opts
+  const { emails, collection, ownerUser } = opts
   await sendEmailRequest({
     template: 'collectionSharedNotification',
     toAddresses: emails,
     subject: `You’ve received new documents`,
     data: collection,
-  })
+  });
+  await sendEmailRequest({
+    template: 'collectionSharedNotificationOwnerAcknowledgement',
+    toAddresses: [ownerUser.email as string],
+    subject: 'MyFile Shared Document Receipt',
+    data: {
+      toEmailList: emails.join(', '),
+    },
+  });
 }
 
 type SendDelegateUserInvitationOptions = {

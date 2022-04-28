@@ -6,8 +6,20 @@
     </h2>
     <MarkdownContent id="welcome-copy" :content-path="welcomeMarkdown" />
     <ButtonLarge
-      :label="$t('login.getStarted')"
-      @click.native="logIn"
+      :label="$t('login.getStarted.client')"
+      @click.native="logIn(0)"
+      @keydown.native.enter="logIn"
+    />
+    <ButtonLarge v-if="this.$config.features.delegates"
+      :label="$t('login.getStarted.cboWorker')"
+      style="background-color: #777"
+      @click.native="logIn(1)"
+      @keydown.native.enter="logIn"
+    />
+    <ButtonLarge
+      :label="$t('login.getStarted.cityEmployee')"
+      style="background-color: #777"
+      @click.native="logIn(2)"
       @keydown.native.enter="logIn"
     />
     <CityLogoFooter v-if="showFooterLogo" class="mt-10 mb-3" />
@@ -24,8 +36,8 @@
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
 
-import { UserRole } from '@/types/user'
-import { userStore } from '@/plugins/store-accessor'
+import { UserRole } from '../../types/user'
+import { userStore } from '../../plugins/store-accessor'
 
 @Component({
   name: 'LandingMessage',
@@ -52,8 +64,9 @@ export default class LandingMessage extends Vue {
     return this.$config.footerLogo === '1'
   }
 
-  logIn() {
-    this.$router.push(this.localePath('/login'))
+  logIn(role: UserRole = UserRole.CLIENT) {
+    localStorage.setItem('entry-role', role.toString())
+    this.$router.push(this.localePath(`/login?loginAs=${role}`))
   }
 }
 </script>

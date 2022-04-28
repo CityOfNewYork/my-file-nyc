@@ -4,3 +4,5 @@ coverage/
 
 .env.nyc
 .env.dev
+
+!params.env

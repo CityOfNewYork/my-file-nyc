@@ -22,6 +22,7 @@ export class Document extends BaseModel {
   public updatedAt: Date
   public updatedBy: string
   public thumbnailPath?: string
+  public scanStatus: string
 
   // navigation property
   public files?: File[]
@@ -33,7 +34,14 @@ export class Document extends BaseModel {
   static get modifiers() {
     return {
       fieldsForList(query: QueryBuilder<Document>) {
-        const fields = ['id', 'name', 'createdAt', 'thumbnailPath', 'updatedAt']
+        const fields = [
+          'id',
+          'name',
+          'createdAt',
+          'thumbnailPath',
+          'updatedAt',
+          'scanStatus',
+        ]
         return query.select(...fields.map((f) => Document.ref(f)))
       },
       fieldsForSingle(query: QueryBuilder<Document>) {
@@ -44,6 +52,7 @@ export class Document extends BaseModel {
           'thumbnailPath',
           'createdAt',
           'ownerId',
+          'scanStatus',
         ]
         return query
           .select(...fields.map((f) => Document.ref(f)))
@@ -74,6 +83,7 @@ export class Document extends BaseModel {
         source: { type: 'string', maxLength: 255 },
         format: { type: 'string', maxLength: 255 },
         type: { type: 'string', maxLength: 255 },
+        scanStatus: { type: 'string', maxLength: 255 },
         expiryDate: { type: 'date-time' },
         updatedBy: { type: 'string', minLength: 1, maxLength: 255 },
         createdBy: { type: 'string', minLength: 1, maxLength: 255 },
@@ -115,7 +125,11 @@ export class Document extends BaseModel {
 }
 
 export const getDocumentById = async (id: string): Promise<Document | null> => {
-  return (await Document.query().modify('byId', id).first()) || null
+  return (
+    (await Document.query()
+      .modify('byId', id)
+      .first()) || null
+  )
 }
 
 export const getSingleDocumentById = async (
@@ -163,7 +177,9 @@ export const documentIsInCollectionWithGrant = async (
     .where({ requirementType, requirementValue })
     .whereIn(
       'collectionId',
-      CollectionDocument.query().select('collectionId').where({ documentId }),
+      CollectionDocument.query()
+        .select('collectionId')
+        .where({ documentId }),
     )
     .first())
 }
@@ -215,7 +231,9 @@ export const documentsInAnyCollectionWithGrantAndOwner = async (
 }
 
 export const setDocumentThumbnailPath = async (id: string, path: string) => {
-  return await Document.query().patch({ thumbnailPath: path }).where({ id })
+  return await Document.query()
+    .patch({ thumbnailPath: path })
+    .where({ id })
 }
 
 export interface CreateDocumentInput {
@@ -258,11 +276,33 @@ export const updateDocument = async (
   id: string,
   documentDetails: UpdateDocumentInput,
 ) => {
-  return await Document.query().patch(documentDetails).where({ id })
+  return await Document.query()
+    .patch(documentDetails)
+    .where({ id })
+}
+
+export interface DocumentScanStatus {
+  documentId: string
+  scanStatus: string
+}
+
+export const updateScanStatusByDocumentId = async (
+  documentScanStatus: DocumentScanStatus,
+) => {
+
+  await Document.query()
+    .patch({ scanStatus: documentScanStatus.scanStatus })
+    .where({ id: documentScanStatus.documentId })
 }
 
 export const deleteDocument = async (id: string) => {
-  await File.query().delete().where({ documentId: id })
-  await CollectionDocument.query().delete().where({ documentId: id })
-  return await Document.query().delete().where({ id })
+  await File.query()
+    .delete()
+    .where({ documentId: id })
+  await CollectionDocument.query()
+    .delete()
+    .where({ documentId: id })
+  return await Document.query()
+    .delete()
+    .where({ id })
 }

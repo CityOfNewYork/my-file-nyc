@@ -1,7 +1,7 @@
 <template>
   <ClientDashboard v-if="showClientDashboard" />
-  <CboDashboard v-else-if="userStore.isCbo" />
-  <AgentDashboard v-else-if="userStore.isAgent" />
+  <CboDashboard v-else-if="showCboDashboard" />
+  <AgentDashboard v-else-if="showAgencyDashboard" />
 </template>
 
 <script lang="ts">
@@ -30,8 +30,17 @@ export default class DashboardPage extends Vue {
 
   get showClientDashboard() {
     return (
-      userStore.isClient || (userStore.isCbo && userStore.isActingAsDelegate)
+      localStorage.getItem('entry-role') === '0' ||
+      !localStorage.getItem('entry-role')
     )
+  }
+
+  get showCboDashboard() {
+    return localStorage.getItem('entry-role') === '1'
+  }
+
+  get showAgencyDashboard() {
+    return localStorage.getItem('entry-role') === '2'
   }
 }
 </script>

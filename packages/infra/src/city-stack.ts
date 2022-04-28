@@ -24,6 +24,7 @@ import {
   OriginAccessIdentity,
   CloudFrontWebDistribution,
   SecurityPolicyProtocol,
+  Distribution,
 } from '@aws-cdk/aws-cloudfront'
 import { DataStoreStack } from './data-store-stack'
 import { AuthStack } from './auth-stack'
@@ -46,10 +47,11 @@ import {
 import { IKey, Key } from '@aws-cdk/aws-kms'
 import { Certificate } from '@aws-cdk/aws-certificatemanager'
 import {
-  DefaultDomainMappingOptions,
+  DomainMappingOptions,
   DomainName,
   HttpApi,
   HttpMethod,
+  CorsHttpMethod,
   CfnRoute,
   CfnAuthorizer,
   CfnIntegration,
@@ -83,92 +85,63 @@ import { StringParameter } from '@aws-cdk/aws-ssm'
 import { ProvidedKeyDetails } from './provided-key'
 import { SnsAction } from '@aws-cdk/aws-cloudwatch-actions'
 import { Topic } from '@aws-cdk/aws-sns'
+import * as ssm from '@aws-cdk/aws-ssm';
 import { join } from 'path'
+import {
+  ApiHostedDomain,
+  ApiProps,
+  BucketPermissions,
+  JwtConfiguration,
+  LogGroupPermissions,
+  MonitoringConfiguration,
+  SqsPermissions,
+  ThrottlingConfiguration,
+  ThrottlingRouteSettings,
+} from './city-stack.interfaces';
 
-interface ApiHostedDomain extends HostedDomain {
-  /**
-   * Whether to allow any host for the CORS policy.
-   * Useful for development environments.
-   * @default false
-   */
-  corsAllowAnyHost?: boolean
+
+const ReadRouteDefaultThrottling: ThrottlingRouteSettings = {
+  ThrottlingBurstLimit: 50,
+  ThrottlingRateLimit: 200,
 }
 
-interface JwtConfiguration {
-  /**
-   * The audience (aud) of the JWT token
-   */
-  audience?: string[]
-
-  /**
-   * The issuer (iss) of the JWT token
-   */
-  issuer?: string
-
-  /**
-   * The URL for User Info for this service
-   */
-  userInfoEndpoint: string
-
-  /**
-   * The integration type, defaults to OAUTH
-   */
-  integrationType?: 'OAUTH' | 'NYCID_OAUTH'
-
-  /**
-   * If provided, will be resolved to a SSM Parameter Store String parameter for the shared secret signing key for auth integration
-   */
-  signingKeyParameterPath?: string
-
-  /**
-   * If provided, when a user attempts to use the platform with an unverified email address, they will be redirected to this endpoint.
-   */
-  emailUnverifiedRedirectEndpoint?: string
+const WriteRouteDefaultThrottling: ThrottlingRouteSettings = {
+  ThrottlingBurstLimit: 25,
+  ThrottlingRateLimit: 100,
 }
 
-interface MonitoringConfiguration {
-  /**
-   * Sentry DSN
-   */
-  sentryDsn?: string
+enum EnvironmentVariables {
+  DOCUMENTS_BUCKET = 'DOCUMENTS_BUCKET',
+  USERINFO_ENDPOINT = 'USERINFO_ENDPOINT',
+  WEB_APP_DOMAIN = 'WEB_APP_DOMAIN',
+  EMAIL_SENDER = 'EMAIL_SENDER',
+  AGENCY_EMAIL_DOMAINS_WHITELIST = 'AGENCY_EMAIL_DOMAINS_WHITELIST',
+  CREATE_COLLECTION_ZIP_FUNCTION_NAME = 'CREATE_COLLECTION_ZIP_FUNCTION_NAME',
+  ACTIVITY_RECORD_SQS_QUEUE_URL = 'ACTIVITY_RECORD_SQS_QUEUE_URL',
+  ACTIVITY_CLOUDWATCH_LOG_GROUP = 'ACTIVITY_CLOUDWATCH_LOG_GROUP',
+  EMAIL_PROCESSOR_SQS_QUEUE_URL = 'EMAIL_PROCESSOR_SQS_QUEUE_URL',
+  SENTRY_DSN = 'SENTRY_DSN',
+  ENVIRONMENT_NAME = 'ENVIRONMENT_NAME',
+  AUTH_SIGNING_KEY = 'AUTH_SIGNING_KEY',
+  AUTH_INTEGRATION_TYPE = 'AUTH_INTEGRATION_TYPE',
+  AUTH_EMAIL_UNVERIFIED_REDIRECT = 'AUTH_EMAIL_UNVERIFIED_REDIRECT',
 }
 
-interface ThrottlingConfiguration {
-  /**
-   * Multiplyer for the burst limit throttling.
-   * @see https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-throttling.html
-   */
-  burstLimitMultiplier?: number
-  /**
-   * Multiplyer for the rate limit throttling.
-   * @see https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-throttling.html
-   */
-  rateLimitMultiplier?: number
-}
+// these variables get inserted to every lambda created by "createLambda" so use sparingly
+const commonEnvironmentVariables = [
+  EnvironmentVariables.SENTRY_DSN,
+  EnvironmentVariables.ENVIRONMENT_NAME,
+]
 
-interface MonitoringConfiguration {
-  /**
-   * Sentry DSN
-   */
-  sentryDsn?: string
-  /**
-   * The SNS topic to deliver alert notifications to
-   */
-  alertsSnsTopicArn?: string
-}
+const authEnvironmentVariables = [
+  EnvironmentVariables.USERINFO_ENDPOINT,
+  EnvironmentVariables.AUTH_SIGNING_KEY,
+  EnvironmentVariables.AUTH_INTEGRATION_TYPE,
+  EnvironmentVariables.AUTH_EMAIL_UNVERIFIED_REDIRECT,
+  EnvironmentVariables.AGENCY_EMAIL_DOMAINS_WHITELIST,
+]
 
-interface ThrottlingConfiguration {
-  /**
-   * Multiplyer for the burst limit throttling.
-   * @see https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-throttling.html
-   */
-  burstLimitMultiplier?: number
-  /**
-   * Multiplyer for the rate limit throttling.
-   * @see https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-throttling.html
-   */
-  rateLimitMultiplier?: number
-}
+
 
 export interface Props extends StackProps {
   /**
@@ -242,80 +215,9 @@ export interface Props extends StackProps {
    * Please see the readme for how to configure this key.
    */
   providedKmsKey?: ProvidedKeyDetails
+
+  cloudfront?: any
 }
-
-interface ApiProps {
-  api: HttpApi
-  dbSecret: ISecret
-  mySqlLayer: ILayerVersion
-  gmLayer: ILayerVersion
-  authorizer: CfnAuthorizer
-}
-
-interface BucketPermissions {
-  includeRead?: boolean
-  includeWrite?: boolean
-  includeDelete?: boolean
-  includeTagging?: boolean
-}
-
-interface SqsPermissions {
-  includeWrite?: boolean
-  includeDelete?: boolean
-}
-
-interface LogGroupPermissions {
-  includeRead?: boolean
-  includeWrite?: boolean
-}
-
-interface ThrottlingRouteSettings {
-  ThrottlingBurstLimit: number
-  ThrottlingRateLimit: number
-  Route?: CfnResource
-}
-
-const ReadRouteDefaultThrottling: ThrottlingRouteSettings = {
-  ThrottlingBurstLimit: 50,
-  ThrottlingRateLimit: 200,
-}
-
-const WriteRouteDefaultThrottling: ThrottlingRouteSettings = {
-  ThrottlingBurstLimit: 25,
-  ThrottlingRateLimit: 100,
-}
-
-enum EnvironmentVariables {
-  DOCUMENTS_BUCKET = 'DOCUMENTS_BUCKET',
-  USERINFO_ENDPOINT = 'USERINFO_ENDPOINT',
-  WEB_APP_DOMAIN = 'WEB_APP_DOMAIN',
-  EMAIL_SENDER = 'EMAIL_SENDER',
-  AGENCY_EMAIL_DOMAINS_WHITELIST = 'AGENCY_EMAIL_DOMAINS_WHITELIST',
-  CREATE_COLLECTION_ZIP_FUNCTION_NAME = 'CREATE_COLLECTION_ZIP_FUNCTION_NAME',
-  ACTIVITY_RECORD_SQS_QUEUE_URL = 'ACTIVITY_RECORD_SQS_QUEUE_URL',
-  ACTIVITY_CLOUDWATCH_LOG_GROUP = 'ACTIVITY_CLOUDWATCH_LOG_GROUP',
-  EMAIL_PROCESSOR_SQS_QUEUE_URL = 'EMAIL_PROCESSOR_SQS_QUEUE_URL',
-  SENTRY_DSN = 'SENTRY_DSN',
-  ENVIRONMENT_NAME = 'ENVIRONMENT_NAME',
-  AUTH_SIGNING_KEY = 'AUTH_SIGNING_KEY',
-  AUTH_INTEGRATION_TYPE = 'AUTH_INTEGRATION_TYPE',
-  AUTH_EMAIL_UNVERIFIED_REDIRECT = 'AUTH_EMAIL_UNVERIFIED_REDIRECT',
-}
-
-// these variables get inserted to every lambda created by "createLambda" so use sparingly
-const commonEnvironmentVariables = [
-  EnvironmentVariables.SENTRY_DSN,
-  EnvironmentVariables.ENVIRONMENT_NAME,
-]
-
-const authEnvironmentVariables = [
-  EnvironmentVariables.USERINFO_ENDPOINT,
-  EnvironmentVariables.AUTH_SIGNING_KEY,
-  EnvironmentVariables.AUTH_INTEGRATION_TYPE,
-  EnvironmentVariables.AUTH_EMAIL_UNVERIFIED_REDIRECT,
-  EnvironmentVariables.AGENCY_EMAIL_DOMAINS_WHITELIST,
-]
-
 export class CityStack extends Stack {
   public bucketNames: { [index: string]: string }
   private static documentsBucketDocumentsPrefix = 'documents/'
@@ -351,6 +253,7 @@ export class CityStack extends Stack {
       monitoring = {},
       throttling = {},
       providedKmsKey,
+      cloudfront = {},
     } = props
 
     // check jwt auth is given if auth stack is not
@@ -360,6 +263,11 @@ export class CityStack extends Stack {
           this.stackName,
       )
     }
+
+    const {
+      DEPLOYMENT_TARGET,
+    } = process.env;
+    const dbSecretRetrieved = Secret.fromSecretNameV2(this, 'db-secret-rds', `/myfile/${DEPLOYMENT_TARGET}/rds-root-credentials`);
 
     // read in the signing key parameter if its provided
     if (jwtAuth && jwtAuth.signingKeyParameterPath) {
@@ -412,6 +320,7 @@ export class CityStack extends Stack {
     // add hosting for the web app
     const { domain: webAppDomain } = this.addHosting(
       'WebApp',
+      cloudfront.CLOUDFRONT_DISTRIBUTION_ID,
       webAppDomainConfig,
       hostedZone,
     )
@@ -435,10 +344,10 @@ export class CityStack extends Stack {
     }
 
     // create the DB and access credentials for this city
-    const { secret } = this.addDbAndCredentials(
-      this.kmsKey,
-      dataStoreStack.createDbUserFunction,
-    )
+    // const { secret } = this.addDbAndCredentials(
+    //   this.kmsKey,
+    //   dataStoreStack.createDbUserFunction,
+    // )
 
     // create the mysql lambda layer
     const { layer: mySqlLayer } = this.addMysqlLayer()
@@ -456,7 +365,7 @@ export class CityStack extends Stack {
     const apiProps: ApiProps = {
       api,
       authorizer,
-      dbSecret: secret,
+      dbSecret: dbSecretRetrieved,
       mySqlLayer,
       gmLayer,
     }
@@ -537,7 +446,7 @@ export class CityStack extends Stack {
     this.addAccountDelegateRoutes(apiProps)
 
     // add database migrations
-    this.runMigrations(secret, mySqlLayer)
+    this.runMigrations(dbSecretRetrieved, mySqlLayer)
 
     // set up throttling
     this.configureThrottling(defaultStage, throttling)
@@ -629,12 +538,12 @@ export class CityStack extends Stack {
    */
   private createUploadsBucket(kmsKey: IKey, corsOrigins: string[]) {
     const bucket = new Bucket(this, 'DocumentsBucket', {
-      blockPublicAccess: {
-        blockPublicAcls: true,
-        blockPublicPolicy: true,
-        ignorePublicAcls: true,
-        restrictPublicBuckets: true,
-      },
+      // blockPublicAccess: {
+      //   blockPublicAcls: false,
+      //   blockPublicPolicy: false,
+      //   ignorePublicAcls: false,
+      //   restrictPublicBuckets: false,
+      // },
       encryptionKey: kmsKey,
       removalPolicy: RemovalPolicy.RETAIN,
       cors: [
@@ -776,7 +685,7 @@ export class CityStack extends Stack {
           includeDelete: true,
         },
       },
-    )
+    );
     lambda.addEventSource(
       new SqsEventSource(emailProcessorQueue, {
         batchSize: 10,
@@ -960,8 +869,9 @@ export class CityStack extends Stack {
    */
   private addHosting(
     appName: string,
+    cloudfrontDistributionId: string,
     hostedDomainConfig?: HostedDomain,
-    hostedZone?: IHostedZone,
+    hostedZone?: IHostedZone
   ) {
     //Create Certificate
     let viewerCertificate: ViewerCertificate | undefined
@@ -978,95 +888,102 @@ export class CityStack extends Stack {
     }
 
     // Random part included for easier update if needed
-    const bucketName = `${this.stackName}-${appName}-AEBE24AF`.toLowerCase()
+    const bucketName = `${this.stackName}-${appName}-AEBE24AFA`.toLowerCase()
     this.bucketNames[appName] = bucketName
 
     // Create App Bucket
     const bucket = new Bucket(this, `${appName}Bucket`, {
-      blockPublicAccess: {
-        blockPublicAcls: true,
-        blockPublicPolicy: true,
-        ignorePublicAcls: true,
-        restrictPublicBuckets: true,
-      },
+      // blockPublicAccess: {
+      //   blockPublicAcls: false,
+      //   blockPublicPolicy: false,
+      //   ignorePublicAcls: false,
+      //   restrictPublicBuckets: false,
+      // },
       bucketName,
     })
 
     // Create App Origin Access Identity
-    const originAccessIdentity = new OriginAccessIdentity(
-      this,
-      `${appName}OriginAccessIdentity`,
-      {
-        comment: appName,
-      },
-    )
-    bucket.grantRead(originAccessIdentity)
+    // const originAccessIdentity = new OriginAccessIdentity(
+    //   this,
+    //   `${appName}OriginAccessIdentity`,
+    //   {
+    //     comment: appName,
+    //   },
+    // )
+    // bucket.grantRead(originAccessIdentity)
 
     // Create App CloudFront Distribution
-    const cloudFrontDistribution = new CloudFrontWebDistribution(
-      this,
-      `${appName}CloudFrontWebDistribution`,
-      {
-        defaultRootObject: 'index.html',
-        errorConfigurations: [
-          {
-            errorCode: 403,
-            responseCode: 200,
-            responsePagePath: '/index.html',
-          },
-          {
-            errorCode: 404,
-            responseCode: 200,
-            responsePagePath: '/index.html',
-          },
-        ],
-        originConfigs: [
-          {
-            s3OriginSource: {
-              s3BucketSource: bucket,
-              originAccessIdentity: originAccessIdentity,
-            },
-            behaviors: [
-              ...['/index.html', '/sw.js'].map(
-                (shortCachePathPattern) =>
-                  ({
-                    maxTtl: Duration.minutes(5),
-                    minTtl: Duration.minutes(5),
-                    defaultTtl: Duration.minutes(5),
-                    pathPattern: shortCachePathPattern,
-                    compress: true,
-                  } as any),
-              ),
-              {
-                isDefaultBehavior: true,
-                compress: true,
-              },
-            ],
-          },
-        ],
-        viewerCertificate,
-      },
-    )
-    cloudFrontDistribution.node.addDependency(bucket, originAccessIdentity)
+    const cloudFrontDistribution = CloudFrontWebDistribution.fromDistributionAttributes(this, 'sdf', {
+      distributionId: cloudfrontDistributionId,
+      domainName: 'd3gtg3qw3q3xz9.cloudfront.net',
+    });
+    
+
+    // const cloudFrontDistribution = new CloudFrontWebDistribution(
+    //   this,
+    //   `${appName}CloudFrontWebDistribution`,
+    //   {
+    //     defaultRootObject: 'index.html',
+    //     errorConfigurations: [
+    //       {
+    //         errorCode: 403,
+    //         responseCode: 200,
+    //         responsePagePath: '/index.html',
+    //       },
+    //       {
+    //         errorCode: 404,
+    //         responseCode: 200,
+    //         responsePagePath: '/index.html',
+    //       },
+    //     ],
+    //     originConfigs: [
+    //       {
+    //         s3OriginSource: {
+    //           s3BucketSource: bucket,
+    //           originAccessIdentity: originAccessIdentity,
+    //         },
+    //         behaviors: [
+    //           ...['/index.html', '/sw.js'].map(
+    //             (shortCachePathPattern) =>
+    //               ({
+    //                 maxTtl: Duration.minutes(5),
+    //                 minTtl: Duration.minutes(5),
+    //                 defaultTtl: Duration.minutes(5),
+    //                 pathPattern: shortCachePathPattern,
+    //                 compress: true,
+    //               } as any),
+    //           ),
+    //           {
+    //             isDefaultBehavior: true,
+    //             compress: true,
+    //           },
+    //         ],
+    //       },
+    //     ],
+    //     viewerCertificate,
+    //   },
+    // )
+    // cloudFrontDistribution.node.addDependency(bucket, originAccessIdentity)
 
     // Create Domain Record
-    if (hostedDomainConfig && hostedZone) {
-      const { domain } = hostedDomainConfig
-      const aliasRecord = new ARecord(this, `${appName}AliasRecord`, {
-        zone: hostedZone,
-        recordName: domain,
-        target: RecordTarget.fromAlias(
-          new CloudFrontTarget(cloudFrontDistribution),
-        ),
-      })
-      aliasRecord.node.addDependency(cloudFrontDistribution)
-    }
+    // if (hostedDomainConfig && hostedZone) {
+    //   const { domain } = hostedDomainConfig
+    //   const aliasRecord = new ARecord(this, `${appName}AliasRecord`, {
+    //     zone: hostedZone,
+    //     recordName: domain,
+    //     target: RecordTarget.fromAlias(
+    //       new CloudFrontTarget(cloudFrontDistribution),
+    //     ),
+    //   })
+    //   aliasRecord.node.addDependency(cloudFrontDistribution)
+    // }
 
     return {
       domain: hostedDomainConfig
         ? hostedDomainConfig.domain
         : cloudFrontDistribution.distributionDomainName,
     }
+    // return { domain: 'placeholder-dev.myfile.nyc.gov' };
   }
 
   /**
@@ -1262,7 +1179,7 @@ export class CityStack extends Stack {
     apiDomainConfig || {}
 
     // register custom domain name if we can
-    let defaultDomainMapping: DefaultDomainMappingOptions | undefined
+    let defaultDomainMapping: DomainMappingOptions | undefined
     if (domain && certificateArn) {
       const certificate = Certificate.fromCertificateArn(
         this,
@@ -1297,11 +1214,11 @@ export class CityStack extends Stack {
       apiName: `${this.stackName}Api`,
       corsPreflight: {
         allowMethods: [
-          HttpMethod.GET,
-          HttpMethod.DELETE,
-          HttpMethod.OPTIONS,
-          HttpMethod.POST,
-          HttpMethod.PUT,
+          CorsHttpMethod.GET,
+          CorsHttpMethod.DELETE,
+          CorsHttpMethod.OPTIONS,
+          CorsHttpMethod.POST,
+          CorsHttpMethod.PUT,
         ],
         allowOrigins: corsOrigins,
         allowHeaders: ['authorization', 'content-type'],
@@ -1656,7 +1573,7 @@ export class CityStack extends Stack {
         layers: [mySqlLayer],
         extraEnvironmentVariables: [
           ...authEnvironmentVariables,
-          EnvironmentVariables.WEB_APP_DOMAIN,
+          // EnvironmentVariables.WEB_APP_DOMAIN, -- need to fix incorrect domain issue for processing email template
           EnvironmentVariables.ACTIVITY_RECORD_SQS_QUEUE_URL,
           EnvironmentVariables.EMAIL_PROCESSOR_SQS_QUEUE_URL,
         ],
@@ -1667,7 +1584,13 @@ export class CityStack extends Stack {
           includeWrite: true,
         },
       },
-    )
+    );
+    
+    /* TEMPORARY BUILD FIX / CHECK -- NEED TO SET ENV VAR BASED ON ENVIRONMENT SPECIFIC SECRETS */
+    createCollectionFunction.addEnvironment('WEB_APP_DOMAIN', 'd3gtg3qw3q3xz9.cloudfront.net');
+    /* END TEMPORARY BUILD FIX */
+
+
     createCollectionFunction.addToRolePolicy(
       new PolicyStatement({
         actions: ['ses:SendEmail'],
@@ -1829,6 +1752,16 @@ export class CityStack extends Stack {
       authorizer,
       throttlingSettings: ReadRouteDefaultThrottling,
     })
+
+    // update Scan Status for Files
+    const updateFileScanStatus = this.createLambda(
+      'updateFileScanStatus',
+      pathToApiServiceLambda('documents/updateFileScanStatus'),
+      {
+        dbSecret,
+        layers: [mySqlLayer],
+      },
+    )
 
     // update thumbnail path for document
     const attachThumbnailToDocument = this.createLambda(
@@ -2308,7 +2241,7 @@ export class CityStack extends Stack {
       memorySize: 512,
       timeout: Duration.seconds(60),
       layers,
-      runtime: Runtime.NODEJS_12_X,
+      runtime: Runtime.NODEJS_14_X,
       vpc: requiresDbConnectivity ? this.lambdaVpc : undefined,
       securityGroups: requiresDbConnectivity
         ? this.lambdaSecurityGroups
@@ -2330,7 +2263,7 @@ export class CityStack extends Stack {
         code: Code.fromAsset(
           join(__dirname, 'lambdas', 'sql-layer', 'layer.zip'),
         ),
-        compatibleRuntimes: [Runtime.NODEJS_12_X],
+        compatibleRuntimes: [Runtime.NODEJS_14_X],
       }),
     }
   }
@@ -2344,7 +2277,7 @@ export class CityStack extends Stack {
         code: Code.fromAsset(
           join(__dirname, 'lambdas', 'gm-layer', 'layer.zip'),
         ),
-        compatibleRuntimes: [Runtime.NODEJS_12_X],
+        compatibleRuntimes: [Runtime.NODEJS_14_X],
       }),
     }
   }
@@ -2359,8 +2292,9 @@ export class CityStack extends Stack {
       code: Code.fromAsset(
         join(__dirname, '..', '..', 'api-service', 'dist', 'migrator'),
       ),
+      functionName: 'db-migrator',
       handler: 'index.handler',
-      runtime: Runtime.NODEJS_12_X,
+      runtime: Runtime.NODEJS_14_X,
       vpc: this.lambdaVpc,
       securityGroups: this.lambdaSecurityGroups,
       layers: [mysqlLayer],
@@ -2372,7 +2306,7 @@ export class CityStack extends Stack {
         DB_PASSWORD: dbSecret.secretValueFromJson('password').toString(),
         DB_NAME: dbSecret.secretValueFromJson('username').toString(),
       },
-    })
+    });
 
     // create a custom resource provider
     const runMigrationsResourceProvider = new Provider(
@@ -2389,7 +2323,9 @@ export class CityStack extends Stack {
         serviceToken: runMigrationsResourceProvider.serviceToken,
         properties: {
           // Dynamic prop to force execution each time
-          Execution: Math.random().toString(36).substr(2),
+          Execution: Math.random()
+            .toString(36)
+            .substr(2),
         },
       }),
     }

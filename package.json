@@ -13,8 +13,8 @@
     "storybook": "yarn workspace frontend storybook",
     "mockapi": "cd packages/api-client && docker-compose up",
     "api": "yarn workspace @datalocker/api-service",
-    "deploy": "OUTPUT_DIR=$npm_config_city yarn fe generate && npm run publish:S3",
-    "publish:S3": "aws s3 sync packages/frontend/dist/$npm_config_city $npm_config_bucket"
+    "deploy": "OUTPUT_DIR=build yarn fe generate && npm run publish:S3",
+    "publish:S3": "aws s3 sync packages/frontend/dist/build $npm_config_bucket"
   },
   "version": "0.0.0",
   "husky": {

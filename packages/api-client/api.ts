@@ -371,6 +371,12 @@ export interface Document {
      */
     description: string | null;
     /**
+     * AV status of the files
+     * @type {string}
+     * @memberof Document
+     */
+    scanStatus: string;
+    /**
      * Date the document was created
      * @type {string}
      * @memberof Document
@@ -487,6 +493,12 @@ export interface DocumentFile {
      * @memberof DocumentFile
      */
     createdDate: string;
+    /**
+     * AV status of the files
+     * @type {string}
+     * @memberof DocumentFile
+     */
+    scanStatus: string;
     /**
      * An array of Links
      * @type {Array<Link>}

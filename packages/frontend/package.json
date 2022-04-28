@@ -13,7 +13,8 @@
     "lint": "eslint --ext .ts,.vue --ignore-path .gitignore .",
     "test": "jest",
     "storybook": "yarn nuxt storybook",
-    "new": "HYGEN_TMPLS=templates hygen new"
+    "new": "HYGEN_TMPLS=templates hygen new",
+    "deploy": " . ./params.env && yarn generate && aws s3 sync ./dist/$OUTPUT_DIR/ s3://$UI_BUCKETNAME/ && aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DIST_ID --paths \"/*\""
   },
   "dependencies": {
     "@babel/plugin-proposal-decorators": "^7.10.5",

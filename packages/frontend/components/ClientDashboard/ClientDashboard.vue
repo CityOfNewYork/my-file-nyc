@@ -1,5 +1,7 @@
 <template>
   <div>
+    <ApplicationHeader />
+
     <AppBar :breadcrumbs="breadcrumbs">
       <template v-if="showActions" v-slot:actions>
         <v-btn
@@ -43,6 +45,7 @@
         </div>
       </template>
     </AppBar>
+
     <v-main>
       <template>
         <v-tabs-items v-model="currentTab">

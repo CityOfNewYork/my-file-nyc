@@ -299,7 +299,7 @@ export class AuthStack extends Stack {
       handler: 'index.handler',
       memorySize: 256,
       timeout: Duration.seconds(10),
-      runtime: Runtime.NODEJS_12_X,
+      runtime: Runtime.NODEJS_14_X,
     })
     customMessageHandler.addToRolePolicy(
       new PolicyStatement({

@@ -50,6 +50,7 @@ typings/
 
 # dotenv environment variables files
 .env
+!params.env
 
 # parcel-bundler cache (https://parceljs.org/)
 .cache

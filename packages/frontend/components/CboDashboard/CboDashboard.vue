@@ -1,5 +1,7 @@
 <template>
-  <v-main class="blue-super-light">
+  <div>
+    <ApplicationHeader />
+
     <AppBar>
       <template v-if="onSwitchPage" v-slot:actions>
         <v-btn text color="white" :to="manageRoute">
@@ -43,15 +45,18 @@
         </v-row>
       </template>
     </AppBar>
-    <v-window v-model="$route.query.tab" touchless>
-      <v-window-item value="switch">
-        <ClientList />
-      </v-window-item>
-      <v-window-item value="manage">
-        <ClientList :deletable="true" />
-      </v-window-item>
-    </v-window>
-  </v-main>
+
+    <v-main class="blue-super-light">
+      <v-window v-model="$route.query.tab" touchless>
+        <v-window-item value="switch">
+          <ClientList />
+        </v-window-item>
+        <v-window-item value="manage">
+          <ClientList :deletable="true" />
+        </v-window-item>
+      </v-window>
+    </v-main>
+  </div>
 </template>
 
 <script lang="ts">
