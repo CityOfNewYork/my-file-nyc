@@ -117,9 +117,7 @@ export default merge(
 
         disclaimerTitle: 'Reminder',
         shareDocumentDisclaimer:
-          ['My Digital Data Locker facilitates document sharing with {emails} email accounts', 
-          'Once documents are shared DHS employees may download and save your documents to submit as proof for your application. DHS may still have copies to support your case even if you unshare or delete them from My File.'
-          ],
+          'MyFile NYC lets you share files only with emails ending in @nycopportunity.nyc.gov, @dhs.nyc.gov, @hra.nyc.gov, @dss.nyc.gov, and @doitt.nyc.gov',
 
         // on the confirmation step, could be "recipient" or "recipients" depending on number of items
         confirmRecipientsLabel: 'Recipient | Recipients',
