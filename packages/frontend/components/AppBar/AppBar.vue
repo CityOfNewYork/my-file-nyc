@@ -159,9 +159,9 @@ export default class AppBar extends mixins(Navigation) {
 
   showActivity = false
   userStore = userStore
-  recompute = false
-  
-  mounted() {
+  recompute = true
+
+  mounted () {
     // TODO: attempting to get the app bar to compute its height correctly
     //       need a better way of waiting for all elements to mount and then recompute height
     this.recompute = !this.recompute    
