@@ -1,7 +1,9 @@
 <template>
-  <div>
-    <ApplicationHeader />
-
+  <v-window
+    v-model="step"
+    :class="{ 'pt-12': $vuetify.breakpoint.smAndUp }"
+    :touch="onSwipe"
+  >
     <AppBar :empty="$vuetify.breakpoint.xs" :title="toolbarTitle">
       <template v-if="$vuetify.breakpoint.xs" v-slot:nav-action>
         <BackButton v-show="step === 0" tabindex="0" class="mt-1" />
@@ -16,7 +18,6 @@
           <v-icon small class="mr-2">$chevron-left</v-icon>
         </v-btn>
       </template>
-
       <template v-if="$vuetify.breakpoint.xs" v-slot:actions>
         <v-btn
           color="primary"
@@ -27,7 +28,6 @@
           {{ $t(step === 2 ? 'controls.done' : 'controls.next') }}
         </v-btn>
       </template>
-
       <template v-else-if="$vuetify.breakpoint.smAndUp" v-slot:actionsBeneath>
         <v-btn
           text
@@ -50,11 +50,27 @@
         </v-btn>
       </template>
     </AppBar>
-
-    <v-main>
-      <v-window v-model="step" :touch="onSwipe">
-        <v-window-item
-          :class="[{ mobile: $vuetify.breakpoint.xs }, 'blue-super-light']"
+    <v-window-item
+      :class="[{ mobile: $vuetify.breakpoint.xs }, 'blue-super-light']"
+    >
+      <div class="window-container pt-3">
+        <DocumentList
+          v-model="selectedDocs"
+          :selectable="true"
+          :pre-selected="preSelected"
+          :show-actions="false"
+          class="mx-8"
+        />
+      </div>
+    </v-window-item>
+    <v-window-item
+      :class="[{ mobile: $vuetify.breakpoint.xs }]"
+      style="min-height: 100%"
+    >
+      <div class="d-flex flex-column" style="min-height: calc(100vh - 88px)">
+        <div
+          class="window-container px-8 pt-8 mb-2 flex-grow-1"
+          style="max-width: 564px; width: 100%"
         >
           <v-row>
             <v-col cols="auto" class="pr-0">
@@ -207,7 +223,7 @@
         </v-btn>
     </v-window-item>
     <FooterLinks />
-  </div>
+  </v-window>
 </template>
 
 <script lang="ts">
@@ -422,12 +438,10 @@ export default class Share extends Vue {
 <style lang="scss">
 .v-window {
   height: 100vh;
-
   .window-container {
     margin: 4rem auto 0rem auto;
   }
 }
-
 .v-card.invitee {
   max-width: 40rem;
 }
