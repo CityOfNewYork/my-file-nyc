@@ -9,14 +9,15 @@
   >
     <NavItemList :items="navItems" />
     <v-footer fixed class="pa-0">
-      <div v-if="$config.showBuildInfo" class="px-4 mt-4">
-        <p>
+      <!-- Turning off build version and time -->
+      <!-- <div v-if="$config.showBuildInfo" class="px-4 mt-4"> -->
+        <!-- <p>
           <span class="font-weight-bold">Build number:</span>
           {{ $config.buildNumber }}
         </p>
         <span class="font-weight-bold">Build time:</span>
-        {{ buildTime }}
-      </div>
+        {{ buildTime }} -->
+      <!-- </div> -->
       <NavItemList :items="footerNavItems" />
     </v-footer>
   </v-navigation-drawer>
@@ -44,13 +45,14 @@ export default class SideNav extends mixins(Navigation) {
     return navBarStore.side
   }
 
-  get buildTime() {
-    const buildTime = parseInt(this.$config.buildTime)
-    if (buildTime) {
-      return format(new Date(buildTime), 'd/M/y h:mma')
-    }
-    return ''
-  }
+  // Turning off build version and time.
+  // get buildTime() {
+  //   const buildTime = parseInt(this.$config.buildTime)
+  //   if (buildTime) {
+  //     return format(new Date(buildTime), 'd/M/y h:mma')
+  //   }
+  //   return ''
+  // }
 
   set isVisible(value: boolean) {
     this.setSideNav(value)
