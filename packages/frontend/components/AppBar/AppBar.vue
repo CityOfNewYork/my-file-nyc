@@ -35,7 +35,8 @@
       </v-toolbar-title>
     </template>
     <v-spacer />
-    <SwitchAccountButton
+
+    <SwitchAccountButton 
       v-if="
         userStore.isCbo &&
           userStore.isActingAsDelegate &&
@@ -158,12 +159,12 @@ export default class AppBar extends mixins(Navigation) {
 
   showActivity = false
   userStore = userStore
-  recompute = false
+  recompute = true
 
-  mounted() {
+  mounted () {
     // TODO: attempting to get the app bar to compute its height correctly
     //       need a better way of waiting for all elements to mount and then recompute height
-    this.recompute = !this.recompute
+    this.recompute = !this.recompute    
     setTimeout(() => {
       this.recompute = !this.recompute
     }, 1000)

@@ -2,11 +2,12 @@
   <div>
     <ApplicationHeader />
 
-    <AppBar :empty="false">
+    <AppBar :empty="false"
+    >
       <template v-slot:extensions>
         <div class="d-flex align-center">
           <BackButton v-if="step === 'top-level'" tabindex="0" class="mt-1" />
-
+  
           <v-btn
             v-else
             :title="`${$t('navigation.back')}`"
