@@ -34,13 +34,13 @@
               <span>{{ $t('controls.shared') }}</span>
             </v-tab>
           </v-tabs>
-          <div v-if="$vuetify.breakpoint.smAndUp" class="d-flex">
-            <UploadButton
-              prepend-icon="$plus"
-              class="my-2"
-              @complete="onUpload"
-            />
-            <ShareButton class="ma-2" />
+          <div v-if="$vuetify.breakpoint.smAndUp && docsPresent" class="d-flex">
+              <UploadButton
+                prepend-icon="$plus"
+                class="my-2"
+                @complete="onUpload"
+              />
+              <ShareButton class="ma-2" />
           </div>
         </div>
       </template>
@@ -72,13 +72,26 @@ export default class ClientDashboard extends Vue {
   currentTab = 'tab-docs'
   userStore = userStore
   delegatedClient: DelegatedClient | null = null
-
+  
   async mounted() {
+    if (userStore.documents.length <= 0){
+      console.log(123)
+    }
     if (this.$route.query.tab) {
       this.currentTab = this.$route.query.tab as string
     }
     if (userStore.isCbo && userStore.isActingAsDelegate) {
       this.delegatedClient = await userStore.fetchImpersonatedDelegate()
+    }
+  }
+
+  // rendering of the upload and share buttons if at least 1 document is present
+  get docsPresent(): Boolean {
+    if (userStore.documents.length <= 0){
+      return false
+    }
+    else {
+      return true
     }
   }
 
