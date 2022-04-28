@@ -40,6 +40,7 @@
           <span class="px-2 grey-8--text">{{ $t('navigation.back') }}</span>
         </v-btn>
         <v-btn
+          v-show="step != 2"
           color="primary"
           class="body-1 my-2"
           :disabled="isNextDisabled"
@@ -135,7 +136,6 @@
             })
           "
         />
-        
       </div>
     </v-window-item>
     <v-window-item>
@@ -213,6 +213,14 @@
         title="sharing.disclaimerTitle"
         body="sharing.shareDocumentDisclaimer[1]"
       />
+       <v-btn
+          color="primary"
+          class="body-1 my-2 mx-auto d-flex"
+          :disabled="isNextDisabled"
+          @click="next"
+        >
+          {{ $t(step === 2 ? 'controls.share' : 'controls.next') }}
+        </v-btn>
     </v-window-item>
     <FooterLinks />
   </v-window>
@@ -431,7 +439,7 @@ export default class Share extends Vue {
 .v-window {
   height: 100vh;
   .window-container {
-    margin: 4rem auto 6rem auto;
+    margin: 4rem auto 0rem auto;
   }
 }
 .v-card.invitee {
