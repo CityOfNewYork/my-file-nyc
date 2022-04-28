@@ -1,12 +1,12 @@
 <template>
   <v-list>
-    <v-list-item v-if="canEdit">
+    <v-list-item>
       <v-btn class="justify-start" text @click="editDetails">
         <v-icon class="mr-2" color="primary">$pencil</v-icon>
         {{ $t('controls.editDetails') }}
       </v-btn>
     </v-list-item>
-    <v-list-item v-if="canDelete">
+    <v-list-item>
       <v-btn
         class="justify-start"
         text
