@@ -74,9 +74,6 @@ export default class ClientDashboard extends Vue {
   delegatedClient: DelegatedClient | null = null
   
   async mounted() {
-    if (userStore.documents.length <= 0){
-      console.log(123)
-    }
     if (this.$route.query.tab) {
       this.currentTab = this.$route.query.tab as string
     }
