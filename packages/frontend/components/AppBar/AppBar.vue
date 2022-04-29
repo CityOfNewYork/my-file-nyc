@@ -4,7 +4,7 @@
     fixed
     app
     clipped-right
-    :extension-height="`${extensionHeight}px`"
+    :extension-height="`${extensionHeight}px : ${extensionHeight}px`"
   >
     <slot name="nav-action" />
     <template v-if="!empty">
