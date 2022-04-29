@@ -61,6 +61,7 @@ export default merge(
         deleteConfirmationBody:
           'Anyone with shared access will no longer be able to view this file. This cannot be undone.',
         documentMenu: 'Document menu',
+        documentModify: 'Modify',
         downloadZip: 'Download All',
         downloadPdf: 'Download PDF',
         description: 'Description', // displayed beneath the document and expands to show description (if any)

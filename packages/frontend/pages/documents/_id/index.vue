@@ -9,6 +9,7 @@
       <template
         v-if="!!document && userStore.isClient && $vuetify.breakpoint.xs"
         v-slot:actions
+        class="ml=10"
       >
         <DocumentMenu
           color="primary"

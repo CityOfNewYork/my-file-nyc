@@ -11,14 +11,18 @@
         :title="`${$t('document.documentMenu')}`"
         v-bind="attrs"
         icon
-        class="ml-4 text-body-1 font-weight-medium documentMenu a11y-focus"
+        class="mr-10 text-body-1 font-weight-medium documentMenu a11y-focus"
         :color="color"
         v-on="on"
         @click.prevent="() => {}"
         @keydown.enter="focusDocumentMenuList"
         @keydown.space="focusDocumentMenuList"
       >
-        <v-btn>Modify</v-btn>
+        <v-btn
+          class="text-body-1 font-weight-medium documentMenu a11y-focus"
+        >
+          {{ $t('document.documentModify') }}
+        </v-btn>
       </v-btn>
     </template>
 
