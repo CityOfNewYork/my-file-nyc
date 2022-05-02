@@ -79,8 +79,5 @@
     "vue-axe": "^2.4.3",
     "vue-eslint-parser": "^7.1.0",
     "vue-jest": "^3.0.7"
-  },
-  "eslintIgnore": [
-    "layouts/dashboard.vue"
-  ]
+  }
 }
