@@ -27,6 +27,7 @@ export default merge(
       },
 
       login: {
+        loginButton: 'Login',
         getStarted: {
           client: 'Get Started',
           cityEmployee: 'City Employee Login',
@@ -117,10 +118,10 @@ export default merge(
         selectFilesTitle: 'Select Files',
 
         disclaimerTitle: 'Reminder',
-        shareDocumentDisclaimer:
-          ['My Digital Data Locker facilitates document sharing with {emails} email accounts', 
-          'Once documents are shared DHS employees may download and save your documents to submit as proof for your application. DHS may still have copies to support your case even if you unshare or delete them from My File.'
-          ],
+        shareDocumentDisclaimer: [
+          'My Digital Data Locker facilitates document sharing with {emails} email accounts',
+          'Once documents are shared DHS employees may download and save your documents to submit as proof for your application. DHS may still have copies to support your case even if you unshare or delete them from My File.',
+        ],
 
         // on the confirmation step, could be "recipient" or "recipients" depending on number of items
         confirmRecipientsLabel: 'Recipient | Recipients',

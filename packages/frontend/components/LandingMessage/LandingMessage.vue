@@ -6,20 +6,8 @@
     </h2>
     <MarkdownContent id="welcome-copy" :content-path="welcomeMarkdown" />
     <ButtonLarge
-      :label="$t('login.getStarted.client')"
+      :label="$t('login.loginButton')"
       @click.native="logIn(0)"
-      @keydown.native.enter="logIn"
-    />
-    <ButtonLarge v-if="this.$config.features.delegates"
-      :label="$t('login.getStarted.cboWorker')"
-      style="background-color: #777"
-      @click.native="logIn(1)"
-      @keydown.native.enter="logIn"
-    />
-    <ButtonLarge
-      :label="$t('login.getStarted.cityEmployee')"
-      style="background-color: #777"
-      @click.native="logIn(2)"
       @keydown.native.enter="logIn"
     />
     <CityLogoFooter v-if="showFooterLogo" class="mt-10 mb-3" />

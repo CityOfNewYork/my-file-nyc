@@ -36,7 +36,7 @@
     </template>
     <v-spacer />
 
-    <SwitchAccountButton 
+    <SwitchAccountButton
       v-if="
         userStore.isCbo &&
           userStore.isActingAsDelegate &&
@@ -160,11 +160,11 @@ export default class AppBar extends mixins(Navigation) {
   showActivity = false
   userStore = userStore
   recompute = false
-  
+
   mounted() {
     // TODO: attempting to get the app bar to compute its height correctly
     //       need a better way of waiting for all elements to mount and then recompute height
-    this.recompute = !this.recompute    
+    this.recompute = !this.recompute
     setTimeout(() => {
       this.recompute = !this.recompute
     }, 1000)
@@ -210,9 +210,24 @@ export default class AppBar extends mixins(Navigation) {
   }
 
   async signOut() {
-    this.$router.push(this.localePath('/'))
-    localStorage.clear()
-    await this.$auth.logout()
+    const authTokenKey = 'auth._token.oauth2'
+    const logoutUrl =
+      'https://accounts-nonprd.nyc.gov/account/idpLogout.htm?x-frames-allow-from=https%3A%2F%2Fd3gtg3qw3q3xz9.cloudfront.net'
+
+    const logoutWindow = window.open(logoutUrl, '_blank')
+    window.focus()
+    // @ts-ignore
+    await window.cookieStore.delete(authTokenKey)
+    localStorage.removeItem(authTokenKey)
+    const thisRef = this
+    setTimeout(() => {
+      logoutWindow!.close()
+      thisRef.$auth.login()
+    }, 500)
+
+    // this.$router.push(this.localePath('/'))
+    // localStorage.clear()
+    // await this.$auth.logout()
   }
 }
 </script>

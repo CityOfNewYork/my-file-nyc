@@ -104,7 +104,8 @@ export default class User extends VuexModule {
 
   @Action
   async fetchRole() {
-    const storedRole = localStorage.getItem('datalocker.role')
+    const storedRole = localStorage.getItem('myfile.role')
+
     if (storedRole !== null) {
       const role = parseInt(storedRole)
       if (isNaN(role) || !Object.keys(UserRole).includes(storedRole)) {
@@ -126,10 +127,10 @@ export default class User extends VuexModule {
   @Action({ commit: '_setRole' })
   setRole(role: UserRole | null) {
     if (role === null) {
-      localStorage.removeItem('datalocker.role')
+      localStorage.removeItem('myfile.role')
       return null
     } else {
-      localStorage.setItem('datalocker.role', role.toString())
+      localStorage.setItem('myfile.role', role.toString())
       return role
     }
   }
