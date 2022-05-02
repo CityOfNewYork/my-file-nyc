@@ -18,9 +18,7 @@
         @keydown.enter="focusDocumentMenuList"
         @keydown.space="focusDocumentMenuList"
       >
-        <v-btn
-          class="text-body-1 font-weight-medium documentMenu a11y-focus"
-        >
+        <v-btn class="text-body-1 font-weight-medium documentMenu a11y-focus">
           {{ $t('document.documentModify') }}
         </v-btn>
       </v-btn>
