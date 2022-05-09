@@ -65,15 +65,19 @@ export default class DashboardLayout extends Vue {
 
   async logout() {
     // this.overlay = false
-    window.open(this.logoutUrl, '_blank')
-    window.focus()
+    const logoutWindow = window.open(this.logoutUrl, '_blank')
+    const currentWindow = window
     // @ts-ignore
     await window.cookieStore.delete(this.authTokenKey)
     localStorage.removeItem(this.authTokenKey)
     const thisRef = this
     setTimeout(() => {
       thisRef.$auth.login()
-    }, 500)
+      currentWindow.focus()
+    }, 1000)
+    setTimeout(() => {
+      logoutWindow!.close()
+    }, 2000)
   }
 
   checkTimeout() {

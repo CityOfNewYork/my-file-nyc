@@ -53,7 +53,7 @@ export default class LandingMessage extends Vue {
   }
 
   logIn(role: UserRole = UserRole.CLIENT) {
-    localStorage.setItem('entry-role', role.toString())
+    // localStorage.setItem('entry-role', role.toString())
     this.$router.push(this.localePath(`/login?loginAs=${role}`))
   }
 }

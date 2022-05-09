@@ -153,8 +153,8 @@ export default class ViewCollection extends Vue {
       parseInt(role as string) >= 0 &&
       parseInt(role as string) <= 2
     ) {
-      console.log('setting "entry-role" storage item')
-      localStorage.setItem('entry-role', role as string)
+      // console.log('setting "entry-role" storage item')
+      // localStorage.setItem('entry-role', role as string)
     }
 
     this.title = this.$t('tabTitles.shared') as string

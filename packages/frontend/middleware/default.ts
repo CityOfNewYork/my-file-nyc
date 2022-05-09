@@ -34,8 +34,10 @@ export default async ({
         d.toLowerCase().endsWith(mailDomain.toLowerCase()),
       )
     ) {
+      console.log('agent role detected')
       userStore.setRole(UserRole.AGENT)
     } else {
+      console.log('client role detected')
       userStore.setRole(UserRole.CLIENT)
     }
     if (!userStore.userId) {

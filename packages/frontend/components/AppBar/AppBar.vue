@@ -215,15 +215,19 @@ export default class AppBar extends mixins(Navigation) {
       'https://accounts-nonprd.nyc.gov/account/idpLogout.htm?x-frames-allow-from=https%3A%2F%2Fd3gtg3qw3q3xz9.cloudfront.net'
 
     const logoutWindow = window.open(logoutUrl, '_blank')
-    window.focus()
+    const currentWindow = window
     // @ts-ignore
     await window.cookieStore.delete(authTokenKey)
     localStorage.removeItem(authTokenKey)
     const thisRef = this
     setTimeout(() => {
+      console.log('closing new window')
       logoutWindow!.close()
+      console.log('reset focus')
+      currentWindow.focus()
+      console.log('logging out')
       thisRef.$auth.login()
-    }, 500)
+    }, 2000)
 
     // this.$router.push(this.localePath('/'))
     // localStorage.clear()
