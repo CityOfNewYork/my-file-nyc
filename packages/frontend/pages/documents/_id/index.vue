@@ -11,11 +11,11 @@
         v-slot:actions
         class="ml=10"
       >
-        <DocumentMenu
+        <!-- <DocumentMenu
           color="primary"
           :on-delete="onDelete"
           :document="document"
-        />
+        /> -->
         <ShareButton :preselected="[document.id]" />
       </template>
       <template
