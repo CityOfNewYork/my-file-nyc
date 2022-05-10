@@ -25,7 +25,6 @@
         </v-btn>
       </v-btn>
     </template>
-
     <DocumentActions
       ref="documentMenuList"
       :document="document"
