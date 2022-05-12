@@ -12,9 +12,9 @@ const getQueueUrl = () =>
 
 export const handler = wrapAsyncHandler(
   async (event: SQSEvent) => {
-    console.log('Additional Logging...');
-    console.log(event);
-    console.log(process.env);
+    console.log('Additional Logging...')
+    console.log(event)
+    console.log(process.env)
     for (const record of event.Records) {
       const { error, value: sendRequest } = parseAndValidate<SendRequest>(
         record.body,

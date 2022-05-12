@@ -42,7 +42,7 @@ export const handler: EventHandler = async (event: Event) => {
     },
   }
 
-  console.log(knexConfig);
+  console.log(knexConfig)
   console.log('Running migration to latest')
   const knex = Knex(knexConfig)
   await knex.migrate.latest()

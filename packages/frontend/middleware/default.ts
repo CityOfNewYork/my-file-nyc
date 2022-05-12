@@ -18,24 +18,29 @@ export default async ({
   app,
   $config,
 }: Context) => {
-  switch (route.path) {
-    case app.localePath('/client'):
-      userStore.setRole(UserRole.CLIENT)
-      break
-    case app.localePath('/agency'):
-      userStore.setRole(UserRole.AGENT)
-      break
-    case app.localePath('/community'):
-      userStore.setRole(UserRole.CBO)
-      break
-    default:
-      await userStore.fetchRole()
-  }
-
   if (store.state.auth.loggedIn) {
     const promises: Promise<any>[] = []
+
+    const claims = decode($auth.getToken($config.authStrategy))
+    const { mail } = claims
+    const emailDomainWhitelist = $config.agencyEmailDomainsWhitelist.split(
+      ',',
+    ) as [string]
+    const [mailUser, mailDomain] = mail.split('@')
+    console.log(`whitelist: ${emailDomainWhitelist.join(',')}`)
+    console.log(`mail domain: ${mailDomain}`)
+    if (
+      emailDomainWhitelist.some((d) =>
+        d.toLowerCase().endsWith(mailDomain.toLowerCase()),
+      )
+    ) {
+      console.log('agent role detected')
+      userStore.setRole(UserRole.AGENT)
+    } else {
+      console.log('client role detected')
+      userStore.setRole(UserRole.CLIENT)
+    }
     if (!userStore.userId) {
-      const claims = decode($auth.getToken($config.authStrategy))
       await userStore.setUserId(claims[$config.authTokenIdClaim])
     }
     if (!userStore.profile) {

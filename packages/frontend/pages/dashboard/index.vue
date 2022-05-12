@@ -30,17 +30,17 @@ export default class DashboardPage extends Vue {
 
   get showClientDashboard() {
     return (
-      localStorage.getItem('entry-role') === '0' ||
-      !localStorage.getItem('entry-role')
+      localStorage.getItem('myfile.role') === '0' ||
+      !localStorage.getItem('myfile.role')
     )
   }
 
   get showCboDashboard() {
-    return localStorage.getItem('entry-role') === '1'
+    return localStorage.getItem('myfile.role') === '1'
   }
 
   get showAgencyDashboard() {
-    return localStorage.getItem('entry-role') === '2'
+    return localStorage.getItem('myfile.role') === '2'
   }
 }
 </script>

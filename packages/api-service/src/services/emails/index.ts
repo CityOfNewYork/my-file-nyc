@@ -13,8 +13,8 @@ const sendEmailRequest = async (sendRequest: SendRequest) => {
 }
 
 type SendSharedCollectionOptions = {
-  ownerUser: User,
-  emails: string[],
+  ownerUser: User
+  emails: string[]
   collection: {
     name: string
     link: string
@@ -30,7 +30,7 @@ export const queueSharedCollectionNotification = async (
     toAddresses: emails,
     subject: `You’ve received new documents`,
     data: collection,
-  });
+  })
   await sendEmailRequest({
     template: 'collectionSharedNotificationOwnerAcknowledgement',
     toAddresses: [ownerUser.email as string],
@@ -38,7 +38,7 @@ export const queueSharedCollectionNotification = async (
     data: {
       toEmailList: emails.join(', '),
     },
-  });
+  })
 }
 
 type SendDelegateUserInvitationOptions = {

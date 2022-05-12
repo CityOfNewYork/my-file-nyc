@@ -213,14 +213,14 @@
         title="sharing.disclaimerTitle"
         body="sharing.shareDocumentDisclaimer[1]"
       />
-       <v-btn
-          color="primary"
-          class="body-1 my-2 mx-auto d-flex"
-          :disabled="isNextDisabled"
-          @click="next"
-        >
-          {{ $t(step === 2 ? 'controls.share' : 'controls.next') }}
-        </v-btn>
+      <v-btn
+        color="primary"
+        class="body-1 my-2 mx-auto d-flex"
+        :disabled="isNextDisabled"
+        @click="next"
+      >
+        {{ $t(step === 2 ? 'controls.share' : 'controls.next') }}
+      </v-btn>
     </v-window-item>
     <FooterLinks />
   </v-window>

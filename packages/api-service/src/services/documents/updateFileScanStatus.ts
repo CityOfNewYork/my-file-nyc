@@ -12,7 +12,6 @@ export interface FileScannedResponse {
 
 export const handler = wrapAsyncHandler(
   async (parameters: any): Promise<any> => {
-
     const { fileName, scanStatus } = parameters['detail']['responsePayload']
 
     const file = await updateFileScanStatusByPath({

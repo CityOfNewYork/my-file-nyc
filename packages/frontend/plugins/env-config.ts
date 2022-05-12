@@ -15,7 +15,7 @@ export const envConfig = {
 
     features: {
       delegates: false,
-    }
+    },
   },
 }
 /**

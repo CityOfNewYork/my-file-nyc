@@ -15,10 +15,12 @@
       bottom
       right
       outlined
-      style="z-index: 10;"
+      style="z-index: 10"
     >
-      <div style="display: flex; flex-direction: row;">
-        <div style="flex-grow: 1; align-self: center;">{{ timeoutWarningMessage }}</div>
+      <div style="display: flex; flex-direction: row">
+        <div style="flex-grow: 1; align-self: center">
+          {{ timeoutWarningMessage }}
+        </div>
 
         <v-btn
           color="blue"
@@ -48,9 +50,11 @@ export default class DashboardLayout extends Vue {
   authTokenKey = 'auth._token.oauth2'
   logoutUrl =
     'https://accounts-nonprd.nyc.gov/account/idpLogout.htm?x-frames-allow-from=https%3A%2F%2Fd3gtg3qw3q3xz9.cloudfront.net'
+
   warningMsgTimeoutMs = 10 * 1000
-  showTimeoutWarningMessage = true
+  showTimeoutWarningMessage = false
   timeoutWarningMessage = ''
+  intervalId: number | undefined = undefined
 
   mounted() {
     if (this.$route.params.showSnack) {
@@ -58,39 +62,43 @@ export default class DashboardLayout extends Vue {
     }
     this.checkTimeout()
   }
+
   async logout() {
     // this.overlay = false
-    window.open(this.logoutUrl, '_blank')
-    window.focus()
+    const logoutWindow = window.open(this.logoutUrl, '_blank')
+    const currentWindow = window
     // @ts-ignore
     await window.cookieStore.delete(this.authTokenKey)
     localStorage.removeItem(this.authTokenKey)
-    let thisRef = this
+    const thisRef = this
     setTimeout(() => {
+      console.log('closing new window')
+      logoutWindow!.close()
+      console.log('reset focus')
+      currentWindow.focus()
+      console.log('logging out')
       thisRef.$auth.login()
-    }, 500)
+    }, 2000)
   }
 
   checkTimeout() {
     const intervalInSeconds = 1
-    let expDateOfToken: Date | undefined = undefined
+    let expDateOfToken: Date | undefined
     let storedBearer = localStorage.getItem(this.authTokenKey)
-    let token: string | undefined = undefined
+    let token: string | undefined
     let warning1Displayed = false
     let warning2Displayed = false
-    let forceLoginModalOpen = false
+    const forceLoginModalOpen = false
     const warning1AtMinute = 5
     const warning2AtMinute = 2
     const timeoutAtMinute = 0
 
-    let intervalId: number | undefined = undefined
-
-    if (intervalId) {
-      clearInterval(intervalId as number)
+    if (this.intervalId) {
+      clearInterval(this.intervalId as number)
     }
 
     // @ts-ignore
-    intervalId = setInterval(() => {
+    this.intervalId = setInterval(() => {
       if (!storedBearer) {
         storedBearer = localStorage.getItem(this.authTokenKey)
       }
@@ -106,24 +114,21 @@ export default class DashboardLayout extends Vue {
           (expDateOfToken.getTime() - Date.now()) / 1000 / 60
         const minutes = Math.floor(timeRemaining)
         const seconds = Math.floor((timeRemaining % 1) * 60)
-        console.log(`${minutes}m ${seconds}s remaining.`)
         if (timeRemaining <= warning1AtMinute && !warning1Displayed) {
           warning1Displayed = true
-          this.timeoutWarningMessage = `You will be forced to login again in less than ${
-            warning1AtMinute - timeoutAtMinute
-          } minutes.`
+          this.timeoutWarningMessage = `You will be forced to login again in less than ${warning1AtMinute -
+            timeoutAtMinute} minutes.`
           this.showTimeoutWarningMessage = true
           console.log(this.timeoutWarningMessage)
         } else if (timeRemaining < warning2AtMinute && !warning2Displayed) {
           warning2Displayed = true
-          this.timeoutWarningMessage = `You will be forced to login again in less than ${
-            warning2AtMinute - timeoutAtMinute
-          } minutes.`
+          this.timeoutWarningMessage = `You will be forced to login again in less than ${warning2AtMinute -
+            timeoutAtMinute} minutes.`
           this.showTimeoutWarningMessage = true
           console.log(this.timeoutWarningMessage)
         } else if (timeRemaining <= timeoutAtMinute && !forceLoginModalOpen) {
           console.log('Pop up modal and force login')
-          clearInterval(intervalId as number)
+          clearInterval(this.intervalId as number)
           this.overlay = true
         }
       }

@@ -62,7 +62,9 @@ export const handler = createAuthenticatedApiGatewayHandler(
       nextForwardToken: undefined,
     }
     try {
+      console.log('getting log events...')
       logEvents = await getLogEvents(logStream, nextToken)
+      console.log(`log events: ${logEvents}`)
     } catch (err) {
       logger.error(err, logStream)
     }
@@ -70,7 +72,10 @@ export const handler = createAuthenticatedApiGatewayHandler(
     const events = logEvents.events
       ? logEvents.events.map((e) => e.message as string).filter(hasValue)
       : []
-    const activity = events.map(logEventToActivity).filter(hasValue).reverse()
+    const activity = events
+      .map(logEventToActivity)
+      .filter(hasValue)
+      .reverse()
     return {
       activity,
       nextToken:
