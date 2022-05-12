@@ -72,11 +72,12 @@ export default class DashboardLayout extends Vue {
     localStorage.removeItem(this.authTokenKey)
     const thisRef = this
     setTimeout(() => {
-      thisRef.$auth.login()
-      currentWindow.focus()
-    }, 1000)
-    setTimeout(() => {
+      console.log('closing new window')
       logoutWindow!.close()
+      console.log('reset focus')
+      currentWindow.focus()
+      console.log('logging out')
+      thisRef.$auth.login()
     }, 2000)
   }
 
