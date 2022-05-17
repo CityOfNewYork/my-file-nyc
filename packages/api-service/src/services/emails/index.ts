@@ -34,7 +34,7 @@ export const queueSharedCollectionNotification = async (
   await sendEmailRequest({
     template: 'collectionSharedNotificationOwnerAcknowledgement',
     toAddresses: [ownerUser.email as string],
-    subject: 'MyFile Shared Document Receipt',
+    subject: 'My File Shared Document Receipt',
     data: {
       toEmailList: emails.join(', '),
     },

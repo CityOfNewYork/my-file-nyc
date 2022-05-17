@@ -55,6 +55,11 @@ export interface Props extends StackProps {
     natGatewaysCount?: number
   }
 
+  awsAccountEnv: {
+    vpcId: string
+    vpcSubnets: string
+  }
+
   /**
    * Configuration for the RDS cluster
    */
@@ -105,12 +110,9 @@ export class DataStoreStack extends Stack {
       backupRetentionDays = 30,
       minCapacity = 1,
       maxCapacity = 8,
-    } = rdsConfig;
+    } = rdsConfig
 
-
-    const {
-      DEPLOYMENT_TARGET,
-    } = process.env;
+    const { DEPLOYMENT_TARGET } = process.env
 
     let kmsKey: IKey
     if (providedKmsKey) {
@@ -143,7 +145,7 @@ export class DataStoreStack extends Stack {
     // create the VPC
     this.vpc = Vpc.fromLookup(this, 'Vpc', {
       vpcId: process.env.VPC_ID,
-    });
+    })
 
     // create the root DB credentials
     const rdsRootCredentialsSecret = new Secret(
@@ -166,9 +168,14 @@ export class DataStoreStack extends Stack {
     )
 
     // configure RDS subnet group
+    console.log('--- vpc subnets ---')
+    console.log(props.awsAccountEnv.vpcSubnets)
+    const parsedSubnets = JSON.parse(props.awsAccountEnv.vpcSubnets) as Array<
+      any
+    >
     const rdsSubnetGroup = new CfnDBSubnetGroup(this, 'RdsSubnetGroup', {
       dbSubnetGroupDescription: `Subnet group for RDS ${this.stackName}`,
-      subnetIds: this.vpc.privateSubnets.map((s) => s.subnetId),
+      subnetIds: parsedSubnets.map((s) => s.SubnetId),
     })
 
     // configure RDS security group
