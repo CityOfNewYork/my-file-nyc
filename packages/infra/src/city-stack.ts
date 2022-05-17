@@ -85,7 +85,7 @@ import { StringParameter } from '@aws-cdk/aws-ssm'
 import { ProvidedKeyDetails } from './provided-key'
 import { SnsAction } from '@aws-cdk/aws-cloudwatch-actions'
 import { Topic } from '@aws-cdk/aws-sns'
-import * as ssm from '@aws-cdk/aws-ssm';
+import * as ssm from '@aws-cdk/aws-ssm'
 import { join } from 'path'
 import {
   ApiHostedDomain,
@@ -97,8 +97,7 @@ import {
   SqsPermissions,
   ThrottlingConfiguration,
   ThrottlingRouteSettings,
-} from './city-stack.interfaces';
-
+} from './city-stack.interfaces'
 
 const ReadRouteDefaultThrottling: ThrottlingRouteSettings = {
   ThrottlingBurstLimit: 50,
@@ -141,9 +140,11 @@ const authEnvironmentVariables = [
   EnvironmentVariables.AGENCY_EMAIL_DOMAINS_WHITELIST,
 ]
 
-
-
 export interface Props extends StackProps {
+  awsAccountEnv: {
+    vpcId: string
+    vpcSubnets: string
+  }
   /**
    * The auth stack to secure access to the application resources in this stack
    */
@@ -264,10 +265,12 @@ export class CityStack extends Stack {
       )
     }
 
-    const {
-      DEPLOYMENT_TARGET,
-    } = process.env;
-    const dbSecretRetrieved = Secret.fromSecretNameV2(this, 'db-secret-rds', `/myfile/${DEPLOYMENT_TARGET}/rds-root-credentials`);
+    const { DEPLOYMENT_TARGET } = process.env
+    const dbSecretRetrieved = Secret.fromSecretNameV2(
+      this,
+      'db-secret-rds',
+      `/myfile/${DEPLOYMENT_TARGET}/rds-root-credentials`,
+    )
 
     // read in the signing key parameter if its provided
     if (jwtAuth && jwtAuth.signingKeyParameterPath) {
@@ -685,7 +688,7 @@ export class CityStack extends Stack {
           includeDelete: true,
         },
       },
-    );
+    )
     lambda.addEventSource(
       new SqsEventSource(emailProcessorQueue, {
         batchSize: 10,
@@ -871,7 +874,7 @@ export class CityStack extends Stack {
     appName: string,
     cloudfrontDistributionId: string,
     hostedDomainConfig?: HostedDomain,
-    hostedZone?: IHostedZone
+    hostedZone?: IHostedZone,
   ) {
     //Create Certificate
     let viewerCertificate: ViewerCertificate | undefined
@@ -913,11 +916,14 @@ export class CityStack extends Stack {
     // bucket.grantRead(originAccessIdentity)
 
     // Create App CloudFront Distribution
-    const cloudFrontDistribution = CloudFrontWebDistribution.fromDistributionAttributes(this, 'sdf', {
-      distributionId: cloudfrontDistributionId,
-      domainName: 'd3gtg3qw3q3xz9.cloudfront.net',
-    });
-    
+    const cloudFrontDistribution = CloudFrontWebDistribution.fromDistributionAttributes(
+      this,
+      'sdf',
+      {
+        distributionId: cloudfrontDistributionId,
+        domainName: 'd3gtg3qw3q3xz9.cloudfront.net',
+      },
+    )
 
     // const cloudFrontDistribution = new CloudFrontWebDistribution(
     //   this,
@@ -1584,12 +1590,14 @@ export class CityStack extends Stack {
           includeWrite: true,
         },
       },
-    );
-    
-    /* TEMPORARY BUILD FIX / CHECK -- NEED TO SET ENV VAR BASED ON ENVIRONMENT SPECIFIC SECRETS */
-    createCollectionFunction.addEnvironment('WEB_APP_DOMAIN', 'd3gtg3qw3q3xz9.cloudfront.net');
-    /* END TEMPORARY BUILD FIX */
+    )
 
+    /* TEMPORARY BUILD FIX / CHECK -- NEED TO SET ENV VAR BASED ON ENVIRONMENT SPECIFIC SECRETS */
+    createCollectionFunction.addEnvironment(
+      'WEB_APP_DOMAIN',
+      'd3gtg3qw3q3xz9.cloudfront.net',
+    )
+    /* END TEMPORARY BUILD FIX */
 
     createCollectionFunction.addToRolePolicy(
       new PolicyStatement({
@@ -2306,7 +2314,7 @@ export class CityStack extends Stack {
         DB_PASSWORD: dbSecret.secretValueFromJson('password').toString(),
         DB_NAME: dbSecret.secretValueFromJson('username').toString(),
       },
-    });
+    })
 
     // create a custom resource provider
     const runMigrationsResourceProvider = new Provider(
@@ -2323,9 +2331,7 @@ export class CityStack extends Stack {
         serviceToken: runMigrationsResourceProvider.serviceToken,
         properties: {
           // Dynamic prop to force execution each time
-          Execution: Math.random()
-            .toString(36)
-            .substr(2),
+          Execution: Math.random().toString(36).substr(2),
         },
       }),
     }

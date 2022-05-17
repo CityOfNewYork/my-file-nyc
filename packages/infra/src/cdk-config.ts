@@ -16,6 +16,8 @@ const {
   API_CERTIFICATE_ARN,
   CLOUDFRONT_DISTRIBUTION_ID,
   VPC_ID,
+  WEB_APP_BUCKET_NAME,
+  VPC_SUBNETS,
   WEB_APP_DOMAIN,
   WEB_APP_CERTIFICATE_ARN,
   WEB_APP_API_URL,
@@ -32,7 +34,7 @@ const {
   WEB_APP_FOOTER_LOGO,
   MONITORING_SENTRY_DSN,
   SNS_TOPIC_ARN_MONITORING_ALERTS,
-} = process.env;
+} = process.env
 
 export default {
   pipeline: {
@@ -51,13 +53,17 @@ export default {
           },
           vpcConfig: {
             natGatewaysCount: 1,
-            maxAzs: 2
+            maxAzs: 2,
           },
           rdsConfig: {
             backupRetentionDays: 7,
-            maxCapacity: 2
-          }
-        }
+            maxCapacity: 2,
+          },
+          awsAccountEnv: {
+            vpcId: VPC_ID,
+            vpcSubnets: VPC_SUBNETS,
+          },
+        },
       },
       cityStacksProps: [
         {
@@ -77,6 +83,7 @@ export default {
             cloudfront: {
               CLOUDFRONT_DISTRIBUTION_ID,
               VPC_ID,
+              WEB_APP_BUCKET_NAME,
             },
             webAppBuildVariables: {
               API_URL: WEB_APP_API_URL,
@@ -96,7 +103,7 @@ export default {
             apiDomainConfig: {
               certificateArn: API_CERTIFICATE_ARN,
               domain: API_DOMAIN,
-              corsAllowAnyHost: true
+              corsAllowAnyHost: true,
             },
             webAppDomainConfig: {
               certificateArn: WEB_APP_CERTIFICATE_ARN,
@@ -106,14 +113,20 @@ export default {
               address: EMAIL_SENDER_ADDRESS,
               name: EMAIL_SENDER_NAME,
             },
-            agencyEmailDomainsWhitelist: AGENCY_EMAIL_DOMAIN_WHITELIST?.split(','),
+            agencyEmailDomainsWhitelist: AGENCY_EMAIL_DOMAIN_WHITELIST?.split(
+              ',',
+            ),
             monitoring: {
               sentryDsn: MONITORING_SENTRY_DSN,
               alertsSnsTopicArn: SNS_TOPIC_ARN_MONITORING_ALERTS,
-            }
-          }
-        }
-      ]
-    }
+            },
+            awsAccountEnv: {
+              vpcId: VPC_ID,
+              vpcSubnets: VPC_SUBNETS,
+            },
+          },
+        },
+      ],
+    },
   },
 }
