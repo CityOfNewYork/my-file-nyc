@@ -2331,9 +2331,7 @@ export class CityStack extends Stack {
         serviceToken: runMigrationsResourceProvider.serviceToken,
         properties: {
           // Dynamic prop to force execution each time
-          Execution: Math.random()
-            .toString(36)
-            .substr(2),
+          Execution: Math.random().toString(36).substr(2),
         },
       }),
     }

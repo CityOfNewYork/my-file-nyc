@@ -170,9 +170,9 @@ export class DataStoreStack extends Stack {
     // configure RDS subnet group
     console.log('--- vpc subnets ---')
     console.log(props.awsAccountEnv.vpcSubnets)
-    const parsedSubnets = JSON.parse(props.awsAccountEnv.vpcSubnets) as Array<
-      any
-    >
+    const parsedSubnets = JSON.parse(
+      props.awsAccountEnv.vpcSubnets,
+    ) as Array<any>
     const rdsSubnetGroup = new CfnDBSubnetGroup(this, 'RdsSubnetGroup', {
       dbSubnetGroupDescription: `Subnet group for RDS ${this.stackName}`,
       subnetIds: parsedSubnets.map((s) => s.SubnetId),
