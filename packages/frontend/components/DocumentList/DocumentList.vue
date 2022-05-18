@@ -21,7 +21,7 @@
         </template>
 
         <template v-slot:item.actions="{ item }">
-          <DocumentMenu :on-delete="reload" :document="item" />
+          <DocumentMenu :onDelete="reload" :document="item" />
         </template>
       </v-data-table>
       <DocumentCard
@@ -191,7 +191,8 @@ export default class DocumentList extends Vue {
         }) as RawLocation,
       )
     } else if (userStore.isCbo && userStore.isActingAsDelegate) {
-      const delegate: DelegatedClient | null = await userStore.fetchImpersonatedDelegate()
+      const delegate: DelegatedClient | null =
+        await userStore.fetchImpersonatedDelegate()
       this.$router.push(
         this.localeRoute({
           path: `/documents/${document.id}`,
