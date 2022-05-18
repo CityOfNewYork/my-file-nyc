@@ -116,8 +116,6 @@ export default class DocumentActions extends Vue {
     await this.deleteDoc()
     if (this.$route.path === this.localePath(`/documents/${this.document.id}`))
       this.$router.push(this.localePath('/dashboard'))
-    else if (this.$route.path === '/dashboard')
-      this.$router.push(this.localePath('/'))
     this.loading = false
     this.showDeleteConfirmation = false
   }
