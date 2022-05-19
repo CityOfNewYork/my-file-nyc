@@ -4,7 +4,7 @@
     fixed
     app
     clipped-right
-    :extension-height="`${extensionHeight}px : ${extensionHeight}px`"
+    :extension-height="`${extensionHeight}px`"
   >
     <slot name="nav-action" />
     <template v-if="!empty">
@@ -39,8 +39,8 @@
     <SwitchAccountButton
       v-if="
         userStore.isCbo &&
-          userStore.isActingAsDelegate &&
-          $vuetify.breakpoint.smAndUp
+        userStore.isActingAsDelegate &&
+        $vuetify.breakpoint.smAndUp
       "
     />
     <slot v-if="!userStore.isAgent" name="actions" />
@@ -69,7 +69,7 @@
         <v-col
           v-if="
             !!$slots.actionsBeneath ||
-              (title && $vuetify.breakpoint.smAndUp && !empty)
+            (title && $vuetify.breakpoint.smAndUp && !empty)
           "
           cols="12"
           class="pr-2 d-flex justify-end align-center white"
@@ -116,7 +116,13 @@
         <div class="px-4">
           <v-card rounded="0">
             <v-card-title
-              class="text-heading-2 d-flex justify-space-between grey-9--text pa-0"
+              class="
+                text-heading-2
+                d-flex
+                justify-space-between
+                grey-9--text
+                pa-0
+              "
             >
               {{ $t('navigation.activity') }}
               <v-btn
