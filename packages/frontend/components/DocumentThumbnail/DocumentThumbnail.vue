@@ -25,6 +25,7 @@ import { Vue, Component, Prop } from 'nuxt-property-decorator'
 @Component
 export default class DocumentThumbnail extends Vue {
   @Prop({ required: true }) document: DocumentListItem
+
   get thumbnail() {
     return (
       this.document &&

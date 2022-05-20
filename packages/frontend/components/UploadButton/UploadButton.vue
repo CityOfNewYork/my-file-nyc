@@ -109,6 +109,7 @@ export default class UploadButton extends Vue {
   @Prop({ default: false }) outlined: boolean
 
   @Prop({ default: '4' }) px: string | number
+  @Prop({ default: () => () => {} }) docsPresent: () => void
 
   multiple = false
   showDialog = false
@@ -174,8 +175,8 @@ export default class UploadButton extends Vue {
     })
 
     this.$emit('complete')
-
     this.reset()
+    this.docsPresent()
   }
 
   get isLoading() {

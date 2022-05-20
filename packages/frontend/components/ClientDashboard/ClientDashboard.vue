@@ -50,7 +50,12 @@
       <template>
         <v-tabs-items v-model="currentTab">
           <v-tab-item value="tab-docs" tabindex="0">
-            <DocumentList ref="documentList" class="mx-sm-8" />
+            <DocumentList
+              :docsPresent="reload"
+              :onUpload="onUpload"
+              ref="documentList"
+              class="mx-sm-8"
+            />
           </v-tab-item>
           <v-tab-item value="tab-collections" tabindex="0">
             <CollectionList class="mx-sm-8" />
