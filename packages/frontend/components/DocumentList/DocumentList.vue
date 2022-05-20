@@ -42,6 +42,8 @@
       <template v-slot:action>
         <div class="d-flex justify-center">
           <UploadButton
+            :docsPresent="reload"
+            @complete="onUpload"
             class="text-center"
             :label="$t('document.uploadFirst')"
             :outlined="true"
@@ -98,6 +100,8 @@ export default class DocumentList extends Vue {
 
   @Prop({ default: null }) owner: Owner | null
   @Prop({ default: true }) showActions: boolean
+  @Prop({ default: () => () => {} }) docsPresent: () => void
+  @Prop({ default: () => () => {} }) onUpload: () => void
 
   loading = true
   selected: DocumentListItem[] = []
