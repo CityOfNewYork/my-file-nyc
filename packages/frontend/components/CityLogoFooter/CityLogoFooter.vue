@@ -1,9 +1,9 @@
 <template>
   <v-img
     img="role"
-    :alt="`${$t('login.footerLogoAlt')}`"
-    :src="CityLogoFooter"
-    :width="width"
+    :alt="`${$t('cityLogoFooter')}`"
+    :src="cityLogoFooter"
+    :style="{ width, top }"
   />
 </template>
 
@@ -12,10 +12,10 @@ import { Vue, Component, Prop } from 'nuxt-property-decorator'
 
 @Component
 export default class CityLogoFooter extends Vue {
-  @Prop({ default: '62px' })
-  width: string
+  @Prop({ default: '340px' }) width: string
+  @Prop({ default: '200px' }) top: string
 
-  get CityLogoFooter(): string {
+  get cityLogoFooter(): string {
     return require('@/assets/images/city-logo-footer.svg')
   }
 }

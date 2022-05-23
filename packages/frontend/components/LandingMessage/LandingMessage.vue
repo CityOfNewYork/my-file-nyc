@@ -1,9 +1,9 @@
 <template>
   <div class="landing-container">
     <CityLogo />
-    <h2 class="text-heading-2 mt-4 mb-4 primary--text">
+    <!-- <h2 class="text-heading-2 mt-4 mb-4 primary--text">
       {{ $t('login.welcomeTitle') }}
-    </h2>
+    </h2> -->
     <MarkdownContent id="welcome-copy" :content-path="welcomeMarkdown" />
     <ButtonLarge
       :label="$t('login.loginButton')"
@@ -49,7 +49,7 @@ export default class LandingMessage extends Vue {
   }
 
   get showFooterLogo(): boolean {
-    return this.$config.footerLogo === '1'
+    return this.$config.footerLogo === '0'
   }
 
   logIn(role: UserRole = UserRole.CLIENT) {
@@ -73,6 +73,7 @@ export default class LandingMessage extends Vue {
   }
   .landing-container {
     width: rem(320px);
+    margin-bottom: 100px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -87,7 +88,7 @@ export default class LandingMessage extends Vue {
     }
   }
   #welcome-copy {
-    margin: 10px 10px 32px !important;
+    margin: 50px 20px 32px !important;
   }
 }
 </style>
