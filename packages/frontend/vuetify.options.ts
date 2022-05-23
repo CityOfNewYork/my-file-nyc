@@ -29,6 +29,7 @@ import Profile from '@/components/icons/profile.vue'
 import Send from '@/components/icons/send.vue'
 import SignOut from '@/components/icons/sign-out.vue'
 import SwitchAccount from '@/components/icons/switch-account.vue'
+import DocMenu from '@/components/icons/DocMenu.vue'
 
 const vuetifyOptions = (ctx: Context): Options => {
   return {

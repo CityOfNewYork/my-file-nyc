@@ -16,7 +16,7 @@ export default class ButtonLarge extends Vue {
 
 <style scoped lang="scss">
 #__nuxt .v-btn.ButtonLarge {
-  min-width: rem(220px) !important;
+  min-width: rem(250px) !important;
   background-color: var(--primary);
   color: white;
   font-style: normal;
