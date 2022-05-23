@@ -138,5 +138,12 @@ export default class DocumentCard extends Vue {
     top: 0.5rem;
     min-height: 36px !important;
   }
+
+  &::v-deep .iconDocumentMenue {
+    position: absolute;
+    left: 1rem;
+    top: 0.5rem;
+    min-height: 36px !important;
+  }
 }
 </style>
