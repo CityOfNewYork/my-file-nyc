@@ -18,9 +18,17 @@
         @keydown.enter="focusDocumentMenuList"
         @keydown.space="focusDocumentMenuList"
       >
-        <v-btn class="text-body-1 font-weight-medium documentMenu a11y-focus">
-          {{ $t('document.documentModify') }}
-        </v-btn>
+        <v-row align="center">
+          <v-btn
+            v-if="$vuetify.breakpoint.smAndUp"
+            class="text-body-1 font-weight-medium documentMenu a11y-focus"
+          >
+            {{ $t('document.documentModify') }}
+          </v-btn>
+          <v-icon v-else-if="$vuetify.breakpoint.xs" class="iconDocumentMenue">
+            $edit
+          </v-icon>
+        </v-row>
       </v-btn>
     </template>
     <DocumentActions
