@@ -1,15 +1,15 @@
 <template>
   <div class="landing-container">
     <CityLogo />
-    <!-- <h2 class="text-heading-2 mt-4 mb-4 primary--text">
-      {{ $t('login.welcomeTitle') }}
-    </h2> -->
     <MarkdownContent id="welcome-copy" :content-path="welcomeMarkdown" />
     <ButtonLarge
       :label="$t('login.loginButton')"
       @click.native="logIn(0)"
       @keydown.native.enter="logIn"
     />
+    <div>
+      <a href="">{{ $t('navigation.nycId') }}</a>
+    </div>
     <CityLogoFooter v-if="showFooterLogo" class="mt-10 mb-3" />
     <FooterLinks
       justify="center"
@@ -82,7 +82,7 @@ export default class LandingMessage extends Vue {
   .welcome-message.body-1 {
     font-size: rem(15px) !important;
   }
-  @media (min-height: 615px) {
+  @media (min-height: 515px) {
     .landing-layout-container-inner {
       height: 100vh;
     }

@@ -53,6 +53,7 @@ export default merge(
         signOut: 'Sign out',
         switchAccount: 'Switch Clients',
         termsOfUse: 'Terms of Use',
+        nycId: 'What is NYC.ID?',
       },
 
       document: {
