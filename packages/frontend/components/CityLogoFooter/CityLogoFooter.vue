@@ -4,11 +4,10 @@
     :alt="`${$t('cityLogoFooter')}`"
     :src="cityLogoFooter"
     v-bind:style="
-      (this.$vuetify.breakpoint.width >= 650 &&
-        this.$vuetify.breakpoint.smandUp) ||
-      (this.$vuetify.breakpoint.width < 650 &&
-        !this.$vuetify.breakpoint.smAndDown)
-        ? `position: relative;  ${width}`
+      (this.$vuetify.breakpoint.width >= 667 && this.$vuetify.breakpoint.xs) ||
+      (this.$vuetify.breakpoint.width >= 653 &&
+        this.$vuetify.breakpoint.smAndDown)
+        ? `position: relative;  width: ${width}`
         : 'position: fixed; bottom: 5%; width: 270px;'
     "
   />
@@ -22,7 +21,6 @@ export default class CityLogoFooter extends Vue {
   @Prop({ default: '340px' }) width: string
 
   get cityLogoFooter(): string {
-    console.log(this.$vuetify.breakpoint.width <= 650)
     return require('@/assets/images/city-logo-footer.svg')
   }
 }
