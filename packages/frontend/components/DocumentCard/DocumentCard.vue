@@ -16,7 +16,7 @@
       :value="checked"
       color="primary"
       class="check"
-      style="pointer-events: none"
+      style="pointer-events: none; top: 1.5rem"
     />
     <DocumentMenu
       v-else-if="showActions"
