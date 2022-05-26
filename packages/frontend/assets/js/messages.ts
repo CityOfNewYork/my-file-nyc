@@ -90,8 +90,8 @@ export default merge(
         done: 'Done',
         download: 'Download', // edit document kebab item and button text
         editDetails: 'Edit Details', // edit document kebab item
-        next: 'Next',
-        share: 'Share a File', // share button
+        continue: 'Continue',
+        share: 'Share Now', // share button
         shared: 'Shared Files', // label of shared tab on dashboard
         upload: 'Upload a File',
         view: 'View',

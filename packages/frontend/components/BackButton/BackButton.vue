@@ -5,7 +5,10 @@
     class="a11y-focus"
     @click="back"
   >
-    <v-icon small>$chevron-left</v-icon>
+    <v-icon small>$arrow-left</v-icon>
+    <span class="px-2 grey-8--text" style="font-size: 22px">
+      {{ $t('navigation.back') }}
+    </span>
   </v-btn>
 </template>
 

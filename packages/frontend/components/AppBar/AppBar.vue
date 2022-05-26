@@ -44,7 +44,7 @@
       </v-tabs> -->
     </template>
     <template v-if="($vuetify.breakpoint.xs || empty) && title">
-      <v-toolbar-title>
+      <v-toolbar-title style="margin-left: 45%">
         {{ $t(title) }}
       </v-toolbar-title>
     </template>
