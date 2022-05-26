@@ -211,9 +211,9 @@ export default class ViewCollection extends Vue {
 
   get sharedCollection(): TransformedSharedCollectionListItem | null {
     return (
-      (userStore.sharedCollections as TransformedSharedCollectionListItem[]).find(
-        (c) => c.collection.id === this.$route.params.id,
-      ) ?? null
+      (
+        userStore.sharedCollections as TransformedSharedCollectionListItem[]
+      ).find((c) => c.collection.id === this.$route.params.id) ?? null
     )
   }
 

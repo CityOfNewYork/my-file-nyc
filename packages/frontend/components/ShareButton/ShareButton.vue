@@ -12,7 +12,7 @@
     class="text-body-1 font-weight-medium"
     color="primary white--text"
   >
-    <v-icon left>$send</v-icon>
+    <v-icon v-if="$vuetify.breakpoint.smAndUp" left>$send</v-icon>
     {{ $t('controls.share') }}
   </v-btn>
 </template>

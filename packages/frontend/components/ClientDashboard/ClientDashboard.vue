@@ -13,19 +13,28 @@
           <v-icon left>$cog</v-icon>
           {{ $t('navigation.account') }}
         </v-btn>
-        <template v-if="$vuetify.breakpoint.xs && docsPresent">
+        <!-- <template v-if="$vuetify.breakpoint.xs && docsPresent">
           <UploadButton prepend-icon="$plus" @complete="onUpload" />
           <ShareButton class="ml-2 mr-1" />
-        </template>
+        </template> -->
       </template>
       <template v-slot:extensions>
         <v-divider v-if="breadcrumbs.length" class="my-0" />
-        <div class="d-flex justify-space-between align-end">
+        <div class="d-flex justify-space-between align-center">
+          <v-app-bar-nav-icon
+            v-if="!customMobileNav"
+            color="grey-8"
+            @click.stop="() => toggleSideNav(false)"
+            @keydown.stop.enter="() => toggleSideNav(true)"
+          />
           <v-tabs
             v-model="currentTab"
             slider-color="primary"
             color="black"
-            class="ml-0 white--text"
+            :class="[
+              { 'ml-0 white--text': smallScreen },
+              { 'ml-4 white--text': !smallScreen },
+            ]"
           >
             <v-tab href="#tab-docs" class="a11y-focus">
               <span>{{ $t('controls.allFiles') }}</span>
@@ -60,6 +69,14 @@
           <v-tab-item value="tab-collections" tabindex="0">
             <CollectionList class="mx-sm-8" />
           </v-tab-item>
+          <div
+            v-if="$vuetify.breakpoint.xs && docsPresent"
+            class="d-flex"
+            style="position: sticky; bottom: 3%; justify-content: space-evenly"
+          >
+            <ShareButton />
+            <UploadButton @complete="onUpload" />
+          </div>
         </v-tabs-items>
       </template>
     </v-main>
@@ -67,13 +84,17 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Watch } from 'nuxt-property-decorator'
+import { Vue, Component, Watch, Prop } from 'nuxt-property-decorator'
 import { userStore } from '@/plugins/store-accessor'
 import { Breadcrumb } from '@/types/nav'
 import { DelegatedClient } from '@/types/delegate'
+import Navigation from '@/mixins/navigation'
 
-@Component
+@Component({
+  mixins: [Navigation],
+})
 export default class ClientDashboard extends Vue {
+  @Prop({ default: false }) customMobileNav: boolean
   currentTab = 'tab-docs'
   userStore = userStore
   delegatedClient: DelegatedClient | null = null
@@ -85,6 +106,8 @@ export default class ClientDashboard extends Vue {
     if (userStore.isCbo && userStore.isActingAsDelegate) {
       this.delegatedClient = await userStore.fetchImpersonatedDelegate()
     }
+    this.smallScreen()
+    window.addEventListener('resize', this.smallScreen, { passive: true })
   }
 
   // rendering of the upload and share buttons if at least 1 document is present
@@ -93,6 +116,14 @@ export default class ClientDashboard extends Vue {
       return false
     } else {
       return true
+    }
+  }
+
+  smallScreen() {
+    if (this.$vuetify.breakpoint.xsOnly) {
+      return true
+    } else {
+      return false
     }
   }
 
