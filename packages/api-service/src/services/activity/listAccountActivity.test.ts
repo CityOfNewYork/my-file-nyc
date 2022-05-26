@@ -44,8 +44,7 @@ describe('listAccountActivity', () => {
         events: mockData.reverse().map((d) => ({
           message: JSON.stringify(d),
         })),
-        nextBackwardToken: 'backwards',
-        nextForwardToken: 'forwards',
+        nextToken: 'backwards',
       }
     })
     expect(await listAccountActivity(event)).toMatchInlineSnapshot(`

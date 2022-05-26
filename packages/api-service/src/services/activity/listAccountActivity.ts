@@ -49,39 +49,44 @@ export const handler = createAuthenticatedApiGatewayHandler(
   setContext('nextToken', (r) => getQueryStringParameter(r.event, 'nextToken')),
   requirePermissionToUser(UserPermission.ListActivity),
   async (request: APIGatewayRequest): Promise<ActivityList> => {
-    const { ownerId, nextToken } = request as Request
+    const { ownerId } = request as Request
     const logStream = {
       logGroupName,
       logStreamName: ownerId,
     }
 
     // set up default result if log stream does not exist yet
+    let nextToken
     let logEvents: GetLogEventsResponse = {
       events: [],
-      nextBackwardToken: undefined,
-      nextForwardToken: undefined,
+      nextToken,
     }
+    let hasNextToken = true
+    let eventRetrievalLimit = 100;
+    const events = [];
     try {
-      console.log('getting log events...')
-      logEvents = await getLogEvents(logStream, nextToken)
-      console.log(`log events: ${logEvents}`)
+      while (hasNextToken && events.length < eventRetrievalLimit) {
+        console.log('getting log events...')
+        logEvents = await getLogEvents(logStream, logEvents.nextToken);
+        console.log(logEvents)
+        if (logEvents && logEvents.events) {
+          events.push(...logEvents.events.map((e) => e.message as string).filter(hasValue))
+        }
+        if (!logEvents.nextToken) {
+          hasNextToken = false
+        }
+      }
+      console.log(`retrieved all events: ${events}`)
     } catch (err) {
-      logger.error(err, logStream)
+      logger.error(err as Error, logStream)
     }
-
-    const events = logEvents.events
-      ? logEvents.events.map((e) => e.message as string).filter(hasValue)
-      : []
     const activity = events
       .map(logEventToActivity)
       .filter(hasValue)
       .reverse()
     return {
       activity,
-      nextToken:
-        logEvents.nextBackwardToken && logEvents.nextBackwardToken !== nextToken
-          ? logEvents.nextBackwardToken
-          : null,
+      nextToken: logEvents.nextToken as string
     }
   },
 )

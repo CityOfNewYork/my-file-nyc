@@ -1438,6 +1438,7 @@ export class CityStack extends Stack {
 
       if (includeRead) {
         logStreamActions.push('logs:GetLogEvents')
+        logStreamActions.push('logs:FilterLogEvents')
       }
 
       if (includeWrite) {
@@ -1661,6 +1662,7 @@ export class CityStack extends Stack {
         'ListAccountActivity',
         pathToApiServiceLambda('activity/listAccountActivity'),
         {
+          timeoutSeconds: 180,
           dbSecret,
           layers: [mySqlLayer],
           extraEnvironmentVariables: [
@@ -2204,7 +2206,8 @@ export class CityStack extends Stack {
       auditLogSqsPermissions?: SqsPermissions
       emailProcessorSqsPermissions?: SqsPermissions
       auditLogGroupPermissions?: LogGroupPermissions
-    },
+      timeoutSeconds?: number,
+    } = { timeoutSeconds: 60 },
   ) {
     const {
       handler = 'index.handler',
@@ -2247,7 +2250,7 @@ export class CityStack extends Stack {
       handler,
       environment,
       memorySize: 512,
-      timeout: Duration.seconds(60),
+      timeout: Duration.seconds(props.timeoutSeconds as number),
       layers,
       runtime: Runtime.NODEJS_14_X,
       vpc: requiresDbConnectivity ? this.lambdaVpc : undefined,
