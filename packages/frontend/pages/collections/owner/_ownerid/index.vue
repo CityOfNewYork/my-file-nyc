@@ -38,10 +38,11 @@ export default class OwnerCollections extends Vue {
   }
 
   get sharerName() {
-    const collections: SharedCollectionListItem[] = userStore.sharedCollections.filter(
-      (c: SharedCollectionListItem) =>
-        c.owner.id === this.$route.params.ownerid,
-    )
+    const collections: SharedCollectionListItem[] =
+      userStore.sharedCollections.filter(
+        (c: SharedCollectionListItem) =>
+          c.owner.id === this.$route.params.ownerid,
+      )
     return collections.length ? `${collections[0].owner.name}` : ''
   }
 

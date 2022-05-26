@@ -22,12 +22,26 @@
         />
         {{ $t('application.title') }}
       </v-btn>
-      <v-app-bar-nav-icon
+      <!-- <v-app-bar-nav-icon
         v-else-if="!customMobileNav"
         color="grey-8"
         @click.stop="() => toggleSideNav(false)"
         @keydown.stop.enter="() => toggleSideNav(true)"
-      />
+      /> -->
+      <!-- <v-tabs
+        v-if="$vuetify.breakpoint.smAndDown"
+        v-model="currentTab"
+        slider-color="primary"
+        color="black"
+        class="ml-0 white--text"
+      >
+        <v-tab href="#tab-docs" class="a11y-focus">
+          <span>{{ $t('controls.allFiles') }}</span>
+        </v-tab>
+        <v-tab href="#tab-collections" class="a11y-focus">
+          <span>{{ $t('controls.shared') }}</span>
+        </v-tab>
+      </v-tabs> -->
     </template>
     <template v-if="($vuetify.breakpoint.xs || empty) && title">
       <v-toolbar-title>
@@ -43,7 +57,7 @@
         $vuetify.breakpoint.smAndUp
       "
     />
-    <slot v-if="!userStore.isAgent" name="actions" />
+    <!-- <slot v-if="!userStore.isAgent" name="actions" /> -->
     <template v-if="!empty">
       <v-btn
         v-if="showActivityButton"
@@ -167,7 +181,7 @@ export default class AppBar extends mixins(Navigation) {
   userStore = userStore
   recompute = false
 
-  mounted() {
+  async mounted() {
     // TODO: attempting to get the app bar to compute its height correctly
     //       need a better way of waiting for all elements to mount and then recompute height
     this.recompute = !this.recompute
