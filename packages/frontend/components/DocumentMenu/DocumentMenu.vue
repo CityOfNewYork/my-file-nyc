@@ -23,7 +23,7 @@
             v-if="$vuetify.breakpoint.smAndUp"
             class="text-body-1 font-weight-medium documentMenu a11y-focus"
           >
-            <v-icon style="top: 1rm">$edit</v-icon>
+            <v-icon class="mr-2" style="top: 1rm">$edit</v-icon>
             {{ $t('document.documentOptions') }}
           </v-btn>
           <v-icon
