@@ -2,7 +2,7 @@
   <v-btn
     :title="`${$t('navigation.back')}`"
     icon
-    class="a11y-focus"
+    class="a11y-focus ml-2"
     @click="back"
   >
     <v-icon small>$arrow-left</v-icon>
