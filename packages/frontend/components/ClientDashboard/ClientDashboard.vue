@@ -72,7 +72,14 @@
           <div
             v-if="$vuetify.breakpoint.xs && docsPresent"
             class="d-flex"
-            style="position: sticky; bottom: 3%; justify-content: space-evenly"
+            style="
+              position: sticky;
+              bottom: 0%;
+              justify-content: space-evenly;
+              background-color: #fff;
+              height: 3rem;
+              align-items: center;
+            "
           >
             <ShareButton />
             <UploadButton @complete="onUpload" />
