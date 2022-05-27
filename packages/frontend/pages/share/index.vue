@@ -134,8 +134,6 @@
             <v-row align="center" no-gutters>
               <v-col>
                 <span>{{ email }}</span>
-              </v-col>
-              <v-col cols="auto">
                 <v-btn
                   :title="`${$t('navigation.close')}`"
                   icon
@@ -144,6 +142,15 @@
                   <v-icon>$close</v-icon>
                 </v-btn>
               </v-col>
+              <!-- <v-col cols="auto">
+                <v-btn
+                  :title="`${$t('navigation.close')}`"
+                  icon
+                  @click="removeEmail(i)"
+                >
+                  <v-icon>$close</v-icon>
+                </v-btn>
+              </v-col> -->
             </v-row>
           </v-card>
         </div>
@@ -164,7 +171,7 @@
         style="
           width: 100%;
           border-radius: initial;
-          position: absolute;
+          position: fixed;
           bottom: 0rem;
         "
         :disabled="isNextDisabled"
@@ -223,6 +230,7 @@
             :key="`recipient-${i}`"
             rounded
             class="invitee px-4 py-4 mb-2 d-flex grey-2"
+            style="display: content"
           >
             <v-row align="center" no-gutters>
               <v-col class="pr-4" cols="auto">
@@ -253,7 +261,7 @@
         class="body-1 my-2 mx-auto d-flex"
         :style="
           $vuetify.breakpoint.smAndDown &&
-          'width: 100%; border-radius: initial; position: absolute;'
+          'width: 100%; border-radius: initial; position: fixed; bottom: -0.5rem;'
         "
         :disabled="isNextDisabled"
         @click="next"
@@ -377,7 +385,7 @@ export default class Share extends Vue {
     return (
       {
         0: 'sharing.selectFilesTitle',
-        1: 'sharing.addRecipientsTitle',
+        // 1: 'sharing.addRecipientsTitle',
         // 2: 'sharing.confirmTitle',
       } as Record<number, string>
     )[this.step]
