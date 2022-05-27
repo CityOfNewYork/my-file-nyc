@@ -150,8 +150,8 @@
         </v-list-item>
       </v-card>
     </div>
-    <!-- <infinite-loading @infinite="fetchActivities"> -->
-    <infinite-loading>
+    <!-- 
+      <infinite-loading @infinite="fetchActivities"> 
       <div slot="spinner">
         <v-progress-circular
           :title="`${$t('navigation.loading')}`"
@@ -167,7 +167,8 @@
       <div slot="no-more">
         <div class="text-body-3 my-5">End of activity</div>
       </div>
-    </infinite-loading>
+    </infinite-loading> 
+    -->
   </div>
 </template>
 
@@ -191,9 +192,9 @@ import {
 import { format, getUnixTime, parseISO, getISODay } from 'date-fns'
 import { cloneDeep, isEqual } from 'lodash'
 
-// @Component({
-//   components: { InfiniteLoading },
-// })
+@Component({
+  components: { InfiniteLoading },
+})
 export default class ActivityList extends Vue {
   activities: Activity[] = []
   newDate = ''
