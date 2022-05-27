@@ -150,7 +150,8 @@
         </v-list-item>
       </v-card>
     </div>
-    <infinite-loading @infinite="fetchActivities">
+    <!-- <infinite-loading @infinite="fetchActivities"> -->
+    <infinite-loading>
       <div slot="spinner">
         <v-progress-circular
           :title="`${$t('navigation.loading')}`"
@@ -190,15 +191,19 @@ import {
 import { format, getUnixTime, parseISO, getISODay } from 'date-fns'
 import { cloneDeep, isEqual } from 'lodash'
 
-@Component({
-  components: { InfiniteLoading },
-})
+// @Component({
+//   components: { InfiniteLoading },
+// })
 export default class ActivityList extends Vue {
   activities: Activity[] = []
   newDate = ''
   token = ''
 
-  async fetchActivities($state: StateChanger) {
+  created() {
+    this.fetchActivities()
+  }
+
+  async fetchActivities($state?: StateChanger) {
     const data = await this.$store.dispatch('user/getActivity', {
       id: userStore.ownerId,
       token: this.token,
@@ -213,11 +218,17 @@ export default class ActivityList extends Vue {
 
       this.activities.push(...arr)
       this.token = data.nextToken
-      $state.loaded()
+      if ($state) {
+        $state.loaded()
+      }
     } else {
-      $state.complete()
+      if ($state) {
+        $state.complete()
+      }
     }
   }
+
+  
 
   /**
    * Returns action type as UI label

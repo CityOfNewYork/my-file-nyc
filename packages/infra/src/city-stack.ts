@@ -430,7 +430,7 @@ export class CityStack extends Stack {
       }
     }
 
-    this.createAuditLogQueueProcessor(this.auditLogQueue)
+    this.createAuditLogQueueProcessor(this.auditLogQueue, apiProps)
     this.createEmailQueueProcessor(
       this.emailProcessorQueue,
       emailSender.address,
@@ -733,7 +733,9 @@ export class CityStack extends Stack {
    * Create the processor for the audit log queue
    * @param auditLogQueue The queue to read messages from
    */
-  private createAuditLogQueueProcessor(auditLogQueue: IQueue) {
+  private createAuditLogQueueProcessor(auditLogQueue: IQueue, apiProps: ApiProps) {
+    const { dbSecret, mySqlLayer } = apiProps;
+
     const lambda = this.createLambda(
       'ProcessActivity',
       pathToApiServiceLambda('activity/processActivity'),
@@ -748,6 +750,8 @@ export class CityStack extends Stack {
           EnvironmentVariables.ACTIVITY_RECORD_SQS_QUEUE_URL,
           EnvironmentVariables.ACTIVITY_CLOUDWATCH_LOG_GROUP,
         ],
+        layers: [mySqlLayer],
+        dbSecret,
       },
     )
     lambda.addEventSource(
@@ -2316,6 +2320,7 @@ export class CityStack extends Stack {
         DB_USER: dbSecret.secretValueFromJson('username').toString(),
         DB_PASSWORD: dbSecret.secretValueFromJson('password').toString(),
         DB_NAME: dbSecret.secretValueFromJson('username').toString(),
+        DEPLOY_TIME: Date.now().toString(),
       },
     })
 
