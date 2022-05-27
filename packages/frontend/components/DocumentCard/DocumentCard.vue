@@ -16,7 +16,7 @@
       :value="checked"
       color="primary"
       class="check"
-      style="pointer-events: none"
+      style="pointer-events: none; top: 1.5rem"
     />
     <DocumentMenu
       v-else-if="showActions"
@@ -138,11 +138,10 @@ export default class DocumentCard extends Vue {
     top: 0.5rem;
     min-height: 36px !important;
   }
-
   &::v-deep .iconDocumentMenue {
     position: absolute;
     left: 1rem;
-    top: 0.5rem;
+    top: 1rem;
     min-height: 36px !important;
   }
 }

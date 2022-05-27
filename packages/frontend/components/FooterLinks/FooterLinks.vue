@@ -3,7 +3,7 @@
     v-show="shouldShow"
     :fixed="fixed"
     :class="[`justify-${justify}`, 'pa-0']"
-    style="pointer-events: none"
+    :style="{ 'pointer-events': 'none', 'text-decoration': 'underline' }"
   >
     <div
       :class="[backgroundColor, 'px-4', 'd-flex', 'align-center']"
@@ -17,7 +17,7 @@
       >
         {{ $t('navigation.termsOfUse') }}
       </v-btn>
-      <v-icon small :class="['d-inline', `${color}--text`]">
+      <v-icon large :class="['d-inline', `black--text`]">
         mdi-circle-small
       </v-icon>
       <v-btn
@@ -28,7 +28,7 @@
       >
         {{ $t('navigation.about') }}
       </v-btn>
-      <v-icon small :class="['d-inline', `${color}--text`]">
+      <v-icon large :class="['d-inline', `black--text`]">
         mdi-circle-small
       </v-icon>
       <v-btn

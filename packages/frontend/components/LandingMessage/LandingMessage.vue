@@ -1,15 +1,15 @@
 <template>
   <div class="landing-container">
     <CityLogo />
-    <h2 class="text-heading-2 mt-4 mb-4 primary--text">
-      {{ $t('login.welcomeTitle') }}
-    </h2>
     <MarkdownContent id="welcome-copy" :content-path="welcomeMarkdown" />
     <ButtonLarge
       :label="$t('login.loginButton')"
       @click.native="logIn(0)"
       @keydown.native.enter="logIn"
     />
+    <div>
+      <a href="">{{ $t('navigation.nycId') }}</a>
+    </div>
     <CityLogoFooter v-if="showFooterLogo" class="mt-10 mb-3" />
     <FooterLinks
       justify="center"
@@ -49,7 +49,7 @@ export default class LandingMessage extends Vue {
   }
 
   get showFooterLogo(): boolean {
-    return this.$config.footerLogo === '1'
+    return this.$config.footerLogo === '0'
   }
 
   logIn(role: UserRole = UserRole.CLIENT) {
@@ -73,6 +73,7 @@ export default class LandingMessage extends Vue {
   }
   .landing-container {
     width: rem(320px);
+    margin-bottom: 100px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -81,13 +82,13 @@ export default class LandingMessage extends Vue {
   .welcome-message.body-1 {
     font-size: rem(15px) !important;
   }
-  @media (min-height: 615px) {
+  @media (min-height: 515px) {
     .landing-layout-container-inner {
       height: 100vh;
     }
   }
   #welcome-copy {
-    margin: 10px 10px 32px !important;
+    margin: 50px 20px 32px !important;
   }
 }
 </style>

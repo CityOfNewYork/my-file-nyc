@@ -23,9 +23,14 @@
             v-if="$vuetify.breakpoint.smAndUp"
             class="text-body-1 font-weight-medium documentMenu a11y-focus"
           >
-            {{ $t('document.documentModify') }}
+            <v-icon class="mr-2" style="top: 1rm">$edit</v-icon>
+            {{ $t('document.documentOptions') }}
           </v-btn>
-          <v-icon v-else-if="$vuetify.breakpoint.xs" class="iconDocumentMenue">
+          <v-icon
+            v-else-if="$vuetify.breakpoint.xs"
+            :style="$vuetify.breakpoint.width <= 280 && 'left: 2.5rem;'"
+            class="iconDocumentMenue"
+          >
             $edit
           </v-icon>
         </v-row>

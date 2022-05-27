@@ -27,7 +27,7 @@ export default merge(
       },
 
       login: {
-        loginButton: 'Login',
+        loginButton: 'Log in and get started',
         getStarted: {
           client: 'Get Started',
           cityEmployee: 'City Employee Login',
@@ -53,6 +53,7 @@ export default merge(
         signOut: 'Sign out',
         switchAccount: 'Switch Clients',
         termsOfUse: 'Terms of Use',
+        nycId: 'What is NYC.ID?',
       },
 
       document: {
@@ -62,7 +63,7 @@ export default merge(
         deleteConfirmationBody:
           'Anyone with shared access will no longer be able to view this file. This cannot be undone.',
         documentMenu: 'Document menu',
-        documentModify: 'Modify',
+        documentOptions: 'Options',
         downloadZip: 'Download All',
         downloadPdf: 'Download PDF',
         description: 'Description', // displayed beneath the document and expands to show description (if any)
@@ -89,8 +90,8 @@ export default merge(
         done: 'Done',
         download: 'Download', // edit document kebab item and button text
         editDetails: 'Edit Details', // edit document kebab item
-        next: 'Next',
-        share: 'Share a File', // share button
+        continue: 'Continue',
+        share: 'Share Now', // share button
         shared: 'Shared Files', // label of shared tab on dashboard
         upload: 'Upload a File',
         view: 'View',

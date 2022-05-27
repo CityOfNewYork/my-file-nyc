@@ -1,10 +1,10 @@
 <template>
-  <div class="pa-8 d-flex justify-center">
+  <div class="pa-0 d-flex justify-center">
     <v-sheet outlined color="#c8d3ee" rounded>
       <v-card
         outlined
         color="blue-super-light"
-        class="text-center pa-6 text--subtitle-2"
+        class="text-center pa-4 text--subtitle-2"
         max-width="360px"
       >
         <!-- style="font-size: 13px" -->

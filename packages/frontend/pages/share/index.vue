@@ -6,16 +6,19 @@
   >
     <AppBar :empty="$vuetify.breakpoint.xs" :title="toolbarTitle">
       <template v-if="$vuetify.breakpoint.xs" v-slot:nav-action>
-        <BackButton v-show="step === 0" tabindex="0" class="mt-1" />
+        <BackButton v-show="step === 0" tabindex="0" class="mt-1 ml-5" />
         <v-btn
           v-show="step > 0"
           icon
           :title="`${$t('navigation.back')}`"
-          class="a11y-focus mt-1"
+          class="a11y-focus mt-1 ml-5"
           tabindex="0"
           @click="prev"
         >
-          <v-icon small class="mr-2">$chevron-left</v-icon>
+          <v-icon small class="mr-2">$arrow-left</v-icon>
+          <span class="px-2 grey-8--text" style="font-size: 22px">
+            {{ $t('navigation.back') }}
+          </span>
         </v-btn>
       </template>
       <template v-if="$vuetify.breakpoint.xs" v-slot:actions>
@@ -25,19 +28,21 @@
           :disabled="isNextDisabled"
           @click="next"
         >
-          {{ $t(step === 2 ? 'controls.done' : 'controls.next') }}
+          {{ $t(step === 2 ? 'controls.done' : 'controls.continue') }}
         </v-btn>
       </template>
       <template v-else-if="$vuetify.breakpoint.smAndUp" v-slot:actionsBeneath>
         <v-btn
           text
           :title="`${$t('navigation.back')}`"
-          class="a11y-focus body-1 mx-2"
+          class="a11y-focus body-1 mx-2 mr-1"
           tabindex="0"
           @click="prevOrBack"
         >
           <v-icon small>$arrow-left</v-icon>
-          <span class="px-2 grey-8--text">{{ $t('navigation.back') }}</span>
+          <span class="px-2 grey-8--text" style="font-size: 22px">
+            {{ $t('navigation.back') }}
+          </span>
         </v-btn>
         <v-btn
           v-show="step != 2"
@@ -46,7 +51,7 @@
           :disabled="isNextDisabled"
           @click="next"
         >
-          {{ $t(step === 2 ? 'controls.done' : 'controls.next') }}
+          {{ $t(step === 2 ? 'controls.done' : 'controls.continue') }}
         </v-btn>
       </template>
     </AppBar>
@@ -62,6 +67,21 @@
           class="mx-8"
         />
       </div>
+      <v-btn
+        v-if="$vuetify.breakpoint.smAndDown"
+        color="primary"
+        class="body-1"
+        style="
+          width: 100%;
+          border-radius: initial;
+          position: fixed;
+          bottom: 0rem;
+        "
+        :disabled="isNextDisabled"
+        @click="next"
+      >
+        {{ $t(step === 2 ? 'controls.done' : 'controls.continue') }}
+      </v-btn>
     </v-window-item>
     <v-window-item
       :class="[{ mobile: $vuetify.breakpoint.xs }]"
@@ -114,8 +134,6 @@
             <v-row align="center" no-gutters>
               <v-col>
                 <span>{{ email }}</span>
-              </v-col>
-              <v-col cols="auto">
                 <v-btn
                   :title="`${$t('navigation.close')}`"
                   icon
@@ -124,6 +142,15 @@
                   <v-icon>$close</v-icon>
                 </v-btn>
               </v-col>
+              <!-- <v-col cols="auto">
+                <v-btn
+                  :title="`${$t('navigation.close')}`"
+                  icon
+                  @click="removeEmail(i)"
+                >
+                  <v-icon>$close</v-icon>
+                </v-btn>
+              </v-col> -->
             </v-row>
           </v-card>
         </div>
@@ -137,10 +164,30 @@
           "
         />
       </div>
+      <v-btn
+        v-if="$vuetify.breakpoint.smAndDown"
+        color="primary"
+        class="body-1"
+        style="
+          width: 100%;
+          border-radius: initial;
+          position: fixed;
+          bottom: 0rem;
+        "
+        :disabled="isNextDisabled"
+        @click="next"
+      >
+        {{ $t(step === 2 ? 'controls.done' : 'controls.continue') }}
+      </v-btn>
     </v-window-item>
     <v-window-item>
-      <div class="window-container px-8 pt-12 d-flex justify-center">
+      <div class="window-container px-8 d-flex justify-center">
         <div>
+          <FooterCard
+            class="d-flex align-self-end mx-auto"
+            title="sharing.disclaimerTitle"
+            body="sharing.shareDocumentDisclaimer[1]"
+          />
           <p class="font-weight-bold pt-4">
             {{ $tc('sharing.confirmSharedFiles', selectedDocs.length) }}
           </p>
@@ -183,6 +230,7 @@
             :key="`recipient-${i}`"
             rounded
             class="invitee px-4 py-4 mb-2 d-flex grey-2"
+            style="display: content"
           >
             <v-row align="center" no-gutters>
               <v-col class="pr-4" cols="auto">
@@ -208,18 +256,17 @@
           </v-btn>
         </div>
       </div>
-      <FooterCard
-        class="d-flex align-self-end mx-auto"
-        title="sharing.disclaimerTitle"
-        body="sharing.shareDocumentDisclaimer[1]"
-      />
       <v-btn
         color="primary"
         class="body-1 my-2 mx-auto d-flex"
+        :style="
+          $vuetify.breakpoint.smAndDown &&
+          'width: 100%; border-radius: initial; position: fixed; bottom: -0.5rem;'
+        "
         :disabled="isNextDisabled"
         @click="next"
       >
-        {{ $t(step === 2 ? 'controls.share' : 'controls.next') }}
+        {{ $t(step === 2 ? 'controls.share' : 'controls.continue') }}
       </v-btn>
     </v-window-item>
     <FooterLinks />
@@ -335,11 +382,13 @@ export default class Share extends Vue {
   }
 
   get toolbarTitle() {
-    return ({
-      0: 'sharing.selectFilesTitle',
-      1: 'sharing.addRecipientsTitle',
-      2: 'sharing.confirmTitle',
-    } as Record<number, string>)[this.step]
+    return (
+      {
+        0: 'sharing.selectFilesTitle',
+        // 1: 'sharing.addRecipientsTitle',
+        // 2: 'sharing.confirmTitle',
+      } as Record<number, string>
+    )[this.step]
   }
 
   get emailInputValid() {
