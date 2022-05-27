@@ -74,7 +74,7 @@
         style="
           width: 100%;
           border-radius: initial;
-          position: absolute;
+          position: fixed;
           bottom: 0rem;
         "
         :disabled="isNextDisabled"
