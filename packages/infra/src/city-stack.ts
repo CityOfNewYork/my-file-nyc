@@ -124,6 +124,7 @@ enum EnvironmentVariables {
   AUTH_SIGNING_KEY = 'AUTH_SIGNING_KEY',
   AUTH_INTEGRATION_TYPE = 'AUTH_INTEGRATION_TYPE',
   AUTH_EMAIL_UNVERIFIED_REDIRECT = 'AUTH_EMAIL_UNVERIFIED_REDIRECT',
+  SHARED_INBOX_CONFIG = 'SHARED_INBOX_CONFIG',
 }
 
 // these variables get inserted to every lambda created by "createLambda" so use sparingly
@@ -218,6 +219,8 @@ export interface Props extends StackProps {
   providedKmsKey?: ProvidedKeyDetails
 
   cloudfront?: any
+
+  sharedInboxConfig?: Record<string, Array<string>>
 }
 export class CityStack extends Stack {
   public bucketNames: { [index: string]: string }
@@ -255,13 +258,14 @@ export class CityStack extends Stack {
       throttling = {},
       providedKmsKey,
       cloudfront = {},
+      sharedInboxConfig = {}
     } = props
 
     // check jwt auth is given if auth stack is not
     if (!authStack && !jwtAuth) {
       throw new Error(
         'jwtAuth must be provided when authStack is not provided in stack ' +
-          this.stackName,
+        this.stackName,
       )
     }
 
@@ -314,10 +318,10 @@ export class CityStack extends Stack {
     // reference hosted zone
     const hostedZone: IHostedZone | undefined = hostedZoneAttributes
       ? HostedZone.fromHostedZoneAttributes(
-          this,
-          `HostedZone`,
-          hostedZoneAttributes,
-        )
+        this,
+        `HostedZone`,
+        hostedZoneAttributes,
+      )
       : undefined
 
     // add hosting for the web app
@@ -415,6 +419,7 @@ export class CityStack extends Stack {
       [EnvironmentVariables.AUTH_INTEGRATION_TYPE]: jwtConfiguration.integrationType
         ? jwtConfiguration.integrationType
         : 'OAUTH',
+      [EnvironmentVariables.SHARED_INBOX_CONFIG]: JSON.stringify(sharedInboxConfig),
     }
 
     if (jwtConfiguration.emailUnverifiedRedirectEndpoint) {
@@ -683,6 +688,7 @@ export class CityStack extends Stack {
           EnvironmentVariables.EMAIL_SENDER,
           EnvironmentVariables.WEB_APP_DOMAIN,
           EnvironmentVariables.EMAIL_PROCESSOR_SQS_QUEUE_URL,
+          EnvironmentVariables.SHARED_INBOX_CONFIG,
         ],
         emailProcessorSqsPermissions: {
           includeDelete: true,
@@ -2223,11 +2229,11 @@ export class CityStack extends Stack {
     const requiresDbConnectivity = !!dbSecret
     const dbParams: { [key: string]: string } = dbSecret
       ? {
-          DB_HOST: this.rdsEndpoint,
-          DB_USER: dbSecret.secretValueFromJson('username').toString(),
-          DB_PASSWORD: dbSecret.secretValueFromJson('password').toString(),
-          DB_NAME: dbSecret.secretValueFromJson('username').toString(),
-        }
+        DB_HOST: this.rdsEndpoint,
+        DB_USER: dbSecret.secretValueFromJson('username').toString(),
+        DB_PASSWORD: dbSecret.secretValueFromJson('password').toString(),
+        DB_NAME: dbSecret.secretValueFromJson('username').toString(),
+      }
       : {}
     const environment: {
       [key: string]: string
@@ -2247,6 +2253,8 @@ export class CityStack extends Stack {
       if (this.environmentVariables[e])
         environment[e] = this.environmentVariables[e]
     })
+
+    environment['DEPLOY_TIMESTAMP'] = Date.now().toString()
 
     const lambda = new Function(this, name, {
       ...extraFunctionProps,
