@@ -124,6 +124,13 @@ export default {
               vpcId: VPC_ID,
               vpcSubnets: VPC_SUBNETS,
             },
+            sharedInboxConfig: {
+              'myfile.sharedinbox@nycopportunity.nyc.gov': [
+                'dsessoms@nycopportunity.nyc.gov',
+                'dgolden@nycopportunity.nyc.gov',
+                'wereid@nycopportunity.nyc.gov',
+              ]
+            },
           },
         },
       ],
