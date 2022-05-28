@@ -430,7 +430,7 @@ export class CityStack extends Stack {
       }
     }
 
-    this.createAuditLogQueueProcessor(this.auditLogQueue)
+    this.createAuditLogQueueProcessor(this.auditLogQueue, apiProps)
     this.createEmailQueueProcessor(
       this.emailProcessorQueue,
       emailSender.address,
@@ -733,7 +733,9 @@ export class CityStack extends Stack {
    * Create the processor for the audit log queue
    * @param auditLogQueue The queue to read messages from
    */
-  private createAuditLogQueueProcessor(auditLogQueue: IQueue) {
+  private createAuditLogQueueProcessor(auditLogQueue: IQueue, apiProps: ApiProps) {
+    const { dbSecret, mySqlLayer } = apiProps;
+
     const lambda = this.createLambda(
       'ProcessActivity',
       pathToApiServiceLambda('activity/processActivity'),
@@ -748,6 +750,8 @@ export class CityStack extends Stack {
           EnvironmentVariables.ACTIVITY_RECORD_SQS_QUEUE_URL,
           EnvironmentVariables.ACTIVITY_CLOUDWATCH_LOG_GROUP,
         ],
+        layers: [mySqlLayer],
+        dbSecret,
       },
     )
     lambda.addEventSource(
@@ -1438,6 +1442,7 @@ export class CityStack extends Stack {
 
       if (includeRead) {
         logStreamActions.push('logs:GetLogEvents')
+        logStreamActions.push('logs:FilterLogEvents')
       }
 
       if (includeWrite) {
@@ -1661,6 +1666,7 @@ export class CityStack extends Stack {
         'ListAccountActivity',
         pathToApiServiceLambda('activity/listAccountActivity'),
         {
+          timeoutSeconds: 180,
           dbSecret,
           layers: [mySqlLayer],
           extraEnvironmentVariables: [
@@ -2204,7 +2210,8 @@ export class CityStack extends Stack {
       auditLogSqsPermissions?: SqsPermissions
       emailProcessorSqsPermissions?: SqsPermissions
       auditLogGroupPermissions?: LogGroupPermissions
-    },
+      timeoutSeconds?: number,
+    } = { timeoutSeconds: 60 },
   ) {
     const {
       handler = 'index.handler',
@@ -2247,7 +2254,7 @@ export class CityStack extends Stack {
       handler,
       environment,
       memorySize: 512,
-      timeout: Duration.seconds(60),
+      timeout: Duration.seconds(props.timeoutSeconds as number),
       layers,
       runtime: Runtime.NODEJS_14_X,
       vpc: requiresDbConnectivity ? this.lambdaVpc : undefined,
@@ -2313,6 +2320,7 @@ export class CityStack extends Stack {
         DB_USER: dbSecret.secretValueFromJson('username').toString(),
         DB_PASSWORD: dbSecret.secretValueFromJson('password').toString(),
         DB_NAME: dbSecret.secretValueFromJson('username').toString(),
+        DEPLOY_TIME: Date.now().toString(),
       },
     })
 

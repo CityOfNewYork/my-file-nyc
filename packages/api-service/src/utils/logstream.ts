@@ -71,23 +71,29 @@ export const putLogEvents = async (
 
 export type GetLogEventsResponse = {
   events: OutputLogEvents | undefined
-  nextBackwardToken: string | undefined
-  nextForwardToken: string | undefined
+  nextBackwardToken?: string | undefined
+  nextForwardToken?: string | undefined
+  nextToken: string | undefined
 }
 
 export const getLogEvents = async (
   logStream: LogStream,
-  nextToken: string | undefined,
+  token: string | undefined,
   limit = 50,
 ): Promise<GetLogEventsResponse> => {
   const { logGroupName, logStreamName } = logStream
+  const oneYearInMilliseconds = ((60 * 60 * 24) * 365) * 1000;
+  // const result = await logsClient
+  //   .getLogEvents({ startTime: Date.now() - oneYearInMilliseconds, logGroupName, logStreamName, limit, nextToken: undefined }, undefined)
+  //   .promise()
   const result = await logsClient
-    .getLogEvents({ logGroupName, logStreamName, limit, nextToken }, undefined)
+    .filterLogEvents({ logGroupName, logStreamNames: [logStreamName], nextToken: token }, undefined)
     .promise()
-  const { events, nextBackwardToken, nextForwardToken } = result
+  console.log('log result')
+  console.log(result)
+  const { events, nextToken } = result
   return {
     events,
-    nextBackwardToken,
-    nextForwardToken,
+    nextToken,
   }
 }

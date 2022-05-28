@@ -150,7 +150,8 @@
         </v-list-item>
       </v-card>
     </div>
-    <infinite-loading @infinite="fetchActivities">
+    <!-- 
+      <infinite-loading @infinite="fetchActivities"> 
       <div slot="spinner">
         <v-progress-circular
           :title="`${$t('navigation.loading')}`"
@@ -166,7 +167,8 @@
       <div slot="no-more">
         <div class="text-body-3 my-5">End of activity</div>
       </div>
-    </infinite-loading>
+    </infinite-loading> 
+    -->
   </div>
 </template>
 
@@ -198,7 +200,11 @@ export default class ActivityList extends Vue {
   newDate = ''
   token = ''
 
-  async fetchActivities($state: StateChanger) {
+  created() {
+    this.fetchActivities()
+  }
+
+  async fetchActivities($state?: StateChanger) {
     const data = await this.$store.dispatch('user/getActivity', {
       id: userStore.ownerId,
       token: this.token,
@@ -213,11 +219,17 @@ export default class ActivityList extends Vue {
 
       this.activities.push(...arr)
       this.token = data.nextToken
-      $state.loaded()
+      if ($state) {
+        $state.loaded()
+      }
     } else {
-      $state.complete()
+      if ($state) {
+        $state.complete()
+      }
     }
   }
+
+  
 
   /**
    * Returns action type as UI label
