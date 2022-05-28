@@ -1,4 +1,4 @@
-# My Digital Data Locker Infrastructure
+# My File NYC Infrastructure
 
 ## Useful commands
 
@@ -86,7 +86,7 @@ yarn infra cdk deploy
         },
         "emailSender": {
           "address": "noreply@datalocker.example.com",
-          "name": "My Digital Data Locker"
+          "name": "My File NYC"
         },
         "customDomain": {
           "certificateArn": "arn:aws:acm:us-east-1:111111111111:certificate/cccccccc-cccc-cccc-cccc-cccccccccccc",
@@ -149,7 +149,7 @@ yarn infra cdk deploy
           "additionalCallbackUrls": ["http://localhost:3000/authorize"],
           "emailSender": {
             "address": "noreply@datalocker.example.com",
-            "name": "My Digital Data Locker"
+            "name": "My File NYC"
           },
           "agencyEmailDomainsWhitelist": ["@example.com"]
         }
