@@ -86,7 +86,7 @@
             (title && $vuetify.breakpoint.smAndUp && !empty)
           "
           cols="12"
-          class="pr-2 d-flex justify-end align-center white"
+          class="pr-2 d-flex justify-start align-center white"
         >
           <v-toolbar-title
             v-show="title && $vuetify.breakpoint.smAndUp"
