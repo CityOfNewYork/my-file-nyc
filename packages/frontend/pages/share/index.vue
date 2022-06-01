@@ -44,6 +44,9 @@
             {{ $t('navigation.back') }}
           </span>
         </v-btn>
+        <v-toolbar-title class="flex-grow-0 mr-5" v-if="step === 0">
+          {{ $t('sharing.selectFilesTitle') }}
+        </v-toolbar-title>
         <v-btn
           v-show="step != 2"
           color="primary"
@@ -71,12 +74,7 @@
         v-if="$vuetify.breakpoint.smAndDown"
         color="primary"
         class="body-1"
-        style="
-          width: 100%;
-          border-radius: initial;
-          position: fixed;
-          bottom: 0rem;
-        "
+        style="width: 100%; position: fixed; bottom: 0rem"
         :disabled="isNextDisabled"
         @click="next"
       >
@@ -168,12 +166,7 @@
         v-if="$vuetify.breakpoint.smAndDown"
         color="primary"
         class="body-1"
-        style="
-          width: 100%;
-          border-radius: initial;
-          position: fixed;
-          bottom: 0rem;
-        "
+        style="width: 100%; position: fixed; bottom: 0rem"
         :disabled="isNextDisabled"
         @click="next"
       >
@@ -261,7 +254,7 @@
         class="body-1 my-2 mx-auto d-flex"
         :style="
           $vuetify.breakpoint.smAndDown &&
-          'width: 100%; border-radius: initial; position: fixed; bottom: -0.5rem;'
+          'width: 100%; position: fixed; bottom: -0.5rem;'
         "
         :disabled="isNextDisabled"
         @click="next"
@@ -274,7 +267,7 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Watch } from 'nuxt-property-decorator'
+import { Vue, Component, Watch, Prop } from 'nuxt-property-decorator'
 import { validate, ValidationObserver, ValidationProvider } from 'vee-validate'
 
 import { Document } from 'api-client'
@@ -300,6 +293,7 @@ import { format } from 'date-fns'
 export default class Share extends Vue {
   selectedDocs: Document[] = []
   individualEmailAddresses: string[] = []
+  @Prop({ default: '' }) title: string
 
   step = 0
   length = 3
@@ -314,7 +308,6 @@ export default class Share extends Vue {
   emailValidationRules = ''
 
   async mounted() {
-    console.log(this.emailValidationRules)
     const collections = await this.$store.dispatch('user/getCollections')
     this.name = this.$t('sharing.defaultName', {
       date: format(Date.now(), 'LLL d, yyyy - k:mm'),
