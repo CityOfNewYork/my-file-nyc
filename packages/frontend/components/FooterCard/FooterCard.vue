@@ -1,5 +1,5 @@
 <template>
-  <div class="pa-0 d-flex justify-center">
+  <div class="pa-0 d-flex justify-center mt-4">
     <v-sheet outlined color="#c8d3ee" rounded>
       <v-card
         outlined

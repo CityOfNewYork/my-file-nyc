@@ -88,12 +88,12 @@
           cols="12"
           class="pr-2 d-flex justify-start align-center white"
         >
-          <v-toolbar-title
+          <!-- <v-toolbar-title
             v-show="title && $vuetify.breakpoint.smAndUp"
-            class="flex-grow-1 px-4"
+            class="flex-grow-0 px-4"
           >
             {{ $t(title) }}
-          </v-toolbar-title>
+          </v-toolbar-title> -->
           <slot name="actionsBeneath" />
         </v-col>
         <v-col v-if="!!$slots.extensions || breadcrumbs.length" cols="12">
