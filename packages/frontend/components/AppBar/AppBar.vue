@@ -86,7 +86,7 @@
             (title && $vuetify.breakpoint.smAndUp && !empty)
           "
           cols="12"
-          class="pr-2 d-flex justify-start align-center white"
+          :class="pathShare"
         >
           <!-- <v-toolbar-title
             v-show="title && $vuetify.breakpoint.smAndUp"
@@ -182,6 +182,7 @@ export default class AppBar extends mixins(Navigation) {
   recompute = false
 
   async mounted() {
+    console.log(window.location.pathname)
     // TODO: attempting to get the app bar to compute its height correctly
     //       need a better way of waiting for all elements to mount and then recompute height
     this.recompute = !this.recompute
@@ -191,6 +192,13 @@ export default class AppBar extends mixins(Navigation) {
     setTimeout(() => {
       this.recompute = !this.recompute
     }, 3000)
+  }
+
+  get pathShare() {
+    if (window.location.pathname === '/share') {
+      return 'pr-2 d-flex justify-start align-center white'
+    }
+    return 'pr-2 d-flex justify-end align-center white'
   }
 
   get showActivityButton() {
