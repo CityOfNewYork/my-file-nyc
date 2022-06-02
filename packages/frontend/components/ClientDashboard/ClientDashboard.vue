@@ -22,7 +22,7 @@
         <v-divider v-if="breadcrumbs.length" class="my-0" />
         <div class="d-flex justify-space-between align-center">
           <v-app-bar-nav-icon
-            v-if="!customMobileNav"
+            v-if="$vuetify.breakpoint.smAndDown"
             color="grey-8"
             @click.stop="() => toggleSideNav(false)"
             @keydown.stop.enter="() => toggleSideNav(true)"
