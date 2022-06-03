@@ -66,11 +66,11 @@ export default merge(
         documentOptions: 'Options',
         downloadZip: 'Download All',
         downloadPdf: 'Download PDF',
-        description: 'Description', // displayed beneath the document and expands to show description (if any)
+        description: 'Document Description', // displayed beneath the document and expands to show description (if any)
         editDetailsTitle: 'Edit Details', // page title on edit details screen
         enterNamePlaceholder: 'Give this file a name',
         enterDescriptionPlaceholder: 'Describe this file',
-        fileName: 'File Name', // shown as a label on edit details screen
+        documentName: 'Document Name', // shown as a label on edit details screen
 
         noDocuments: 'There are no files saved to your account yet.', // shown on dashboard when there are no documents
         previewOf: 'Preview of',
@@ -94,6 +94,7 @@ export default merge(
         share: 'Share Now', // share button
         shared: 'Shared Files', // label of shared tab on dashboard
         upload: 'Upload a File',
+        uploadDocument: 'Upload Document',
         view: 'View',
       },
 

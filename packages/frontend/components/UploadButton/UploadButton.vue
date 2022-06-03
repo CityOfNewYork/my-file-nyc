@@ -42,26 +42,29 @@
       </template>
       <v-card>
         <v-toolbar flat>
-          <v-btn class="mr-2 a11y-focus" icon @click.stop="reset">
-            <v-icon small>$chevron-left</v-icon>
+          <v-btn class="ml-3 a11y-focus" icon @click.stop="reset">
+            <v-icon small class="mr-2">$arrow-left</v-icon>
+            <span class="px-2 grey-8--text" style="font-size: 22px">
+              {{ $t('navigation.back') }}
+            </span>
           </v-btn>
-
-          <v-toolbar-title>
+          <!-- <v-toolbar-title>
             {{ $t('document.editDetailsTitle') }}
-          </v-toolbar-title>
+          </v-toolbar-title> -->
           <v-spacer />
           <v-btn
-            color="primary"
-            text
+            v-if="$vuetify.breakpoint.smAndUp"
+            color="primary white--text"
+            class="d-flex text-body-1 font-weight-medium"
+            style="background-color: #2157e4"
             :disabled="!documentName"
             @keydown.enter="uploadDocument()"
             @click="uploadDocument"
           >
-            {{ $t('controls.done') }}
+            {{ $t('controls.uploadDocument') }}
           </v-btn>
         </v-toolbar>
         <v-container class="pa-8">
-          <p class="subtitle-1">{{ $t('document.fileName') }}</p>
           <ValidationObserver ref="observer">
             <v-form @submit.prevent>
               <ValidationProvider
@@ -69,16 +72,44 @@
                 name="name"
                 rules="required|max:255"
               >
+                <p class="subtitle-1 mt-10">
+                  {{ $t('document.documentName') }}
+                </p>
                 <v-text-field
                   v-model="documentName"
                   :error-messages="errors"
                   outlined
                   :placeholder="$t('document.enterNamePlaceholder')"
                 />
+                <p class="subtitle-1 mt-10">{{ $t('document.description') }}</p>
+                <v-text-field
+                  v-model="documentDescription"
+                  outlined
+                  :placeholder="$t('document.enterDescriptionPlaceholder')"
+                />
               </ValidationProvider>
             </v-form>
           </ValidationObserver>
         </v-container>
+        <v-btn
+          v-if="$vuetify.breakpoint.smAndDown"
+          color="primary white--text"
+          class="d-flex text-body-1 font-weight-medium"
+          style="
+            position: fixed;
+            bottom: 0%;
+            justify-content: space-evenly;
+            background-color: #2157e4;
+            height: 3rem;
+            align-items: center;
+            width: 100%;
+          "
+          :disabled="!documentName"
+          @keydown.enter="uploadDocument()"
+          @click="uploadDocument"
+        >
+          {{ $t('controls.uploadDocument') }}
+        </v-btn>
       </v-card>
     </v-dialog>
   </button>
@@ -120,6 +151,7 @@ export default class UploadButton extends Vue {
 
   snackMessage = ''
   documentName = ''
+  documentDescription = ''
 
   resetSelection(event: any) {
     event.target.value = ''
@@ -159,6 +191,8 @@ export default class UploadButton extends Vue {
     const document = await this.$store.dispatch('user/uploadDocument', {
       fileList: this.files,
       name: this.documentName,
+      describtion: this.documentDescription,
+
       onUploadProgress: (e: ProgressEvent) => {
         snackbarStore.setProgress(Math.round((e.loaded / e.total) * 100))
       },
@@ -195,6 +229,7 @@ export default class UploadButton extends Vue {
     }
     this.snackMessage = ''
     this.documentName = ''
+    this.documentDescription = ''
   }
 }
 </script>
@@ -241,6 +276,16 @@ export default class UploadButton extends Vue {
 
   .upload-text .v-snack__content {
     padding-top: 0;
+  }
+
+  .uploadSubmit {
+    position: fixed;
+    bottom: 0%;
+    justify-content: space-evenly;
+    background-color: #2157e4;
+    height: 3rem;
+    align-items: center;
+    width: 100%;
   }
 }
 </style>
