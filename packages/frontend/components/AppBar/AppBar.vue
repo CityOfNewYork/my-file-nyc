@@ -182,7 +182,6 @@ export default class AppBar extends mixins(Navigation) {
   recompute = false
 
   async mounted() {
-    console.log(window.location.pathname)
     // TODO: attempting to get the app bar to compute its height correctly
     //       need a better way of waiting for all elements to mount and then recompute height
     this.recompute = !this.recompute

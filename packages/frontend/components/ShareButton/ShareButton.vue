@@ -9,8 +9,8 @@
         },
       })
     "
-    class="text-body-1 font-weight-medium"
     color="primary white--text"
+    class="text-body-1 font-weight-medium"
   >
     <v-icon v-if="$vuetify.breakpoint.smAndUp" left>$send</v-icon>
     {{ $t('controls.share') }}
