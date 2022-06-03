@@ -8,7 +8,7 @@
         v-slot:nav-action
       >
         <BackButton tabindex="0" />
-        <ShareButton class="my-2 ml-4" :preselected="[document.id]" />
+        <!-- <ShareButton class="my-2 ml-4" :preselected="[document.id]" /> -->
       </template>
       <template
         v-if="!!document && userStore.isClient && $vuetify.breakpoint.xs"
@@ -27,9 +27,7 @@
           !!document && userStore.isClient && $vuetify.breakpoint.smAndUp
         "
         v-slot:actionsBeneath
-      >
-        <ShareButton class="my-2" :preselected="[document.id]" />
-      </template>
+      ></template>
     </AppBar>
     <v-main>
       <v-container v-if="document" class="pa-2 pa-sm-12">
