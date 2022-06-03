@@ -58,6 +58,11 @@
           </v-expansion-panels>
           <div class="vertical-space" />
         </template>
+        <DocumentActions
+          v-if="$vuetify.breakpoint.xsOnly"
+          class="mt-8 py-0"
+          :document="document"
+        />
       </v-container>
       <div v-else>
         <v-skeleton-loader
