@@ -65,8 +65,12 @@
         class="white--text"
         :to="localePath('/account')"
       >
-        <v-icon left>$cog</v-icon>
-        {{ $t('navigation.account') }}
+        <v-avatar>
+          <span class="white--text text-h6">
+            {{ userStore.profile.name[0].toUpperCase() }}
+          </span>
+        </v-avatar>
+        <!-- {{ $t('navigation.account') }} -->
       </v-btn>
       <v-btn
         v-if="showActivityButton"
@@ -191,6 +195,7 @@ export default class AppBar extends mixins(Navigation) {
   recompute = false
 
   async mounted() {
+    console.log(this.userStore)
     // TODO: attempting to get the app bar to compute its height correctly
     //       need a better way of waiting for all elements to mount and then recompute height
     this.recompute = !this.recompute
