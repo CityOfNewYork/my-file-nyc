@@ -1593,6 +1593,7 @@ export class CityStack extends Stack {
           // EnvironmentVariables.WEB_APP_DOMAIN, -- need to fix incorrect domain issue for processing email template
           EnvironmentVariables.ACTIVITY_RECORD_SQS_QUEUE_URL,
           EnvironmentVariables.EMAIL_PROCESSOR_SQS_QUEUE_URL,
+          EnvironmentVariables.SHARED_INBOX_CONFIG,
         ],
         emailProcessorSqsPermissions: {
           includeWrite: true,

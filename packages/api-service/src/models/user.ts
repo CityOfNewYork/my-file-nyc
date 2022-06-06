@@ -6,6 +6,8 @@ export class User extends BaseModel {
   public givenName?: string
   public familyName?: string
   public email?: string
+  public dob?: string
+  public dhsCaseNumber?: string
   public syncTimestamp?: string
   public attributes?: any
 
@@ -21,6 +23,8 @@ export class User extends BaseModel {
         givenName: { type: 'string', maxLength: 255 },
         familyName: { type: 'string', maxLength: 255 },
         email: { type: 'string', maxLength: 255 },
+        dob: { type: 'string', maxLength: 255 },
+        dhsCaseNumber: { type: 'string', maxLength: 255 },
         syncTimestamp: { type: 'string', maxLength: 255 },
         attributes: { type: 'object' },
       },

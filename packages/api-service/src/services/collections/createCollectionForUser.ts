@@ -3,6 +3,7 @@ import {
   CollectionCreate as CollectionCreateContract,
   CollectionGrantType,
 } from 'api-client'
+import { uniq, flatMap } from 'lodash'
 import { requirePathParameter } from '@/utils/api-gateway'
 import { connectDatabase } from '@/utils/database'
 import { createCollectionSchema } from './validation'
@@ -74,6 +75,19 @@ export const handler = createAuthenticatedApiGatewayHandler(
       throw new createError.BadRequest(`validation error: documents not found`)
     }
 
+    // shared inbox check
+    const sharedInboxConfig = JSON.parse(requireConfiguration(EnvironmentVariable.SHARED_INBOX_CONFIG)) as Record<string, Array<string>>
+    const flatListOfSharedInboxRecipients = uniq(flatMap(Object.values(sharedInboxConfig)))
+    const sharedInboxList = Object.keys(sharedInboxConfig)
+    const validatedEmailRecipients: Array<string> = []
+    individualEmailAddresses.forEach((address) => {
+      if (!flatListOfSharedInboxRecipients.includes(address) && !sharedInboxList.includes(address)) {
+        validatedEmailRecipients.push(address)
+      } else if (sharedInboxList.includes(address)) {
+        validatedEmailRecipients.push(...sharedInboxConfig[address])
+      }
+    })
+
     // create model input
     const collection: CreateCollectionInput = {
       name,
@@ -88,7 +102,7 @@ export const handler = createAuthenticatedApiGatewayHandler(
         createdBy,
         createdAt,
       })),
-      grants: individualEmailAddresses.map((email) => ({
+      grants: validatedEmailRecipients.map((email) => ({
         id: uuidv4(),
         requirementType: CollectionGrantType.INDIVIDUALEMAIL,
         requirementValue: email,
