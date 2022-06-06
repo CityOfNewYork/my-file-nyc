@@ -5,18 +5,22 @@
     <AppBar :empty="false">
       <template v-slot:extensions>
         <div class="d-flex align-center">
-          <BackButton v-if="step === 'top-level'" tabindex="0" class="mt-1" />
+          <BackButton
+            v-if="step === 'top-level'"
+            tabindex="0"
+            class="ml-5 mr-5"
+          />
 
-          <v-btn
+          <!-- <v-btn
             v-else
             :title="`${$t('navigation.back')}`"
             icon
             @click="step = 'top-level'"
           >
             <v-icon small class="mt-1">$chevron-left</v-icon>
-          </v-btn>
+          </v-btn> -->
 
-          <div class="v-toolbar__title">{{ $t(toolbarTitle) }}</div>
+          <div class="mt-1 ml-2 v-toolbar__title">{{ $t(toolbarTitle) }}</div>
         </div>
       </template>
     </AppBar>
