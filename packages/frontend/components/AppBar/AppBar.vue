@@ -60,6 +60,15 @@
     <!-- <slot v-if="!userStore.isAgent" name="actions" /> -->
     <template v-if="!empty">
       <v-btn
+        v-if="$vuetify.breakpoint.smAndUp && userStore.isClient"
+        text
+        class="white--text"
+        :to="localePath('/account')"
+      >
+        <v-icon left>$cog</v-icon>
+        {{ $t('navigation.account') }}
+      </v-btn>
+      <v-btn
         v-if="showActivityButton"
         text
         color="white"
