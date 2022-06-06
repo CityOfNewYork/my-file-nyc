@@ -6,6 +6,8 @@ export async function up(knex: Knex): Promise<void> {
     t.string('givenName', 255).nullable()
     t.string('familyName', 255).nullable()
     t.string('email', 255).nullable()
+    t.string('dob', 255).nullable()
+    t.string('dhsCaseNumber', 255).nullable()
     t.string('syncTimestamp', 255).nullable()
     t.json('attributes').nullable()
   })

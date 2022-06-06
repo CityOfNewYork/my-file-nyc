@@ -6,6 +6,8 @@ export class User extends BaseModel {
   public givenName?: string
   public familyName?: string
   public email?: string
+  public dob?: string
+  public dhsCaseNumber?: string
   public syncTimestamp?: string
   public attributes?: any
 
