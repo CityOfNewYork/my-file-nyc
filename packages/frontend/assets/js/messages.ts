@@ -121,7 +121,7 @@ export default merge(
 
         disclaimerTitle: 'Reminder',
         shareDocumentDisclaimer: [
-          'My Digital Data Locker facilitates document sharing with {emails} email accounts',
+          'My File NYC facilitates document sharing with {emails} email accounts',
           'Once documents are shared DHS employees may download and save your documents to submit as proof for your application. DHS may still have copies to support your case even if you unshare or delete them from My File.',
         ],
 

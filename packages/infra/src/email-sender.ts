@@ -1,6 +1,6 @@
 export interface EmailSender {
   /**
-   * The name of the email sender, e.g "My Digital Data Locker"
+   * The name of the email sender, e.g "My File NYC"
    */
   name: string
   /**
