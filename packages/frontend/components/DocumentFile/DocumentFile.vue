@@ -13,7 +13,30 @@
     <p>PDF document: {{ document.name }}</p>
   </iframe>
   <div v-else class="text-center image viewer">
-    <img :src="url" :alt="`${documentName} (${fileName})`" />
+    <v-dialog v-model="dialog">
+      <template v-slot:activator="{ on, attrs }">
+        <img
+          v-bind="attrs"
+          v-on="on"
+          :style="$vuetify.breakpoint.smAndUp && 'width: 50%'"
+          :src="url"
+          :alt="`${documentName} (${fileName})`"
+        />
+      </template>
+      <v-card>
+        <div class="text-center image viewer">
+          <v-card-title class="d-block text-h5">
+            {{ $t(document.name) }}
+          </v-card-title>
+          <img :src="url" :alt="`${documentName} (${fileName})`" />
+          <v-card-actions class="d-block">
+            <v-btn class="text-center" text @click="dialog = false">
+              Close Document
+            </v-btn>
+          </v-card-actions>
+        </div>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
@@ -33,6 +56,7 @@ export default class DocumentFile extends Vue {
 
   url = ''
   loading = true
+  dialog = false
 
   async mounted() {
     this.url = await this.$store.dispatch('document/downloadFile', {
@@ -40,7 +64,7 @@ export default class DocumentFile extends Vue {
       file: this.file,
       disposition: FileDownloadDispositionTypeEnum.Inline,
     })
-
+    console.log(this.document)
     if (this.isTiff) {
       await this.processTif()
     }
