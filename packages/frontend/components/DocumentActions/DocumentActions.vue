@@ -1,5 +1,5 @@
 <template>
-  <v-list>
+  <v-list v-if="$vuetify.breakpoint.smAndUp">
     <v-list-item>
       <v-btn class="justify-start" text @click="editDetails">
         <v-icon class="mr-2" color="primary">$pencil</v-icon>
@@ -21,6 +21,35 @@
       <v-btn class="justify-start" text @click="download">
         <v-icon small class="mr-2" color="primary">$download</v-icon>
         {{ $t('controls.download') }}
+      </v-btn>
+    </v-list-item>
+    <ConfirmationDialog
+      v-model="showDeleteConfirmation"
+      body="document.deleteConfirmationBody"
+      title="document.deleteConfirmationTitle"
+      :on-confirm="confirmDelete"
+      :loading="loading"
+      confirm-label="controls.confirmDelete"
+    />
+  </v-list>
+  <v-list class="d-flex" v-else-if="$vuetify.breakpoint.smAndDown">
+    <v-list-item class="justify-center">
+      <v-btn text @click="editDetails">
+        <v-icon class="mr-2" color="primary">$pencil</v-icon>
+      </v-btn>
+    </v-list-item>
+    <v-list-item class="justify-center">
+      <v-btn
+        text
+        @click="showConfirmationDialog"
+        @keydown.enter="showConfirmationDialog"
+      >
+        <v-icon class="mr-2" color="primary">$delete</v-icon>
+      </v-btn>
+    </v-list-item>
+    <v-list-item class="justify-center">
+      <v-btn text @click="download">
+        <v-icon class="mr-2" color="primary">$download</v-icon>
       </v-btn>
     </v-list-item>
     <ConfirmationDialog
