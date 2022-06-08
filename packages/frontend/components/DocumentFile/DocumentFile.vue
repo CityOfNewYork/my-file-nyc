@@ -64,7 +64,6 @@ export default class DocumentFile extends Vue {
       file: this.file,
       disposition: FileDownloadDispositionTypeEnum.Inline,
     })
-    console.log(this.document)
     if (this.isTiff) {
       await this.processTif()
     }
