@@ -5,7 +5,7 @@
     app
     clipped-right
     :extension-height="`${extensionHeight}px`"
-    :height="$vuetify.breakpoint.smAndDown ? '0px' : '105px'"
+    :height="headerHeight"
   >
     <slot name="nav-action" />
     <template v-if="!empty">
@@ -211,6 +211,14 @@ export default class AppBar extends mixins(Navigation) {
       return 'pr-2 d-flex justify-start align-center white'
     }
     return 'pr-2 d-flex justify-end align-center white'
+  }
+
+  get headerHeight() {
+    return this.$vuetify.breakpoint.smAndDown
+      ? window.location.pathname === '/share'
+        ? ''
+        : '0px'
+      : '105px'
   }
 
   get showActivityButton() {
