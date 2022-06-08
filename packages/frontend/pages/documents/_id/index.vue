@@ -7,7 +7,7 @@
         v-if="$vuetify.breakpoint.xs && userStore.isClient && !!document"
         v-slot:nav-action
       >
-        <BackButton tabindex="0" />
+        <!-- <BackButton tabindex="0" /> -->
         <!-- <ShareButton class="my-2 ml-4" :preselected="[document.id]" /> -->
       </template>
       <template
