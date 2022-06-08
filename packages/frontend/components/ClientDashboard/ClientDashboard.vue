@@ -55,7 +55,7 @@
       </template>
     </AppBar>
 
-    <v-main>
+    <v-main class="pt-20">
       <template>
         <v-tabs-items v-model="currentTab">
           <v-tab-item value="tab-docs" tabindex="0">

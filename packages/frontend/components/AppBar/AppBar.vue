@@ -5,6 +5,7 @@
     app
     clipped-right
     :extension-height="`${extensionHeight}px`"
+    :height="$vuetify.breakpoint.smAndDown ? '0px' : '105px'"
   >
     <slot name="nav-action" />
     <template v-if="!empty">
@@ -70,7 +71,6 @@
             {{ userStore.profile.name[0].toUpperCase() }}
           </span>
         </v-avatar>
-        <!-- {{ $t('navigation.account') }} -->
       </v-btn>
       <v-btn
         v-if="showActivityButton"
@@ -195,7 +195,6 @@ export default class AppBar extends mixins(Navigation) {
   recompute = false
 
   async mounted() {
-    console.log(this.userStore)
     // TODO: attempting to get the app bar to compute its height correctly
     //       need a better way of waiting for all elements to mount and then recompute height
     this.recompute = !this.recompute
