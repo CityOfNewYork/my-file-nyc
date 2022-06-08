@@ -215,7 +215,8 @@ export default class AppBar extends mixins(Navigation) {
 
   get headerHeight() {
     return this.$vuetify.breakpoint.smAndDown
-      ? window.location.pathname === '/share'
+      ? window.location.pathname === '/share' ||
+        window.location.pathname === '/activity'
         ? ''
         : '0px'
       : '105px'
