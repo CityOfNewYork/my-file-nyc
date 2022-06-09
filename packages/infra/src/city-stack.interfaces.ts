@@ -93,6 +93,8 @@ export interface ApiHostedDomain extends HostedDomain {
    * @default false
    */
   corsAllowAnyHost?: boolean
+  corsAllowAdditionalOrigins?: boolean
+  corsAdditionalOrigins?: string
 }
 
 export interface JwtConfiguration {
