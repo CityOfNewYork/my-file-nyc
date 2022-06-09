@@ -59,9 +59,17 @@
       </template>
     </AppBar>
     <v-window-item
-      :class="[{ mobile: $vuetify.breakpoint.xs }, 'blue-super-light']"
+      :class="[
+        { mobile: $vuetify.breakpoint.smAndUp },
+        'blue-super-light pt-15',
+      ]"
     >
-      <div class="window-container pt-3">
+      <div
+        :class="[
+          { 'blue-super-light pt-14': $vuetify.breakpoint.smAndUp },
+          { 'blue-super-light pt-1': $vuetify.breakpoint.smAndDown },
+        ]"
+      >
         <DocumentList
           v-model="selectedDocs"
           :selectable="true"
@@ -81,13 +89,14 @@
         {{ $t(step === 2 ? 'controls.done' : 'controls.continue') }}
       </v-btn>
     </v-window-item>
-    <v-window-item
-      :class="[{ mobile: $vuetify.breakpoint.xs }]"
-      style="min-height: 100%"
-    >
+    <v-window-item style="min-height: 100%">
       <div class="d-flex flex-column" style="min-height: calc(100vh - 88px)">
         <div
-          class="window-container px-8 pt-8 mb-2 flex-grow-1"
+          :class="[
+            { 'blue-super-light pt-14': $vuetify.breakpoint.smAndUp },
+            { 'blue-super-light pt-1': $vuetify.breakpoint.smAndDown },
+          ]"
+          class="window-container px-8 mb-2 flex-grow-0"
           style="max-width: 564px; width: 100%"
         >
           <v-row>
@@ -174,7 +183,13 @@
       </v-btn>
     </v-window-item>
     <v-window-item>
-      <div class="window-container px-8 d-flex justify-center">
+      <div
+        :class="[
+          { 'blue-super-light pt-12': $vuetify.breakpoint.smAndUp },
+          { 'blue-super-light pt-1': $vuetify.breakpoint.smAndDown },
+        ]"
+        class="window-container px-8 d-flex justify-center"
+      >
         <div>
           <FooterCard
             class="d-flex align-self-end mx-auto"
