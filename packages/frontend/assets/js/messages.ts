@@ -40,6 +40,7 @@ export default merge(
       navigation: {
         about: 'About',
         account: 'My Account Managers',
+        settings: 'Settings',
         activity: 'Activity Log',
         back: 'Back',
         clients: 'Clients', // navigate back to agent view desktop
@@ -90,17 +91,23 @@ export default merge(
         done: 'Done',
         download: 'Download', // edit document kebab item and button text
         editDetails: 'Edit Details', // edit document kebab item
+        edit: 'Edit', //edit account details
         continue: 'Continue',
         share: 'Share Now', // share button
         shared: 'Shared Files', // label of shared tab on dashboard
         upload: 'Upload a File',
         uploadDocument: 'Upload Document',
         view: 'View',
+        save: 'Save',
       },
 
       // account settings page
       account: {
         language: 'Language', // open language selector
+        firstName: 'First Name',
+        lastName: 'Last Name',
+        dob: 'Date of Birth',
+        caseNumber: 'Case Number'
       },
 
       // All copy related to the create shared folder flow
