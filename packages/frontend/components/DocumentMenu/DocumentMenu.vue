@@ -67,11 +67,10 @@ export default class DocumentMenu extends Vue {
   @Prop({ default: () => {} }) onDelete: () => void
 
   showMenu = false
-  userRole = 0
+  userRole = 0 as any
 
   mounted() {
     this.userRole = localStorage.getItem('myfile.role')
-    console.log(this.userRole)
   }
 
   async download() {

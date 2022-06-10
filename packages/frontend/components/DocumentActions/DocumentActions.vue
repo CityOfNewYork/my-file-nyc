@@ -80,7 +80,7 @@ export default class DocumentActions extends Vue {
 
   showDeleteConfirmation = false
   loading = false
-  userRole = 0
+  userRole = 0 as any
 
   mounted() {
     this.userRole = localStorage.getItem('myfile.role')
