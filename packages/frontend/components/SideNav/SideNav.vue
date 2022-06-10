@@ -68,7 +68,7 @@ export default class SideNav extends mixins(Navigation) {
 
   clientNavItems: NavItem[] = [
     {
-      label: 'navigation.account',
+      label: 'navigation.settings',
       to: '/account',
       icon: '$cog',
     },

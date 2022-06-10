@@ -66,11 +66,8 @@
         class="white--text"
         :to="localePath('/account')"
       >
-        <v-avatar>
-          <span class="white--text text-h6">
-            {{ userStore.profile.name[0].toUpperCase() }}
-          </span>
-        </v-avatar>
+        <v-icon left>$cog</v-icon>
+        {{ $t('navigation.settings') }}
       </v-btn>
       <v-btn
         v-if="showActivityButton"

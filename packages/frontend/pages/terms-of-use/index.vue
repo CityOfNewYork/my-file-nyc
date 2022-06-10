@@ -10,7 +10,7 @@
 
     <v-divider class="mt-13 mb-0" />
 
-    <v-container :class="{ 'mt-8': hasAccepted }">
+    <v-container v-if="step < 1" :class="{ 'mt-8': hasAccepted }">
       <v-row no-gutters align="center" justify="center">
         <!-- <v-col align="center" cols="12">
           <CityLogo v-if="$vuetify.breakpoint.xs" width="96px" class="my-12" />
@@ -39,6 +39,8 @@
         </v-btn>
       </v-row>
     </v-container>
+    <div v-else><Settings :submit="submit" editMode="true" /></div>
+
     <SnackBar v-if="hasAccepted && $auth.loggedIn" />
   </div>
 </template>
@@ -61,6 +63,7 @@ import Navigation from '@/mixins/navigation'
 export default class TermsOfUse extends mixins(Navigation) {
   loading = false
   markdown = ''
+  step = 0
 
   created() {
     const locale = this.$i18n.locale
@@ -68,12 +71,18 @@ export default class TermsOfUse extends mixins(Navigation) {
   }
 
   get hasAccepted() {
-    return userStore.profile && userStore.profile.termsOfUseAccepted
+    return false
+    // return userStore.profile && userStore.profile.termsOfUseAccepted
   }
 
-  async accept() {
+  accept() {
+    this.step++
+  }
+
+  async submit() {
     this.loading = true
-    await this.$store.dispatch('user/acceptTerms')
+    // await this.$store.dispatch('user/acceptTerms')
+    this.step = 0
     this.$router.push(this.localePath('/dashboard'))
   }
 

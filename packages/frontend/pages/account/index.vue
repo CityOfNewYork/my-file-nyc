@@ -20,13 +20,17 @@
             <v-icon small class="mt-1">$chevron-left</v-icon>
           </v-btn> -->
 
-          <div class="mt-1 ml-2 v-toolbar__title">{{ $t(toolbarTitle) }}</div>
+          <div class="mt-1 ml-2 v-toolbar__title">
+            {{ `${$t('navigation.settings')}` }}
+          </div>
         </div>
       </template>
     </AppBar>
 
     <v-main>
-      <v-window v-if="!this.$config.features.delegates" style="margin: 1em">
+      <Settings editMode="false" />
+
+      <!-- <v-window v-if="!this.$config.features.delegates" style="margin: 1em">
         {{ $t('delegateAccess.disabledNotice') }}
       </v-window>
       <v-window v-else v-model="step" touchless class="pa-8">
@@ -160,7 +164,7 @@
           />
         </v-window-item>
         <FooterLinks />
-      </v-window>
+      </v-window> -->
     </v-main>
   </div>
 </template>
@@ -201,18 +205,18 @@ export default class Account extends Vue {
     this.loadDelegates()
   }
 
-  get toolbarTitle() {
-    switch (this.step) {
-      case 'top-level':
-        return 'navigation.account'
-      case 'language':
-        return 'account.language'
-      case 'delegate':
-        return 'delegateAccess.pageTitle'
-      default:
-        return 'navigation.account'
-    }
-  }
+  // get toolbarTitle() {
+  //   switch (this.step) {
+  //     case 'top-level':
+  //       return 'navigation.account'
+  //     case 'language':
+  //       return 'account.language'
+  //     case 'delegate':
+  //       return 'delegateAccess.pageTitle'
+  //     default:
+  //       return 'navigation.account'
+  //   }
+  // }
 
   get accountName() {
     return userStore.profile ? userStore.profile.name : ''
