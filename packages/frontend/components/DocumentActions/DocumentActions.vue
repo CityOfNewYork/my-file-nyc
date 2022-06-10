@@ -1,25 +1,25 @@
-<template>
-  <v-list v-if="$vuetify.breakpoint.smAndUp">
-    <v-list-item>
+<template >
+  <v-list v-if="$vuetify.breakpoint.smAndUp || dasbboardDocMenu">
+    <v-list-item v-if="userRole != 2">
       <v-btn class="justify-start" text @click="editDetails">
         <v-icon class="mr-2" color="primary">$pencil</v-icon>
         {{ $t('controls.editDetails') }}
       </v-btn>
     </v-list-item>
-    <v-list-item>
+    <v-list-item v-if="userRole != 2">
       <v-btn
         class="justify-start"
         text
         @click="showConfirmationDialog"
         @keydown.enter="showConfirmationDialog"
       >
-        <v-icon small class="mr-2" color="primary">$delete</v-icon>
+        <v-icon class="mr-2" color="primary">$delete</v-icon>
         {{ $t('controls.delete') }}
       </v-btn>
     </v-list-item>
     <v-list-item>
       <v-btn class="justify-start" text @click="download">
-        <v-icon small class="mr-2" color="primary">$download</v-icon>
+        <v-icon class="mr-2" color="primary">$download</v-icon>
         {{ $t('controls.download') }}
       </v-btn>
     </v-list-item>
@@ -33,23 +33,23 @@
     />
   </v-list>
   <v-list class="d-flex" v-else-if="$vuetify.breakpoint.smAndDown">
-    <v-list-item class="justify-center">
-      <v-btn text @click="editDetails">
-        <v-icon class="mr-2" color="primary">$pencil</v-icon>
+    <v-list-item class="justify-center" v-if="userRole != 2">
+      <v-btn color="primary white--text" @click="editDetails">
+        {{ $t('controls.editDetails') }}
       </v-btn>
     </v-list-item>
-    <v-list-item class="justify-center">
+    <v-list-item class="justify-center" v-if="userRole != 2">
       <v-btn
-        text
+        color="primary white--text"
         @click="showConfirmationDialog"
         @keydown.enter="showConfirmationDialog"
       >
-        <v-icon class="mr-2" color="primary">$delete</v-icon>
+        {{ $t('controls.delete') }}
       </v-btn>
     </v-list-item>
     <v-list-item class="justify-center">
-      <v-btn text @click="download">
-        <v-icon class="mr-2" color="primary">$download</v-icon>
+      <v-btn @click="download" color="primary white--text">
+        {{ $t('controls.download') }}
       </v-btn>
     </v-list-item>
     <ConfirmationDialog
@@ -80,6 +80,16 @@ export default class DocumentActions extends Vue {
 
   showDeleteConfirmation = false
   loading = false
+  userRole = 0
+
+  mounted() {
+    this.userRole = localStorage.getItem('myfile.role')
+  }
+
+  // render documents action menu on dashboard on small screen
+  get dasbboardDocMenu() {
+    return window.location.pathname === '/dashboard'
+  }
 
   get canDelete() {
     return this.document && this.document.links.some((l) => l.rel === 'delete')

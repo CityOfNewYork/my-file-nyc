@@ -35,7 +35,9 @@
         >
           {{ document.name }}
         </v-card-title>
-        <v-card-subtitle>{{ documentDate }}</v-card-subtitle>
+        <v-card-subtitle v-if="$vuetify.breakpoint.smAndUp">
+          {{ documentDate }}
+        </v-card-subtitle>
       </v-col>
     </v-row>
   </v-card>

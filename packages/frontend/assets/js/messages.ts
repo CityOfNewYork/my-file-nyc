@@ -67,7 +67,7 @@ export default merge(
         documentOptions: 'Options',
         downloadZip: 'Download All',
         downloadPdf: 'Download PDF',
-        description: 'Document Description', // displayed beneath the document and expands to show description (if any)
+        description: 'Document Description (Optional)', // displayed beneath the document and expands to show description (if any)
         editDetailsTitle: 'Edit Details', // page title on edit details screen
         enterNamePlaceholder: 'Give this file a name',
         enterDescriptionPlaceholder: 'Describe this file (optional)',

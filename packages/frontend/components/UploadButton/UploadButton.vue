@@ -52,17 +52,6 @@
             {{ $t('document.editDetailsTitle') }}
           </v-toolbar-title> -->
           <v-spacer />
-          <v-btn
-            v-if="$vuetify.breakpoint.smAndUp"
-            color="primary white--text"
-            class="d-flex text-body-1 font-weight-medium"
-            style="background-color: #2157e4"
-            :disabled="!documentName"
-            @keydown.enter="uploadDocument()"
-            @click="uploadDocument"
-          >
-            {{ $t('controls.uploadDocument') }}
-          </v-btn>
         </v-toolbar>
         <v-container class="pa-8">
           <ValidationObserver ref="observer">
@@ -92,17 +81,11 @@
           </ValidationObserver>
         </v-container>
         <v-btn
-          v-if="$vuetify.breakpoint.smAndDown"
           color="primary white--text"
-          class="d-flex text-body-1 font-weight-medium"
-          style="
-            position: fixed;
-            bottom: 0%;
-            justify-content: space-evenly;
-            background-color: #2157e4;
-            height: 3rem;
-            align-items: center;
-            width: 100%;
+          class="body-1 my-2 mx-auto d-flex"
+          :style="
+            $vuetify.breakpoint.smAndDown &&
+            'width: 100%; position: fixed; bottom: -0.5rem;'
           "
           :disabled="!documentName"
           @keydown.enter="uploadDocument()"
