@@ -1190,9 +1190,14 @@ export class CityStack extends Stack {
     hostedZone?: IHostedZone,
   ) {
     // read out config
-    const { corsAllowAnyHost = false, domain, certificateArn } =
-      apiDomainConfig || {}
-    apiDomainConfig || {}
+    const {
+      corsAllowAnyHost = false,
+      domain,
+      certificateArn,
+      corsAllowAdditionalOrigins = false,
+      corsAdditionalOrigins = '',
+    } = apiDomainConfig || {}
+    // apiDomainConfig || {}
 
     // register custom domain name if we can
     let defaultDomainMapping: DomainMappingOptions | undefined
@@ -1226,6 +1231,9 @@ export class CityStack extends Stack {
 
     // create api
     const corsOrigins = [corsAllowAnyHost ? '*' : `https://${webAppDomain}`]
+    if (corsAllowAdditionalOrigins) {
+      corsOrigins.push(...corsAdditionalOrigins.split(','))
+    }
     const api = new HttpApi(this, 'Api', {
       apiName: `${this.stackName}Api`,
       corsPreflight: {

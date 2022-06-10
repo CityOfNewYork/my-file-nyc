@@ -14,6 +14,9 @@ const {
   ASSETS_OVERRIDE_PATH,
   API_DOMAIN,
   API_CERTIFICATE_ARN,
+  CORS_ALLOW_ANY_ORIGIN,
+  CORS_ALLOW_ADDITIONAL_ORIGINS,
+  CORS_ADDITIONAL_ORIGINS,
   CLOUDFRONT_DISTRIBUTION_ID,
   VPC_ID,
   WEB_APP_BUCKET_NAME,
@@ -103,7 +106,9 @@ export default {
             apiDomainConfig: {
               certificateArn: API_CERTIFICATE_ARN,
               domain: API_DOMAIN,
-              corsAllowAnyHost: true,
+              corsAllowAnyHost: CORS_ALLOW_ANY_ORIGIN?.toLowerCase() === 'true',
+              corsAllowAdditionalOrigins: CORS_ALLOW_ADDITIONAL_ORIGINS?.toLowerCase() === 'true',
+              corsAdditionalOrigins: CORS_ADDITIONAL_ORIGINS,
             },
             webAppDomainConfig: {
               certificateArn: WEB_APP_CERTIFICATE_ARN,
