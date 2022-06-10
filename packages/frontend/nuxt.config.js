@@ -10,7 +10,7 @@ const config = {
   target: 'static',
   head: {
     title: 'Loading...',
-    titleTemplate: '%s | My Digital Data Locker',
+    titleTemplate: '%s | My File',
     meta: [
       {
         name: 'viewport',
@@ -65,8 +65,8 @@ const config = {
   pwa: {
     // TODO: other PWA features like icon and colour scheme
     manifest: {
-      name: 'My Digital Data Locker',
-      short_name: 'My Digital Data Locker',
+      name: 'My File',
+      short_name: 'My File',
       useWebmanifestExtension: true,
       display: 'fullscreen',
     },
