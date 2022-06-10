@@ -163,11 +163,11 @@
         </div>
       </v-navigation-drawer>
     </template>
-    <v-divider
+    <!-- <v-divider
       v-if="empty && !showExtension"
       class="my-0 full-width"
       style="position: absolute; left: 0; bottom: 0"
-    />
+    /> -->
   </v-app-bar>
 </template>
 

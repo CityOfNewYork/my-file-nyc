@@ -1,5 +1,6 @@
 <template>
   <v-menu
+    v-if="userRole != 2"
     v-model="showMenu"
     absolute
     offset-y
@@ -44,11 +45,20 @@
       tabindex="-1"
     />
   </v-menu>
+  <v-btn v-else class="justify-start" text @click.stop="download">
+    <v-icon class="mr-2" color="primary">$download</v-icon>
+    {{ $t('controls.download') }}
+  </v-btn>
 </template>
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'nuxt-property-decorator'
-import { Document, DocumentListItem } from 'api-client'
+import {
+  Document,
+  DocumentListItem,
+  FileDownloadDispositionTypeEnum,
+} from 'api-client'
+import download from '@/assets/js/download'
 
 @Component
 export default class DocumentMenu extends Vue {
@@ -57,6 +67,27 @@ export default class DocumentMenu extends Vue {
   @Prop({ default: () => {} }) onDelete: () => void
 
   showMenu = false
+  userRole = 0
+
+  mounted() {
+    this.userRole = localStorage.getItem('myfile.role')
+    console.log(this.userRole)
+  }
+
+  async download() {
+    const fullDocument: Document = await this.$store.dispatch(
+      'document/getById',
+      this.document.id,
+    )
+    const urls = await this.$store.dispatch('document/download', {
+      document: fullDocument,
+      disposition: FileDownloadDispositionTypeEnum.Attachment,
+    })
+    download(
+      urls,
+      fullDocument.files.map((f) => f.name),
+    )
+  }
 
   focusDocumentMenuList() {
     setTimeout(() => {

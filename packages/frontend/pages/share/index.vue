@@ -4,7 +4,7 @@
     :class="{ 'pt-12': $vuetify.breakpoint.smAndUp }"
     :touch="onSwipe"
   >
-    <AppBar :empty="$vuetify.breakpoint.xs" :title="toolbarTitle">
+    <AppBar :empty="$vuetify.breakpoint.xs">
       <template v-if="$vuetify.breakpoint.xs" v-slot:nav-action>
         <BackButton v-show="step === 0" tabindex="0" class="mt-1 ml-5" />
         <v-btn
@@ -44,10 +44,7 @@
             {{ $t('navigation.back') }}
           </span>
         </v-btn>
-        <v-toolbar-title class="flex-grow-0 mr-5" v-if="step === 0">
-          {{ $t('sharing.selectFilesTitle') }}
-        </v-toolbar-title>
-        <v-btn
+        <!-- <v-btn
           v-show="step != 2"
           color="primary"
           class="body-1 my-2"
@@ -55,7 +52,7 @@
           @click="next"
         >
           {{ $t(step === 2 ? 'controls.done' : 'controls.continue') }}
-        </v-btn>
+        </v-btn> -->
       </template>
     </AppBar>
     <v-window-item
@@ -70,6 +67,12 @@
           { 'blue-super-light pt-1': $vuetify.breakpoint.smAndDown },
         ]"
       >
+        <v-toolbar-title
+          class="flex-grow-0 ml-12"
+          v-if="step === 0 && $vuetify.breakpoint.smAndDown"
+        >
+          {{ $t('sharing.selectFilesTitle') }}
+        </v-toolbar-title>
         <DocumentList
           v-model="selectedDocs"
           :selectable="true"
@@ -79,10 +82,12 @@
         />
       </div>
       <v-btn
-        v-if="$vuetify.breakpoint.smAndDown"
         color="primary"
-        class="body-1"
-        style="width: 100%; position: fixed; bottom: 0rem"
+        class="body-1 my-2 mx-auto d-flex"
+        :style="
+          $vuetify.breakpoint.smAndDown &&
+          'width: 100%; position: fixed; bottom: -0.5rem;'
+        "
         :disabled="isNextDisabled"
         @click="next"
       >
@@ -90,7 +95,7 @@
       </v-btn>
     </v-window-item>
     <v-window-item style="min-height: 100%">
-      <div class="d-flex flex-column" style="min-height: calc(100vh - 88px)">
+      <div class="d-flex flex-column">
         <div
           :class="[
             { 'blue-super-light pt-14': $vuetify.breakpoint.smAndUp },
@@ -172,10 +177,12 @@
         />
       </div>
       <v-btn
-        v-if="$vuetify.breakpoint.smAndDown"
         color="primary"
-        class="body-1"
-        style="width: 100%; position: fixed; bottom: 0rem"
+        class="body-1 my-2 mx-auto d-flex"
+        :style="
+          $vuetify.breakpoint.smAndDown &&
+          'width: 100%; position: fixed; bottom: -0.5rem'
+        "
         :disabled="isNextDisabled"
         @click="next"
       >
@@ -191,11 +198,6 @@
         class="window-container px-8 d-flex justify-center"
       >
         <div>
-          <FooterCard
-            class="d-flex align-self-end mx-auto"
-            title="sharing.disclaimerTitle"
-            body="sharing.shareDocumentDisclaimer[1]"
-          />
           <p class="font-weight-bold pt-4">
             {{ $tc('sharing.confirmSharedFiles', selectedDocs.length) }}
           </p>
@@ -262,6 +264,11 @@
               )
             }}
           </v-btn>
+          <FooterCard
+            class="d-flex align-self-end mx-auto"
+            title="sharing.disclaimerTitle"
+            body="sharing.shareDocumentDisclaimer[1]"
+          />
         </div>
       </div>
       <v-btn

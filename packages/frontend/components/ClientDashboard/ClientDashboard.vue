@@ -71,7 +71,7 @@
           </v-tab-item>
           <div
             v-if="$vuetify.breakpoint.xs && docsPresent"
-            class="d-flex"
+            class="d-flex pb-1"
             style="
               position: sticky;
               bottom: 0%;
