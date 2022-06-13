@@ -118,7 +118,7 @@
         <v-container class="pa-8">
           <ValidationObserver ref="observer">
             <v-form @submit.prevent>
-              <p class="subtitle-1">{{ $t('document.fileName') }}</p>
+              <p class="subtitle-1">{{ $t('document.documentName') }}</p>
               <ValidationProvider
                 v-slot="{ errors }"
                 name="name"
