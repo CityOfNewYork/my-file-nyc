@@ -1903,15 +1903,18 @@ export class DocumentApi extends BaseAPI {
 export const UserApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * Accept application Terms of Use for a user
-         * @summary Accept Terms
+         * Accept application Terms of Use for a user with additional registration info
+         * @summary Accept Terms and Register
          * @param {string} userId ID of current user
+         * @param {RegistrationDetails} registrationDetails Registration details
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        acceptTerms: async (userId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        acceptTermsAndRegister: async (userId: string, registrationDetails: RegistrationDetails, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'userId' is not null or undefined
-            assertParamExists('acceptTerms', 'userId', userId)
+            assertParamExists('acceptTermsAndRegister', 'userId', userId)
+            // verify required parameter 'registrationDetails' is not null or undefined
+            assertParamExists('acceptTermsAndRegister', 'registrationDetails', registrationDetails)
             const localVarPath = `/users/{userId}/accept-terms-and-register`
                 .replace(`{${"userId"}}`, encodeURIComponent(String(userId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -1931,9 +1934,12 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
 
 
     
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(registrationDetails, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -2076,15 +2082,12 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
          * Get user details
          * @summary Get user
          * @param {string} userId ID of user to find
-         * @param {RegistrationDetails} registrationDetails Registration details
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getUser: async (userId: string, registrationDetails: RegistrationDetails, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getUser: async (userId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'userId' is not null or undefined
             assertParamExists('getUser', 'userId', userId)
-            // verify required parameter 'registrationDetails' is not null or undefined
-            assertParamExists('getUser', 'registrationDetails', registrationDetails)
             const localVarPath = `/users/{userId}`
                 .replace(`{${"userId"}}`, encodeURIComponent(String(userId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -2104,12 +2107,9 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
 
 
     
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(registrationDetails, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -2360,14 +2360,15 @@ export const UserApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = UserApiAxiosParamCreator(configuration)
     return {
         /**
-         * Accept application Terms of Use for a user
-         * @summary Accept Terms
+         * Accept application Terms of Use for a user with additional registration info
+         * @summary Accept Terms and Register
          * @param {string} userId ID of current user
+         * @param {RegistrationDetails} registrationDetails Registration details
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async acceptTerms(userId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<User>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.acceptTerms(userId, options);
+        async acceptTermsAndRegister(userId: string, registrationDetails: RegistrationDetails, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<User>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.acceptTermsAndRegister(userId, registrationDetails, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -2410,12 +2411,11 @@ export const UserApiFp = function(configuration?: Configuration) {
          * Get user details
          * @summary Get user
          * @param {string} userId ID of user to find
-         * @param {RegistrationDetails} registrationDetails Registration details
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getUser(userId: string, registrationDetails: RegistrationDetails, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<User>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getUser(userId, registrationDetails, options);
+        async getUser(userId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<User>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getUser(userId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -2496,14 +2496,15 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
     const localVarFp = UserApiFp(configuration)
     return {
         /**
-         * Accept application Terms of Use for a user
-         * @summary Accept Terms
+         * Accept application Terms of Use for a user with additional registration info
+         * @summary Accept Terms and Register
          * @param {string} userId ID of current user
+         * @param {RegistrationDetails} registrationDetails Registration details
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        acceptTerms(userId: string, options?: any): AxiosPromise<User> {
-            return localVarFp.acceptTerms(userId, options).then((request) => request(axios, basePath));
+        acceptTermsAndRegister(userId: string, registrationDetails: RegistrationDetails, options?: any): AxiosPromise<User> {
+            return localVarFp.acceptTermsAndRegister(userId, registrationDetails, options).then((request) => request(axios, basePath));
         },
         /**
          * Add delegated access to a user for current user
@@ -2542,12 +2543,11 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          * Get user details
          * @summary Get user
          * @param {string} userId ID of user to find
-         * @param {RegistrationDetails} registrationDetails Registration details
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getUser(userId: string, registrationDetails: RegistrationDetails, options?: any): AxiosPromise<User> {
-            return localVarFp.getUser(userId, registrationDetails, options).then((request) => request(axios, basePath));
+        getUser(userId: string, options?: any): AxiosPromise<User> {
+            return localVarFp.getUser(userId, options).then((request) => request(axios, basePath));
         },
         /**
          * List audit activity in an account, limited to 50 most recent items.
@@ -2621,15 +2621,16 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
  */
 export class UserApi extends BaseAPI {
     /**
-     * Accept application Terms of Use for a user
-     * @summary Accept Terms
+     * Accept application Terms of Use for a user with additional registration info
+     * @summary Accept Terms and Register
      * @param {string} userId ID of current user
+     * @param {RegistrationDetails} registrationDetails Registration details
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public acceptTerms(userId: string, options?: AxiosRequestConfig) {
-        return UserApiFp(this.configuration).acceptTerms(userId, options).then((request) => request(this.axios, this.basePath));
+    public acceptTermsAndRegister(userId: string, registrationDetails: RegistrationDetails, options?: AxiosRequestConfig) {
+        return UserApiFp(this.configuration).acceptTermsAndRegister(userId, registrationDetails, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -2675,13 +2676,12 @@ export class UserApi extends BaseAPI {
      * Get user details
      * @summary Get user
      * @param {string} userId ID of user to find
-     * @param {RegistrationDetails} registrationDetails Registration details
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public getUser(userId: string, registrationDetails: RegistrationDetails, options?: AxiosRequestConfig) {
-        return UserApiFp(this.configuration).getUser(userId, registrationDetails, options).then((request) => request(this.axios, this.basePath));
+    public getUser(userId: string, options?: AxiosRequestConfig) {
+        return UserApiFp(this.configuration).getUser(userId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

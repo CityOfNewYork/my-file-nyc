@@ -87,13 +87,6 @@ paths:
           required: true
           schema:
             type: string
-      requestBody:
-        description: Registration details
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/RegistrationDetails'
       responses:
         '200':
           description: Successful operation
@@ -109,9 +102,9 @@ paths:
     post:
       tags:
         - user
-      summary: Accept Terms
-      description: Accept application Terms of Use for a user
-      operationId: acceptTerms
+      summary: Accept Terms and Register
+      description: Accept application Terms of Use for a user with additional registration info
+      operationId: acceptTermsAndRegister
       parameters:
         - name: userId
           in: path
@@ -119,6 +112,13 @@ paths:
           required: true
           schema:
             type: string
+      requestBody:
+        description: Registration details
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegistrationDetails'
       responses:
         '200':
           description: Successful operation
