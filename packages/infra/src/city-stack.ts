@@ -1653,10 +1653,10 @@ export class CityStack extends Stack {
     // add route and lambda to accept terms of use
     this.addRoute(api, {
       name: 'UserAcceptTerms',
-      routeKey: 'POST /users/{userId}/accept-terms',
+      routeKey: 'POST /users/{userId}/accept-terms-and-register',
       lambdaFunction: this.createLambda(
         'UserAcceptTerms',
-        pathToApiServiceLambda('users/acceptTerms'),
+        pathToApiServiceLambda('users/acceptTermsAndRegister'),
         {
           dbSecret,
           layers: [mySqlLayer],

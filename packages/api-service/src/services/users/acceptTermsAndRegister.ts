@@ -18,6 +18,10 @@ type Request = APIGatewayRequest & {
   ownerId: string
   userId: string
   user: User
+  givenName: string
+  familyName: string
+  dob: string
+  dhsCaseNumber: string
 }
 
 export const handler = createCustomAuthenticatedApiGatewayHandler(
@@ -25,7 +29,15 @@ export const handler = createCustomAuthenticatedApiGatewayHandler(
   setContext('ownerId', (r) => requirePathParameter(r.event, 'userId')),
   requirePermissionToUser(UserPermission.WriteUser),
   async (request: APIGatewayRequest): Promise<ApiUser> => {
-    const { ownerId, user, event } = request as Request
+    const {
+      ownerId,
+      user,
+      event,
+      givenName,
+      familyName,
+      dob,
+      dhsCaseNumber,
+    } = request as Request
 
     if (hasAcceptedTermsOfUse(user)) {
       throw new createError.BadRequest(
@@ -41,6 +53,10 @@ export const handler = createCustomAuthenticatedApiGatewayHandler(
     })
 
     const updatedUser = await updateUser(user.id, {
+      familyName,
+      givenName,
+      dhsCaseNumber,
+      dob,
       attributes: {
         termsOfUseAccepted: true,
       },
