@@ -1,5 +1,8 @@
 <template>
   <v-container v-if="editMode" class="pa-8">
+    <div class="mt-1 ml-2 v-toolbar__title">
+      {{ `${$t('navigation.settings')}` }}
+    </div>
     <ValidationObserver ref="observer">
       <v-form @submit.prevent>
         <ValidationProvider rules="required|max:255">
@@ -32,6 +35,9 @@
     </v-btn>
   </v-container>
   <v-container class="pa-8" v-else>
+    <div class="mt-1 ml-2 v-toolbar__title">
+      {{ `${$t('navigation.settings')}` }}
+    </div>
     <p class="subtitle-1 mt-10">
       {{ $t('account.firstName') }}
     </p>

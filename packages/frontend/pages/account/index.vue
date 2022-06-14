@@ -19,10 +19,6 @@
           >
             <v-icon small class="mt-1">$chevron-left</v-icon>
           </v-btn> -->
-
-          <div class="mt-1 ml-2 v-toolbar__title">
-            {{ `${$t('navigation.settings')}` }}
-          </div>
         </div>
       </template>
     </AppBar>
