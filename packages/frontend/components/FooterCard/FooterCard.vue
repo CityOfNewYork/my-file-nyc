@@ -5,7 +5,7 @@
         outlined
         color="blue-super-light"
         class="text-center pa-4 text--subtitle-2"
-        max-width="360px"
+        max-width="31rem"
       >
         <!-- style="font-size: 13px" -->
         <span v-if="title" class="font-weight-bold">
