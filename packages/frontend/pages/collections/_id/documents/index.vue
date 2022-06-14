@@ -10,7 +10,7 @@
 
     <AppBar :custom-mobile-nav="true" :breadcrumbs="breadcrumbs">
       <template v-if="$vuetify.breakpoint.xs" v-slot:nav-action>
-        <BackButton tabindex="0" />
+        <BackButton class="pt-10 ml-5" tabindex="0" />
       </template>
       <template v-if="!userStore.isAgent" v-slot:actions>
         <v-btn
@@ -35,7 +35,7 @@
         <UploadButton prepend-icon="$plus" class="float-right ml-2 my-2" />
       </template>
       <template v-if="$vuetify.breakpoint.xs" v-slot:extensions>
-        <div class="text-heading-2 pa-4">{{ name }}</div>
+        <div class="text-heading-2 mt-7 pa-4">{{ name }}</div>
       </template>
     </AppBar>
     <div v-if="loading">
