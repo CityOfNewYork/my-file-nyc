@@ -28,7 +28,7 @@ export default class Collection extends VuexModule {
     return new Promise<DocumentsDownload>((resolve) => {
       api.collection
         .downloadCollectionDocuments(collectionId, {
-          format: DocumentsDownloadFormatEnum.ZIP,
+          format: DocumentsDownloadFormatEnum.Zip,
         })
         .then((res) => {
           const data = res.data

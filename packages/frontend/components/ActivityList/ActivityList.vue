@@ -254,23 +254,23 @@ export default class ActivityList extends Vue {
   actionResultTranslator(activity: Activity) {
     if (
       [
-        ActivityActionTypeEnum.COLLECTIONCREATED,
-        ActivityActionTypeEnum.DOCUMENTCREATED,
-        ActivityActionTypeEnum.DOCUMENTDELETED,
-        ActivityActionTypeEnum.DOCUMENTACCESSED,
+        ActivityActionTypeEnum.CollectionCreated,
+        ActivityActionTypeEnum.DocumentCreated,
+        ActivityActionTypeEnum.DocumentDeleted,
+        ActivityActionTypeEnum.DocumentAccessed,
       ].includes(activity.type)
     ) {
       return this.itemsNumLabel(
         this.relatedDocuments(activity?.relatedResources),
       )
     } else if (
-      [ActivityActionTypeEnum.DOCUMENTEDITED].includes(activity.type)
+      [ActivityActionTypeEnum.DocumentEdited].includes(activity.type)
     ) {
       return `<span class='primary--text'>${this.resourceName(
         activity.resource,
       )}</span>`
     } else if (
-      [ActivityActionTypeEnum.DELEGATEDUSERINVITED].includes(activity.type)
+      [ActivityActionTypeEnum.DelegateduserInvited].includes(activity.type)
     ) {
       return `<span class='primary--text'>${this.resourceName(
         activity.resource,
@@ -278,7 +278,7 @@ export default class ActivityList extends Vue {
         this.delegatedUserMessageName('activity.delegateInvited'),
       )}`
     } else if (
-      [ActivityActionTypeEnum.DELEGATEDUSERINVITEACCEPTED].includes(
+      [ActivityActionTypeEnum.DelegateduserInviteAccepted].includes(
         activity.type,
       )
     ) {
@@ -288,7 +288,7 @@ export default class ActivityList extends Vue {
         this.delegatedUserMessageName('activity.delegateAccepted'),
       )}`
     } else if (
-      [ActivityActionTypeEnum.DELEGATEDUSERDELETED].includes(activity.type)
+      [ActivityActionTypeEnum.DelegateduserDeleted].includes(activity.type)
     ) {
       return `<span class='primary--text'>${this.resourceName(
         activity.resource,

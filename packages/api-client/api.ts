@@ -752,6 +752,18 @@ export interface Owner {
      * @memberof Owner
      */
     'name': string;
+    /**
+     * Date of birth in format \'mm/dd/yyyy\'
+     * @type {string}
+     * @memberof Owner
+     */
+    'dob': string;
+    /**
+     * The issued DHS Case Number for this user
+     * @type {string}
+     * @memberof Owner
+     */
+    'dhsCaseNumber': string;
 }
 /**
  * User registration information
@@ -922,6 +934,18 @@ export interface User {
      * @memberof User
      */
     'familyName': string | null;
+    /**
+     * Date of birth in format \'mm/dd/yyyy\'
+     * @type {string}
+     * @memberof User
+     */
+    'dob': string;
+    /**
+     * The issued DHS Case Number for this user
+     * @type {string}
+     * @memberof User
+     */
+    'dhsCaseNumber': string;
     /**
      * Whether the terms of use have been accepted for the current user for this application
      * @type {boolean}

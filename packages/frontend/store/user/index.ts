@@ -149,9 +149,16 @@ export default class User extends VuexModule {
   }
 
   @Action({ rawError: true, commit: '_setProfile' })
-  acceptTerms(): Promise<ApiUser> {
+  acceptTerms(registrationUser: ApiUser): Promise<ApiUser> {
     if (!this._userId) return Promise.reject(new Error('UserID not set'))
-    return api.user.acceptTerms(this._userId).then((response) => {
+    return api.user
+    .acceptTermsAndRegister(this._userId, {
+      familyName: registrationUser.familyName!,
+      givenName: registrationUser.givenName!,
+      dob: registrationUser.dob!,
+      dhsCaseNumber: registrationUser.dhsCaseNumber!,
+    })
+    .then((response) => {
       this.$ga.event({
         eventCategory: 'terms_of_use_accepted',
         // eventAction: '', // TODO: we might want to track TOU version number here?

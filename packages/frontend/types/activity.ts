@@ -9,41 +9,41 @@ export interface ResourceMetadata {
 
 // TODO: support i8n messages beyond English
 export const ActivityResourceTypeEnumMessageMap: any = new Map([
-  [ActivityActionTypeEnum.COLLECTIONCREATED, messages.en.activity.shared],
-  [ActivityActionTypeEnum.DOCUMENTCREATED, messages.en.activity.added],
-  [ActivityActionTypeEnum.DOCUMENTACCESSED, messages.en.activity.accessed],
-  [ActivityActionTypeEnum.DOCUMENTEDITED, messages.en.activity.edited],
-  [ActivityActionTypeEnum.DOCUMENTDELETED, messages.en.activity.deleted],
-  [ActivityActionTypeEnum.DELEGATEDUSERINVITED, messages.en.activity.invited],
+  [ActivityActionTypeEnum.CollectionCreated, messages.en.activity.shared],
+  [ActivityActionTypeEnum.DocumentCreated, messages.en.activity.added],
+  [ActivityActionTypeEnum.DocumentAccessed, messages.en.activity.accessed],
+  [ActivityActionTypeEnum.DocumentEdited, messages.en.activity.edited],
+  [ActivityActionTypeEnum.DocumentDeleted, messages.en.activity.deleted],
+  [ActivityActionTypeEnum.DelegateduserInvited, messages.en.activity.invited],
   [
-    ActivityActionTypeEnum.DELEGATEDUSERINVITEACCEPTED,
+    ActivityActionTypeEnum.DelegateduserInviteAccepted,
     messages.en.activity.delegateAcceptedClient,
   ],
   [
-    ActivityActionTypeEnum.DELEGATEDUSERDELETED,
+    ActivityActionTypeEnum.DelegateduserDeleted,
     messages.en.activity.delegateDeletedClient,
   ],
 ])
 
 export const ActivityResourceTypeEnumIconMap: any = new Map([
-  [ActivityActionTypeEnum.COLLECTIONCREATED, '$send'],
-  [ActivityActionTypeEnum.DOCUMENTCREATED, '$plus'],
-  [ActivityActionTypeEnum.DOCUMENTACCESSED, '$eye'],
-  [ActivityActionTypeEnum.DOCUMENTEDITED, '$pencil'],
-  [ActivityActionTypeEnum.DOCUMENTDELETED, '$deleteAlt'],
-  [ActivityActionTypeEnum.DELEGATEDUSERINVITED, '$delegate'],
-  [ActivityActionTypeEnum.DELEGATEDUSERINVITEACCEPTED, '$delegate'],
-  [ActivityActionTypeEnum.DELEGATEDUSERDELETED, '$delegate'],
+  [ActivityActionTypeEnum.CollectionCreated, '$send'],
+  [ActivityActionTypeEnum.DocumentCreated, '$plus'],
+  [ActivityActionTypeEnum.DocumentAccessed, '$eye'],
+  [ActivityActionTypeEnum.DocumentEdited, '$pencil'],
+  [ActivityActionTypeEnum.DocumentDeleted, '$deleteAlt'],
+  [ActivityActionTypeEnum.DelegateduserInvited, '$delegate'],
+  [ActivityActionTypeEnum.DelegateduserInviteAccepted, '$delegate'],
+  [ActivityActionTypeEnum.DelegateduserDeleted, '$delegate'],
 ])
 
 // Whitelist of accepted activity actions to display on the UI
 export const RegisteredActivityActionTypes: ActivityActionTypeEnum[] = [
-  ActivityActionTypeEnum.COLLECTIONCREATED,
-  ActivityActionTypeEnum.DOCUMENTCREATED,
-  ActivityActionTypeEnum.DOCUMENTACCESSED,
-  ActivityActionTypeEnum.DOCUMENTEDITED,
-  ActivityActionTypeEnum.DOCUMENTDELETED,
-  ActivityActionTypeEnum.DELEGATEDUSERINVITED,
-  ActivityActionTypeEnum.DELEGATEDUSERINVITEACCEPTED,
-  ActivityActionTypeEnum.DELEGATEDUSERDELETED,
+  ActivityActionTypeEnum.CollectionCreated,
+  ActivityActionTypeEnum.DocumentCreated,
+  ActivityActionTypeEnum.DocumentAccessed,
+  ActivityActionTypeEnum.DocumentEdited,
+  ActivityActionTypeEnum.DocumentDeleted,
+  ActivityActionTypeEnum.DelegateduserInvited,
+  ActivityActionTypeEnum.DelegateduserInviteAccepted,
+  ActivityActionTypeEnum.DelegateduserDeleted,
 ]

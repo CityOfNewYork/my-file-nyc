@@ -832,6 +832,8 @@ components:
         - givenName
         - familyName
         - name
+        - dob
+        - dhsCaseNumber
       properties:
         id:
           type: string
@@ -851,6 +853,14 @@ components:
           type: string
           description: The users name or email address, if name not provided
           example: sam.citizen@example.com
+        dob:
+          type: string
+          description: Date of birth in format 'mm/dd/yyyy'
+          example: 05/10/2022 (to represent May 10th, 2022)
+        dhsCaseNumber:
+          type: string
+          description: The issued DHS Case Number for this user
+          example: 
       type: object
     RegistrationDetails:
       description: User registration information
@@ -918,6 +928,8 @@ components:
         - id
         - givenName
         - familyName
+        - dob
+        - dhsCaseNumber
         - email
         - name
         - links
@@ -936,6 +948,14 @@ components:
           nullable: true
           description: The users family name
           example: Citizen
+        dob:
+          type: string
+          description: Date of birth in format 'mm/dd/yyyy'
+          example: 05/10/2022 (to represent May 10th, 2022)
+        dhsCaseNumber:
+          type: string
+          description: The issued DHS Case Number for this user
+          example: 
         termsOfUseAccepted:
           type: boolean
           description: Whether the terms of use have been accepted for the current user for this application
