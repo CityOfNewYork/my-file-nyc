@@ -17,7 +17,8 @@
     <v-main>
       <DesktopSideBar />
 
-      <SharedOwnerList />
+      <SharedOwnerList inbox="Shared email" />
+      <SharedOwnerList inbox="Personal email" />
     </v-main>
   </div>
 </template>

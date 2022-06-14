@@ -228,6 +228,9 @@ export default merge(
 
       agent: {
         clientNameLabel: 'Name', // label of client name column in agent view
+        clientDob: 'DOB', // label of client date of birth column in agent view
+        clientCaseNum: 'Case Number', // label of client case number column in agent view
+        clientEmail: 'Client Email', // label of client case number column in agent view
         dateShared: 'Date Shared', // label in side bar
         noClientActionLabel: 'Not a government employee?',
         noClientActionText:

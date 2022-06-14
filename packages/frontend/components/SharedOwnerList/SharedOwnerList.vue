@@ -1,6 +1,7 @@
 <template>
   <div v-if="!loading">
     <template v-if="owners.length">
+      <div class="d-flexm mt-3 ml-9 p-5">{{ inbox }}</div>
       <v-data-table
         v-show="$vuetify.breakpoint.smAndUp"
         :disable-pagination="true"
@@ -84,6 +85,8 @@ import { UserRole } from '@/types/user'
 
 @Component
 export default class SharedOwnerList extends Vue {
+  @Prop({ default: 'false' }) inbox: string
+
   loading = true
   headers: DataTableHeader[] = []
 
@@ -103,7 +106,28 @@ export default class SharedOwnerList extends Vue {
         class: 'blue-super-light',
         align: 'start',
         sortable: true,
+        value: '',
+      },
+      {
+        text: this.$t('agent.clientEmail') as string,
+        class: 'blue-super-light',
+        align: 'start',
+        sortable: true,
         value: 'name',
+      },
+      {
+        text: this.$t('agent.clientDob') as string,
+        class: 'blue-super-light',
+        align: 'start',
+        sortable: true,
+        value: '',
+      },
+      {
+        text: this.$t('agent.clientCaseNum') as string,
+        class: 'blue-super-light',
+        align: 'start',
+        sortable: true,
+        value: '',
       },
       {
         text: this.$t('dateAdded') as string,
