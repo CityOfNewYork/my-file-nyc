@@ -17,11 +17,11 @@
       >
         <v-img
           contain
-          style="max-width: 24px"
-          :src="require('@/assets/images/city-icon.svg')"
-          class="mr-2 mb-1"
+          style="max-width: 128px"
+          :src="require('@/assets/images/my-file-logo-head.svg')"
+          class="mr-2 mb-1 ml-5"
         />
-        {{ $t('application.title') }}
+        <!-- {{ $t('application.title') }} -->
       </v-btn>
       <!-- <v-app-bar-nav-icon
         v-else-if="!customMobileNav"
@@ -216,7 +216,7 @@ export default class AppBar extends mixins(Navigation) {
         window.location.pathname === '/activity'
         ? ''
         : '0px'
-      : '105px'
+      : '95px'
   }
 
   get showActivityButton() {
@@ -227,7 +227,7 @@ export default class AppBar extends mixins(Navigation) {
   }
 
   get color() {
-    return !this.empty && this.$vuetify.breakpoint.smAndUp ? 'black' : 'white'
+    return !this.empty && this.$vuetify.breakpoint.smAndUp ? '#031553' : 'white'
   }
 
   get showExtension() {
