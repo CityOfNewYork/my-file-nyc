@@ -35,8 +35,18 @@
     </v-btn>
   </v-container>
   <v-container class="pa-8" v-else>
-    <div class="mt-1 ml-2 v-toolbar__title">
-      {{ `${$t('navigation.settings')}` }}
+    <div class="d-flex justify-space-between">
+      <div class="pt-2 v-toolbar__title">
+        {{ `${$t('navigation.settings')}` }}
+      </div>
+      <v-btn
+        color="primary white--text"
+        :class="$vuetify.breakpoint.smAndUp ? 'px-12' : 'px-8'"
+        style="background-color: #2157e4; height: 3rem"
+        @click="save"
+      >
+        {{ $t('controls.edit') }}
+      </v-btn>
     </div>
     <p class="subtitle-1 mt-10">
       {{ $t('account.firstName') }}
@@ -44,20 +54,6 @@
     <p class="subtitle-1 mt-10">{{ $t('account.lastName') }}</p>
     <p class="subtitle-1 mt-10">{{ $t('account.dob') }}</p>
     <p class="subtitle-1 mt-10">{{ $t('account.caseNumber') }}</p>
-    <v-btn
-      color="primary white--text"
-      class="px-8 d-flex justify-center"
-      style="
-        bottom: 0%;
-        background-color: #2157e4;
-        height: 3rem;
-        align-items: center;
-        margin: auto;
-      "
-      @click="save"
-    >
-      {{ $t('controls.edit') }}
-    </v-btn>
   </v-container>
 </template>
 
