@@ -114,7 +114,7 @@ export default merge(
       sharing: {
         defaultName: 'Shared Docs {date}',
 
-        confirmSharedFiles: 'File to be shared | Files to be shared',
+        confirmSharedFiles: 'Documents to be shared | Documents to be shared',
         plusNMore: '+ {count} more',
         recipients: 'Recipients',
 

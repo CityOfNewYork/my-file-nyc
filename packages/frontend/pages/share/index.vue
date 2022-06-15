@@ -94,7 +94,7 @@
         {{ $t(step === 2 ? 'controls.done' : 'controls.continue') }}
       </v-btn>
     </v-window-item>
-    <v-window-item style="min-height: 100%">
+    <!-- <v-window-item style="min-height: 100%">
       <div class="d-flex flex-column">
         <div
           :class="[
@@ -154,15 +154,6 @@
                   <v-icon>$close</v-icon>
                 </v-btn>
               </v-col>
-              <!-- <v-col cols="auto">
-                <v-btn
-                  :title="`${$t('navigation.close')}`"
-                  icon
-                  @click="removeEmail(i)"
-                >
-                  <v-icon>$close</v-icon>
-                </v-btn>
-              </v-col> -->
             </v-row>
           </v-card>
         </div>
@@ -189,7 +180,7 @@
       >
         {{ $t(step === 2 ? 'controls.done' : 'controls.continue') }}
       </v-btn>
-    </v-window-item>
+    </v-window-item> -->
     <v-window-item>
       <div
         :class="[
@@ -233,6 +224,16 @@
               )
             }}
           </p>
+          <v-img
+            img="role"
+            :alt="`${$t('cityLogoFooter')}`"
+            :src="cityLogoFooter"
+            :style="
+              this.$vuetify.breakpoint.smAndDown
+                ? `width: 14rem`
+                : 'width: 27rem;'
+            "
+          />
           <v-card
             v-for="(email, i) in individualEmailAddresses.slice(
               0,
@@ -283,7 +284,7 @@
         :disabled="isNextDisabled"
         @click="next"
       >
-        {{ $t(step === 2 ? 'controls.share' : 'controls.continue') }}
+        {{ $t(step === 1 ? 'controls.share' : 'controls.continue') }}
       </v-btn>
     </v-window-item>
     <FooterLinks />
@@ -320,7 +321,7 @@ export default class Share extends Vue {
   @Prop({ default: '' }) title: string
 
   step = 0
-  length = 3
+  length = 2
 
   disclamer = ''
   email = ''
@@ -340,6 +341,13 @@ export default class Share extends Vue {
     // we wait until mounted to assign this since jest cannot mock $config
     // until the component is mounted
     this.emailValidationRules = `email|emailWhitelist:${this.$config.agencyEmailDomainsWhitelist}`
+
+    this.individualEmailAddresses.length <= 0 &&
+      this.individualEmailAddresses.push(this.$config.agencyEmail)
+  }
+
+  get cityLogoFooter(): string {
+    return require('@/assets/images/city-logo-footer.svg')
   }
 
   next() {
@@ -388,13 +396,14 @@ export default class Share extends Vue {
 
   get isNextDisabled() {
     return (
-      (this.step >= 2 && this.individualEmailAddresses.length >= 10) ||
-      (this.step >= 1 &&
-        (!this.emailInputValid ||
-          (this.email.length === 0 &&
-            !this.individualEmailAddresses.length))) ||
-      this.selectedDocs.length === 0 ||
-      this.isLoading
+      // Comenting out this conditions until we need to be able to add individual emails
+      //
+      // (this.step >= 2 && this.individualEmailAddresses.length >= 10) ||
+      // (this.step >= 1 &&
+      //   (!this.emailInputValid ||
+      //     (this.email.length === 0 &&
+      //       !this.individualEmailAddresses.length))) ||
+      this.selectedDocs.length === 0 || this.isLoading
     )
   }
 
