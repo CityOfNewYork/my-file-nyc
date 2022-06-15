@@ -43,7 +43,7 @@
 :root {
   --application-header-grid: 8px;
   --application-header-color: #fff;
-  --application-header-background-color: #000;
+  --application-header-background-color: #031553;
 
   --application-header-font-size: 12px;
   --application-header-font-weight: bold;
