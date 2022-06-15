@@ -1,6 +1,7 @@
 export const envConfig = {
   config: {
     agencyEmailDomainsWhitelist: process.env.AGENCY_EMAIL_DOMAINS_WHITELIST,
+    agencyEmail: process.env.AGENCY_EMAIL,
     authorizationEndpoint: process.env.AUTH_URL,
     buildNumber: process.env.BUILD_NUMBER,
     buildTime: process.env.CODEBUILD_START_TIME,
@@ -26,5 +27,5 @@ export const envConfig = {
  * the config object via compiled code.
  */
 if (typeof window !== 'undefined') {
-  ;(<any>window).__NUXT__ = envConfig
+  ; (<any>window).__NUXT__ = envConfig
 }
