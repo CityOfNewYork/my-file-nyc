@@ -234,7 +234,7 @@
                 : 'width: 27rem;'
             "
           />
-          <v-card
+          <!-- <v-card
             v-for="(email, i) in individualEmailAddresses.slice(
               0,
               sliceRecipients,
@@ -252,7 +252,7 @@
                 <span>{{ email }}</span>
               </v-col>
             </v-row>
-          </v-card>
+          </v-card> -->
           <v-btn
             v-if="individualEmailAddresses.length > sliceRecipients"
             class="float-right"
