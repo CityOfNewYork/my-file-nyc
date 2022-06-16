@@ -13,7 +13,14 @@
         v-if="$vuetify.breakpoint.smAndUp"
         text
         :to="localePath('/dashboard')"
-        class="white--text d-flex text-heading-1 align-start py-2"
+        class="
+          white--text
+          d-flex
+          text-heading-1
+          align-start
+          py-2
+          no-background-hover
+        "
       >
         <v-img
           contain
@@ -293,6 +300,10 @@ export default class AppBar extends mixins(Navigation) {
 
   .row-extension {
     width: 100%;
+  }
+
+  .no-background-hover::before {
+    background-color: transparent !important;
   }
 }
 </style>
