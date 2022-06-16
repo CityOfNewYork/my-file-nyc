@@ -35,7 +35,7 @@
 
     <SideNav />
     <nuxt />
-    <FooterLinks />
+    <FooterGlobal />
     <SnackBar />
   </v-app>
 </template>
@@ -116,14 +116,16 @@ export default class DashboardLayout extends Vue {
         const seconds = Math.floor((timeRemaining % 1) * 60)
         if (timeRemaining <= warning1AtMinute && !warning1Displayed) {
           warning1Displayed = true
-          this.timeoutWarningMessage = `You will be forced to login again in less than ${warning1AtMinute -
-            timeoutAtMinute} minutes.`
+          this.timeoutWarningMessage = `You will be forced to login again in less than ${
+            warning1AtMinute - timeoutAtMinute
+          } minutes.`
           this.showTimeoutWarningMessage = true
           console.log(this.timeoutWarningMessage)
         } else if (timeRemaining < warning2AtMinute && !warning2Displayed) {
           warning2Displayed = true
-          this.timeoutWarningMessage = `You will be forced to login again in less than ${warning2AtMinute -
-            timeoutAtMinute} minutes.`
+          this.timeoutWarningMessage = `You will be forced to login again in less than ${
+            warning2AtMinute - timeoutAtMinute
+          } minutes.`
           this.showTimeoutWarningMessage = true
           console.log(this.timeoutWarningMessage)
         } else if (timeRemaining <= timeoutAtMinute && !forceLoginModalOpen) {
