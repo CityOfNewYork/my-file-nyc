@@ -12,7 +12,6 @@
     <div class="pa-4">
       <slot />
     </div>
-    <FooterLinks />
   </v-navigation-drawer>
 </template>
 

@@ -151,7 +151,7 @@
         </v-container>
       </v-card>
     </v-dialog>
-    <FooterLinks />
+    <FooterGlobal />
   </div>
 </template>
 

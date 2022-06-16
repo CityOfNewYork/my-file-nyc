@@ -17,11 +17,11 @@
       >
         <v-img
           contain
-          style="max-width: 128px"
+          style="max-width: 48px"
           :src="require('@/assets/images/my-file-logo-head.svg')"
           class="mr-2 mb-1 ml-5"
         />
-        <!-- {{ $t('application.title') }} -->
+        {{ $t('application.title') }}
       </v-btn>
       <!-- <v-app-bar-nav-icon
         v-else-if="!customMobileNav"
