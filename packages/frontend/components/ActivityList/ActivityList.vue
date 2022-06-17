@@ -254,23 +254,23 @@ export default class ActivityList extends Vue {
   actionResultTranslator(activity: Activity) {
     if (
       [
-        ActivityActionTypeEnum.CollectionCreated,
-        ActivityActionTypeEnum.DocumentCreated,
-        ActivityActionTypeEnum.DocumentDeleted,
-        ActivityActionTypeEnum.DocumentAccessed,
+        ActivityActionTypeEnum.CollectionCreated as ActivityActionTypeEnum,
+        ActivityActionTypeEnum.DocumentCreated as ActivityActionTypeEnum,
+        ActivityActionTypeEnum.DocumentDeleted as ActivityActionTypeEnum,
+        ActivityActionTypeEnum.DocumentAccessed as ActivityActionTypeEnum,
       ].includes(activity.type)
     ) {
       return this.itemsNumLabel(
         this.relatedDocuments(activity?.relatedResources),
       )
     } else if (
-      [ActivityActionTypeEnum.DocumentEdited].includes(activity.type)
+      [ActivityActionTypeEnum.DocumentEdited as ActivityActionTypeEnum].includes(activity.type)
     ) {
       return `<span class='primary--text'>${this.resourceName(
         activity.resource,
       )}</span>`
     } else if (
-      [ActivityActionTypeEnum.DelegateduserInvited].includes(activity.type)
+      [ActivityActionTypeEnum.DelegateduserInvited as ActivityActionTypeEnum].includes(activity.type)
     ) {
       return `<span class='primary--text'>${this.resourceName(
         activity.resource,
@@ -278,7 +278,7 @@ export default class ActivityList extends Vue {
         this.delegatedUserMessageName('activity.delegateInvited'),
       )}`
     } else if (
-      [ActivityActionTypeEnum.DelegateduserInviteAccepted].includes(
+      [ActivityActionTypeEnum.DelegateduserInviteAccepted as ActivityActionTypeEnum].includes(
         activity.type,
       )
     ) {
@@ -288,7 +288,7 @@ export default class ActivityList extends Vue {
         this.delegatedUserMessageName('activity.delegateAccepted'),
       )}`
     } else if (
-      [ActivityActionTypeEnum.DelegateduserDeleted].includes(activity.type)
+      [ActivityActionTypeEnum.DelegateduserDeleted as ActivityActionTypeEnum].includes(activity.type)
     ) {
       return `<span class='primary--text'>${this.resourceName(
         activity.resource,
@@ -306,8 +306,8 @@ export default class ActivityList extends Vue {
   canShowActionResult(activity: Activity) {
     return (
       activity.relatedResources &&
-      activity.type !== ActivityActionTypeEnum.DELEGATEDUSERINVITEACCEPTED &&
-      activity.type !== ActivityActionTypeEnum.DELEGATEDUSERDELETED
+      activity.type !== (ActivityActionTypeEnum.DelegateduserInviteAccepted  as ActivityActionTypeEnum)&&
+      activity.type !== ActivityActionTypeEnum.DelegateduserDeleted
     )
   }
 
@@ -327,7 +327,7 @@ export default class ActivityList extends Vue {
     const arr = cloneDeep(this.activities.slice(0, index))
 
     const found = arr.find((item) => {
-      if ([ActivityActionTypeEnum.DOCUMENTACCESSED].includes(item.type)) {
+      if ([ActivityActionTypeEnum.DocumentAccessed as ActivityActionTypeEnum].includes(item.type)) {
         const itemMetadata: ResourceMetadata = {
           principalId: item.principal.id,
           resourceId: item.resource.id,
@@ -364,7 +364,7 @@ export default class ActivityList extends Vue {
   agent(resources: ActivityResource[]) {
     return resources.filter(
       (r: ActivityResource) =>
-        r.type === ActivityResourceTypeEnum.COLLECTIONINDIVIDUALEMAILGRANT,
+        r.type === ActivityResourceTypeEnum.CollectionIndividualEmailGrant,
     )
   }
 
@@ -425,8 +425,8 @@ export default class ActivityList extends Vue {
   relatedDocuments(resources?: ActivityResource[]) {
     return resources?.filter((r) =>
       [
-        ActivityResourceTypeEnum.DOCUMENT,
-        ActivityResourceTypeEnum.DOCUMENTFILE,
+        ActivityResourceTypeEnum.Document as ActivityResourceTypeEnum,
+        ActivityResourceTypeEnum.DocumentFile as ActivityResourceTypeEnum,
       ].includes(r.type),
     )
   }
@@ -457,7 +457,7 @@ export default class ActivityList extends Vue {
    * @param actionType {ActivityActionTypeEnum}
    */
   shouldHighlight(actionType: ActivityActionTypeEnum) {
-    return actionType === ActivityActionTypeEnum.DOCUMENTEDITED
+    return actionType === ActivityActionTypeEnum.DocumentEdited
   }
 
   /**

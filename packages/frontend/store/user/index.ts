@@ -385,7 +385,7 @@ export default class User extends VuexModule {
     const { data } = await api.user.listAccountDelegates(this._userId)
     return data.delegatedAccess.filter(
       (d: UserDelegatedAccess) =>
-        !!d.allowsAccessToUser && d.status === UserDelegatedAccessStatus.ACTIVE,
+        !!d.allowsAccessToUser && d.status === UserDelegatedAccessStatus.Active,
     ) as DelegatedClient[]
   }
 

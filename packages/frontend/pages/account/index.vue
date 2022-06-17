@@ -232,15 +232,15 @@ export default class Account extends Vue {
 
   get activeDelegates() {
     return this.delegates.filter(
-      (d) => d.status === UserDelegatedAccessStatus.ACTIVE,
+      (d) => d.status === UserDelegatedAccessStatus.Active,
     )
   }
 
   get pendingOrExpiredDelegates() {
     return this.delegates.filter((d) =>
       [
-        UserDelegatedAccessStatus.INVITATIONSENT,
-        UserDelegatedAccessStatus.INVITATIONEXPIRED,
+        UserDelegatedAccessStatus.InvitationSent as UserDelegatedAccessStatus,
+        UserDelegatedAccessStatus.InvitationExpired as UserDelegatedAccessStatus,
       ].includes(d.status),
     )
   }

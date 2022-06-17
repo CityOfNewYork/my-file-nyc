@@ -32,7 +32,7 @@ export default class Collection extends VuexModule {
         })
         .then((res) => {
           const data = res.data
-          if (data.status === DocumentsDownloadStatusEnum.SUCCESS) {
+          if (data.status === DocumentsDownloadStatusEnum.Success) {
             resolve(data)
           } else {
             const poll = setInterval(() => {
@@ -42,7 +42,7 @@ export default class Collection extends VuexModule {
                   const downloadStatus = downloadResponse.data
                   if (
                     downloadStatus.status ===
-                    DocumentsDownloadStatusEnum.SUCCESS
+                    DocumentsDownloadStatusEnum.Success
                   ) {
                     clearInterval(poll)
                     resolve(downloadStatus)

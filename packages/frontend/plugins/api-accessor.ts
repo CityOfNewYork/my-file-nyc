@@ -25,6 +25,10 @@ export class ApiService {
     this.axios = axiosInstance
     this.config = {
       basePath: process.env.API_URL,
+      isJsonMime: (mime: string) => {
+        const jsonMime: RegExp = new RegExp('^(application\/json|[^;/ \t]+\/[^;/ \t]+[+]json)[ \t]*(;.*)?$', 'i');
+        return mime !== null && (jsonMime.test(mime) || mime.toLowerCase() === 'application/json-patch+json');
+      }
     }
   }
 
