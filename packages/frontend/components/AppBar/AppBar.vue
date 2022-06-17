@@ -95,11 +95,6 @@
         {{ $t('navigation.signOut') }}
       </v-btn>
     </template>
-
-
-
-
-
     <template v-if="showExtension" v-slot:extension>
       <v-row id="extension" no-gutters class="white row-extension">
         <v-col

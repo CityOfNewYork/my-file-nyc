@@ -7,9 +7,10 @@
         ? 'd-flex justify-space-between pt-2'
         : 'mt-2')
     "
-    style="position: fixed; bottom: 0%; width: 100%; background-color: #f1f5fe"
+    style="position: fixed; bottom: 0%; width: 100%; background-color: #031553"
   >
     <v-img
+      v-if="$vuetify.breakpoint.smAndUp"
       :class="
         $vuetify.breakpoint.smAndUp ? 'ml-1 d-flex' : 'd-flex ml-1 mr-3 mt-1'
       "
@@ -38,19 +39,19 @@
           class="mr-2 mb-1 ml-5"
         />
       </v-btn>
-      <v-btn text :to="localePath('/terms-of-use')">
+      <v-btn text class="white--text" :to="localePath('/terms-of-use')">
         {{ $t('navigation.termsOfUse') }}
       </v-btn>
-      <v-icon large :class="['d-inline', `black--text`]">
+      <v-icon large :class="['d-inline', `white--text`]">
         mdi-circle-small
       </v-icon>
-      <v-btn text :to="localePath('/about')">
+      <v-btn text class="white--text" :to="localePath('/about')">
         {{ $t('navigation.about') }}
       </v-btn>
-      <v-icon large :class="['d-inline', `black--text`]">
+      <v-icon large :class="['d-inline', `white--text`]">
         mdi-circle-small
       </v-icon>
-      <v-btn text :to="localePath('/faq')">
+      <v-btn text class="white--text" :to="localePath('/faq')">
         {{ $t('navigation.faq') }}
       </v-btn>
     </div>

@@ -74,7 +74,7 @@
             class="d-flex pb-1"
             style="
               position: sticky;
-              bottom: 0%;
+              bottom: 7%;
               justify-content: space-evenly;
               background-color: #fff;
               height: 3rem;
