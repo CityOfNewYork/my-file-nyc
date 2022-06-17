@@ -71,17 +71,16 @@ export default class TermsOfUse extends mixins(Navigation) {
   }
 
   get hasAccepted() {
-    return false
-    // return userStore.profile && userStore.profile.termsOfUseAccepted
+    return userStore.profile && userStore.profile.termsOfUseAccepted
   }
 
   accept() {
     this.step++
   }
 
-  async submit() {
+  async submit(data: object) {
     this.loading = true
-    // await this.$store.dispatch('user/acceptTerms')
+    await this.$store.dispatch('user/acceptTerms', data)
     this.step = 0
     this.$router.push(this.localePath('/dashboard'))
   }

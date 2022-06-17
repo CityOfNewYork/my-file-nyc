@@ -2,9 +2,9 @@
   <div
     :class="
       ((document || agency) & $vuetify.breakpoint.smAndUp &&
-        'd-flex justify-flex-start pt-1') ||
+        'd-flex justify-flex-start pt-2') ||
       ($vuetify.breakpoint.smAndUp
-        ? 'd-flex justify-space-between pt-1'
+        ? 'd-flex justify-space-between pt-2'
         : 'mt-2')
     "
     style="position: fixed; bottom: 0%; width: 100%; background-color: #f1f5fe"
