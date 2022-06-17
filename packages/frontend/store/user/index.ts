@@ -152,20 +152,20 @@ export default class User extends VuexModule {
   acceptTerms(registrationUser: ApiUser): Promise<ApiUser> {
     if (!this._userId) return Promise.reject(new Error('UserID not set'))
     return api.user
-    .acceptTermsAndRegister(this._userId, {
-      familyName: registrationUser.familyName!,
-      givenName: registrationUser.givenName!,
-      dob: registrationUser.dob!,
-      dhsCaseNumber: registrationUser.dhsCaseNumber!,
-    })
-    .then((response) => {
-      this.$ga.event({
-        eventCategory: 'terms_of_use_accepted',
-        // eventAction: '', // TODO: we might want to track TOU version number here?
-        eventLabel: UserRole[this._role!],
+      .acceptTermsAndRegister(this._userId, {
+        familyName: registrationUser.familyName!,
+        givenName: registrationUser.givenName!,
+        dob: registrationUser.dob!,
+        dhsCaseNumber: registrationUser.dhsCaseNumber!,
       })
-      return response.data
-    })
+      .then((response) => {
+        this.$ga.event({
+          eventCategory: 'terms_of_use_accepted',
+          // eventAction: '', // TODO: we might want to track TOU version number here?
+          eventLabel: UserRole[this._role!],
+        })
+        return response.data
+      })
   }
 
   // TODO: Update after upload API changes

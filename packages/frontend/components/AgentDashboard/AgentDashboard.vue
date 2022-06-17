@@ -17,8 +17,8 @@
     <v-main>
       <DesktopSideBar />
 
-      <SharedOwnerList inbox="Shared email" />
-      <SharedOwnerList inbox="Personal email" />
+      <SharedOwnerList :inbox="getAgeencyEmail" />
+      <!-- <SharedOwnerList inbox="Personal email" /> -->
     </v-main>
   </div>
 </template>
@@ -33,5 +33,11 @@ import { Vue, Component, Prop } from 'nuxt-property-decorator'
     }
   },
 })
-export default class AgentDashboard extends Vue {}
+export default class AgentDashboard extends Vue {
+  mounted() {}
+
+  get getAgeencyEmail() {
+    return this.$config.agencyEmail
+  }
+}
 </script>

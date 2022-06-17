@@ -1,7 +1,7 @@
 <template>
   <div v-if="!loading">
     <template v-if="owners.length">
-      <div class="d-flexm mt-3 ml-9 p-5">{{ inbox }}</div>
+      <div class="d-flexm mt-3 ml-9 p-5">Shared with: {{ inbox }}</div>
       <v-data-table
         v-show="$vuetify.breakpoint.smAndUp"
         :disable-pagination="true"
