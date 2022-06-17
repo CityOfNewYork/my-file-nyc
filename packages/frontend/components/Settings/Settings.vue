@@ -1,21 +1,37 @@
 <template>
   <v-container v-if="editMode" class="pa-8">
-    <div class="mt-1 ml-2 v-toolbar__title">
+    <div class="mt-1 v-toolbar__title">
       {{ `${$t('navigation.settings')}` }}
     </div>
     <ValidationObserver ref="observer">
       <v-form @submit.prevent>
         <ValidationProvider rules="required|max:255">
-          <p class="subtitle-1 mt-10">
+          <p class="subtitle-1 mt-2">
             {{ $t('account.firstName') }}
           </p>
-          <v-text-field outlined :placeholder="$t('account.firstName')" />
-          <p class="subtitle-1 mt-10">{{ $t('account.lastName') }}</p>
-          <v-text-field outlined :placeholder="$t('account.lastName')" />
-          <p class="subtitle-1 mt-10">{{ $t('account.dob') }}</p>
-          <v-text-field outlined :placeholder="$t('account.dob')" />
-          <p class="subtitle-1 mt-10">{{ $t('account.caseNumber') }}</p>
-          <v-text-field outlined :placeholder="$t('account.caseNumber')" />
+          <v-text-field
+            outlined
+            v-model="givenName"
+            :placeholder="$t('account.firstName')"
+          />
+          <p class="subtitle-1">{{ $t('account.lastName') }}</p>
+          <v-text-field
+            outlined
+            v-model="familyName"
+            :placeholder="$t('account.lastName')"
+          />
+          <p class="subtitle-1">{{ $t('account.dob') }}</p>
+          <v-text-field
+            outlined
+            v-model="dob"
+            :placeholder="$t('account.dob')"
+          />
+          <p class="subtitle-1">{{ $t('account.caseNumber') }}</p>
+          <v-text-field
+            outlined
+            v-model="dhsCaseNumber"
+            :placeholder="$t('account.caseNumber')"
+          />
         </ValidationProvider>
       </v-form>
     </ValidationObserver>
@@ -51,15 +67,14 @@
     <p class="subtitle-1 mt-10">
       {{ $t('account.firstName') }}
     </p>
-    <p class="subtitle-1 mt-10">{{ $t('account.lastName') }}</p>
-    <p class="subtitle-1 mt-10">{{ $t('account.dob') }}</p>
-    <p class="subtitle-1 mt-10">{{ $t('account.caseNumber') }}</p>
+    <p class="subtitle-1">{{ $t('account.lastName') }}</p>
+    <p class="subtitle-1">{{ $t('account.dob') }}</p>
+    <p class="subtitle-1">{{ $t('account.caseNumber') }}</p>
   </v-container>
 </template>
 
 <script lang="ts">
 import { Vue, Prop, Component } from 'nuxt-property-decorator'
-import { userStore } from '@/plugins/store-accessor'
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
 
 @Component({
@@ -69,18 +84,30 @@ import { ValidationObserver, ValidationProvider } from 'vee-validate'
   },
 })
 export default class Settings extends Vue {
-  @Prop({ default: () => () => {} }) submit: () => void
-  editMode = false
+  @Prop({ default: () => () => {} }) submit: (data: object) => void
+  @Prop({ default: false }) editMode: boolean
+
   location = ''
+  givenName = ''
+  familyName = ''
+  dob = ''
+  dhsCaseNumber = ''
 
   mounted() {
     this.location = window.location.pathname
   }
 
   save() {
+    const data = {
+      givenName: this.givenName,
+      familyName: this.familyName,
+      dob: this.dob,
+      dhsCaseNumber: this.dhsCaseNumber,
+    }
+
     this.location === '/account'
       ? (this.editMode = !this.editMode)
-      : this.submit
+      : this.submit(data)
   }
 }
 </script>
