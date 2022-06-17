@@ -1,4 +1,4 @@
-import { handler as acceptTerms } from './acceptTerms'
+import { handler as acceptTerms } from './acceptTermsAndRegister'
 import {
   createMockEvent,
   mockUserData,

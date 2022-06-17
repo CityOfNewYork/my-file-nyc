@@ -98,13 +98,13 @@ paths:
           description: User not found
       security:
         - datalocker_auth: []
-  '/users/{userId}/accept-terms':
+  '/users/{userId}/accept-terms-and-register':
     post:
       tags:
         - user
-      summary: Accept Terms
-      description: Accept application Terms of Use for a user
-      operationId: acceptTerms
+      summary: Accept Terms and Register
+      description: Accept application Terms of Use for a user with additional registration info
+      operationId: acceptTermsAndRegister
       parameters:
         - name: userId
           in: path
@@ -112,6 +112,13 @@ paths:
           required: true
           schema:
             type: string
+      requestBody:
+        description: Registration details
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegistrationDetails'
       responses:
         '200':
           description: Successful operation
@@ -825,6 +832,8 @@ components:
         - givenName
         - familyName
         - name
+        - dob
+        - dhsCaseNumber
       properties:
         id:
           type: string
@@ -844,6 +853,39 @@ components:
           type: string
           description: The users name or email address, if name not provided
           example: sam.citizen@example.com
+        dob:
+          type: string
+          description: Date of birth in format 'mm/dd/yyyy'
+          example: 05/10/2022 (to represent May 10th, 2022)
+        dhsCaseNumber:
+          type: string
+          description: The issued DHS Case Number for this user
+          example: 
+      type: object
+    RegistrationDetails:
+      description: User registration information
+      required:
+        - familyName
+        - givenName
+        - dob
+        - dhsCaseNumber
+      properties:
+        familyName:
+          type: string
+          description: A person's last name
+          example: Smith, Johnson, etc
+        givenName:
+          type: string
+          description: A person's first name
+          example: Bill, Nancy, etc
+        dob:
+          type: string
+          description: Date of birth in format 'mm/dd/yyyy'
+          example: 05/10/2022 (to represent May 10th, 2022)
+        dhsCaseNumber:
+          type: string
+          description: The issued DHS Case Number for this user
+          example: 
       type: object
     Sharer:
       description: A user who shared information
@@ -886,6 +928,8 @@ components:
         - id
         - givenName
         - familyName
+        - dob
+        - dhsCaseNumber
         - email
         - name
         - links
@@ -904,6 +948,14 @@ components:
           nullable: true
           description: The users family name
           example: Citizen
+        dob:
+          type: string
+          description: Date of birth in format 'mm/dd/yyyy'
+          example: 05/10/2022 (to represent May 10th, 2022)
+        dhsCaseNumber:
+          type: string
+          description: The issued DHS Case Number for this user
+          example: 
         termsOfUseAccepted:
           type: boolean
           description: Whether the terms of use have been accepted for the current user for this application
