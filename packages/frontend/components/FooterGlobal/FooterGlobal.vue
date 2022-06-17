@@ -1,8 +1,11 @@
 <template>
   <div
     :class="
-      (document & $vuetify.breakpoint.smAndUp && 'd-flex justify-flex-start') ||
-      ($vuetify.breakpoint.smAndUp ? 'd-flex justify-space-between' : 'mt-2')
+      ((document || agency) & $vuetify.breakpoint.smAndUp &&
+        'd-flex justify-flex-start pt-1') ||
+      ($vuetify.breakpoint.smAndUp
+        ? 'd-flex justify-space-between pt-1'
+        : 'mt-2')
     "
     style="position: fixed; bottom: 0%; width: 100%; background-color: #f1f5fe"
   >
@@ -56,21 +59,30 @@
 
 <script lang="ts">
 import { Vue, Component } from 'nuxt-property-decorator'
+import { userStore } from '@/plugins/store-accessor'
 
 @Component
 export default class FooterGlobal extends Vue {
-  //   @Prop({ default: '' }) title: string
-  //   @Prop({ required: true }) body: string
   document = false
+  agency = false
 
   mounted() {
     this.locationDetect()
-    console.log(this.document)
+    this.isAgency()
   }
 
   locationDetect() {
     if (window.location.pathname.split('/')[1] == 'documents') {
       this.document = true
+    }
+  }
+
+  isAgency() {
+    let userRole = 0 as any
+    userRole = localStorage.getItem('myfile.role')
+
+    if (userRole == 2) {
+      this.agency = true
     }
   }
 }
