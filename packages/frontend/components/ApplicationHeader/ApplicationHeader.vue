@@ -35,7 +35,7 @@
     </div>
     <div class="application-header__divider">|</div>
 
-    <div class="application-header__title">MyFile NYC</div>
+    <div class="application-header__title">My File NYC</div>
   </v-system-bar>
 </template>
 

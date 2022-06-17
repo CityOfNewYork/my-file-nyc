@@ -18,7 +18,13 @@
         <span class="font-weight-bold">Build time:</span>
         {{ buildTime }} -->
       <!-- </div> -->
+
       <NavItemList :items="footerNavItems" />
+      <v-img
+        class="ml-3 mb-2"
+        style="max-width: 15rem"
+        :src="require('@/assets/images/city-logo-footer.svg')"
+      />
     </v-footer>
   </v-navigation-drawer>
 </template>
