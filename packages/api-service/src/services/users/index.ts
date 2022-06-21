@@ -182,11 +182,15 @@ export const userToApiUser = (user: {
   familyName?: string
   email?: string
   attributes?: any
+  dob?: string,
+  dhsCaseNumber?: string,
 }): ApiUser => ({
   id: user.id,
   givenName: user.givenName || null,
   familyName: user.familyName || null,
   email: user.email || null,
+  dob: user.dob || '',
+  dhsCaseNumber: user.dhsCaseNumber || '',
   name: userName(user),
   termsOfUseAccepted: hasAcceptedTermsOfUse(user),
   links: [],
