@@ -51,7 +51,7 @@ export const handler = createAuthenticatedApiGatewayHandler(
     const { ownerId, user } = request
     const foundDocuments = await documentsInAnyCollectionWithGrantAndOwner(
       ownerId,
-      CollectionGrantType.INDIVIDUALEMAIL,
+      CollectionGrantType.IndividualEmail,
       user.email,
     )
     const latestSharingDetails = determineLatestSharingDetails(foundDocuments)

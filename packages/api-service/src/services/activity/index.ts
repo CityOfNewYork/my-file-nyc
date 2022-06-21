@@ -149,21 +149,21 @@ export const submitCollectionCreatedEvent = async (props: {
   const { grants: collectionGrants } = collection
   const activity = createActivityInput({
     user,
-    type: ActivityActionTypeEnum.COLLECTIONCREATED,
+    type: ActivityActionTypeEnum.CollectionCreated,
     resource: collection,
-    resourceType: ActivityResourceTypeEnum.COLLECTION,
+    resourceType: ActivityResourceTypeEnum.Collection,
     relatedResources: [
       ...documents.map((r) =>
-        toActivityResource(r, ActivityResourceTypeEnum.DOCUMENT),
+        toActivityResource(r, ActivityResourceTypeEnum.Document),
       ),
       ...collectionGrants
         .filter(
-          (cg) => cg.requirementType == CollectionGrantType.INDIVIDUALEMAIL,
+          (cg) => cg.requirementType == CollectionGrantType.IndividualEmail,
         )
         .map((r) =>
           toActivityResource(
             { id: r.id, name: r.requirementValue },
-            ActivityResourceTypeEnum.COLLECTIONINDIVIDUALEMAILGRANT,
+            ActivityResourceTypeEnum.CollectionIndividualEmailGrant,
           ),
         ),
     ],
@@ -182,11 +182,11 @@ export const submitDocumentCreatedEvent = async (props: {
   const { files } = document
   const activity = createActivityInput({
     user,
-    type: ActivityActionTypeEnum.DOCUMENTCREATED,
+    type: ActivityActionTypeEnum.DocumentCreated,
     resource: document,
-    resourceType: ActivityResourceTypeEnum.DOCUMENT,
+    resourceType: ActivityResourceTypeEnum.Document,
     relatedResources: files.map((r) =>
-      toActivityResource(r, ActivityResourceTypeEnum.DOCUMENTFILE),
+      toActivityResource(r, ActivityResourceTypeEnum.DocumentFile),
     ),
     event,
   })
@@ -203,11 +203,11 @@ export const submitDocumentAccessedEvent = async (props: {
   const { ownerId, user, document, files, event } = props
   const activity = createActivityInput({
     user,
-    type: ActivityActionTypeEnum.DOCUMENTACCESSED,
+    type: ActivityActionTypeEnum.DocumentAccessed,
     resource: document,
-    resourceType: ActivityResourceTypeEnum.DOCUMENT,
+    resourceType: ActivityResourceTypeEnum.Document,
     relatedResources: files.map((r) =>
-      toActivityResource(r, ActivityResourceTypeEnum.DOCUMENTFILE),
+      toActivityResource(r, ActivityResourceTypeEnum.DocumentFile),
     ),
     event,
   })
@@ -229,11 +229,11 @@ export const submitDocumentsAccessedEvent = async (props: {
   const activities = documents.map(({ document, files }) =>
     createActivityInput({
       user,
-      type: ActivityActionTypeEnum.DOCUMENTACCESSED,
+      type: ActivityActionTypeEnum.DocumentAccessed,
       resource: document,
-      resourceType: ActivityResourceTypeEnum.DOCUMENT,
+      resourceType: ActivityResourceTypeEnum.Document,
       relatedResources: files.map((r) =>
-        toActivityResource(r, ActivityResourceTypeEnum.DOCUMENTFILE),
+        toActivityResource(r, ActivityResourceTypeEnum.DocumentFile),
       ),
       event,
     }),
@@ -251,9 +251,9 @@ export const submitDocumentEditedEvent = async (props: {
   const { ownerId, user, document, changes, event } = props
   const activity = createActivityInput({
     user,
-    type: ActivityActionTypeEnum.DOCUMENTEDITED,
+    type: ActivityActionTypeEnum.DocumentEdited,
     resource: document,
-    resourceType: ActivityResourceTypeEnum.DOCUMENT,
+    resourceType: ActivityResourceTypeEnum.Document,
     changes,
     event,
   })
@@ -270,11 +270,11 @@ export const submitDocumentDeletedEvent = async (props: {
   const { ownerId, user, document, files, event } = props
   const activity = createActivityInput({
     user,
-    type: ActivityActionTypeEnum.DOCUMENTDELETED,
+    type: ActivityActionTypeEnum.DocumentDeleted,
     resource: document,
-    resourceType: ActivityResourceTypeEnum.DOCUMENT,
+    resourceType: ActivityResourceTypeEnum.Document,
     relatedResources: files.map((r) =>
-      toActivityResource(r, ActivityResourceTypeEnum.DOCUMENTFILE),
+      toActivityResource(r, ActivityResourceTypeEnum.DocumentFile),
     ),
     event,
   })
@@ -290,12 +290,12 @@ export const submitDelegatedUserInvitedEvent = async (props: {
   const { ownerId, user, accountDelegate, event } = props
   const activity = createActivityInput({
     user,
-    type: ActivityActionTypeEnum.DELEGATEDUSERINVITED,
+    type: ActivityActionTypeEnum.DelegateduserInvited,
     resource: {
       id: accountDelegate.id,
       name: accountDelegate.delegateEmail,
     },
-    resourceType: ActivityResourceTypeEnum.DELEGATEDUSER,
+    resourceType: ActivityResourceTypeEnum.Delegateduser,
     event,
   })
   return await submitActivity(ownerId, activity)
@@ -310,12 +310,12 @@ export const submitDelegatedUserInviteAcceptedEvent = async (props: {
   const { ownerId, user, accountDelegate, event } = props
   const activity = createActivityInput({
     user,
-    type: ActivityActionTypeEnum.DELEGATEDUSERINVITEACCEPTED,
+    type: ActivityActionTypeEnum.DelegateduserInviteAccepted,
     resource: {
       id: accountDelegate.id,
       name: accountDelegate.delegateEmail,
     },
-    resourceType: ActivityResourceTypeEnum.DELEGATEDUSER,
+    resourceType: ActivityResourceTypeEnum.Delegateduser,
     event,
   })
   return await submitActivity(ownerId, activity)
@@ -330,12 +330,12 @@ export const submitDelegatedUserDeletedEvent = async (props: {
   const { ownerId, user, accountDelegate, event } = props
   const activity = createActivityInput({
     user,
-    type: ActivityActionTypeEnum.DELEGATEDUSERDELETED,
+    type: ActivityActionTypeEnum.DelegateduserDeleted,
     resource: {
       id: accountDelegate.id,
       name: accountDelegate.delegateEmail,
     },
-    resourceType: ActivityResourceTypeEnum.DELEGATEDUSER,
+    resourceType: ActivityResourceTypeEnum.Delegateduser,
     event,
   })
   return await submitActivity(ownerId, activity)
@@ -349,12 +349,12 @@ export const submitTermsAcceptedEvent = async (props: {
   const { ownerId, user, event } = props
   const activity = createActivityInput({
     user,
-    type: ActivityActionTypeEnum.USERTERMSACCEPTED,
+    type: ActivityActionTypeEnum.UserTermsAccepted,
     resource: {
       id: user.id,
       name: user.email ?? user.id,
     },
-    resourceType: ActivityResourceTypeEnum.USER,
+    resourceType: ActivityResourceTypeEnum.User,
     event,
   })
   return await submitActivity(ownerId, activity)

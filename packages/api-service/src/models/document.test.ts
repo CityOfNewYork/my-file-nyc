@@ -369,6 +369,7 @@ describe('DocumentModel', () => {
       })
       await createCollection({
         id: collectionId,
+        // @ts-ignore
         name,
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -390,7 +391,7 @@ describe('DocumentModel', () => {
         grants: [
           {
             id: uuidv4(),
-            requirementType: CollectionGrantType.INDIVIDUALEMAIL,
+            requirementType: CollectionGrantType.IndividualEmail,
             requirementValue: userEmail,
             createdAt: new Date(),
             createdBy: userId,
@@ -404,7 +405,7 @@ describe('DocumentModel', () => {
       expect(
         await documentIsInCollectionWithGrant(
           id,
-          CollectionGrantType.INDIVIDUALEMAIL,
+          CollectionGrantType.IndividualEmail,
           userEmail,
         ),
       ).toStrictEqual(false)
@@ -413,7 +414,7 @@ describe('DocumentModel', () => {
       expect(
         await documentIsInCollectionWithGrant(
           document1.id,
-          CollectionGrantType.INDIVIDUALEMAIL,
+          CollectionGrantType.IndividualEmail,
           'test',
         ),
       ).toStrictEqual(false)
@@ -422,7 +423,7 @@ describe('DocumentModel', () => {
       expect(
         await documentIsInCollectionWithGrant(
           document1.id,
-          CollectionGrantType.INDIVIDUALEMAIL,
+          CollectionGrantType.IndividualEmail,
           userEmail,
         ),
       ).toStrictEqual(true)
@@ -438,6 +439,7 @@ describe('DocumentModel', () => {
     beforeAll(async () => {
       document = await createDocument({
         id: documentId,
+        // @ts-ignore
         name,
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -460,6 +462,7 @@ describe('DocumentModel', () => {
       })
       await createCollection({
         id: collectionId,
+        // @ts-ignore
         name,
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -476,7 +479,7 @@ describe('DocumentModel', () => {
         grants: [
           {
             id: uuidv4(),
-            requirementType: CollectionGrantType.INDIVIDUALEMAIL,
+            requirementType: CollectionGrantType.IndividualEmail,
             requirementValue: userEmail,
             createdAt: new Date(),
             createdBy: userId,
@@ -520,6 +523,7 @@ describe('DocumentModel', () => {
       })
       await createCollection({
         id: collectionId1,
+        // @ts-ignore
         name,
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -541,7 +545,7 @@ describe('DocumentModel', () => {
         grants: [
           {
             id: uuidv4(),
-            requirementType: CollectionGrantType.INDIVIDUALEMAIL,
+            requirementType: CollectionGrantType.IndividualEmail,
             requirementValue: userEmail,
             createdAt: new Date('2015-01-17T13:14:15Z'),
             createdBy: ownerId,
@@ -551,6 +555,7 @@ describe('DocumentModel', () => {
       })
       await createCollection({
         id: collectionId2,
+        // @ts-ignore
         name,
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -567,7 +572,7 @@ describe('DocumentModel', () => {
         grants: [
           {
             id: uuidv4(),
-            requirementType: CollectionGrantType.INDIVIDUALEMAIL,
+            requirementType: CollectionGrantType.IndividualEmail,
             requirementValue: userEmail,
             createdAt: new Date('2015-01-18T13:14:15Z'),
             createdBy: ownerId,
@@ -581,7 +586,7 @@ describe('DocumentModel', () => {
       expect(
         await documentsInAnyCollectionWithGrantAndOwner(
           id,
-          CollectionGrantType.INDIVIDUALEMAIL,
+          CollectionGrantType.IndividualEmail,
           userEmail,
         ),
       ).toStrictEqual([])
@@ -589,7 +594,7 @@ describe('DocumentModel', () => {
     it('returns documents when found', async () => {
       const result = await documentsInAnyCollectionWithGrantAndOwner(
         ownerId,
-        CollectionGrantType.INDIVIDUALEMAIL,
+        CollectionGrantType.IndividualEmail,
         userEmail,
       )
       expect(result).toEqual(

@@ -23,7 +23,7 @@ export const handler = createAuthenticatedApiGatewayHandler(
   async (request: APIGatewayRequest): Promise<SharedCollectionListContract> => {
     const { user } = (request as unknown) as APIGatewayRequest & { user: User }
     const foundCollections = await getCollectionsByGrantType(
-      CollectionGrantType.INDIVIDUALEMAIL,
+      CollectionGrantType.IndividualEmail,
       user.email as string, // checked in auth layer
     )
     const userIds = [
