@@ -150,6 +150,7 @@ export default class SharedOwnerList extends Vue {
   get owners() {
     // TODO: created date could be any of the dates of the collections shared by an owner
     //       not necessarily most or least recent
+    console.log(userStore.sharedCollections)
     return userStore.sharedCollections
       .filter(
         (
@@ -161,7 +162,7 @@ export default class SharedOwnerList extends Vue {
       .map((c: SharedCollectionListItem) => ({
         ownerId: c.owner.id,
         collectionId: c.collection.id,
-        email: c.owner.name,
+        email: c.shareInformation.sharedBy.email,
         firstName: c.owner.givenName,
         lastName: c.owner.familyName,
         dob: c.owner.dob,
