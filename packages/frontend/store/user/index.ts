@@ -168,6 +168,19 @@ export default class User extends VuexModule {
       })
   }
 
+  @Action({ rawError: true })
+  patchProfile(payload: ApiUser): Promise<ApiUser> {
+    if (!this._userId) return Promise.reject(new Error('UserID not set'))
+    return api.user.patchUser(this._userId, {
+      familyName: payload.familyName!,
+      givenName: payload.givenName!,
+      dob: payload.dob!,
+      dhsCaseNumber: payload.dhsCaseNumber!,
+    }).then((response) => {
+      return response.data
+    })
+  }
+
   // TODO: Update after upload API changes
   @Action
   async uploadDocument({
