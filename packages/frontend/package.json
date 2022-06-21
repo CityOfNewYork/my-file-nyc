@@ -27,6 +27,7 @@
     "@nuxtjs/pwa": "^3.0.2",
     "@nuxtjs/sentry": "^4.5.0",
     "@nuxtjs/style-resources": "^1.0.0",
+    "@nycopportunity/access-patterns": "^0.16.1",
     "@storybook/addon-contexts": "^5.3.21",
     "@storybook/addon-knobs": "^6.0.22",
     "@storybook/addon-viewport": "^6.0.22",

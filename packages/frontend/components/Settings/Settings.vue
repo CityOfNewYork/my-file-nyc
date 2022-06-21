@@ -37,9 +37,9 @@
     </ValidationObserver>
     <v-btn
       color="primary white--text"
-      class="px-8 d-flex justify-center"
+      class="px-8 d-flex justify-center mb-"
       style="
-        bottom: 0%;
+        bottom: 2%;
         background-color: #2157e4;
         height: 3rem;
         align-items: center;
@@ -64,18 +64,19 @@
         {{ $t('controls.edit') }}
       </v-btn>
     </div>
-    <p class="subtitle-1 mt-10">
-      {{ $t('account.firstName') }}
-    </p>
-    <p class="subtitle-1">{{ $t('account.lastName') }}</p>
-    <p class="subtitle-1">{{ $t('account.dob') }}</p>
-    <p class="subtitle-1">{{ $t('account.caseNumber') }}</p>
+    <div class="mt-10">
+      <p class="subtitle-1">{{ $t('account.firstName') }}</p>
+      <p class="subtitle-1">{{ $t('account.lastName') }}</p>
+      <p class="subtitle-1">{{ $t('account.dob') }}</p>
+      <p class="subtitle-1">{{ $t('account.caseNumber') }}</p>
+    </div>
   </v-container>
 </template>
 
 <script lang="ts">
 import { Vue, Prop, Component } from 'nuxt-property-decorator'
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
+import { userStore } from '@/plugins/store-accessor'
 
 @Component({
   components: {
@@ -105,7 +106,7 @@ export default class Settings extends Vue {
       dhsCaseNumber: this.dhsCaseNumber,
     }
 
-    this.location === '/account'
+    this.location == '/account'
       ? (this.editMode = !this.editMode)
       : this.submit(data)
   }
