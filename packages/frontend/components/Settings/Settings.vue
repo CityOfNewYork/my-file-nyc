@@ -12,25 +12,31 @@
           <v-text-field
             outlined
             v-model="givenName"
-            :placeholder="$t('account.firstName')"
+            :placeholder="
+              accountProfile.givenName ? '' : $t('account.firstName')
+            "
           />
           <p class="subtitle-1">{{ $t('account.lastName') }}</p>
           <v-text-field
             outlined
             v-model="familyName"
-            :placeholder="$t('account.lastName')"
+            :placeholder="
+              accountProfile.givenName ? '' : $t('account.lastName')
+            "
           />
           <p class="subtitle-1">{{ $t('account.dob') }}</p>
           <v-text-field
             outlined
             v-model="dob"
-            :placeholder="$t('account.dob')"
+            :placeholder="accountProfile.dob ? '' : $t('account.dob')"
           />
           <p class="subtitle-1">{{ $t('account.caseNumber') }}</p>
           <v-text-field
             outlined
             v-model="dhsCaseNumber"
-            :placeholder="$t('account.caseNumber')"
+            :placeholder="
+              accountProfile.caseNumber ? '' : $t('account.caseNumber')
+            "
           />
         </ValidationProvider>
       </v-form>
@@ -66,9 +72,13 @@
     </div>
     <div class="mt-10">
       <p class="subtitle-1">{{ $t('account.firstName') }}</p>
+      <p class="subtitle-1">{{ accountProfile.givenName }}</p>
       <p class="subtitle-1">{{ $t('account.lastName') }}</p>
+      <p class="subtitle-1">{{ accountProfile.familyName }}</p>
       <p class="subtitle-1">{{ $t('account.dob') }}</p>
+      <p class="subtitle-1">{{ accountProfile.dob }}</p>
       <p class="subtitle-1">{{ $t('account.caseNumber') }}</p>
+      <p class="subtitle-1">{{ accountProfile.caseNumber }}</p>
     </div>
   </v-container>
 </template>
@@ -76,7 +86,6 @@
 <script lang="ts">
 import { Vue, Prop, Component } from 'nuxt-property-decorator'
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
-import { userStore } from '@/plugins/store-accessor'
 
 @Component({
   components: {
@@ -87,6 +96,7 @@ import { userStore } from '@/plugins/store-accessor'
 export default class Settings extends Vue {
   @Prop({ default: () => () => {} }) submit: (data: object) => void
   @Prop({ default: false }) editMode: boolean
+  @Prop({ default: {} }) accountProfile: object
 
   location = ''
   givenName = ''
