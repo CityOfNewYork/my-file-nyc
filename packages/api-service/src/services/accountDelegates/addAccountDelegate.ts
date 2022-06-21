@@ -71,7 +71,7 @@ export const handler = createAuthenticatedApiGatewayHandler(
     )
     if (existingDelegate) {
       if (
-        existingDelegate.status === UserDelegatedAccessStatus.INVITATIONSENT
+        existingDelegate.status === UserDelegatedAccessStatus.InvitationSent
       ) {
         // there is an existing account delegate so lets extend the invite validity time
         const updated = await updateAccountDelegate(
@@ -113,7 +113,7 @@ export const handler = createAuthenticatedApiGatewayHandler(
       userId,
       delegateEmail: email,
       inviteValidUntil: addDaysFromNow(AccountDelegateInvitationValidDays),
-      status: UserDelegatedAccessStatus.INVITATIONSENT,
+      status: UserDelegatedAccessStatus.InvitationSent,
     }
 
     // submit audit activity

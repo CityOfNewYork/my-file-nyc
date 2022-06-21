@@ -90,10 +90,10 @@
     "entrypoint": "users/getUser"
   },
   {
-    "entrypoint": "users/acceptTerms"
+    "entrypoint": "users/acceptTermsAndRegister"
   },
   {
-    "entrypoint": "users/acceptTerms"
+    "entrypoint": "users/patchUser"
   },
   {
     "entrypoint": "jwtAuthorizer/index"

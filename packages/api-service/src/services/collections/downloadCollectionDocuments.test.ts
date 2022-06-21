@@ -89,7 +89,7 @@ describe('downloadCollectionDocuments', () => {
       ],
     )
     const body: DocumentsDownloadCreate = {
-      format: DocumentsDownloadFormatEnum.ZIP,
+      format: DocumentsDownloadFormatEnum.Zip,
     }
     event = setUserId(
       userId,

@@ -135,7 +135,7 @@ export const hasAccessToDocumentViaCollectionGrant = async (
     emailIsWhitelisted(userEmail) &&
     (await documentIsInCollectionWithGrant(
       documentId,
-      CollectionGrantType.INDIVIDUALEMAIL,
+      CollectionGrantType.IndividualEmail,
       userEmail,
     ))
   )
@@ -149,7 +149,7 @@ export const hasAnyGrantToUsersCollections = async (
     emailIsWhitelisted(accessingUserEmail) &&
     (await collectionGrantExistsToOwner(
       ownerUserId,
-      CollectionGrantType.INDIVIDUALEMAIL,
+      CollectionGrantType.IndividualEmail,
       accessingUserEmail,
     ))
   )

@@ -84,7 +84,7 @@ export default class DelegateCard extends Vue {
   }
 
   get isInvited() {
-    return this.delegate.status === UserDelegatedAccessStatus.INVITATIONSENT
+    return this.delegate.status === UserDelegatedAccessStatus.InvitationSent
   }
 
   get isActiveDelegate() {

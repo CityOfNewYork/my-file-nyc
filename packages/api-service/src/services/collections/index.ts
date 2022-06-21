@@ -119,7 +119,7 @@ export const hasAccessToCollectionViaGrant = async (
     emailIsWhitelisted(userEmail) &&
     (await collectionGrantExists(
       collectionId,
-      CollectionGrantType.INDIVIDUALEMAIL,
+      CollectionGrantType.IndividualEmail,
       userEmail,
     ))
   )

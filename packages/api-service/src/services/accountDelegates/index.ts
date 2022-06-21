@@ -16,10 +16,10 @@ const determineDelegateUserStatus = (
   invitationExpiryDate: Date,
 ): UserDelegatedAccessStatus => {
   if (
-    status === UserDelegatedAccessStatus.INVITATIONSENT &&
+    status === UserDelegatedAccessStatus.InvitationSent &&
     invitationExpiryDate < new Date()
   ) {
-    return UserDelegatedAccessStatus.INVITATIONEXPIRED
+    return UserDelegatedAccessStatus.InvitationExpired
   }
   return status as UserDelegatedAccessStatus
 }

@@ -52,7 +52,7 @@ export const handler = createAuthenticatedApiGatewayHandler(
       // return file access
       return {
         id: documentsHash,
-        status: DocumentsDownloadStatusEnum.SUCCESS,
+        status: DocumentsDownloadStatusEnum.Success,
         fileDownload: {
           href: getPresignedDownloadUrl(
             downloadPath,
@@ -74,7 +74,7 @@ export const handler = createAuthenticatedApiGatewayHandler(
     // return handle to file
     return {
       id: documentsHash,
-      status: DocumentsDownloadStatusEnum.PENDING,
+      status: DocumentsDownloadStatusEnum.Pending,
       fileDownload: null,
     }
   },
