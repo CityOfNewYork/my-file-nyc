@@ -24,7 +24,7 @@
     </AppBar>
 
     <v-main>
-      <Settings :editMode="false" />
+      <Settings :accountProfile="accountProfile" :editMode="false" />
 
       <!-- <v-window v-if="!this.$config.features.delegates" style="margin: 1em">
         {{ $t('delegateAccess.disabledNotice') }}
@@ -213,6 +213,10 @@ export default class Account extends Vue {
   //       return 'navigation.account'
   //   }
   // }
+
+  get accountProfile() {
+    return userStore.profile
+  }
 
   get accountName() {
     return userStore.profile ? userStore.profile.name : ''
