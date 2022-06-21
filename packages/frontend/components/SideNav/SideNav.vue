@@ -21,7 +21,7 @@
 
       <NavItemList :items="footerNavItems" />
       <v-img
-        class="ml-3 mb-2"
+        class="ml-2 mb-2"
         style="max-width: 15rem"
         :src="require('@/assets/images/city-logo-footer.svg')"
       />

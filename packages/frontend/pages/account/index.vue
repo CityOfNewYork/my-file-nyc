@@ -24,7 +24,7 @@
     </AppBar>
 
     <v-main>
-      <Settings editMode="false" />
+      <Settings :editMode="false" />
 
       <!-- <v-window v-if="!this.$config.features.delegates" style="margin: 1em">
         {{ $t('delegateAccess.disabledNotice') }}
