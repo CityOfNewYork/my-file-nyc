@@ -21,10 +21,10 @@ export const handler = createAuthenticatedApiGatewayHandler(
     const foundGrants = await getGrantsByCollectionId(collectionId)
     return {
       collectionGrants: foundGrants
-        .filter((g) => g.requirementType == CollectionGrantType.INDIVIDUALEMAIL)
+        .filter((g) => g.requirementType == CollectionGrantType.IndividualEmail)
         .map(({ id, createdAt, requirementValue }) => ({
           id,
-          type: CollectionGrantType.INDIVIDUALEMAIL,
+          type: CollectionGrantType.IndividualEmail,
           createdDate: createdAt.toISOString(),
           individualEmailAddress: requirementValue,
           links: [],

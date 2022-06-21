@@ -18,7 +18,7 @@ describe('CollectionGrantModel', () => {
       expect(
         await collectionGrantExists(
           id,
-          CollectionGrantType.INDIVIDUALEMAIL,
+          CollectionGrantType.IndividualEmail,
           id,
         ),
       ).toStrictEqual(false)
@@ -37,7 +37,7 @@ describe('CollectionGrantModel', () => {
       })
       await CollectionGrantModel.query().insert({
         collectionId: collection.id,
-        requirementType: CollectionGrantType.INDIVIDUALEMAIL,
+        requirementType: CollectionGrantType.IndividualEmail,
         requirementValue: userId,
         createdBy: userId,
         createdAt: new Date(),
@@ -46,7 +46,7 @@ describe('CollectionGrantModel', () => {
       expect(
         await collectionGrantExists(
           id,
-          CollectionGrantType.INDIVIDUALEMAIL,
+          CollectionGrantType.IndividualEmail,
           userId,
         ),
       ).toStrictEqual(true)
@@ -59,7 +59,7 @@ describe('CollectionGrantModel', () => {
       expect(
         await collectionGrantExistsToOwner(
           id,
-          CollectionGrantType.INDIVIDUALEMAIL,
+          CollectionGrantType.IndividualEmail,
           accessingUserEmail,
         ),
       ).toStrictEqual(false)
@@ -79,7 +79,7 @@ describe('CollectionGrantModel', () => {
       })
       await CollectionGrantModel.query().insert({
         collectionId: collection.id,
-        requirementType: CollectionGrantType.INDIVIDUALEMAIL,
+        requirementType: CollectionGrantType.IndividualEmail,
         requirementValue: accessingUserEmail,
         createdBy: userId,
         createdAt: new Date(),
@@ -88,7 +88,7 @@ describe('CollectionGrantModel', () => {
       expect(
         await collectionGrantExistsToOwner(
           userId,
-          CollectionGrantType.INDIVIDUALEMAIL,
+          CollectionGrantType.IndividualEmail,
           accessingUserEmail,
         ),
       ).toStrictEqual(true)

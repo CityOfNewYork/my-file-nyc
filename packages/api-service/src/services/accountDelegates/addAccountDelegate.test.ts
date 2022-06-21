@@ -72,7 +72,7 @@ describe('addAccountDelegate', () => {
       id: accountDelegateId,
       accountId: userId,
       delegateEmail,
-      status: UserDelegatedAccessStatus.INVITATIONSENT,
+      status: UserDelegatedAccessStatus.InvitationSent,
       inviteValidUntil: addDaysFromNow(5),
       createdAt: new Date('2015-01-12T13:14:15Z'),
     }

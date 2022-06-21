@@ -104,7 +104,7 @@ export const handler = createAuthenticatedApiGatewayHandler(
       })),
       grants: validatedEmailRecipients.map((email) => ({
         id: uuidv4(),
-        requirementType: CollectionGrantType.INDIVIDUALEMAIL,
+        requirementType: CollectionGrantType.IndividualEmail,
         requirementValue: email,
         createdBy,
         createdAt,

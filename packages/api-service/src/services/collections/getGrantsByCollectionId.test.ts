@@ -49,7 +49,7 @@ describe('getGrantsByCollectionId', () => {
         CollectionGrant.fromJson({
           id: 'myGrantId1',
           collectionId,
-          requirementType: CollectionGrantType.INDIVIDUALEMAIL,
+          requirementType: CollectionGrantType.IndividualEmail,
           requirementValue: 'myGrantId1',
           createdAt: new Date('2015-01-12T13:14:15Z'),
           createdBy: userId,
@@ -58,7 +58,7 @@ describe('getGrantsByCollectionId', () => {
         CollectionGrant.fromJson({
           id: 'myGrantId2',
           collectionId,
-          requirementType: CollectionGrantType.INDIVIDUALEMAIL,
+          requirementType: CollectionGrantType.IndividualEmail,
           requirementValue: 'myGrantId2',
           createdAt: new Date('2015-01-12T13:14:15Z'),
           createdBy: userId,

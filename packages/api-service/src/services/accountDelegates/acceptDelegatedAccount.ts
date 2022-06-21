@@ -39,7 +39,7 @@ export const handler = createAuthenticatedApiGatewayHandler(
     const { accountDelegate, userId, user, event } = request as Request
 
     if (
-      accountDelegate.status !== UserDelegatedAccessStatus.INVITATIONSENT ||
+      accountDelegate.status !== UserDelegatedAccessStatus.InvitationSent ||
       accountDelegate.inviteValidUntil < new Date()
     ) {
       // expired invitation
@@ -60,7 +60,7 @@ export const handler = createAuthenticatedApiGatewayHandler(
       accountDelegate.id,
       userId,
       {
-        status: UserDelegatedAccessStatus.ACTIVE,
+        status: UserDelegatedAccessStatus.Active,
       },
     )
 

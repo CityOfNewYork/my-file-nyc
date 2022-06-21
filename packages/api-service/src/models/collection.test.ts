@@ -61,7 +61,7 @@ describe('CollectionModel', () => {
         grants: [
           {
             id: uuidv4(),
-            requirementType: CollectionGrantType.INDIVIDUALEMAIL,
+            requirementType: CollectionGrantType.IndividualEmail,
             requirementValue: userId,
             createdAt: new Date(),
             createdBy: userId,
@@ -81,7 +81,7 @@ describe('CollectionModel', () => {
         grants: [
           {
             id: uuidv4(),
-            requirementType: CollectionGrantType.INDIVIDUALEMAIL,
+            requirementType: CollectionGrantType.IndividualEmail,
             requirementValue: userId,
             createdAt: new Date(),
             createdBy: userId,
@@ -90,7 +90,7 @@ describe('CollectionModel', () => {
         ],
       })
       const results = await getCollectionsByGrantType(
-        CollectionGrantType.INDIVIDUALEMAIL,
+        CollectionGrantType.IndividualEmail,
         userId,
       )
       expect(results).toHaveLength(2)
@@ -115,6 +115,7 @@ describe('CollectionModel', () => {
       const collectionId = uuidv4()
       await createCollection({
         id: collectionId,
+        // @ts-ignore
         name,
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -125,7 +126,7 @@ describe('CollectionModel', () => {
         grants: [
           {
             id: uuidv4(),
-            requirementType: CollectionGrantType.INDIVIDUALEMAIL,
+            requirementType: CollectionGrantType.IndividualEmail,
             requirementValue: grant1Value,
             createdBy: userId,
             createdAt: new Date(),
@@ -133,7 +134,7 @@ describe('CollectionModel', () => {
           },
           {
             id: uuidv4(),
-            requirementType: CollectionGrantType.INDIVIDUALEMAIL,
+            requirementType: CollectionGrantType.IndividualEmail,
             requirementValue: grant2Value,
             createdBy: userId,
             createdAt: new Date(),
@@ -178,6 +179,7 @@ describe('CollectionModel', () => {
       })
       await createCollection({
         id: collectionId,
+        // @ts-ignore
         name,
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -242,7 +244,7 @@ describe('CollectionModel', () => {
           grants: [
             {
               id: uuidv4(),
-              requirementType: CollectionGrantType.INDIVIDUALEMAIL,
+              requirementType: CollectionGrantType.IndividualEmail,
               requirementValue: 'mytestemail@example.com',
               createdAt: new Date(),
               createdBy: userId,
@@ -266,7 +268,7 @@ describe('CollectionModel', () => {
             expect.objectContaining({
               createdBy: userId,
               collectionId,
-              requirementType: CollectionGrantType.INDIVIDUALEMAIL,
+              requirementType: CollectionGrantType.IndividualEmail,
               requirementValue: 'mytestemail@example.com',
             }),
           ]),

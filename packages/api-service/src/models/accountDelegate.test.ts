@@ -28,7 +28,7 @@ describe('AccountDelegateModel', () => {
           accountId,
           delegateEmail,
           inviteValidUntil: addDaysFromNow(14),
-          status: UserDelegatedAccessStatus.INVITATIONSENT,
+          status: UserDelegatedAccessStatus.InvitationSent,
           userId: accountId,
         }),
       ).toEqual(
@@ -36,7 +36,7 @@ describe('AccountDelegateModel', () => {
           id,
           accountId,
           delegateEmail,
-          status: UserDelegatedAccessStatus.INVITATIONSENT,
+          status: UserDelegatedAccessStatus.InvitationSent,
           createdBy: accountId,
           updatedBy: accountId,
         }),
@@ -59,7 +59,7 @@ describe('AccountDelegateModel', () => {
         accountId,
         delegateEmail: uuidv4(),
         inviteValidUntil: addDaysFromNow(14),
-        status: UserDelegatedAccessStatus.INVITATIONSENT,
+        status: UserDelegatedAccessStatus.InvitationSent,
         userId: accountId,
       }),
         expect(
@@ -79,7 +79,7 @@ describe('AccountDelegateModel', () => {
         accountId: id,
         delegateEmail: uuidv4(),
         inviteValidUntil: addDaysFromNow(14),
-        status: UserDelegatedAccessStatus.INVITATIONSENT,
+        status: UserDelegatedAccessStatus.InvitationSent,
         userId: accountId,
       }),
         expect(await getAccountDelegatesForUser(id)).toEqual(
@@ -97,7 +97,7 @@ describe('AccountDelegateModel', () => {
         accountId: uuidv4(),
         delegateEmail,
         inviteValidUntil: addDaysFromNow(14),
-        status: UserDelegatedAccessStatus.INVITATIONSENT,
+        status: UserDelegatedAccessStatus.InvitationSent,
         userId: accountId,
       }),
         expect(
@@ -125,7 +125,7 @@ describe('AccountDelegateModel', () => {
         accountId: uuidv4(),
         delegateEmail: uuidv4(),
         inviteValidUntil: addDaysFromNow(14),
-        status: UserDelegatedAccessStatus.INVITATIONSENT,
+        status: UserDelegatedAccessStatus.InvitationSent,
         userId: accountId,
       })
       expect(await deleteAccountDelegate(id)).toStrictEqual(1)
@@ -150,7 +150,7 @@ describe('AccountDelegateModel', () => {
         accountId,
         delegateEmail,
         inviteValidUntil: addDaysFromNow(14),
-        status: UserDelegatedAccessStatus.INVITATIONSENT,
+        status: UserDelegatedAccessStatus.InvitationSent,
         userId: accountId,
       }),
         expect(
@@ -176,7 +176,7 @@ describe('AccountDelegateModel', () => {
         accountId: uuidv4(),
         delegateEmail: uuidv4(),
         inviteValidUntil: addDaysFromNow(14),
-        status: UserDelegatedAccessStatus.INVITATIONSENT,
+        status: UserDelegatedAccessStatus.InvitationSent,
         userId: uuidv4(),
       }),
         expect(await getAccountDelegateById(id)).toEqual(
@@ -193,7 +193,7 @@ describe('AccountDelegateModel', () => {
     it('returns undefined on none found', async () => {
       expect(
         (await updateAccountDelegate(uuidv4(), accountId, {
-          status: UserDelegatedAccessStatus.ACTIVE,
+          status: UserDelegatedAccessStatus.Active,
         })) as any,
       ).toStrictEqual(undefined)
     })
@@ -205,17 +205,17 @@ describe('AccountDelegateModel', () => {
         accountId,
         delegateEmail,
         inviteValidUntil: addDaysFromNow(14),
-        status: UserDelegatedAccessStatus.INVITATIONSENT,
+        status: UserDelegatedAccessStatus.InvitationSent,
         userId: accountId,
       }),
         expect(
           await updateAccountDelegate(id, userId, {
-            status: UserDelegatedAccessStatus.ACTIVE,
+            status: UserDelegatedAccessStatus.Active,
           }),
         ).toEqual(
           expect.objectContaining({
             id,
-            status: UserDelegatedAccessStatus.ACTIVE,
+            status: UserDelegatedAccessStatus.Active,
             updatedBy: userId,
           }),
         )
@@ -233,7 +233,7 @@ describe('AccountDelegateModel', () => {
         accountId,
         delegateEmail: uuidv4(),
         inviteValidUntil: addDaysFromNow(14),
-        status: UserDelegatedAccessStatus.INVITATIONSENT,
+        status: UserDelegatedAccessStatus.InvitationSent,
         userId: accountId,
       })
       expect(await countAccountDelegates(accountId)).toStrictEqual(1)
@@ -245,7 +245,7 @@ describe('AccountDelegateModel', () => {
         accountId,
         delegateEmail: uuidv4(),
         inviteValidUntil: addDaysFromNow(14),
-        status: UserDelegatedAccessStatus.INVITATIONSENT,
+        status: UserDelegatedAccessStatus.InvitationSent,
         userId: accountId,
       })
       await createAccountDelegate({
@@ -253,7 +253,7 @@ describe('AccountDelegateModel', () => {
         accountId,
         delegateEmail: uuidv4(),
         inviteValidUntil: addDaysFromNow(14),
-        status: UserDelegatedAccessStatus.INVITATIONSENT,
+        status: UserDelegatedAccessStatus.InvitationSent,
         userId: accountId,
       })
       expect(await countAccountDelegates(accountId)).toStrictEqual(2)

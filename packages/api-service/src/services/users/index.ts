@@ -143,7 +143,7 @@ export const hasDelegatedAccessToUserAccount = async (
   )
   return (
     delegatedAccount !== undefined &&
-    delegatedAccount.status === UserDelegatedAccessStatus.ACTIVE
+    delegatedAccount.status === UserDelegatedAccessStatus.Active
   )
 }
 
@@ -152,11 +152,15 @@ export const userToApiOwner = (user: {
   givenName?: string
   familyName?: string
   email?: string
+  dhsCaseNumber?: string,
+  dob?: string,
 }): Owner => ({
   id: user.id,
   givenName: user.givenName || null,
   familyName: user.familyName || null,
   name: userName(user),
+  dhsCaseNumber: user.dhsCaseNumber || '',
+  dob: user.dob || '',
 })
 
 export const userToApiSharer = (user: {

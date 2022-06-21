@@ -766,6 +766,37 @@ export interface Owner {
     'dhsCaseNumber': string;
 }
 /**
+ * Edit user data
+ * @export
+ * @interface PatchUserData
+ */
+export interface PatchUserData {
+    /**
+     * A person\'s last name
+     * @type {string}
+     * @memberof PatchUserData
+     */
+    'familyName': string;
+    /**
+     * A person\'s first name
+     * @type {string}
+     * @memberof PatchUserData
+     */
+    'givenName': string;
+    /**
+     * Date of birth in format \'mm/dd/yyyy\'
+     * @type {string}
+     * @memberof PatchUserData
+     */
+    'dob': string;
+    /**
+     * The issued DHS Case Number for this user
+     * @type {string}
+     * @memberof PatchUserData
+     */
+    'dhsCaseNumber': string;
+}
+/**
  * User registration information
  * @export
  * @interface RegistrationDetails
@@ -2373,6 +2404,50 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * Edit user data.
+         * @summary Patch User
+         * @param {string} userId ID of current user
+         * @param {PatchUserData} patchUserData Patch user data
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        patchUser: async (userId: string, patchUserData: PatchUserData, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'userId' is not null or undefined
+            assertParamExists('patchUser', 'userId', userId)
+            // verify required parameter 'patchUserData' is not null or undefined
+            assertParamExists('patchUser', 'patchUserData', patchUserData)
+            const localVarPath = `/users/{userId}`
+                .replace(`{${"userId"}}`, encodeURIComponent(String(userId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication datalocker_auth required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "datalocker_auth", [], configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(patchUserData, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -2509,6 +2584,18 @@ export const UserApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.listUserDocumentsShared(userId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
+        /**
+         * Edit user data.
+         * @summary Patch User
+         * @param {string} userId ID of current user
+         * @param {PatchUserData} patchUserData Patch user data
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async patchUser(userId: string, patchUserData: PatchUserData, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<User>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.patchUser(userId, patchUserData, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
     }
 };
 
@@ -2633,6 +2720,17 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          */
         listUserDocumentsShared(userId: string, options?: any): AxiosPromise<SharedCollectionList> {
             return localVarFp.listUserDocumentsShared(userId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Edit user data.
+         * @summary Patch User
+         * @param {string} userId ID of current user
+         * @param {PatchUserData} patchUserData Patch user data
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        patchUser(userId: string, patchUserData: PatchUserData, options?: any): AxiosPromise<User> {
+            return localVarFp.patchUser(userId, patchUserData, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -2779,6 +2877,19 @@ export class UserApi extends BaseAPI {
      */
     public listUserDocumentsShared(userId: string, options?: AxiosRequestConfig) {
         return UserApiFp(this.configuration).listUserDocumentsShared(userId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Edit user data.
+     * @summary Patch User
+     * @param {string} userId ID of current user
+     * @param {PatchUserData} patchUserData Patch user data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UserApi
+     */
+    public patchUser(userId: string, patchUserData: PatchUserData, options?: AxiosRequestConfig) {
+        return UserApiFp(this.configuration).patchUser(userId, patchUserData, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

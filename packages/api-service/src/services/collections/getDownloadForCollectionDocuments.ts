@@ -60,8 +60,8 @@ export const handler = createAuthenticatedApiGatewayHandler(
     return {
       id: documentsHash,
       status: success
-        ? DocumentsDownloadStatusEnum.SUCCESS
-        : DocumentsDownloadStatusEnum.PENDING,
+        ? DocumentsDownloadStatusEnum.Success
+        : DocumentsDownloadStatusEnum.Pending,
       fileDownload: success
         ? {
             href: getPresignedDownloadUrl(
