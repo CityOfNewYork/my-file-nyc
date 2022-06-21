@@ -102,32 +102,39 @@ export default class SharedOwnerList extends Vue {
         width: '3rem',
       },
       {
-        text: this.$t('agent.clientNameLabel') as string,
+        text: this.$t('agent.clientFirstNameLabel') as string,
         class: 'blue-super-light',
         align: 'start',
         sortable: true,
-        value: '',
+        value: 'firstName',
+      },
+      {
+        text: this.$t('agent.clientLastNameLabel') as string,
+        class: 'blue-super-light',
+        align: 'start',
+        sortable: true,
+        value: 'lastName',
       },
       {
         text: this.$t('agent.clientEmail') as string,
         class: 'blue-super-light',
         align: 'start',
         sortable: true,
-        value: 'name',
+        value: 'email',
       },
       {
         text: this.$t('agent.clientDob') as string,
         class: 'blue-super-light',
         align: 'start',
         sortable: true,
-        value: '',
+        value: 'dob',
       },
       {
         text: this.$t('agent.clientCaseNum') as string,
         class: 'blue-super-light',
         align: 'start',
         sortable: true,
-        value: '',
+        value: 'dhsCaseNumber',
       },
       {
         text: this.$t('dateAdded') as string,
@@ -154,7 +161,11 @@ export default class SharedOwnerList extends Vue {
       .map((c: SharedCollectionListItem) => ({
         ownerId: c.owner.id,
         collectionId: c.collection.id,
-        name: c.owner.name,
+        email: c.owner.name,
+        firstName: c.owner.givenName,
+        lastName: c.owner.familyName,
+        dob: c.owner.dob,
+        dhsCaseNumber: c.owner.dhsCaseNumber,
         createdDate: format(c.collection.createdDate, 'LLL d, yyyy'),
       }))
   }
