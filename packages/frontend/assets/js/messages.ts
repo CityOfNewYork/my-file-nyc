@@ -227,7 +227,8 @@ export default merge(
       },
 
       agent: {
-        clientNameLabel: 'Name', // label of client name column in agent view
+        clientFirstNameLabel: 'First name', // label of client first name column in agent view
+        clientLastNameLabel: 'Last Name', // label of client last name column in agent view
         clientDob: 'DOB', // label of client date of birth column in agent view
         clientCaseNum: 'Case Number', // label of client case number column in agent view
         clientEmail: 'Client Email', // label of client case number column in agent view
