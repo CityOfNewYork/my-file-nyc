@@ -14,7 +14,7 @@
       :class="
         $vuetify.breakpoint.smAndUp ? 'ml-1 d-flex' : 'd-flex ml-1 mr-3 mt-1'
       "
-      style="max-width: 25rem"
+      style="max-width: 25rem; filter: invert(1)"
       :src="require('@/assets/images/city-logo-footer.svg')"
     />
     <div
