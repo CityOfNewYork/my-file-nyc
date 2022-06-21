@@ -65,7 +65,7 @@
         color="primary white--text"
         :class="$vuetify.breakpoint.smAndUp ? 'px-12' : 'px-8'"
         style="background-color: #2157e4; height: 3rem"
-        @click="save"
+        @click="edit"
       >
         {{ $t('controls.edit') }}
       </v-btn>
@@ -108,6 +108,14 @@ export default class Settings extends Vue {
     this.location = window.location.pathname
   }
 
+  async patchUser(data: object) {
+    await this.$store.dispatch('user/patchProfile', data)
+  }
+
+  edit() {
+    this.editMode = !this.editMode
+  }
+
   save() {
     const data = {
       givenName: this.givenName,
@@ -116,9 +124,12 @@ export default class Settings extends Vue {
       dhsCaseNumber: this.dhsCaseNumber,
     }
 
-    this.location == '/account'
-      ? (this.editMode = !this.editMode)
-      : this.submit(data)
+    if (this.location == '/account') {
+      this.patchUser(data)
+      this.editMode = !this.editMode
+    } else {
+      this.submit(data)
+    }
   }
 }
 </script>
