@@ -78,7 +78,7 @@
       <p class="subtitle-1">{{ $t('account.dob') }}</p>
       <p class="subtitle-1">{{ accountProfile.dob }}</p>
       <p class="subtitle-1">{{ $t('account.caseNumber') }}</p>
-      <p class="subtitle-1">{{ accountProfile.caseNumber }}</p>
+      <p class="subtitle-1">{{ accountProfile.dhsCaseNumber }}</p>
     </div>
   </v-container>
 </template>

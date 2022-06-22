@@ -71,7 +71,7 @@ export default merge(
         editDetailsTitle: 'Edit Details', // page title on edit details screen
         enterNamePlaceholder: 'Give this file a name',
         enterDescriptionPlaceholder: 'Describe this file (optional)',
-        documentName: 'Document Name', // shown as a label on edit details screen
+        documentName: 'What kind of document did you upload?', // shown as a label on edit details screen
 
         noDocuments: 'There are no files saved to your account yet.', // shown on dashboard when there are no documents
         previewOf: 'Preview of',
