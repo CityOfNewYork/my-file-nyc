@@ -21,7 +21,7 @@
             outlined
             v-model="familyName"
             :placeholder="
-              accountProfile.givenName ? '' : $t('account.lastName')
+              accountProfile.familyName ? '' : $t('account.lastName')
             "
           />
           <p class="subtitle-1">{{ $t('account.dob') }}</p>
@@ -72,13 +72,19 @@
     </div>
     <div class="mt-10">
       <p class="subtitle-1">{{ $t('account.firstName') }}</p>
-      <p class="subtitle-1">{{ accountProfile.givenName }}</p>
+      <p class="subtitle-1" :key="givenName">
+        {{ givenName }}
+      </p>
       <p class="subtitle-1">{{ $t('account.lastName') }}</p>
-      <p class="subtitle-1">{{ accountProfile.familyName }}</p>
+      <p class="subtitle-1" :key="familyName">
+        {{ accountProfile.familyName }}
+      </p>
       <p class="subtitle-1">{{ $t('account.dob') }}</p>
-      <p class="subtitle-1">{{ accountProfile.dob }}</p>
+      <p class="subtitle-1" :key="dob">{{ accountProfile.dob }}</p>
       <p class="subtitle-1">{{ $t('account.caseNumber') }}</p>
-      <p class="subtitle-1">{{ accountProfile.dhsCaseNumber }}</p>
+      <p class="subtitle-1" :key="dhsCaseNumber">
+        {{ accountProfile.dhsCaseNumber }}
+      </p>
     </div>
   </v-container>
 </template>
@@ -96,7 +102,16 @@ import { ValidationObserver, ValidationProvider } from 'vee-validate'
 export default class Settings extends Vue {
   @Prop({ default: () => () => {} }) submit: (data: object) => void
   @Prop({ default: false }) editMode: boolean
-  @Prop({ default: {} }) accountProfile: object
+  @Prop({ default: {} }) accountProfile: any
+
+  data() {
+    return {
+      givenName: this.givenName,
+      familyName: this.familyName,
+      dob: this.dob,
+      dhsCaseNumber: this.dhsCaseNumber,
+    }
+  }
 
   location = ''
   givenName = ''
@@ -106,17 +121,26 @@ export default class Settings extends Vue {
 
   mounted() {
     this.location = window.location.pathname
+
+    this.givenName = this.accountProfile.givenName
+    this.familyName = this.accountProfile.familyName
+    this.dob = this.accountProfile.dob
+    this.dhsCaseNumber = this.accountProfile.dhsCaseNumber
   }
 
   async patchUser(data: object) {
-    await this.$store.dispatch('user/patchProfile', data)
+    const response = await this.$store.dispatch('user/patchProfile', data)
+    this.givenName = response.givenName
+    this.familyName = response.familyName
+    this.dob = response.dob
+    this.dhsCaseNumber = response.dhsCaseNumber
   }
 
   edit() {
     this.editMode = !this.editMode
   }
 
-  save() {
+  async save() {
     const data = {
       givenName: this.givenName,
       familyName: this.familyName,
