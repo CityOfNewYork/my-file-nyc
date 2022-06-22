@@ -1673,6 +1673,29 @@ export class CityStack extends Stack {
       throttlingSettings: WriteRouteDefaultThrottling,
     })
 
+    // add route and lambda to accept terms of use
+    this.addRoute(api, {
+      name: 'PatchUser',
+      routeKey: 'PATCH /users/{userId}',
+      lambdaFunction: this.createLambda(
+        'PatchUser',
+        pathToApiServiceLambda('users/patchUser'),
+        {
+          dbSecret,
+          layers: [mySqlLayer],
+          extraEnvironmentVariables: [
+            ...authEnvironmentVariables,
+            EnvironmentVariables.ACTIVITY_RECORD_SQS_QUEUE_URL,
+          ],
+          auditLogSqsPermissions: {
+            includeWrite: true,
+          },
+        },
+      ),
+      authorizer,
+      throttlingSettings: WriteRouteDefaultThrottling,
+    })
+
     // add route and lambda to list account delegates
     this.addRoute(api, {
       name: 'ListAccountActivity',

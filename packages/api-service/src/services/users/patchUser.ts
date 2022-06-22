@@ -7,10 +7,9 @@ import {
   UserPermission,
 } from '@/services/users/authorization'
 import { updateUser, User } from '@/models/user'
-import { hasAcceptedTermsOfUse, userToApiUser } from '@/services/users'
+import { userToApiUser } from '@/services/users'
 import { createCustomAuthenticatedApiGatewayHandler } from '@/services/users/middleware'
 import createError from 'http-errors'
-import { submitTermsAcceptedEvent } from '../activity'
 
 connectDatabase()
 
@@ -33,33 +32,15 @@ export const handler = createCustomAuthenticatedApiGatewayHandler(
       ownerId,
       user,
       event,
+      givenName,
+      familyName,
+      dob,
+      dhsCaseNumber,
     } = request as Request
 
-    const {
-      dhsCaseNumber,
-      dob,
-      email,
+    const updatedUser = await updateUser(user.id, {
       familyName,
       givenName,
-    } = JSON.parse(event.body!) as ApiUser;
-
-
-    if (hasAcceptedTermsOfUse(user)) {
-      throw new createError.BadRequest(
-        'terms of use already accepted for user!',
-      )
-    }
-
-    // submit audit activity
-    await submitTermsAcceptedEvent({
-      ownerId,
-      user,
-      event,
-    })
-
-    const updatedUser = await updateUser(user.id, {
-      familyName: familyName as string,
-      givenName: givenName as string,
       dhsCaseNumber,
       dob,
       attributes: {

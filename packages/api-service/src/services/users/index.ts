@@ -83,7 +83,7 @@ export const getUserData = async (
 
   // load in user info from oauth
   const data = await getUserInfo(token)
-  let { given_name: givenName, family_name: familyName, email } = data
+  let { given_name: givenName, family_name: familyName, email, dhsCaseNumber, dob } = data
   const { email_verified } = data
 
   if (!email_verified || email_verified === 'false') {
@@ -114,6 +114,8 @@ export const getUserData = async (
       givenName,
       familyName,
       email,
+      dob,
+      dhsCaseNumber,
       syncTimestamp: timestamp,
     })
   }
@@ -128,6 +130,8 @@ export const getUserData = async (
     givenName,
     familyName,
     email,
+    dhsCaseNumber,
+    dob,
     syncTimestamp: timestamp,
   })
 }
@@ -186,11 +190,15 @@ export const userToApiUser = (user: {
   familyName?: string
   email?: string
   attributes?: any
+  dob?: string,
+  dhsCaseNumber?: string,
 }): ApiUser => ({
   id: user.id,
   givenName: user.givenName || null,
   familyName: user.familyName || null,
   email: user.email || null,
+  dob: user.dob || '',
+  dhsCaseNumber: user.dhsCaseNumber || '',
   name: userName(user),
   termsOfUseAccepted: hasAcceptedTermsOfUse(user),
   links: [],

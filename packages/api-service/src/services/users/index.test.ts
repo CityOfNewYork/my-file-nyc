@@ -16,6 +16,8 @@ describe('getUserData', () => {
     givenName: 'Jane',
     familyName: 'Citizen',
     email: 'jcitizen@example.com',
+    dhsCaseNumber: 'DHS-1001234',
+    dob: '01/01/1980'
   }
 
   beforeEach(() => {
@@ -49,6 +51,8 @@ describe('getUserData', () => {
       family_name: janeCitizenData.familyName,
       email: janeCitizenData.email,
       username: userId,
+      dhsCaseNumber: janeCitizenData.dhsCaseNumber,
+      dob: janeCitizenData.dob,
     }))
     expect(await getUserData(userId, token, issuedAt)).toEqual(
       expect.objectContaining(data),
@@ -72,6 +76,8 @@ describe('getUserData', () => {
       family_name: janeCitizenData.familyName,
       email: janeCitizenData.email,
       username: userId,
+      dhsCaseNumber: janeCitizenData.dhsCaseNumber,
+      dob: janeCitizenData.dob,
     }))
     expect(await getUserData(userId, token, issuedAt)).toEqual(
       expect.objectContaining(data),
@@ -100,6 +106,8 @@ describe('getUserData', () => {
       family_name: data.familyName,
       email: data.email,
       username: userId,
+      dhsCaseNumber: janeCitizenData.dhsCaseNumber,
+      dob: janeCitizenData.dob,
     }))
     expect(await getUserData(userId, token, issuedAt)).toEqual(
       expect.objectContaining(data),
