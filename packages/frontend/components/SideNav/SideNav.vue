@@ -7,6 +7,29 @@
     temporary
     class="a11y-focus-hide"
   >
+    <v-btn
+      text
+      :to="localePath('/dashboard')"
+      class="
+        black--text
+        d-flex
+        text-heading-1
+        align-start
+        py-2
+        no-background-hover
+        mb-1
+        justify-start
+      "
+    >
+      <v-img
+        contain
+        style="max-width: 38px"
+        :src="require('@/assets/images/my-file-logo-head.svg')"
+        class="mr-2 mb-1"
+      />
+      {{ $t('application.title') }}
+    </v-btn>
+
     <NavItemList :items="navItems" />
     <v-footer fixed class="pa-0">
       <!-- Turning off build version and time -->
