@@ -1243,6 +1243,7 @@ export class CityStack extends Stack {
           CorsHttpMethod.OPTIONS,
           CorsHttpMethod.POST,
           CorsHttpMethod.PUT,
+          CorsHttpMethod.PATCH,
         ],
         allowOrigins: corsOrigins,
         allowHeaders: ['authorization', 'content-type'],

@@ -34,6 +34,9 @@ export const handler = createCustomAuthenticatedApiGatewayHandler(
       event,
     } = request as Request
 
+    console.log(request)
+    
+
     const {
       dhsCaseNumber,
       dob,
