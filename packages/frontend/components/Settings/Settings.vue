@@ -77,13 +77,13 @@
       </p>
       <p class="subtitle-1">{{ $t('account.lastName') }}</p>
       <p class="subtitle-1" :key="familyName">
-        {{ accountProfile.familyName }}
+        {{ familyName }}
       </p>
       <p class="subtitle-1">{{ $t('account.dob') }}</p>
-      <p class="subtitle-1" :key="dob">{{ accountProfile.dob }}</p>
+      <p class="subtitle-1" :key="dob">{{ dob }}</p>
       <p class="subtitle-1">{{ $t('account.caseNumber') }}</p>
       <p class="subtitle-1" :key="dhsCaseNumber">
-        {{ accountProfile.dhsCaseNumber }}
+        {{ dhsCaseNumber }}
       </p>
     </div>
   </v-container>
