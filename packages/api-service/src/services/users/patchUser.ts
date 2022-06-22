@@ -32,15 +32,19 @@ export const handler = createCustomAuthenticatedApiGatewayHandler(
       ownerId,
       user,
       event,
-      givenName,
-      familyName,
-      dob,
-      dhsCaseNumber,
     } = request as Request
 
-    const updatedUser = await updateUser(user.id, {
+    const {
+      dhsCaseNumber,
+      dob,
+      email,
       familyName,
       givenName,
+    } = JSON.parse(event.body!) as ApiUser;
+
+    const updatedUser = await updateUser(user.id, {
+      familyName: familyName as string,
+      givenName: givenName as string,
       dhsCaseNumber,
       dob,
       attributes: {
