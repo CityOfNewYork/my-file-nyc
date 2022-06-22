@@ -33,11 +33,16 @@ export const handler = createCustomAuthenticatedApiGatewayHandler(
       ownerId,
       user,
       event,
-      givenName,
-      familyName,
-      dob,
-      dhsCaseNumber,
     } = request as Request
+
+    const {
+      dhsCaseNumber,
+      dob,
+      email,
+      familyName,
+      givenName,
+    } = JSON.parse(event.body!) as ApiUser;
+
 
     if (hasAcceptedTermsOfUse(user)) {
       throw new createError.BadRequest(
@@ -53,8 +58,8 @@ export const handler = createCustomAuthenticatedApiGatewayHandler(
     })
 
     const updatedUser = await updateUser(user.id, {
-      familyName,
-      givenName,
+      familyName: familyName as string,
+      givenName: givenName as string,
       dhsCaseNumber,
       dob,
       attributes: {

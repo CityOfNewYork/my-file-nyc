@@ -10,6 +10,8 @@ type UserInfo = {
   email_verified: 'true' | 'false'
   given_name: string | undefined
   family_name: string | undefined
+  dob: string | undefined
+  dhsCaseNumber: string | undefined
   email: string
   username: string
 }
@@ -46,6 +48,8 @@ const mapResultToUserData = (data: any): UserInfo => {
         validated: email_verified,
         firstName: given_name,
         lastName: family_name,
+        dhsCaseNumber,
+        dob,
       } = data
       return {
         email,
@@ -54,6 +58,8 @@ const mapResultToUserData = (data: any): UserInfo => {
         username,
         family_name,
         given_name,
+        dob,
+        dhsCaseNumber,
       }
     default:
       return data as UserInfo

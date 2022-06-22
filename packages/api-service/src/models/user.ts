@@ -44,6 +44,8 @@ export const updateUser = async (
   id: string,
   user: PartialModelObject<User>,
 ) => {
+  console.log('update user:')
+  console.log(user)
   return await User.query().updateAndFetchById(id, user)
 }
 

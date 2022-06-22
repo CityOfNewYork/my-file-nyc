@@ -16,6 +16,8 @@ const mockUserResponse = (userId: string, termsOfUseAccepted: boolean) => {
       id: userId,
       givenName: userId,
       familyName: userId,
+      dob: '01/01/1980',
+      dhsCaseNumber: 'DHS-1001234',
       attributes: {
         termsOfUseAccepted,
       },
@@ -38,6 +40,8 @@ describe('createCustomAuthenticatedApiGatewayHandler', () => {
       family_name: userId,
       email: userId,
       username: userId,
+      dhsCaseNumber: userId,
+      dob: userId,
     }))
     event = setUserId(userId, createMockEvent())
     middleware.mockClear()
