@@ -39,8 +39,7 @@
         </v-btn>
       </v-row>
     </v-container>
-    <div v-else><Settings :submit="submit" editMode="true" /></div>
-
+    <div v-else-if="!agent"><Settings :submit="submit" editMode="true" /></div>
     <SnackBar v-if="hasAccepted && $auth.loggedIn" />
   </div>
 </template>
@@ -64,6 +63,11 @@ export default class TermsOfUse extends mixins(Navigation) {
   loading = false
   markdown = ''
   step = 0
+  agent = false
+
+  mounted() {
+    this.agent = userStore.isAgent
+  }
 
   created() {
     const locale = this.$i18n.locale
@@ -75,7 +79,12 @@ export default class TermsOfUse extends mixins(Navigation) {
   }
 
   accept() {
-    this.step++
+    if (this.agent) {
+      this.step = 0
+      this.$router.push(this.localePath('/dashboard'))
+    } else {
+      this.step++
+    }
   }
 
   async submit(data: object) {
