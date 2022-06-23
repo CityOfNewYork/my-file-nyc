@@ -151,6 +151,7 @@ export default class UploadButton extends Vue {
           return
         }
       }
+      event.target.files[0].description = this.documentDescription
       this.files = event.target.files
       // this.documentName = event.target.files[0].name
       //   .split('.')
@@ -161,6 +162,7 @@ export default class UploadButton extends Vue {
   }
 
   async uploadDocument() {
+    // this.files[0].description
     snackbarStore.setParams({
       message: 'toast.uploading',
       dismissable: false,
@@ -170,12 +172,10 @@ export default class UploadButton extends Vue {
     snackbarStore.setVisible(true)
 
     this.showDialog = false
-
     const document = await this.$store.dispatch('user/uploadDocument', {
       fileList: this.files,
       name: this.documentName,
-      describtion: this.documentDescription,
-
+      description: this.documentDescription,
       onUploadProgress: (e: ProgressEvent) => {
         snackbarStore.setProgress(Math.round((e.loaded / e.total) * 100))
       },
