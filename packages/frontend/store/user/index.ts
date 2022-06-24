@@ -186,12 +186,14 @@ export default class User extends VuexModule {
   async uploadDocument({
     fileList,
     name,
+    description,
     onUploadProgress = () => {
       // default empty function
     },
   }: {
     fileList: FileList
     name: string
+    description: string
     onUploadProgress?: (e: ProgressEvent) => void
   }): Promise<Document> {
     // FileList has a weird spec, with no iterator. This converts it to an array
@@ -209,13 +211,13 @@ export default class User extends VuexModule {
     }
 
     const hashes = await Promise.all(files.map(hashFile))
-
     const addResponse: AxiosResponse<Document> = await api.user.addUserDocument(
       this.ownerId,
       {
         name,
+        description: description,
         files: files.map((file, i) => ({
-          name: file.name,
+          name: name,
           contentType: file.type as FileContentTypeEnum,
           sha256Checksum: hashes[i],
           contentLength: file.size,
@@ -232,6 +234,7 @@ export default class User extends VuexModule {
 
     await Promise.all(
       addResponse.data.files.map((documentFile, i) => {
+        console.log(documentFile)
         const options: AxiosRequestConfig = {
           onUploadProgress: (e) => {
             uploadProgress[i] = e.loaded
@@ -279,7 +282,6 @@ export default class User extends VuexModule {
       eventAction: 'complete', // we might also want "upload started" or something
       eventLabel: UserRole[this._role!],
     })
-
     return addResponse.data
   }
 
