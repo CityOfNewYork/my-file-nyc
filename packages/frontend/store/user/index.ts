@@ -234,7 +234,6 @@ export default class User extends VuexModule {
 
     await Promise.all(
       addResponse.data.files.map((documentFile, i) => {
-        console.log(documentFile)
         const options: AxiosRequestConfig = {
           onUploadProgress: (e) => {
             uploadProgress[i] = e.loaded
