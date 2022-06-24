@@ -70,7 +70,9 @@
                   outlined
                   :placeholder="$t('document.enterNamePlaceholder')"
                 />
-                <p class="subtitle-1 mt-10">{{ $t('document.description') }}</p>
+                <p class="subtitle-1 mt-10">
+                  {{ $t('document.enterDescriptionPlaceholder') }}
+                </p>
                 <v-text-field
                   v-model="documentDescription"
                   outlined

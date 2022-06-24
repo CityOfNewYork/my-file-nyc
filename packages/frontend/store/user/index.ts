@@ -215,9 +215,9 @@ export default class User extends VuexModule {
       this.ownerId,
       {
         name,
+        description: description,
         files: files.map((file, i) => ({
           name: name,
-          description: description,
           contentType: file.type as FileContentTypeEnum,
           sha256Checksum: hashes[i],
           contentLength: file.size,
