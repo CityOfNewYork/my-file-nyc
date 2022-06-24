@@ -46,11 +46,11 @@ export const handler = createAuthenticatedApiGatewayHandler(
       ownerId,
       userId,
       user,
-      body,
       userPermissions,
       event,
     } = request as Request
 
+    const body = JSON.parse(request.event.body!) as DocumentCreate;
     const documentCount = await countDocumentsByOwnerId(ownerId)
     if (documentCount >= MaxDocumentsPerUser) {
       throw new createError.BadRequest(
