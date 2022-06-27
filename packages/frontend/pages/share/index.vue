@@ -5,21 +5,17 @@
     :touch="onSwipe"
   >
     <AppBar :empty="$vuetify.breakpoint.xs">
-      <template v-if="$vuetify.breakpoint.xs" v-slot:nav-action>
-        <BackButton v-show="step === 0" tabindex="0" class="mt-1 ml-5" />
+      <template v-if="$vuetify.breakpoint.smAndDown" v-slot:nav-action>
         <v-btn
-          v-show="step > 0"
-          icon
+          text
           :title="`${$t('navigation.back')}`"
-          class="a11y-focus mt-1 ml-5"
+          class="a11y-focus body-1 mx-2 mr-1"
           tabindex="0"
-          @click="prev"
+          @click="prevOrBack"
         >
-          <v-icon small class="mr-2">$arrow-left</v-icon>
-          <span class="px-2 grey-8--text" style="font-size: 22px">
-            {{ $t('navigation.back') }}
-          </span>
+          <v-icon small>$chevron-left</v-icon>
         </v-btn>
+        <v-toolbar-title>{{ $t('navigation.back') }}</v-toolbar-title>
       </template>
       <template v-if="$vuetify.breakpoint.xs" v-slot:actions>
         <v-btn
@@ -39,11 +35,10 @@
           tabindex="0"
           @click="prevOrBack"
         >
-          <v-icon small>$arrow-left</v-icon>
-          <span class="px-2 grey-8--text" style="font-size: 22px">
-            {{ $t('navigation.back') }}
-          </span>
+          <v-icon small>$chevron-left</v-icon>
         </v-btn>
+        <v-toolbar-title>{{ $t('navigation.back') }}</v-toolbar-title>
+
         <!-- <v-btn
           v-show="step != 2"
           color="primary"
@@ -287,7 +282,6 @@
         {{ $t(step === 1 ? 'controls.share' : 'controls.continue') }}
       </v-btn>
     </v-window-item>
-    <FooterLinks />
   </v-window>
 </template>
 
@@ -335,7 +329,10 @@ export default class Share extends Vue {
   async mounted() {
     const collections = await this.$store.dispatch('user/getCollections')
     this.name = this.$t('sharing.defaultName', {
-      date: format(Date.now(), 'LLL d, yyyy - k:mm'),
+      date: format(Date.now(), 'LLL d, yyyy k:mm').replace(
+        /(?<=^.{13})/,
+        'at ',
+      ),
     }) as string
 
     // we wait until mounted to assign this since jest cannot mock $config
@@ -360,7 +357,7 @@ export default class Share extends Vue {
 
   prev() {
     this.step -= this.step > 0 ? 1 : 0
-    ;(this.$refs.observer as any).reset()
+    // ;(this.$refs.observer as any).reset()
   }
 
   prevOrBack() {

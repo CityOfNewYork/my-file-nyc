@@ -1,12 +1,19 @@
 <template>
   <v-container v-if="editMode" class="pa-8">
-    <div class="mt-1 v-toolbar__title">
-      {{ `${$t('navigation.settings')}` }}
+    <div class="mt-1 v-toolbar__title" style="text-align: center">
+      <p>{{ hasAccepted ? '' : `${$t('navigation.welcomeFirstRun')}` }}</p>
+      <p>
+        {{
+          hasAccepted
+            ? `${$t('navigation.settings')}`
+            : `${$t('navigation.settingsFirstRun')}`
+        }}
+      </p>
     </div>
     <ValidationObserver ref="observer">
       <v-form @submit.prevent>
         <ValidationProvider rules="required|max:255">
-          <p class="subtitle-1 mt-2">
+          <p class="subtitle-1 mt-1">
             {{ $t('account.firstName') }}
           </p>
           <v-text-field
@@ -25,11 +32,45 @@
             "
           />
           <p class="subtitle-1">{{ $t('account.dob') }}</p>
-          <v-text-field
+
+          <div>
+            <v-menu
+              ref="menu"
+              v-model="menu"
+              :close-on-content-click="false"
+              transition="scale-transition"
+              offset-y
+              min-width="auto"
+            >
+              <template v-slot:activator="{ on, attrs }">
+                <v-text-field
+                  v-model="dob"
+                  label="Birthday date"
+                  prepend-icon="mdi-calendar"
+                  readonly
+                  v-bind="attrs"
+                  v-on="on"
+                ></v-text-field>
+              </template>
+              <v-date-picker
+                v-model="dob"
+                :active-picker.sync="activePicker"
+                :max="
+                  new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
+                    .toISOString()
+                    .substr(0, 10)
+                "
+                min="1950-01-01"
+                @change="save"
+              ></v-date-picker>
+            </v-menu>
+          </div>
+
+          <!-- <v-text-field
             outlined
             v-model="dob"
             :placeholder="accountProfile.dob ? '' : $t('account.dob')"
-          />
+          /> -->
           <p class="subtitle-1">{{ $t('account.caseNumber') }}</p>
           <v-text-field
             outlined
@@ -43,13 +84,13 @@
     </ValidationObserver>
     <v-btn
       color="primary white--text"
-      class="px-8 d-flex justify-center mb-"
+      class="px-8 d-flex justify-center"
       style="
-        bottom: 2%;
         background-color: #2157e4;
         height: 3rem;
         align-items: center;
         margin: auto;
+        bottom: 1rem;
       "
       @click="save"
     >
@@ -61,31 +102,50 @@
       <div class="pt-2 v-toolbar__title">
         {{ `${$t('navigation.settings')}` }}
       </div>
-      <v-btn
-        color="primary white--text"
-        :class="$vuetify.breakpoint.smAndUp ? 'px-12' : 'px-8'"
-        style="background-color: #2157e4; height: 3rem"
-        @click="edit"
-      >
-        {{ $t('controls.edit') }}
-      </v-btn>
     </div>
-    <div class="mt-10">
-      <p class="subtitle-1">{{ $t('account.firstName') }}</p>
-      <p class="subtitle-1" :key="givenName">
-        {{ givenName }}
-      </p>
-      <p class="subtitle-1">{{ $t('account.lastName') }}</p>
-      <p class="subtitle-1" :key="familyName">
-        {{ familyName }}
-      </p>
-      <p class="subtitle-1">{{ $t('account.dob') }}</p>
-      <p class="subtitle-1" :key="dob">{{ dob }}</p>
-      <p class="subtitle-1">{{ $t('account.caseNumber') }}</p>
-      <p class="subtitle-1" :key="dhsCaseNumber">
-        {{ dhsCaseNumber }}
-      </p>
+    <div
+      :class="
+        $vuetify.breakpoint.smAndUp
+          ? 'mt-10 d-flex justify-space-between'
+          : 'mt-10'
+      "
+    >
+      <div>
+        <p class="subtitle-1">{{ $t('account.firstName') }}</p>
+        <p :key="givenName">
+          {{ givenName }}
+        </p>
+      </div>
+      <div>
+        <p class="subtitle-1">{{ $t('account.lastName') }}</p>
+        <p :key="familyName">
+          {{ familyName }}
+        </p>
+      </div>
+      <div>
+        <p class="subtitle-1">{{ $t('account.dob') }}</p>
+        <p :key="dob">{{ dob }}</p>
+      </div>
+      <div>
+        <p class="subtitle-1">{{ $t('account.caseNumber') }}</p>
+        <p :key="dhsCaseNumber">
+          {{ dhsCaseNumber }}
+        </p>
+      </div>
     </div>
+    <v-btn
+      color="primary white--text"
+      class="px-8 d-flex justify-center -10"
+      style="
+        background-color: #2157e4;
+        height: 3rem;
+        align-items: center;
+        margin: auto;
+      "
+      @click="edit"
+    >
+      {{ $t('controls.edit') }}
+    </v-btn>
   </v-container>
 </template>
 
@@ -101,6 +161,8 @@ import { ValidationObserver, ValidationProvider } from 'vee-validate'
 })
 export default class Settings extends Vue {
   @Prop({ default: () => () => {} }) submit: (data: object) => void
+  @Prop({ default: () => () => {} }) hasAccepted: () => void
+
   @Prop({ default: false }) editMode: boolean
   @Prop({ default: {} }) accountProfile: any
 
@@ -120,6 +182,7 @@ export default class Settings extends Vue {
   dhsCaseNumber = ''
 
   mounted() {
+    console.log(this.hasAccepted)
     this.location = window.location.pathname
 
     this.givenName = this.accountProfile.givenName

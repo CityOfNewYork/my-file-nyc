@@ -71,7 +71,7 @@
                   :placeholder="$t('document.enterNamePlaceholder')"
                 />
                 <p class="subtitle-1 mt-10">
-                  {{ $t('document.enterDescriptionPlaceholder') }}>
+                  {{ $t('document.enterDescriptionPlaceholder') }}
                 </p>
                 <v-text-field
                   v-model="documentDescription"

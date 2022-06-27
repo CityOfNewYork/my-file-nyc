@@ -39,7 +39,9 @@
         </v-btn>
       </v-row>
     </v-container>
-    <div v-else-if="!agent"><Settings :submit="submit" editMode="true" /></div>
+    <div v-else-if="!agent">
+      <Settings :hasAccepted="hasAccepted" :submit="submit" editMode="true" />
+    </div>
     <SnackBar v-if="hasAccepted && $auth.loggedIn" />
   </div>
 </template>

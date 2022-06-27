@@ -5,11 +5,7 @@
     <AppBar :empty="false">
       <template v-slot:extensions>
         <div class="d-flex align-center">
-          <BackButton
-            v-if="step === 'top-level'"
-            tabindex="0"
-            class="ml-5 mr-5"
-          />
+          <BackButton v-if="step === 'top-level'" tabindex="0" />
 
           <!-- <v-btn
             v-else

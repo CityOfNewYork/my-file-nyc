@@ -73,7 +73,12 @@
         class="white--text"
         :to="localePath('/account')"
       >
-        <v-icon left>$cog</v-icon>
+        <v-icon
+          left
+          style="filter: invert(40%) sepia(50%) saturate(0%) hue-rotate(20deg) brightness(200%) contrast(119%"
+        >
+          $profile
+        </v-icon>
         {{ $t('navigation.settings') }}
       </v-btn>
       <v-btn
