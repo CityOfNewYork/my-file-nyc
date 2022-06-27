@@ -15,7 +15,7 @@
     </AppBar>
 
     <v-main>
-      <DesktopSideBar />
+      <!-- <DesktopSideBar /> -->
 
       <SharedOwnerList :inbox="getAgeencyEmail" />
       <!-- <SharedOwnerList inbox="Personal email" /> -->

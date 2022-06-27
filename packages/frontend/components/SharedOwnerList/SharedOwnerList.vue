@@ -1,7 +1,10 @@
 <template>
   <div v-if="!loading">
     <template v-if="owners.length">
-      <div class="d-flexm mt-3 ml-9 p-5">Shared with: {{ inbox }}</div>
+      <div class="d-flexm mt-3 ml-9 p-5">
+        <b>{{ $t('agent.sharedWith') }}</b>
+        {{ inbox }}
+      </div>
       <v-data-table
         v-show="$vuetify.breakpoint.smAndUp"
         :disable-pagination="true"
@@ -29,7 +32,7 @@
 
           <v-list-item-content>
             <v-list-item-title class="subtitle-1">
-              {{ owner.name }}
+              {{ owner.firstName + ' ' + owner.lastName }}
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
@@ -150,7 +153,6 @@ export default class SharedOwnerList extends Vue {
   get owners() {
     // TODO: created date could be any of the dates of the collections shared by an owner
     //       not necessarily most or least recent
-    console.log(userStore.sharedCollections)
     return userStore.sharedCollections
       .filter(
         (

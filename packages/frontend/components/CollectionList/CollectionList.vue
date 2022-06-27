@@ -89,18 +89,18 @@ export default class CollectionList extends Vue {
         width: '3rem',
       },
       {
-        text: this.$t('name') as string,
+        text: this.$t('sharedFolder.collectionTableTitle') as string,
         class: 'blue-super-light',
         align: 'start',
         sortable: true,
         value: 'name',
       },
-      {
-        text: this.$t('dateAdded') as string,
-        class: 'blue-super-light',
-        value: 'createdDate',
-        sortable: true,
-      },
+      // {
+      //   text: this.$t('dateAdded') as string,
+      //   class: 'blue-super-light',
+      //   value: 'createdDate',
+      //   sortable: true,
+      // },
     ]
     await this.$store.dispatch('user/getCollections')
     this.selected = new Array(userStore.collections.length)

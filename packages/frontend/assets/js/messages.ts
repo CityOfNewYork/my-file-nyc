@@ -12,7 +12,7 @@ export default merge(
       dateAdded: 'Date Added',
 
       application: {
-        title: 'MyFile NYC',
+        title: 'My File NYC',
       },
 
       toast: {
@@ -40,7 +40,9 @@ export default merge(
       navigation: {
         about: 'About',
         account: 'My Account Managers',
-        settings: 'Settings',
+        settings: 'My Profile',
+        settingsFirstRun: 'Please answer a few questions about yourself to get started.',
+        welcomeFirstRun: 'Welcome to My File NYC!',
         activity: 'Activity Log',
         back: 'Back',
         clients: 'Clients', // navigate back to agent view desktop
@@ -77,6 +79,7 @@ export default merge(
         previewOf: 'Preview of',
         uploadFirst: 'Add your first file', // label on the empty state upload button
         thumbnailOf: 'Thumbnail of',
+        fileName: "File Name",
       },
 
       controls: {
@@ -112,8 +115,7 @@ export default merge(
 
       // All copy related to the create shared folder flow
       sharing: {
-        defaultName: 'Shared Docs {date}',
-
+        defaultName: 'Documents you shared with DHS on {date}',
         confirmSharedFiles: 'Documents to be shared | Documents to be shared',
         plusNMore: '+ {count} more',
         recipients: 'Recipients',
@@ -206,6 +208,9 @@ export default merge(
 
         // empty state for list of clients who have shared collections with user
         noSharedDocuments: "You haven't received any shared files yet.",
+
+        // title for collection table name column
+        collectionTableTitle: "Files you've shared, organized by date",
       },
 
       cbo: {
@@ -227,11 +232,11 @@ export default merge(
       },
 
       agent: {
-        clientFirstNameLabel: 'First name', // label of client first name column in agent view
+        clientFirstNameLabel: 'First Name', // label of client first name column in agent view
         clientLastNameLabel: 'Last Name', // label of client last name column in agent view
-        clientDob: 'DOB', // label of client date of birth column in agent view
+        clientDob: 'Date of Birth', // label of client date of birth column in agent view
         clientCaseNum: 'Case Number', // label of client case number column in agent view
-        clientEmail: 'Client Email', // label of client case number column in agent view
+        clientEmail: 'Email', // label of client case number column in agent view
         dateShared: 'Date Shared', // label in side bar
         noClientActionLabel: 'Not a government employee?',
         noClientActionText:
@@ -240,6 +245,7 @@ export default merge(
         selectClient: 'Select client to access shared files',
         sharedBy: 'Shared By', // label in side bar
         sharedFolderNameLabel: 'Name', // label of shared folder name column in agent view
+        sharedWith: 'Shared With: ', // promt for agency email
       },
 
       landing: {

@@ -1,15 +1,15 @@
 <template>
-  <v-btn
-    :title="`${$t('navigation.back')}`"
-    icon
-    class="a11y-focus ml-2"
-    @click="back"
-  >
-    <v-icon small>$arrow-left</v-icon>
-    <span class="px-2 grey-8--text" style="font-size: 22px">
-      {{ $t('navigation.back') }}
-    </span>
-  </v-btn>
+  <v-toolbar flat>
+    <v-btn
+      :title="`${$t('navigation.back')}`"
+      icon
+      class="mr-2 a11y-focus"
+      @click="back"
+    >
+      <v-icon small>$chevron-left</v-icon>
+    </v-btn>
+    <v-toolbar-title>{{ $t('navigation.back') }}</v-toolbar-title>
+  </v-toolbar>
 </template>
 
 <script lang="ts">

@@ -99,7 +99,7 @@ export default class SideNav extends mixins(Navigation) {
     {
       label: 'navigation.settings',
       to: '/account',
-      icon: '$cog',
+      icon: '$profile',
     },
     this.activityNavItem,
     {

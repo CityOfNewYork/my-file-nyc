@@ -12,9 +12,11 @@
     <v-img
       v-if="$vuetify.breakpoint.smAndUp"
       :class="
-        $vuetify.breakpoint.smAndUp ? 'ml-1 d-flex' : 'd-flex ml-1 mr-3 mt-1'
+        $vuetify.breakpoint.smAndUp
+          ? 'ml-2 mt-1 mb-1 d-flex'
+          : 'd-flex ml-1 mr-3 mt-1'
       "
-      style="max-width: 25rem; filter: invert(1)"
+      style="max-width: 23rem; filter: invert(1)"
       :src="require('@/assets/images/city-logo-footer.svg')"
     />
     <div
@@ -34,7 +36,7 @@
         <v-img
           v-if="$vuetify.breakpoint.smAndDown"
           contain
-          style="max-width: 38px"
+          style="max-width: 34px"
           :src="require('@/assets/images/my-file-logo-head.svg')"
           class="mr-2 mb-1 ml-5"
         />

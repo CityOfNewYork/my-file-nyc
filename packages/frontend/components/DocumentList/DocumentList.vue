@@ -114,7 +114,7 @@ export default class DocumentList extends Vue {
     // We have to define headers in mounted function since this.$i18n is undefined otherwise
     this.headers = [
       {
-        text: this.$t('sharing.selectFilesTitle') as string,
+        text: this.$t('') as string,
         class: 'blue-super-light pl-10',
         align: 'start',
         sortable: false,
@@ -122,7 +122,7 @@ export default class DocumentList extends Vue {
         width: '3rem',
       },
       {
-        text: this.$t('Name') as string,
+        text: this.$t('document.fileName') as string,
         class: 'blue-super-light',
         align: 'start',
         sortable: true,
