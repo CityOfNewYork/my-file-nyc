@@ -14,29 +14,33 @@
       <v-form @submit.prevent>
         <ValidationProvider rules="required|max:255">
           <p class="subtitle-1 mt-1">
-            {{ $t('account.firstName') }}
+            {{ $t('account.whatIsYourFirstName') }}
           </p>
           <v-text-field
+            required
+            :rules="rules.required"
             outlined
             v-model="givenName"
+            type="text"
             :placeholder="
               accountProfile.givenName ? '' : $t('account.firstName')
             "
           />
-          <p class="subtitle-1">{{ $t('account.lastName') }}</p>
+          <p class="subtitle-1">{{ $t('account.whatIsYourLastName') }}</p>
           <v-text-field
+            required
+            :rules="rules.required"
             outlined
             v-model="familyName"
+            type="text"
             :placeholder="
               accountProfile.familyName ? '' : $t('account.lastName')
             "
           />
-          <p class="subtitle-1">{{ $t('account.dob') }}</p>
+          <p class="subtitle-1">{{ $t('account.whatIsYourDob') }}</p>
 
           <div>
             <v-menu
-              ref="menu"
-              v-model="menu"
               :close-on-content-click="false"
               transition="scale-transition"
               offset-y
@@ -44,8 +48,10 @@
             >
               <template v-slot:activator="{ on, attrs }">
                 <v-text-field
+                  required
+                  :rules="rules.required"
                   v-model="dob"
-                  label="Birthday date"
+                  label="Select your birthday"
                   prepend-icon="mdi-calendar"
                   readonly
                   v-bind="attrs"
@@ -54,14 +60,12 @@
               </template>
               <v-date-picker
                 v-model="dob"
-                :active-picker.sync="activePicker"
                 :max="
                   new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
                     .toISOString()
                     .substr(0, 10)
                 "
-                min="1950-01-01"
-                @change="save"
+                min="1920-01-01"
               ></v-date-picker>
             </v-menu>
           </div>
@@ -71,14 +75,25 @@
             v-model="dob"
             :placeholder="accountProfile.dob ? '' : $t('account.dob')"
           /> -->
-          <p class="subtitle-1">{{ $t('account.caseNumber') }}</p>
-          <v-text-field
-            outlined
-            v-model="dhsCaseNumber"
-            :placeholder="
-              accountProfile.caseNumber ? '' : $t('account.caseNumber')
-            "
-          />
+
+          <v-tooltip top>
+            <template v-slot:activator="{ on, attrs }">
+              <div v-bind="attrs" v-on="on">
+                <p class="subtitle-1">
+                  {{ $t('account.whatIsYourDshCaseNumber') }}
+                </p>
+                <v-text-field
+                  outlined
+                  v-model="dhsCaseNumber"
+                  type="text"
+                  :placeholder="
+                    accountProfile.caseNumber ? '' : $t('account.caseNumber')
+                  "
+                />
+              </div>
+            </template>
+            <span>{{ $t('account.dhsShow') }}</span>
+          </v-tooltip>
         </ValidationProvider>
       </v-form>
     </ValidationObserver>
@@ -92,6 +107,7 @@
         margin: auto;
         bottom: 1rem;
       "
+      :disabled="isValid"
       @click="save"
     >
       {{ $t('controls.save') }}
@@ -172,6 +188,12 @@ export default class Settings extends Vue {
       familyName: this.familyName,
       dob: this.dob,
       dhsCaseNumber: this.dhsCaseNumber,
+      editMode: this.editMode,
+      rules: {
+        required: [
+          (v: any) => (v || '').length > 0 || 'This field is required',
+        ],
+      },
     }
   }
 
@@ -182,7 +204,6 @@ export default class Settings extends Vue {
   dhsCaseNumber = ''
 
   mounted() {
-    console.log(this.hasAccepted)
     this.location = window.location.pathname
 
     this.givenName = this.accountProfile.givenName
@@ -197,6 +218,15 @@ export default class Settings extends Vue {
     this.familyName = response.familyName
     this.dob = response.dob
     this.dhsCaseNumber = response.dhsCaseNumber
+    this.editMode = !this.editMode
+  }
+
+  get isValid() {
+    if (!!this.givenName && !!this.familyName && !!this.dob) {
+      return false
+    } else {
+      return true
+    }
   }
 
   edit() {
@@ -213,7 +243,6 @@ export default class Settings extends Vue {
 
     if (this.location == '/account') {
       this.patchUser(data)
-      this.editMode = !this.editMode
     } else {
       this.submit(data)
     }
