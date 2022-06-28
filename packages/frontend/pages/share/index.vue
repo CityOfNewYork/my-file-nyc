@@ -221,12 +221,12 @@
           </p>
           <v-img
             img="role"
-            :alt="`${$t('cityLogoFooter')}`"
-            :src="cityLogoFooter"
+            :alt="`${$t('dhsLogo')}`"
+            :src="dhsLogo"
             :style="
               this.$vuetify.breakpoint.smAndDown
-                ? `width: 14rem`
-                : 'width: 27rem;'
+                ? `width: 14rem; margin-left: 3rem`
+                : 'width: 27rem; margin-left: 3rem'
             "
           />
           <!-- <v-card
@@ -270,7 +270,7 @@
       </div>
       <v-btn
         color="primary"
-        class="body-1 my-2 mx-auto d-flex"
+        class="body-1 my-2 mt-3 mx-auto d-flex"
         :style="
           $vuetify.breakpoint.smAndDown
             ? 'width: 100%; position: fixed; bottom: -0.5rem;'
@@ -343,8 +343,8 @@ export default class Share extends Vue {
       this.individualEmailAddresses.push(this.$config.agencyEmail)
   }
 
-  get cityLogoFooter(): string {
-    return require('@/assets/images/city-logo-footer.svg')
+  get dhsLogo(): string {
+    return require('@/assets/images/dhs-logo.svg')
   }
 
   next() {

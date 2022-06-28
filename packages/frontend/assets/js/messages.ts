@@ -108,9 +108,14 @@ export default merge(
       account: {
         language: 'Language', // open language selector
         firstName: 'First Name',
+        whatIsYourFirstName: 'What is your first name?',
         lastName: 'Last Name',
+        whatIsYourLastName: 'What is your last or family name?',
         dob: 'Date of Birth',
-        caseNumber: 'Case Number'
+        whatIsYourDob: 'When were you born?',
+        caseNumber: 'Case Number',
+        whatIsYourDshCaseNumber: 'What is your DHS Case Number?',
+        dhsShow: 'This number is given to you by DHS after you begin intake. If you don’t have one yet you can leave this blank.',
       },
 
       // All copy related to the create shared folder flow
