@@ -905,15 +905,17 @@ export class CityStack extends Stack {
     this.bucketNames[appName] = bucketName
 
     // Create App Bucket
-    const bucket = new Bucket(this, `${appName}Bucket`, {
+    // const bucket = new Bucket(this, `${appName}Bucket`, {
       // blockPublicAccess: {
       //   blockPublicAcls: false,
       //   blockPublicPolicy: false,
       //   ignorePublicAcls: false,
       //   restrictPublicBuckets: false,
       // },
-      bucketName,
-    })
+    //   bucketName,
+    // })
+
+    const bucket = Bucket.fromBucketName(this, `${appName}Bucket`, bucketName);
 
     // Create App Origin Access Identity
     // const originAccessIdentity = new OriginAccessIdentity(
@@ -1207,6 +1209,7 @@ export class CityStack extends Stack {
         'ApiDomainCertificate',
         certificateArn,
       )
+      console.log(`\n\n\n-------- API DOMAIN --------\n${domain}\n\n\n`)
       const domainMapping = new DomainName(this, 'ApiDomainName', {
         domainName: domain,
         certificate: certificate,
@@ -2348,7 +2351,7 @@ export class CityStack extends Stack {
       code: Code.fromAsset(
         join(__dirname, '..', '..', 'api-service', 'dist', 'migrator'),
       ),
-      functionName: 'db-migrator',
+      functionName: `db-migrator-${process.env.DEPLOYMENT_TARGET}`,
       handler: 'index.handler',
       runtime: Runtime.NODEJS_14_X,
       vpc: this.lambdaVpc,
