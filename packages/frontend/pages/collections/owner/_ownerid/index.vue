@@ -6,7 +6,7 @@
 
     <DesktopSideBar />
 
-    <SideNav />
+    <!-- <SideNav /> -->
 
     <SharedCollectionList :owner-id="$route.params.ownerid" class="ma-8" />
   </div>
