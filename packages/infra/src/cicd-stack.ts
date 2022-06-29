@@ -863,16 +863,23 @@ export class CiCdStack extends Stack {
     cityStacksProps.map((stackProps) => {
       const { name, props } = stackProps
 
-      // find auth stack, if any
-      const authStack = props.authStackName
-        ? (createdStacks.find((cs) => cs.name == props.authStackName)
-            ?.stack as AuthStack)
-        : undefined
+console.log('creating City Stack...')
+console.log(`Stack Props Config: ${props}`)
 
-      // find data store stack
-      const dataStoreStack = createdStacks.find(
-        (cs) => cs.name == props.dataStoreStackName,
-      )?.stack as DataStoreStack
+// find auth stack, if any
+const authStack = props.authStackName
+? (createdStacks.find((cs) => cs.name == props.authStackName)
+?.stack as AuthStack)
+: undefined
+
+console.log(`authStack: ${authStack}`)
+
+// find data store stack
+const dataStoreStack = createdStacks.find(
+  (cs) => cs.name == props.dataStoreStackName,
+  )?.stack as DataStoreStack
+  
+  console.log(`dataStoreStack: ${dataStoreStack}`)
 
       // add stack
       const stack = new CityStack(app, name, {
