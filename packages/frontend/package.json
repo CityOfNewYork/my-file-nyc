@@ -15,7 +15,8 @@
     "test": "jest",
     "storybook": "yarn nuxt storybook",
     "new": "HYGEN_TMPLS=templates hygen new",
-    "deploy": " . ./params.env && ./build-dotenv.js && yarn generate && aws s3 sync ./dist/$OUTPUT_DIR/ s3://$UI_BUCKETNAME/ && aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DIST_ID --paths \"/*\""
+    "deploy-dev": " . ./params.env && ./build-dotenv.js && yarn generate && aws s3 sync ./dist/$OUTPUT_DIR/ s3://$UI_BUCKETNAME/ && aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DIST_ID --paths \"/*\"",
+    "deploy-staging": "DEPLOYMENT_TARGET=staging . ./params.env && ./build-dotenv.js && yarn generate && aws s3 sync ./dist/$OUTPUT_DIR/ s3://$UI_BUCKETNAME/ && aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DIST_ID --paths \"/*\""
   },
   "dependencies": {
     "@babel/plugin-proposal-decorators": "^7.10.5",
