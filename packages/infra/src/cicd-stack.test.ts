@@ -21,7 +21,12 @@ test.skip('Default Stack', () => {
     developStageConfiguration: {
       dataStoreStackProps: {
         name: 'DataStoreStack',
-        props: {},
+        props: {
+          awsAccountEnv: {
+            vpcId: '',
+            vpcSubnets: ''
+          }
+        },
       },
     },
   })
