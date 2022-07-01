@@ -8,6 +8,7 @@
   "scripts": {
     "local-dev": " . ./params.env && ./build-dotenv.js && nuxt-ts",
     "local-staging": "DEPLOYMENT_TARGET=staging . ./params.env && ./build-dotenv.js && nuxt-ts",
+    "local-prod": "DEPLOYMENT_TARGET=prod . ./params.env && ./build-dotenv.js && nuxt-ts",
     "build": " . ./params.env && ./build-dotenv.js && nuxt-ts build",
     "start": " . ./params.env && ./build-dotenv.js && nuxt-ts start",
     "generate": " . ./params.env && ./build-dotenv.js && nuxt-ts generate",
@@ -16,7 +17,8 @@
     "storybook": "yarn nuxt storybook",
     "new": "HYGEN_TMPLS=templates hygen new",
     "deploy-dev": " . ./params.env && ./build-dotenv.js && yarn generate && aws s3 sync ./dist/$OUTPUT_DIR/ s3://$UI_BUCKETNAME/ && aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DIST_ID --paths \"/*\"",
-    "deploy-staging": "DEPLOYMENT_TARGET=staging . ./params.env && ./build-dotenv.js && yarn generate && aws s3 sync ./dist/$OUTPUT_DIR/ s3://$UI_BUCKETNAME/ && aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DIST_ID --paths \"/*\""
+    "deploy-staging": "DEPLOYMENT_TARGET=staging . ./params.env && ./build-dotenv.js && yarn generate && aws s3 sync ./dist/$OUTPUT_DIR/ s3://$UI_BUCKETNAME/ && aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DIST_ID --paths \"/*\"",
+    "deploy-prod": "DEPLOYMENT_TARGET=prod . ./params.env && ./build-dotenv.js && yarn generate && aws s3 sync ./dist/$OUTPUT_DIR/ s3://$UI_BUCKETNAME/ && aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DIST_ID --paths \"/*\""
   },
   "dependencies": {
     "@babel/plugin-proposal-decorators": "^7.10.5",

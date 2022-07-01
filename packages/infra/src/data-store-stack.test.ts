@@ -11,6 +11,10 @@ test('Minimum Stack', () => {
   const app = new cdk.App()
   // WHEN
   const stack = new DataStoreStack(app, 'MyTestDataStoreStack', {
+    awsAccountEnv: {
+      vpcId: '',
+      vpcSubnets: ''
+    },
     rdsConfig: {
       backupRetentionDays: 1,
     },
@@ -26,6 +30,10 @@ test('Default Stack', () => {
   const app = new cdk.App()
   // WHEN
   const stack = new DataStoreStack(app, 'MyTestDataStoreStack', {
+    awsAccountEnv: {
+      vpcId: '',
+      vpcSubnets: ''
+    },
     rdsConfig: {
       backupRetentionDays: 1,
     },

@@ -14,9 +14,18 @@ test('Fails validation for auth stack', () => {
   const authStack = new AuthStack(app, 'MyTestAuthStack', {
     userPoolName: 'MyTestAuthStack',
   })
-  const dataStoreStack = new DataStoreStack(app, 'MyTestDataStoreStack', {})
+  const dataStoreStack = new DataStoreStack(app, 'MyTestDataStoreStack', {
+    awsAccountEnv: {
+      vpcId: '',
+      vpcSubnets: ''
+    }
+  })
   expect(() => {
     new CityStack(app, 'MyTestStack1', {
+      awsAccountEnv: {
+        vpcId: '',
+        vpcSubnets: ''
+      },
       dataStoreStack,
       emailSender: {
         address: 'myemail',
@@ -30,8 +39,17 @@ test('Fails validation for auth stack', () => {
 test('Default Stack', () => {
   const app = new cdk.App()
   // WHEN
-  const dataStoreStack = new DataStoreStack(app, 'MyTestDataStoreStack', {})
+  const dataStoreStack = new DataStoreStack(app, 'MyTestDataStoreStack', {
+    awsAccountEnv: {
+      vpcId: '',
+      vpcSubnets: ''
+    }
+  })
   const stack = new CityStack(app, 'MyTestStack', {
+    awsAccountEnv: {
+      vpcId: '',
+      vpcSubnets: ''
+    },
     dataStoreStack,
     jwtAuth: {
       audience: ['https://my-audience.com'],
