@@ -121,9 +121,7 @@
     </div>
     <div
       :class="
-        $vuetify.breakpoint.smAndUp
-          ? 'mt-10 d-flex justify-space-between'
-          : 'mt-10'
+        $vuetify.breakpoint.smAndUp ? 'mt-10  justify-space-between' : 'mt-10'
       "
     >
       <div>
