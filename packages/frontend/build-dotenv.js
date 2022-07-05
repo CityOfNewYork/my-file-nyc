@@ -43,7 +43,7 @@ SENTRY_DSN=${process.env.SENTRY_DSN}
 AGENCY_EMAIL_DOMAINS_WHITELIST=${process.env.AGENCY_EMAIL_DOMAINS_WHITELIST}
 
 # DHS email
-export AGENCY_EMAIL=${process.env.AGENCY_EMAIL}
+AGENCY_EMAIL=${process.env.AGENCY_EMAIL}
 
 # Content Security Policy source values
 # CSP_CONNECT_SRC=https://s3.us-east-1.amazonaws.com,https://nycstaging-documentsbucket9ec9deb9-1p3yvyeegriek.s3.us-east-1.amazonaws.com,https://*.sentry-cdn.com,https://*.sentry.io,https://browser.sentry-cdn.com,https://www.google-analytics.com
