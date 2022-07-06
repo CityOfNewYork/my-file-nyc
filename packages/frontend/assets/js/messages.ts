@@ -20,10 +20,10 @@ export default merge(
         delegateRemoved: 'Client Removed',
         downloadLoadingState: 'Preparing Download',
         sharingComplete: 'Sharing Complete',
-        uploading: 'Adding File...', // displayed while a file is uploading
+        uploading: 'Adding Document...', // displayed while a file is uploading
         uploadComplete: 'Upload Complete',
-        fileDeletedConfirmation: 'File Deleted',
-        fileTooLarge: 'File too large (must be < 10MB)',
+        fileDeletedConfirmation: 'Document Deleted',
+        fileTooLarge: 'Document too large (must be < 10MB)',
       },
 
       login: {
@@ -61,25 +61,25 @@ export default merge(
 
       document: {
         // This is the title of the confirmation dialog for deleting a document
-        deleteConfirmationTitle: 'Delete this file?',
+        deleteConfirmationTitle: 'Delete this document?',
         // This is the body content of the confirmation dialog for deleting a document
         deleteConfirmationBody:
-          'Anyone with shared access will no longer be able to view this file. This cannot be undone.',
+          'Anyone with shared access will no longer be able to view this document. This cannot be undone.',
         documentMenu: 'Document menu',
         documentOptions: 'Options',
         downloadZip: 'Download All',
         downloadPdf: 'Download PDF',
         description: 'Document Description', // displayed beneath the document and expands to show description (if any)
         editDetailsTitle: 'Edit Details', // page title on edit details screen
-        enterNamePlaceholder: 'Give this file a name',
-        enterDescriptionPlaceholder: 'Describe this file (optional)',
+        enterNamePlaceholder: 'Give this document a name',
+        enterDescriptionPlaceholder: 'Describe this document (optional)',
         documentName: 'What kind of document did you upload?', // shown as a label on edit details screen
 
         noDocuments: 'There are no documents saved to your account yet.', // shown on dashboard when there are no documents
         previewOf: 'Preview of',
-        uploadFirst: 'Add your first file', // label on the empty state upload button
+        uploadFirst: 'Add your first document', // label on the empty state upload button
         thumbnailOf: 'Thumbnail of',
-        fileName: "File Name",
+        fileName: "Document Name",
       },
 
       controls: {
@@ -98,7 +98,7 @@ export default merge(
         continue: 'Continue',
         share: 'Share Now', // share button
         shared: 'Shared Documents', // label of shared tab on dashboard
-        upload: 'Upload a File',
+        upload: 'Upload a Document',
         uploadDocument: 'Upload Document',
         view: 'View',
         save: 'Save',
@@ -130,7 +130,7 @@ export default merge(
 
         // step titles in the share flow
         confirmTitle: 'Are you sure you want to share these Documents?',
-        addRecipientsTitle: 'Who are you sharing these file(s) with?',
+        addRecipientsTitle: 'Who are you sharing these document(s) with?',
         selectFilesTitle: 'Select Documents',
 
         disclaimerTitle: 'Reminder',
@@ -140,7 +140,7 @@ export default merge(
         ],
 
         // on the confirmation step, could be "recipient" or "recipients" depending on number of items
-        confirmRecipientsLabel: 'You are sharing files to | Recipients',
+        confirmRecipientsLabel: 'You are sharing documents to | Recipients',
         tooManyRecipients: 'You can share with up to {count} people', // error text when trying to add more than 10 recipients
       },
 
