@@ -125,6 +125,7 @@ enum EnvironmentVariables {
   AUTH_INTEGRATION_TYPE = 'AUTH_INTEGRATION_TYPE',
   AUTH_EMAIL_UNVERIFIED_REDIRECT = 'AUTH_EMAIL_UNVERIFIED_REDIRECT',
   SHARED_INBOX_CONFIG = 'SHARED_INBOX_CONFIG',
+  NYC_HTTPS_PROXY = 'NYC_HTTPS_PROXY',
 }
 
 // these variables get inserted to every lambda created by "createLambda" so use sparingly
@@ -139,6 +140,7 @@ const authEnvironmentVariables = [
   EnvironmentVariables.AUTH_INTEGRATION_TYPE,
   EnvironmentVariables.AUTH_EMAIL_UNVERIFIED_REDIRECT,
   EnvironmentVariables.AGENCY_EMAIL_DOMAINS_WHITELIST,
+  EnvironmentVariables.NYC_HTTPS_PROXY,
 ]
 
 export interface Props extends StackProps {
@@ -420,6 +422,7 @@ export class CityStack extends Stack {
         ? jwtConfiguration.integrationType
         : 'OAUTH',
       [EnvironmentVariables.SHARED_INBOX_CONFIG]: JSON.stringify(sharedInboxConfig),
+      [EnvironmentVariables.NYC_HTTPS_PROXY]: process.env.NYC_HTTPS_PROXY!,
     }
 
     if (jwtConfiguration.emailUnverifiedRedirectEndpoint) {
