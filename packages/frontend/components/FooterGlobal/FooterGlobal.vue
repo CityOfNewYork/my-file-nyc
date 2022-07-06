@@ -13,7 +13,7 @@
       v-if="$vuetify.breakpoint.smAndUp"
       :class="
         $vuetify.breakpoint.smAndUp
-          ? 'ml-2 mt-1 mb-1 d-flex'
+          ? 'ml-3 mt-1 mb-2 d-flex'
           : 'd-flex ml-1 mr-3 mt-1'
       "
       style="max-width: 23rem; filter: invert(1)"

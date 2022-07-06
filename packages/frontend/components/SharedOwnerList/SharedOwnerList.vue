@@ -140,7 +140,7 @@ export default class SharedOwnerList extends Vue {
         value: 'dhsCaseNumber',
       },
       {
-        text: this.$t('dateAdded') as string,
+        text: this.$t('agent.dateShared') as string,
         class: 'blue-super-light',
         value: 'createdDate',
         sortable: true,

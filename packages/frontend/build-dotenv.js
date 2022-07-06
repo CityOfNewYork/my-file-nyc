@@ -42,6 +42,9 @@ SENTRY_DSN=${process.env.SENTRY_DSN}
 # Agency Email Whitelist. Only emails matching the prefix of one of these values (comma separated) are allowed to be shared to.
 AGENCY_EMAIL_DOMAINS_WHITELIST=${process.env.AGENCY_EMAIL_DOMAINS_WHITELIST}
 
+# DHS email
+AGENCY_EMAIL=${process.env.AGENCY_EMAIL}
+
 # Content Security Policy source values
 # CSP_CONNECT_SRC=https://s3.us-east-1.amazonaws.com,https://nycstaging-documentsbucket9ec9deb9-1p3yvyeegriek.s3.us-east-1.amazonaws.com,https://*.sentry-cdn.com,https://*.sentry.io,https://browser.sentry-cdn.com,https://www.google-analytics.com
 # CSP_SCRIPT_SRC=https://*.sentry-cdn.com,https://*.sentry.io,https://browser.sentry-cdn.com,https://www.google-analytics.com
