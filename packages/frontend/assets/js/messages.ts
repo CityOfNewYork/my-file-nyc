@@ -75,7 +75,7 @@ export default merge(
         enterDescriptionPlaceholder: 'Describe this file (optional)',
         documentName: 'What kind of document did you upload?', // shown as a label on edit details screen
 
-        noDocuments: 'There are no files saved to your account yet.', // shown on dashboard when there are no documents
+        noDocuments: 'There are no documents saved to your account yet.', // shown on dashboard when there are no documents
         previewOf: 'Preview of',
         uploadFirst: 'Add your first file', // label on the empty state upload button
         thumbnailOf: 'Thumbnail of',
@@ -85,7 +85,7 @@ export default merge(
       controls: {
         accept: 'Accept', // eg. accept terms of use
         add: 'Add', // eg. add a delegate
-        allFiles: 'Your Files', // shown as tab label on the dashboard
+        allFiles: 'Your Documents', // shown as tab label on the dashboard
         cancel: 'Cancel', // cancel button
         confirm: 'Confirm',
         confirmDelete: 'Yes, Delete',
@@ -97,7 +97,7 @@ export default merge(
         edit: 'Edit', //edit account details
         continue: 'Continue',
         share: 'Share Now', // share button
-        shared: 'Shared Files', // label of shared tab on dashboard
+        shared: 'Shared Documents', // label of shared tab on dashboard
         upload: 'Upload a File',
         uploadDocument: 'Upload Document',
         view: 'View',
@@ -121,7 +121,7 @@ export default merge(
       // All copy related to the create shared folder flow
       sharing: {
         defaultName: 'Documents you shared with DHS on {date}',
-        confirmSharedFiles: 'Documents to be shared | Documents to be shared',
+        confirmSharedFiles: 'Documents to be shared DHS | Documents to be shared DHS',
         plusNMore: '+ {count} more',
         recipients: 'Recipients',
 
@@ -129,9 +129,9 @@ export default merge(
         addRecipientPlaceholder: 'Enter email address',
 
         // step titles in the share flow
-        confirmTitle: 'Are you sure you want to share these files?',
+        confirmTitle: 'Are you sure you want to share these Documents?',
         addRecipientsTitle: 'Who are you sharing these file(s) with?',
-        selectFilesTitle: 'Select Files',
+        selectFilesTitle: 'Select Documents',
 
         disclaimerTitle: 'Reminder',
         shareDocumentDisclaimer: [
@@ -140,7 +140,7 @@ export default merge(
         ],
 
         // on the confirmation step, could be "recipient" or "recipients" depending on number of items
-        confirmRecipientsLabel: 'Recipient | Recipients',
+        confirmRecipientsLabel: 'You are sharing files to | Recipients',
         tooManyRecipients: 'You can share with up to {count} people', // error text when trying to add more than 10 recipients
       },
 
@@ -159,16 +159,16 @@ export default merge(
       delegateAccess: {
         disabledNotice: 'The delegation feature is currently disabled.',
         pageTitle: 'Account Access', // title in account menu and page title of delegation flow
-        menuTitle: 'Who Can Manage My Files', // title in account menu and page title of delegation flow
+        menuTitle: 'Who Can Manage My Documents', // title in account menu and page title of delegation flow
         emailPlaceholder: 'Add people via email',
-        addConfirmationTitle: 'Let this person manage files on your account?',
+        addConfirmationTitle: 'Let this person manage documents on your account?',
         addConfirmationBody:
-          'They will be able to upload and share files for you. They cannot delete files. You can always remove their access to your account.',
+          'They will be able to upload and share documents for you. They cannot delete documents. You can always remove their access to your account.',
         addConfirmationAction: 'Yes, Give Access',
         removeConfirmationTitle:
           'Remove this person from accessing your account?',
         removeConfirmationBody:
-          'They will no longer be able to manage or share files for you. You can always give them access to your files again in the Account menu settings.',
+          'They will no longer be able to manage or share documents for you. You can always give them access to your documents again in the Account menu settings.',
         removeConfirmationAction: 'Yes, Remove',
         uninviteConfirmationTitle: 'Cancel this invitation?',
         uninviteConfirmationBody:
@@ -184,16 +184,16 @@ export default merge(
       activity: {
         accessed: 'accessed',
         added: 'added',
-        delegateInvitedClient: 'to manage and share files on your behalf',
-        delegateInvitedCbo: 'to manage and share files on their behalf',
-        delegateAcceptedClient: 'can now manage and share files on your behalf',
-        delegateAcceptedCbo: 'can now manage and share files on this account',
+        delegateInvitedClient: 'to manage and share documents on your behalf',
+        delegateInvitedCbo: 'to manage and share documents on their behalf',
+        delegateAcceptedClient: 'can now manage and share documents on your behalf',
+        delegateAcceptedCbo: 'can now manage and share documents on this account',
         delegateDeletedClient: 'has been removed from your account',
         delegateDeletedCbo: 'has been removed from this account ',
         deleted: 'deleted',
         edited: 'edited details of',
         file: 'file',
-        files: 'files',
+        files: 'documents',
         invited: 'invited',
         pageTitle: 'Account Activity',
         shared: 'shared',
@@ -204,33 +204,33 @@ export default merge(
       // Copy where you are viewing shared folders
       sharedFolder: {
         // empty state for list of shared folders
-        noCollections: "You haven't shared any files yet.", // message
+        noCollections: "You haven't shared any documents yet.", // message
         shareFirstDocument: 'Share your first document', // call to action
 
         // empty state for an individual shared folder
-        emptyCollection: 'All files have been removed from this folder.', // message
+        emptyCollection: 'All documents have been removed from this folder.', // message
         returnDashboard: 'Return to dashboard', // call to action
 
         // empty state for list of clients who have shared collections with user
-        noSharedDocuments: "You haven't received any shared files yet.",
+        noSharedDocuments: "You haven't received any shared documents yet.",
 
         // title for collection table name column
-        collectionTableTitle: "Files you've shared, organized by date",
+        collectionTableTitle: "Documents you've shared, organized by date",
       },
 
       cbo: {
         selectClient: 'Select a client to access their account',
         clickToRemove: 'Click {close} to remove a client',
         noClientsTitle:
-          'You have not been added to any client MyFile NYC accounts',
+          'You have not been added to any client My File NYC accounts',
         noClientsBody:
-          "Once a client adds you to their MyFile NYC account, you'll be able to manage and share files on their behalf from this screen.\n\nA client can provide access to their files in the Account menu settings in MyFile NYC.",
+          "Once a client adds you to their My File NYC account, you'll be able to manage and share documents on their behalf from this screen.\n\nA client can provide access to their documents in the Account menu settings in My File NYC.",
         noClientActionLabel: 'Not a case manager?',
         noClientActionText:
           'If you are seeking permanent supportive housing, click here.',
-        removeConfirmationTitle: 'Remove this client from your MyFile NYC?',
+        removeConfirmationTitle: 'Remove this client from your My File NYC?',
         removeConfirmationBody:
-          'You will no longer be able to view, manage, or share files on their behalf. This cannot be undone.',
+          'You will no longer be able to view, manage, or share documents on their behalf. This cannot be undone.',
         removeConfirmationAction: 'Yes, Remove',
         errorAcceptingInvite:
           'Invite could not be accepted. Please ensure you are logged in with the email address that received the invite.',
@@ -246,8 +246,8 @@ export default merge(
         noClientActionLabel: 'Not a government employee?',
         noClientActionText:
           'If you are seeking permanent supportive housing, click here.',
-        reorderFiles: 'Reorder Files', // shown in agent view when downloading as PDF
-        selectClient: 'Select client to access shared files',
+        reorderFiles: 'Reorder Documents', // shown in agent view when downloading as PDF
+        selectClient: 'Select client to access shared documents',
         sharedBy: 'Shared By', // label in side bar
         sharedFolderNameLabel: 'Name', // label of shared folder name column in agent view
         sharedWith: 'Shared With: ', // promt for agency email
