@@ -1,5 +1,6 @@
 import { EnvironmentVariable, requireConfiguration } from '@/config'
 import fetch from 'node-fetch'
+import HttpsProxyAgent from 'https-proxy-agent';
 import { logger } from './logging'
 import { getIntegrationType, IntegrationType } from './oauthIntegration'
 import { signRequest } from './requestSigner'
@@ -15,15 +16,32 @@ type UserInfo = {
   email: string
   username: string
 }
+
+const proxyOpts = new URL(process.env.NYC_HTTPS_PROXY!)
+proxyOpts.username = 'nycoppcertcheck@doitt.nyc.gov'
+proxyOpts.password = 'cmMkFUHme#4'
+const proxyUrl = proxyOpts.toString()
+console.log(`proxy url: ${proxyUrl}`)
+const proxyAgent = HttpsProxyAgent(proxyUrl)
+
 export const getUserInfo = async (token: string): Promise<UserInfo> => {
   const endpoint = requireConfiguration(EnvironmentVariable.USERINFO_ENDPOINT)
   const headers = {
     Authorization: token,
   }
   const signedUrl = signRequest('GET', endpoint, headers)
-  const result = await fetch(signedUrl, {
+  const fetchOpts = {
     headers,
-  })
+    agent: process.env.NODE_ENV === 'production' ? proxyAgent : undefined,
+  }
+
+  console.log(`signed url: ${signedUrl}`)
+  console.log(`fetch options: ${JSON.stringify(fetchOpts, null, 2)}`)
+
+  const result = await fetch(signedUrl, fetchOpts)
+
+console.log(`--- oauth response ---\n${JSON.stringify(result, null, 2)}`)
+
   if (!result.ok) {
     // generally this error is from a bad token, but if we're not sure we'll log it
     const text = await result.text()

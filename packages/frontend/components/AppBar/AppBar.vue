@@ -271,8 +271,7 @@ export default class AppBar extends mixins(Navigation) {
 
   async signOut() {
     const authTokenKey = 'auth._token.oauth2'
-    const logoutUrl =
-      'https://accounts-nonprd.nyc.gov/account/idpLogout.htm?x-frames-allow-from=https%3A%2F%2Fd3gtg3qw3q3xz9.cloudfront.net'
+    const logoutUrl = this.$config.logoutEndpoint
 
     const logoutWindow = window.open(logoutUrl, '_blank')
     const currentWindow = window

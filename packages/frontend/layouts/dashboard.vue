@@ -48,8 +48,7 @@ import { parseJwt } from '../lib/utils'
 export default class DashboardLayout extends Vue {
   overlay = false
   authTokenKey = 'auth._token.oauth2'
-  logoutUrl =
-    'https://accounts-nonprd.nyc.gov/account/idpLogout.htm?x-frames-allow-from=https%3A%2F%2Fd3gtg3qw3q3xz9.cloudfront.net'
+  logoutUrl = this.$config.logoutEndpoint
 
   warningMsgTimeoutMs = 10 * 1000
   showTimeoutWarningMessage = false

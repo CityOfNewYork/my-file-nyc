@@ -3,6 +3,7 @@ export const envConfig = {
     agencyEmailDomainsWhitelist: process.env.AGENCY_EMAIL_DOMAINS_WHITELIST,
     agencyEmail: process.env.AGENCY_EMAIL,
     authorizationEndpoint: process.env.AUTH_URL,
+    logoutEndpoint: process.env.AUTH_LOGOUT_URL,
     buildNumber: process.env.BUILD_NUMBER,
     buildTime: process.env.CODEBUILD_START_TIME,
     googleAnalytics: {
