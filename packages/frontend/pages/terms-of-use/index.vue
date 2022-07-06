@@ -80,8 +80,16 @@ export default class TermsOfUse extends mixins(Navigation) {
     return userStore.profile && userStore.profile.termsOfUseAccepted
   }
 
-  accept() {
+  async accept() {
     if (this.agent) {
+      // TODO This is temporary solution. Moving forward we going to need separat API call for the agent or allow accept amty data for current API call.
+      const data: object = {
+        familyName: 'Agent',
+        givenName: 'Agent',
+        dob: 'N/A',
+        dhsCaseNumber: 'N/A',
+      }
+      await this.$store.dispatch('user/acceptTerms', data)
       this.step = 0
       this.$router.push(this.localePath('/dashboard'))
     } else {

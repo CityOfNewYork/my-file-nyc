@@ -37,7 +37,6 @@ export default class AgentDashboard extends Vue {
   mounted() {}
 
   get getAgeencyEmail() {
-    console.log(this.$config)
     return this.$config.agencyEmail
   }
 }
