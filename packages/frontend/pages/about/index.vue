@@ -2,9 +2,19 @@
   <div>
     <AppBar :empty="true">
       <template v-slot:nav-action>
-        <BackButton tabindex="0" />
+        <BackButton
+          tabindex="0"
+          :class="$vuetify.breakpoint.smAndUp ? '' : 'mt-5'"
+        />
       </template>
     </AppBar>
+    <v-img
+      img="role"
+      :alt="`${$t('myFileLogo')}`"
+      :src="myFileLogo"
+      style="width: 50%; left: 25%"
+      :class="$vuetify.breakpoint.smAndUp ? 'mt-5' : 'mt-12'"
+    />
     <MarkdownContent :content-path="markdown" />
   </div>
 </template>
@@ -26,6 +36,10 @@ export default class AboutPage extends Vue {
   created() {
     const locale = this.$i18n.locale
     this.markdown = require(`@/assets/content/about/${locale}.md`)
+  }
+
+  get myFileLogo(): string {
+    return require('@/assets/images/my-file-logo.svg')
   }
 }
 </script>

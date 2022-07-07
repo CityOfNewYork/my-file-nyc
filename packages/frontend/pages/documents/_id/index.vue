@@ -43,7 +43,7 @@
           </v-carousel-item>
         </v-carousel>
         <template v-if="document.description">
-          <v-expansion-panels class="mt-4 px-2">
+          <!-- <v-expansion-panels class="mt-4 px-2">
             <v-expansion-panel>
               <v-expansion-panel-header
                 class="body-1 font-weight-medium"
@@ -55,8 +55,12 @@
                 {{ document.description }}
               </v-expansion-panel-content>
             </v-expansion-panel>
-          </v-expansion-panels>
-          <div class="vertical-space" />
+          </v-expansion-panels> -->
+          <!-- <div class="vertical-space" /> -->
+          <div class="pt-4 body-1 mt-4 px-2">
+            <b>{{ $t('document.description') }}</b>
+            <p>{{ document.description }}</p>
+          </div>
         </template>
         <DocumentActions
           v-if="$vuetify.breakpoint.xsOnly"
@@ -328,7 +332,7 @@ export default class ViewDocument extends Vue {
 
 <style lang="scss">
 .container {
-  min-height: calc(100vh - 4rem);
+  // min-height: calc(100vh - 4rem);
   .vertical-space {
     min-height: 20rem;
   }

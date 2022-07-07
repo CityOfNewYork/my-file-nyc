@@ -1,79 +1,49 @@
 ## Frequently Asked Questions (FAQ)
 
-### 1. What can I use My File NYC for?
+### 1. What is My File NYC?
 
-My File NYC is designed to help individuals and families seeking permanent supportive housing and other City-provided services. This software platform allows residents to manage and share their personal documents necessary for the application process. It is also intended to improve the provision of government services. The system is free, simple, and secure.
-Future versions of My File NYC may be used to apply for other City services and resources, but we are still in the early stages of development and testing of the platform.
+My File NYC allows families to upload and share documents with the Department of Homeless Services (DHS) during their applications for shelter. It is also a safe and secure place for families to store their private documents for safekeeping.
 
-### 2. What challenges does My File NYC address?
-
-Even before the coronavirus pandemic, missing documentation is often cited as one of the primary barriers to housing and reasons for benefit application denials. Individuals or families in need of benefits, such as permanent housing assistance, often face challenges to produce documents to verify that they meet eligibility requirements. Additionally, on the City agency side, missing documentation can make a lengthy process even more time-consuming and arduous for both government employees and residents.
-
-### 3. If I want to submit documents to apply for permanent supportive housing, do I have to use My File NYC?
-
-No. My File NYC is an option for residents. It isn’t required. However, it may make the process of producing and sharing necessary documents easier for those who choose to use it.
-
-### 4. Does using My File NYC mean I will receive permanent supportive housing from the City?
-
-No. My File NYC is a tool that facilitates the collection and sharing of documents necessary for the application process. Using My File NYC does not guarantee a user will be matched with permanent supportive housing.
-
-### 5. Can I use My File NYC to apply for other City services?
-
-No. At this time, we are piloting My File NYC. My File NYC can be used solely to provide documents necessary for permanent supportive housing applications. Future versions of My File NYC may be used to apply for other benefits, but we are still in the early stages of development and testing.
-
-### 6. Is My File NYC secure?
-
-We are committed to ensuring that My File NYC is a secure system. We encrypt all data end-to-end and any data we store is fully encrypted at rest. End-to-end encryption ensures only authorized users can access documents and unauthorized parties cannot access private information being stored by, or sent to or from, My File NYC. The system is built and managed to comply with the Health Insurance Portability and Accountability Act (HIPAA) to further ensure the best privacy practices and protections for users.
-
-Personal records in My File NYC will not be stored in city or government systems. No user content will be shared with any entity that the user has not specifically authorized. No user content will ever be sold or used for marketing purposes.
-
-### 7. Do I control who is able to access my documents through My File NYC?
-
-Yes. My File NYC users can choose to share documents with specific authorized people - case managers/social workers and/or City employees. Documents are shared for the sole purpose of verifying eligibility for benefits. Users need to know the email address of each recipient in order to share documents through My File NYC. The system can only share documents with the email accounts of authorized government agencies. If a user is not sure with which individuals or agencies documents should be shared, they need to ask their case manager.
-
-Users choose with whom they share their documents and they can revoke that access at any time. However, while a user may revoke access to their account or any of their documents at any time, the user should be aware that the other party may have previously downloaded or shared those documents prior to their access being revoked.
-
-### 8. Will My File NYC create a record of my activity in the system?
-
-Yes. All activities associated with an account will be stored in the account user’s history. By selecting ‘Activities’ in My File NYC | Baltimore’s main menu, users can access past activity or view documents they have shared. For example, if a user shares a document, such as a copy of a utility bill with a case manager, they will be able to see that sharing activity and view the documents in the My File NYC system immediately after or look it up months later.
-
-### 9. Can I allow someone else to use My File NYC on my behalf?
-
-Yes, it is possible to authorize someone else to act on a user’s behalf. The system gives users the control to allow their case manager or designated carer to access their entire My File NYC account. If access has been granted to a case manager or carer, they’ll be able to add, download, and share with agencies documents on behalf of a user.
-
-### 10. Do I have to pay to use My File NYC?
+### 2. Do I have to pay to use My File NYC?
 
 No. My File NYC is free to use.
 
-### 11. What does Beta stage of development mean?
+### 3. How do I add my documents to My File NYC?
 
-The Beta stage means My File NYC is being used by a small initial group of people to test the tool, conduct research, and then invite more people to use it, or revise it. The Beta stage of development will be used to establish that My File NYC achieves its goal of helping residents more efficiently produce and share necessary documents to apply for benefits or services, and improve government processes. The tool was developed through an iterative approach that continues to rely on research and feedback from individuals and families experiencing homelessness, case managers, and practitioners working to end homelessness. We are actively monitoring the system and will use outcomes and data to guide refinement of the platform. We adhere to the philosophy that development is never fully finished and are prepared to pivot as needed so that the My File NYC program can better serve current and evolving challenges. There are two cities currently testing the system, Baltimore and New York.
+After you login into your account using NYC.ID, select “Add your first document” to upload an existing file stored on your device or choose “Take a Photo” to scan a new document. 
 
-### 12. Can I download My File NYC from an app store?
+### 4. How do I share my documents with DHS?
 
-No, My File NYC is not an app that you need to download. It is available online and accessible through a web browser on a desktop computer, laptop or mobile device. Users must have an email address to utilize the system.
+After you’ve uploaded or photographed your documents, select “Share a File” in the top right corner and select which files you’d like to share. 
 
-### 13. Where can I learn more about how to use My File NYC?
+### 5. Do I have to use My File NYC to share documents with DHS during my application?
 
-In addition to this document, there are brief training videos covering the functions of My File NYC available online.
+No. My File NYC is an option for families. It isn’t required. However, it may make sharing documents easier for those who choose to use it. Submitting paper documents in-person will always remain an option. 
 
-[Vimeo.com/mddl](https://vimeo.com/mddl).
+### 6. Who has access to the documents I shared through My File NYC?
 
-### 14. Where can I review the code for My File NYC and why was it developed as an open source project?
+Once you share documents to DHS through My File NYC only the DHS team at the PATH intake center will have the ability to view and download the documents you shared.
 
-My File NYC is a deployment of the My File NYC open source project. The project code is available on New America’s github at the following link:
-[github.com/newamericafoundation/mddl](https://github.com/newamericafoundation/mddl)
+### 7. Is My File NYC secure?
 
-Using open source software to tackle civic challenges provides many benefits ranging from increasing accountability and transparency, reducing risk and cost, improving security, and enabling faster deployment of tried and tested solutions.
+We are committed to ensuring that My File NYC is as secure as possible to protect your privacy. Documents you store on My File NYC will be safely stored on the City’s secure servers. Since documents are stored in the cloud, you can access them from anywhere on any device with an internet connection. 
 
-### 15. I am interested in creating a My File NYC project in my city, county, or state. Where can I get more information?
+Only you have access to your documents until you share them with the DHS PATH center using.
 
-Please email the Digital Impact and Governance Initiative (DIGI) at New America at <DIGI@newamerica.org> to explore opportunities to scale to other jurisdictions or use-cases.
+More technical information about how we protect your documents and information: 
 
-### 16. Who created My File NYC?
+We encrypt all data end-to-end and any data we store is fully encrypted at rest. End-to-end encryption ensures only authorized users can access documents and unauthorized parties cannot access private information being stored by or transferred from, or sent to or from, My File NYC. The system is built and run in compliance with the Health Insurance Portability and Accountability Act (HIPAA) to further ensure the best privacy practices and protections for users.
 
-My File NYC is the first solution deployed from the My File NYC open source platform [that was released](https://github.com/newamericafoundation/digi-datalocker) in Beta by New America's Digital Impact and Governance Initiative ([DIGI](https://www.newamerica.org/digital-impact-governance-initiative/)). The project was created through a collaborative and inclusive approach with the aim of improving the provision of public benefits and government services. Organizations involved in developing the system include: [New America](https://www.newamerica.org/), [The Mayor's Office of Economic Opportunity (NYC Opportunity)](https://www1.nyc.gov/site/opportunity/index.page), [The New York City Department of Homeless Services](https://www1.nyc.gov/site/dhs/index.page), [Baltimore's Mayor's Office of Homeless Services](https://homeless.baltimorecity.gov/), [The Journey Home](https://journeyhomebaltimore.org/), [Two Bulls](https://www.twobulls.com/), [Amazon Web Services (AWS)](https://aws.amazon.com/), [The Rockefeller Foundation](https://www.rockefellerfoundation.org/), [Kaiser Permanente](https://community.kp.org/grants-and-volunteering/funding-opportunities), and [The Annie E Casey Foundation](https://www.aecf.org/). We have a monitoring and evaluation review process for the My Digital Date Locker to help us continue to explore how and where to scale the project next. This process will also support the management and prioritization of a backlog of features that could be added or adjusted. For more information, please contact <DIGI@newamerica.org>.
-<br>
-<br>
-<br>
-<br>
+### 8. Can I delete my documents from My File NYC?
+
+Yes, documents can be deleted at any time by users. However, once documents are shared to DHS employees may download and save your documents to submit as proof for your application. DHS may still have copies to support your case even if you unshare or delete them from My File NYC.
+
+### 9. Can anyone use My File NYC?
+
+My File NYC is in a “pilot stage.” The pilot stage means My File NYC is only being offered to families seeking shelter at the PATH center. We will learn what works about My File NYC, what we can improve, and continue to make it better as we offer it to more NYC residents and allow you to use it for other services offered by the City.
+
+At the end of the pilot period, NYC will delete all currently stored user data from My File.
+
+### 10. Can I download My File NYC from an app store?
+
+No, My File NYC is not an app that you need to download. It is available online. My File NYC can be accessed via web browser on desktop and mobile devices by visiting [https://myfile.nyc.gov](https://myfile.nyc.gov)
