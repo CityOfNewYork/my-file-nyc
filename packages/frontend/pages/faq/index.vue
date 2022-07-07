@@ -5,7 +5,14 @@
         <BackButton tabindex="0" />
       </template>
     </AppBar>
-    <MarkdownContent :content-path="markdown" />
+    <v-img
+      img="role"
+      :alt="`${$t('myFileLogo')}`"
+      :src="myFileLogo"
+      style="width: 50%; left: 25%"
+      :class="$vuetify.breakpoint.smAndUp ? 'mt-5' : 'mt-12'"
+    />
+    <MarkdownContent :content-path="markdown" class="mb-16" />
   </div>
 </template>
 
@@ -26,6 +33,10 @@ export default class FaqPage extends Vue {
   created() {
     const locale = this.$i18n.locale
     this.markdown = require(`@/assets/content/faq/${locale}.md`)
+  }
+
+  get myFileLogo(): string {
+    return require('@/assets/images/my-file-logo.svg')
   }
 }
 </script>

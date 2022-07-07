@@ -86,8 +86,9 @@
           color="primary white--text"
           class="body-1 my-2 mx-auto d-flex"
           :style="
-            $vuetify.breakpoint.smAndDown &&
-            'width: 100%; position: fixed; bottom: -0.5rem;'
+            $vuetify.breakpoint.smAndDown
+              ? 'width: 100%; position: fixed; bottom: -0.5rem;'
+              : ''
           "
           :disabled="!documentName"
           @keydown.enter="uploadDocument()"

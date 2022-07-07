@@ -96,7 +96,7 @@ export default merge(
         editDetails: 'Edit Details', // edit document kebab item
         edit: 'Edit', //edit account details
         continue: 'Continue',
-        share: 'Share Now', // share button
+        share: 'Share with DHS', // share button
         shared: 'Shared Documents', // label of shared tab on dashboard
         upload: 'Upload a Document',
         uploadDocument: 'Upload Document',
