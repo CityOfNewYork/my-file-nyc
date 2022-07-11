@@ -1,4 +1,4 @@
-<template >
+<template>
   <v-list v-if="$vuetify.breakpoint.smAndUp || dasbboardDocMenu">
     <v-list-item v-if="userRole != 2">
       <v-btn class="justify-start" text @click="editDetails">
@@ -32,7 +32,11 @@
       confirm-label="controls.confirmDelete"
     />
   </v-list>
-  <v-list class="d-flex" v-else-if="$vuetify.breakpoint.smAndDown">
+  <v-list
+    class="d-flex"
+    style="justify-content: space-evenly"
+    v-else-if="$vuetify.breakpoint.smAndDown || dasbboardDocMenu"
+  >
     <v-list-item class="justify-center" v-if="userRole != 2">
       <v-btn color="primary white--text" @click="editDetails">
         {{ $t('controls.editDetails') }}
