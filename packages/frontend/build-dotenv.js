@@ -36,6 +36,7 @@ SHOW_BUILD_INFO=${process.env.SHOW_BUILD_INFO}
 MOBILE_TESTING=${process.env.MOBILE_TESTING}
 
 # Used for sentry reporting. Will disable reporting if SENTRY_DSN is not included
+DEPLOYMENT_TARGET=${process.env.DEPLOYMENT_TARGET}
 BUILD_ENVIRONMENT=${process.env.BUILD_ENVIRONMENT}
 SENTRY_DSN=${process.env.SENTRY_DSN}
 

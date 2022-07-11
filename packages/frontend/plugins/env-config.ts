@@ -1,5 +1,6 @@
 export const envConfig = {
   config: {
+    deploymentTarget: process.env.DEPLOYMENT_TARGET,
     agencyEmailDomainsWhitelist: process.env.AGENCY_EMAIL_DOMAINS_WHITELIST,
     agencyEmail: process.env.AGENCY_EMAIL,
     authorizationEndpoint: process.env.AUTH_URL,
