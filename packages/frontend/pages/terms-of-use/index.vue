@@ -2,7 +2,11 @@
   <div>
     <AppBar v-if="hasAccepted || !$auth.loggedIn" :empty="true">
       <template v-slot:nav-action>
-        <BackButton tabindex="0" />
+        <BackButton
+          tabindex="0"
+          :style="$vuetify.breakpoint.smAndUp ? '' : 'width: 100%'"
+          :class="$vuetify.breakpoint.smAndUp ? '' : 'mt-10 '"
+        />
       </template>
     </AppBar>
 
@@ -12,12 +16,18 @@
 
     <v-container v-if="step < 1" :class="{ 'mt-8': hasAccepted }">
       <v-row no-gutters align="center" justify="center">
-        <!-- <v-col align="center" cols="12">
-          <CityLogo v-if="$vuetify.breakpoint.xs" width="96px" class="my-12" />
-          <CityLogo v-else class="my-12" />
-        </v-col> -->
         <v-col class="px-3" cols="12">
-          <MarkdownContent :content-path="markdown" />
+          <v-img
+            img="role"
+            :alt="`${$t('myFileLogo')}`"
+            :src="myFileLogo"
+            style="width: 50%; left: 25%"
+            :class="$vuetify.breakpoint.smAndUp ? 'mt-5' : 'mt-1'"
+          />
+          <MarkdownContent
+            :content-path="markdown"
+            :class="$vuetify.breakpoint.smAndUp ? '' : 'mb-15'"
+          />
         </v-col>
       </v-row>
       <v-row
@@ -114,6 +124,10 @@ export default class TermsOfUse extends mixins(Navigation) {
     } else {
       this.$router.push(this.localePath('/dashboard'))
     }
+  }
+
+  get myFileLogo(): string {
+    return require('@/assets/images/my-file-logo.svg')
   }
 }
 </script>

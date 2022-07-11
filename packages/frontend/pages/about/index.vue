@@ -4,7 +4,8 @@
       <template v-slot:nav-action>
         <BackButton
           tabindex="0"
-          :class="$vuetify.breakpoint.smAndUp ? '' : 'mt-5'"
+          :style="$vuetify.breakpoint.smAndUp ? '' : 'width: 100%'"
+          :class="$vuetify.breakpoint.smAndUp ? '' : 'mt-10 '"
         />
       </template>
     </AppBar>
@@ -13,9 +14,12 @@
       :alt="`${$t('myFileLogo')}`"
       :src="myFileLogo"
       style="width: 50%; left: 25%"
-      :class="$vuetify.breakpoint.smAndUp ? 'mt-5' : 'mt-12'"
+      :class="$vuetify.breakpoint.smAndUp ? 'mt-5' : 'mt-15'"
     />
-    <MarkdownContent :content-path="markdown" />
+    <MarkdownContent
+      :content-path="markdown"
+      :class="$vuetify.breakpoint.smAndUp ? '' : 'mb-15'"
+    />
   </div>
 </template>
 

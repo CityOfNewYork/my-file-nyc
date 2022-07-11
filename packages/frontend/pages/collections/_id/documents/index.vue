@@ -10,7 +10,10 @@
 
     <AppBar :custom-mobile-nav="true" :breadcrumbs="breadcrumbs">
       <template v-if="$vuetify.breakpoint.xs" v-slot:nav-action>
-        <BackButton class="pt-10 ml-5" tabindex="0" />
+        <BackButton
+          :class="$vuetify.breakpoint.smAndDown ? 'mt-12' : ''"
+          tabindex="0"
+        />
       </template>
       <template v-if="!userStore.isAgent" v-slot:actions>
         <v-btn

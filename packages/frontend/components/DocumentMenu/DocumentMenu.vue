@@ -4,7 +4,7 @@
     v-model="showMenu"
     absolute
     offset-y
-    style="max-width: 600px"
+    :min-width="$vuetify.breakpoint.smAndDown ? '100%' : ''"
     :close-on-content-click="false"
   >
     <template v-slot:activator="{ on, attrs }">
@@ -41,7 +41,6 @@
       ref="documentMenuList"
       :document="document"
       :onDelete="onDelete"
-      class="a11y-focus"
       tabindex="-1"
     />
   </v-menu>
