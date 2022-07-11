@@ -329,14 +329,12 @@ export default class Share extends Vue {
   async mounted() {
     const collections = await this.$store.dispatch('user/getCollections')
     this.name = this.$t('sharing.defaultName', {
-      date: format(Date.now(), 'LLL d, yyyy k:mm').replace(
-        /(?<=^.{12})/,
-        'at ',
-      ),
+      date: format(Date.now(), 'LLL d, yyyy k:mm'),
     }) as string
+    this.name = [this.name.slice(0, 45), ' at', this.name.slice(45)].join('')
+
     // we wait until mounted to assign this since jest cannot mock $config
     // until the component is mounted
-    console.log(this.name)
     this.emailValidationRules = `email|emailWhitelist:${this.$config.agencyEmailDomainsWhitelist}`
 
     this.individualEmailAddresses.length <= 0 &&
