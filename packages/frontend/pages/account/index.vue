@@ -22,10 +22,9 @@
     <v-main>
       <Settings
         :accountProfile="accountProfile"
-        :hasAccepted="false"
+        :hasAccepted="accountProfile.termsOfUseAccepted"
         :editMode="false"
       />
-      <!-- :hasAccepted="accountProfile.termsOfUseAccepted" -->
 
       <!-- <v-window v-if="!this.$config.features.delegates" style="margin: 1em">
         {{ $t('delegateAccess.disabledNotice') }}
