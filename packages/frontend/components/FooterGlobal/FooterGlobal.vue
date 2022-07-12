@@ -1,5 +1,6 @@
 <template>
   <div
+    v-if="$vuetify.breakpoint.smAndUp"
     :class="
       ((document || agency) & $vuetify.breakpoint.smAndUp &&
         'd-flex justify-flex-start pt-2') ||

@@ -13,6 +13,8 @@
     height="var(--application-header-height)"
     class="application-header"
   >
+    <meta name="theme-color" content="#031553" />
+
     <!-- The logo should link to nyc-dev-web.csc.nycnet for development environments and nyc-stg-web.csc.nycnet for staging environments. -->
     <div class="application-header__link">
       <svg

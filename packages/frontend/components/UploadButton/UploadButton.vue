@@ -42,12 +42,14 @@
       </template>
       <v-card>
         <v-toolbar flat>
-          <v-btn class="ml-3 a11y-focus" icon @click.stop="reset">
+          <!-- <v-btn class="ml-3 a11y-focus" icon @click.stop="reset">
             <v-icon small class="mr-2">$arrow-left</v-icon>
             <span class="px-2 grey-8--text" style="font-size: 22px">
               {{ $t('navigation.back') }}
             </span>
-          </v-btn>
+          </v-btn> -->
+          <BackButton :reset="reset" />
+
           <!-- <v-toolbar-title>
             {{ $t('document.editDetailsTitle') }}
           </v-toolbar-title> -->
@@ -73,7 +75,7 @@
                 <p class="subtitle-1 mt-10">
                   {{ $t('document.enterDescriptionPlaceholder') }}
                 </p>
-                <v-text-field
+                <v-textarea
                   v-model="documentDescription"
                   outlined
                   :placeholder="$t('document.enterDescriptionPlaceholder')"
