@@ -4,7 +4,8 @@
     v-model="showMenu"
     absolute
     offset-y
-    :min-width="$vuetify.breakpoint.smAndDown ? '100%' : ''"
+    :min-width="$vuetify.breakpoint.smAndDown ? '94%' : ''"
+    :left="$vuetify.breakpoint.smAndDown ? '0px' : ''"
     :close-on-content-click="false"
   >
     <template v-slot:activator="{ on, attrs }">

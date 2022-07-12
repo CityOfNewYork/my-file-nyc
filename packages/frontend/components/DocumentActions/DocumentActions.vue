@@ -34,16 +34,21 @@
   </v-list>
   <v-list
     class="d-flex"
-    style="justify-content: space-evenly"
+    style="justify-content: space-evenly; flex-direction: column"
     v-else-if="$vuetify.breakpoint.smAndDown || dasbboardDocMenu"
   >
     <v-list-item class="justify-center" v-if="userRole != 2">
-      <v-btn color="primary white--text" @click="editDetails">
+      <v-btn
+        class="actionButtonMobile"
+        color="primary white--text"
+        @click="editDetails"
+      >
         {{ $t('controls.editDetails') }}
       </v-btn>
     </v-list-item>
-    <v-list-item class="justify-center" v-if="userRole != 2">
+    <v-list-item class="justify-center mb-2 mt-2" v-if="userRole != 2">
       <v-btn
+        class="actionButtonMobile"
         color="primary white--text"
         @click="showConfirmationDialog"
         @keydown.enter="showConfirmationDialog"
@@ -52,7 +57,11 @@
       </v-btn>
     </v-list-item>
     <v-list-item class="justify-center">
-      <v-btn @click="download" color="primary white--text">
+      <v-btn
+        @click="download"
+        class="actionButtonMobile"
+        color="primary white--text"
+      >
         {{ $t('controls.download') }}
       </v-btn>
     </v-list-item>
@@ -169,3 +178,9 @@ export default class DocumentActions extends Vue {
   }
 }
 </script>
+
+<style lang="scss">
+.actionButtonMobile {
+  width: 100%;
+}
+</style>
