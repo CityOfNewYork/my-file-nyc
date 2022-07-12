@@ -70,11 +70,11 @@
             <CollectionList class="mx-sm-8" />
           </v-tab-item>
           <div
-            v-if="$vuetify.breakpoint.xs && docsPresent"
+            v-if="$vuetify.breakpoint.smAndDown && docsPresent"
             class="d-flex pb-1"
             style="
               position: sticky;
-              bottom: 7%;
+              bottom: 0%;
               justify-content: space-evenly;
               background-color: #fff;
               height: 3rem;

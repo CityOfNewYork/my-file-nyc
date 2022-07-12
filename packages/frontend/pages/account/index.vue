@@ -20,7 +20,12 @@
     </AppBar>
 
     <v-main>
-      <Settings :accountProfile="accountProfile" :editMode="false" />
+      <Settings
+        :accountProfile="accountProfile"
+        :hasAccepted="false"
+        :editMode="false"
+      />
+      <!-- :hasAccepted="accountProfile.termsOfUseAccepted" -->
 
       <!-- <v-window v-if="!this.$config.features.delegates" style="margin: 1em">
         {{ $t('delegateAccess.disabledNotice') }}

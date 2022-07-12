@@ -1,8 +1,15 @@
 <template>
   <v-container v-if="editMode" class="pa-8">
-    <div class="mt-1 v-toolbar__title" style="text-align: center">
-      <p>{{ hasAccepted ? '' : `${$t('navigation.welcomeFirstRun')}` }}</p>
-      <p>
+    <div class="mt-1" style="text-align: center">
+      <v-img
+        v-if="!hasAccepted"
+        img="role"
+        :alt="`${$t('myFileLogo')}`"
+        :src="myFileLogo"
+        style="width: 70%; left: 12%"
+        :class="$vuetify.breakpoint.smAndUp ? 'mt-5' : 'mt-1 mb-2'"
+      />
+      <p class="mt-1">
         {{
           hasAccepted
             ? `${$t('navigation.settings')}`
@@ -82,6 +89,7 @@
                 <p class="subtitle-1">
                   {{ $t('account.whatIsYourDshCaseNumber') }}
                 </p>
+                <p>{{ $t('account.dhsShow') }}</p>
                 <v-text-field
                   outlined
                   v-model="dhsCaseNumber"
@@ -92,7 +100,6 @@
                 />
               </div>
             </template>
-            <span>{{ $t('account.dhsShow') }}</span>
           </v-tooltip>
         </ValidationProvider>
       </v-form>
@@ -202,6 +209,7 @@ export default class Settings extends Vue {
   dhsCaseNumber = ''
 
   mounted() {
+    console.log(this.hasAccepted)
     this.location = window.location.pathname
 
     this.givenName = this.accountProfile.givenName
@@ -244,6 +252,10 @@ export default class Settings extends Vue {
     } else {
       this.submit(data)
     }
+  }
+
+  get myFileLogo(): string {
+    return require('@/assets/images/my-file-logo.svg')
   }
 }
 </script>

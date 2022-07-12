@@ -33,18 +33,24 @@
       <v-row
         v-if="!hasAccepted && $auth.loggedIn"
         no-gutters
-        justify="end"
-        class="pa-12"
+        justify="center"
+        class="pa-12 pt-1"
       >
         <v-btn
           :disabled="loading"
           outlined
-          class="mx-2 px-6 grey-5--text"
+          width="105%"
+          class="mx-2 mb-2 px-6 grey-5--text"
           @click="cancel"
         >
           {{ $t('controls.declineAndLogOut') }}
         </v-btn>
-        <v-btn :loading="loading" class="mx-2 primary px-10" @click="accept">
+        <v-btn
+          :loading="loading"
+          width="105%"
+          class="mx-2 primary px-10"
+          @click="accept"
+        >
           {{ $t('controls.accept') }}
         </v-btn>
       </v-row>
