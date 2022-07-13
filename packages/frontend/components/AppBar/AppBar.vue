@@ -30,6 +30,13 @@
         />
         {{ $t('application.title') }}
       </v-btn>
+      <!-- env indicator -->
+      <div
+        v-if="env"
+        style="text-align: center; width: 100%; background-color: orange"
+      >
+        {{ 'You are on ' + envTarget + ' environment' }}
+      </div>
       <!-- <v-app-bar-nav-icon
         v-else-if="!customMobileNav"
         color="grey-8"
@@ -51,6 +58,7 @@
         </v-tab>
       </v-tabs> -->
     </template>
+
     <template v-if="($vuetify.breakpoint.xs || empty) && title">
       <v-toolbar-title style="margin-left: 45%">
         {{ $t(title) }}
@@ -204,6 +212,7 @@ export default class AppBar extends mixins(Navigation) {
   showActivity = false
   userStore = userStore
   recompute = false
+  envTarget = ''
 
   async mounted() {
     // TODO: attempting to get the app bar to compute its height correctly
@@ -215,6 +224,18 @@ export default class AppBar extends mixins(Navigation) {
     setTimeout(() => {
       this.recompute = !this.recompute
     }, 3000)
+  }
+
+  get env() {
+    if (
+      this.$config.deploymentTarget == 'dev' ||
+      this.$config.deploymentTarget == 'staging'
+    ) {
+      this.envTarget = this.$config.deploymentTarget
+      return true
+    } else {
+      return false
+    }
   }
 
   get pathShare() {
