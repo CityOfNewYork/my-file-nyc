@@ -209,7 +209,6 @@ export default class Settings extends Vue {
   dhsCaseNumber = ''
 
   mounted() {
-    console.log(this.hasAccepted)
     this.location = window.location.pathname
 
     this.givenName = this.accountProfile.givenName
