@@ -22,7 +22,7 @@
             :alt="`${$t('myFileLogo')}`"
             :src="myFileLogo"
             style="width: 50%; left: 25%"
-            :class="$vuetify.breakpoint.smAndUp ? 'mt-5' : 'mt-1'"
+            :class="$vuetify.breakpoint.smAndUp ? 'mt-6' : 'mt-2'"
           />
           <MarkdownContent
             :content-path="markdown"
@@ -39,8 +39,8 @@
         <v-btn
           :disabled="loading"
           outlined
-          width="105%"
-          class="mx-2 mb-2 px-6 grey-5--text"
+          class="mx-2 mb-2 px-6 font-weight-bold"
+          style="border-color: #2157e4; color: #2157e4; width: 105%"
           @click="cancel"
         >
           {{ $t('controls.declineAndLogOut') }}
