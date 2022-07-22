@@ -1,21 +1,13 @@
 <template>
   <v-container v-if="editMode" class="pa-8">
     <div class="mt-1" style="text-align: center">
-      <v-img
+      <CityLogo
         v-if="!hasAccepted"
-        img="role"
-        :alt="`${$t('myFileLogo')}`"
-        :src="myFileLogo"
-        style="width: 70%; left: 12%"
-        :class="$vuetify.breakpoint.smAndUp ? 'mt-5' : 'mt-1 mb-2'"
+        :class="
+          $vuetify.breakpoint.smAndUp ? 'mx-auto mt-5' : ' mx-auto mt-1 mb-2'
+        "
       />
-      <p class="mt-1">
-        {{
-          hasAccepted
-            ? `${$t('navigation.settings')}`
-            : `${$t('navigation.settingsFirstRun')}`
-        }}
-      </p>
+      <p class="mt-1" v-html="boldMyFile"></p>
     </div>
     <ValidationObserver ref="observer">
       <v-form @submit.prevent>
@@ -208,6 +200,8 @@ export default class Settings extends Vue {
   dob = ''
   dhsCaseNumber = ''
 
+  settingsFirstRun = this.$t('navigation.settingsFirstRun') as string
+
   mounted() {
     this.location = window.location.pathname
 
@@ -232,6 +226,13 @@ export default class Settings extends Vue {
     } else {
       return true
     }
+  }
+
+  get boldMyFile() {
+    if (!this.hasAccepted) {
+      return this.settingsFirstRun.replace('#', '<b>').replace('&', '</b>')
+    }
+    return this.$t('navigation.settings')
   }
 
   edit() {
