@@ -41,7 +41,7 @@ export default merge(
         about: 'About',
         account: 'My Account Managers',
         settings: 'My Profile',
-        settingsFirstRun: 'Welcome to My File NYC! Please answer a few questions about yourself to get started.',
+        settingsFirstRun: 'Welcome to #My File NYC&! Please answer a few questions about yourself to get started.',
         welcomeFirstRun: 'Welcome to My File NYC!',
         activity: 'Activity Log',
         back: 'Back',

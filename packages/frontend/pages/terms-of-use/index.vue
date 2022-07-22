@@ -17,12 +17,10 @@
     <v-container v-if="step < 1" :class="{ 'mt-8': hasAccepted }">
       <v-row no-gutters align="center" justify="center">
         <v-col class="px-3" cols="12">
-          <v-img
-            img="role"
-            :alt="`${$t('myFileLogo')}`"
-            :src="myFileLogo"
-            style="width: 50%; left: 25%"
-            :class="$vuetify.breakpoint.smAndUp ? 'mt-6' : 'mt-2'"
+          <CityLogo
+            :class="
+              $vuetify.breakpoint.smAndUp ? 'mx-auto mt-6' : ' mx-auto mt-2'
+            "
           />
           <MarkdownContent
             :content-path="markdown"
@@ -93,7 +91,8 @@ export default class TermsOfUse extends mixins(Navigation) {
   }
 
   get hasAccepted() {
-    return userStore.profile && userStore.profile.termsOfUseAccepted
+    return false
+    // return userStore.profile && userStore.profile.termsOfUseAccepted
   }
 
   async accept() {
