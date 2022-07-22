@@ -10,7 +10,7 @@
     <slot name="nav-action" />
     <template v-if="!empty">
       <v-btn
-        v-if="$vuetify.breakpoint.smAndUp"
+        v-if="$vuetify.breakpoint.mdAndUp"
         text
         :to="localePath('/dashboard')"
         class="
@@ -30,10 +30,18 @@
         />
         {{ $t('application.title') }}
       </v-btn>
+
       <!-- env indicator -->
       <div
         v-if="env"
-        style="text-align: center; width: 100%; background-color: orange"
+        style="
+          top: 0;
+          right: 0;
+          position: fixed;
+          text-align: center;
+          width: 100%;
+          background-color: orange;
+        "
       >
         {{ 'You are on ' + envTarget + ' environment' }}
       </div>
@@ -74,7 +82,7 @@
       "
     />
     <!-- <slot v-if="!userStore.isAgent" name="actions" /> -->
-    <template v-if="!empty">
+    <template v-if="!empty && $vuetify.breakpoint.mdAndUp">
       <v-btn
         v-if="$vuetify.breakpoint.smAndUp && userStore.isClient"
         text
@@ -215,6 +223,7 @@ export default class AppBar extends mixins(Navigation) {
   envTarget = ''
 
   async mounted() {
+    console.log(this.$vuetify.breakpoint.mdAndUp)
     // TODO: attempting to get the app bar to compute its height correctly
     //       need a better way of waiting for all elements to mount and then recompute height
     this.recompute = !this.recompute
