@@ -17,7 +17,7 @@
           ? 'ml-3 mt-1 mb-2 d-flex'
           : 'd-flex ml-1 mr-3 mt-1'
       "
-      style="max-width: 23rem; filter: invert(1)"
+      style="max-width: 25rem; filter: invert(1)"
       :src="require('@/assets/images/city-logo-footer.svg')"
     />
     <div

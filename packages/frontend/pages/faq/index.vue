@@ -4,22 +4,30 @@
       <template v-slot:nav-action>
         <BackButton
           tabindex="0"
-          :style="$vuetify.breakpoint.smAndUp ? '' : 'width: 100%'"
-          :class="$vuetify.breakpoint.smAndUp ? '' : 'mt-10 '"
+          :style="
+            $vuetify.breakpoint.smAndUp
+              ? ''
+              : 'position: fixed; left: 0%; width: 100%;'
+          "
+          :class="$vuetify.breakpoint.smAndUp ? '' : 'mt-10'"
         />
       </template>
     </AppBar>
-    <v-img
-      img="role"
-      :alt="`${$t('myFileLogo')}`"
-      :src="myFileLogo"
-      style="width: 50%; left: 25%"
-      :class="$vuetify.breakpoint.smAndUp ? 'mt-5' : 'mt-15'"
-    />
-    <MarkdownContent
-      :content-path="markdown"
-      :class="$vuetify.breakpoint.smAndUp ? '' : 'mb-15'"
-    />
+
+    <v-divider v-if="$vuetify.breakpoint.smAndDown" class="my-5" />
+
+    <v-container :class="$vuetify.breakpoint.smAndUp ? ' mb-15' : 'my-5'">
+      <v-row no-gutters align="center" justify="center">
+        <v-col class="px-3" cols="12">
+          <CityLogo
+            :class="
+              $vuetify.breakpoint.smAndUp ? 'mx-auto my-8' : ' mx-auto my-8'
+            "
+          />
+          <MarkdownContent :content-path="markdown" />
+        </v-col>
+      </v-row>
+    </v-container>
   </div>
 </template>
 

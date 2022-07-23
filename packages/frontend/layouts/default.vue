@@ -5,7 +5,9 @@
         <BackButton tabindex="0" />
       </template>
     </AppBar>
-    <v-main class="blue-super-light">
+    <v-main
+      :class="this.$router.currentRoute.path !== '/' ? '' : 'blue-super-light'"
+    >
       <v-container>
         <nuxt />
       </v-container>

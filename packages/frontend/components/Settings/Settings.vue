@@ -1,13 +1,8 @@
 <template>
-  <v-container v-if="editMode" class="pa-8">
+  <v-container v-if="editMode" class="pa-5">
     <div class="mt-1" style="text-align: center">
-      <CityLogo
-        v-if="!hasAccepted"
-        :class="
-          $vuetify.breakpoint.smAndUp ? 'mx-auto mt-5' : ' mx-auto mt-1 mb-2'
-        "
-      />
-      <p class="mt-1" v-html="boldMyFile"></p>
+      <CityLogo class="mx-auto my-8" />
+      <p class="my-8" v-html="boldMyFile"></p>
     </div>
     <ValidationObserver ref="observer">
       <v-form @submit.prevent>
