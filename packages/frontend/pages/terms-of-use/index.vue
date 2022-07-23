@@ -4,22 +4,29 @@
       <template v-slot:nav-action>
         <BackButton
           tabindex="0"
-          :style="$vuetify.breakpoint.smAndUp ? '' : 'width: 100%'"
-          :class="$vuetify.breakpoint.smAndUp ? '' : 'mt-10 '"
+          :style="
+            $vuetify.breakpoint.smAndUp
+              ? ''
+              : 'position: fixed; left: 0%; width: 100%;'
+          "
+          :class="$vuetify.breakpoint.smAndUp ? '' : 'mt-10'"
         />
       </template>
     </AppBar>
 
     <SideNav v-if="hasAccepted && $auth.loggedIn" />
 
-    <v-divider class="mt-13 mb-0" />
+    <v-divider
+      v-if="hasAccepted"
+      :class="$vuetify.breakpoint.smAndUp ? 'my-12' : 'my-5'"
+    />
 
     <v-container v-if="step < 1" :class="{ 'mt-8': hasAccepted }">
       <v-row no-gutters align="center" justify="center">
         <v-col class="px-3" cols="12">
           <CityLogo
             :class="
-              $vuetify.breakpoint.smAndUp ? 'mx-auto mt-6' : ' mx-auto mt-2'
+              $vuetify.breakpoint.smAndUp ? 'mx-auto my-8' : ' mx-auto my-8'
             "
           />
           <MarkdownContent
