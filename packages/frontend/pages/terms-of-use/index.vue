@@ -17,7 +17,7 @@
     <SideNav v-if="hasAccepted && $auth.loggedIn" />
 
     <v-divider
-      v-if="hasAccepted"
+      v-if="hasAccepted || !$auth.loggedIn"
       :class="$vuetify.breakpoint.smAndUp ? 'my-12' : 'my-5'"
     />
 
