@@ -136,6 +136,7 @@ export const handler = createAuthenticatedApiGatewayHandler(
       },
       emails: individualEmailAddresses,
       ownerUser: user,
+      numberOfDocuments: documents.length,
     })
 
     // return response

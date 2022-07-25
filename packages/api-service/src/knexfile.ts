@@ -4,12 +4,25 @@ const migrations = {
 }
 
 const config: { [index: string]: any } = {
-  development: {
+
+  dev: {
     client: 'mysql2',
     connection: {
-      database: 'db',
-      user: 'root',
-      password: 'Lock3r', // defined in docker-compose.yaml
+      host: process.env.DB_HOST,
+      database: process.env.DB_NAME,
+      user: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
+    },
+    migrations,
+  },
+
+  staging: {
+    client: 'mysql2',
+    connection: {
+      host: process.env.DB_HOST,
+      database: process.env.DB_NAME,
+      user: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
     },
     migrations,
   },

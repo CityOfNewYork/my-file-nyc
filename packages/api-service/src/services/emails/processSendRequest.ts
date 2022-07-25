@@ -68,6 +68,7 @@ export const handler = wrapAsyncHandler(
             },
             subject,
             data,
+            forceSend: true,
           }),
         ),
       )

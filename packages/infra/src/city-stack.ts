@@ -2277,7 +2277,7 @@ export class CityStack extends Stack {
     const environment: {
       [key: string]: string
     } = {
-      NODE_ENV: 'production',
+      NODE_ENV: process.env.DEPLOYMENT_TARGET!,
       ...dbParams,
     }
 

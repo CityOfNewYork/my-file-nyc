@@ -26,9 +26,14 @@ const config = {
     link: [
       {
         rel: 'icon',
-        type: 'image/x-icon',
-        href: '/favicon.ico',
+        type: 'image/svg+xml',
+        href: '/favicon.svg',
       },
+      // {
+      //   rel: 'icon',
+      //   type: 'image/x-icon',
+      //   href: '/favicon.ico',
+      // },
     ],
   },
   css: ['@/assets/scss/main.scss'],
