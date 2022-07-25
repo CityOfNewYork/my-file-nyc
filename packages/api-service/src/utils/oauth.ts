@@ -1,4 +1,4 @@
-import { EnvironmentVariable, requireConfiguration } from '@/config'
+import { EnvironmentVariable, getConfiguration, isProduction, requireConfiguration } from '@/config'
 import fetch from 'node-fetch'
 import HttpsProxyAgent from 'https-proxy-agent';
 import { logger } from './logging'
@@ -21,8 +21,11 @@ let proxyOpts = undefined
 let proxyAgent: any = undefined
 
 const setProxyAgent = () => {
-  console.log(`NODE_ENV: ${process.env.NODE_ENV}`)
-  if (process.env.NODE_ENV === 'production') {
+  const isProd = isProduction();
+  const environment = getConfiguration(EnvironmentVariable.NODE_ENV)
+  console.log(`isProd: ${isProd}`)
+  console.log(`NODE_ENV: ${environment}`)
+  if (isProd) {
     console.log(`Proxy: ${process.env.NYC_HTTPS_PROXY}`)
     proxyOpts = new URL(process.env.NYC_HTTPS_PROXY!)
     proxyOpts.username = 'nycoppcertcheck@doitt.nyc.gov'
