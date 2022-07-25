@@ -24,7 +24,7 @@ export const sendEmail = async (opts: SendEmailOptions) => {
   const webAppLogoSrc =
     'https://' +
     requireConfiguration(EnvironmentVariable.WEB_APP_DOMAIN) +
-    '/images/city-logo.png'
+    '/images/my-file-logo.svg'
   const body = renderTemplate(template, {
     ...data,
     webAppLogoSrc,

@@ -19,12 +19,13 @@ type SendSharedCollectionOptions = {
     name: string
     link: string
   }
+  numberOfDocuments: number
 }
 
 export const queueSharedCollectionNotification = async (
   opts: SendSharedCollectionOptions,
 ) => {
-  const { emails, collection, ownerUser } = opts
+  const { emails, collection, ownerUser, numberOfDocuments } = opts
   await sendEmailRequest({
     template: 'collectionSharedNotification',
     toAddresses: emails,
@@ -37,6 +38,7 @@ export const queueSharedCollectionNotification = async (
     subject: 'My File Shared Document Receipt',
     data: {
       toEmailList: emails.join(', '),
+      numberOfDocuments,
     },
   })
 }

@@ -17,14 +17,24 @@ type UserInfo = {
   username: string
 }
 
-const proxyOpts = new URL(process.env.NYC_HTTPS_PROXY!)
-proxyOpts.username = 'nycoppcertcheck@doitt.nyc.gov'
-proxyOpts.password = 'cmMkFUHme#4'
-const proxyUrl = proxyOpts.toString()
-console.log(`proxy url: ${proxyUrl}`)
-const proxyAgent = HttpsProxyAgent(proxyUrl)
+let proxyOpts = undefined
+let proxyAgent: any = undefined
+
+const setProxyAgent = () => {
+  console.log(`NODE_ENV: ${process.env.NODE_ENV}`)
+  if (process.env.NODE_ENV === 'production') {
+    console.log(`Proxy: ${process.env.NYC_HTTPS_PROXY}`)
+    proxyOpts = new URL(process.env.NYC_HTTPS_PROXY!)
+    proxyOpts.username = 'nycoppcertcheck@doitt.nyc.gov'
+    proxyOpts.password = 'cmMkFUHme#4'
+    const proxyUrl = proxyOpts.toString()
+    console.log(`proxy url: ${proxyUrl}`)
+    proxyAgent = HttpsProxyAgent(proxyUrl)
+  }
+}
 
 export const getUserInfo = async (token: string): Promise<UserInfo> => {
+  setProxyAgent()
   const endpoint = requireConfiguration(EnvironmentVariable.USERINFO_ENDPOINT)
   const headers = {
     Authorization: token,
@@ -32,7 +42,7 @@ export const getUserInfo = async (token: string): Promise<UserInfo> => {
   const signedUrl = signRequest('GET', endpoint, headers)
   const fetchOpts = {
     headers,
-    agent: process.env.NODE_ENV === 'production' ? proxyAgent : undefined,
+    agent: process.env.NODE_ENV === 'production' && proxyAgent ? proxyAgent : undefined,
   }
 
   console.log(`signed url: ${signedUrl}`)
