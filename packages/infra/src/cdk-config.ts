@@ -136,6 +136,8 @@ export default {
                 'wereid@nycopportunity.nyc.gov',
                 'dgolden@oti.nyc.gov',
                 'dsessoms@oti.nyc.gov',
+                'pilin@nycopportunity.nyc.gov',
+                'dehirth@nycopportunity.nyc.gov',
               ]
             },
           },
