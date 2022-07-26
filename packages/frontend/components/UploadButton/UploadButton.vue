@@ -166,6 +166,42 @@ export default class UploadButton extends Vue {
     }
   }
 
+  documentNameSanitation(str: any) {
+    const chars = {
+      '&': '&',
+      '≈': '≈',
+      '/': '/',
+      '#': `#`,
+      ',': ',',
+      '+': '+',
+      '(': '(',
+      ')': ')',
+      $: '$',
+      '~': '~',
+      '%': '%',
+      "'": "'",
+      '"': '"',
+      '*': '*',
+      '?': '?',
+      '<': '<',
+      '>': '>',
+      '{': '{',
+      '}': '}',
+      '^': '^',
+      '!': '!',
+    } as any
+
+    let newStr = ''
+
+    for (let i in str) {
+      let char = str[i]
+      if (char != chars[char]) {
+        newStr = newStr + char
+      }
+    }
+    return newStr
+  }
+
   async uploadDocument() {
     // this.files[0].description
     snackbarStore.setParams({
@@ -179,7 +215,7 @@ export default class UploadButton extends Vue {
     this.showDialog = false
     const document = await this.$store.dispatch('user/uploadDocument', {
       fileList: this.files,
-      name: this.documentName,
+      name: this.documentNameSanitation(this.documentName),
       description: this.documentDescription,
       onUploadProgress: (e: ProgressEvent) => {
         snackbarStore.setProgress(Math.round((e.loaded / e.total) * 100))
