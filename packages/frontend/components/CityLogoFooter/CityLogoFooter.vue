@@ -3,12 +3,10 @@
     img="role"
     :alt="`${$t('cityLogoFooter')}`"
     :src="cityLogoFooter"
-    v-bind:style="
-      (this.$vuetify.breakpoint.width >= 667 && this.$vuetify.breakpoint.xs) ||
-      (this.$vuetify.breakpoint.width >= 653 &&
-        this.$vuetify.breakpoint.smAndDown)
-        ? `position: relative;  width: ${width}`
-        : 'position: fixed; bottom: 5%; width: 270px;'
+    :style="
+      this.$vuetify.breakpoint.smAndUp
+        ? `position: ${position};  bottom: 5%; width: ${width}`
+        : `position: ${position}; bottom: 5%; width: 270px;`
     "
   />
 </template>
@@ -19,6 +17,7 @@ import { Vue, Component, Prop } from 'nuxt-property-decorator'
 @Component
 export default class CityLogoFooter extends Vue {
   @Prop({ default: '340px' }) width: string
+  @Prop({ default: '' }) position: string
 
   get cityLogoFooter(): string {
     return require('@/assets/images/city-logo-footer.svg')
