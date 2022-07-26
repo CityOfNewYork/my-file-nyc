@@ -1,16 +1,20 @@
 <template>
   <div class="landing-container">
     <CityLogo />
-    <MarkdownContent id="welcome-copy" :content-path="welcomeMarkdown" />
+    <MarkdownContent
+      class="pa-1"
+      id="welcome-copy"
+      :content-path="welcomeMarkdown"
+    />
     <ButtonLarge
       :label="$t('login.loginButton')"
       @click.native="logIn(0)"
       @keydown.native.enter="logIn"
     />
-    <div>
-      <a href="">{{ $t('navigation.nycId') }}</a>
+    <div @click="nycIdShowTOggle" class="my-5">
+      <a href="/nycid">{{ $t('navigation.nycId') }}</a>
     </div>
-    <CityLogoFooter v-if="showFooterLogo" class="mt-10 mb-3" />
+    <CityLogoFooter position="fixed" v-if="showFooterLogo" class="mt-10 mb-3" />
     <FooterLinks
       justify="center"
       color="primary"
