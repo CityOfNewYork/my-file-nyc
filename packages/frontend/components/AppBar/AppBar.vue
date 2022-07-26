@@ -223,7 +223,6 @@ export default class AppBar extends mixins(Navigation) {
   envTarget = ''
 
   async mounted() {
-    console.log(this.$vuetify.breakpoint.mdAndUp)
     // TODO: attempting to get the app bar to compute its height correctly
     //       need a better way of waiting for all elements to mount and then recompute height
     this.recompute = !this.recompute

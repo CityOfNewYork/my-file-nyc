@@ -20,7 +20,6 @@ export default class BackButton extends Vue {
   @Prop({ default: () => () => {} }) reset: () => void
 
   back() {
-    console.log(window.location.pathname)
     if (window.history.length) {
       this.$router.back()
     } else {
