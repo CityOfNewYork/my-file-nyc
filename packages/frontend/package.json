@@ -1,7 +1,7 @@
 {
   "name": "frontend",
   "version": "1.0.0",
-  "description": "My Digital Data Locker helps residents access solutions to end homelessness. It facilitates the management and sharing of personal documents with case managers and city agencies. The system is simple, free to use, and secure.",
+  "description": "My File NYC - Easily and securely share Files with NYC DHS.",
   "main": "index.js",
   "license": "MIT",
   "private": true,

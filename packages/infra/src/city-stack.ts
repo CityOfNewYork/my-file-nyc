@@ -2277,7 +2277,7 @@ export class CityStack extends Stack {
     const environment: {
       [key: string]: string
     } = {
-      NODE_ENV: process.env.DEPLOYMENT_TARGET!,
+      NODE_ENV: (process.env.DEPLOYMENT_TARGET!).split('-')[0],
       ...dbParams,
     }
 
