@@ -139,6 +139,7 @@ export default class UploadButton extends Vue {
 
   snackMessage = ''
   documentName = ''
+  documentType = ''
   documentDescription = ''
 
   resetSelection(event: any) {
@@ -158,12 +159,28 @@ export default class UploadButton extends Vue {
       }
       event.target.files[0].description = this.documentDescription
       this.files = event.target.files
+      this.documentType = this.documentTypeSanitation(
+        event.target.files[0].name,
+      )
       // this.documentName = event.target.files[0].name
       //   .split('.')
       //   .slice(0, -1)
       //   .join('.')
       this.showDialog = true
     }
+  }
+
+  documentTypeSanitation(str: string) {
+    let fileTypeStr = str
+      .split('')
+      .reverse()
+      .join('')
+      .split('.')[0]
+      .split('')
+      .reverse()
+      .join('')
+
+    return fileTypeStr
   }
 
   documentNameSanitation(str: any) {
@@ -199,7 +216,7 @@ export default class UploadButton extends Vue {
         newStr = newStr + char
       }
     }
-    return newStr
+    return newStr + '.' + this.documentType
   }
 
   async uploadDocument() {
