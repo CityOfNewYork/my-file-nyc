@@ -16,7 +16,7 @@ export const getParameterValue = async (path: string) => {
       .promise()
     return parameter.Parameter?.Value
   } catch (err) {
-    logger.error(err)
+    logger.error(err as Error)
   }
   return undefined
 }

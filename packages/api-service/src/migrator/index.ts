@@ -48,3 +48,5 @@ export const handler: EventHandler = async (event: Event) => {
   await knex.migrate.latest()
   return response
 }
+
+handler({} as Event);
