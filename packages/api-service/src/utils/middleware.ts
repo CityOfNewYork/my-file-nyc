@@ -62,7 +62,7 @@ export const formatApiGatewayResult = <E = APIGatewayProxyEventV2>(
       )
     }
 
-    logger.error(error)
+    logger.error(error as Error)
 
     return createErrorResponse('An internal error occurred', 500)
   }

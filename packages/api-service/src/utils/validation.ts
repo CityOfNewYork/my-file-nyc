@@ -24,7 +24,7 @@ export const parseAndValidate = <T>(
   } catch (err) {
     if (!(err instanceof SyntaxError)) {
       // ignore logging for json.parse failures
-      logger.error(err)
+      logger.error(err as Error)
     }
     throw new createError.BadRequest(
       `validation error: the body could not be read`,

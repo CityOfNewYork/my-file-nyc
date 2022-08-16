@@ -13,7 +13,7 @@ const createToken = async (key: string, payload: any) => {
       if (err) {
         reject(err)
       } else {
-        resolve(token)
+        resolve(token!)
       }
     })
   })
