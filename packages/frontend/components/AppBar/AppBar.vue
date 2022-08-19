@@ -301,25 +301,28 @@ export default class AppBar extends mixins(Navigation) {
   async signOut() {
     const authTokenKey = 'auth._token.oauth2'
     const logoutUrl = this.$config.logoutEndpoint
-
     const logoutWindow = window.open(logoutUrl, '_blank')
     const currentWindow = window
+
     // @ts-ignore
     await window.cookieStore.delete(authTokenKey)
     localStorage.removeItem(authTokenKey)
+    localStorage.clear()
+
     const thisRef = this
+
     setTimeout(() => {
       console.log('closing new window')
       logoutWindow!.close()
       console.log('reset focus')
       currentWindow.focus()
       console.log('logging out')
-      thisRef.$auth.login()
+      thisRef.$auth.logout()
+      currentWindow.location.replace('https://localhost:3000/')
     }, 2000)
 
-    // this.$router.push(this.localePath('/'))
-    // localStorage.clear()
     // await this.$auth.logout()
+    // this.$router.push(this.localePath('/'))
   }
 }
 </script>

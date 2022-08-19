@@ -12,6 +12,7 @@ import ClientDashboard from '@/layouts/dashboard.vue'
 
 @Component({
   layout: 'dashboard',
+  auth: false,
   head() {
     return {
       title: this.$t('tabTitles.dashboard') as string,
@@ -22,10 +23,15 @@ export default class DashboardPage extends Vue {
   userStore = userStore
 
   mounted() {
-    if (this.$route.query.showSnack) {
-      snackbarStore.setVisible(true)
+    const token = localStorage.getItem('auth._token.oauth2')
+    if (!token || token == 'false') {
+      this.$router.push('/')
+    } else {
+      if (this.$route.query.showSnack) {
+        snackbarStore.setVisible(true)
+      }
+      this.$store.dispatch('user/fetchRole')
     }
-    this.$store.dispatch('user/fetchRole')
   }
 
   get showClientDashboard() {
