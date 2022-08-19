@@ -310,6 +310,14 @@ export default class AppBar extends mixins(Navigation) {
     localStorage.clear()
 
     const thisRef = this
+    const host = window.location.hostname
+    const protocol = window.location.protocol
+    let path = ''
+    if (host == 'localhost') {
+      path = protocol + '//' + host + ':3000'
+    } else {
+      path = protocol + '//' + host
+    }
 
     setTimeout(() => {
       console.log('closing new window')
@@ -318,7 +326,7 @@ export default class AppBar extends mixins(Navigation) {
       currentWindow.focus()
       console.log('logging out')
       thisRef.$auth.logout()
-      currentWindow.location.replace('https://localhost:3000/')
+      currentWindow.location.replace(path)
     }, 2000)
 
     // await this.$auth.logout()
