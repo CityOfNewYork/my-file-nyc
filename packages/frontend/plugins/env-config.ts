@@ -8,7 +8,7 @@ export const envConfig = {
     buildNumber: process.env.BUILD_NUMBER,
     buildTime: process.env.CODEBUILD_START_TIME,
     googleAnalytics: {
-      id: process.env.GOOGLE_ANALYTICS_TRACKING_ID,
+      id: process.env.GOOGLE_ANALYTICS_ID,
     },
     showBuildInfo: process.env.SHOW_BUILD_INFO,
     authStrategy: 'oauth2',

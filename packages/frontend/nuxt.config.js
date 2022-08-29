@@ -232,10 +232,10 @@ if (process.env.MOBILE_TESTING === '1') {
   })
 }
 
-if (process.env.GOOGLE_ANALYTICS_TRACKING_ID) {
+if (process.env.GOOGLE_ANALYTICS_ID) {
   Object.assign(config, {
     googleAnalytics: {
-      id: process.env.GOOGLE_ANALYTICS_TRACKING_ID,
+      id: process.env.GOOGLE_ANALYTICS_ID,
     },
   })
 }
