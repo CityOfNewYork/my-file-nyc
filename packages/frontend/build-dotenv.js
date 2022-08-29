@@ -26,7 +26,8 @@ AUTH_CLIENT_ID=${process.env.AUTH_CLIENT_ID}
 AUTH_TOKEN_ID_CLAIM=${process.env.AUTH_TOKEN_ID_CLAIM}
 
 # Google Analytics Tracking ID. Will disable tracking if this variable is not included
-GOOGLE_ANALYTICS_TRACKING_ID=${process.env.GOOGLE_ANALYTICS_TRACKING_ID}
+GOOGLE_ANALYTICS_ID=${process.env.GOOGLE_ANALYTICS_ID}
+# GOOGLE_ANALYTICS_TRACKING_ID=${process.env.GOOGLE_ANALYTICS_TRACKING_ID}
 
 # if true (1), will show the build number and time at the bottom of the nav bar
 SHOW_BUILD_INFO=${process.env.SHOW_BUILD_INFO}
