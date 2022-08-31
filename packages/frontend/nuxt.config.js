@@ -46,6 +46,7 @@ const config = {
   },
   plugins: [
     '@/plugins/vee-validate.js',
+    '@/plugins/gtag'
     // consider re-enabling when https://github.com/vue-a11y/vue-axe/issues/32 is resolved
     // {
     //   src: '@/plugins/axe.ts',
