@@ -55,6 +55,7 @@
     "utif": "^3.1.0",
     "vee-validate": "^3.4.2",
     "vue-class-component": "^7.2.6",
+    "vue-gtag": "1.16.1",
     "vue-infinite-loading": "^2.4.5",
     "vue-showdown": "^2.4.1",
     "vuex-module-decorators": "^0.17.0"
