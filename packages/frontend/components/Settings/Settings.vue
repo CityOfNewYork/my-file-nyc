@@ -70,24 +70,22 @@
             :placeholder="accountProfile.dob ? '' : $t('account.dob')"
           /> -->
 
-          <v-tooltip top>
-            <template v-slot:activator="{ on, attrs }">
-              <div v-bind="attrs" v-on="on">
-                <p class="subtitle-1">
-                  {{ $t('account.whatIsYourDshCaseNumber') }}
-                </p>
-                <p>{{ $t('account.dhsShow') }}</p>
-                <v-text-field
-                  outlined
-                  v-model="dhsCaseNumber"
-                  type="text"
-                  :placeholder="
-                    accountProfile.caseNumber ? '' : $t('account.caseNumber')
-                  "
-                />
-              </div>
-            </template>
-          </v-tooltip>
+          <div>
+            <p class="subtitle-1">
+              {{ $t('account.whatIsYourDshCaseNumber') }}
+            </p>
+            <p>{{ $t('account.dhsShow') }}</p>
+            <v-text-field
+              required
+              :rules="rules.caseNumber"
+              outlined
+              v-model="dhsCaseNumber"
+              type="text"
+              :placeholder="
+                accountProfile.caseNumber ? '' : $t('account.caseNumber')
+              "
+            />
+          </div>
         </ValidationProvider>
       </v-form>
     </ValidationObserver>
@@ -185,6 +183,9 @@ export default class Settings extends Vue {
         required: [
           (v: any) => (v || '').length > 0 || 'This field is required',
         ],
+        caseNumber: [
+          (v: any) => (v || '').length > 3 || 'Case number is required',
+        ],
       },
     }
   }
@@ -204,6 +205,8 @@ export default class Settings extends Vue {
     this.familyName = this.accountProfile.familyName
     this.dob = this.accountProfile.dob
     this.dhsCaseNumber = this.accountProfile.dhsCaseNumber
+      ? this.accountProfile.dhsCaseNumber
+      : 'CL-'
   }
 
   async patchUser(data: object) {
