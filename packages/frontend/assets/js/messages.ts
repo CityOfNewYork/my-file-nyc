@@ -115,7 +115,7 @@ export default merge(
         whatIsYourDob: 'When were you born?',
         caseNumber: 'Case Number',
         whatIsYourDshCaseNumber: 'What is your DHS Case Number?',
-        dhsShow: 'This number is given to you by DHS after you begin intake. If you don’t have one yet you can leave this blank.',
+        dhsShow: 'Add your DHS case number if you’re a returning family. If you’re new to PATH, add the ticket number you received when you came to PATH (example: CL ####).',
       },
 
       // All copy related to the create shared folder flow
