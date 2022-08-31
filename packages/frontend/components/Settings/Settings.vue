@@ -1,5 +1,5 @@
 <template>
-  <v-container v-if="editMode" class="pa-5">
+  <v-container v-if="editMode" class="pa-5 mb-10">
     <div class="mt-1" style="text-align: center">
       <CityLogo class="mx-auto my-8" />
       <p class="my-8" v-html="boldMyFile"></p>
@@ -206,17 +206,18 @@ export default class Settings extends Vue {
 
     this.givenName = this.accountProfile.givenName
     this.familyName = this.accountProfile.familyName
-    // this.dob = this.accountProfile.dob
     this.dhsCaseNumber = this.accountProfile.dhsCaseNumber
       ? this.accountProfile.dhsCaseNumber
       : 'CL-'
   }
 
-  dobDistruct(dob: String) {
+  dobDistruct(dob: string) {
     const arr = dob.split('-')
     this.day = arr[1]
     this.month = arr[0]
     this.year = arr[2]
+
+    this.dob = dob
   }
 
   dobConstruct() {
@@ -282,7 +283,4 @@ export default class Settings extends Vue {
 </script>
 
 <style scoped lang="scss">
-.input {
-  border: 1px solid black;
-}
 </style>
