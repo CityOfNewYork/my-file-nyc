@@ -32,43 +32,20 @@
             "
           />
           <p class="subtitle-1">{{ $t('account.whatIsYourDob') }}</p>
-
-          <div>
-            <v-menu
-              :close-on-content-click="false"
-              transition="scale-transition"
-              offset-y
-              min-width="auto"
-            >
-              <template v-slot:activator="{ on, attrs }">
-                <v-text-field
-                  required
-                  :rules="rules.required"
-                  v-model="dob"
-                  label="Select your birthday"
-                  prepend-icon="mdi-calendar"
-                  readonly
-                  v-bind="attrs"
-                  v-on="on"
-                ></v-text-field>
-              </template>
-              <v-date-picker
-                v-model="dob"
-                :max="
-                  new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
-                    .toISOString()
-                    .substr(0, 10)
-                "
-                min="1920-01-01"
-              ></v-date-picker>
-            </v-menu>
+          <div class="d-flex justify-space-between">
+            <div>
+              <label>Month</label>
+              <v-text-field outlined v-model="month" :rules="rules.month" />
+            </div>
+            <div>
+              <label>Day</label>
+              <v-text-field outlined v-model="day" :rules="rules.day" />
+            </div>
+            <div>
+              <label>Year</label>
+              <v-text-field outlined v-model="year" :rules="rules.year" />
+            </div>
           </div>
-
-          <!-- <v-text-field
-            outlined
-            v-model="dob"
-            :placeholder="accountProfile.dob ? '' : $t('account.dob')"
-          /> -->
 
           <div>
             <p class="subtitle-1">
@@ -186,6 +163,27 @@ export default class Settings extends Vue {
         caseNumber: [
           (v: any) => (v || '').length > 3 || 'Case number is required',
         ],
+        year: [
+          (v: any) => Number.isInteger(Number(v)) || 'Have to be a number',
+          (v: any) =>
+            Number.parseInt(v) <= new Date().getFullYear() ||
+            'Are you from the future?',
+          (v: any) => Number.parseInt(v) >= 1900 || 'Are you a time traveler?',
+          (v: any) => (v || '').length <= 4 || 'Year have to have 4 digits',
+          (v: any) => (v || '').length >= 4 || 'Year have to have 4 digits',
+        ],
+        day: [
+          (v: any) => Number.isInteger(Number(v)) || 'Have to be a number',
+          (v: any) => Number.parseInt(v) <= 31 || 'Have to be less then 31',
+          (v: any) => (v || '').length <= 2 || 'Day have to have 2 digits',
+          (v: any) => (v || '').length >= 2 || 'Dat have to have 2 digits',
+        ],
+        month: [
+          (v: any) => Number.isInteger(Number(v)) || 'Have to be a number',
+          (v: any) => Number.parseInt(v) <= 12 || 'There are only 12 months',
+          (v: any) => (v || '').length <= 2 || 'Month have to have 2 digits',
+          (v: any) => (v || '').length >= 2 || 'Month have to have 2 digits',
+        ],
       },
     }
   }
@@ -194,19 +192,35 @@ export default class Settings extends Vue {
   givenName = ''
   familyName = ''
   dob = ''
+  day = ''
+  month = ''
+  year = ''
   dhsCaseNumber = ''
 
   settingsFirstRun = this.$t('navigation.settingsFirstRun') as string
 
   mounted() {
+    this.accountProfile.dob && this.dobDistruct(this.accountProfile.dob)
+
     this.location = window.location.pathname
 
     this.givenName = this.accountProfile.givenName
     this.familyName = this.accountProfile.familyName
-    this.dob = this.accountProfile.dob
+    // this.dob = this.accountProfile.dob
     this.dhsCaseNumber = this.accountProfile.dhsCaseNumber
       ? this.accountProfile.dhsCaseNumber
       : 'CL-'
+  }
+
+  dobDistruct(dob: String) {
+    const arr = dob.split('-')
+    this.day = arr[1]
+    this.month = arr[0]
+    this.year = arr[2]
+  }
+
+  dobConstruct() {
+    return this.month + '-' + this.day + '-' + this.year
   }
 
   async patchUser(data: object) {
@@ -219,7 +233,14 @@ export default class Settings extends Vue {
   }
 
   get isValid() {
-    if (!!this.givenName && !!this.familyName && !!this.dob) {
+    if (
+      !!this.givenName &&
+      !!this.familyName &&
+      !!this.day &&
+      !!this.month &&
+      !!this.year &&
+      !!this.dhsCaseNumber
+    ) {
       return false
     } else {
       return true
@@ -238,6 +259,8 @@ export default class Settings extends Vue {
   }
 
   async save() {
+    this.dob = this.dobConstruct()
+
     const data = {
       givenName: this.givenName,
       familyName: this.familyName,
@@ -259,4 +282,7 @@ export default class Settings extends Vue {
 </script>
 
 <style scoped lang="scss">
+.input {
+  border: 1px solid black;
+}
 </style>
