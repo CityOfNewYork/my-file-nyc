@@ -88,3 +88,6 @@ storybook-static
 
 #ci/cd script
 deploy.js
+
+# misc test files
+test.ts

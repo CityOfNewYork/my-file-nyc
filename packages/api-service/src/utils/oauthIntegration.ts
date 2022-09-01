@@ -1,4 +1,4 @@
-import { EnvironmentVariable, requireConfiguration } from '@/config'
+import { EnvironmentVariable, requireConfiguration } from '../config'
 
 export enum IntegrationType {
   OAUTH = 'OAUTH',

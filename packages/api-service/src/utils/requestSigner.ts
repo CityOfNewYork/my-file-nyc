@@ -1,4 +1,4 @@
-import { EnvironmentVariable, requireConfiguration } from '@/config'
+import { EnvironmentVariable, requireConfiguration } from '../config'
 import { createHmac } from 'crypto'
 import { parse as urlParse } from 'url'
 import { parse as qsParse, ParsedUrlQuery } from 'querystring'
@@ -60,7 +60,7 @@ const getDateTimeArg = () => {
 export const signRequest = (
   method: 'GET' | 'POST',
   urlToSign: string,
-  headers: Record<string, string>,
+  headers: Record<string, string>
 ): string => {
   const integrationType = getIntegrationType()
 
