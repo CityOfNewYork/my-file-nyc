@@ -35,15 +35,30 @@
           <div class="d-flex justify-space-between">
             <div>
               <label>Month</label>
-              <v-text-field outlined v-model="month" :rules="rules.month" />
+              <v-text-field
+                outlined
+                v-model="month"
+                :rules="rules.month"
+                :class="$vuetify.breakpoint.mdAndDown ? 'input' : ''"
+              />
             </div>
             <div>
               <label>Day</label>
-              <v-text-field outlined v-model="day" :rules="rules.day" />
+              <v-text-field
+                outlined
+                v-model="day"
+                :rules="rules.day"
+                :class="$vuetify.breakpoint.mdAndDown ? 'input' : ''"
+              />
             </div>
             <div>
               <label>Year</label>
-              <v-text-field outlined v-model="year" :rules="rules.year" />
+              <v-text-field
+                outlined
+                v-model="year"
+                :rules="rules.year"
+                :class="$vuetify.breakpoint.mdAndDown ? 'input' : ''"
+              />
             </div>
           </div>
 
@@ -164,25 +179,30 @@ export default class Settings extends Vue {
           (v: any) => (v || '').length > 3 || 'Case number is required',
         ],
         year: [
+          (v: any) => (v || '').length > 0 || 'This field is required',
           (v: any) => Number.isInteger(Number(v)) || 'Have to be a number',
+          (v: any) => (v || '').length <= 4 || 'Year have to have 4 digits',
+          (v: any) => (v || '').length >= 4 || 'Year have to have 4 digits',
           (v: any) =>
             Number.parseInt(v) <= new Date().getFullYear() ||
             'Are you from the future?',
           (v: any) => Number.parseInt(v) >= 1900 || 'Are you a time traveler?',
-          (v: any) => (v || '').length <= 4 || 'Year have to have 4 digits',
-          (v: any) => (v || '').length >= 4 || 'Year have to have 4 digits',
         ],
         day: [
           (v: any) => Number.isInteger(Number(v)) || 'Have to be a number',
           (v: any) => Number.parseInt(v) <= 31 || 'Have to be less then 31',
+          (v: any) => Number.parseInt(v) > 0 || 'Day have to be above 0',
           (v: any) => (v || '').length <= 2 || 'Day have to have 2 digits',
-          (v: any) => (v || '').length >= 2 || 'Dat have to have 2 digits',
+          (v: any) =>
+            (v || '').length >= 1 || 'Date have to have at least 1 digit',
         ],
         month: [
           (v: any) => Number.isInteger(Number(v)) || 'Have to be a number',
           (v: any) => Number.parseInt(v) <= 12 || 'There are only 12 months',
+          (v: any) => Number.parseInt(v) > 0 || 'Month have to be above 0',
           (v: any) => (v || '').length <= 2 || 'Month have to have 2 digits',
-          (v: any) => (v || '').length >= 2 || 'Month have to have 2 digits',
+          (v: any) =>
+            (v || '').length >= 1 || 'Month have to have at least 1 digit',
         ],
       },
     }
@@ -283,4 +303,7 @@ export default class Settings extends Vue {
 </script>
 
 <style scoped lang="scss">
+.input {
+  width: 80%;
+}
 </style>
