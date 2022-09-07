@@ -7,6 +7,7 @@
     <ValidationObserver ref="observer" v-slot="{ invalid }">
       <v-form @submit.prevent ref="form">
         <ValidationProvider
+          name="First Name"
           rules="required|max:50|min:2|alpha_spaces"
           v-slot="{ errors }"
         >
@@ -24,6 +25,7 @@
           <span class="invalid">{{ errors[0] }}</span>
         </ValidationProvider>
         <ValidationProvider
+          name="Last Name"
           rules="required|max:50|min:2|alpha_spaces"
           v-slot="{ errors }"
         >
@@ -43,6 +45,7 @@
         <div class="d-flex justify-space-between">
           <div class="inputContainer">
             <ValidationProvider
+              name="Month"
               rules="between:1,12|required"
               v-slot="{ errors }"
             >
@@ -58,6 +61,7 @@
           </div>
           <div class="inputContainer">
             <ValidationProvider
+              name="Day"
               rules="required|between:1,31"
               v-slot="{ errors }"
             >
@@ -73,6 +77,7 @@
           </div>
           <div class="inputContainer">
             <ValidationProvider
+              name="Year"
               rules="required|between:1900,2022|max:4"
               v-slot="{ errors }"
             >
@@ -87,7 +92,11 @@
             </ValidationProvider>
           </div>
         </div>
-        <ValidationProvider rules="required|max:10|min:7" v-slot="{ errors }">
+        <ValidationProvider
+          name="Case Number"
+          rules="required|max:10|min:7"
+          v-slot="{ errors }"
+        >
           <div>
             <p class="subtitle-1">
               {{ $t('account.whatIsYourDshCaseNumber') }}
@@ -183,30 +192,15 @@ import {
   min,
 } from 'vee-validate/dist/rules'
 
-extend('required', {
-  ...required,
-  message: 'This field is required',
-})
+extend('required', required)
 
-extend('max', {
-  ...max,
-  message: 'Input is invalid',
-})
+extend('max', max)
 
-extend('min', {
-  ...min,
-  message: 'Input is invalid',
-})
+extend('min', min)
 
-extend('between', {
-  ...between,
-  message: 'Input is invalid',
-})
+extend('between', between)
 
-extend('alpha_spaces', {
-  ...alpha_spaces,
-  message: 'Input is invalid',
-})
+extend('alpha_spaces', alpha_spaces)
 
 @Component({
   components: {
