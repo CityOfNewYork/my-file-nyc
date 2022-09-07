@@ -1,1 +1,3 @@
-Keep your personal files secure on **My File NYC**. Upload pictures of your documents, download documents whenever you need, and share documents with the DHS PATH Center when applying for shelter.
+Keep your personal files secure on **My File NYC**. Upload pictures of your files, download files whenever you need, and share files with NYC agencies when applying for benefits.
+
+Log into or create a **NYC account (NYC.ID)** to get started. You can also use your **ACCESS HRA** account to sign in.
