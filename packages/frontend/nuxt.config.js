@@ -8,6 +8,16 @@ import { getSrc } from './assets/js/csp.ts'
 const config = {
   ssr: false,
   target: 'static',
+  renderer: {
+    csp: {
+      hashArgorism: 'sha256',
+      policies: {
+        'script-src': [
+          "'sha256-4RS22DYeB7U14dra4KcQYxmwt5HkOInieXK1NUMBmQI='" // this line resolves the violation
+        ]
+      }
+    },
+  },
   head: {
     title: 'Loading...',
     // titleTemplate: '%s | My File',
