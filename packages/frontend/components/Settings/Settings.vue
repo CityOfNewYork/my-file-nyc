@@ -94,7 +94,7 @@
         </div>
         <ValidationProvider
           name="Case Number"
-          rules="required|max:10|min:7"
+          rules="required|max:20|min:4"
           v-slot="{ errors }"
         >
           <div>
@@ -222,40 +222,6 @@ export default class Settings extends Vue {
       dob: this.dob,
       dhsCaseNumber: this.dhsCaseNumber,
       editMode: this.editMode,
-      // rules: {
-      //   required: [
-      //     (v: any) => (v || '').length > 0 || 'This field is required',
-      //   ],
-      //   caseNumber: [
-      //     (v: any) => (v || '').length > 3 || 'Case number is required',
-      //   ],
-      //   year: [
-      //     (v: any) => (v || '').length > 0 || 'This field is required',
-      //     (v: any) => Number.isInteger(Number(v)) || 'Have to be a number',
-      //     (v: any) => (v || '').length <= 4 || 'Year have to have 4 digits',
-      //     (v: any) => (v || '').length >= 4 || 'Year have to have 4 digits',
-      //     (v: any) =>
-      //       Number.parseInt(v) <= new Date().getFullYear() ||
-      //       'Are you from the future?',
-      //     (v: any) => Number.parseInt(v) >= 1900 || 'Are you a time traveler?',
-      //   ],
-      //   day: [
-      //     (v: any) => Number.isInteger(Number(v)) || 'Have to be a number',
-      //     (v: any) => Number.parseInt(v) <= 31 || 'Have to be less then 31',
-      //     (v: any) => Number.parseInt(v) > 0 || 'Day have to be above 0',
-      //     (v: any) => (v || '').length <= 2 || 'Day have to have 2 digits',
-      //     (v: any) =>
-      //       (v || '').length >= 1 || 'Date have to have at least 1 digit',
-      //   ],
-      //   month: [
-      //     (v: any) => Number.isInteger(Number(v)) || 'Have to be a number',
-      //     (v: any) => Number.parseInt(v) <= 12 || 'There are only 12 months',
-      //     (v: any) => Number.parseInt(v) > 0 || 'Month have to be above 0',
-      //     (v: any) => (v || '').length <= 2 || 'Month have to have 2 digits',
-      //     (v: any) =>
-      //       (v || '').length >= 1 || 'Month have to have at least 1 digit',
-      //   ],
-      // },
     }
   }
 
@@ -278,8 +244,6 @@ export default class Settings extends Vue {
     this.givenName = this.accountProfile.givenName
     this.familyName = this.accountProfile.familyName
     this.dhsCaseNumber = this.accountProfile.dhsCaseNumber
-      ? this.accountProfile.dhsCaseNumber
-      : 'CL-'
   }
 
   dobDistruct(dob: string) {
