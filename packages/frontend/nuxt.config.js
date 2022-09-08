@@ -8,6 +8,18 @@ import { getSrc } from './assets/js/csp.ts'
 const config = {
   ssr: false,
   target: 'static',
+  // renderer: {
+  //   csp: {
+  //     hashAlgorithm: 'sha256',
+  //     addMeta: true,
+  //     policies: {
+  //       'default-src': ["'self'"],
+  //       'script-src': ["'self'"],
+  //       'style-src': ["'self'"],
+  //       'connect-src': ["'self'", 'localhost:3000']
+  //     }
+  //   },
+  // },
   head: {
     title: 'Loading...',
     // titleTemplate: '%s | My File',
@@ -123,8 +135,8 @@ const config = {
           'base-uri': ["'self'"],
           'img-src': getSrc(CspEnum.IMAGE, process.env.CSP_IMG_SRC),
           'worker-src': ["'self'"],
-          'style-src': ["'self'"],
-          'script-src': getSrc(CspEnum.SCRIPT, process.env.CSP_SCRIPT_SRC),
+          'style-src': ["'self'", "'unsafe-inline'"],
+          'script-src': [...getSrc(CspEnum.SCRIPT, process.env.CSP_SCRIPT_SRC), "'unsafe-inline'", "'unsafe-eval'"],
           'connect-src': getSrc(CspEnum.CONNECT, process.env.CSP_CONNECT_SRC),
           'frame-src': getSrc(CspEnum.FRAME, process.env.CSP_FRAME_SRC),
           'form-action': ["'self'"],
@@ -138,8 +150,8 @@ const config = {
             'style-src': false,
           },
           nonceEnabled: {
-            'script-src': true,
-            'style-src': true,
+            'script-src': false,
+            'style-src': false,
           },
           processFn: (builtPolicy, htmlPluginData, $) => {
             // this function was adapted from https://github.com/slackhq/csp-html-webpack-plugin/blob/master/plugin.js
