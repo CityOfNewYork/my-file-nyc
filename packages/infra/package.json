@@ -12,10 +12,19 @@
     "test:watch": "jest --watch",
     "cdk": "cdk",
     "lint": "eslint --ext .ts --ignore-path .gitignore .",
-    "cdk-bootstrap": ". ./params.env && npx cdk@1.147.0 bootstrap --public-access-block-configuration false --debug",
-    "cdk-synth": ". ./params.env && npx cdk@1.147.0 synth --debug",
-    "cdk-diff": ". ./params.env && npx cdk@1.147.0 diff --debug",
-    "cdk-deploy": ". ./params.env && npx cdk@1.147.0 deploy $DEPLOY_STACK --debug --require-approval never"
+    "cdk-bootstrap": ". ./params.env && npx cdk bootstrap --public-access-block-configuration false --debug",
+
+    "synth-dev": "DEPLOYMENT_TARGET=dev yarn cdk-synth",
+    "synth-staging": "DEPLOYMENT_TARGET=staging-02 yarn cdk-synth",
+    "cdk-synth": ". ./params.env && npx cdk synth --debug",
+
+    "diff-dev": "DEPLOYMENT_TARGET=dev yarn cdk-diff",
+    "diff-staging": "DEPLOYMENT_TARGET=staging-02 yarn cdk-diff",
+    "cdk-diff": ". ./params.env && npx cdk diff --debug",
+
+    "deploy-dev": "DEPLOYMENT_TARGET=dev yarn cdk-deploy",
+    "deploy-staging": "DEPLOYMENT_TARGET=staging-02 yarn cdk-deploy",
+    "cdk-deploy": ". ./params.env && npx cdk deploy $DEPLOY_STACK --debug --require-approval never"
   },
   "devDependencies": {
     "@aws-cdk/assert": "1.147.0",
