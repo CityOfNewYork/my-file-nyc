@@ -1,358 +1,128 @@
 # My File NYC Infrastructure
 
-## Useful commands
+My File NYC is built on AWS cloud resources. Based on policies set forth by NYC OTI (Office of Technology & Information), there are some resources that must be created and managed by the OTI.
 
-- `yarn infra build` compile typescript to js
-- `yarn infra test` perform the jest unit tests
-- `yarn infra cdk deploy` deploy this stack to your default AWS account/region
-- `yarn infra cdk diff` compare deployed stack with current state
-- `yarn infra cdk synth` emits the synthesized CloudFormation template
+These include:
 
-## Bootstrapping an environment
+- Amazon SES instances
+- Cloudfront Distributions
+- ACM Certificates
+- All Networking/Security resources (i.e. VPCs, Subnets, Route Tables, etc)
 
-AWS CDK requires a "bootstrap" stack that adds resources specific to AWS CDK.
-This includes an S3 bucket for CloudFormation artifacts and a CloudFormation deploy role.
+Outside of those OTI-controlled resources, we are free to create all other application-based resources (i.e. RDS databases, Lambdas, API Gateways, SQS Queues, SNS instances, S3 buckets, etc)
 
-To bootstrap an account and region, run the following command from the root of this workspace:
+My File NYC creates all cloud resources with IaC (Infrustructure-as-Code) using the AWS Cloud Development Kit (CDK).
 
-```bash
-yarn infra cdk bootstrap YOUR_ACCOUNT_NUMBER/YOUR_REGION --cloudformation-execution-policies arn:aws:iam::aws:policy/AdministratorAccess
-```
+## Bootstrapping an account
 
-Update the `cloudformation-execution-policies` to more restrictive policies as needed.
+>**IMPORTANT:** This is done once, and only once, for an AWS account. Regardless of the number of CDK stacks deployed to the account. Possible reasons to run bootstrap in addition to the first time, would be if upgrading a major version CDK or changing the asset bucket name.
 
-## Configuring for Deployment
+In order to deploy a CDK project to build infrastructure resources in an AWS account, each AWS account where the CDK project is intended to be built, must first be "bootstrapped" for CDK.
 
-The Deployment Stack is configured based on a JSON file that is included with a build when it is deployed from the deployment script found below, or via the CI/CD stack of your choosing.
+## Environment Setup with `params.env`
 
-This file should be named `cdk.pipeline.json` and contains information on the stacks for deployment.  Place this file in the packages/infra directory.
+Throughout the My File project, you will notice the presence of a `params.env` file in the root of each package that has direct deployment capabilities: **infra** & **frontend**.
 
-An example configuration can be found below.
+The `params.env` file is simply a "source-able" file used to setup the necessary environment variables for any deployment-related activity.
 
-Also in that same directory you will need to add a file named `cdk.context.json` which contains the following:
+It is very easy to follow and straightforward to maintain and use.
 
-```{
-  "availability-zones:account={accountID}:region={region}": [
-    "us-east-1a",
-    "us-east-1b",
-    "us-east-1c",
-    "us-east-1d",
-    "us-east-1e",
-    "us-east-1f"
-  ]
-}
-```
-
-...be sure to replace the accoundID with your AWS account and the region with your AWS region.
-
-For full reference of properties, see:
-
-1. [Auth Stack Properties](src/auth-stack.ts), for the `authStackProps` sections
-2. [Data Store Stack Properties](src/data-store-stack.ts), for the `dataStoreStackProps` sections
-3. [City Stack Properties](src/city-stack.ts), for the `cityStacksProps` sections
-
-### Example deployment script
-
-Run this command, also found in the root level `package.json`, from the root of the project:
+**Overview of file:**
 
 ```
-npm run deploy --city=Bullville --bucket=s3://bucket-for-webapp
+export DEPLOYMENT_TARGET=${DEPLOYMENT_TARGET:='dev'}
+export AWS_PAGER=""
+export AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION:='us-east-1'}
+
+
+if [ $DEPLOYMENT_TARGET = 'dev' ]; then
+
+  ... dev variable definitions
+
+elif [ $DEPLOYMENT_TARGET = 'staging' ]; then
+
+  ... staging variable definitions
+
+elif [ $DEPLOYMENT_TARGET = 'production' ]; then
+
+  ... production variable definitions
+
+fi
+
 ```
 
-The city param is the cityStacksProps name that you will create in the example configuration listed below.
+At the beginning of the file, there are a few variables defined with defaults, as well as an assignment of an "already defined" variable.
 
-The bucket param is the full path to the S3 bucket created after setting up the previously mentioned files and running: 
+`DEPLOYMENT_TARGET`, for example, is used to determine which environment is being deployed. Upon sourcing the file, if the `DEPLOYMENT_TARGET` variable is defined and present in the environment, then the same value will be used.
 
+However, if there is no presence of an existing .`DEPLOYMENT_TARGET` variable, then the default value of `dev` will be assigned.
+
+Inside of each "Deployment Target" section of the file, the specific values are assigned for the target environment.
+
+A key AWS CLI environment variable, `AWS_PROFILE` is set with a default value in each of the deployment target sections. This sets the "named profile" to be used from the `~/.aws/credentials` file. The default value can be used so that all members of the team use the same value for the named profile, like so:
+
+**params.env**
 ```
-yarn infra cdk deploy
-```
+... dev if/else block ...
 
-### Example configuration
+export AWS_PROFILE=${AWS_PROFILE:='nyc_hhs04'}
 
-```json
-{
-  "env": {
-    "account": "111111111111",
-    "region": "us-west-2"
-  },
-  "developStageConfiguration": {
-    "authStackProps": {
-      "name": "ProdAuth",
-      "props": {
-        "userPoolName": "DataLockerUserPool",
-        "env": {
-          "account": "111111111111",
-          "region": "us-west-2"
-        },
-        "emailSender": {
-          "address": "noreply@datalocker.example.com",
-          "name": "My File NYC"
-        },
-        "customDomain": {
-          "certificateArn": "arn:aws:acm:us-east-1:111111111111:certificate/cccccccc-cccc-cccc-cccc-cccccccccccc",
-          "domain": "auth.datalocker.example.com",
-          "shouldCreateRootARecord": true,
-          "hostedZoneAttributes": {
-            "hostedZoneId": "AAAAAAAAAAAAAAA",
-            "zoneName": "datalocker.example.com"
-          }
-        }
-      }
-    },
-    "dataStoreStackProps": {
-      "name": "ProdDataStore",
-      "props": {
-        "env": {
-          "account": "111111111111",
-          "region": "us-west-2"
-        },
-        "vpcConfig": {
-          "natGatewaysCount": 1,
-          "maxAzs": 2
-        },
-        "rdsConfig": {
-          "backupRetentionDays": 7,
-          "maxCapacity": 2
-        }
-      }
-    },
-    "cityStacksProps": [
-      {
-        "name": "Bullville",
-        "props": {
-          "env": {
-            "account": "111111111111",
-            "region": "us-west-2"
-          },
-          "authStackName": "ProdAuth",
-          "dataStoreStackName": "ProdDataStore",
-          "webAppBuildVariables": {
-            "API_URL": "https://dev-city-api.datalocker.example.com",
-            "AUTH_URL": "https://auth.datalocker.example.com",
-            "AUTH_CLIENT_ID": "5984716e12bf48bbb7a96ada8ed7311f",
-            "GOOGLE_ANALYTICS_TRACKING_ID": "UA-123456789-1",
-            "SHOW_BUILD_INFO": "1"
-          },
-          "apiDomainConfig": {
-            "certificateArn": "arn:aws:acm:us-west-2:111111111111:certificate/cccccccc-cccc-cccc-cccc-cccccccccccc",
-            "domain": "dev-city-api.datalocker.example.com",
-            "corsAllowAnyHost": true
-          },
-          "webAppDomainConfig": {
-            "certificateArn": "arn:aws:acm:us-east-1:111111111111:certificate/cccccccc-cccc-cccc-cccc-cccccccccccc",
-            "domain": "dev-city.datalocker.example.com"
-          },
-          "hostedZoneAttributes": {
-            "hostedZoneId": "AAAAAAAAAAAAAAA",
-            "zoneName": "datalocker.example.com"
-          },
-          "additionalCallbackUrls": ["http://localhost:3000/authorize"],
-          "emailSender": {
-            "address": "noreply@datalocker.example.com",
-            "name": "My File NYC"
-          },
-          "agencyEmailDomainsWhitelist": ["@example.com"]
-        }
-      }
-    ]
-  }
-}
+...
 ```
 
-## First time deployment
+**~/.aws/credentials**
+```
+...
 
-For first time deployment, after bootstrapping and configuring the pipeline settings, you'll need to complete the following steps:
+[nyc_hhs03]
+aws_access_key_id=ASI........3HAH
+aws_secret_access_key=EWbXvpo/Xm.......9lQn0Ai5
+aws_session_token=9lQn0Ai5......EWbXvpo/Xm
 
-### SES Set Up
+[nyc_hhs04]
+aws_access_key_id=ASI........3HAH
+aws_secret_access_key=EWbXvpo/Xm.......9lQn0Ai5
+aws_session_token=9lQn0Ai5......EWbXvpo/Xm
 
-The Auth Stack (which uses Cognito) and the application layer use SES to send notifications to users on collection sharing and sign up, etc.
-You'll need a verified identity (individual email address) in SES in the region of your application and your account out of the SES sandbox.
-There are two Identity Policies that need to be applied to the sending identity, which are:
-
-1. AllowIAMAccess
-
-```json
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Principal": {
-        "AWS": "arn:aws:iam::ACCOUNT_ID:root"
-      },
-      "Action": ["SES:SendEmail", "SES:SendRawEmail"],
-      "Resource": "arn:aws:ses:REGION:ACCOUNT_ID:identity/email@example.com"
-    }
-  ]
-}
+...
 ```
 
-1. AllowCognitoAccess
+Above, if the developer's AWS credentials file contains named profiles that are aligned with the default value in the `params.env` file, then the default value will match the developer's environment.
 
-```json
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Principal": {
-        "Service": "cognito-idp.amazonaws.com"
-      },
-      "Action": ["SES:SendEmail", "SES:SendRawEmail"],
-      "Resource": "arn:aws:ses:REGION:ACCOUNT_ID:identity/email@example.com"
-    }
-  ]
-}
-```
+**A WORD OF CAUTION:**
 
-### (Optional) Create Hosted Zone and ACM Certificates
+If you run deployments for multiple deployment targets (i.e. dev, staging, etc) while in the same terminal session, the previously set `$DEPLOYMENT_TARGET`, `$AWS_PROFILE`, etc variables will exist, and be re-used.
 
-If you do not want a specific domain for your hosted API and web app, you can use the default cloudfront distribution and API Gateway URLs instead, and you can skip this step. Just don't define the `apiDomainConfig`, `webAppDomainConfig` or `hostedZoneAttributes` above.
+As good practice, when running the `npm` script for a given deployment, use "in line" environment variables to ensure the right context:
 
-If you do want a specific domain, at the minimum you'll need to:
+>`DEPLOYMENT_TARGET=staging AWS_PROFILE=nyc_hhs04 yarn infra cdk-deploy`
 
-1. Set up a Hosted Zone in Route 53 with the domain you are hosting at. Make sure DNS is delegated from your root domain if this is a subdomain.
-2. A wildcard certificate in your application region (above, this is `us-west-2`) - can be validated by the above Hosted Zone
-3. A wildcard certificate in `us-east-1` for the cloudfront hosting for the web app - can be validated by the above Hosted Zone
+## Infra NPM Scripts
 
-If you want fully qualified certificates, you'll need:
+- `build` compile typescript to js
+- `test` perform the jest unit tests
+- `cdk-diff` compare deployed stack with current state
+- `cdk-synth` emits the synthesized CloudFormation template
+- `cdk-deploy` deploy this stack to the deployment target
 
-1. 1 certificate for the API in the application region for each "city stack".
-1. 1 certificate for the web app hosting in `us-east-1` for each "city stack".
-1. [If using the auth stack] 1 certificate for the auth hosted domain in `us-east-1`.
+Pre-set helper scripts:
 
-### Initial Environment Deployments
+- `synth-dev` - runs the `cdk-synth` script, but applies the inline DEPLOYMENT_TARGET=dev before executing
+- `synth-staging` - runs the `cdk-synth` script, but applies the inline DEPLOYMENT_TARGET=staging-02 before executing
+- `diff-dev` - runs the `cdk-diff` script, but applies the inline DEPLOYMENT_TARGET=dev before executing
+- `diff-staging` - runs the `cdk-diff` script, but applies the inline DEPLOYMENT_TARGET=staging-02 before executing
+- `deploy-dev` - runs the `cdk-deploy` script, but applies the inline DEPLOYMENT_TARGET=dev before executing
+- `deploy-staging` - runs the `cdk-deploy` script, but applies the inline DEPLOYMENT_TARGET=staging-02 before executing
 
-It can be easier for first time deployments to deploy the stacks manually to resolve any "teething" issues faster.
-The suggested order for deployment is:
 
-1. Auth Stacks
-2. Data Store Stacks
-3. City Stacks
+## Enhancements & Next Steps
 
-#### Auth Stack Deployment notes
+The `params.env` file is an enhancement to a previously-used static json configuration file that had only hard-coded values. While many of the previously-defined static values were ported over, many variables were added that pull from cloud-defined parameters (SSM Parameters).
 
-There is an issue with bringing up Cognito and Styling the UI in a single change set.
-The `UserPoolUICustomizationAttachment` resource requires the domain to already be attached, but the `CustomDomain` resource returns before it is "active" (which can take up to 15 minutes).
-To assist with this, switch the `deployUiCustomization` flag to `false` for first time deploy, and then once the Domain is "active" in Cognito, set it to `true` and redeploy.
+This enables the application to be setup without the need for developers having to copy and maintain static files locally. It also makes advancements to move any secret values outside the potential for being versioned or inadvertently misused.
 
-### (Optional) Using your own KMS Key with the Data Store and City Stacks
+The current approach makes use of retrieving SSM Parameter values defined in the respective AWS accounts, by setting environment variables pre-deployment from fetching them like so:
 
-If you do not want a KMS key provisioned by the stack, a KMS Key ARN can be provided in the stack configuration for both Data Store and City Stacks by using the `providedKmsKey` element.
+>`export CLOUDFRONT_DISTRIBUTION_ID=$(aws ssm get-parameter --name "/myfile/dev/cloudfront-distribution-id" --query "Parameter.Value" --output text)`
 
-The suggested key policy is as follows, please see the "Sid" elements for the purpose of each statement:
-
-```json
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Sid": "AllowKeyAdministration",
-      "Effect": "Allow",
-      "Principal": {
-        "AWS": "arn:aws:iam::ACCOUNTID:root"
-      },
-      "Action": [
-        "kms:Create*",
-        "kms:Describe*",
-        "kms:Enable*",
-        "kms:List*",
-        "kms:Put*",
-        "kms:Update*",
-        "kms:Revoke*",
-        "kms:Disable*",
-        "kms:Get*",
-        "kms:Delete*",
-        "kms:ScheduleKeyDeletion",
-        "kms:CancelKeyDeletion",
-        "kms:GenerateDataKey",
-        "kms:TagResource",
-        "kms:UntagResource"
-      ],
-      "Resource": "*"
-    },
-    {
-      "Sid": "AllowKeyUseViaS3AndSQS",
-      "Effect": "Allow",
-      "Principal": { "AWS": "*" },
-      "Action": ["kms:Decrypt", "kms:GenerateDataKey*"],
-      "Resource": "*",
-      "Condition": {
-        "StringEquals": {
-          "kms:CallerAccount": "ACCOUNTID",
-          "kms:ViaService": [
-            "s3.REGION.amazonaws.com",
-            "sqs.REGION.amazonaws.com"
-          ]
-        }
-      }
-    },
-    {
-      "Sid": "AllowKeyUseForLambdaEnvironmentVariables",
-      "Effect": "Allow",
-      "Principal": { "AWS": "*" },
-      "Action": ["kms:Encrypt", "kms:Decrypt", "kms:CreateGrant"],
-      "Resource": "*",
-      "Condition": {
-        "StringEquals": {
-          "kms:CallerAccount": "ACCOUNTID",
-          "kms:ViaService": "lambda.REGION.amazonaws.com"
-        }
-      }
-    },
-    {
-      "Sid": "AllowCloudwatchLogGroupEncryption",
-      "Effect": "Allow",
-      "Principal": {
-        "Service": "logs.REGION.amazonaws.com"
-      },
-      "Action": [
-        "kms:Encrypt*",
-        "kms:Decrypt*",
-        "kms:ReEncrypt*",
-        "kms:GenerateDataKey*",
-        "kms:Describe*"
-      ],
-      "Resource": "*",
-      "Condition": {
-        "ArnEquals": {
-          "kms:EncryptionContext:aws:logs:arn": "arn:aws:logs:REGION:ACCOUNTID:log-group:*"
-        }
-      }
-    },
-    {
-      "Sid": "AllowKeyUseViaSecretsManager",
-      "Effect": "Allow",
-      "Principal": { "AWS": "*" },
-      "Action": [
-        "kms:Encrypt",
-        "kms:Decrypt",
-        "kms:ReEncrypt*",
-        "kms:GenerateDataKey*",
-        "kms:CreateGrant",
-        "kms:DescribeKey"
-      ],
-      "Resource": "*",
-      "Condition": {
-        "StringEquals": {
-          "kms:CallerAccount": "ACCOUNTID",
-          "kms:ViaService": "secretsmanager.REGION.amazonaws.com"
-        }
-      }
-    },
-    {
-      "Sid": "AllowKeyUseViaRDS",
-      "Effect": "Allow",
-      "Principal": "*",
-      "Action": ["kms:Decrypt", "kms:GenerateDataKey*"],
-      "Resource": "*",
-      "Condition": {
-        "StringEquals": {
-          "kms:ViaService": "rds.REGION.amazonaws.com",
-          "kms:CallerAccount": "ACCOUNTID"
-        }
-      }
-    }
-  ]
-}
-```
+Further enhancements and hardening should include the use of AWS Secrets in addition to SSM Parameters to ensure properly-encrypted sensitive environment details.
