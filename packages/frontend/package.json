@@ -6,7 +6,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "local-dev": " . ./params.env && ./build-dotenv.js && nuxt-ts",
+    "local-dev": "DEPLOYMENT_TARGET=dev . ./params.env && ./build-dotenv.js && nuxt-ts",
     "local-staging": "DEPLOYMENT_TARGET=staging . ./params.env && ./build-dotenv.js && nuxt-ts",
     "local-prod": "DEPLOYMENT_TARGET=prod . ./params.env && ./build-dotenv.js && nuxt-ts",
     "build": " . ./params.env && ./build-dotenv.js && nuxt-ts build",

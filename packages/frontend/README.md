@@ -1,13 +1,114 @@
-## Build Setup
+# My File NYC Frontend
 
-To run these scripts from the root directory, use `yarn fe <script>`.
+## Overview
 
-```bash
+For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+
+More info about the deployment script and setup can be found in the [infra readme](./packages/infra/README.md).
+
+## Config
+
+The `.env` config file, used by webpack to build the nuxt app, is now generated automatically at build-time with the `build-dotenv.sh` bash script. This script is executed from the npm scripts and does not need to be called independently.
+
+## Environment Setup with `params.env`
+
+Throughout the My File project, you will notice the presence of a `params.env` file in the root of each package that has direct deployment capabilities: **infra** & **frontend**.
+
+The `params.env` file is simply a "source-able" file used to setup the necessary environment variables for any deployment-related activity.
+
+It is very easy to follow and straightforward to maintain and use.
+
+**Overview of file:**
+
+```
+export DEPLOYMENT_TARGET=${DEPLOYMENT_TARGET:='dev'}
+export AWS_PAGER=""
+export AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION:='us-east-1'}
+
+
+if [ $DEPLOYMENT_TARGET = 'dev' ]; then
+
+  ... dev variable definitions
+
+elif [ $DEPLOYMENT_TARGET = 'staging' ]; then
+
+  ... staging variable definitions
+
+elif [ $DEPLOYMENT_TARGET = 'production' ]; then
+
+  ... production variable definitions
+
+fi
+
+```
+
+At the beginning of the file, there are a few variables defined with defaults, as well as an assignment of an "already defined" variable.
+
+`DEPLOYMENT_TARGET`, for example, is used to determine which environment is being deployed. Upon sourcing the file, if the `DEPLOYMENT_TARGET` variable is defined and present in the environment, then the same value will be used.
+
+However, if there is no presence of an existing .`DEPLOYMENT_TARGET` variable, then the default value of `dev` will be assigned.
+
+Inside of each "Deployment Target" section of the file, the specific values are assigned for the target environment.
+
+A key AWS CLI environment variable, `AWS_PROFILE` is set with a default value in each of the deployment target sections. This sets the "named profile" to be used from the `~/.aws/credentials` file. The default value can be used so that all members of the team use the same value for the named profile, like so:
+
+**params.env**
+```
+... dev if/else block ...
+
+export AWS_PROFILE=${AWS_PROFILE:='nyc_hhs04'}
+
+...
+```
+
+**~/.aws/credentials**
+```
+...
+
+[nyc_hhs03]
+aws_access_key_id=ASI........3HAH
+aws_secret_access_key=EWbXvpo/Xm.......9lQn0Ai5
+aws_session_token=9lQn0Ai5......EWbXvpo/Xm
+
+[nyc_hhs04]
+aws_access_key_id=ASI........3HAH
+aws_secret_access_key=EWbXvpo/Xm.......9lQn0Ai5
+aws_session_token=9lQn0Ai5......EWbXvpo/Xm
+
+...
+```
+
+Above, if the developer's AWS credentials file contains named profiles that are aligned with the default value in the `params.env` file, then the default value will match the developer's environment.
+
+**A WORD OF CAUTION:**
+
+If you run deployments for multiple deployment targets (i.e. dev, staging, etc) while in the same terminal session, the previously set `$DEPLOYMENT_TARGET`, `$AWS_PROFILE`, etc variables will exist, and be re-used.
+
+As good practice, when running the `npm` script for a given deployment, use "in line" environment variables to ensure the right context:
+
+>`DEPLOYMENT_TARGET=staging AWS_PROFILE=nyc_hhs04 yarn infra cdk-deploy`
+
+## `params.env` Enhancements & Next Steps
+
+The `params.env` file is an enhancement to the previously-used, `.env` files that had only hard-coded values. While many of the previously-defined static values were ported over, some variables were added that pull from cloud-defined parameters (SSM Parameters).
+
+This enables the application to be setup without the need for developers having to copy and maintain static files locally. It also makes advancements to move any secret values outside the potential for being versioned or inadvertently misused.
+
+Further enhancements and hardening should include the use of AWS Secrets in addition to SSM Parameters to ensure properly-encrypted sensitive environment details.
+
+## NPM Scripts
+
+From the root of the repository, use `yarn fe <script>`.
+Otherwise, if already in the `packages/frontend` directory, you can call the scripts directly with `yarn <script>`.
+
+**Some Helpful Scripts:**
+
+```
 # install dependencies
 $ yarn install
 
 # serve with hot reload at localhost:3000
-$ yarn dev
+$ yarn local-dev
 
 # build for production and launch server
 $ yarn build
@@ -16,49 +117,16 @@ $ yarn start
 # generate static project
 $ yarn generate
 
-# deploy the web app
-# must be run from the ROOT LEVEL OF THE PROJECT
-$ npm run deploy --city=CityName --bucket=s3://bucket-for-webapp
 ```
 
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+**Deployment Scripts:**
 
-More info about the deployment script and setup can be found in the [infra readme](./packages/infra/README.md).
-
-## Config
-
-Example config can be found in [./.env.local](./.env.local). You can use this as a template for creating local dev config, however you will need to add any secrets which can't be committed (keep in mind this is an open source repo) and create your own `.env` file in the `packages/frontend` directory.
-
-## Hygen Templates
-
-[Hygen](https://www.hygen.io/) templates are stored in `./templates`. You can use Hygen templates to generate boilerplate code for you.
-
-```
-# install Hygen globally
-yarn global add hygen
-```
-
-We currently have templates for:
-
-- Components: Generates a component with unit tests and storybook. Also validates that component names are suitable.
-- Layouts: Generates a layout with unit tests.
-- Pages: Generates a page with unit tests and storybook.
-- Store Modules: Generates a store module with unit tests. Also modifies the [store accessor plugin](./utils/store-accessor.ts) to export a type-safe reference to the module.
-- Utils: Generates a utility module with unit tests.
-
-## Customising Hosted Login
-
-The frontend uses AWS Cognito hosted login to serve sign in, sign out, and other auth-related pages. Customisation can be accomplished by making changes to [hostedLogin.css](./assets/css/hostedLogin.css) and running:
-
-```bash
-aws cognito-idp set-ui-customization --user-pool-id <span style="color: #fa671d">user_pool_id</span> --client-id <span style="color: #fa671d">client_id</span> --css "$(<./packages/infra/src/assets/hostedLogin.css)"
-```
-
-Make sure to set `client_id` to the ID of the Cognito App Client you're testing. This should match the `AUTH_CLIENT_ID` parameter in your `.env` file.
-
-If you need to test the banner image, replace `__BANNER_BACKGROUND_URL__` in the `hostedLogin.css` file locally with the full path of a image hosted in the web app, e.g. `https://dev-city.datalocker.example.com/images/city-logo.svg`
-
-More information can be found on the AWS docs regarding permitted [CSS classes](https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-app-ui-customization.html#cognito-user-pools-app-ui-customization-css) and [CSS variables](https://docs.amplify.aws/ui/customization/theming/q/framework/vue):
+- `yarn local-dev` - preset the DEPLOYMENT_TARGET to dev, source the `params.env` file, generate the `.env` file, build and run the app locally at localhost:3000
+- `yarn local-staging` - same as local-dev but using the staging api and context
+- `yarn local-prod` - same as local-dev but using the prod api and context
+- `yarn deploy-dev` - preset the DEPLOYMENT_TARGET to dev, source the `params.env` file, generate the `.env` file, build and deploy the app to the dev environment. (Please set the AWS_PROFILE as an inline variable to ensure proper AWS account deployment)
+- `yarn deploy-staging` - same as deploy-dev but using the staging settings and context
+- `yarn deploy-prod` - same as deploy-dev but using the prod settings and context
 
 ## Frontend Stack
 
@@ -88,7 +156,7 @@ Assets under `./static` are for local development purposes only. At build time t
 
 ## Debugging Auth
 
-In [./nuxt.config.js](./nuxt.config.js) set `auth.redirect = false`, and `auth.strategies.redirect_uri = 'http://localhost:3000/debug'`. Then you can navigate to /debug (on dev environment only) and do your troubleshooting using the tools there.
+
 
 ## Local Development with Google Analytics
 
