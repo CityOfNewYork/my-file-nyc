@@ -114,3 +114,15 @@ Pre-set helper scripts:
 - `deploy-dev` - runs the `cdk-deploy` script, but applies the inline DEPLOYMENT_TARGET=dev before executing
 - `deploy-staging` - runs the `cdk-deploy` script, but applies the inline DEPLOYMENT_TARGET=staging-02 before executing
 
+
+## Enhancements & Next Steps
+
+The `params.env` file is an enhancement to a previously-used static json configuration file that had only hard-coded values. While many of the previously-defined static values were ported over, many variables were added that pull from cloud-defined parameters (SSM Parameters).
+
+This enables the application to be setup without the need for developers having to copy and maintain static files locally. It also makes advancements to move any secret values outside the potential for being versioned or inadvertently misused.
+
+The current approach makes use of retrieving SSM Parameter values defined in the respective AWS accounts, by setting environment variables pre-deployment from fetching them like so:
+
+>`export CLOUDFRONT_DISTRIBUTION_ID=$(aws ssm get-parameter --name "/myfile/dev/cloudfront-distribution-id" --query "Parameter.Value" --output text)`
+
+Further enhancements and hardening should include the use of AWS Secrets in addition to SSM Parameters to ensure properly-encrypted sensitive environment details.
