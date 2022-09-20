@@ -1,5 +1,8 @@
 # My File NYC Infrastructure
 
+![alt text](./MyFile%20NYC.svg)
+[Larger View](./MyFile%20NYC.svg)
+
 My File NYC is built on AWS cloud resources. Based on policies set forth by NYC OTI (Office of Technology & Information), there are some resources that must be created and managed by the OTI.
 
 These include:
