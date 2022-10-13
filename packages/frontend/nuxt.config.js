@@ -54,6 +54,7 @@ const config = {
       '@/assets/scss/_colors.scss',
       '@/assets/scss/_variables.scss',
       '@/assets/scss/_helpers.scss',
+      '@/assets/scss/_standard.scss',
     ],
   },
   plugins: [
@@ -67,6 +68,7 @@ const config = {
   ],
   components: true,
   buildModules: [
+    '@nuxtjs/style-resources',
     '@nuxt/typescript-build',
     '@nuxtjs/vuetify',
     '@nuxtjs/dotenv',
@@ -74,7 +76,6 @@ const config = {
     '@nuxtjs/pwa',
   ],
   modules: [
-    '@nuxtjs/style-resources',
     '@nuxtjs/axios',
     '@nuxtjs/auth',
     '@nuxtjs/pwa',
@@ -127,6 +128,15 @@ const config = {
         loader: 'raw-loader',
         options: {},
       })
+
+      config.resolve.modules.push(`${process.env.PWD}/node_modules/@nycopportunity`);
+      config.resolve.modules.push(`${process.env.PWD}/node_modules/@nycopportunity/standard/src`);
+      config.resolve.modules.push(`${process.env.PWD}/node_modules/@nycopportunity/pattern-elements/src`);
+      config.resolve.modules.push(`${process.env.PWD}/node_modules/@nycopportunity/pattern-typography/src`);
+
+      // config.resolve.modules.push(`${process.env.PWD}/node_modules/@nycopportunity/pattern-menu/src`);
+      // config.resolve.modules.push(`${process.env.PWD}/node_modules/@nycopportunity/pattern-navigation/src`);
+      // config.resolve.modules.push(`${process.env.PWD}/node_modules/@nycopportunity/pattern-attribution/src`);
     },
     plugins: [
       new CspHtmlWebpackPlugin(
