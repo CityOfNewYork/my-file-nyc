@@ -54,7 +54,7 @@ const config = {
       '@/assets/scss/_colors.scss',
       '@/assets/scss/_variables.scss',
       '@/assets/scss/_helpers.scss',
-      '@/assets/scss/_standard.scss',
+      // '@/assets/scss/_standard.scss',
     ],
   },
   plugins: [
