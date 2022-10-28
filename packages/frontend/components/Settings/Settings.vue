@@ -113,6 +113,8 @@
             <span class="invalid">{{ errors[0] }}</span>
           </div>
         </ValidationProvider>
+        <!-- language changer component -->
+        <!-- <LanguageChanger /> -->
       </v-form>
       <v-btn
         color="primary white--text"
@@ -244,6 +246,7 @@ export default class Settings extends Vue {
     this.givenName = this.accountProfile.givenName
     this.familyName = this.accountProfile.familyName
     this.dhsCaseNumber = this.accountProfile.dhsCaseNumber
+    // this.lang = this.accountProfile.lang
   }
 
   dobDistruct(dob: string) {
@@ -266,6 +269,7 @@ export default class Settings extends Vue {
     this.dob = response.dob
     this.dhsCaseNumber = response.dhsCaseNumber
     this.editMode = !this.editMode
+    // this.$i18n.locale = response.lang
   }
 
   get boldMyFile() {
@@ -288,6 +292,7 @@ export default class Settings extends Vue {
         familyName: this.familyName,
         dob: this.dob,
         dhsCaseNumber: this.dhsCaseNumber,
+        lang: this.$i18n.locale,
       }
 
       if (this.location == '/account') {

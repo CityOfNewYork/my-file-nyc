@@ -177,7 +177,11 @@ export default class User extends VuexModule {
       givenName: payload.givenName!,
       dob: payload.dob!,
       dhsCaseNumber: payload.dhsCaseNumber!,
+<<<<<<< HEAD
       locale: 'en-us',
+=======
+      // lang: registrationUser.lang!,
+>>>>>>> 602986c (language change component)
     }).then((response) => {
       return response.data
     })
