@@ -8,6 +8,7 @@ export class User extends BaseModel {
   public email?: string
   public dob?: string
   public dhsCaseNumber?: string
+  public locale?: string
   public syncTimestamp?: string
   public attributes?: any
 
@@ -26,6 +27,7 @@ export class User extends BaseModel {
         dob: { type: 'string', maxLength: 255 },
         dhsCaseNumber: { type: 'string', maxLength: 255 },
         syncTimestamp: { type: 'string', maxLength: 255 },
+        locale: { type: 'string', maxLength: 16 },
         attributes: { type: 'object' },
       },
     }

@@ -764,6 +764,12 @@ export interface Owner {
      * @memberof Owner
      */
     'dhsCaseNumber': string;
+    /**
+     * Locale for the user
+     * @type {string}
+     * @memberof Owner
+     */
+    'locale': string;
 }
 /**
  * Edit user data
@@ -795,6 +801,12 @@ export interface PatchUserData {
      * @memberof PatchUserData
      */
     'dhsCaseNumber': string;
+    /**
+     * Locale of the user used for i18n
+     * @type {string}
+     * @memberof PatchUserData
+     */
+    'locale': string;
 }
 /**
  * User registration information
@@ -826,6 +838,12 @@ export interface RegistrationDetails {
      * @memberof RegistrationDetails
      */
     'dhsCaseNumber': string;
+    /**
+     * Locale for the user
+     * @type {string}
+     * @memberof RegistrationDetails
+     */
+    'locale': string;
 }
 /**
  * Information on how data was shared
@@ -977,6 +995,12 @@ export interface User {
      * @memberof User
      */
     'dhsCaseNumber': string;
+    /**
+     * Locale for the user
+     * @type {string}
+     * @memberof User
+     */
+    'locale': string;
     /**
      * Whether the terms of use have been accepted for the current user for this application
      * @type {boolean}

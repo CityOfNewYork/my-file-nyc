@@ -21,6 +21,7 @@ type Request = APIGatewayRequest & {
   familyName: string
   dob: string
   dhsCaseNumber: string
+  locale: string
 }
 
 export const handler = createCustomAuthenticatedApiGatewayHandler(
@@ -43,6 +44,7 @@ export const handler = createCustomAuthenticatedApiGatewayHandler(
       email,
       familyName,
       givenName,
+      locale,
     } = JSON.parse(event.body!) as ApiUser;
 
     const updatedUser = await updateUser(user.id, {
@@ -50,6 +52,7 @@ export const handler = createCustomAuthenticatedApiGatewayHandler(
       givenName: givenName as string,
       dhsCaseNumber,
       dob,
+      locale,
       attributes: {
         termsOfUseAccepted: true,
       },
