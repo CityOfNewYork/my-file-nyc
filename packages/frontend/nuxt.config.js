@@ -135,7 +135,7 @@ const config = {
           'base-uri': ["'self'"],
           'img-src': getSrc(CspEnum.IMAGE, process.env.CSP_IMG_SRC),
           'worker-src': ["'self'"],
-          'style-src': ["'self'", "'unsafe-inline'"],
+          'style-src': ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
           'script-src': [...getSrc(CspEnum.SCRIPT, process.env.CSP_SCRIPT_SRC), "'unsafe-inline'", "'unsafe-eval'"],
           'connect-src': getSrc(CspEnum.CONNECT, process.env.CSP_CONNECT_SRC),
           'frame-src': getSrc(CspEnum.FRAME, process.env.CSP_FRAME_SRC),
@@ -166,6 +166,7 @@ const config = {
             }
             // build the policy into the context attr of the csp meta tag
             metaTag.attr('content', builtPolicy)
+            console.log(`-------\nPOLICY:\n${builtPolicy}`)
             const charset = cheerio.load('<meta charset="utf-8">')('meta')
             charset.prependTo($('head'))
             // eslint-disable-next-line no-param-reassign
