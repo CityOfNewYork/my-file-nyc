@@ -11,5 +11,3 @@ export async function down(knex: Knex): Promise<void> {
     t.dropColumns('locale')
   })
 }
-
-export const config = { transaction: false };
