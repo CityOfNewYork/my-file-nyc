@@ -157,6 +157,7 @@ export const userToApiOwner = (user: {
   familyName?: string
   email?: string
   dhsCaseNumber?: string,
+  locale?: string,
   dob?: string,
 }): Owner => ({
   id: user.id,
@@ -164,6 +165,7 @@ export const userToApiOwner = (user: {
   familyName: user.familyName || null,
   name: userName(user),
   dhsCaseNumber: user.dhsCaseNumber || '',
+  locale: user.locale || 'en-us',
   dob: user.dob || '',
 })
 
@@ -191,6 +193,7 @@ export const userToApiUser = (user: {
   email?: string
   attributes?: any
   dob?: string,
+  locale?: string,
   dhsCaseNumber?: string,
 }): ApiUser => ({
   id: user.id,
@@ -200,6 +203,7 @@ export const userToApiUser = (user: {
   dob: user.dob || '',
   dhsCaseNumber: user.dhsCaseNumber || '',
   name: userName(user),
+  locale: user.locale || 'en-us',
   termsOfUseAccepted: hasAcceptedTermsOfUse(user),
   links: [],
 })
