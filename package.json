@@ -8,11 +8,11 @@
     "test": "yarn workspaces run test",
     "build": "yarn workspaces run build",
     "lint": "yarn workspaces run lint",
-    "infra": "yarn workspace infra",
+    "api": "yarn workspace @datalocker/api-service",
     "fe": "yarn workspace frontend",
+    "infra": "yarn workspace infra",
     "storybook": "yarn workspace frontend storybook",
     "mockapi": "cd packages/api-client && docker-compose up",
-    "api": "yarn workspace @datalocker/api-service",
     "deploy": "OUTPUT_DIR=build yarn fe generate && npm run publish:S3",
     "publish:S3": "aws s3 sync packages/frontend/dist/build $npm_config_bucket"
   },
