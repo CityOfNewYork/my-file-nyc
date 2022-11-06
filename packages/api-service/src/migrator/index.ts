@@ -40,11 +40,14 @@ export const handler: EventHandler = async (event: Event) => {
       tableName: 'knex_migrations',
       directory: `${__dirname}/migrations`,
     },
+    disableTransactions: true,
   }
 
   console.log(knexConfig)
-  console.log('Running migration to latest')
   const knex = Knex(knexConfig)
+  console.log('Freeing any migrations locks.');
+  await knex.migrate.forceFreeMigrationsLock({ });
+  console.log('Running migration to latest')
   await knex.migrate.latest()
   return response
 }

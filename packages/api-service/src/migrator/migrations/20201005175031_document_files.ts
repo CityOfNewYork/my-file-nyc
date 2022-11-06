@@ -1,6 +1,7 @@
-import * as Knex from 'knex'
+import { Knex } from 'knex'
 
 export async function up(knex: Knex): Promise<void> {
+  await knex.migrate.forceFreeMigrationsLock();
   return knex.schema
     .alterTable('documents', (t) => {
       t.string('name', 255).notNullable().alter()
@@ -29,6 +30,7 @@ export async function up(knex: Knex): Promise<void> {
 }
 
 export async function down(knex: Knex): Promise<void> {
+  await knex.migrate.forceFreeMigrationsLock();
   return knex.schema
     .alterTable('documents', (t) => {
       t.string('name', 255).nullable().alter()

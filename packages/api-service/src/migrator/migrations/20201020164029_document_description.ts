@@ -1,12 +1,14 @@
-import * as Knex from 'knex'
+import { Knex } from 'knex'
 
 export async function up(knex: Knex): Promise<void> {
+  await knex.migrate.forceFreeMigrationsLock();
   return knex.schema.alterTable('documents', (t) => {
     t.string('description', 255).nullable()
   })
 }
 
 export async function down(knex: Knex): Promise<void> {
+  await knex.migrate.forceFreeMigrationsLock();
   return knex.schema.alterTable('documents', (t) => {
     t.dropColumns('description')
   })
