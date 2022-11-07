@@ -1,7 +1,7 @@
 import { Knex } from 'knex'
 
 export async function up(knex: Knex): Promise<void> {
-  await knex.migrate.forceFreeMigrationsLock();
+  
   return knex.schema.createTable('account_delegates', (t) => {
     t.string('id', 40).primary()
     t.string('accountId', 40).index().notNullable()
@@ -16,6 +16,6 @@ export async function up(knex: Knex): Promise<void> {
 }
 
 export async function down(knex: Knex): Promise<void> {
-  await knex.migrate.forceFreeMigrationsLock();
+  
   return knex.schema.dropTable('account_delegates')
 }

@@ -1,7 +1,7 @@
 import { Knex } from 'knex'
 
 export async function up(knex: Knex): Promise<void> {
-  await knex.migrate.forceFreeMigrationsLock();
+  
   return knex.schema
     .createTable('collections', (t) => {
       t.string('id', 40).primary()
@@ -46,7 +46,7 @@ export async function up(knex: Knex): Promise<void> {
 }
 
 export async function down(knex: Knex): Promise<void> {
-  await knex.migrate.forceFreeMigrationsLock();
+  
   return knex.schema
     .dropTable('collections_documents')
     .dropTable('collections_grants')

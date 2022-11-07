@@ -24,32 +24,30 @@ export const handler: EventHandler = async (event: Event) => {
   if (event.RequestType == 'Delete') {
     // skip delete events
     console.log('Skipping delete event.')
-    return response
+  } else if (['Create', 'Update'].includes(event.RequestType)) {
+    const knexConfig = {
+      client: 'mysql2',
+      debug: true,
+      connection: {
+        host: process.env.DB_HOST,
+        database: process.env.DB_NAME,
+        user: process.env.DB_USER,
+        password: process.env.DB_PASSWORD,
+      },
+      migrations: {
+        tableName: 'knex_migrations',
+        directory: `${__dirname}/migrations`,
+      },
+      disableTransactions: true,
+    }
+  
+    console.log(knexConfig)
+    console.log(`>>> Running migration to latest ${(new Date()).toISOString()}`)
+    const knex = Knex(knexConfig)
+    await knex.migrate.forceFreeMigrationsLock()
+    await knex.migrate.latest()
   }
-
-  const knexConfig = {
-    client: 'mysql2',
-    debug: true,
-    connection: {
-      host: process.env.DB_HOST,
-      database: process.env.DB_NAME,
-      user: process.env.DB_USER,
-      password: process.env.DB_PASSWORD,
-    },
-    migrations: {
-      tableName: 'knex_migrations',
-      directory: `${__dirname}/migrations`,
-    },
-    disableTransactions: true,
-  }
-
-  console.log(knexConfig)
-  const knex = Knex(knexConfig)
-  console.log('Freeing any migrations locks.');
-  await knex.migrate.forceFreeMigrationsLock({ });
-  console.log('Running migration to latest')
-  await knex.migrate.latest()
-  return response
+  return response;
 }
 
 handler({} as Event);
