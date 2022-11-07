@@ -865,6 +865,7 @@ components:
         - name
         - dob
         - dhsCaseNumber
+        - locale
       properties:
         id:
           type: string
@@ -892,6 +893,10 @@ components:
           type: string
           description: The issued DHS Case Number for this user
           example: 
+        locale:
+          type: string
+          description: Locale for the user
+          example: 
       type: object
     PatchUserData:
       description: Edit user data
@@ -900,6 +905,7 @@ components:
         - givenName
         - dob
         - dhsCaseNumber
+        - locale
       properties:
         familyName:
           type: string
@@ -917,6 +923,10 @@ components:
           type: string
           description: The issued DHS Case Number for this user
           example: 
+        locale:
+          type: string
+          description: Locale of the user used for i18n
+          example: 
       type: object
     RegistrationDetails:
       description: User registration information
@@ -925,6 +935,7 @@ components:
         - givenName
         - dob
         - dhsCaseNumber
+        - locale
       properties:
         familyName:
           type: string
@@ -941,6 +952,10 @@ components:
         dhsCaseNumber:
           type: string
           description: The issued DHS Case Number for this user
+          example: 
+        locale:
+          type: string
+          description: Locale for the user
           example: 
       type: object
     Sharer:
@@ -986,6 +1001,7 @@ components:
         - familyName
         - dob
         - dhsCaseNumber
+        - locale
         - email
         - name
         - links
@@ -1011,6 +1027,10 @@ components:
         dhsCaseNumber:
           type: string
           description: The issued DHS Case Number for this user
+          example: 
+        locale:
+          type: string
+          description: Locale for the user
           example: 
         termsOfUseAccepted:
           type: boolean
