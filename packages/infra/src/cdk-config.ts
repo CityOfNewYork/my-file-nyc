@@ -37,6 +37,7 @@ const {
   WEB_APP_FOOTER_LOGO,
   MONITORING_SENTRY_DSN,
   SNS_TOPIC_ARN_MONITORING_ALERTS,
+  SHARED_INBOX_DISTRIBUTION_LIST = '',
 } = process.env
 
 export default {
@@ -130,21 +131,7 @@ export default {
               vpcSubnets: VPC_SUBNETS,
             },
             sharedInboxConfig: {
-              'myfile.sharedinbox@nycopportunity.nyc.gov': [
-                // 'dsessoms@nycopportunity.nyc.gov',
-                // 'dgolden@nycopportunity.nyc.gov',
-                // 'wereid@nycopportunity.nyc.gov',
-                // 'dgolden@oti.nyc.gov',
-                // 'dsessoms@oti.nyc.gov',
-                // 'pilin@nycopportunity.nyc.gov',
-                // 'dehirth@nycopportunity.nyc.gov',
-                'mcenteno@dhs.nyc.gov',
-                'ffuerte@dhs.nyc.gov',
-                'dlewis@dhs.nyc.gov',
-                'bcaldero@dhs.nyc.gov',
-                'jjohnsonn@dhs.nyc.gov',
-                'elovett@dhs.nyc.gov',
-              ],
+              'myfile.sharedinbox@nycopportunity.nyc.gov': SHARED_INBOX_DISTRIBUTION_LIST.split(','),
             },
           },
         },
