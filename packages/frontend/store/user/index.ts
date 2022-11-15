@@ -157,7 +157,11 @@ export default class User extends VuexModule {
         givenName: registrationUser.givenName!,
         dob: registrationUser.dob!,
         dhsCaseNumber: registrationUser.dhsCaseNumber!,
+<<<<<<< HEAD
         locale: 'en-us',
+=======
+        locale: registrationUser.locale!,
+>>>>>>> db7fae4 (request)
       })
       .then((response) => {
         this.$ga.event({
@@ -178,10 +182,14 @@ export default class User extends VuexModule {
       dob: payload.dob!,
       dhsCaseNumber: payload.dhsCaseNumber!,
 <<<<<<< HEAD
+<<<<<<< HEAD
       locale: 'en-us',
 =======
       // lang: registrationUser.lang!,
 >>>>>>> 602986c (language change component)
+=======
+      locale: payload.locale!,
+>>>>>>> db7fae4 (request)
     }).then((response) => {
       return response.data
     })
