@@ -5,15 +5,18 @@
       class="pa-1"
       id="welcome-copy"
       :content-path="welcomeMarkdown"
+      :key="this.welcomeMarkdown['default']"
     />
     <ButtonLarge
       :label="$t('login.loginButton')"
       @click.native="logIn(0)"
       @keydown.native.enter="logIn"
     />
-    <div @click="nycIdShowTOggle" class="my-5">
+    <div class="my-5">
       <a href="/nycid">{{ $t('navigation.nycId') }}</a>
     </div>
+
+    <!-- <LanguageChanger /> -->
     <CityLogoFooter position="fixed" v-if="showFooterLogo" class="mt-10 mb-3" />
     <FooterLinks
       justify="center"
@@ -38,6 +41,13 @@ import { userStore } from '../../plugins/store-accessor'
 })
 export default class LandingMessage extends Vue {
   welcomeMarkdown = ''
+
+  beforeUpdate() {
+    if (this.$i18n) {
+      const locale = this.$i18n.locale
+      this.welcomeMarkdown = require(`@/assets/content/welcome/${locale}.md`)
+    }
+  }
 
   created() {
     if (this.$i18n) {

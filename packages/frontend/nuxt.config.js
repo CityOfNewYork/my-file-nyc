@@ -94,7 +94,7 @@ const config = {
     },
   },
   i18n: {
-    locales: ['en'],
+    locales: ['en', 'es', 'fr', 'ru'],
     defaultLocale: 'en',
     vueI18n: {
       fallbackLocale: 'en',

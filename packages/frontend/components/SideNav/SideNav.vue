@@ -31,6 +31,7 @@
     </v-btn>
 
     <NavItemList :items="navItems" />
+
     <v-footer fixed class="pa-0">
       <!-- Turning off build version and time -->
       <!-- <div v-if="$config.showBuildInfo" class="px-4 mt-4"> -->

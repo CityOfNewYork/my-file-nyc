@@ -43,6 +43,7 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 import { parseJwt } from '../lib/utils'
+import { userStore } from '@/plugins/store-accessor'
 
 @Component
 export default class DashboardLayout extends Vue {
@@ -54,8 +55,11 @@ export default class DashboardLayout extends Vue {
   showTimeoutWarningMessage = false
   timeoutWarningMessage = ''
   intervalId: number | undefined = undefined
+  userStore = userStore as any
 
   mounted() {
+    this.$i18n.locale = this.userStore.profile.locale
+
     if (this.$route.params.showSnack) {
       this.$store.dispatch('snackbar/show')
     }

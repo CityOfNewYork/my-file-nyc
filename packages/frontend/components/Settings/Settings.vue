@@ -113,6 +113,8 @@
             <span class="invalid">{{ errors[0] }}</span>
           </div>
         </ValidationProvider>
+        <!-- language changer component -->
+        <LanguageChanger />
       </v-form>
       <v-btn
         color="primary white--text"
@@ -162,6 +164,12 @@
         <p class="subtitle-1">{{ $t('account.caseNumber') }}</p>
         <p :key="dhsCaseNumber">
           {{ dhsCaseNumber }}
+        </p>
+      </div>
+      <div>
+        <p class="subtitle-1">{{ $t('account.locale') }}</p>
+        <p :key="locale">
+          {{ locale }}
         </p>
       </div>
     </div>
@@ -222,6 +230,7 @@ export default class Settings extends Vue {
       dob: this.dob,
       dhsCaseNumber: this.dhsCaseNumber,
       editMode: this.editMode,
+      locale: this.$i18n.locale,
     }
   }
 
@@ -233,6 +242,7 @@ export default class Settings extends Vue {
   month = ''
   year = ''
   dhsCaseNumber = ''
+  locale = this.$i18n.locale
 
   settingsFirstRun = this.$t('navigation.settingsFirstRun') as string
 
@@ -244,6 +254,7 @@ export default class Settings extends Vue {
     this.givenName = this.accountProfile.givenName
     this.familyName = this.accountProfile.familyName
     this.dhsCaseNumber = this.accountProfile.dhsCaseNumber
+    this.locale = this.accountProfile.locale
   }
 
   dobDistruct(dob: string) {
@@ -265,6 +276,8 @@ export default class Settings extends Vue {
     this.familyName = response.familyName
     this.dob = response.dob
     this.dhsCaseNumber = response.dhsCaseNumber
+    this.locale = response.locale
+
     this.editMode = !this.editMode
   }
 
@@ -288,6 +301,7 @@ export default class Settings extends Vue {
         familyName: this.familyName,
         dob: this.dob,
         dhsCaseNumber: this.dhsCaseNumber,
+        locale: this.$i18n.locale,
       }
 
       if (this.location == '/account') {

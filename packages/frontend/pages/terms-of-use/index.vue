@@ -109,6 +109,7 @@ export default class TermsOfUse extends mixins(Navigation) {
         givenName: 'Agent',
         dob: 'N/A',
         dhsCaseNumber: 'N/A',
+        locale: 'en',
       }
       await this.$store.dispatch('user/acceptTerms', data)
       this.step = 0
