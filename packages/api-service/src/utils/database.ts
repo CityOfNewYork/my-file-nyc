@@ -9,5 +9,6 @@ export const connectDatabase = (config?: string) => {
   console.log(config)
   const knex = Knex(knexConfig[config])
   Model.knex(knex)
+  console.log('database connection set and ready...')
   return knex
 }

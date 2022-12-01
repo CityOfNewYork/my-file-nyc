@@ -78,15 +78,17 @@ const getPermissionsToAgent = async (
 export const requirePermissionToUser = (permission: UserPermission) => async (
   request: APIGatewayRequest,
 ): Promise<APIGatewayRequest> => {
+  console.log('requirePermissionToUser start...');
   const { ownerId, userId, user: passedUser } = request
   const user = passedUser || (await requireUserData(request))
-
+  
   // resolve permissions
   const permissions = await getPermissionsToUser(userId, ownerId, user.email)
   await setContext('userPermissions', () => permissions)(request)
-
+  
   // determine access to permissions
   if (permissions.includes(permission)) {
+    console.log('requirePermissionToUser end...');
     return request
   }
   throw new createError.NotFound('user not found')

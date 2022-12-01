@@ -50,6 +50,18 @@ export const handler = createAuthenticatedApiGatewayHandler(
       event,
     } = request as Request
 
+    console.log(`
+    ownerId: ${ownerId}
+    userId: ${userId}
+    user: 
+    ${JSON.stringify(user, null, 2)}
+    
+    userPermissions: 
+    ${JSON.stringify(userPermissions, null, 2)}
+    
+    event: ${event}
+    `);
+
     const body = JSON.parse(request.event.body!) as DocumentCreate;
     const documentCount = await countDocumentsByOwnerId(ownerId)
     if (documentCount >= MaxDocumentsPerUser) {
@@ -86,6 +98,12 @@ export const handler = createAuthenticatedApiGatewayHandler(
       ),
     }
 
+
+    console.log(`
+    document: 
+    ${JSON.stringify(document, null, 2)}
+    `);    
+
     // submit audit activity
     await submitDocumentCreatedEvent({
       ownerId,
@@ -106,7 +124,12 @@ export const handler = createAuthenticatedApiGatewayHandler(
           DocumentPermission.GetDocument,
         ]
       : [DocumentPermission.WriteDocument, DocumentPermission.GetDocument]
-    return singleDocumentResult(createdDocument, permissions)
+    const documentResult = singleDocumentResult(createdDocument, permissions)
+    console.log(`
+    documentResult:
+    ${JSON.stringify(documentResult, null, 2)}
+    `);
+    return documentResult;
   },
 )
 
