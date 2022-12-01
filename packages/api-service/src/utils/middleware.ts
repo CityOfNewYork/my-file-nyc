@@ -83,7 +83,9 @@ export const setContext = (
   key: string,
   valueResolver: (e: APIGatewayRequest) => any | Promise<any>,
 ) => async (request: APIGatewayRequest): Promise<APIGatewayRequest> => {
+  console.log('setContext start...');
   request[key] = await valueResolver(request)
+  console.log('setContext end...');
   return request
 }
 
@@ -92,6 +94,7 @@ export type APIGatewayRequestBody<T> = APIGatewayRequest & { body: T }
 export const requireValidBody = <T>(schema: AnySchema) => (
   request: APIGatewayRequest,
 ): APIGatewayRequestBody<T> => {
+  console.log('requireValidBody start...');
   const { body } = request.event
   if (!body) {
     throw new createError.BadRequest(
@@ -105,5 +108,6 @@ export const requireValidBody = <T>(schema: AnySchema) => (
       `validation error: ${error.details.map((x) => x.message).join(', ')}`,
     )
   }
+  console.log('requireValidBody end...');
   return { ...request, body: value }
 }

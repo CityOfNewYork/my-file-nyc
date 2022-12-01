@@ -260,6 +260,7 @@ export interface CreateDocumentFileInput {
 }
 
 export const createDocument = async (document: CreateDocumentInput) => {
+  console.log('attempting to create document record');
   return await Document.query().insertGraphAndFetch({
     ...document,
   })

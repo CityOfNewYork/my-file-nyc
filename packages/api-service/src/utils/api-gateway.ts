@@ -12,12 +12,14 @@ export const requirePathParameter = (
   event: APIGatewayProxyEventV2,
   parameterName: string,
 ): string => {
+  console.log('requirePathParameter start...');
   const parameter = getPathParameter(event, parameterName)
   if (!parameter) {
     throw new createError.BadRequest(
       `${parameterName} path parameter not found`,
     )
   }
+  console.log('requirePathParameter end...');
   return parameter
 }
 
