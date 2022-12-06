@@ -80,6 +80,7 @@ export default merge(
         uploadFirst: 'Add your first document', // label on the empty state upload button
         thumbnailOf: 'Thumbnail of',
         fileName: "Document Name",
+        signleOrMultyple: 'Doese your document has one or multiple files?'
       },
 
       controls: {
@@ -100,6 +101,8 @@ export default merge(
         shared: 'Shared Documents', // label of shared tab on dashboard
         upload: 'Upload a Document',
         uploadDocument: 'Upload Document',
+        uploadFile: 'Upload File',
+        uploadFiles: 'Upload Files',
         view: 'View',
         save: 'Save',
       },
