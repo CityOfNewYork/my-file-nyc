@@ -209,7 +209,16 @@ export default class UploadButton extends Vue {
           return
         }
       }
-      event.target.files[0].description = this.documentDescription
+
+      let arr = [...event.target.files]
+      const files_temp = arr.sort((a, b) => a.lastModified - b.lastModified)
+
+      console.log(files_temp)
+
+      const sortedFileList = new DataTransfer()
+      sortedFileList.items.add(files_temp[0])
+
+      // event.target.files[0].description = this.documentDescription
       this.files = event.target.files
       // this.documentName = event.target.files[0].name
       //   .split('.')
