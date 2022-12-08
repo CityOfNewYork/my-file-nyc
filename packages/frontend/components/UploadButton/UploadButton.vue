@@ -21,16 +21,64 @@
       {{ $t(label) }}
       <input
         id="file-input"
-        ref="fileInput"
-        type="file"
-        :multiple="multiple"
-        class="fileInput"
-        accept="application/pdf, image/jpeg, image/png, image/tiff"
-        @click="resetSelection"
-        @keydown.enter="resetSelection()"
-        @change="onFileInput"
+        @click="singleOrMultyDialog()"
+        @keydown.enter="singleOrMultyDialog()"
       />
     </label>
+    <v-dialog
+      v-model="showSelectionDialog"
+      max-width="fit-content"
+      transition="dialog-bottom-transition"
+      @click:outside="closeDialog"
+    >
+      <template>
+        <v-container>
+          <div class="multyple">
+            <label>{{ $t('document.signleOrMultyple') }}</label>
+            <v-radio-group v-model="multiple" mandatory>
+              <v-radio label="One file" v-bind:value="false"></v-radio>
+              <v-radio label="Multiple files" v-bind:value="true"></v-radio>
+            </v-radio-group>
+            <label
+              :class="[
+                'upload-label',
+                'font-weight-medium',
+                'body-1',
+                `px-${px}`,
+                textButton ? 'text' : 'v-btn',
+                { disabled: isLoading },
+                { 'v-btn--outlined': outlined },
+                { 'font-weight-bold': textButton },
+              ]"
+            >
+              <v-icon
+                v-if="prependIcon"
+                v-text="prependIcon"
+                class="mr-4"
+                small
+              />
+              {{
+                multiple
+                  ? $t('controls.uploadFiles')
+                  : $t('controls.uploadFile')
+              }}
+
+              <input
+                id="file-input"
+                ref="fileInput"
+                type="file"
+                :multiple="multiple"
+                class="fileInput"
+                accept="application/pdf, image/jpeg, image/png, image/tiff"
+                @click="resetSelection"
+                @keydown.enter="resetSelection()"
+                @change="onFileInput"
+              />
+            </label>
+          </div>
+        </v-container>
+      </template>
+    </v-dialog>
     <v-dialog
       v-model="showDialog"
       fullscreen
@@ -131,6 +179,7 @@ export default class UploadButton extends Vue {
   @Prop({ default: () => () => {} }) docsPresent: () => void
 
   multiple = false
+  showSelectionDialog = false
   showDialog = false
   files: FileList = {
     length: 0,
@@ -140,6 +189,10 @@ export default class UploadButton extends Vue {
   snackMessage = ''
   documentName = ''
   documentDescription = ''
+
+  closeDialog() {
+    this.multiple = false
+  }
 
   resetSelection(event: any) {
     event.target.value = ''
@@ -155,14 +208,23 @@ export default class UploadButton extends Vue {
           snackbarStore.setVisible(true)
           return
         }
+        file
       }
-      event.target.files[0].description = this.documentDescription
-      this.files = event.target.files
+
+      // Sorting by lastModified property
+      const files_temp: any = [...event.target.files].sort(
+        (a, b) => a.lastModified - b.lastModified,
+      )
+
+      this.files = files_temp
+
+      // event.target.files[0].description = this.documentDescription
       // this.documentName = event.target.files[0].name
       //   .split('.')
       //   .slice(0, -1)
       //   .join('.')
       this.showDialog = true
+      this.showSelectionDialog = false
     }
   }
 
@@ -202,6 +264,10 @@ export default class UploadButton extends Vue {
     return newStr
   }
 
+  singleOrMultyDialog() {
+    this.showSelectionDialog = true
+  }
+
   async uploadDocument() {
     // this.files[0].description
     snackbarStore.setParams({
@@ -213,6 +279,7 @@ export default class UploadButton extends Vue {
     snackbarStore.setVisible(true)
 
     this.showDialog = false
+    this.multiple = false
     const document = await this.$store.dispatch('user/uploadDocument', {
       fileList: this.files,
       name: this.documentNameSanitation(this.documentName),
@@ -247,6 +314,9 @@ export default class UploadButton extends Vue {
 
   reset() {
     this.showDialog = false
+    this.showSelectionDialog = false
+    this.multiple = false
+
     this.files = {
       length: 0,
       item: () => null,
@@ -259,6 +329,11 @@ export default class UploadButton extends Vue {
 </script>
 
 <style scoped lang="scss">
+.multyple {
+  background-color: #f1f2f4;
+  padding: 10px;
+}
+
 .upload-label {
   min-width: $button-min-width;
   justify-content: start;
