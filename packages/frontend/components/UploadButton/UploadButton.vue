@@ -219,7 +219,6 @@ export default class UploadButton extends Vue {
       this.files = files_temp
 
       // event.target.files[0].description = this.documentDescription
-      this.files = event.target.files
       // this.documentName = event.target.files[0].name
       //   .split('.')
       //   .slice(0, -1)
