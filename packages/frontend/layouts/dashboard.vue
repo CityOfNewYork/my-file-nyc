@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app :class="rtlDirection && 'rtl'">
     <v-overlay style="text-align: center" :z-index="10000" :value="overlay">
       <p>You are required to login again if using MyFile more than 1 hour.</p>
       <v-btn class="white--text" color="teal" @click="logout()">
@@ -64,6 +64,18 @@ export default class DashboardLayout extends Vue {
       this.$store.dispatch('snackbar/show')
     }
     this.checkTimeout()
+  }
+
+  get rtlDirection() {
+    const langs: any = {
+      ar: 'ar',
+      urd: 'urd',
+    }
+
+    if (langs[this.$i18n.locale]) {
+      return true
+    }
+    return false
   }
 
   async logout() {
