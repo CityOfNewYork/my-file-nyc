@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app :class="rtlDirection && 'rtl'">
     <v-toolbar v-if="title" class="primary" elevation="0">
       <v-toolbar-title class="white--text text-center" style="width: 100vw">
         {{ $t(title) }}
@@ -24,6 +24,18 @@ import { userStore } from '../plugins/store-accessor'
 })
 export default class DefaultLayout extends Vue {
   auth: false
+
+  get rtlDirection() {
+    const langs: any = {
+      ar: 'ar',
+      urd: 'urd',
+    }
+
+    if (langs[this.$i18n.locale]) {
+      return true
+    }
+    return false
+  }
 
   get title() {
     if (!this.$auth.loggedIn) {

@@ -14,6 +14,11 @@
 
 #__nuxt {
 
+  // right to left languages
+  .rtl {
+    direction: rtl;
+  }
+
   // Base elements
   hr {
     border: none;
