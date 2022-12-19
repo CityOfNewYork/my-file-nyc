@@ -114,7 +114,7 @@
           </div>
         </ValidationProvider>
         <!-- language changer component -->
-        <LanguageChanger />
+        <LanguageChanger textColor="black" outlined="true" />
       </v-form>
       <v-btn
         color="primary white--text"
