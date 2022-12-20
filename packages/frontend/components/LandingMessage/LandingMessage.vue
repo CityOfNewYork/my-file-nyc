@@ -15,8 +15,12 @@
     <div class="my-5">
       <a href="/nycid">{{ $t('navigation.nycId') }}</a>
     </div>
-
-    <LanguageChanger />
+    <LanguageChanger
+      outlined="true"
+      justify="center"
+      textColor="black"
+      padding="0 20px"
+    />
     <CityLogoFooter position="fixed" v-if="showFooterLogo" class="mt-10 mb-3" />
     <FooterLinks
       justify="center"
