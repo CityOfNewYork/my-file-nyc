@@ -68,7 +68,6 @@ export default class LanguageChanger extends Vue {
 
 .langContainer {
   padding: -1px 19px;
-  // flex-direction: row-reverse;
 }
 
 .selectField {
