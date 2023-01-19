@@ -57,6 +57,9 @@ export default class LanguageChanger extends Vue {
     urd: 'اردو',
     ko: '한국인',
     fr: 'Français',
+    ht: 'Kreyol Ayisyen',
+    bn: 'বাংলা',
+    pl: 'Polskie',
   }
 }
 </script>
