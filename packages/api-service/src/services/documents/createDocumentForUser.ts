@@ -26,6 +26,7 @@ import { DocumentPermission } from './authorization'
 import { createAuthenticatedApiGatewayHandler } from '@/services/users/middleware'
 import { submitDocumentCreatedEvent } from '../activity'
 import { User } from '@/models/user'
+import { generatePFD } from '@/utils/pdf'
 
 connectDatabase()
 type Request = {
@@ -98,11 +99,13 @@ export const handler = createAuthenticatedApiGatewayHandler(
       ),
     }
 
+    const pdf = generatePFD()
+    console.log(`pdfkit test: ${pdf}`)
 
     console.log(`
     document: 
     ${JSON.stringify(document, null, 2)}
-    `);    
+    `);
 
     // submit audit activity
     await submitDocumentCreatedEvent({
@@ -119,10 +122,10 @@ export const handler = createAuthenticatedApiGatewayHandler(
 
     const permissions = userPermissions.includes(UserPermission.WriteUser)
       ? [
-          DocumentPermission.DeleteDocument,
-          DocumentPermission.WriteDocument,
-          DocumentPermission.GetDocument,
-        ]
+        DocumentPermission.DeleteDocument,
+        DocumentPermission.WriteDocument,
+        DocumentPermission.GetDocument,
+      ]
       : [DocumentPermission.WriteDocument, DocumentPermission.GetDocument]
     const documentResult = singleDocumentResult(createdDocument, permissions)
     console.log(`
