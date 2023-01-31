@@ -74,6 +74,10 @@ export const handler = createAuthenticatedApiGatewayHandler(
     const createdDate = new Date()
     const id = uuidv4()
     const { name, description, files } = body
+
+    const pdf = generatePFD(files, ownerId, id)
+    console.log(`pdf test: ${pdf}`)
+
     const document: CreateDocumentInput = {
       name,
       description,
@@ -98,9 +102,6 @@ export const handler = createAuthenticatedApiGatewayHandler(
         },
       ),
     }
-
-    const pdf = generatePFD()
-    console.log(`pdfkit test: ${pdf}`)
 
     console.log(`
     document: 

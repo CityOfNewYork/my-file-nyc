@@ -41,14 +41,15 @@ const config = {
         test: /\.mustache$/i,
         use: 'raw-loader',
       },
-      {
-        test: /\.(svg|jpg|gif|js|css)/,
-        loader: 'url-loader'
-      },
-      {
-        test: /\.(pdf)/,
-        loader: 'pdfkit'
-      }
+      // {
+      //   test: /\.(svg|jpg|gif|js|css)/,
+      //   loader: 'url-loader'
+      // },
+      // {
+      //   test: /\.(pdf)/,
+      //   loader: 'pdfkit',
+      //   exclude: /node_modules/,
+      // }
     ],
   },
   resolve: {
