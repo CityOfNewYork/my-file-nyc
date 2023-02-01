@@ -8,27 +8,42 @@ export async function generatePFD(images: any, ownerId: any, id: any,) {
 
     for (const image of images) {
         const fileId = uuidv4()
-
         console.log("Image:")
         console.log(createFilePath(ownerId, id, fileId))
-        console.log(image.contentType)
 
         const page = pdfDoc.addPage()
+        console.log(image)
+
         const imgBuffer = fs.readFileSync(createFilePath(ownerId, id, fileId));
-        const jpgImage = await pdfDoc.embedJpg(imgBuffer);
-        const jpgDims = jpgImage.scale(0.5)
+        console.log(imgBuffer)
 
-        const { width, height } = jpgImage.scale(1);
-        page.drawImage(jpgImage, {
-            x: page.getWidth() / 2 - width / 2,
-            y: page.getHeight() / 2 - height / 2,
+        let scaledImage;
+        let embbedImage;
+
+        const imageType = image.contentType.split('/')
+        console.log(imageType)
+
+        if (image.contentType == 'jpeg') {
+            embbedImage = await pdfDoc.embedJpg(imgBuffer);
+            scaledImage = embbedImage.scale(0.5)
+        }
+        else {
+            embbedImage = await pdfDoc.embedPng(imgBuffer)
+            scaledImage = embbedImage.scale(0.5)
+        }
+
+        console.log(embbedImage)
+        console.log(scaledImage)
+
+        page.drawImage(embbedImage, {
+            x: page.getWidth() / 2 - scaledImage.width / 2,
+            y: page.getHeight() / 2 - scaledImage.height / 2,
+            width: scaledImage.width,
+            height: scaledImage.height,
         });
-
-        // const pngDims = pngImage.scale(0.5)
-        // const pngImage = await pdfDoc.embedPng(pngImageBytes)
     };
 
-    let bytesFile = await pdfDoc.save()
+    const bytesFile = await pdfDoc.save()
     return bytesFile
 }
 
