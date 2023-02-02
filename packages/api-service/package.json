@@ -65,7 +65,8 @@
     "objection": "2.2.18",
     "p-pipe": "^3.1.0",
     "typescript": "3.9",
-    "uuid": "^8.3.0"
+    "uuid": "^8.3.0",
+    "pdf-lib": "^1.4.0"
   },
   "resolutions": {
     "@types/express": "4.17.3"

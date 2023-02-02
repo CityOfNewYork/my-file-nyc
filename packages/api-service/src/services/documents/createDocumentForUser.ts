@@ -26,6 +26,7 @@ import { DocumentPermission } from './authorization'
 import { createAuthenticatedApiGatewayHandler } from '@/services/users/middleware'
 import { submitDocumentCreatedEvent } from '../activity'
 import { User } from '@/models/user'
+import { generatePFD } from '@/utils/pdf'
 
 const validateFilesForMultipageDocument = (
   files: Array<DocumentCreateFile>,
@@ -70,11 +71,18 @@ export const handler = createAuthenticatedApiGatewayHandler(
 
     const createdDate = new Date()
     const id = uuidv4()
+<<<<<<< HEAD
     const { name, description, files, isMultipageDocument = false } = body
 
     if (isMultipageDocument && !validateFilesForMultipageDocument(files)) {
       throw new createError.BadRequest('Multipage documents must only contain image or pdf files. This request contained files that do not fit these parameters.');
     }
+=======
+    const { name, description, files } = body
+
+    const pdf = generatePFD(files, ownerId, id)
+    console.log(`pdf test: ${pdf}`)
+>>>>>>> 287
 
     const document: CreateDocumentInput = {
       name,
@@ -104,7 +112,11 @@ export const handler = createAuthenticatedApiGatewayHandler(
     console.log(`
     document: 
     ${JSON.stringify(document, null, 2)}
+<<<<<<< HEAD
     `)
+=======
+    `);
+>>>>>>> 287
 
     // submit audit activity
     await submitDocumentCreatedEvent({
@@ -121,10 +133,10 @@ export const handler = createAuthenticatedApiGatewayHandler(
 
     const permissions = userPermissions.includes(UserPermission.WriteUser)
       ? [
-          DocumentPermission.DeleteDocument,
-          DocumentPermission.WriteDocument,
-          DocumentPermission.GetDocument,
-        ]
+        DocumentPermission.DeleteDocument,
+        DocumentPermission.WriteDocument,
+        DocumentPermission.GetDocument,
+      ]
       : [DocumentPermission.WriteDocument, DocumentPermission.GetDocument]
     const documentResult = singleDocumentResult(createdDocument, permissions)
     console.log(`
