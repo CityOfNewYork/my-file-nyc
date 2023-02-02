@@ -42,13 +42,7 @@ export const handler = createAuthenticatedApiGatewayHandler(
   async (
     request: APIGatewayRequestBody<DocumentCreate>,
   ): Promise<DocumentContract> => {
-    const {
-      ownerId,
-      userId,
-      user,
-      userPermissions,
-      event,
-    } = request as Request
+    const { ownerId, userId, user, userPermissions, event } = request as Request
 
     console.log(`
     ownerId: ${ownerId}
@@ -60,9 +54,9 @@ export const handler = createAuthenticatedApiGatewayHandler(
     ${JSON.stringify(userPermissions, null, 2)}
     
     event: ${event}
-    `);
+    `)
 
-    const body = JSON.parse(request.event.body!) as DocumentCreate;
+    const body = JSON.parse(request.event.body!) as DocumentCreate
     const documentCount = await countDocumentsByOwnerId(ownerId)
     if (documentCount >= MaxDocumentsPerUser) {
       throw new createError.BadRequest(
@@ -72,7 +66,7 @@ export const handler = createAuthenticatedApiGatewayHandler(
 
     const createdDate = new Date()
     const id = uuidv4()
-    const { name, description, files } = body
+    const { name, description, files, isMultipageDocument = false } = body
     const document: CreateDocumentInput = {
       name,
       description,
@@ -98,11 +92,10 @@ export const handler = createAuthenticatedApiGatewayHandler(
       ),
     }
 
-
     console.log(`
     document: 
     ${JSON.stringify(document, null, 2)}
-    `);    
+    `)
 
     // submit audit activity
     await submitDocumentCreatedEvent({
@@ -128,8 +121,8 @@ export const handler = createAuthenticatedApiGatewayHandler(
     console.log(`
     documentResult:
     ${JSON.stringify(documentResult, null, 2)}
-    `);
-    return documentResult;
+    `)
+    return documentResult
   },
 )
 
