@@ -1,4 +1,8 @@
-import { Document as DocumentContract, DocumentCreate, DocumentCreateFile } from 'api-client'
+import {
+  Document as DocumentContract,
+  DocumentCreate,
+  DocumentCreateFile,
+} from 'api-client'
 import {
   createDocument,
   CreateDocumentInput,
@@ -28,9 +32,14 @@ import { submitDocumentCreatedEvent } from '../activity'
 import { User } from '@/models/user'
 import { generatePFD } from '@/utils/pdf'
 
-const validateFilesForMultipageDocument = (
-  files: Array<DocumentCreateFile>,
-) => files.every(f => f.contentType === 'application/pdf' || f.contentType === 'image/jpeg' || f.contentType === 'image/png' || f.contentType === 'image/tiff');
+const validateFilesForMultipageDocument = (files: Array<DocumentCreateFile>) =>
+  files.every(
+    (f) =>
+      f.contentType === 'application/pdf' ||
+      f.contentType === 'image/jpeg' ||
+      f.contentType === 'image/png' ||
+      f.contentType === 'image/tiff',
+  )
 
 type Request = {
   ownerId: string
@@ -71,18 +80,16 @@ export const handler = createAuthenticatedApiGatewayHandler(
 
     const createdDate = new Date()
     const id = uuidv4()
-<<<<<<< HEAD
     const { name, description, files, isMultipageDocument = false } = body
 
     if (isMultipageDocument && !validateFilesForMultipageDocument(files)) {
-      throw new createError.BadRequest('Multipage documents must only contain image or pdf files. This request contained files that do not fit these parameters.');
+      throw new createError.BadRequest(
+        'Multipage documents must only contain image or pdf files. This request contained files that do not fit these parameters.',
+      )
     }
-=======
-    const { name, description, files } = body
 
     const pdf = generatePFD(files, ownerId, id)
     console.log(`pdf test: ${pdf}`)
->>>>>>> 287
 
     const document: CreateDocumentInput = {
       name,
@@ -112,11 +119,7 @@ export const handler = createAuthenticatedApiGatewayHandler(
     console.log(`
     document: 
     ${JSON.stringify(document, null, 2)}
-<<<<<<< HEAD
     `)
-=======
-    `);
->>>>>>> 287
 
     // submit audit activity
     await submitDocumentCreatedEvent({
@@ -133,10 +136,10 @@ export const handler = createAuthenticatedApiGatewayHandler(
 
     const permissions = userPermissions.includes(UserPermission.WriteUser)
       ? [
-        DocumentPermission.DeleteDocument,
-        DocumentPermission.WriteDocument,
-        DocumentPermission.GetDocument,
-      ]
+          DocumentPermission.DeleteDocument,
+          DocumentPermission.WriteDocument,
+          DocumentPermission.GetDocument,
+        ]
       : [DocumentPermission.WriteDocument, DocumentPermission.GetDocument]
     const documentResult = singleDocumentResult(createdDocument, permissions)
     console.log(`
