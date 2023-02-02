@@ -1,4 +1,4 @@
-import { Document as DocumentContract, DocumentCreate } from 'api-client'
+import { Document as DocumentContract, DocumentCreate, DocumentCreateFile } from 'api-client'
 import {
   createDocument,
   CreateDocumentInput,
@@ -27,7 +27,10 @@ import { createAuthenticatedApiGatewayHandler } from '@/services/users/middlewar
 import { submitDocumentCreatedEvent } from '../activity'
 import { User } from '@/models/user'
 
-connectDatabase()
+const validateFilesForMultipageDocument = (
+  files: Array<DocumentCreateFile>,
+) => files.every(f => f.contentType === 'application/pdf' || f.contentType === 'image/jpeg' || f.contentType === 'image/png' || f.contentType === 'image/tiff');
+
 type Request = {
   ownerId: string
   userId: string
@@ -43,6 +46,7 @@ export const handler = createAuthenticatedApiGatewayHandler(
     request: APIGatewayRequestBody<DocumentCreate>,
   ): Promise<DocumentContract> => {
     const { ownerId, userId, user, userPermissions, event } = request as Request
+    connectDatabase()
 
     console.log(`
     ownerId: ${ownerId}
@@ -67,6 +71,11 @@ export const handler = createAuthenticatedApiGatewayHandler(
     const createdDate = new Date()
     const id = uuidv4()
     const { name, description, files, isMultipageDocument = false } = body
+
+    if (isMultipageDocument && !validateFilesForMultipageDocument(files)) {
+      throw new createError.BadRequest('Multipage documents must only contain image or pdf files. This request contained files that do not fit these parameters.');
+    }
+
     const document: CreateDocumentInput = {
       name,
       description,
