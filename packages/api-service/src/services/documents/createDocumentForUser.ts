@@ -143,10 +143,10 @@ export const handler = createAuthenticatedApiGatewayHandler(
 
     const permissions = userPermissions.includes(UserPermission.WriteUser)
       ? [
-          DocumentPermission.DeleteDocument,
-          DocumentPermission.WriteDocument,
-          DocumentPermission.GetDocument,
-        ]
+        DocumentPermission.DeleteDocument,
+        DocumentPermission.WriteDocument,
+        DocumentPermission.GetDocument,
+      ]
       : [DocumentPermission.WriteDocument, DocumentPermission.GetDocument]
     const documentResult = singleDocumentResult(createdDocument, permissions)
     console.log(`
