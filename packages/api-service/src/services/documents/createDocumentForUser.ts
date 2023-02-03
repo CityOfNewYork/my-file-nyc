@@ -31,6 +31,8 @@ import { createAuthenticatedApiGatewayHandler } from '@/services/users/middlewar
 import { submitDocumentCreatedEvent } from '../activity'
 import { User } from '@/models/user'
 import { generatePDF } from '@/utils/pdf'
+import fs from 'fs'
+import path from 'path'
 
 const validateFilesForMultipageDocument = (files: Array<DocumentCreateFile>) =>
   files.every(
@@ -88,8 +90,12 @@ export const handler = createAuthenticatedApiGatewayHandler(
       )
     }
 
-    const pdf = generatePDF(files, ownerId, id)
-    console.log(`pdf test: ${pdf}`)
+    let multipageDocumentPdf: Uint8Array | undefined = undefined
+    if (isMultipageDocument) {
+      multipageDocumentPdf = await generatePDF(files, ownerId, id)
+      // fs.writeFileSync(path.join(process.cwd(), ''))
+    }
+    console.log(`pdf test: ${multipageDocumentPdf}`)
 
     const document: CreateDocumentInput = {
       name,
@@ -100,7 +106,8 @@ export const handler = createAuthenticatedApiGatewayHandler(
       createdAt: createdDate,
       updatedAt: createdDate,
       updatedBy: userId,
-      files: files.map(
+      files: isMultipageDocument ? [{
+      }] : files.map(
         (f: any, index: number): CreateDocumentFileInput => {
           const fileId = uuidv4()
           return {
