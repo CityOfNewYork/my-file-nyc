@@ -30,7 +30,7 @@ import { DocumentPermission } from './authorization'
 import { createAuthenticatedApiGatewayHandler } from '@/services/users/middleware'
 import { submitDocumentCreatedEvent } from '../activity'
 import { User } from '@/models/user'
-import { generatePFD } from '@/utils/pdf'
+import { generatePDF } from '@/utils/pdf'
 
 const validateFilesForMultipageDocument = (files: Array<DocumentCreateFile>) =>
   files.every(
@@ -88,7 +88,7 @@ export const handler = createAuthenticatedApiGatewayHandler(
       )
     }
 
-    const pdf = generatePFD(files, ownerId, id)
+    const pdf = generatePDF(files, ownerId, id)
     console.log(`pdf test: ${pdf}`)
 
     const document: CreateDocumentInput = {

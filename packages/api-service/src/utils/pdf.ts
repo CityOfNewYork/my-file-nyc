@@ -3,51 +3,48 @@ import fs from 'fs'
 import { createFilePath } from '@/utils/s3'
 import { v4 as uuidv4 } from 'uuid'
 
-export async function generatePFD(images: any, ownerId: any, id: any,) {
-    const pdfDoc = await PDFDocument.create()
+export async function generatePDF(images: any, ownerId: any, id: any) {
+  const pdfDoc = await PDFDocument.create()
 
-    for (const image of images) {
-        const fileId = uuidv4()
-        console.log("Image:")
-        console.log(createFilePath(ownerId, id, fileId))
+  for (const image of images) {
+    const fileId = uuidv4()
+    console.log('Image:')
+    console.log(createFilePath(ownerId, id, fileId))
 
-        const page = pdfDoc.addPage()
-        console.log(image)
+    const page = pdfDoc.addPage()
+    console.log(image)
 
-        const imgBuffer = fs.readFileSync(createFilePath(ownerId, id, fileId));
-        console.log(imgBuffer)
+    const imgBuffer = fs.readFileSync(createFilePath(ownerId, id, fileId))
+    console.log(imgBuffer)
 
-        let scaledImage;
-        let embbedImage;
+    let scaledImage
+    let embbedImage
 
-        const imageType = image.contentType.split('/')
-        console.log(imageType)
+    const imageType = image.contentType.split('/')
+    console.log(imageType)
 
-        if (image.contentType == 'jpeg') {
-            embbedImage = await pdfDoc.embedJpg(imgBuffer);
-            scaledImage = embbedImage.scale(0.5)
-        }
-        else {
-            embbedImage = await pdfDoc.embedPng(imgBuffer)
-            scaledImage = embbedImage.scale(0.5)
-        }
+    if (image.contentType == 'jpeg') {
+      embbedImage = await pdfDoc.embedJpg(imgBuffer)
+      scaledImage = embbedImage.scale(0.5)
+    } else {
+      embbedImage = await pdfDoc.embedPng(imgBuffer)
+      scaledImage = embbedImage.scale(0.5)
+    }
 
-        console.log(embbedImage)
-        console.log(scaledImage)
+    console.log(embbedImage)
+    console.log(scaledImage)
 
-        page.drawImage(embbedImage, {
-            x: page.getWidth() / 2 - scaledImage.width / 2,
-            y: page.getHeight() / 2 - scaledImage.height / 2,
-            width: scaledImage.width,
-            height: scaledImage.height,
-        });
-    };
+    page.drawImage(embbedImage, {
+      x: page.getWidth() / 2 - scaledImage.width / 2,
+      y: page.getHeight() / 2 - scaledImage.height / 2,
+      width: scaledImage.width,
+      height: scaledImage.height,
+    })
+  }
 
-    const bytesFile = await pdfDoc.save()
-    return bytesFile
+  const bytesFile = await pdfDoc.save()
+  return bytesFile
 }
-
-
 
 // import puppeteer from 'puppeteer';
 // import fs from 'fs'
