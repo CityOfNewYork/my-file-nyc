@@ -4,6 +4,7 @@ import ZipPlugin from 'zip-webpack-plugin'
 import { TsconfigPathsPlugin } from 'tsconfig-paths-webpack-plugin'
 import CopyPlugin from 'copy-webpack-plugin'
 import entrypoints from './entrypoints.json'
+import webpack from 'webpack'
 
 const SRC_DIR = path.resolve(__dirname, 'src')
 const OUT_DIR = path.resolve(__dirname, 'build')
@@ -40,6 +41,15 @@ const config = {
         test: /\.mustache$/i,
         use: 'raw-loader',
       },
+      // {
+      //   test: /\.(svg|jpg|gif|js|css)/,
+      //   loader: 'url-loader'
+      // },
+      // {
+      //   test: /\.(pdf)/,
+      //   loader: 'pdfkit',
+      //   exclude: /node_modules/,
+      // }
     ],
   },
   resolve: {
@@ -64,10 +74,10 @@ const config = {
     // new BundleAnalyzerPlugin(),
     ...(copyPatterns.length
       ? [
-          new CopyPlugin({
-            patterns: copyPatterns,
-          }),
-        ]
+        new CopyPlugin({
+          patterns: copyPatterns,
+        }),
+      ]
       : []),
     ...Object.keys(lambdas).map((filePath) => {
       return new ZipPlugin({

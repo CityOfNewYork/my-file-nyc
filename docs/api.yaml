@@ -700,6 +700,10 @@ components:
           description: The files that are part of the document
           items:
             $ref: '#/components/schemas/DocumentCreateFile'
+        isMultipageDocument:
+          type: boolean
+          description: Specify if the document to be created is a multi-page document
+          example: true
       type: object
     DocumentCreateFile:
       description: Request data to create a file of a document

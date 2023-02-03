@@ -433,6 +433,12 @@ export interface DocumentCreate {
      * @memberof DocumentCreate
      */
     'files': Array<DocumentCreateFile>;
+    /**
+     * Specify if the document to be created is a multi-page document
+     * @type {boolean}
+     * @memberof DocumentCreate
+     */
+    'isMultipageDocument'?: boolean;
 }
 /**
  * Request data to create a file of a document

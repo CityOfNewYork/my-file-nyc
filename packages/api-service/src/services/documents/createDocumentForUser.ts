@@ -1,4 +1,8 @@
-import { Document as DocumentContract, DocumentCreate } from 'api-client'
+import {
+  Document as DocumentContract,
+  DocumentCreate,
+  DocumentCreateFile,
+} from 'api-client'
 import {
   createDocument,
   CreateDocumentInput,
@@ -26,8 +30,19 @@ import { DocumentPermission } from './authorization'
 import { createAuthenticatedApiGatewayHandler } from '@/services/users/middleware'
 import { submitDocumentCreatedEvent } from '../activity'
 import { User } from '@/models/user'
+import { generatePDF } from '@/utils/pdf'
+import fs from 'fs'
+import path from 'path'
 
-connectDatabase()
+const validateFilesForMultipageDocument = (files: Array<DocumentCreateFile>) =>
+  files.every(
+    (f) =>
+      f.contentType === 'application/pdf' ||
+      f.contentType === 'image/jpeg' ||
+      f.contentType === 'image/png' ||
+      f.contentType === 'image/tiff',
+  )
+
 type Request = {
   ownerId: string
   userId: string
@@ -42,13 +57,8 @@ export const handler = createAuthenticatedApiGatewayHandler(
   async (
     request: APIGatewayRequestBody<DocumentCreate>,
   ): Promise<DocumentContract> => {
-    const {
-      ownerId,
-      userId,
-      user,
-      userPermissions,
-      event,
-    } = request as Request
+    const { ownerId, userId, user, userPermissions, event } = request as Request
+    connectDatabase()
 
     console.log(`
     ownerId: ${ownerId}
@@ -60,9 +70,9 @@ export const handler = createAuthenticatedApiGatewayHandler(
     ${JSON.stringify(userPermissions, null, 2)}
     
     event: ${event}
-    `);
+    `)
 
-    const body = JSON.parse(request.event.body!) as DocumentCreate;
+    const body = JSON.parse(request.event.body!) as DocumentCreate
     const documentCount = await countDocumentsByOwnerId(ownerId)
     if (documentCount >= MaxDocumentsPerUser) {
       throw new createError.BadRequest(
@@ -72,7 +82,21 @@ export const handler = createAuthenticatedApiGatewayHandler(
 
     const createdDate = new Date()
     const id = uuidv4()
-    const { name, description, files } = body
+    const { name, description, files, isMultipageDocument = false } = body
+
+    if (isMultipageDocument && !validateFilesForMultipageDocument(files)) {
+      throw new createError.BadRequest(
+        'Multipage documents must only contain image or pdf files. This request contained files that do not fit these parameters.',
+      )
+    }
+
+    let multipageDocumentPdf: Uint8Array | undefined = undefined
+    if (isMultipageDocument) {
+      multipageDocumentPdf = await generatePDF(files, ownerId, id)
+      // fs.writeFileSync(path.join(process.cwd(), ''))
+    }
+    console.log(`pdf test: ${multipageDocumentPdf}`)
+
     const document: CreateDocumentInput = {
       name,
       description,
@@ -82,7 +106,8 @@ export const handler = createAuthenticatedApiGatewayHandler(
       createdAt: createdDate,
       updatedAt: createdDate,
       updatedBy: userId,
-      files: files.map(
+      files: isMultipageDocument ? [{
+      }] : files.map(
         (f: any, index: number): CreateDocumentFileInput => {
           const fileId = uuidv4()
           return {
@@ -98,11 +123,10 @@ export const handler = createAuthenticatedApiGatewayHandler(
       ),
     }
 
-
     console.log(`
     document: 
     ${JSON.stringify(document, null, 2)}
-    `);    
+    `)
 
     // submit audit activity
     await submitDocumentCreatedEvent({
@@ -128,8 +152,8 @@ export const handler = createAuthenticatedApiGatewayHandler(
     console.log(`
     documentResult:
     ${JSON.stringify(documentResult, null, 2)}
-    `);
-    return documentResult;
+    `)
+    return documentResult
   },
 )
 
