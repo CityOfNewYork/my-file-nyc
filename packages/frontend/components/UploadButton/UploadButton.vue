@@ -284,6 +284,7 @@ export default class UploadButton extends Vue {
       fileList: this.files,
       name: this.documentNameSanitation(this.documentName),
       description: this.documentDescription,
+      multiple: this.multiple,
       onUploadProgress: (e: ProgressEvent) => {
         snackbarStore.setProgress(Math.round((e.loaded / e.total) * 100))
       },

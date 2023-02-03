@@ -189,6 +189,7 @@ export default class User extends VuexModule {
     fileList,
     name,
     description,
+    multiple,
     onUploadProgress = () => {
       // default empty function
     },
@@ -196,6 +197,7 @@ export default class User extends VuexModule {
     fileList: FileList
     name: string
     description: string
+    multiple: boolean
     onUploadProgress?: (e: ProgressEvent) => void
   }): Promise<Document> {
     // FileList has a weird spec, with no iterator. This converts it to an array
@@ -218,6 +220,7 @@ export default class User extends VuexModule {
       {
         name,
         description: description,
+        isMultipageDocument: multiple,
         files: files.map((file, i) => ({
           name: name,
           contentType: file.type as FileContentTypeEnum,
