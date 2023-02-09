@@ -94,13 +94,13 @@ const config = {
     },
   },
   i18n: {
-    locales: ['en', 'es', 'fr', 'ru'],
+    locales: ['es', 'fr', 'ru', 'ar', 'ch', 'urd', 'ko', 'ht', 'pl', 'en'],
     defaultLocale: 'en',
     vueI18n: {
       fallbackLocale: 'en',
       messages,
     },
-    strategy: 'no_prefix',
+    strategy: 'prefix_except_default',
   },
   vuetify: {
     treeShake: true,
