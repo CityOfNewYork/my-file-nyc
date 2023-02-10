@@ -43,6 +43,7 @@ export default class LanguageChanger extends Vue {
       dhsCaseNumber: this.userStore.profile.dhsCaseNumber,
       locale: this.$i18n.locale,
     }
+
     const response = await this.$store.dispatch('user/patchProfile', data)
     this.userStore.profile.givenName = response.givenName
     this.userStore.profile.familyName = response.familyName
@@ -63,13 +64,14 @@ export default class LanguageChanger extends Vue {
   }
 
   mounted() {
-    if (this.userStore.profile.locale != this.$i18n.locale) {
-      this.userPatch()
-    }
+    this.$i18n.locale = this.userStore.profile.locale
   }
 
   updated() {
-    this.pathUpdate()
+    if (this.userStore.profile.locale != this.$i18n.locale) {
+      this.userPatch()
+      this.pathUpdate()
+    }
   }
 
   languagesObject = {

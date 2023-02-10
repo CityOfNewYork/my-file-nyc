@@ -58,8 +58,6 @@ export default class DashboardLayout extends Vue {
   userStore = userStore as any
 
   mounted() {
-    // this.$i18n.locale = this.userStore.profile.locale
-
     if (this.$route.params.showSnack) {
       this.$store.dispatch('snackbar/show')
     }
