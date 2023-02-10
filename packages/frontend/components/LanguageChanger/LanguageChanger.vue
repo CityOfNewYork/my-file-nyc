@@ -20,26 +20,12 @@
         {{ languagesObject[item] }}
       </template>
     </v-select>
-
-    <!-- <select
-      v-model="$i18n.locale"
-      :style="{ color: textColor, textAlign: textOrientation }"
-      class="input"
-    >
-      <option disabled value="">Select language</option>
-      <option
-        v-for="(lang, i) in $i18n.availableLocales"
-        :key="`Lang${i}`"
-        :value="lang"
-      >
-        {{ languagesObject[lang] }}
-      </option>
-    </select> -->
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
+import { userStore } from '@/plugins/store-accessor'
 
 @Component
 export default class LanguageChanger extends Vue {
@@ -47,6 +33,44 @@ export default class LanguageChanger extends Vue {
   @Prop({ default: 'white' }) textColor: string
   @Prop({ default: 'center' }) textOrientation: string
   @Prop({ default: '-1px 19px;' }) padding: string
+  userStore = userStore as any
+
+  async userPatch() {
+    const data = {
+      givenName: this.userStore.profile.givenName,
+      familyName: this.userStore.profile.familyName,
+      dob: this.userStore.profile.dob,
+      dhsCaseNumber: this.userStore.profile.dhsCaseNumber,
+      locale: this.$i18n.locale,
+    }
+    const response = await this.$store.dispatch('user/patchProfile', data)
+    this.userStore.profile.givenName = response.givenName
+    this.userStore.profile.familyName = response.familyName
+    this.userStore.profile.dob = response.dob
+    this.userStore.profile.dhsCaseNumber = response.dhsCaseNumber
+    this.userStore.profile.locale = response.locale
+  }
+
+  pathUpdate() {
+    let location = window.location.href.split('/')
+    const newRout =
+      location[1] +
+      '/' +
+      this.$i18n.locale +
+      '/' +
+      location[location.length - 1]
+    window.location.assign(newRout)
+  }
+
+  mounted() {
+    if (this.userStore.profile.locale != this.$i18n.locale) {
+      this.userPatch()
+    }
+  }
+
+  updated() {
+    this.pathUpdate()
+  }
 
   languagesObject = {
     en: 'English',

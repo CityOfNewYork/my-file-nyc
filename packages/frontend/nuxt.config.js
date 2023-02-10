@@ -100,7 +100,7 @@ const config = {
       fallbackLocale: 'en',
       messages,
     },
-    strategy: 'prefix_except_default',
+    strategy: 'prefix_and_default',
   },
   vuetify: {
     treeShake: true,
