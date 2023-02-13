@@ -35,6 +35,7 @@ export default class LanguageChanger extends Vue {
   @Prop({ default: '-1px 19px;' }) padding: string
   userStore = userStore as any
 
+  // Update usere locale in database and app state
   async userPatch() {
     const data = {
       givenName: this.userStore.profile.givenName,
@@ -45,32 +46,12 @@ export default class LanguageChanger extends Vue {
     }
 
     const response = await this.$store.dispatch('user/patchProfile', data)
-    this.userStore.profile.givenName = response.givenName
-    this.userStore.profile.familyName = response.familyName
-    this.userStore.profile.dob = response.dob
-    this.userStore.profile.dhsCaseNumber = response.dhsCaseNumber
-    this.userStore.profile.locale = response.locale
-  }
-
-  pathUpdate() {
-    let location = window.location.href.split('/')
-    const newRout =
-      location[1] +
-      '/' +
-      this.$i18n.locale +
-      '/' +
-      location[location.length - 1]
-    window.location.assign(newRout)
-  }
-
-  mounted() {
-    this.$i18n.locale = this.userStore.profile.locale
+    this.$i18n.locale = response.locale
   }
 
   updated() {
-    if (this.userStore.profile.locale != this.$i18n.locale) {
+    if (this.userStore.profile.locale == this.$i18n.locale) {
       this.userPatch()
-      this.pathUpdate()
     }
   }
 
