@@ -169,7 +169,7 @@ export default class User extends VuexModule {
       })
   }
 
-  @Action({ rawError: true })
+  @Action({ rawError: true, commit: '_setProfile' })
   patchProfile(payload: ApiUser): Promise<ApiUser> {
     if (!this._userId) return Promise.reject(new Error('UserID not set'))
     return api.user.patchUser(this._userId, {
