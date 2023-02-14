@@ -565,282 +565,7 @@ export default merge(
     ru: {
       // label appearing in tabular content (list of users, list of shared collections etc)
       // as well as side bar on document view
-      dateAdded: 'Date Added',
-
-      application: {
-        title: 'My File NYC',
-      },
-
-      toast: {
-        acceptedDelegateInvite: 'Delegate Access Accepted',
-        delegateRemoved: 'Client Removed',
-        downloadLoadingState: 'Preparing Download',
-        sharingComplete: 'Sharing Complete',
-        uploading: 'Adding Document...', // displayed while a file is uploading
-        uploadComplete: 'Upload Complete',
-        fileDeletedConfirmation: 'Document Deleted',
-        fileTooLarge: 'Document too large (must be < 10MB)',
-      },
-
-      login: {
-        loginButton: 'Авторизоваться',
-        getStarted: {
-          client: 'Get Started',
-          cityEmployee: 'City Employee Login',
-          cboWorker: 'CBO Worker Login',
-        },
-        welcomeTitle: 'Welcome',
-        footerLogoAlt: 'Footer logo',
-      },
-
-      navigation: {
-        about: 'Узнать больше',
-        account: 'My Account Managers',
-        settings: 'Моя учетная запись',
-        settingsFirstRun:
-          'Welcome to #My File NYC&! Please answer a few questions about yourself to get started.',
-        welcomeFirstRun: 'Welcome to My File NYC!',
-        activity: 'Активность',
-        back: 'Back',
-        clients: 'Clients', // navigate back to agent view desktop
-        close: 'Close',
-        dashboard: 'Dashboard',
-        faq: 'Часто Задаваемые Вопросы',
-        loading: 'Loading',
-        loggingIn: 'Logging in...',
-        manageAccounts: 'Manage Accounts',
-        signIn: 'Sign in',
-        signOut: 'Выйти',
-        switchAccount: 'Switch Clients',
-        termsOfUse: 'Условия использования',
-        nycId: 'Проблемы?',
-      },
-
-      document: {
-        // This is the title of the confirmation dialog for deleting a document
-        deleteConfirmationTitle: 'Delete this document?',
-        // This is the body content of the confirmation dialog for deleting a document
-        deleteConfirmationBody:
-          'Anyone with shared access will no longer be able to view this document. This cannot be undone.',
-        documentMenu: 'Document menu',
-        documentOptions: 'Options',
-        downloadZip: 'Download All',
-        downloadPdf: 'Download PDF',
-        description: 'Document Description', // displayed beneath the document and expands to show description (if any)
-        editDetailsTitle: 'Edit Details', // page title on edit details screen
-        enterNamePlaceholder: 'Give this document a name',
-        enterDescriptionPlaceholder: 'Describe this document (optional)',
-        documentName: 'What kind of document did you upload?', // shown as a label on edit details screen
-
-        noDocuments: 'There are no documents saved to your account yet.', // shown on dashboard when there are no documents
-        previewOf: 'Preview of',
-        uploadFirst: 'Add your first document', // label on the empty state upload button
-        thumbnailOf: 'Thumbnail of',
-        fileName: 'Document Name',
-      },
-
-      controls: {
-        accept: 'Accept', // eg. accept terms of use
-        add: 'Add', // eg. add a delegate
-        allFiles: 'Ваши Документы', // shown as tab label on the dashboard
-        cancel: 'Cancel', // cancel button
-        confirm: 'Confirm',
-        confirmDelete: 'Yes, Delete',
-        declineAndLogOut: 'Decline & Log Out', // decline TOS button
-        delete: 'Delete', // delete document kebab item
-        done: 'Done',
-        download: 'Download', // edit document kebab item and button text
-        editDetails: 'Edit Details', // edit document kebab item
-        edit: 'Edit', // edit account details
-        continue: 'Continue',
-        share: 'Share with DHS', // share button
-        shared: 'Документы которыми вы поделились', // label of shared tab on dashboard
-        upload: 'Upload a Document',
-        uploadDocument: 'Upload Document',
-        view: 'View',
-        save: 'Save',
-      },
-
-      // account settings page
-      account: {
-        language: 'Language', // open language selector
-        firstName: 'First Name',
-        whatIsYourFirstName: 'What is your first name?',
-        lastName: 'Last Name',
-        whatIsYourLastName: 'What is your last or family name?',
-        dob: 'Date of Birth',
-        whatIsYourDob: 'When were you born?',
-        caseNumber: 'Case Number',
-        whatIsYourDshCaseNumber: 'What is your DHS Case Number?',
-        dhsShow:
-          'Add your DHS case number if you’re a returning family. If you’re new to PATH, add the ticket number you received when you came to PATH (example: CL ####).',
-      },
-
-      // All copy related to the create shared folder flow
-      sharing: {
-        defaultName: 'Documents you shared with DHS on {date}',
-        confirmSharedFiles:
-          'Documents to be shared DHS | Documents to be shared DHS',
-        plusNMore: '+ {count} more',
-        recipients: 'Recipients',
-
-        // placeholder text for the add recipient email field
-        addRecipientPlaceholder: 'Enter email address',
-
-        // step titles in the share flow
-        confirmTitle: 'Are you sure you want to share these Documents?',
-        addRecipientsTitle: 'Who are you sharing these document(s) with?',
-        selectFilesTitle: 'Select Documents',
-
-        disclaimerTitle: 'Reminder',
-        shareDocumentDisclaimer: [
-          'My File NYC facilitates document sharing with {emails} email accounts',
-          'Once documents are shared DHS employees may download and save your documents to submit as proof for your application. DHS may still have copies to support your case even if you unshare or delete them from My File.',
-        ],
-
-        // on the confirmation step, could be "recipient" or "recipients" depending on number of items
-        confirmRecipientsLabel: 'Вы поделились документами с | Recipients',
-        tooManyRecipients: 'You can share with up to {count} people', // error text when trying to add more than 10 recipients
-      },
-
-      tabTitles: {
-        about: 'About',
-        authorizing: 'Authorizing', // not important - used while logging in
-        dashboard: 'Dashboard',
-        document: 'Document', // used for document preview while page is loading, then changes to document title
-        faq: 'FAQ',
-        shared: 'Shared', // used in share flow
-        sharedBy: 'Shared by', // used in share flow
-        termsOfUse: 'Terms of Use', // used while viewing TOU
-        welcome: 'Welcome', // displayed on the initial landing page
-      },
-
-      delegateAccess: {
-        disabledNotice: 'The delegation feature is currently disabled.',
-        pageTitle: 'Account Access', // title in account menu and page title of delegation flow
-        menuTitle: 'Who Can Manage My Documents', // title in account menu and page title of delegation flow
-        emailPlaceholder: 'Add people via email',
-        addConfirmationTitle:
-          'Let this person manage documents on your account?',
-        addConfirmationBody:
-          'They will be able to upload and share documents for you. They cannot delete documents. You can always remove their access to your account.',
-        addConfirmationAction: 'Yes, Give Access',
-        removeConfirmationTitle:
-          'Remove this person from accessing your account?',
-        removeConfirmationBody:
-          'They will no longer be able to manage or share documents for you. You can always give them access to your documents again in the Account menu settings.',
-        removeConfirmationAction: 'Yes, Remove',
-        uninviteConfirmationTitle: 'Cancel this invitation?',
-        uninviteConfirmationBody:
-          'You can invite someone to manage your account from the Account menu settings.',
-        uninviteConfirmationAction: 'Yes, Cancel',
-        tooManyDelegates: 'Up to {count} people can access your account',
-        invitePending: 'Invitation pending',
-        inviteExpired: 'Invitation expired.',
-        resendInvite: 'Resend?',
-      },
-
-      // Account Activity
-      activity: {
-        accessed: 'получили доступ',
-        added: 'добавили',
-        delegateInvitedClient: 'to manage and share documents on your behalf',
-        delegateInvitedCbo: 'to manage and share documents on their behalf',
-        delegateAcceptedClient:
-          'can now manage and share documents on your behalf',
-        delegateAcceptedCbo:
-          'can now manage and share documents on this account',
-        delegateDeletedClient: 'has been removed from your account',
-        delegateDeletedCbo: 'has been removed from this account ',
-        deleted: 'удалили',
-        edited: 'edited details of',
-        file: 'файл',
-        files: 'документы',
-        invited: 'invited',
-        pageTitle: 'Account Activity',
-        shared: 'поделились',
-        today: 'TODAY',
-        you: 'Вы',
-      },
-
-      // Copy where you are viewing shared folders
-      sharedFolder: {
-        // empty state for list of shared folders
-        noCollections: "You haven't shared any documents yet.", // message
-        shareFirstDocument: 'Share your first document', // call to action
-
-        // empty state for an individual shared folder
-        emptyCollection: 'All documents have been removed from this folder.', // message
-        returnDashboard: 'Return to dashboard', // call to action
-
-        // empty state for list of clients who have shared collections with user
-        noSharedDocuments: "You haven't received any shared documents yet.",
-
-        // title for collection table name column
-        collectionTableTitle: "Documents you've shared, organized by date",
-      },
-
-      cbo: {
-        selectClient: 'Select a client to access their account',
-        clickToRemove: 'Click {close} to remove a client',
-        noClientsTitle:
-          'You have not been added to any client My File NYC accounts',
-        noClientsBody:
-          "Once a client adds you to their My File NYC account, you'll be able to manage and share documents on their behalf from this screen.\n\nA client can provide access to their documents in the Account menu settings in My File NYC.",
-        noClientActionLabel: 'Not a case manager?',
-        noClientActionText:
-          'If you are seeking permanent supportive housing, click here.',
-        removeConfirmationTitle: 'Remove this client from your My File NYC?',
-        removeConfirmationBody:
-          'You will no longer be able to view, manage, or share documents on their behalf. This cannot be undone.',
-        removeConfirmationAction: 'Yes, Remove',
-        errorAcceptingInvite:
-          'Invite could not be accepted. Please ensure you are logged in with the email address that received the invite.',
-      },
-
-      agent: {
-        clientFirstNameLabel: 'First Name', // label of client first name column in agent view
-        clientLastNameLabel: 'Last Name', // label of client last name column in agent view
-        clientDob: 'Date of Birth', // label of client date of birth column in agent view
-        clientCaseNum: 'Case Number', // label of client case number column in agent view
-        clientEmail: 'Email', // label of client case number column in agent view
-        dateShared: 'Date Shared', // label in side bar
-        noClientActionLabel: 'Not a government employee?',
-        noClientActionText:
-          'If you are seeking permanent supportive housing, click here.',
-        reorderFiles: 'Reorder Documents', // shown in agent view when downloading as PDF
-        selectClient: 'Select client to access shared documents',
-        sharedBy: 'Shared By', // label in side bar
-        sharedFolderNameLabel: 'Name', // label of shared folder name column in agent view
-        sharedWith: 'Shared With: ', // promt for agency email
-      },
-
-      landing: {
-        community: 'COMMUNITY SERVICES',
-        agency: 'AGENCY SERVICES',
-      },
-
-      $vuetify: {
-        ...vuetifyEn,
-        dataTable: {
-          sortBy: 'Sort by',
-          ariaLabel: {
-            sortNone: 'Do not sort',
-            activateAscending: 'Sort ascending',
-          },
-        },
-        noDataText: 'No data',
-      },
-      validations: {
-        ...validationEn.messages,
-        whitelist: 'Must be an approved agency email',
-        notSameAsUserEmail: 'You cannot enter your own email address',
-      },
-    },
-    ch: {
-      // label appearing in tabular content (list of users, list of shared collections etc)
-      // as well as side bar on document view
-      dateAdded: `添加日期`,
+      dateAdded: `Дата добавления`,
 
       application: {
         title: 'My File NYC',
@@ -850,7 +575,7 @@ export default merge(
         acceptedDelegateInvite: 'Delegate Access Accepted', // not found
         delegateRemoved: 'Client Removed', // not found
         downloadLoadingState: 'Preparing Download', // not found
-        sharingComplete: '分享完成',
+        sharingComplete: 'Предоставление закончено',
         uploading: 'Adding Document...', // not found displayed while a file is uploading
         uploadComplete: 'Upload Complete', // not found
         fileDeletedConfirmation: 'Document Deleted', // not found
@@ -858,7 +583,7 @@ export default merge(
       },
 
       login: {
-        loginButton: '登錄並開始使用',
+        loginButton: 'Войдите в систему и приступайте',
         getStarted: {
           client: 'Get Started', // not found
           cityEmployee: 'City Employee Login', // not found
@@ -871,7 +596,7 @@ export default merge(
       navigation: {
         about: 'About', // not found
         account: 'My Account Managers', // not found
-        settings: '我的個人資料',
+        settings: 'Мой профиль',
         settingsFirstRun:
           'Welcome to #My File NYC&! Please answer a few questions about yourself to get started.', // not found
         welcomeFirstRun: 'Welcome to My File NYC!', // not found
@@ -885,70 +610,70 @@ export default merge(
         loggingIn: 'Logging in...', // not found
         manageAccounts: 'Manage Accounts', // not found
         signIn: 'Sign in', // not found
-        signOut: '登出',
+        signOut: 'Выйти',
         switchAccount: 'Switch Clients', // not found
         termsOfUse: 'Terms of Use', // not found
-        nycId: '登錄遇到困難?',
+        nycId: 'Возникли проблемы с входом в систему? ',
       },
 
       document: {
         // This is the title of the confirmation dialog for deleting a document
         deleteConfirmationTitle: 'Delete this document?', // not found
         // This is the body content of the confirmation dialog for deleting a document
-        deleteConfirmationBody: `任何擁有共享權限的人將不再能夠查看這份文件。無法撤銷。`,
+        deleteConfirmationBody: `Лица с общим доступом больше не смогут просматривать этот документ. Отмена этого действия невозможна.`,
         documentMenu: 'Document menu', // not found
-        documentOptions: '選項',
+        documentOptions: 'Варианты',
         downloadZip: 'Download All', // not found
         downloadPdf: 'Download PDF', // not found
-        description: '文件描述', // displayed beneath the document and expands to show description (if any)
-        editDetailsTitle: '編輯詳細資訊', // page title on edit details screen
+        description: 'Описание документа', // displayed beneath the document and expands to show description (if any)
+        editDetailsTitle: 'Редактировать данные', // page title on edit details screen
         enterNamePlaceholder: 'Give this document a name', // not found
-        enterDescriptionPlaceholder: '說明該文件（選填)',
-        documentName: '您上傳了那種類型的文件？', // shown as a label on edit details screen
+        enterDescriptionPlaceholder: 'Опишите этот документ (необязательно)',
+        documentName: 'Какой документ вы загрузили？', // shown as a label on edit details screen
 
         noDocuments: 'There are no documents saved to your account yet.', // not found shown on dashboard when there are no documents
         previewOf: 'Preview of', // not found
         uploadFirst: 'Add your first document', // not found label on the empty state upload button
         thumbnailOf: 'Thumbnail of', // not found
-        fileName: '文件名稱',
+        fileName: 'Название документа',
       },
 
       controls: {
         accept: 'Accept', // (not found) eg. accept terms of use
         add: 'Add', // (not found) eg. add a delegate
         allFiles: 'Your Documents', // (not found) shown as tab label on the dashboard
-        cancel: '取消', // cancel button
+        cancel: 'Отменить', // cancel button
         confirm: 'Confirm', // not found
-        confirmDelete: '是的，刪除',
+        confirmDelete: 'Да, удалить',
         declineAndLogOut: 'Decline & Log Out', // (not found) decline TOS button
-        delete: '刪除', // delete document kebab item
+        delete: 'Удалить', // delete document kebab item
         done: 'Done', // not found
-        download: '下載', // edit document kebab item and button text
-        editDetails: '編輯詳細資訊', // edit document kebab item
-        edit: '編輯', // edit account details
-        continue: '繼續',
-        share: '分享至 DHS', // share button
+        download: 'Загрузить', // edit document kebab item and button text
+        editDetails: 'Редактировать данные', // edit document kebab item
+        edit: 'Редактировать', // edit account details
+        continue: 'Продолжить',
+        share: 'Предоставить доступ DHS', // share button
         shared: 'Shared Documents', // (not found) label of shared tab on dashboard
         upload: 'Upload a Document', // (not found)
         uploadDocument: 'Upload Document', // not found
-        view: '查看',
-        save: '儲存',
+        view: 'Просмотреть',
+        save: 'Сохранить',
       },
 
       // account settings page
       account: {
         language: 'Language', // not found open language selector
-        firstName: '名字',
-        whatIsYourFirstName: '您的名字是什麼？',
-        lastName: '姓氏',
-        whatIsYourLastName: '您的姓氏是什麼？',
-        dob: '出生日期',
-        whatIsYourDob: '您的出生日期是多少？',
-        caseNumber: '個案號碼',
-        whatIsYourDshCaseNumber: '您的 DHS 個案號碼是多少？',
+        firstName: 'Имя',
+        whatIsYourFirstName: 'Как вас зовут?',
+        lastName: 'Фамилия',
+        whatIsYourLastName: 'Какая ваша фамилия?',
+        dob: 'Дата рождения',
+        whatIsYourDob: 'Когда вы родились?',
+        caseNumber: 'Номер дела',
+        whatIsYourDshCaseNumber: 'Какой номер вашего дела в DHS?',
         dhsShow:
-          '如果您是返鄉人士，您的 DHS 個案號碼是多少？如果您還不瞭解 PATH，在您前往 PATH 時請添加您收到的票號（例如：CL ####）。',
-        locale: '選擇語言',
+          'Введите номер вашего дела DHS, если вы семья, которая снова возвращается в приют. Если вы новый участник PATH, введите номер билета, который вы получили, когда пришли в PATH (пример: CL ####).',
+        locale: 'Выбрать язык',
       },
 
       // All copy related to the create shared folder flow
@@ -983,7 +708,7 @@ export default merge(
         about: 'About', // not found
         authorizing: 'Authorizing', // not found not important - used while logging in
         dashboard: 'Dashboard', // not found
-        document: '文件', // used for document preview while page is loading, then changes to document title
+        document: 'Документ', // used for document preview while page is loading, then changes to document title
         faq: 'FAQ', // not found
         shared: 'Shared', // not found used in share flow
         sharedBy: 'Shared by', // not found used in share flow
@@ -1042,7 +767,7 @@ export default merge(
       // Copy where you are viewing shared folders
       sharedFolder: {
         // empty state for list of shared folders
-        noCollections: `您還未分享任何文件`, // message
+        noCollections: `Вы еще никому не предоставили доступ к своим документам`, // message
         shareFirstDocument: 'Share your first document', // (not found) call to action
 
         // empty state for an individual shared folder
@@ -1075,20 +800,21 @@ export default merge(
       },
 
       agent: {
-        clientFirstNameLabel: '名字', // label of client first name column in agent view
-        clientLastNameLabel: '姓氏', // label of client last name column in agent view
-        clientDob: '出生日期', // label of client date of birth column in agent view
-        clientCaseNum: '個案號碼', // label of client case number column in agent view
-        clientEmail: '電子郵件', // label of client case number column in agent view
-        dateShared: '分享日期', // label in side bar
+        clientFirstNameLabel: 'Имя', // label of client first name column in agent view
+        clientLastNameLabel: 'Фамилия', // label of client last name column in agent view
+        clientDob: 'Дата рождения', // label of client date of birth column in agent view
+        clientCaseNum: 'Номер дела', // label of client case number column in agent view
+        clientEmail: 'Адрес электронной почты', // label of client case number column in agent view
+        dateShared: 'Дата предоставления', // label in side bar
         noClientActionLabel: 'Not a government employee?', // not found
         noClientActionText:
           'If you are seeking permanent supportive housing, click here.', // not found
         reorderFiles: 'Reorder Documents', // (not found) shown in agent view when downloading as PDF
-        selectClient: '選擇客戶以存取分享文件',
+        selectClient:
+          'Выберите клиента для предоставления доступа к общим документам',
         sharedBy: 'Shared By', // (not found) label in side bar
         sharedFolderNameLabel: 'Name', // (not found) label of shared folder name column in agent view
-        sharedWith: '分享文件至:', // promt for agency email
+        sharedWith: 'Предоставить доступ (кому):', // promt for agency email
       },
 
       landing: {
