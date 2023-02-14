@@ -91,12 +91,8 @@ export class File extends BaseModel {
 }
 
 export const markFileReceived = async (path: string) => {
-  await File.query()
-    .patch({ received: true })
-    .where({ path })
-  return await File.query()
-    .where({ path })
-    .first()
+  await File.query().patch({ received: true }).where({ path })
+  return await File.query().where({ path }).first()
 }
 
 export const getFileByIdAndDocumentId = async (
@@ -121,15 +117,11 @@ export const getFileById = async (fileId: string) => {
 }
 
 export const getFilesByDocumentId = async (documentId: string) => {
-  return await File.query()
-    .where({ documentId })
-    .orderBy('order')
+  return await File.query().where({ documentId }).orderBy('order')
 }
 
 export const getFilesByDocumentIds = async (documentIds: string[]) => {
-  return await File.query()
-    .whereIn('documentId', documentIds)
-    .orderBy('order')
+  return await File.query().whereIn('documentId', documentIds).orderBy('order')
 }
 export interface FileScanStatus {
   path: string
@@ -143,7 +135,5 @@ export const updateScanStatusByPath = async (
     .patch({ scanStatus: fileScanStatus.scanStatus })
     .where({ path: fileScanStatus.path })
 
-  return await File.query()
-    .where({ path: fileScanStatus.path })
-    .first()
+  return await File.query().where({ path: fileScanStatus.path }).first()
 }

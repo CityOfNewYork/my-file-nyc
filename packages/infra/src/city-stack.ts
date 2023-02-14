@@ -119,6 +119,7 @@ enum EnvironmentVariables {
   ACTIVITY_RECORD_SQS_QUEUE_URL = 'ACTIVITY_RECORD_SQS_QUEUE_URL',
   ACTIVITY_CLOUDWATCH_LOG_GROUP = 'ACTIVITY_CLOUDWATCH_LOG_GROUP',
   EMAIL_PROCESSOR_SQS_QUEUE_URL = 'EMAIL_PROCESSOR_SQS_QUEUE_URL',
+  MULTIPAGE_DOCUMENT_ASSEMBLY_PROCESSOR_SQS_QUEUE_URL = 'MULTIPAGE_DOCUMENT_ASSEMBLY_PROCESSOR_SQS_QUEUE_URL',
   SENTRY_DSN = 'SENTRY_DSN',
   ENVIRONMENT_NAME = 'ENVIRONMENT_NAME',
   AUTH_SIGNING_KEY = 'AUTH_SIGNING_KEY',
@@ -235,6 +236,7 @@ export class CityStack extends Stack {
   private uploadsBucket: Bucket
   private kmsKey: IKey
   private emailProcessorQueue: IQueue
+  private multipageDocumentAssemblyProcessorQueue: IQueue
   private auditLogQueue: IQueue
   private auditLogGroup: ILogGroup
   private routeSettings: { [index: string]: ThrottlingRouteSettings } = {}
@@ -260,14 +262,14 @@ export class CityStack extends Stack {
       throttling = {},
       providedKmsKey,
       cloudfront = {},
-      sharedInboxConfig = {}
+      sharedInboxConfig = {},
     } = props
 
     // check jwt auth is given if auth stack is not
     if (!authStack && !jwtAuth) {
       throw new Error(
         'jwtAuth must be provided when authStack is not provided in stack ' +
-        this.stackName,
+          this.stackName,
       )
     }
 
@@ -320,10 +322,10 @@ export class CityStack extends Stack {
     // reference hosted zone
     const hostedZone: IHostedZone | undefined = hostedZoneAttributes
       ? HostedZone.fromHostedZoneAttributes(
-        this,
-        `HostedZone`,
-        hostedZoneAttributes,
-      )
+          this,
+          `HostedZone`,
+          hostedZoneAttributes,
+        )
       : undefined
 
     // add hosting for the web app
@@ -401,6 +403,12 @@ export class CityStack extends Stack {
       deadLetterQueue,
     ).queue
 
+    // create multipage document assembly processing queue
+    this.multipageDocumentAssemblyProcessorQueue = this.createMultipageDocumentAssemblyProcessorQueue(
+      this.kmsKey,
+      deadLetterQueue,
+    ).queue
+
     this.environmentVariables = {
       ...this.environmentVariables,
       [EnvironmentVariables.DOCUMENTS_BUCKET]: this.uploadsBucket.bucketName,
@@ -417,11 +425,15 @@ export class CityStack extends Stack {
         .queueUrl,
       [EnvironmentVariables.EMAIL_PROCESSOR_SQS_QUEUE_URL]: this
         .emailProcessorQueue.queueUrl,
+      [EnvironmentVariables.MULTIPAGE_DOCUMENT_ASSEMBLY_PROCESSOR_SQS_QUEUE_URL]: this
+        .multipageDocumentAssemblyProcessorQueue.queueUrl,
       [EnvironmentVariables.ENVIRONMENT_NAME]: this.stackName,
       [EnvironmentVariables.AUTH_INTEGRATION_TYPE]: jwtConfiguration.integrationType
         ? jwtConfiguration.integrationType
         : 'OAUTH',
-      [EnvironmentVariables.SHARED_INBOX_CONFIG]: JSON.stringify(sharedInboxConfig),
+      [EnvironmentVariables.SHARED_INBOX_CONFIG]: JSON.stringify(
+        sharedInboxConfig,
+      ),
       [EnvironmentVariables.NYC_HTTPS_PROXY]: process.env.NYC_HTTPS_PROXY!,
     }
 
@@ -439,9 +451,16 @@ export class CityStack extends Stack {
     }
 
     this.createAuditLogQueueProcessor(this.auditLogQueue, apiProps)
+
+    // add email sending processor
     this.createEmailQueueProcessor(
       this.emailProcessorQueue,
       emailSender.address,
+    )
+
+    // add multipage document processor
+    this.createMultipageDocumentQueueProcessor(
+      this.multipageDocumentAssemblyProcessorQueue,
     )
 
     // add user routes
@@ -675,6 +694,32 @@ export class CityStack extends Stack {
   }
 
   /**
+   * Create the multipage assembly processing queue for the stack.
+   * @param kmsKey The encryption key for the log group
+   * @param deadLetterQueue The dead letter queue to user
+   */
+  private createMultipageDocumentAssemblyProcessorQueue(
+    kmsKey: IKey,
+    deadLetterQueue: Queue,
+  ) {
+    const queue = new Queue(this, 'MultipageDocumentAssemblyProcessorQueue', {
+      encryptionMasterKey: kmsKey,
+      fifo: true,
+      contentBasedDeduplication: true,
+      retentionPeriod: Duration.days(10),
+      visibilityTimeout: Duration.seconds(60),
+      deadLetterQueue: {
+        queue: deadLetterQueue,
+        maxReceiveCount: 50,
+      },
+    })
+
+    return {
+      queue,
+    }
+  }
+
+  /**
    * Create the processor for the email queue
    * @param emailProcessorQueue The queue to read messages from
    * @param emailSenderAddress The email address of the email sender
@@ -717,6 +762,32 @@ export class CityStack extends Stack {
   }
 
   /**
+   * Create the processor for the multipage document pdf assembly
+   * @param multipageDocumentQueue The queue to read messages from
+   */
+  private createMultipageDocumentQueueProcessor(
+    multipageDocumentQueue: IQueue,
+  ) {
+    const lambda = this.createLambda(
+      'ProcessMultipageDocumentPdfAssembly',
+      pathToApiServiceLambda('documents/processMultipageDocumentPdf'),
+      {
+        extraEnvironmentVariables: [
+          EnvironmentVariables.MULTIPAGE_DOCUMENT_ASSEMBLY_PROCESSOR_SQS_QUEUE_URL,
+        ],
+        multipageDocumentProcessorSqsPermissions: {
+          includeDelete: true,
+        },
+      },
+    )
+    lambda.addEventSource(
+      new SqsEventSource(multipageDocumentQueue, {
+        batchSize: 10,
+      }),
+    )
+  }
+
+  /**
    * Create the audit log queue for the stack.
    * @param kmsKey The encryption key for the log group
    * @param deadLetterQueue The dead letter queue to user
@@ -742,8 +813,11 @@ export class CityStack extends Stack {
    * Create the processor for the audit log queue
    * @param auditLogQueue The queue to read messages from
    */
-  private createAuditLogQueueProcessor(auditLogQueue: IQueue, apiProps: ApiProps) {
-    const { dbSecret, mySqlLayer } = apiProps;
+  private createAuditLogQueueProcessor(
+    auditLogQueue: IQueue,
+    apiProps: ApiProps,
+  ) {
+    const { dbSecret, mySqlLayer } = apiProps
 
     const lambda = this.createLambda(
       'ProcessActivity',
@@ -909,16 +983,16 @@ export class CityStack extends Stack {
 
     // Create App Bucket
     // const bucket = new Bucket(this, `${appName}Bucket`, {
-      // blockPublicAccess: {
-      //   blockPublicAcls: false,
-      //   blockPublicPolicy: false,
-      //   ignorePublicAcls: false,
-      //   restrictPublicBuckets: false,
-      // },
+    // blockPublicAccess: {
+    //   blockPublicAcls: false,
+    //   blockPublicPolicy: false,
+    //   ignorePublicAcls: false,
+    //   restrictPublicBuckets: false,
+    // },
     //   bucketName,
     // })
 
-    const bucket = Bucket.fromBucketName(this, `${appName}Bucket`, bucketName);
+    const bucket = Bucket.fromBucketName(this, `${appName}Bucket`, bucketName)
 
     // Create App Origin Access Identity
     // const originAccessIdentity = new OriginAccessIdentity(
@@ -1391,6 +1465,7 @@ export class CityStack extends Stack {
       auditLogSqsPermissions?: SqsPermissions
       auditLogGroupPermissions?: LogGroupPermissions
       emailProcessorSqsPermissions?: SqsPermissions
+      multipageDocumentProcessorSqsPermissions?: SqsPermissions
     },
   ) {
     // set up constants
@@ -1400,6 +1475,7 @@ export class CityStack extends Stack {
       auditLogSqsPermissions,
       auditLogGroupPermissions,
       emailProcessorSqsPermissions,
+      multipageDocumentProcessorSqsPermissions,
     } = permissions
     const {
       bucketActions: documentBucketActions,
@@ -1454,6 +1530,16 @@ export class CityStack extends Stack {
       emailProcessorSqsPermissions,
     )
     emailProcessorKeyActions.forEach((a) => keyActions.add(a))
+
+    // add sqs permissions for multipage document processor
+    const {
+      keyActions: multipageDocumentProcessorKeyActions,
+    } = this.addSqsPermissions(
+      lambdaFunction,
+      this.multipageDocumentAssemblyProcessorQueue,
+      multipageDocumentProcessorSqsPermissions,
+    )
+    multipageDocumentProcessorKeyActions.forEach((a) => keyActions.add(a))
 
     // add log group permissions
     if (auditLogGroupPermissions) {
@@ -2254,8 +2340,9 @@ export class CityStack extends Stack {
       collectionBucketPermissions?: BucketPermissions
       auditLogSqsPermissions?: SqsPermissions
       emailProcessorSqsPermissions?: SqsPermissions
+      multipageDocumentProcessorSqsPermissions?: SqsPermissions
       auditLogGroupPermissions?: LogGroupPermissions
-      timeoutSeconds?: number,
+      timeoutSeconds?: number
     } = { timeoutSeconds: 60 },
   ) {
     const {
@@ -2268,16 +2355,16 @@ export class CityStack extends Stack {
     const requiresDbConnectivity = !!dbSecret
     const dbParams: { [key: string]: string } = dbSecret
       ? {
-        DB_HOST: this.rdsEndpoint,
-        DB_USER: dbSecret.secretValueFromJson('username').toString(),
-        DB_PASSWORD: dbSecret.secretValueFromJson('password').toString(),
-        DB_NAME: dbSecret.secretValueFromJson('username').toString(),
-      }
+          DB_HOST: this.rdsEndpoint,
+          DB_USER: dbSecret.secretValueFromJson('username').toString(),
+          DB_PASSWORD: dbSecret.secretValueFromJson('password').toString(),
+          DB_NAME: dbSecret.secretValueFromJson('username').toString(),
+        }
       : {}
     const environment: {
       [key: string]: string
     } = {
-      NODE_ENV: (process.env.DEPLOYMENT_TARGET!).split('-')[0],
+      NODE_ENV: process.env.DEPLOYMENT_TARGET!.split('-')[0],
       ...dbParams,
     }
 
