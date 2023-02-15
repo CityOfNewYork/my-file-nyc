@@ -34,6 +34,8 @@ import { generatePDF } from '@/utils/pdf'
 import fs from 'fs'
 import path from 'path'
 
+connectDatabase()
+
 const validateFilesForMultipageDocument = (files: Array<DocumentCreateFile>) =>
   files.every(
     (f) =>
@@ -58,7 +60,6 @@ export const handler = createAuthenticatedApiGatewayHandler(
     request: APIGatewayRequestBody<DocumentCreate>,
   ): Promise<DocumentContract> => {
     const { ownerId, userId, user, userPermissions, event } = request as Request
-    connectDatabase()
 
     console.log(`
     ownerId: ${ownerId}
@@ -90,13 +91,6 @@ export const handler = createAuthenticatedApiGatewayHandler(
       )
     }
 
-    let multipageDocumentPdf: Uint8Array | undefined = undefined
-    if (isMultipageDocument) {
-      multipageDocumentPdf = await generatePDF(files, ownerId, id)
-      // fs.writeFileSync(path.join(process.cwd(), ''))
-    }
-    console.log(`pdf test: ${multipageDocumentPdf}`)
-
     const document: CreateDocumentInput = {
       name,
       description,
@@ -106,8 +100,8 @@ export const handler = createAuthenticatedApiGatewayHandler(
       createdAt: createdDate,
       updatedAt: createdDate,
       updatedBy: userId,
-      files: isMultipageDocument ? [{
-      }] : files.map(
+      isMultipageDocument,
+      files: files.map(
         (f: any, index: number): CreateDocumentFileInput => {
           const fileId = uuidv4()
           return {

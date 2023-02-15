@@ -24,6 +24,9 @@
     "entrypoint": "documents/markFileReceived"
   },
   {
+    "entrypoint": "documents/processMultipageDocumentPdf"
+  },
+  {
     "entrypoint": "documents/getFileDownloadLinkById"
   },
   {

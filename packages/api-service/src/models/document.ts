@@ -23,6 +23,7 @@ export class Document extends BaseModel {
   public updatedBy: string
   public thumbnailPath?: string
   public scanStatus: string
+  public isMultipageDocument: boolean
 
   // navigation property
   public files?: File[]
@@ -41,6 +42,7 @@ export class Document extends BaseModel {
           'thumbnailPath',
           'updatedAt',
           'scanStatus',
+          'isMultipageDocument',
         ]
         return query.select(...fields.map((f) => Document.ref(f)))
       },
@@ -53,6 +55,7 @@ export class Document extends BaseModel {
           'createdAt',
           'ownerId',
           'scanStatus',
+          'isMultipageDocument',
         ]
         return query
           .select(...fields.map((f) => Document.ref(f)))
@@ -84,6 +87,7 @@ export class Document extends BaseModel {
         format: { type: 'string', maxLength: 255 },
         type: { type: 'string', maxLength: 255 },
         scanStatus: { type: 'string', maxLength: 255 },
+        isMultipageDocument: { type: 'boolean' },
         expiryDate: { type: 'date-time' },
         updatedBy: { type: 'string', minLength: 1, maxLength: 255 },
         createdBy: { type: 'string', minLength: 1, maxLength: 255 },
@@ -125,11 +129,7 @@ export class Document extends BaseModel {
 }
 
 export const getDocumentById = async (id: string): Promise<Document | null> => {
-  return (
-    (await Document.query()
-      .modify('byId', id)
-      .first()) || null
-  )
+  return (await Document.query().modify('byId', id).first()) || null
 }
 
 export const getSingleDocumentById = async (
@@ -177,9 +177,7 @@ export const documentIsInCollectionWithGrant = async (
     .where({ requirementType, requirementValue })
     .whereIn(
       'collectionId',
-      CollectionDocument.query()
-        .select('collectionId')
-        .where({ documentId }),
+      CollectionDocument.query().select('collectionId').where({ documentId }),
     )
     .first())
 }
@@ -231,9 +229,7 @@ export const documentsInAnyCollectionWithGrantAndOwner = async (
 }
 
 export const setDocumentThumbnailPath = async (id: string, path: string) => {
-  return await Document.query()
-    .patch({ thumbnailPath: path })
-    .where({ id })
+  return await Document.query().patch({ thumbnailPath: path }).where({ id })
 }
 
 export interface CreateDocumentInput {
@@ -246,6 +242,7 @@ export interface CreateDocumentInput {
   updatedAt: Date
   updatedBy: string
   files: CreateDocumentFileInput[]
+  isMultipageDocument: boolean
 }
 export interface CreateDocumentFileInput {
   id: string
@@ -260,7 +257,7 @@ export interface CreateDocumentFileInput {
 }
 
 export const createDocument = async (document: CreateDocumentInput) => {
-  console.log('attempting to create document record');
+  console.log('attempting to create document record')
   return await Document.query().insertGraphAndFetch({
     ...document,
   })
@@ -277,9 +274,7 @@ export const updateDocument = async (
   id: string,
   documentDetails: UpdateDocumentInput,
 ) => {
-  return await Document.query()
-    .patch(documentDetails)
-    .where({ id })
+  return await Document.query().patch(documentDetails).where({ id })
 }
 
 export interface DocumentScanStatus {
@@ -296,13 +291,7 @@ export const updateScanStatusByDocumentId = async (
 }
 
 export const deleteDocument = async (id: string) => {
-  await File.query()
-    .delete()
-    .where({ documentId: id })
-  await CollectionDocument.query()
-    .delete()
-    .where({ documentId: id })
-  return await Document.query()
-    .delete()
-    .where({ id })
+  await File.query().delete().where({ documentId: id })
+  await CollectionDocument.query().delete().where({ documentId: id })
+  return await Document.query().delete().where({ id })
 }

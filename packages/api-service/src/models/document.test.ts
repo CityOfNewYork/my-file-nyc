@@ -65,6 +65,7 @@ describe('DocumentModel', () => {
         ownerId: userId,
         createdBy: userId,
         updatedBy: userId,
+        isMultipageDocument: false,
         files: [
           {
             id: uuidv4(),
@@ -130,6 +131,7 @@ describe('DocumentModel', () => {
           ownerId: userId,
           createdBy: userId,
           updatedBy: userId,
+          isMultipageDocument: false,
           files: [
             {
               id: uuidv4(),
@@ -446,6 +448,7 @@ describe('DocumentModel', () => {
         ownerId: userId,
         createdBy: userId,
         updatedBy: userId,
+        isMultipageDocument: false,
         files: [
           {
             id: uuidv4(),

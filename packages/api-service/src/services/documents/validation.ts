@@ -44,3 +44,13 @@ export const validateDisposition = () => (
   }
   return request
 }
+
+export type AssembleMultipageDocumentRequest = {
+  documentId: string
+  data: Record<string, any>
+}
+
+export const assembleMultipageDocumentRequestSchema = object({
+  documentId: string().max(255).required(),
+  data: object().unknown(),
+})

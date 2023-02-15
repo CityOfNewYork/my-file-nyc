@@ -31,6 +31,7 @@ describe('FileModel', () => {
         ownerId: userId,
         createdBy: userId,
         updatedBy: userId,
+        isMultipageDocument: false,
         files: [
           {
             id: fileId,
@@ -76,6 +77,7 @@ describe('FileModel', () => {
         ownerId: userId,
         createdBy: userId,
         updatedBy: userId,
+        isMultipageDocument: false,
         files: [
           {
             id: fileId,
@@ -121,6 +123,7 @@ describe('FileModel', () => {
         ownerId: userId,
         createdBy: userId,
         updatedBy: userId,
+        isMultipageDocument: false,
         files: [
           {
             id: fileId1,
@@ -181,6 +184,7 @@ describe('FileModel', () => {
         ownerId: userId,
         createdBy: userId,
         updatedBy: userId,
+        isMultipageDocument: false,
         files: [
           {
             id: fileId1,
@@ -203,6 +207,7 @@ describe('FileModel', () => {
         ownerId: userId,
         createdBy: userId,
         updatedBy: userId,
+        isMultipageDocument: false,
         files: [
           {
             id: fileId2,
