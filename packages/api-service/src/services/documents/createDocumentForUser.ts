@@ -34,6 +34,8 @@ import { generatePDF } from '@/utils/pdf'
 import fs from 'fs'
 import path from 'path'
 
+connectDatabase()
+
 const validateFilesForMultipageDocument = (files: Array<DocumentCreateFile>) =>
   files.every(
     (f) =>
@@ -58,7 +60,6 @@ export const handler = createAuthenticatedApiGatewayHandler(
     request: APIGatewayRequestBody<DocumentCreate>,
   ): Promise<DocumentContract> => {
     const { ownerId, userId, user, userPermissions, event } = request as Request
-    connectDatabase()
 
     console.log(`
     ownerId: ${ownerId}
