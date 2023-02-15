@@ -277,8 +277,6 @@ export default class Settings extends Vue {
     this.dob = response.dob
     this.dhsCaseNumber = response.dhsCaseNumber
     this.locale = response.locale
-
-    this.editMode = !this.editMode
   }
 
   get boldMyFile() {
@@ -309,6 +307,7 @@ export default class Settings extends Vue {
       } else {
         this.submit(data)
       }
+      this.edit()
     } else {
       console.log('Input is invalid')
     }
