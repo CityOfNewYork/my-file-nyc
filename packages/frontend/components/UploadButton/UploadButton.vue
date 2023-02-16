@@ -279,7 +279,8 @@ export default class UploadButton extends Vue {
     snackbarStore.setVisible(true)
 
     this.showDialog = false
-    this.multiple = false
+    // this.multiple = false
+    console.log(`multiple: ${this.multiple}`)
     const document = await this.$store.dispatch('user/uploadDocument', {
       fileList: this.files,
       name: this.documentNameSanitation(this.documentName),

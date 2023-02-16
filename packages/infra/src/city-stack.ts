@@ -1945,6 +1945,9 @@ export class CityStack extends Stack {
       {
         dbSecret,
         layers: [mySqlLayer],
+        extraEnvironmentVariables: [
+          EnvironmentVariables.MULTIPAGE_DOCUMENT_ASSEMBLY_PROCESSOR_SQS_QUEUE_URL,
+        ],
         extraFunctionProps: {
           onSuccess: new LambdaDestination(createDocumentThumbnail, {
             responseOnly: true,
