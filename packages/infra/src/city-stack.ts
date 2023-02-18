@@ -461,6 +461,7 @@ export class CityStack extends Stack {
     // add multipage document processor
     this.createMultipageDocumentQueueProcessor(
       this.multipageDocumentAssemblyProcessorQueue,
+      apiProps,
     )
 
     // add user routes
@@ -767,13 +768,18 @@ export class CityStack extends Stack {
    */
   private createMultipageDocumentQueueProcessor(
     multipageDocumentQueue: IQueue,
+    apiProps: ApiProps,
   ) {
+    const { dbSecret, mySqlLayer } = apiProps
     const lambda = this.createLambda(
       'ProcessMultipageDocumentPdfAssembly',
       pathToApiServiceLambda('documents/processMultipageDocumentPdf'),
       {
+        dbSecret,
+        layers: [mySqlLayer],
         extraEnvironmentVariables: [
           EnvironmentVariables.MULTIPAGE_DOCUMENT_ASSEMBLY_PROCESSOR_SQS_QUEUE_URL,
+          EnvironmentVariables.DOCUMENTS_BUCKET,
         ],
         multipageDocumentProcessorSqsPermissions: {
           includeDelete: true,
@@ -1952,6 +1958,10 @@ export class CityStack extends Stack {
           onSuccess: new LambdaDestination(createDocumentThumbnail, {
             responseOnly: true,
           }),
+        },
+        multipageDocumentProcessorSqsPermissions: {
+          includeDelete: true,
+          includeWrite: true,
         },
       },
     )

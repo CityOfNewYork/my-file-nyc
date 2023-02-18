@@ -6,8 +6,7 @@ import { File } from '@/models/file'
 import { Document } from '@/models/document'
 import path from 'path'
 
-const downloadDocumentFiles = async (document: Document) => {
-  const files = document?.files || []
+const downloadDocumentFiles = async (files: Array<File>) => {
   const savedFiles: Record<string, string> = {}
   for (let i = 0; i < files.length; i++) {
     const file = files[i]
@@ -23,6 +22,7 @@ const downloadDocumentFiles = async (document: Document) => {
 
 export async function generatePDF(
   document: Document | null,
+  documentFiles: File[],
   ownerId: any,
   id: any,
 ) {
@@ -35,8 +35,8 @@ export async function generatePDF(
     ${JSON.stringify(document, null, 2)}
     `)
     const pdfDoc = await PDFDocument.create()
-    const files = document.files || []
-    const savedFiles = await downloadDocumentFiles(document)
+    const files = documentFiles || []
+    const savedFiles = await downloadDocumentFiles(documentFiles)
     for (let i = 0; i < files.length; i++) {
       const file = files[i]
       const fileId = uuidv4()

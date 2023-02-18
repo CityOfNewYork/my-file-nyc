@@ -1,7 +1,12 @@
 import { EnvironmentVariable, requireConfiguration } from '@/config'
 import { deleteMessages } from '@/utils/sqs'
 import { parseAndValidate } from '@/utils/validation'
-import { downloadObject, getObjectReadStream, uploadObject } from '@/utils/s3'
+import {
+  downloadObject,
+  getObjectReadStream,
+  uploadObject,
+  uploadObjectStream,
+} from '@/utils/s3'
 import { generatePDF } from '@/utils/pdf'
 import { SQSEvent } from 'aws-lambda'
 import {
@@ -12,12 +17,19 @@ import { wrapAsyncHandler } from '@/utils/sentry'
 import { logger } from '@/utils/logging'
 import { flatMap, uniq } from 'lodash'
 import { getDocumentById } from '@/models/document'
+import { getFilesByDocumentId } from '@/models/file'
 import path from 'path'
+import streamBuffers from 'stream-buffers'
+import { WriteStream } from 'fs'
+import { Duplex } from 'stream'
+import { connectDatabase } from '@/utils/database'
 
 const getQueueUrl = () =>
   requireConfiguration(
     EnvironmentVariable.MULTIPAGE_DOCUMENT_ASSEMBLY_PROCESSOR_SQS_QUEUE_URL,
   )
+
+connectDatabase()
 
 export const handler = wrapAsyncHandler(
   async (event: SQSEvent) => {
@@ -43,11 +55,33 @@ export const handler = wrapAsyncHandler(
       }
 
       const document = await getDocumentById(assembleRequest.documentId)
+      const documentFiles = await getFilesByDocumentId(document!.id)
       const pdf = await generatePDF(
         document,
+        documentFiles,
         document?.ownerId,
         `${document?.id}-pdf`,
       )
+      console.log(
+        `pdf processing complete... uploading pdf to bucket as key: ${
+          document!.id
+        }`,
+      )
+      // const readableStreamBuffer = new streamBuffers.ReadableStreamBuffer({
+      //   frequency: 10,
+      //   chunkSize: 2048,
+      // })
+      // readableStreamBuffer.put(Buffer.from(pdf))
+      // const writeStream = new WriteStream()
+      // const duplexStream = new Duplex()
+      // readableStreamBuffer.pipe(duplexStream)
+      const uploadResponse = await uploadObjectStream(
+        pdf.buffer,
+        `/documents/${document!.id}.pdf`,
+      )
+      console.log(`s3 upload pdf response: 
+      ${JSON.stringify(uploadResponse, null, 2)}
+      `)
       await deleteMessages(getQueueUrl(), [record])
     }
   },
