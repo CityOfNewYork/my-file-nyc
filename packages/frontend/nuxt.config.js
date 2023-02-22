@@ -58,7 +58,7 @@ const config = {
   },
   plugins: [
     '@/plugins/vee-validate.js',
-    '@/plugins/gtag'
+    '@/plugins/gtag',
     // consider re-enabling when https://github.com/vue-a11y/vue-axe/issues/32 is resolved
     // {
     //   src: '@/plugins/axe.ts',
@@ -136,7 +136,11 @@ const config = {
           'img-src': getSrc(CspEnum.IMAGE, process.env.CSP_IMG_SRC),
           'worker-src': ["'self'"],
           'style-src': ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
-          'script-src': [...getSrc(CspEnum.SCRIPT, process.env.CSP_SCRIPT_SRC), "'unsafe-inline'", "'unsafe-eval'"],
+          'script-src': [
+            ...getSrc(CspEnum.SCRIPT, process.env.CSP_SCRIPT_SRC),
+            "'unsafe-inline'",
+            "'unsafe-eval'",
+          ],
           'connect-src': getSrc(CspEnum.CONNECT, process.env.CSP_CONNECT_SRC),
           'frame-src': getSrc(CspEnum.FRAME, process.env.CSP_FRAME_SRC),
           'form-action': ["'self'"],

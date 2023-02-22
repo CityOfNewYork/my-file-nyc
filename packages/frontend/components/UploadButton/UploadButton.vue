@@ -129,9 +129,17 @@
                   :placeholder="$t('document.enterDescriptionPlaceholder')"
                 />
               </ValidationProvider>
+              <div>
+                <draggable v-model="files">
+                  <div v-for="file in files" :key="file.name">
+                  {{ file.name }}
+                  </div>
+                </draggable>
+             </div>
             </v-form>
           </ValidationObserver>
         </v-container>
+       
         <v-btn
           color="primary white--text"
           class="body-1 my-2 mx-auto d-flex"
@@ -148,6 +156,7 @@
         </v-btn>
       </v-card>
     </v-dialog>
+
   </button>
 </template>
 
@@ -156,11 +165,13 @@ import { Vue, Component, Prop } from 'nuxt-property-decorator'
 import { snackbarStore } from '@/plugins/store-accessor'
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
 import SnackParams from '@/types/snackbar'
+import draggable from 'vuedraggable'
 
 @Component({
   components: {
     ValidationObserver,
     ValidationProvider,
+    draggable
   },
 })
 export default class UploadButton extends Vue {
@@ -185,10 +196,13 @@ export default class UploadButton extends Vue {
     length: 0,
     item: () => null,
   }
-
   snackMessage = ''
   documentName = ''
   documentDescription = ''
+  
+  updated(){
+    console.log(this.files)
+  }
 
   closeDialog() {
     this.multiple = false
@@ -215,8 +229,9 @@ export default class UploadButton extends Vue {
       const files_temp: any = [...event.target.files].sort(
         (a, b) => a.lastModified - b.lastModified,
       )
-
+      
       this.files = files_temp
+      
 
       // event.target.files[0].description = this.documentDescription
       // this.documentName = event.target.files[0].name
@@ -327,6 +342,7 @@ export default class UploadButton extends Vue {
     this.documentDescription = ''
   }
 }
+
 </script>
 
 <style scoped lang="scss">
