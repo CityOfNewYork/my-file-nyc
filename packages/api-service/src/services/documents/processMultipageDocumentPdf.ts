@@ -56,16 +56,16 @@ export const handler = wrapAsyncHandler(
 
       const document = await getDocumentById(assembleRequest.documentId)
       const documentFiles = await getFilesByDocumentId(document!.id)
-      const pdf = await generatePDF(
+      const pdfFilepath = await generatePDF(
         document,
         documentFiles,
         document?.ownerId,
         `${document?.id}-pdf`,
       )
+      const s3FileKey = `documents/${document!.ownerId}/${document!.id}.pdf`
       console.log(
-        `pdf processing complete... uploading pdf to bucket as key: ${
-          document!.id
-        }`,
+        `pdf processing complete... uploading pdf to bucket as key: 
+        ${s3FileKey}`,
       )
       // const readableStreamBuffer = new streamBuffers.ReadableStreamBuffer({
       //   frequency: 10,
@@ -75,10 +75,7 @@ export const handler = wrapAsyncHandler(
       // const writeStream = new WriteStream()
       // const duplexStream = new Duplex()
       // readableStreamBuffer.pipe(duplexStream)
-      const uploadResponse = await uploadObjectStream(
-        pdf.buffer,
-        `/documents/${document!.id}.pdf`,
-      )
+      const uploadResponse = await uploadObject(pdfFilepath, s3FileKey)
       console.log(`s3 upload pdf response: 
       ${JSON.stringify(uploadResponse, null, 2)}
       `)

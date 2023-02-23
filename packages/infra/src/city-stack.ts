@@ -269,7 +269,7 @@ export class CityStack extends Stack {
     if (!authStack && !jwtAuth) {
       throw new Error(
         'jwtAuth must be provided when authStack is not provided in stack ' +
-          this.stackName,
+        this.stackName,
       )
     }
 
@@ -322,10 +322,10 @@ export class CityStack extends Stack {
     // reference hosted zone
     const hostedZone: IHostedZone | undefined = hostedZoneAttributes
       ? HostedZone.fromHostedZoneAttributes(
-          this,
-          `HostedZone`,
-          hostedZoneAttributes,
-        )
+        this,
+        `HostedZone`,
+        hostedZoneAttributes,
+      )
       : undefined
 
     // add hosting for the web app
@@ -783,6 +783,10 @@ export class CityStack extends Stack {
         ],
         multipageDocumentProcessorSqsPermissions: {
           includeDelete: true,
+        },
+        documentBucketPermissions: {
+          includeWrite: true,
+          includeRead: true,
         },
       },
     )
@@ -2368,11 +2372,11 @@ export class CityStack extends Stack {
     const requiresDbConnectivity = !!dbSecret
     const dbParams: { [key: string]: string } = dbSecret
       ? {
-          DB_HOST: this.rdsEndpoint,
-          DB_USER: dbSecret.secretValueFromJson('username').toString(),
-          DB_PASSWORD: dbSecret.secretValueFromJson('password').toString(),
-          DB_NAME: dbSecret.secretValueFromJson('username').toString(),
-        }
+        DB_HOST: this.rdsEndpoint,
+        DB_USER: dbSecret.secretValueFromJson('username').toString(),
+        DB_PASSWORD: dbSecret.secretValueFromJson('password').toString(),
+        DB_NAME: dbSecret.secretValueFromJson('username').toString(),
+      }
       : {}
     const environment: {
       [key: string]: string

@@ -10,7 +10,8 @@ const downloadDocumentFiles = async (files: Array<File>) => {
   const savedFiles: Record<string, string> = {}
   for (let i = 0; i < files.length; i++) {
     const file = files[i]
-    const fileSavePath = path.join(process.cwd(), file.id)
+    const fileSavePath = path.join('/tmp/', file.id)
+    console.log(`attempting to download file ${file.path} to ${fileSavePath}`)
     const downloadedFile = await downloadObject(file.path, fileSavePath)
     savedFiles[file.id] = fileSavePath
   }
@@ -55,12 +56,14 @@ export async function generatePDF(
       const imageType = file.contentType.split('/')
       console.log(`Processing image type: ${imageType}`)
 
-      if (file.contentType === 'jpeg') {
+      if (file.contentType.includes('jpeg')) {
         embbedImage = await pdfDoc.embedJpg(imgBuffer)
         scaledImage = embbedImage.scale(0.5)
-      } else {
+      } else if (file.contentType.includes('png')) {
         embbedImage = await pdfDoc.embedPng(imgBuffer)
         scaledImage = embbedImage.scale(0.5)
+      } else {
+        throw new Error('File must be jpeg or png')
       }
 
       // console.log(embbedImage)
@@ -76,7 +79,9 @@ export async function generatePDF(
 
     console.log('Completed embedding images to pdf. Generating bytestream...')
     const bytesFile = await pdfDoc.save()
+    const outputPdfFilepath = path.join('/tmp/', `${document.id}.pdf`)
+    fs.writeFileSync(outputPdfFilepath, bytesFile)
     console.log('PDF bytestream generation complete. Returning raw data.')
-    return bytesFile
+    return outputPdfFilepath
   }
 }
