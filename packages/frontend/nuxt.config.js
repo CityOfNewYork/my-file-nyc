@@ -8,6 +8,7 @@ import { getSrc } from './assets/js/csp.ts'
 const config = {
   ssr: false,
   target: 'static',
+  devtools: true,
   // renderer: {
   //   csp: {
   //     hashAlgorithm: 'sha256',

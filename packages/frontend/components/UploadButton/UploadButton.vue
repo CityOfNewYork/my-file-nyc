@@ -36,8 +36,8 @@
           <div class="multyple">
             <label>{{ $t('document.signleOrMultyple') }}</label>
             <v-radio-group v-model="multiple" mandatory>
-              <v-radio label="One file" v-bind:value="false"></v-radio>
-              <v-radio label="Multiple files" v-bind:value="true"></v-radio>
+              <v-radio label="One file" :value="false"></v-radio>
+              <v-radio label="Multiple files" :value="true"></v-radio>
             </v-radio-group>
             <label
               :class="[
@@ -53,9 +53,9 @@
             >
               <v-icon
                 v-if="prependIcon"
-                v-text="prependIcon"
                 class="mr-4"
                 small
+                v-text="prependIcon"
               />
               {{
                 multiple
@@ -132,14 +132,19 @@
               <div>
                 <draggable v-model="files">
                   <div v-for="file in files" :key="file.name">
-                  {{ file.name }}
+                    {{ file.name }}
+                    <v-img
+                      max-height="236"
+                      max-width="331"
+                      :src="file.img"
+                    ></v-img>
                   </div>
                 </draggable>
-             </div>
+              </div>
             </v-form>
           </ValidationObserver>
         </v-container>
-       
+
         <v-btn
           color="primary white--text"
           class="body-1 my-2 mx-auto d-flex"
@@ -156,7 +161,6 @@
         </v-btn>
       </v-card>
     </v-dialog>
-
   </button>
 </template>
 
@@ -171,7 +175,7 @@ import draggable from 'vuedraggable'
   components: {
     ValidationObserver,
     ValidationProvider,
-    draggable
+    draggable,
   },
 })
 export default class UploadButton extends Vue {
@@ -196,13 +200,14 @@ export default class UploadButton extends Vue {
     length: 0,
     item: () => null,
   }
+
   snackMessage = ''
   documentName = ''
   documentDescription = ''
-  
-  updated(){
-    console.log(this.files)
-  }
+
+  // updated() {
+  //   console.log(this.files)
+  // }
 
   closeDialog() {
     this.multiple = false
@@ -210,6 +215,31 @@ export default class UploadButton extends Vue {
 
   resetSelection(event: any) {
     event.target.value = ''
+  }
+
+  handleFileUpload(event: any) {
+    const arr: any = []
+    let obj: any = {}
+    let img: any = ''
+    for (let i = 0; i < event.target.files.length; i++) {
+      const file = event.target.files[i]
+      const reader = new FileReader()
+      reader.readAsDataURL(file)
+      reader.onload = () => {
+        img = reader.result
+        obj = {
+          img,
+          lastModified: file.lastModified,
+          lastModifiedDate: file.lastModifiedDate,
+          name: file.name,
+          size: file.size,
+          type: file.type,
+          webkitRelativePath: file.webkitRelativePath,
+        }
+        arr.push(obj)
+      }
+    }
+    this.files = arr
   }
 
   onFileInput(event: any) {
@@ -225,13 +255,15 @@ export default class UploadButton extends Vue {
         file
       }
 
+
+      this.handleFileUpload(event)
+
       // Sorting by lastModified property
-      const files_temp: any = [...event.target.files].sort(
-        (a, b) => a.lastModified - b.lastModified,
-      )
-      
-      this.files = files_temp
-      
+      // const filesTemp: any = [...event.target.files].sort(
+      //   (a, b) => a.lastModified - b.lastModified,
+      // )
+
+      // this.files = filesTemp
 
       // event.target.files[0].description = this.documentDescription
       // this.documentName = event.target.files[0].name
@@ -270,8 +302,8 @@ export default class UploadButton extends Vue {
 
     let newStr = ''
 
-    for (let i in str) {
-      let char = str[i]
+    for (const i in str) {
+      const char = str[i]
       if (char != chars[char]) {
         newStr = newStr + char
       }
@@ -342,7 +374,6 @@ export default class UploadButton extends Vue {
     this.documentDescription = ''
   }
 }
-
 </script>
 
 <style scoped lang="scss">
