@@ -43,7 +43,14 @@ export const createLinksForFile = (file: File) => {
 }
 
 export const createDocumentListItem = (document: Document) => {
-  const { id, name, createdAt, thumbnailPath } = document
+  const {
+    id,
+    name,
+    createdAt,
+    thumbnailPath,
+    isMultipageDocument,
+    ownerId,
+  } = document
 
   const links = [
     {
@@ -67,8 +74,20 @@ export const createDocumentListItem = (document: Document) => {
     })
   }
 
+  let pdf: string | undefined = undefined
+  if (isMultipageDocument) {
+    pdf = getPresignedDownloadUrl(
+      `documents/${ownerId}/${id}.pdf`,
+      name,
+      'attachment',
+      600,
+    )
+  }
+
   return {
     name,
+    isMultipageDocument,
+    pdf,
     createdDate: createdAt.toISOString(),
     id,
     links,
