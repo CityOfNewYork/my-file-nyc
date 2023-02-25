@@ -19,7 +19,9 @@ export const handler = createAuthenticatedApiGatewayHandler(
     const { ownerId } = request
     const foundDocuments = await getDocumentsByOwnerId(ownerId)
     return {
-      documents: foundDocuments.map(createDocumentListItem),
+      documents: foundDocuments
+        .map((d) => ({ ...d, ownerId }))
+        .map((d) => createDocumentListItem(d)),
     }
   },
 )

@@ -42,7 +42,7 @@ export const createLinksForFile = (file: File) => {
   return links
 }
 
-export const createDocumentListItem = (document: Document) => {
+export const createDocumentListItem = (document: any) => {
   const {
     id,
     name,
