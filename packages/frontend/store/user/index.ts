@@ -172,15 +172,17 @@ export default class User extends VuexModule {
   @Action({ rawError: true, commit: '_setProfile' })
   patchProfile(payload: ApiUser): Promise<ApiUser> {
     if (!this._userId) return Promise.reject(new Error('UserID not set'))
-    return api.user.patchUser(this._userId, {
-      familyName: payload.familyName!,
-      givenName: payload.givenName!,
-      dob: payload.dob!,
-      dhsCaseNumber: payload.dhsCaseNumber!,
-      locale: payload.locale!,
-    }).then((response) => {
-      return response.data
-    })
+    return api.user
+      .patchUser(this._userId, {
+        familyName: payload.familyName!,
+        givenName: payload.givenName!,
+        dob: payload.dob!,
+        dhsCaseNumber: payload.dhsCaseNumber!,
+        locale: payload.locale!,
+      })
+      .then((response) => {
+        return response.data
+      })
   }
 
   // TODO: Update after upload API changes
@@ -194,14 +196,20 @@ export default class User extends VuexModule {
       // default empty function
     },
   }: {
-    fileList: FileList
+    fileList: any
     name: string
     description: string
     multiple: boolean
     onUploadProgress?: (e: ProgressEvent) => void
   }): Promise<Document> {
     // FileList has a weird spec, with no iterator. This converts it to an array
-    const files = Array.from(fileList)
+    const arr: any = []
+
+    for (const element of fileList) {
+      arr.push(element.file)
+    }
+
+    const files: any = Array.from(arr)
 
     if (!files.length)
       return Promise.reject(new Error('Files must not be an empty list'))
@@ -215,14 +223,15 @@ export default class User extends VuexModule {
     }
 
     const hashes = await Promise.all(files.map(hashFile))
+    console.log('STORE HASHES')
     const addResponse: AxiosResponse<Document> = await api.user.addUserDocument(
       this.ownerId,
       {
         name,
-        description: description,
+        description,
         isMultipageDocument: multiple,
-        files: files.map((file, i) => ({
-          name: name,
+        files: files.map((file: any, i: any) => ({
+          name,
           contentType: file.type as FileContentTypeEnum,
           sha256Checksum: hashes[i],
           contentLength: file.size,
@@ -234,7 +243,10 @@ export default class User extends VuexModule {
     // don't put our API token in the request otherwise we confuse AWS
     delete axiosInstance.defaults.headers.common.Authorization
 
-    const totalUploadSize = files.reduce((sum, file) => sum + file.size, 0)
+    const totalUploadSize = files.reduce(
+      (sum: any, file: any) => sum + file.size,
+      0,
+    )
     const uploadProgress = new Array(files.length).fill(0)
 
     await Promise.all(
@@ -263,7 +275,7 @@ export default class User extends VuexModule {
           )
 
         const file = files.find(
-          (_, i) => hashes[i] === documentFile.sha256Checksum,
+          (_: any, i: any) => hashes[i] === documentFile.sha256Checksum,
         )
         if (!file)
           Promise.reject(

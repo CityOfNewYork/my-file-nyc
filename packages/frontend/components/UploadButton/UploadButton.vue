@@ -131,12 +131,15 @@
               </ValidationProvider>
               <div>
                 <draggable v-model="files">
-                  <div v-for="file in files" :key="file.name">
-                    {{ file.name }}
+                  <div
+                    v-for="fileElement in files"
+                    :key="fileElement.file.name"
+                  >
+                    {{ fileElement.file.name }}
                     <v-img
                       max-height="236"
                       max-width="331"
-                      :src="file.img"
+                      :src="fileElement.img"
                     ></v-img>
                   </div>
                 </draggable>
@@ -196,18 +199,15 @@ export default class UploadButton extends Vue {
   multiple = false
   showSelectionDialog = false
   showDialog = false
-  files: FileList = {
-    length: 0,
-    item: () => null,
-  }
+  files: any = []
 
   snackMessage = ''
   documentName = ''
   documentDescription = ''
 
-  // updated() {
-  //   console.log(this.files)
-  // }
+  updated() {
+    console.log('UPDATED', typeof this.files)
+  }
 
   closeDialog() {
     this.multiple = false
@@ -229,12 +229,7 @@ export default class UploadButton extends Vue {
         img = reader.result
         obj = {
           img,
-          lastModified: file.lastModified,
-          lastModifiedDate: file.lastModifiedDate,
-          name: file.name,
-          size: file.size,
-          type: file.type,
-          webkitRelativePath: file.webkitRelativePath,
+          file,
         }
         arr.push(obj)
       }
@@ -252,24 +247,9 @@ export default class UploadButton extends Vue {
           snackbarStore.setVisible(true)
           return
         }
-        file
       }
 
-
       this.handleFileUpload(event)
-
-      // Sorting by lastModified property
-      // const filesTemp: any = [...event.target.files].sort(
-      //   (a, b) => a.lastModified - b.lastModified,
-      // )
-
-      // this.files = filesTemp
-
-      // event.target.files[0].description = this.documentDescription
-      // this.documentName = event.target.files[0].name
-      //   .split('.')
-      //   .slice(0, -1)
-      //   .join('.')
       this.showDialog = true
       this.showSelectionDialog = false
     }
@@ -304,7 +284,7 @@ export default class UploadButton extends Vue {
 
     for (const i in str) {
       const char = str[i]
-      if (char != chars[char]) {
+      if (char !== chars[char]) {
         newStr = newStr + char
       }
     }
@@ -316,7 +296,6 @@ export default class UploadButton extends Vue {
   }
 
   async uploadDocument() {
-    // this.files[0].description
     snackbarStore.setParams({
       message: 'toast.uploading',
       dismissable: false,
@@ -364,11 +343,7 @@ export default class UploadButton extends Vue {
     this.showDialog = false
     this.showSelectionDialog = false
     this.multiple = false
-
-    this.files = {
-      length: 0,
-      item: () => null,
-    }
+    this.files = []
     this.snackMessage = ''
     this.documentName = ''
     this.documentDescription = ''
