@@ -230,8 +230,8 @@ export default class User extends VuexModule {
         name,
         description,
         isMultipageDocument: multiple,
-        files: files.map((file: any, i: any) => ({
-          name,
+        files: files.map((file: any, i: number) => ({
+          name: file.name,
           contentType: file.type as FileContentTypeEnum,
           sha256Checksum: hashes[i],
           contentLength: file.size,
