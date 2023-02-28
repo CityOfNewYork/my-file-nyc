@@ -58,6 +58,7 @@
     "vue-gtag": "1.16.1",
     "vue-infinite-loading": "^2.4.5",
     "vue-showdown": "^2.4.1",
+    "vuedraggable": "^2.24.3",
     "vuex-module-decorators": "^0.17.0"
   },
   "devDependencies": {

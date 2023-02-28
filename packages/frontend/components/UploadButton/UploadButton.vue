@@ -36,8 +36,8 @@
           <div class="multyple">
             <label>{{ $t('document.signleOrMultyple') }}</label>
             <v-radio-group v-model="multiple" mandatory>
-              <v-radio label="One file" v-bind:value="false"></v-radio>
-              <v-radio label="Multiple files" v-bind:value="true"></v-radio>
+              <v-radio label="One file" :value="false"></v-radio>
+              <v-radio label="Multiple files" :value="true"></v-radio>
             </v-radio-group>
             <label
               :class="[
@@ -53,9 +53,9 @@
             >
               <v-icon
                 v-if="prependIcon"
-                v-text="prependIcon"
                 class="mr-4"
                 small
+                v-text="prependIcon"
               />
               {{
                 multiple
@@ -129,9 +129,25 @@
                   :placeholder="$t('document.enterDescriptionPlaceholder')"
                 />
               </ValidationProvider>
+              <div>
+                <draggable v-model="files">
+                  <div
+                    v-for="fileElement in files"
+                    :key="fileElement.file.name"
+                  >
+                    {{ fileElement.file.name }}
+                    <v-img
+                      max-height="236"
+                      max-width="331"
+                      :src="fileElement.img"
+                    ></v-img>
+                  </div>
+                </draggable>
+              </div>
             </v-form>
           </ValidationObserver>
         </v-container>
+
         <v-btn
           color="primary white--text"
           class="body-1 my-2 mx-auto d-flex"
@@ -156,11 +172,13 @@ import { Vue, Component, Prop } from 'nuxt-property-decorator'
 import { snackbarStore } from '@/plugins/store-accessor'
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
 import SnackParams from '@/types/snackbar'
+import draggable from 'vuedraggable'
 
 @Component({
   components: {
     ValidationObserver,
     ValidationProvider,
+    draggable,
   },
 })
 export default class UploadButton extends Vue {
@@ -181,14 +199,15 @@ export default class UploadButton extends Vue {
   multiple = false
   showSelectionDialog = false
   showDialog = false
-  files: FileList = {
-    length: 0,
-    item: () => null,
-  }
+  files: any = []
 
   snackMessage = ''
   documentName = ''
   documentDescription = ''
+
+  updated() {
+    console.log('UPDATED', typeof this.files)
+  }
 
   closeDialog() {
     this.multiple = false
@@ -196,6 +215,26 @@ export default class UploadButton extends Vue {
 
   resetSelection(event: any) {
     event.target.value = ''
+  }
+
+  handleFileUpload(event: any) {
+    const arr: any = []
+    let obj: any = {}
+    let img: any = ''
+    for (let i = 0; i < event.target.files.length; i++) {
+      const file = event.target.files[i]
+      const reader = new FileReader()
+      reader.readAsDataURL(file)
+      reader.onload = () => {
+        img = reader.result
+        obj = {
+          img,
+          file,
+        }
+        arr.push(obj)
+      }
+    }
+    this.files = arr
   }
 
   onFileInput(event: any) {
@@ -208,21 +247,9 @@ export default class UploadButton extends Vue {
           snackbarStore.setVisible(true)
           return
         }
-        file
       }
 
-      // Sorting by lastModified property
-      const files_temp: any = [...event.target.files].sort(
-        (a, b) => a.lastModified - b.lastModified,
-      )
-
-      this.files = files_temp
-
-      // event.target.files[0].description = this.documentDescription
-      // this.documentName = event.target.files[0].name
-      //   .split('.')
-      //   .slice(0, -1)
-      //   .join('.')
+      this.handleFileUpload(event)
       this.showDialog = true
       this.showSelectionDialog = false
     }
@@ -255,9 +282,9 @@ export default class UploadButton extends Vue {
 
     let newStr = ''
 
-    for (let i in str) {
-      let char = str[i]
-      if (char != chars[char]) {
+    for (const i in str) {
+      const char = str[i]
+      if (char !== chars[char]) {
         newStr = newStr + char
       }
     }
@@ -269,7 +296,6 @@ export default class UploadButton extends Vue {
   }
 
   async uploadDocument() {
-    // this.files[0].description
     snackbarStore.setParams({
       message: 'toast.uploading',
       dismissable: false,
@@ -318,11 +344,7 @@ export default class UploadButton extends Vue {
     this.showDialog = false
     this.showSelectionDialog = false
     this.multiple = false
-
-    this.files = {
-      length: 0,
-      item: () => null,
-    }
+    this.files = []
     this.snackMessage = ''
     this.documentName = ''
     this.documentDescription = ''
