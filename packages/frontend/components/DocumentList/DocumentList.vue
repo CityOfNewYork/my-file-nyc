@@ -1,6 +1,6 @@
 <template>
-  <div v-if="!loading">
-    <template v-if="documents.length">
+  <div v-if="!loading" >
+    <template v-if="documents.length" class="document-list-css">
       <v-data-table
         v-show="$vuetify.breakpoint.smAndUp"
         v-model="selected"
@@ -123,14 +123,14 @@ export default class DocumentList extends Vue {
       },
       {
         text: this.$t('document.fileName') as string,
-        class: 'blue-super-light',
+        class: 'blue-super-light document-list-header-style',
         align: 'start',
         sortable: true,
         value: 'name',
       },
       {
         text: this.$t('dateAdded') as string,
-        class: 'blue-super-light',
+        class: 'blue-super-light document-list-header-style',
         value: 'createdDate',
         sortable: true,
       },

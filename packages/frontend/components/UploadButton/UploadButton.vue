@@ -10,14 +10,14 @@
         'upload-label',
         'font-weight-medium',
         'body-1',
-        `px-${px}`,
         textButton ? 'text' : 'v-btn',
         { disabled: isLoading },
         { 'v-btn--outlined': outlined },
         { 'font-weight-bold': textButton },
+        'upload-label-style'
       ]"
     >
-      <v-icon v-if="prependIcon" class="mr-4" small v-text="prependIcon" />
+      <v-icon v-if="prependIcon" class="mr-4 upload-container-icon-style" small v-text="prependIcon" />
       {{ $t(label) }}
       <input
         id="file-input"

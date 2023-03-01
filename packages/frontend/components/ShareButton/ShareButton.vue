@@ -10,9 +10,9 @@
       })
     "
     color="primary white--text"
-    class="text-body-1 font-weight-medium"
+    class="text-body-1 font-weight-medium share-label-style"
   >
-    <v-icon v-if="$vuetify.breakpoint.smAndUp" left>$send</v-icon>
+    <v-icon class="share-container-icon-style" v-if="$vuetify.breakpoint.smAndUp" left>$send</v-icon>
     {{ $t('controls.share') }}
   </v-btn>
 </template>
