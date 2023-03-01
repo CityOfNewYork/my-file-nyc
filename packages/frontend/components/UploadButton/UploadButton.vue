@@ -205,10 +205,6 @@ export default class UploadButton extends Vue {
   documentName = ''
   documentDescription = ''
 
-  updated() {
-    console.log('UPDATED', typeof this.files)
-  }
-
   closeDialog() {
     this.multiple = false
   }
@@ -306,7 +302,6 @@ export default class UploadButton extends Vue {
 
     this.showDialog = false
     // this.multiple = false
-    console.log(`multiple: ${this.multiple}`)
     const document = await this.$store.dispatch('user/uploadDocument', {
       fileList: this.files,
       name: this.documentNameSanitation(this.documentName),
