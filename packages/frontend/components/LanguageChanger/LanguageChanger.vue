@@ -2,6 +2,7 @@
   <div :class="!outlined ? 'langContainer' : 'langContainerOutlined'">
     <v-select
       :class="!outlined ? 'selectField' : 'reset'"
+      class="language-selection-style"
       v-model="$i18n.locale"
       :items="$i18n.availableLocales"
       dense

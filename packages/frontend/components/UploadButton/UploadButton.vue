@@ -44,16 +44,16 @@
                 'upload-label',
                 'font-weight-medium',
                 'body-1',
-                `px-${px}`,
                 textButton ? 'text' : 'v-btn',
                 { disabled: isLoading },
                 { 'v-btn--outlined': outlined },
                 { 'font-weight-bold': textButton },
+                'upload-label-file-style'
               ]"
             >
               <v-icon
                 v-if="prependIcon"
-                class="mr-4"
+                class="mr-1 upload-container-icon-style"
                 small
                 v-text="prependIcon"
               />

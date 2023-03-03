@@ -1,6 +1,6 @@
 <template>
   <div v-if="!loading" >
-    <template v-if="documents.length" class="document-list-css">
+    <template v-if="documents.length">
       <v-data-table
         v-show="$vuetify.breakpoint.smAndUp"
         v-model="selected"
