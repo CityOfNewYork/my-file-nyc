@@ -95,7 +95,19 @@ const config = {
     },
   },
   i18n: {
-    locales: ['es', 'fr', 'ru', 'ar', 'ch', 'urd', 'ko', 'ht', 'pl', 'en'],
+    locales: [
+      'es',
+      'fr',
+      'ru',
+      'ar',
+      'ch',
+      'urd',
+      'ko',
+      'bn',
+      'ht',
+      'pl',
+      'en',
+    ],
     defaultLocale: 'en',
     vueI18n: {
       fallbackLocale: 'en',
