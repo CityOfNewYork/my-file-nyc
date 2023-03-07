@@ -34,6 +34,7 @@
       <template>
         <v-container>
           <div class="multyple">
+            <UploadButtonFileInput/>
             <label>{{ $t('document.signleOrMultyple') }}</label>
             <v-radio-group v-model="multiple" mandatory>
               <v-radio label="One file" :value="false"></v-radio>
@@ -171,6 +172,7 @@
 import { Vue, Component, Prop } from 'nuxt-property-decorator'
 import { snackbarStore } from '@/plugins/store-accessor'
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
+import UploadButtonFileInput from '../UploadButtonFileInput/UploadButtonFileInput.vue'
 import SnackParams from '@/types/snackbar'
 import draggable from 'vuedraggable'
 
@@ -178,6 +180,7 @@ import draggable from 'vuedraggable'
   components: {
     ValidationObserver,
     ValidationProvider,
+    UploadButtonFileInput,
     draggable,
   },
 })
