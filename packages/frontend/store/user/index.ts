@@ -223,7 +223,6 @@ export default class User extends VuexModule {
     }
 
     const hashes = await Promise.all(files.map(hashFile))
-    console.log('STORE HASHES')
     const addResponse: AxiosResponse<Document> = await api.user.addUserDocument(
       this.ownerId,
       {

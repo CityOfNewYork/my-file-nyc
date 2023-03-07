@@ -6,6 +6,7 @@
     clipped-right
     :extension-height="`${extensionHeight}px`"
     :height="headerHeight"
+    class="v-app-bar-style"
   >
     <slot name="nav-action" />
     <template v-if="!empty">
@@ -87,10 +88,11 @@
       <v-btn
         v-if="$vuetify.breakpoint.smAndUp && userStore.isClient"
         text
-        class="white--text"
+        class="white--text navigation-btn-style"
         :to="localePath('/account')"
       >
         <v-icon
+          class="navigation-icon-style"
           left
           style="filter: invert(40%) sepia(50%) saturate(0%) hue-rotate(20deg) brightness(200%) contrast(119%"
         >
@@ -104,14 +106,15 @@
         color="white"
         @click.prevent="showActivity = !showActivity"
         @keydown.prevent.enter="showActivity = !showActivity"
+        class="navigation-btn-style"
       >
-        <v-icon left color="white" small>$clock</v-icon>
+        <v-icon class="navigation-icon-style" left color="white" small>$clock</v-icon>
         {{ $t('navigation.activity') }}
       </v-btn>
       <v-btn
         v-show="$vuetify.breakpoint.smAndUp"
         text
-        class="mr-4 white--text font-weight-medium"
+        class="white--text font-weight-medium"
         @click="signOut"
       >
         {{ $t('navigation.signOut') }}

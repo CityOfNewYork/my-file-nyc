@@ -10,14 +10,14 @@
         'upload-label',
         'font-weight-medium',
         'body-1',
-        `px-${px}`,
         textButton ? 'text' : 'v-btn',
         { disabled: isLoading },
         { 'v-btn--outlined': outlined },
         { 'font-weight-bold': textButton },
+        'upload-label-style'
       ]"
     >
-      <v-icon v-if="prependIcon" class="mr-4" small v-text="prependIcon" />
+      <v-icon v-if="prependIcon" class="mr-4 upload-container-icon-style" small v-text="prependIcon" />
       {{ $t(label) }}
       <input
         id="file-input"
@@ -44,16 +44,16 @@
                 'upload-label',
                 'font-weight-medium',
                 'body-1',
-                `px-${px}`,
                 textButton ? 'text' : 'v-btn',
                 { disabled: isLoading },
                 { 'v-btn--outlined': outlined },
                 { 'font-weight-bold': textButton },
+                'upload-label-file-style'
               ]"
             >
               <v-icon
                 v-if="prependIcon"
-                class="mr-4"
+                class="mr-1 upload-container-icon-style"
                 small
                 v-text="prependIcon"
               />
@@ -205,10 +205,6 @@ export default class UploadButton extends Vue {
   documentName = ''
   documentDescription = ''
 
-  updated() {
-    console.log('UPDATED', typeof this.files)
-  }
-
   closeDialog() {
     this.multiple = false
   }
@@ -306,7 +302,6 @@ export default class UploadButton extends Vue {
 
     this.showDialog = false
     // this.multiple = false
-    console.log(`multiple: ${this.multiple}`)
     const document = await this.$store.dispatch('user/uploadDocument', {
       fileList: this.files,
       name: this.documentNameSanitation(this.documentName),

@@ -17,6 +17,58 @@
   // right to left languages
   .rtl {
     direction: rtl;
+    .v-app-bar-style{
+      .navigation-btn-style{
+        text-align: center; 
+        display: flex; 
+        align-items: center;
+        .navigation-icon-style{
+          margin-left: 7px;
+        }
+      }
+
+      .upload-label-style{
+         text-align: center; 
+         display: flex; 
+         align-items: center;
+         margin-right: 0px;
+         padding-right: 0px;
+         padding-left: 10px;
+        .upload-container-icon-style{
+          margin-left: 15px;
+          margin-right: 0px;
+        }
+      }
+
+      .share-label-style{
+         text-align: center; 
+         display: flex; 
+         align-items: center;
+         padding-left: 10px;
+         padding-right: 5px;
+        .share-container-icon-style{
+          margin-left: 15px;
+        }
+      }
+    }
+
+    .upload-label-file-style{
+        text-align: center; 
+         padding-left: 10px;
+        .upload-container-icon-style{
+          margin-left: 7px;
+          margin-right: 0px;
+        }
+    }
+
+    // .language-selection-style{
+    //   background-color: red;
+    //   display: flex;
+    // }
+
+    .document-list-header-style{
+      text-align: right;
+    }
   }
 
   // Base elements

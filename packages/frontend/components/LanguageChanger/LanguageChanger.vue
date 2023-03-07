@@ -2,6 +2,7 @@
   <div :class="!outlined ? 'langContainer' : 'langContainerOutlined'">
     <v-select
       :class="!outlined ? 'selectField' : 'reset'"
+      class="language-selection-style"
       v-model="$i18n.locale"
       :items="$i18n.availableLocales"
       dense
@@ -35,6 +36,7 @@ export default class LanguageChanger extends Vue {
   @Prop({ default: '-1px 19px;' }) padding: string
   userStore = userStore as any
 
+
   // Update usere locale in database and app state
   async userPatch() {
     const data = {
@@ -48,9 +50,10 @@ export default class LanguageChanger extends Vue {
     const response = await this.$store.dispatch('user/patchProfile', data)
     this.$i18n.locale = response.locale
   }
-
+  
   updated() {
-    if (this.userStore.profile.locale == this.$i18n.locale) {
+    this.$router.push(`/${this.$i18n.locale}/${window.location.toString().split("/").pop()}`)
+    if (this.userStore.profile.locale === this.$i18n.locale) {
       this.userPatch()
     }
   }
