@@ -128,7 +128,7 @@ export default class UploadButtonFileInput extends Vue {}
   .my-container {
     background-color: rgb(255, 255, 255);
     width: 554px;
-    height: 640px;
+    height: 690px;
     display: flex;
     flex-direction: column;
     padding-left: 60px;
@@ -136,59 +136,137 @@ export default class UploadButtonFileInput extends Vue {}
     .header {
       text-align: center;
       margin-top: 24px;
-      margin-bottom: 44px;
       color: black;
-      font-style: normal;
+      font-style: bold;
       font-weight: 700;
-      font-size: 30px;
+      font-size: 28px;
       line-height: 38px;
-      height: 10%;
+      padding: 0 0 20px 0;
     }
     .cards-container {
-      display: flex;
-      flex-direction: column;
+      display: flex !important;
+      flex-direction: column !important;
       width: 100%;
-      height: 500px;
+      height: 100vh !important;
       .card {
-        display: flex;
-        flex-direction: column;
-        flex-wrap: wrap;
-      }
-      .card-title-position {
-        padding: 0px;
-        margin-bottom: 12px;
+        display: flex !important;
+        flex-direction: column !important;
+        width: auto !important;
+        height: max-content !important;
+        margin-bottom: 40px;
+        .card-title-position {
+          padding: 0px;
+          margin-bottom: 12px;
+          width: 100%;
+        }
+
+        .card-title {
+          padding: 0px;
+          font-style: normal;
+          font-weight: 700;
+          font-size: 20px;
+          line-height: 28px;
+        }
+
+        .card-text {
+          padding: 0px;
+          font-weight: 400;
+          font-size: 17px;
+          line-height: 24px;
+          color: #000000;
+          margin-bottom: 24px;
+        }
+
+        .card-button {
+          width: 143px;
+          height: 56px;
+          font-weight: 500;
+          font-size: 17px;
+          line-height: 24px;
+        }
+        .card-button-position {
+          padding: 0px;
+        }
       }
 
-      .card-title {
-        padding: 0px;
-        font-style: normal;
-        font-weight: 700;
-        font-size: 20px;
-        line-height: 28px;
-      }
-
-      .card-text {
-        padding: 0px;
-        font-weight: 400;
-        font-size: 14px;
-        line-height: 20px;
-        color: #000000;
-        margin-bottom: 24px;
-      }
-
-      .card-button {
-        width: 143px;
-        height: 56px;
-        font-weight: 500;
-        font-size: 18px;
-        line-height: 24px;
-      }
-      .card-button-position {
-        padding-left: 0px;
-      }
       .divider {
         border-top: 3px solid #4157aa;
         width: 100%;
+        padding-bottom: 40px;
+      }
+    }
+  }
+}
+
+@media (max-width: 733px) {
+  .my-container {
+    background-color: rgb(255, 255, 255);
+    width: 330px;
+    height: 700px;
+    display: flex;
+    flex-direction: column;
+    padding-left: 24px;
+    padding-right: 24px;
+    .header {
+      text-align: center;
+      margin-top: 24px;
+      color: black;
+      font-style: bold;
+      font-weight: 700;
+      font-size: 25px;
+      line-height: 36px;
+      padding: 0 0 24px 0;
+    }
+    .cards-container {
+      display: flex !important;
+      flex-direction: column !important;
+      width: 100%;
+      height: 100vh !important;
+      .card {
+        display: flex !important;
+        flex-direction: column !important;
+        width: auto !important;
+        height: max-content !important;
+        margin-bottom: 24px;
+        .card-title-position {
+          padding: 0px;
+          margin-bottom: 12px;
+          width: 100%;
+        }
+
+        .card-title {
+          padding: 0px;
+          font-style: normal;
+          font-weight: 700;
+          font-size: 18px;
+          line-height: 28px;
+        }
+
+        .card-text {
+          padding: 0px;
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 24px;
+          color: #000000;
+          margin-bottom: 24px;
+        }
+
+        .card-button {
+          width: 120px;
+          height: 45px;
+          font-weight: 500;
+          font-size: 14px;
+          line-height: 24px;
+        }
+        .card-button-position {
+          padding: 0px;
+        }
+      }
+
+      .divider {
+        border-top: 3px solid #4157aa;
+        width: 100%;
+        padding-bottom: 24px;
       }
     }
   }
