@@ -33,8 +33,8 @@
     >
       <template>
         <v-container>
-          <div class="multyple">
-            <UploadButtonFileInput/>
+          <UploadButtonFileInput :onFileInput="onFileInput" />
+          <!-- <div class="multyple">
             <label>{{ $t('document.signleOrMultyple') }}</label>
             <v-radio-group v-model="multiple" mandatory>
               <v-radio label="One file" :value="false"></v-radio>
@@ -76,7 +76,7 @@
                 @change="onFileInput"
               />
             </label>
-          </div>
+          </div> -->
         </v-container>
       </template>
     </v-dialog>

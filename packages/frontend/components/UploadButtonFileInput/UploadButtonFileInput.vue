@@ -12,7 +12,18 @@
           tablet you can take a photo with your camera.
         </v-card-text>
         <v-card-actions class="card-button-position">
-          <v-btn color="primary" class="card-button">
+          <input
+            type="file"
+            ref="file"
+            style="display: none"
+            accept="application/pdf, image/jpeg, image/png, image/tiff"
+            @change="onFileInput"
+          />
+          <v-btn
+            @click="$refs.file.click()"
+            color="primary"
+            class="card-button"
+          >
             {{ $t('controls.uploadFile') }}
           </v-btn>
         </v-card-actions>
@@ -30,7 +41,19 @@
           mobile phone or tablet you can take photos with your camera.
         </v-card-text>
         <v-card-actions class="card-button-position">
-          <v-btn color="primary" class="card-button">
+          <input
+            type="file"
+            ref="file2"
+            style="display: none"
+            multiple
+            accept="application/pdf, image/jpeg, image/png, image/tiff"
+            @change="onFileInput"
+          />
+          <v-btn
+            @click="$refs.file2.click()"
+            color="primary"
+            class="card-button"
+          >
             {{ $t('controls.uploadFiles') }}
           </v-btn>
         </v-card-actions>
@@ -40,10 +63,13 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, Watch } from 'nuxt-property-decorator'
+import { Vue, Component, Prop } from 'nuxt-property-decorator'
 
 @Component
-export default class UploadButtonFileInput extends Vue {}
+export default class UploadButtonFileInput extends Vue {
+  @Prop({ default: null })
+  onFileInput: () => void
+}
 </script>
 
 <style scoped lang="scss">
@@ -133,6 +159,7 @@ export default class UploadButtonFileInput extends Vue {}
     flex-direction: column;
     padding-left: 60px;
     padding-right: 60px;
+    overflow: hidden;
     .header {
       text-align: center;
       margin-top: 24px;
@@ -207,6 +234,7 @@ export default class UploadButtonFileInput extends Vue {}
     flex-direction: column;
     padding-left: 24px;
     padding-right: 24px;
+    overflow: hidden;
     .header {
       text-align: center;
       margin-top: 24px;
