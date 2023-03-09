@@ -1,4 +1,4 @@
-import { PDFDocument } from 'pdf-lib'
+import { PDFDocument, PDFImage } from 'pdf-lib'
 import fs from 'fs'
 import { createFilePath, downloadObject } from '@/utils/s3'
 import { v4 as uuidv4 } from 'uuid'
@@ -47,34 +47,37 @@ export async function generatePDF(
       const page = pdfDoc.addPage()
       // console.log(file)
 
-      const imgBuffer = fs.readFileSync(savedFiles[file.id])
+      const fileContentBuffer = fs.readFileSync(savedFiles[file.id])
       // console.log(imgBuffer)
 
       let scaledImage
-      let embbedImage
+      let embedContent
 
       const imageType = file.contentType.split('/')
       console.log(`Processing image type: ${imageType}`)
 
       if (file.contentType.includes('jpeg')) {
-        embbedImage = await pdfDoc.embedJpg(imgBuffer)
-        scaledImage = embbedImage.scale(0.5)
+        embedContent = await pdfDoc.embedJpg(fileContentBuffer)
+        scaledImage = embedContent.scale(0.5)
       } else if (file.contentType.includes('png')) {
-        embbedImage = await pdfDoc.embedPng(imgBuffer)
-        scaledImage = embbedImage.scale(0.5)
+        embedContent = await pdfDoc.embedPng(fileContentBuffer)
+        scaledImage = embedContent.scale(0.5)
+      } else if (file.contentType.includes('pdf')) {
+        embedContent = await pdfDoc.embedPdf(fileContentBuffer)
       } else {
         throw new Error('File must be jpeg or png')
       }
 
       // console.log(embbedImage)
       // console.log(scaledImage)
-
-      page.drawImage(embbedImage, {
-        x: page.getWidth() / 2 - scaledImage.width / 2,
-        y: page.getHeight() / 2 - scaledImage.height / 2,
-        width: scaledImage.width,
-        height: scaledImage.height,
-      })
+      if (embedContent instanceof PDFImage && scaledImage) {
+        page.drawImage(embedContent, {
+          x: page.getWidth() / 2 - scaledImage.width / 2,
+          y: page.getHeight() / 2 - scaledImage.height / 2,
+          width: scaledImage.width,
+          height: scaledImage.height,
+        })
+      }
     }
 
     console.log('Completed embedding images to pdf. Generating bytestream...')
