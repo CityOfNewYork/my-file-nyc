@@ -58,10 +58,23 @@ export default class DashboardLayout extends Vue {
   userStore = userStore as any
 
   mounted() {
+    if (this.$config.deploymentTarget == 'dev') {
+      this.qaUsersCheck(userStore.profile.email)
+    }
+
     if (this.$route.params.showSnack) {
       this.$store.dispatch('snackbar/show')
     }
     this.checkTimeout()
+  }
+
+  qaUsersCheck(email: string) {
+    // Checking if it's QA user email and if it its, desable tracking
+    if (email == 'pashuntiy@gmail.com') {
+      ;(window as { [key: string]: any })[
+        `ga-disable-${this.$config.googleAnalytics.id}`
+      ] = true
+    }
   }
 
   get rtlDirection() {
