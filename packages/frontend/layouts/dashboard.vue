@@ -77,7 +77,7 @@ export default class DashboardLayout extends Vue {
     if ((qaEmails as { [key: string]: any })[email]) {
       ;(window as { [key: string]: any })[
         `ga-disable-${this.$config.googleAnalytics.id}`
-      ] = true
+      ] = false
     }
   }
 
