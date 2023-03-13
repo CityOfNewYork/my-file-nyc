@@ -59,7 +59,7 @@ export default class DashboardLayout extends Vue {
 
   mounted() {
     if (this.$config.deploymentTarget == 'dev') {
-      this.qaUsersCheck(userStore.profile.email)
+      this.qaUsersCheck(userStore.profile!.email!)
     }
 
     if (this.$route.params.showSnack) {
@@ -69,8 +69,12 @@ export default class DashboardLayout extends Vue {
   }
 
   qaUsersCheck(email: string) {
+    const qaEmails = {
+      'pashuntiy@gmail.com': 'pashuntiy@gmail.com',
+    } as object
+
     // Checking if it's QA user email and if it its, desable tracking
-    if (email == 'pashuntiy@gmail.com') {
+    if ((qaEmails as { [key: string]: any })[email]) {
       ;(window as { [key: string]: any })[
         `ga-disable-${this.$config.googleAnalytics.id}`
       ] = true

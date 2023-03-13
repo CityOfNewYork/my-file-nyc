@@ -24,6 +24,9 @@ export default class DefaultLandingPage extends Vue {
   UserRole = UserRole
 
   mounted() {
+    ;(window as { [key: string]: any })[
+      `ga-disable-${this.$config.googleAnalytics.id}`
+    ] = false
     // if (!this.$auth.loggedIn) {
     // console.log(UserRole);
     // switch (userStore.role) {
