@@ -1,4 +1,4 @@
-import { PDFDocument, PDFImage } from 'pdf-lib'
+import { PDFDocument, PDFEmbeddedPage, PDFImage, PDFPage } from 'pdf-lib'
 import fs from 'fs'
 import { createFilePath, downloadObject } from '@/utils/s3'
 import { v4 as uuidv4 } from 'uuid'
@@ -43,8 +43,6 @@ export async function generatePDF(
       const fileId = uuidv4()
       // console.log('Image:')
       // console.log(createFilePath(ownerId, id, fileId))
-
-      const page = pdfDoc.addPage()
       // console.log(file)
 
       const fileContentBuffer = fs.readFileSync(savedFiles[file.id])
@@ -54,14 +52,14 @@ export async function generatePDF(
       let embedContent
 
       const imageType = file.contentType.split('/')
-      console.log(`Processing image type: ${imageType}`)
+      console.log(`Processing file type: ${imageType}`)
 
       if (file.contentType.includes('jpeg')) {
         embedContent = await pdfDoc.embedJpg(fileContentBuffer)
-        scaledImage = embedContent.scale(0.5)
+        scaledImage = embedContent.scale(0.75)
       } else if (file.contentType.includes('png')) {
         embedContent = await pdfDoc.embedPng(fileContentBuffer)
-        scaledImage = embedContent.scale(0.5)
+        scaledImage = embedContent.scale(0.75)
       } else if (file.contentType.includes('pdf')) {
         embedContent = await pdfDoc.embedPdf(fileContentBuffer)
       } else {
@@ -71,12 +69,23 @@ export async function generatePDF(
       // console.log(embbedImage)
       // console.log(scaledImage)
       if (embedContent instanceof PDFImage && scaledImage) {
+        const page = pdfDoc.addPage()
         page.drawImage(embedContent, {
           x: page.getWidth() / 2 - scaledImage.width / 2,
           y: page.getHeight() / 2 - scaledImage.height / 2,
           width: scaledImage.width,
           height: scaledImage.height,
         })
+      } else {
+        for (const embeddedPage of embedContent as PDFEmbeddedPage[]) {
+          const page = pdfDoc.addPage()
+          const embeddedPageDimensions = embeddedPage.scale(0.5)
+          page.drawPage(embeddedPage, {
+            ...embeddedPageDimensions,
+            x: page.getWidth() / 2 - embeddedPageDimensions.width / 2,
+            y: page.getHeight() - embeddedPageDimensions.height / 2,
+          })
+        }
       }
     }
 
