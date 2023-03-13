@@ -1,4 +1,6 @@
 {
+  "name": "my-file",
+  "version": "1.4.0",
   "private": true,
   "workspaces": [
     "packages/*"
@@ -16,10 +18,8 @@
     "deploy": "OUTPUT_DIR=build yarn fe generate && npm run publish:S3",
     "publish:S3": "aws s3 sync packages/frontend/dist/build $npm_config_bucket"
   },
-  "version": "0.0.0",
   "husky": {
-    "hooks": {
-    }
+    "hooks": {}
   },
   "dependencies": {
     "yarn": "^1.22.18"
