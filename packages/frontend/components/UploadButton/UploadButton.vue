@@ -14,10 +14,15 @@
         { disabled: isLoading },
         { 'v-btn--outlined': outlined },
         { 'font-weight-bold': textButton },
-        'upload-label-style'
+        'upload-label-style',
       ]"
     >
-      <v-icon v-if="prependIcon" class="mr-4 upload-container-icon-style" small v-text="prependIcon" />
+      <v-icon
+        v-if="prependIcon"
+        class="mr-4 upload-container-icon-style"
+        small
+        v-text="prependIcon"
+      />
       {{ $t(label) }}
       <input
         id="file-input"
@@ -34,49 +39,6 @@
       <template>
         <v-container>
           <UploadButtonFileInput :onFileInput="onFileInput" />
-          <!-- <div class="multyple">
-            <label>{{ $t('document.signleOrMultyple') }}</label>
-            <v-radio-group v-model="multiple" mandatory>
-              <v-radio label="One file" :value="false"></v-radio>
-              <v-radio label="Multiple files" :value="true"></v-radio>
-            </v-radio-group>
-            <label
-              :class="[
-                'upload-label',
-                'font-weight-medium',
-                'body-1',
-                textButton ? 'text' : 'v-btn',
-                { disabled: isLoading },
-                { 'v-btn--outlined': outlined },
-                { 'font-weight-bold': textButton },
-                'upload-label-file-style'
-              ]"
-            >
-              <v-icon
-                v-if="prependIcon"
-                class="mr-1 upload-container-icon-style"
-                small
-                v-text="prependIcon"
-              />
-              {{
-                multiple
-                  ? $t('controls.uploadFiles')
-                  : $t('controls.uploadFile')
-              }}
-
-              <input
-                id="file-input"
-                ref="fileInput"
-                type="file"
-                :multiple="multiple"
-                class="fileInput"
-                accept="application/pdf, image/jpeg, image/png, image/tiff"
-                @click="resetSelection"
-                @keydown.enter="resetSelection()"
-                @change="onFileInput"
-              />
-            </label>
-          </div> -->
         </v-container>
       </template>
     </v-dialog>
@@ -85,26 +47,24 @@
       fullscreen
       hide-overlay
       transition="dialog-bottom-transition"
+      class="upload-dialog"
     >
       <template v-slot:activator="{ on, attrs }">
         <slot name="activator" v-bind="attrs" v-on="on" />
       </template>
-      <v-card>
-        <v-toolbar flat>
-          <!-- <v-btn class="ml-3 a11y-focus" icon @click.stop="reset">
+      <v-card class="pa-10">
+        <!-- <v-btn class="ml-3 a11y-focus" icon @click.stop="reset">
             <v-icon small class="mr-2">$arrow-left</v-icon>
             <span class="px-2 grey-8--text" style="font-size: 22px">
               {{ $t('navigation.back') }}
             </span>
           </v-btn> -->
-          <BackButton :reset="reset" />
+        <BackButton :reset="reset" />
 
-          <!-- <v-toolbar-title>
+        <!-- <v-toolbar-title>
             {{ $t('document.editDetailsTitle') }}
           </v-toolbar-title> -->
-          <v-spacer />
-        </v-toolbar>
-        <v-container class="pa-8">
+        <v-container class="form-container">
           <ValidationObserver ref="observer">
             <v-form @submit.prevent>
               <ValidationProvider
@@ -112,23 +72,80 @@
                 name="name"
                 rules="required|max:255"
               >
-                <p class="subtitle-1 mt-10">
+                <p class="form-title">
                   {{ $t('document.documentName') }}
+                  <v-tooltip
+                    v-model="isShowToolTipDocument"
+                    :open-on-click="true"
+                    :open-on-hover="false"
+                    right
+                    max-width="216"
+                    max-height="94"
+                  >
+                    <template v-slot:activator="{ attrs }">
+                      <v-icon v-bind="attrs" @click="hideToolTipDocument">
+                        $info
+                      </v-icon>
+                    </template>
+                    <span class="form-tooltip">
+                      You can type either identity, prove of residency,
+                      application, etc.
+                    </span>
+                  </v-tooltip>
                 </p>
-                <v-text-field
-                  v-model="documentName"
-                  :error-messages="errors"
-                  outlined
-                  :placeholder="$t('document.enterNamePlaceholder')"
-                />
-                <p class="subtitle-1 mt-10">
+                <v-responsive class="mx-auto">
+                  <v-text-field
+                    class="form-input"
+                    v-model="documentName"
+                    :error-messages="errors"
+                    outlined
+                    :placeholder="$t('document.enterNamePlaceholder')"
+                  />
+                </v-responsive>
+                <p class="form-title">
                   {{ $t('document.enterDescriptionPlaceholder') }}
+                  <v-tooltip
+                    v-model="isShowToolTipDescription"
+                    :open-on-click="true"
+                    :open-on-hover="false"
+                    right
+                    max-width="216"
+                    max-height="94"
+                  >
+                    <template v-slot:activator="{ attrs }">
+                      <v-icon v-bind="attrs" @click="hideToolTipDescription">
+                        $info
+                      </v-icon>
+                    </template>
+                    <span class="form-tooltip">
+                      Provide a brief description of the files you uploaded for
+                      clarification.
+                    </span>
+                  </v-tooltip>
                 </p>
                 <v-textarea
+                  class="form-input"
                   v-model="documentDescription"
                   outlined
                   :placeholder="$t('document.enterDescriptionPlaceholder')"
                 />
+
+                <p class="form-title-your-files">Your files</p>
+
+                <v-btn
+                  min-height="24"
+                  outlined
+                  color="primary"
+                  class="form-upload-button"
+                >
+                  Upload new file
+                </v-btn>
+
+                <div class="form-divider"></div>
+                <p class="form-dnd-description">
+                  You can change positions of your files in any order by
+                  <b>drag and drop.</b>
+                </p>
               </ValidationProvider>
               <div>
                 <draggable v-model="files">
@@ -148,7 +165,6 @@
             </v-form>
           </ValidationObserver>
         </v-container>
-
         <v-btn
           color="primary white--text"
           class="body-1 my-2 mx-auto d-flex"
@@ -202,11 +218,29 @@ export default class UploadButton extends Vue {
   multiple = false
   showSelectionDialog = false
   showDialog = false
+  isShowToolTipDocument = false
+  isShowToolTipDescription = false
+
+  timeout: any = null
+
   files: any = []
 
   snackMessage = ''
   documentName = ''
   documentDescription = ''
+
+  hideToolTipDocument() {
+    this.isShowToolTipDocument = !this.isShowToolTipDocument
+    //this.timeout = setTimeout(() => (this.isShowToolTipDocument = false), 4000)
+  }
+
+  hideToolTipDescription() {
+    this.isShowToolTipDescription = !this.isShowToolTipDescription
+    // this.timeout = setTimeout(
+    //   () => (this.isShowToolTipDescription = false),
+    //   4000,
+    // )
+  }
 
   closeDialog() {
     this.multiple = false
@@ -222,6 +256,7 @@ export default class UploadButton extends Vue {
     let img: any = ''
     for (let i = 0; i < event.target.files.length; i++) {
       const file = event.target.files[i]
+      console.log(file)
       const reader = new FileReader()
       reader.readAsDataURL(file)
       reader.onload = () => {
@@ -351,9 +386,198 @@ export default class UploadButton extends Vue {
 </script>
 
 <style scoped lang="scss">
-.multyple {
-  background-color: #f1f2f4;
-  padding: 10px;
+@media (min-width: 1280px) {
+  .form-container {
+    margin-top: 20px;
+    .form-title {
+      font-style: normal;
+      font-weight: 700;
+      font-size: 23px;
+      line-height: 32px;
+    }
+
+    .form-tooltip {
+      width: 216px !important;
+      height: 94px !important;
+      font-style: normal !important;
+      font-weight: 400 !important;
+      font-size: 14px !important;
+      line-height: 24px !important;
+    }
+
+    .form-input {
+      font-size: 16px;
+      line-height: 24px;
+      font-weight: 400;
+      padding: 0;
+      margin-bottom: 18px;
+    }
+
+    .form-divider {
+      border-top: 2px solid #000000 !important;
+      width: 100% !important;
+      padding-bottom: 24px !important;
+    }
+
+    .form-title-your-files {
+      font-style: normal;
+      font-weight: 700;
+      font-size: 23px;
+      line-height: 32px;
+    }
+
+    .form-upload-button {
+      width: 120px !important;
+      min-height: 24px !important;
+      padding: 0px !important;
+      font-size: 16px !important;
+      font-weight: 500 !important;
+      letter-spacing: 2% !important;
+      line-height: 24px !important;
+      box-sizing: content-box !important;
+      margin-bottom: 24px;
+    }
+
+    .form-dnd-description {
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 24px;
+      margin-bottom: 32px;
+    }
+  }
+}
+
+@media (min-width: 600px) and (max-width: 1280px) {
+  .form-container {
+    margin-top: 20px;
+    margin-left: 40px !important;
+    margin-right: 40px !important;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    .form-title {
+      font-style: normal;
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 28px;
+    }
+
+    .form-tooltip {
+      width: 180px !important;
+      height: 80px !important;
+      font-style: normal !important;
+      font-weight: 400 !important;
+      font-size: 14px !important;
+      line-height: 220px !important;
+    }
+
+    .form-input {
+      font-size: 14px;
+      line-height: 24px;
+      font-weight: 400;
+      padding: 0;
+      margin-bottom: 18px;
+    }
+
+    .form-divider {
+      border-top: 2px solid #000000 !important;
+      width: 100% !important;
+      padding-bottom: 24px !important;
+    }
+
+    .form-title-your-files {
+      font-style: normal;
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 28px;
+    }
+
+    .form-upload-button {
+      width: 120px !important;
+      min-height: 24px !important;
+      padding: 0px !important;
+      font-size: 14px !important;
+      font-weight: 500 !important;
+      letter-spacing: 2% !important;
+      line-height: 24px !important;
+      box-sizing: content-box !important;
+      margin-bottom: 24px;
+    }
+
+    .form-dnd-description {
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 24px;
+      margin-bottom: 32px;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .form-container {
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    .form-title {
+      font-style: normal;
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 28px;
+    }
+
+    .form-tooltip {
+      width: 90px !important;
+      height: 50px !important;
+      font-style: normal !important;
+      font-weight: 400 !important;
+      font-size: 10px !important;
+      line-height: 220px !important;
+    }
+
+    .form-input {
+      font-size: 14px;
+      line-height: 24px;
+      font-weight: 400;
+      padding: 0;
+      margin-bottom: 18px;
+    }
+
+    .form-divider {
+      border-top: 2px solid #000000 !important;
+      width: 100% !important;
+      padding-bottom: 24px !important;
+    }
+
+    .form-title-your-files {
+      font-style: normal;
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 28px;
+    }
+
+    .form-upload-button {
+      width: 120px !important;
+      min-height: 24px !important;
+      padding: 0px !important;
+      font-size: 14px !important;
+      font-weight: 500 !important;
+      letter-spacing: 2% !important;
+      line-height: 24px !important;
+      box-sizing: content-box !important;
+      margin-bottom: 24px;
+    }
+
+    .form-dnd-description {
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 24px;
+      margin-bottom: 32px;
+    }
+  }
 }
 
 .upload-label {
@@ -367,12 +591,12 @@ export default class UploadButton extends Vue {
     padding: 0.5rem 0.7rem 0.5rem 0.5rem;
     background-color: var(--primary);
     color: var(--white);
-    height: 36px;
-    &.v-btn--outlined {
-      background-color: transparent !important;
-      color: var(--primary);
-      box-shadow: none !important;
-    }
+    // height: 36px;
+    // &.v-btn--outlined {
+    //   background-color: transparent !important;
+    //   color: var(--primary);
+    //   box-shadow: none !important;
+    // }
     &.disabled {
       background-color: var(--grey-3);
       color: var(--grey-5);
@@ -404,7 +628,6 @@ export default class UploadButton extends Vue {
     bottom: 0%;
     justify-content: space-evenly;
     background-color: #2157e4;
-    height: 3rem;
     align-items: center;
     width: 100%;
   }
