@@ -776,6 +776,10 @@ export class CityStack extends Stack {
       pathToApiServiceLambda('documents/processMultipageDocumentPdf'),
       {
         dbSecret,
+        extraFunctionProps: {
+          memorySize: 2048,
+          timeout: Duration.seconds(15),
+        },
         layers: [mySqlLayer],
         extraEnvironmentVariables: [
           EnvironmentVariables.MULTIPAGE_DOCUMENT_ASSEMBLY_PROCESSOR_SQS_QUEUE_URL,
@@ -2400,7 +2404,6 @@ export class CityStack extends Stack {
     environment['DEPLOY_TIMESTAMP'] = Date.now().toString()
 
     const lambda = new Function(this, name, {
-      ...extraFunctionProps,
       code: Code.fromAsset(path),
       handler,
       environment,
@@ -2413,6 +2416,7 @@ export class CityStack extends Stack {
         ? this.lambdaSecurityGroups
         : undefined,
       tracing: Tracing.ACTIVE,
+      ...extraFunctionProps,
     })
     const cfnLambda = lambda.node.defaultChild as CfnFunction
     cfnLambda.addPropertyOverride('KmsKeyArn', this.kmsKey.keyArn)
