@@ -144,8 +144,16 @@
 
                 <p class="form-title-your-files">Your files</p>
 
+                <input
+                  type="file"
+                  ref="file3"
+                  style="display: none"
+                  accept="application/pdf, image/jpeg, image/png, image/tiff"
+                  @change="onAdditionalFileInput"
+                />
                 <v-btn
-                  min-height="24"
+                  min-height="26"
+                  @click="$refs.file3.click()"
                   :small="$vuetify.breakpoint.xsOnly"
                   :large="$vuetify.breakpoint.mdAndUp"
                   outlined
@@ -165,13 +173,18 @@
               <div>
                 <draggable v-model="files">
                   <div
-                    v-for="fileElement in files"
+                    v-for="(fileElement, index) in files"
                     :key="fileElement.file.name"
                   >
-                    {{ fileElement.file.name }}
+                    <p>
+                      <b>#{{ index + 1 }}</b>
+                      {{ fileNameOverflow(fileElement.file.name) }}
+                    </p>
+
                     <v-img
                       max-height="236"
                       max-width="331"
+                      class="mb-10"
                       :src="fileElement.img"
                     ></v-img>
                   </div>
@@ -239,10 +252,27 @@ export default class UploadButton extends Vue {
   timeout: any = null
 
   files: any = []
+  newFile: any = []
 
   snackMessage = ''
   documentName = ''
   documentDescription = ''
+
+  updated() {
+    console.log('FILES', this.files)
+  }
+
+  get isLoading() {
+    return snackbarStore.isVisible && snackbarStore.progress !== null
+  }
+
+  fileNameOverflow(fileName: any) {
+    if (fileName.length > 25) {
+      return fileName.substring(0, 25) + '...'
+    } else {
+      return fileName
+    }
+  }
 
   hideToolTipDocument() {
     this.isShowToolTipDocument = !this.isShowToolTipDocument
@@ -271,7 +301,6 @@ export default class UploadButton extends Vue {
     let img: any = ''
     for (let i = 0; i < event.target.files.length; i++) {
       const file = event.target.files[i]
-      console.log(file)
       const reader = new FileReader()
       reader.readAsDataURL(file)
       reader.onload = () => {
@@ -299,6 +328,42 @@ export default class UploadButton extends Vue {
       }
 
       this.handleFileUpload(event)
+      this.showDialog = true
+      this.showSelectionDialog = false
+    }
+  }
+
+  handleAdditionalFileInput(event: any) {
+    let obj: any = {}
+    let img: any = ''
+    for (let i = 0; i < event.target.files.length; i++) {
+      const file = event.target.files[i]
+      const reader = new FileReader()
+      reader.readAsDataURL(file)
+      reader.onload = () => {
+        img = reader.result
+        obj = {
+          img,
+          file,
+        }
+        this.files.unshift(obj)
+      }
+    }
+  }
+
+  onAdditionalFileInput(event: any) {
+    if (event?.target?.files && event.target.files.length) {
+      for (const file of event.target.files) {
+        if (file.size > this.$config.maxFileSize) {
+          snackbarStore.setParams({
+            message: 'toast.fileTooLarge',
+          })
+          snackbarStore.setVisible(true)
+          return
+        }
+      }
+
+      this.handleAdditionalFileInput(event)
       this.showDialog = true
       this.showSelectionDialog = false
     }
@@ -380,10 +445,6 @@ export default class UploadButton extends Vue {
     this.docsPresent()
   }
 
-  get isLoading() {
-    return snackbarStore.isVisible && snackbarStore.progress !== null
-  }
-
   openFileInput() {
     ;(this as any).$refs.fileInput.click()
   }
@@ -441,9 +502,6 @@ export default class UploadButton extends Vue {
     }
 
     .form-upload-button {
-      width: 100px !important;
-      min-height: 24px !important;
-      padding: 0px !important;
       font-size: 16px !important;
       font-weight: 500 !important;
       letter-spacing: 2% !important;
