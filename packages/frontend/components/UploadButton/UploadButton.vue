@@ -78,12 +78,16 @@
                     v-model="isShowToolTipDocument"
                     :open-on-click="true"
                     :open-on-hover="false"
-                    right
-                    max-width="216"
-                    max-height="94"
+                    :right="$vuetify.breakpoint.smAndUp"
+                    :bottom="$vuetify.breakpoint.xsOnly"
+                    :max-width="$vuetify.breakpoint.smAndUp ? '200px' : '150px'"
                   >
                     <template v-slot:activator="{ attrs }">
-                      <v-icon v-bind="attrs" @click="hideToolTipDocument">
+                      <v-icon
+                        v-bind="attrs"
+                        @click="hideToolTipDocument"
+                        :small="$vuetify.breakpoint.xsOnly"
+                      >
                         $info
                       </v-icon>
                     </template>
@@ -108,12 +112,16 @@
                     v-model="isShowToolTipDescription"
                     :open-on-click="true"
                     :open-on-hover="false"
-                    right
-                    max-width="216"
-                    max-height="94"
+                    :right="$vuetify.breakpoint.smAndUp"
+                    :bottom="$vuetify.breakpoint.xsOnly"
+                    :max-width="$vuetify.breakpoint.smAndUp ? '200px' : '150px'"
                   >
                     <template v-slot:activator="{ attrs }">
-                      <v-icon v-bind="attrs" @click="hideToolTipDescription">
+                      <v-icon
+                        v-bind="attrs"
+                        @click="hideToolTipDescription"
+                        :small="$vuetify.breakpoint.xsOnly"
+                      >
                         $info
                       </v-icon>
                     </template>
@@ -123,10 +131,14 @@
                     </span>
                   </v-tooltip>
                 </p>
+
                 <v-textarea
-                  class="form-input"
+                  class="form-text-area hidden-xs-and-down"
+                  auto-grow
+                  :rows="$vuetify.breakpoint.xs ? 2 : 6"
                   v-model="documentDescription"
                   outlined
+                  dense
                   :placeholder="$t('document.enterDescriptionPlaceholder')"
                 />
 
@@ -134,8 +146,11 @@
 
                 <v-btn
                   min-height="24"
+                  :small="$vuetify.breakpoint.xsOnly"
+                  :large="$vuetify.breakpoint.mdAndUp"
                   outlined
                   color="primary"
+                  elevation="2"
                   class="form-upload-button"
                 >
                   Upload new file
@@ -167,7 +182,7 @@
         </v-container>
         <v-btn
           color="primary white--text"
-          class="body-1 my-2 mx-auto d-flex"
+          class="body-1 my-4 mx-auto d-flex"
           :style="
             $vuetify.breakpoint.smAndDown
               ? 'width: 100%; position: fixed; bottom: -0.5rem;'
@@ -228,6 +243,21 @@ export default class UploadButton extends Vue {
   snackMessage = ''
   documentName = ''
   documentDescription = ''
+
+  get buttonSize(): String {
+    switch (this.$vuetify.breakpoint.name) {
+      case 'xs':
+        return 'small'
+      case 'sm':
+        return ''
+      case 'md':
+        return 'large'
+      case 'lg':
+        return 'large'
+      case 'xl':
+        return 'large'
+    }
+  }
 
   hideToolTipDocument() {
     this.isShowToolTipDocument = !this.isShowToolTipDocument
@@ -409,7 +439,7 @@ export default class UploadButton extends Vue {
       font-size: 16px;
       line-height: 24px;
       font-weight: 400;
-      padding: 0;
+      padding: 0px;
       margin-bottom: 18px;
     }
 
@@ -427,7 +457,7 @@ export default class UploadButton extends Vue {
     }
 
     .form-upload-button {
-      width: 120px !important;
+      width: 100px !important;
       min-height: 24px !important;
       padding: 0px !important;
       font-size: 16px !important;
@@ -451,11 +481,9 @@ export default class UploadButton extends Vue {
 @media (min-width: 600px) and (max-width: 1280px) {
   .form-container {
     margin-top: 20px;
-    margin-left: 40px !important;
-    margin-right: 40px !important;
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 80%;
     .form-title {
       font-style: normal;
       font-weight: 700;
@@ -464,8 +492,6 @@ export default class UploadButton extends Vue {
     }
 
     .form-tooltip {
-      width: 180px !important;
-      height: 80px !important;
       font-style: normal !important;
       font-weight: 400 !important;
       font-size: 14px !important;
@@ -480,6 +506,13 @@ export default class UploadButton extends Vue {
       margin-bottom: 18px;
     }
 
+    .form-text-area {
+      font-size: 14px;
+      line-height: 24px;
+      font-weight: 400;
+      padding: 0;
+      margin-bottom: 18px;
+    }
     .form-divider {
       border-top: 2px solid #000000 !important;
       width: 100% !important;
@@ -554,7 +587,7 @@ export default class UploadButton extends Vue {
     .form-title-your-files {
       font-style: normal;
       font-weight: 700;
-      font-size: 20px;
+      font-size: 16px;
       line-height: 28px;
     }
 
@@ -562,7 +595,7 @@ export default class UploadButton extends Vue {
       width: 120px !important;
       min-height: 24px !important;
       padding: 0px !important;
-      font-size: 14px !important;
+      font-size: 12px !important;
       font-weight: 500 !important;
       letter-spacing: 2% !important;
       line-height: 24px !important;
