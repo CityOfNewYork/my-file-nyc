@@ -175,16 +175,21 @@
                   <div
                     v-for="(fileElement, index) in files"
                     :key="fileElement.file.name"
+                    class="drag-and-drop-div"
                   >
-                    <p>
-                      <b>#{{ index + 1 }}</b>
-                      {{ fileNameOverflow(fileElement.file.name) }}
-                    </p>
-
+                    <div class="file-information">
+                      <div class="file-information-title">
+                        <b>#{{ index + 1 }}</b>
+                        {{ fileNameOverflow(fileElement.file.name) }}
+                      </div>
+                      <button class="remove-button" @click="removeItem(index)">
+                        Remove
+                      </button>
+                    </div>
                     <v-img
-                      max-height="236"
-                      max-width="331"
-                      class="mb-10"
+                      max-height="400"
+                      max-width="600"
+                      class="mb-14"
                       :src="fileElement.img"
                     ></v-img>
                   </div>
@@ -264,6 +269,10 @@ export default class UploadButton extends Vue {
 
   get isLoading() {
     return snackbarStore.isVisible && snackbarStore.progress !== null
+  }
+
+  removeItem(index: any) {
+    this.files.splice(index, 1)
   }
 
   fileNameOverflow(fileName: any) {
@@ -463,6 +472,33 @@ export default class UploadButton extends Vue {
 
 <style scoped lang="scss">
 @media (min-width: 1280px) {
+  .drag-and-drop-div {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin-bottom: 10px;
+    .file-information {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      margin-bottom: 12px;
+      .file-information-title {
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 24px;
+        text-align: center;
+        color: #000000;
+      }
+      .remove-button {
+        text-decoration: underline;
+        color: #1642df;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 24px;
+      }
+    }
+  }
+
   .form-container {
     width: 100%;
     margin-top: 20px;
@@ -521,6 +557,32 @@ export default class UploadButton extends Vue {
 }
 
 @media (min-width: 600px) and (max-width: 1280px) {
+  .drag-and-drop-div {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    margin-bottom: 20px;
+    .file-information {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      margin-bottom: 12px;
+      .file-information-title {
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 24px;
+        text-align: center;
+        color: #000000;
+      }
+      .remove-button {
+        text-decoration: underline;
+        color: #1642df;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 24px;
+      }
+    }
+  }
   .form-container {
     margin-top: 20px;
     display: flex;
@@ -591,6 +653,32 @@ export default class UploadButton extends Vue {
 }
 
 @media (max-width: 600px) {
+  .drag-and-drop-div {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    margin-bottom: 10px;
+    .file-information {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      margin-bottom: 12px;
+      .file-information-title {
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 24px;
+        text-align: center;
+        color: #000000;
+      }
+      .remove-button {
+        text-decoration: underline;
+        color: #1642df;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 24px;
+      }
+    }
+  }
   .form-container {
     margin-top: 24px;
     display: flex;
