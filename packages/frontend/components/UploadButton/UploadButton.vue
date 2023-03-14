@@ -244,21 +244,6 @@ export default class UploadButton extends Vue {
   documentName = ''
   documentDescription = ''
 
-  get buttonSize(): String {
-    switch (this.$vuetify.breakpoint.name) {
-      case 'xs':
-        return 'small'
-      case 'sm':
-        return ''
-      case 'md':
-        return 'large'
-      case 'lg':
-        return 'large'
-      case 'xl':
-        return 'large'
-    }
-  }
-
   hideToolTipDocument() {
     this.isShowToolTipDocument = !this.isShowToolTipDocument
     //this.timeout = setTimeout(() => (this.isShowToolTipDocument = false), 4000)
@@ -418,6 +403,7 @@ export default class UploadButton extends Vue {
 <style scoped lang="scss">
 @media (min-width: 1280px) {
   .form-container {
+    width: 100%;
     margin-top: 20px;
     .form-title {
       font-style: normal;
@@ -427,8 +413,6 @@ export default class UploadButton extends Vue {
     }
 
     .form-tooltip {
-      width: 216px !important;
-      height: 94px !important;
       font-style: normal !important;
       font-weight: 400 !important;
       font-size: 14px !important;
