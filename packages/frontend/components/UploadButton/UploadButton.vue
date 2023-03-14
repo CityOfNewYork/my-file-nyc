@@ -705,7 +705,13 @@ export default class UploadButton extends Vue {
       line-height: 24px;
       font-weight: 400;
       padding: 0;
-      margin-bottom: 18px;
+    }
+
+    .form-text-area {
+      font-size: 14px;
+      line-height: 24px;
+      font-weight: 400;
+      padding: 0;
     }
 
     .form-divider {
