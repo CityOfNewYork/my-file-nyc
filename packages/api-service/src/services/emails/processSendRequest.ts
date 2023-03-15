@@ -37,7 +37,7 @@ export const handler = wrapAsyncHandler(
       }
 
       // read out message data
-      const { toAddresses, template, data, subject } = sendRequest
+      const { toAddresses, template, data, subject, isQAUser } = sendRequest
 
       const x = {
         "template": "collectionSharedNotificationOwnerAcknowledgement",
@@ -55,12 +55,7 @@ export const handler = wrapAsyncHandler(
        };
 
     // shared inbox & qa user check
-    const qaUserList = requireConfiguration(
-      EnvironmentVariable.QA_USER_EMAIL_LIST,
-    ).split(',')
-    const sharedInboxConfig = qaUserList.includes(
-      (user.email || '').toLowerCase(),
-    )
+    const sharedInboxConfig = isQAUser
       ? (JSON.parse(
           requireConfiguration(EnvironmentVariable.SHARED_INBOX_CONFIG_QA),
         ) as Record<string, Array<string>>)
@@ -69,7 +64,7 @@ export const handler = wrapAsyncHandler(
         ) as Record<string, Array<string>>)
 
       // shared inbox check
-      const sharedInboxConfig = JSON.parse(requireConfiguration(EnvironmentVariable.SHARED_INBOX_CONFIG)) as Record<string, Array<string>>
+      // const sharedInboxConfig = JSON.parse(requireConfiguration(EnvironmentVariable.SHARED_INBOX_CONFIG)) as Record<string, Array<string>>
       const flatListOfSharedInboxRecipients = uniq(flatMap(Object.values(sharedInboxConfig)))
       const sharedInboxList = Object.keys(sharedInboxConfig)
       const emailSendList: Array<EmailSendConfig> = []
