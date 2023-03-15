@@ -125,7 +125,9 @@ enum EnvironmentVariables {
   AUTH_SIGNING_KEY = 'AUTH_SIGNING_KEY',
   AUTH_INTEGRATION_TYPE = 'AUTH_INTEGRATION_TYPE',
   AUTH_EMAIL_UNVERIFIED_REDIRECT = 'AUTH_EMAIL_UNVERIFIED_REDIRECT',
+  QA_USER_EMAIL_LIST = 'QA_USER_EMAIL_LIST',
   SHARED_INBOX_CONFIG = 'SHARED_INBOX_CONFIG',
+  SHARED_INBOX_CONFIG_QA = 'SHARED_INBOX_CONFIG_QA',
   NYC_HTTPS_PROXY = 'NYC_HTTPS_PROXY',
 }
 
@@ -209,21 +211,23 @@ export interface Props extends StackProps {
   agencyEmailDomainsWhitelist?: string[]
   /**
    * Monitoring configuration
-   */
+  */
   monitoring?: MonitoringConfiguration
   /**
    * Throttling configuration
-   */
+  */
   throttling?: ThrottlingConfiguration
   /**
    * KMS key to use instead of generating a specific one for this stack.
    * Please see the readme for how to configure this key.
-   */
+  */
   providedKmsKey?: ProvidedKeyDetails
 
   cloudfront?: any
 
+  qaUserList?: string[]
   sharedInboxConfig?: Record<string, Array<string>>
+  sharedInboxConfigQA?: Record<string, Array<string>>
 }
 export class CityStack extends Stack {
   public bucketNames: { [index: string]: string }
@@ -262,7 +266,9 @@ export class CityStack extends Stack {
       throttling = {},
       providedKmsKey,
       cloudfront = {},
+      qaUserList = [],
       sharedInboxConfig = {},
+      sharedInboxConfigQA = {},
     } = props
 
     // check jwt auth is given if auth stack is not
@@ -433,6 +439,10 @@ export class CityStack extends Stack {
         : 'OAUTH',
       [EnvironmentVariables.SHARED_INBOX_CONFIG]: JSON.stringify(
         sharedInboxConfig,
+      ),
+      [EnvironmentVariables.QA_USER_EMAIL_LIST]: qaUserList.join(','),
+      [EnvironmentVariables.SHARED_INBOX_CONFIG_QA]: JSON.stringify(
+        sharedInboxConfigQA,
       ),
       [EnvironmentVariables.NYC_HTTPS_PROXY]: process.env.NYC_HTTPS_PROXY!,
     }
@@ -738,6 +748,8 @@ export class CityStack extends Stack {
           EnvironmentVariables.WEB_APP_DOMAIN,
           EnvironmentVariables.EMAIL_PROCESSOR_SQS_QUEUE_URL,
           EnvironmentVariables.SHARED_INBOX_CONFIG,
+          EnvironmentVariables.SHARED_INBOX_CONFIG_QA,
+          EnvironmentVariables.QA_USER_EMAIL_LIST,
         ],
         emailProcessorSqsPermissions: {
           includeDelete: true,
@@ -1709,6 +1721,8 @@ export class CityStack extends Stack {
           EnvironmentVariables.ACTIVITY_RECORD_SQS_QUEUE_URL,
           EnvironmentVariables.EMAIL_PROCESSOR_SQS_QUEUE_URL,
           EnvironmentVariables.SHARED_INBOX_CONFIG,
+          EnvironmentVariables.SHARED_INBOX_CONFIG_QA,
+          EnvironmentVariables.QA_USER_EMAIL_LIST,
         ],
         emailProcessorSqsPermissions: {
           includeWrite: true,

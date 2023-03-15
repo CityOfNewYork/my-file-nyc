@@ -800,6 +800,13 @@ components:
           example: Unscanned
         links:
           $ref: '#/components/schemas/Links'
+        isMultipageDocument:
+          type: boolean
+          description: Signifies whether or not this document was assembled as a pdf of multiple uploaded files.
+        pdf:
+          type: string
+          description: The presigned url for downloading the assembled pdf document.
+          example: 'https://s3bucketname.aws.com/path/to/pdf/file'
       type: object
     Document:
       description: A document
