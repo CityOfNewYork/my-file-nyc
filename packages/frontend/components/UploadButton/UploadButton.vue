@@ -33,12 +33,11 @@
     <v-dialog
       v-model="showSelectionDialog"
       max-width="fit-content"
-      transition="dialog-bottom-transition"
       @click:outside="closeDialog"
     >
       <template>
         <v-container>
-          <UploadButtonFileInput :onFileInput="onFileInput" />
+          <UploadButtonFileInput :onFileInput="onFileInput" :reset="reset" />
         </v-container>
       </template>
     </v-dialog>
