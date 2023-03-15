@@ -6,10 +6,10 @@ module.exports = {
   },
   extends: [
     'plugin:@typescript-eslint/recommended',
-    'prettier',
-    'plugin:prettier/recommended',
+    // 'prettier',
+    // 'plugin:prettier/recommended',
   ],
-  plugins: ['@typescript-eslint', 'prettier'],
+  plugins: ['@typescript-eslint' /*, 'prettier' */],
   // add your custom rules here
   rules: {
     '@typescript-eslint/no-unused-vars': 'off',

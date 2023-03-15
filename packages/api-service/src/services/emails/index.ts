@@ -14,6 +14,7 @@ const sendEmailRequest = async (sendRequest: SendRequest) => {
 
 type SendSharedCollectionOptions = {
   ownerUser: User
+  isQAUser: boolean
   emails: string[]
   collection: {
     name: string
@@ -25,12 +26,13 @@ type SendSharedCollectionOptions = {
 export const queueSharedCollectionNotification = async (
   opts: SendSharedCollectionOptions,
 ) => {
-  const { emails, collection, ownerUser, numberOfDocuments } = opts
+  const { emails, collection, ownerUser, numberOfDocuments, isQAUser } = opts
   await sendEmailRequest({
     template: 'collectionSharedNotification',
     toAddresses: emails,
     subject: `You’ve received new documents`,
     data: collection,
+    isQAUser,
   })
   await sendEmailRequest({
     template: 'collectionSharedNotificationOwnerAcknowledgement',
@@ -40,6 +42,7 @@ export const queueSharedCollectionNotification = async (
       toEmailList: emails.join(', '),
       numberOfDocuments,
     },
+    isQAUser,
   })
 }
 

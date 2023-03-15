@@ -75,13 +75,31 @@ export const handler = createAuthenticatedApiGatewayHandler(
       throw new createError.BadRequest(`validation error: documents not found`)
     }
 
-    // shared inbox check
-    const sharedInboxConfig = JSON.parse(requireConfiguration(EnvironmentVariable.SHARED_INBOX_CONFIG)) as Record<string, Array<string>>
-    const flatListOfSharedInboxRecipients = uniq(flatMap(Object.values(sharedInboxConfig)))
+    // shared inbox & qa user check
+    const qaUserList = requireConfiguration(
+      EnvironmentVariable.QA_USER_EMAIL_LIST,
+    ).split(',')
+    const isQAUser = qaUserList.includes(
+      (user.email || '').toLowerCase(),
+    )
+    const sharedInboxConfig = isQAUser
+      ? (JSON.parse(
+          requireConfiguration(EnvironmentVariable.SHARED_INBOX_CONFIG_QA),
+        ) as Record<string, Array<string>>)
+      : (JSON.parse(
+          requireConfiguration(EnvironmentVariable.SHARED_INBOX_CONFIG),
+        ) as Record<string, Array<string>>)
+
+    const flatListOfSharedInboxRecipients = uniq(
+      flatMap(Object.values(sharedInboxConfig)),
+    )
     const sharedInboxList = Object.keys(sharedInboxConfig)
     const validatedEmailRecipients: Array<string> = []
     individualEmailAddresses.forEach((address) => {
-      if (!flatListOfSharedInboxRecipients.includes(address) && !sharedInboxList.includes(address)) {
+      if (
+        !flatListOfSharedInboxRecipients.includes(address) &&
+        !sharedInboxList.includes(address)
+      ) {
         validatedEmailRecipients.push(address)
       } else if (sharedInboxList.includes(address)) {
         validatedEmailRecipients.push(...sharedInboxConfig[address])
@@ -137,6 +155,7 @@ export const handler = createAuthenticatedApiGatewayHandler(
       emails: individualEmailAddresses,
       ownerUser: user,
       numberOfDocuments: documents.length,
+      isQAUser,
     })
 
     // return response

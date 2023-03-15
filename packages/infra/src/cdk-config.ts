@@ -37,7 +37,9 @@ const {
   WEB_APP_FOOTER_LOGO,
   MONITORING_SENTRY_DSN,
   SNS_TOPIC_ARN_MONITORING_ALERTS,
+  QA_USER_EMAIL_LIST = '',
   SHARED_INBOX_DISTRIBUTION_LIST = '',
+  SHARED_INBOX_DISTRIBUTION_LIST_QA = '',
 } = process.env
 
 export default {
@@ -133,6 +135,10 @@ export default {
             sharedInboxConfig: {
               'myfile.sharedinbox@nycopportunity.nyc.gov': SHARED_INBOX_DISTRIBUTION_LIST.split(','),
             },
+            sharedInboxConfigQA: {
+              'myfile-qa.sharedinbox@nycopportunity.nyc.gov': SHARED_INBOX_DISTRIBUTION_LIST_QA.split(','),
+            },
+            qaUserList: QA_USER_EMAIL_LIST.split(','),
           },
         },
       ],
