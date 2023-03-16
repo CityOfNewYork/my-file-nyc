@@ -57,6 +57,8 @@ export const handler = createAuthenticatedApiGatewayHandler(
       event,
     } = request as Request
 
+    console.log(`event data: ${JSON.stringify(request, null, 2)}`)
+
     // prepare values
     const createdAt = new Date()
     const updatedAt = createdAt
@@ -79,17 +81,19 @@ export const handler = createAuthenticatedApiGatewayHandler(
     const qaUserList = requireConfiguration(
       EnvironmentVariable.QA_USER_EMAIL_LIST,
     ).split(',')
+    console.log(`qaUserList: ${JSON.stringify(qaUserList, null, 2)}`)
     const isQAUser = qaUserList.includes(
       (user.email || '').toLowerCase(),
     )
     const sharedInboxConfig = isQAUser
       ? (JSON.parse(
-          requireConfiguration(EnvironmentVariable.SHARED_INBOX_CONFIG_QA),
-        ) as Record<string, Array<string>>)
+        requireConfiguration(EnvironmentVariable.SHARED_INBOX_CONFIG_QA),
+      ) as Record<string, Array<string>>)
       : (JSON.parse(
-          requireConfiguration(EnvironmentVariable.SHARED_INBOX_CONFIG),
-        ) as Record<string, Array<string>>)
+        requireConfiguration(EnvironmentVariable.SHARED_INBOX_CONFIG),
+      ) as Record<string, Array<string>>)
 
+    console.log(`sharedInboxConfig: ${JSON.stringify(sharedInboxConfig, null, 2)}`)
     const flatListOfSharedInboxRecipients = uniq(
       flatMap(Object.values(sharedInboxConfig)),
     )
@@ -105,6 +109,7 @@ export const handler = createAuthenticatedApiGatewayHandler(
         validatedEmailRecipients.push(...sharedInboxConfig[address])
       }
     })
+    console.log(`sharedInboxConfig: ${JSON.stringify(sharedInboxConfig, null, 2)}`)
 
     // create model input
     const collection: CreateCollectionInput = {
