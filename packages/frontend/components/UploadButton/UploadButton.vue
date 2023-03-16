@@ -190,8 +190,8 @@
                       class="pdf-image"
                     >
                       <v-img
-                        max-height="100"
-                        max-width="70"
+                        :max-height="$vuetify.breakpoint.smAndUp ? 100 : 70"
+                        :max-width="$vuetify.breakpoint.smAndUp ? 80 : 50"
                         :src="pdfLogo"
                       ></v-img>
                     </div>
