@@ -276,10 +276,6 @@ export default class UploadButton extends Vue {
   documentName = ''
   documentDescription = ''
 
-  updated() {
-    console.log('FILES', this.files)
-  }
-
   get isLoading() {
     return snackbarStore.isVisible && snackbarStore.progress !== null
   }
