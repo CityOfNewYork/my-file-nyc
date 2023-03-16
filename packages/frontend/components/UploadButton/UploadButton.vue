@@ -213,7 +213,7 @@
           class="body-1 mx-auto d-flex"
           :style="
             $vuetify.breakpoint.smAndDown
-              ? 'width: 100%; position: fixed; bottom: -0.5rem; height: 20px'
+              ? 'width: 100%; position: fixed; bottom: 0; '
               : ''
           "
           :disabled="!documentName"
@@ -699,7 +699,7 @@ export default class UploadButton extends Vue {
     background-color: rgba(255, 255, 255, 0.898);
     height: fit-content;
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
   }
   .drag-and-drop-div {
     display: flex;
