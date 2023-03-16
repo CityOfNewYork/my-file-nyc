@@ -3,12 +3,20 @@
     <v-btn
       :title="`${$t('navigation.back')}`"
       icon
-      class="mr-2 a11y-focus"
+      small
+      class="ml-xs-5 ml-sm-8 mt-sm-3 ml-lg-20 ml-xl-40 a11y-focus"
       @click="navigationEvent"
     >
-      <v-icon small>$chevron-left</v-icon>
+      <v-icon
+        :small="$vuetify.breakpoint.smAndUp"
+        :x-small="$vuetify.breakpoint.xsOnly"
+      >
+        $chevron-left
+      </v-icon>
     </v-btn>
-    <v-toolbar-title>{{ $t('navigation.back') }}</v-toolbar-title>
+    <v-toolbar-title class="toolbar-font mt-sm-3">
+      {{ $t('navigation.back') }}
+    </v-toolbar-title>
   </v-toolbar>
 </template>
 
@@ -36,3 +44,13 @@ export default class BackButton extends Vue {
   }
 }
 </script>
+
+<style scoped>
+@media (max-width: 600px) {
+  .toolbar-font {
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 24px;
+  }
+}
+</style>

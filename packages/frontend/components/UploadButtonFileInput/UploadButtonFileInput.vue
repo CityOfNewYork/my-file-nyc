@@ -1,5 +1,14 @@
 <template>
-  <div class="my-container">
+  <div class="dialog-container">
+    <v-btn
+      class="close-button pa-0"
+      :x-small="$vuetify.breakpoint.xsOnly"
+      icon
+      color="black"
+      @click="navigationEvent"
+    >
+      <v-icon :small="$vuetify.breakpoint.xsOnly">$close</v-icon>
+    </v-btn>
     <p class="header">{{ $t('document.signleOrMultyple') }}</p>
     <div class="cards-container">
       <v-card width="390" height="276" class="card">
@@ -69,19 +78,42 @@ import { Vue, Component, Prop } from 'nuxt-property-decorator'
 export default class UploadButtonFileInput extends Vue {
   @Prop({ default: null })
   onFileInput: () => void
+
+  @Prop({ default: () => () => {} }) reset: () => void
+
+  back() {
+    if (window.history.length) {
+      this.$router.back()
+    } else {
+      this.$router.push(this.localePath('/dashboard'))
+    }
+  }
+
+  navigationEvent() {
+    if (window.location.pathname == '/dashboard') {
+      this.reset()
+    } else {
+      this.back()
+    }
+  }
 }
 </script>
 
 <style scoped lang="scss">
 @media (min-width: 1300px) {
-  .my-container {
+  .dialog-container {
     background-color: rgb(255, 255, 255);
     width: 1150px;
     height: 600px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    // font-family: 'Public Sans';
+    position: relative;
+    .close-button {
+      position: absolute;
+      top: 23px;
+      right: 15px;
+    }
     .header {
       text-align: center;
       margin-top: 22px;
@@ -151,7 +183,7 @@ export default class UploadButtonFileInput extends Vue {
 }
 
 @media (min-width: 733px) and (max-width: 1300px) {
-  .my-container {
+  .dialog-container {
     background-color: rgb(255, 255, 255);
     width: 554px;
     height: 690px;
@@ -160,6 +192,12 @@ export default class UploadButtonFileInput extends Vue {
     padding-left: 60px;
     padding-right: 60px;
     overflow: hidden;
+    position: relative;
+    .close-button {
+      position: absolute;
+      top: 20px;
+      right: 15px;
+    }
     .header {
       text-align: center;
       margin-top: 24px;
@@ -226,18 +264,24 @@ export default class UploadButtonFileInput extends Vue {
 }
 
 @media (max-width: 733px) {
-  .my-container {
+  .dialog-container {
     background-color: rgb(255, 255, 255);
     width: 330px;
-    height: 700px;
+    height: 720px;
     display: flex;
     flex-direction: column;
     padding-left: 24px;
     padding-right: 24px;
     overflow: hidden;
+    position: relative;
+    .close-button {
+      position: absolute;
+      top: 3px;
+      right: 5px;
+    }
     .header {
       text-align: center;
-      margin-top: 24px;
+      margin-top: 32px;
       color: black;
       font-style: bold;
       font-weight: 700;
