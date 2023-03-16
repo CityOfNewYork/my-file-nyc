@@ -728,7 +728,7 @@ export default class UploadButton extends Vue {
     }
   }
   .form-container {
-    margin-top: 24px;
+    margin-top: 15px;
     display: flex;
     flex-direction: column;
     width: 80%;

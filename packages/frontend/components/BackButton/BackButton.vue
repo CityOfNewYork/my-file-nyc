@@ -4,7 +4,7 @@
       :title="`${$t('navigation.back')}`"
       icon
       small
-      class="xs-ml-3 sm-and-up-ml-40 a11y-focus"
+      class="ml-xs-5 ml-sm-8 mt-sm-3 ml-lg-20 ml-xl-40 a11y-focus"
       @click="navigationEvent"
     >
       <v-icon
@@ -14,7 +14,7 @@
         $chevron-left
       </v-icon>
     </v-btn>
-    <v-toolbar-title class="toolbar-font">
+    <v-toolbar-title class="toolbar-font mt-sm-3">
       {{ $t('navigation.back') }}
     </v-toolbar-title>
   </v-toolbar>
