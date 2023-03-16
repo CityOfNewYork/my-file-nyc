@@ -37,7 +37,7 @@
     >
       <template>
         <v-container>
-          <UploadButtonFileInput :onFileInput="onFileInput" :reset="reset" />
+          <UploadButtonFileInput :on-file-input="onFileInput" :reset="reset" />
         </v-container>
       </template>
     </v-dialog>
@@ -51,7 +51,7 @@
       <template v-slot:activator="{ on, attrs }">
         <slot name="activator" v-bind="attrs" v-on="on" />
       </template>
-      <v-card class="pa-10">
+      <v-card>
         <!-- <v-btn class="ml-3 a11y-focus" icon @click.stop="reset">
             <v-icon small class="mr-2">$arrow-left</v-icon>
             <span class="px-2 grey-8--text" style="font-size: 22px">
@@ -84,8 +84,8 @@
                     <template v-slot:activator="{ attrs }">
                       <v-icon
                         v-bind="attrs"
-                        @click="hideToolTipDocument"
                         :small="$vuetify.breakpoint.xsOnly"
+                        @click="hideToolTipDocument"
                       >
                         $info
                       </v-icon>
@@ -98,8 +98,8 @@
                 </p>
                 <v-responsive class="mx-auto">
                   <v-text-field
-                    class="form-input"
                     v-model="documentName"
+                    class="form-input"
                     :error-messages="errors"
                     outlined
                     :placeholder="$t('document.enterNamePlaceholder')"
@@ -118,8 +118,8 @@
                     <template v-slot:activator="{ attrs }">
                       <v-icon
                         v-bind="attrs"
-                        @click="hideToolTipDescription"
                         :small="$vuetify.breakpoint.xsOnly"
+                        @click="hideToolTipDescription"
                       >
                         $info
                       </v-icon>
@@ -132,10 +132,10 @@
                 </p>
 
                 <v-textarea
+                  v-model="documentDescription"
                   class="form-text-area hidden-xs-and-down"
                   auto-grow
                   :rows="$vuetify.breakpoint.xs ? 2 : 6"
-                  v-model="documentDescription"
                   outlined
                   dense
                   :placeholder="$t('document.enterDescriptionPlaceholder')"
@@ -144,21 +144,21 @@
                 <p class="form-title-your-files">Your files</p>
 
                 <input
-                  type="file"
                   ref="file3"
+                  type="file"
                   style="display: none"
                   accept="application/pdf, image/jpeg, image/png, image/tiff"
                   @change="onAdditionalFileInput"
                 />
                 <v-btn
                   min-height="26"
-                  @click="$refs.file3.click()"
                   :small="$vuetify.breakpoint.xsOnly"
                   :large="$vuetify.breakpoint.mdAndUp"
                   outlined
                   color="primary"
                   elevation="2"
                   class="form-upload-button"
+                  @click="$refs.file3.click()"
                 >
                   Upload new file
                 </v-btn>
@@ -185,7 +185,18 @@
                         Remove
                       </button>
                     </div>
+                    <div
+                      v-if="fileElement.file.type === 'application/pdf'"
+                      class="pdf-image"
+                    >
+                      <v-img
+                        max-height="100"
+                        max-width="70"
+                        :src="pdfLogo"
+                      ></v-img>
+                    </div>
                     <v-img
+                      v-else
                       max-height="400"
                       max-width="600"
                       class="mb-14"
@@ -199,10 +210,10 @@
         </v-container>
         <v-btn
           color="primary white--text"
-          class="body-1 my-4 mx-auto d-flex"
+          class="body-1 mx-auto d-flex"
           :style="
             $vuetify.breakpoint.smAndDown
-              ? 'width: 100%; position: fixed; bottom: -0.5rem;'
+              ? 'width: 100%; position: fixed; bottom: -0.5rem; height: 20px'
               : ''
           "
           :disabled="!documentName"
@@ -220,10 +231,9 @@
 import { Vue, Component, Prop } from 'nuxt-property-decorator'
 import { snackbarStore } from '@/plugins/store-accessor'
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
-import UploadButtonFileInput from '../UploadButtonFileInput/UploadButtonFileInput.vue'
 import SnackParams from '@/types/snackbar'
 import draggable from 'vuedraggable'
-
+import UploadButtonFileInput from '../UploadButtonFileInput/UploadButtonFileInput.vue'
 @Component({
   components: {
     ValidationObserver,
@@ -246,6 +256,10 @@ export default class UploadButton extends Vue {
 
   @Prop({ default: '4' }) px: string | number
   @Prop({ default: () => () => {} }) docsPresent: () => void
+
+  get pdfLogo(): string {
+    return require('@/assets/images/PDF-with-text.svg')
+  }
 
   multiple = false
   showSelectionDialog = false
@@ -274,8 +288,10 @@ export default class UploadButton extends Vue {
     this.files.splice(index, 1)
   }
 
-  fileNameOverflow(fileName: any) {
-    if (fileName.length > 25) {
+  fileNameOverflow(fileName: any): String {
+    if (fileName.length > 15 && this.$vuetify.breakpoint.name === 'xs') {
+      return fileName.substring(0, 15) + '...'
+    } else if (fileName.length > 25 && this.$vuetify.breakpoint.smAndUp) {
       return fileName.substring(0, 25) + '...'
     } else {
       return fileName
@@ -284,7 +300,7 @@ export default class UploadButton extends Vue {
 
   hideToolTipDocument() {
     this.isShowToolTipDocument = !this.isShowToolTipDocument
-    //this.timeout = setTimeout(() => (this.isShowToolTipDocument = false), 4000)
+    // this.timeout = setTimeout(() => (this.isShowToolTipDocument = false), 4000)
   }
 
   hideToolTipDescription() {
@@ -471,6 +487,17 @@ export default class UploadButton extends Vue {
 
 <style scoped lang="scss">
 @media (min-width: 1280px) {
+  .pdf-image {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.898);
+    height: fit-content;
+    width: 100%;
+    margin-bottom: 20px;
+  }
   .drag-and-drop-div {
     display: flex;
     flex-direction: column;
@@ -556,6 +583,17 @@ export default class UploadButton extends Vue {
 }
 
 @media (min-width: 600px) and (max-width: 1280px) {
+  .pdf-image {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.898);
+    height: fit-content;
+    width: 100%;
+    margin-bottom: 40px;
+  }
   .drag-and-drop-div {
     display: flex;
     flex-direction: column;
@@ -652,6 +690,17 @@ export default class UploadButton extends Vue {
 }
 
 @media (max-width: 600px) {
+  .pdf-image {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.898);
+    height: fit-content;
+    width: 100%;
+    margin-bottom: 20px;
+  }
   .drag-and-drop-div {
     display: flex;
     flex-direction: column;
