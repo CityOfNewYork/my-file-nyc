@@ -22,16 +22,16 @@
         </v-card-text>
         <v-card-actions class="card-button-position">
           <input
-            type="file"
             ref="file"
+            type="file"
             style="display: none"
             accept="application/pdf, image/jpeg, image/png, image/tiff"
             @change="onFileInput"
           />
           <v-btn
-            @click="$refs.file.click()"
             color="primary"
             class="card-button"
+            @click="$refs.file.click()"
           >
             {{ $t('controls.uploadFile') }}
           </v-btn>
@@ -51,17 +51,17 @@
         </v-card-text>
         <v-card-actions class="card-button-position">
           <input
-            type="file"
             ref="file2"
+            type="file"
             style="display: none"
             multiple
             accept="application/pdf, image/jpeg, image/png, image/tiff"
             @change="onFileInput"
           />
           <v-btn
-            @click="$refs.file2.click()"
             color="primary"
             class="card-button"
+            @click="$refs.file2.click()"
           >
             {{ $t('controls.uploadFiles') }}
           </v-btn>
@@ -90,7 +90,7 @@ export default class UploadButtonFileInput extends Vue {
   }
 
   navigationEvent() {
-    if (window.location.pathname == '/dashboard') {
+    if (window.location.pathname === '/dashboard') {
       this.reset()
     } else {
       this.back()
@@ -267,7 +267,7 @@ export default class UploadButtonFileInput extends Vue {
   .dialog-container {
     background-color: rgb(255, 255, 255);
     width: 330px;
-    height: 720px;
+    max-height: 660px;
     display: flex;
     flex-direction: column;
     padding-left: 24px;
@@ -281,13 +281,13 @@ export default class UploadButtonFileInput extends Vue {
     }
     .header {
       text-align: center;
-      margin-top: 32px;
+      margin-top: 26px;
       color: black;
       font-style: bold;
       font-weight: 700;
-      font-size: 25px;
+      font-size: 22px;
       line-height: 36px;
-      padding: 0 0 24px 0;
+      padding: 0px 0px 0px 0px;
     }
     .cards-container {
       display: flex !important;

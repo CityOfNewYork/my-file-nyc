@@ -4,7 +4,7 @@
       :title="`${$t('navigation.back')}`"
       icon
       small
-      class="ml-xs-5 ml-sm-8 mt-sm-3 ml-lg-20 ml-xl-40 a11y-focus"
+      class="ml-xs-20 ml-sm-8 mt-sm-3 ml-lg-20 ml-xl-40 a11y-focus"
       @click="navigationEvent"
     >
       <v-icon
