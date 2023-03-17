@@ -33,6 +33,7 @@
     <v-dialog
       v-model="showSelectionDialog"
       max-width="fit-content"
+      scrollable="false"
       @click:outside="closeDialog"
     >
       <template>
@@ -96,15 +97,14 @@
                     </span>
                   </v-tooltip>
                 </p>
-                <v-responsive class="mx-auto">
-                  <v-text-field
-                    v-model="documentName"
-                    class="form-input"
-                    :error-messages="errors"
-                    outlined
-                    :placeholder="$t('document.enterNamePlaceholder')"
-                  />
-                </v-responsive>
+
+                <v-text-field
+                  v-model="documentName"
+                  class="form-input"
+                  :error-messages="errors"
+                  outlined
+                  :placeholder="$t('document.enterNamePlaceholder')"
+                />
                 <p class="form-title">
                   {{ $t('document.enterDescriptionPlaceholder') }}
                   <v-tooltip
@@ -181,7 +181,11 @@
                         <b>#{{ index + 1 }}</b>
                         {{ fileNameOverflow(fileElement.file.name) }}
                       </div>
-                      <button class="remove-button" @click="removeItem(index)">
+                      <button
+                        class="remove-button"
+                        @click="$delete(files, index)"
+                        @keypress="$delete(files, index)"
+                      >
                         Remove
                       </button>
                     </div>
@@ -216,7 +220,7 @@
               ? 'width: 100%; position: fixed; bottom: 0; '
               : ''
           "
-          :disabled="!documentName"
+          :disabled="!(files.length > 0 && documentName)"
           @keydown.enter="uploadDocument()"
           @click="uploadDocument"
         >
@@ -745,14 +749,14 @@ export default class UploadButton extends Vue {
     }
 
     .form-input {
-      font-size: 14px;
+      font-size: 16px;
       line-height: 24px;
       font-weight: 400;
       padding: 0;
     }
 
     .form-text-area {
-      font-size: 14px;
+      font-size: 16px;
       line-height: 24px;
       font-weight: 400;
       padding: 0;
