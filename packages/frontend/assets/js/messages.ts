@@ -1417,85 +1417,85 @@ export default merge(
       login: {
         loginButton: 'Acceda y empiece',
         getStarted: {
-          client: 'Get Started', // not found
+          client: 'Empezar',
           cityEmployee: 'City Employee Login', // not found
           cboWorker: 'CBO Worker Login', // not found
         },
-        welcomeTitle: 'Welcome', // not found
+        welcomeTitle: 'Bienvenido',
         footerLogoAlt: 'Footer logo', // not found
       },
 
       navigation: {
-        about: 'About', // not found
+        about: 'À propos',
         account: 'My Account Managers', // not found
         settings: 'Mi perfil',
         settingsFirstRun:
-          'Welcome to #My File NYC&! Please answer a few questions about yourself to get started.', // not found
-        welcomeFirstRun: 'Welcome to My File NYC!', // not found
-        activity: 'Activity Log', // not found
-        back: 'Back', // not found
-        clients: 'Clients', // navigate back to agent view desktop not found
-        close: 'Close', // not found
-        dashboard: 'Dashboard', // not found
-        faq: 'FAQ', // not found
-        loading: 'Loading', // not found
-        loggingIn: 'Logging in...', // not found
+          '¡Le damos la bienvenida a Mi archivo NYC! Para comenzar, responda unas preguntas sobre usted.',
+        welcomeFirstRun: '¡Le damos la bienvenida a Mi archivo NYC!',
+        activity: 'Journal des activités',
+        back: 'Atrás',
+        clients: 'Clientes', // navigate back to agent view desktop
+        close: 'Cerrar',
+        dashboard: 'Panel',
+        faq: 'PREGUNTAS FRECUENTES',
+        loading: 'Cargando',
+        loggingIn: 'Registrándose...',
         manageAccounts: 'Manage Accounts', // not found
-        signIn: 'Sign in', // not found
+        signIn: 'Iniciar sesión',
         signOut: 'Cerrar sesión',
-        switchAccount: 'Switch Clients', // not found
-        termsOfUse: 'Terms of Use', // not found
+        switchAccount: 'Cambiar de cliente',
+        termsOfUse: 'Condiciones de uso',
         nycId: '¿Tiene problemas para acceder?',
       },
 
       document: {
         // This is the title of the confirmation dialog for deleting a document
-        deleteConfirmationTitle: 'Delete this document?', // not found
+        deleteConfirmationTitle: '¿Quiere eliminar este documento?',
         // This is the body content of the confirmation dialog for deleting a document
         deleteConfirmationBody:
           'Cualquier persona con acceso compartido ya no podrá ver este documento. Esto no se puede deshacer.',
-        documentMenu: 'Document menu', // not found
+        documentMenu: 'Document menu',
         documentOptions: 'Opciones',
-        downloadZip: 'Download All', // not found
-        downloadPdf: 'Download PDF', // not found
+        downloadZip: 'Descargar todo',
+        downloadPdf: 'Descargar PDF',
         description: 'Descripción del documento', // displayed beneath the document and expands to show description (if any)
         editDetailsTitle: 'Editar información', // page title on edit details screen
-        enterNamePlaceholder: 'Give this document a name', // not found
+        enterNamePlaceholder: 'Nombrar este documento',
         enterDescriptionPlaceholder: 'Describa este documento (opcional)',
         documentName: '¿Qué tipo de documento ha subido?', // shown as a label on edit details screen
 
-        noDocuments: 'There are no documents saved to your account yet.', // not found shown on dashboard when there are no documents
+        noDocuments: 'Aún no hay ningún documento guardado en su cuenta.', // not found shown on dashboard when there are no documents
         previewOf: 'Preview of', // not found
-        uploadFirst: 'Add your first document', // not found label on the empty state upload button
+        uploadFirst: 'Agregue su primer documento', // label on the empty state upload button
         thumbnailOf: 'Thumbnail of', // not found
         fileName: 'Nombre del documento',
       },
 
       controls: {
-        accept: 'Accept', // (not found) eg. accept terms of use
-        add: 'Add', // (not found) eg. add a delegate
-        allFiles: 'Your Documents', // (not found) shown as tab label on the dashboard
+        accept: 'Aceptar', // eg. accept terms of use
+        add: 'Agregar', // eg. add a delegate
+        allFiles: 'Sus documentos', // shown as tab label on the dashboard
         cancel: 'Cancelar', // cancel button
-        confirm: 'Confirm', // not found
+        confirm: 'Confirmar',
         confirmDelete: 'Sí, eliminar',
-        declineAndLogOut: 'Decline & Log Out', // (not found) decline TOS button
+        declineAndLogOut: 'Rechazar y cerrar sesión', // decline TOS button
         delete: 'Eliminar', // delete document kebab item
-        done: 'Done', // not found
+        done: 'Listo',
         download: 'Descargar', // edit document kebab item and button text
         editDetails: 'Editar información', // edit document kebab item
         edit: 'Editar', // edit account details
         continue: 'Continuar',
         share: 'Compartir con DHS', // share button
-        shared: 'Shared Documents', // (not found) label of shared tab on dashboard
-        upload: 'Upload a Document', // (not found)
-        uploadDocument: 'Upload Document', // not found
+        shared: 'Documentos compartidos', // label of shared tab on dashboard
+        upload: 'Cargar un documento',
+        uploadDocument: 'Cargar documento',
         view: 'Vista',
         save: 'Guardar',
       },
 
       // account settings page
       account: {
-        language: 'Language', // not found open language selector
+        language: 'Idioma', // open language selector
         firstName: 'Primer nombre',
         whatIsYourFirstName: '¿Cuál es su primer nombre?',
         lastName: 'Apellido',
@@ -1518,12 +1518,12 @@ export default merge(
         recipients: 'Recipients', // not found
 
         // placeholder text for the add recipient email field
-        addRecipientPlaceholder: 'Enter email address', // not found
+        addRecipientPlaceholder: 'Escribir una dirección de correo electrónico',
 
         // step titles in the share flow
-        confirmTitle: 'Are you sure you want to share these Documents?', // not found
-        addRecipientsTitle: 'Who are you sharing these document(s) with?', // not found
-        selectFilesTitle: 'Select Documents', // not found
+        confirmTitle: '¿Confirma que quiere compartir estos documentos?',
+        addRecipientsTitle: '¿A quién le compartirá estos documentos?',
+        selectFilesTitle: 'Seleccionar documentos',
 
         disclaimerTitle: 'Reminder', // not found
         shareDocumentDisclaimer: [
@@ -1538,15 +1538,15 @@ export default merge(
       },
 
       tabTitles: {
-        about: 'About', // not found
+        about: 'Acerca de',
         authorizing: 'Authorizing', // not found not important - used while logging in
-        dashboard: 'Dashboard', // not found
+        dashboard: 'Panel',
         document: 'Documento', // used for document preview while page is loading, then changes to document title
-        faq: 'FAQ', // not found
-        shared: 'Shared', // not found used in share flow
-        sharedBy: 'Shared by', // not found used in share flow
-        termsOfUse: 'Terms of Use', // not found used while viewing TOU
-        welcome: 'Welcome', // not found displayed on the initial landing page
+        faq: 'PREGUNTAS FRECUENTES',
+        shared: 'Compartido', // used in share flow
+        sharedBy: 'Compartido por', // used in share flow
+        termsOfUse: 'Condiciones de uso', // used while viewing TOU
+        welcome: 'Bienvenido', // displayed on the initial landing page
       },
 
       delegateAccess: {
@@ -1576,8 +1576,8 @@ export default merge(
 
       // Account Activity
       activity: {
-        accessed: 'accessed', // not found
-        added: 'added', // not afound
+        accessed: 'Se accedió',
+        added: 'Se agregó',
         delegateInvitedClient: 'to manage and share documents on your behalf', // not found
         delegateInvitedCbo: 'to manage and share documents on their behalf', // not found
         delegateAcceptedClient:
@@ -1586,13 +1586,13 @@ export default merge(
           'can now manage and share documents on this account', // not found
         delegateDeletedClient: 'has been removed from your account', // not found
         delegateDeletedCbo: 'has been removed from this account ', // not found
-        deleted: 'deleted', // not found
-        edited: 'edited details of', // not found
-        file: 'file', // not found
-        files: 'documents', // not found
-        invited: 'invited', // not found
-        pageTitle: 'Account Activity', // not found
-        shared: 'shared', // not found
+        deleted: 'se eliminó',
+        edited: 'detalles editados de',
+        file: 'archivo',
+        files: 'documentos',
+        invited: 'invitado',
+        pageTitle: 'Actividad de la cuenta', // not found
+        shared: 'compartido', // not found
         today: 'TODAY', // not found
         you: 'You', // not found
       },
@@ -1601,17 +1601,18 @@ export default merge(
       sharedFolder: {
         // empty state for list of shared folders
         noCollections: 'Aún no ha compartido ningún documento.', // message
-        shareFirstDocument: 'Share your first document', // (not found) call to action
+        shareFirstDocument: 'Comparta su primer documento', // call to action
 
         // empty state for an individual shared folder
-        emptyCollection: 'All documents have been removed from this folder.', // (not found) message
-        returnDashboard: 'Return to dashboard', // (not found) call to action
+        emptyCollection: 'Se quitaron todos los documentos de esta carpeta.', // message
+        returnDashboard: 'Volver al panel', // call to action
 
         // empty state for list of clients who have shared collections with user
-        noSharedDocuments: "You haven't received any shared documents yet.", // not found
+        noSharedDocuments: 'Aún no ha recibido ningún documento compartido.', // not found
 
         // title for collection table name column
-        collectionTableTitle: "Documents you've shared, organized by date", // not found
+        collectionTableTitle:
+          'Los documentos que ha compartido, organizados por fecha', // not found
       },
 
       cbo: {
@@ -1642,10 +1643,10 @@ export default merge(
         noClientActionLabel: 'Not a government employee?', // not found
         noClientActionText:
           'If you are seeking permanent supportive housing, click here.', // not found
-        reorderFiles: 'Reorder Documents', // (not found) shown in agent view when downloading as PDF
+        reorderFiles: 'Reordenar documentos', // shown in agent view when downloading as PDF
         selectClient:
           'Seleccione el cliente para acceder a documentos compartidos',
-        sharedBy: 'Shared By', // (not found) label in side bar
+        sharedBy: 'Compartido por', // label in side bar
         sharedFolderNameLabel: 'Name', // (not found) label of shared folder name column in agent view
         sharedWith: 'Compartido con: ', // promt for agency email
       },
