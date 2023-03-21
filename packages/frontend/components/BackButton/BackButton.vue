@@ -27,34 +27,42 @@ import { Vue, Component, Prop } from 'nuxt-property-decorator'
 export default class BackButton extends Vue {
   @Prop({ default: () => () => {} }) reset: () => void
 
-  back() {
-    this.$router.go(-1)
-  }
+  // back() {
+  //   this.$router.back()
+  // }
 
   languageDashboard: string[] = [
-    'ar/dashboard',
-    'bn/dashboard',
-    'en/dashboard',
-    'es/dashboard',
-    'fr/dashboard',
-    'ht/dashboard',
-    'ko/dashboard',
-    'pl/dashboard',
-    'ru/dashboard',
-    'urd/dashboard',
+    '/ar/dashboard',
+    '/bn/dashboard',
+    '/en/dashboard',
+    '/es/dashboard',
+    '/fr/dashboard',
+    '/ht/dashboard',
+    '/ko/dashboard',
+    '/pl/dashboard',
+    '/ru/dashboard',
+    '/urd/dashboard',
   ]
 
   navigationEvent() {
     const pathForCompare = window.location.pathname
       .toString()
       .split('/')
-      .slice(0, 2)
-      .join('')
+      .slice(0, 5)
+      .join('/')
 
-    if (this.languageDashboard.includes(pathForCompare + '/dashboard')) {
+    const isDashboard = this.languageDashboard.includes(pathForCompare)
+
+    if (isDashboard) {
       this.reset()
     } else {
-      this.back()
+      const langPref = pathForCompare
+        .toString()
+        .split('/')
+        .slice(0, 2)
+        .join('/')
+
+      this.$router.push(langPref + '/dashboard')
     }
   }
 }
