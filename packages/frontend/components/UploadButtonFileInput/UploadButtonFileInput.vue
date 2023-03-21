@@ -80,6 +80,7 @@ export default class UploadButtonFileInput extends Vue {
   onFileInput: () => void
 
   @Prop({ default: () => () => {} }) reset: () => void
+  @Prop({ default: () => {} }) closeSelectionDialog: () => void
 
   back() {
     if (window.history.length) {
@@ -90,11 +91,7 @@ export default class UploadButtonFileInput extends Vue {
   }
 
   navigationEvent() {
-    if (window.location.pathname === '/dashboard') {
-      this.reset()
-    } else {
-      this.back()
-    }
+    this.closeSelectionDialog()
   }
 }
 </script>

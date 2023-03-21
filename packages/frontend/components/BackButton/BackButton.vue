@@ -28,15 +28,30 @@ export default class BackButton extends Vue {
   @Prop({ default: () => () => {} }) reset: () => void
 
   back() {
-    if (window.history.length) {
-      this.$router.back()
-    } else {
-      this.$router.push(this.localePath('/dashboard'))
-    }
+    this.$router.go(-1)
   }
 
+  languageDashboard: string[] = [
+    'ar/dashboard',
+    'bn/dashboard',
+    'en/dashboard',
+    'es/dashboard',
+    'fr/dashboard',
+    'ht/dashboard',
+    'ko/dashboard',
+    'pl/dashboard',
+    'ru/dashboard',
+    'urd/dashboard',
+  ]
+
   navigationEvent() {
-    if (window.location.pathname == '/dashboard') {
+    const pathForCompare = window.location.pathname
+      .toString()
+      .split('/')
+      .slice(0, 2)
+      .join('')
+
+    if (this.languageDashboard.includes(pathForCompare + '/dashboard')) {
       this.reset()
     } else {
       this.back()
