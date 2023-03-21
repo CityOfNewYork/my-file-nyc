@@ -504,62 +504,63 @@ export default merge(
         collectionTableTitle:
           'المستندات التي قمت بمشاركتها وتنظيمها حسب التاريخ',
 
-      cbo: {
-        selectClient: 'Select a client to access their account', // not found
-        clickToRemove: 'Click {close} to remove a client', // not found
-        noClientsTitle:
-          'You have not been added to any client My File NYC accounts', // not found
-        noClientsBody:
-          "Once a client adds you to their My File NYC account, you'll be able to manage and share documents on their behalf from this screen.\n\nA client can provide access to their documents in the Account menu settings in My File NYC.", // not found
-        noClientActionLabel: 'Not a case manager?', // not found
-        noClientActionText:
-          'If you are seeking permanent supportive housing, click here.', // not found
-        removeConfirmationTitle: 'Remove this client from your My File NYC?', // not found
-        removeConfirmationBody:
-          'You will no longer be able to view, manage, or share documents on their behalf. This cannot be undone.', // not found
-        removeConfirmationAction: 'Yes, Remove', // not found
-        errorAcceptingInvite:
-          'Invite could not be accepted. Please ensure you are logged in with the email address that received the invite.', // not found
-      },
-
-      agent: {
-        clientFirstNameLabel: 'الاسم الأول', // label of client first name column in agent view
-        clientLastNameLabel: 'اسم العائلة', // label of client last name column in agent view
-        clientDob: 'تاريخ الميلاد', // label of client date of birth column in agent view
-        clientCaseNum: 'رقم الحالة', // label of client case number column in agent view
-        clientEmail: 'البريد الإلكتروني', // label of client case number column in agent view
-        dateShared: 'اشتراک کی تاریخ', // label in side bar
-        noClientActionLabel: 'Not a government employee?', // not found
-        noClientActionText:
-          'If you are seeking permanent supportive housing, click here.', // not found
-        reorderFiles: 'إعادة ترتيب المستندات', // shown in agent view when downloading as PDF
-        selectClient:
-          'اختر العميل الذي يمكنه الوصول إلى المستندات التي تمت مشاركتها',
-        sharedBy: 'تمت مشاركتها بواسطة', // (not found) label in side bar
-        sharedFolderNameLabel: 'Name', // (not found) label of shared folder name column in agent view
-        sharedWith: 'تمت المشاركة مع', // promt for agency email
-      },
-
-      landing: {
-        community: 'COMMUNITY SERVICES', // not found
-        agency: 'AGENCY SERVICES', // not found
-      },
-
-      $vuetify: {
-        ...vuetifyEn,
-        dataTable: {
-          sortBy: 'Sort by', // not found
-          ariaLabel: {
-            sortNone: 'Do not sort', // not found
-            activateAscending: 'Sort ascending', // not found
-          },
+        cbo: {
+          selectClient: 'Select a client to access their account', // not found
+          clickToRemove: 'Click {close} to remove a client', // not found
+          noClientsTitle:
+            'You have not been added to any client My File NYC accounts', // not found
+          noClientsBody:
+            "Once a client adds you to their My File NYC account, you'll be able to manage and share documents on their behalf from this screen.\n\nA client can provide access to their documents in the Account menu settings in My File NYC.", // not found
+          noClientActionLabel: 'Not a case manager?', // not found
+          noClientActionText:
+            'If you are seeking permanent supportive housing, click here.', // not found
+          removeConfirmationTitle: 'Remove this client from your My File NYC?', // not found
+          removeConfirmationBody:
+            'You will no longer be able to view, manage, or share documents on their behalf. This cannot be undone.', // not found
+          removeConfirmationAction: 'Yes, Remove', // not found
+          errorAcceptingInvite:
+            'Invite could not be accepted. Please ensure you are logged in with the email address that received the invite.', // not found
         },
-        noDataText: 'No data', // no found
-      },
-      validations: {
-        ...validationEn.messages,
-        whitelist: 'Must be an approved agency email', // not found
-        notSameAsUserEmail: 'You cannot enter your own email address', // not found
+
+        agent: {
+          clientFirstNameLabel: 'الاسم الأول', // label of client first name column in agent view
+          clientLastNameLabel: 'اسم العائلة', // label of client last name column in agent view
+          clientDob: 'تاريخ الميلاد', // label of client date of birth column in agent view
+          clientCaseNum: 'رقم الحالة', // label of client case number column in agent view
+          clientEmail: 'البريد الإلكتروني', // label of client case number column in agent view
+          dateShared: 'اشتراک کی تاریخ', // label in side bar
+          noClientActionLabel: 'Not a government employee?', // not found
+          noClientActionText:
+            'If you are seeking permanent supportive housing, click here.', // not found
+          reorderFiles: 'إعادة ترتيب المستندات', // shown in agent view when downloading as PDF
+          selectClient:
+            'اختر العميل الذي يمكنه الوصول إلى المستندات التي تمت مشاركتها',
+          sharedBy: 'تمت مشاركتها بواسطة', // (not found) label in side bar
+          sharedFolderNameLabel: 'Name', // (not found) label of shared folder name column in agent view
+          sharedWith: 'تمت المشاركة مع', // promt for agency email
+        },
+
+        landing: {
+          community: 'COMMUNITY SERVICES', // not found
+          agency: 'AGENCY SERVICES', // not found
+        },
+
+        $vuetify: {
+          ...vuetifyEn,
+          dataTable: {
+            sortBy: 'Sort by', // not found
+            ariaLabel: {
+              sortNone: 'Do not sort', // not found
+              activateAscending: 'Sort ascending', // not found
+            },
+          },
+          noDataText: 'No data', // no found
+        },
+        validations: {
+          ...validationEn.messages,
+          whitelist: 'Must be an approved agency email', // not found
+          notSameAsUserEmail: 'You cannot enter your own email address', // not found
+        },
       },
     },
     ru: {
