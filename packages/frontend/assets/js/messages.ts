@@ -575,95 +575,95 @@ export default merge(
       toast: {
         acceptedDelegateInvite: 'Delegate Access Accepted', // not found
         delegateRemoved: 'Client Removed', // not found
-        downloadLoadingState: 'Preparing Download', // not found
+        downloadLoadingState: 'Подготовка скачивания',
         sharingComplete: 'Предоставление закончено',
-        uploading: 'Adding Document...', // not found displayed while a file is uploading
-        uploadComplete: 'Upload Complete', // not found
-        fileDeletedConfirmation: 'Document Deleted', // not found
-        fileTooLarge: 'Document too large (must be < 10MB)', // not found
+        uploading: 'Добавление документа…', // displayed while a file is uploading
+        uploadComplete: 'Отправка завершена',
+        fileDeletedConfirmation: 'Документ удален',
+        fileTooLarge: 'Слишком большой документ (должен быть < 10 МБ)', // not found
       },
 
       login: {
         loginButton: 'Войдите в систему и приступайте',
         getStarted: {
-          client: 'Get Started', // not found
+          client: 'Начать',
           cityEmployee: 'City Employee Login', // not found
           cboWorker: 'CBO Worker Login', // not found
         },
-        welcomeTitle: 'Welcome', // not found
+        welcomeTitle: 'Добро пожаловать',
         footerLogoAlt: 'Footer logo', // not found
       },
 
       navigation: {
-        about: 'About', // not found
+        about: 'О сервисе',
         account: 'My Account Managers', // not found
         settings: 'Мой профиль',
         settingsFirstRun:
-          'Welcome to #My File NYC&! Please answer a few questions about yourself to get started.', // not found
-        welcomeFirstRun: 'Welcome to My File NYC!', // not found
-        activity: 'Activity Log', // not found
-        back: 'Back', // not found
-        clients: 'Clients', // navigate back to agent view desktop not found
-        close: 'Close', // not found
-        dashboard: 'Dashboard', // not found
-        faq: 'FAQ', // not found
-        loading: 'Loading', // not found
-        loggingIn: 'Logging in...', // not found
+          'Мы приветствуем вас в сервисе My File NYC! Для начала ответьте на несколько вопросов о себе.', // not found
+        welcomeFirstRun: 'Мы приветствуем вас в сервисе My File NYC!', // not found
+        activity: 'Журнал действий',
+        back: 'Назад',
+        clients: 'Клиенты', // navigate back to agent view desktop not found
+        close: 'Закрыть',
+        dashboard: 'Панель',
+        faq: 'Часто задаваемые вопросы',
+        loading: 'Загрузка',
+        loggingIn: 'Выполняется вход…',
         manageAccounts: 'Manage Accounts', // not found
-        signIn: 'Sign in', // not found
+        signIn: 'Войти',
         signOut: 'Выйти',
-        switchAccount: 'Switch Clients', // not found
-        termsOfUse: 'Terms of Use', // not found
+        switchAccount: 'Переключение клиентов',
+        termsOfUse: 'Условия использования',
         nycId: 'Возникли проблемы с входом в систему? ',
       },
 
       document: {
         // This is the title of the confirmation dialog for deleting a document
-        deleteConfirmationTitle: 'Delete this document?', // not found
+        deleteConfirmationTitle: 'Удалить этот документ?',
         // This is the body content of the confirmation dialog for deleting a document
         deleteConfirmationBody: `Лица с общим доступом больше не смогут просматривать этот документ. Отмена этого действия невозможна.`,
-        documentMenu: 'Document menu', // not found
+        documentMenu: 'Меню документа',
         documentOptions: 'Варианты',
-        downloadZip: 'Download All', // not found
-        downloadPdf: 'Download PDF', // not found
+        downloadZip: 'Загрузить все',
+        downloadPdf: 'Загрузить PDF', // not found
         description: 'Описание документа', // displayed beneath the document and expands to show description (if any)
         editDetailsTitle: 'Редактировать данные', // page title on edit details screen
-        enterNamePlaceholder: 'Give this document a name', // not found
+        enterNamePlaceholder: 'Присвойте этому документу имя',
         enterDescriptionPlaceholder: 'Опишите этот документ (необязательно)',
         documentName: 'Какой документ вы загрузили？', // shown as a label on edit details screen
 
-        noDocuments: 'There are no documents saved to your account yet.', // not found shown on dashboard when there are no documents
+        noDocuments: 'В вашей учетной записи еще нет сохраненных документов.', // not found shown on dashboard when there are no documents
         previewOf: 'Preview of', // not found
-        uploadFirst: 'Add your first document', // not found label on the empty state upload button
+        uploadFirst: 'Добавьте свой первый документ', // label on the empty state upload button
         thumbnailOf: 'Thumbnail of', // not found
         fileName: 'Название документа',
       },
 
       controls: {
-        accept: 'Accept', // (not found) eg. accept terms of use
-        add: 'Add', // (not found) eg. add a delegate
-        allFiles: 'Your Documents', // (not found) shown as tab label on the dashboard
+        accept: 'Принять', // eg. accept terms of use
+        add: 'Добавить', // eg. add a delegate
+        allFiles: 'Ваши документы', // shown as tab label on the dashboard
         cancel: 'Отменить', // cancel button
-        confirm: 'Confirm', // not found
+        confirm: 'Подтвердить',
         confirmDelete: 'Да, удалить',
-        declineAndLogOut: 'Decline & Log Out', // (not found) decline TOS button
+        declineAndLogOut: 'Отклонить и выйти', // (not found) decline TOS button
         delete: 'Удалить', // delete document kebab item
-        done: 'Done', // not found
+        done: 'Готово',
         download: 'Загрузить', // edit document kebab item and button text
         editDetails: 'Редактировать данные', // edit document kebab item
         edit: 'Редактировать', // edit account details
         continue: 'Продолжить',
         share: 'Предоставить доступ DHS', // share button
-        shared: 'Shared Documents', // (not found) label of shared tab on dashboard
-        upload: 'Upload a Document', // (not found)
-        uploadDocument: 'Upload Document', // not found
+        shared: 'Общие документы', // label of shared tab on dashboard
+        upload: 'Загрузите документ',
+        uploadDocument: 'Загрузить документ',
         view: 'Просмотреть',
         save: 'Сохранить',
       },
 
       // account settings page
       account: {
-        language: 'Language', // not found open language selector
+        language: 'Язык', // not found open language selector
         firstName: 'Имя',
         whatIsYourFirstName: 'Как вас зовут?',
         lastName: 'Фамилия',
@@ -686,12 +686,12 @@ export default merge(
         recipients: 'Recipients', // not found
 
         // placeholder text for the add recipient email field
-        addRecipientPlaceholder: 'Enter email address', // not found
+        addRecipientPlaceholder: 'Введите адрес электронной почты', // not found
 
         // step titles in the share flow
-        confirmTitle: 'Are you sure you want to share these Documents?', // not found
-        addRecipientsTitle: 'Who are you sharing these document(s) with?', // not found
-        selectFilesTitle: 'Select Documents', // not found
+        confirmTitle: 'Предоставить доступ к этим документам?',
+        addRecipientsTitle: 'Кому предоставить доступ к этим документам?',
+        selectFilesTitle: 'Выбрать документы',
 
         disclaimerTitle: 'Reminder', // not found
         shareDocumentDisclaimer: [
@@ -706,15 +706,15 @@ export default merge(
       },
 
       tabTitles: {
-        about: 'About', // not found
+        about: 'О портале', // not found
         authorizing: 'Authorizing', // not found not important - used while logging in
-        dashboard: 'Dashboard', // not found
+        dashboard: 'Панель',
         document: 'Документ', // used for document preview while page is loading, then changes to document title
-        faq: 'FAQ', // not found
-        shared: 'Shared', // not found used in share flow
-        sharedBy: 'Shared by', // not found used in share flow
-        termsOfUse: 'Terms of Use', // not found used while viewing TOU
-        welcome: 'Welcome', // not found displayed on the initial landing page
+        faq: 'Часто задаваемые вопросы',
+        shared: 'Доступ предоставлено:', // not found used in share flow
+        sharedBy: 'Доступ предоставил пользователь:', // not found used in share flow
+        termsOfUse: 'Условия использования', // not found used while viewing TOU
+        welcome: 'Добро пожаловать', // not found displayed on the initial landing page
       },
 
       delegateAccess: {
@@ -744,8 +744,8 @@ export default merge(
 
       // Account Activity
       activity: {
-        accessed: 'accessed', // not found
-        added: 'added', // not afound
+        accessed: 'Доступ получен', // not found
+        added: 'Добавлено', // not afound
         delegateInvitedClient: 'to manage and share documents on your behalf', // not found
         delegateInvitedCbo: 'to manage and share documents on their behalf', // not found
         delegateAcceptedClient:
@@ -754,13 +754,13 @@ export default merge(
           'can now manage and share documents on this account', // not found
         delegateDeletedClient: 'has been removed from your account', // not found
         delegateDeletedCbo: 'has been removed from this account ', // not found
-        deleted: 'deleted', // not found
-        edited: 'edited details of', // not found
-        file: 'file', // not found
-        files: 'documents', // not found
-        invited: 'invited', // not found
-        pageTitle: 'Account Activity', // not found
-        shared: 'shared', // not found
+        deleted: 'Удалено', // not found
+        edited: 'Отредактированные данные касательно', // not found
+        file: 'Файл', // not found
+        files: 'Документы', // not found
+        invited: 'Приглашение отправлено', // not found
+        pageTitle: 'Действия в учетной записи', // not found
+        shared: 'Доступ предоставлено:', // not found
         today: 'TODAY', // not found
         you: 'You', // not found
       },
@@ -769,17 +769,18 @@ export default merge(
       sharedFolder: {
         // empty state for list of shared folders
         noCollections: `Вы еще никому не предоставили доступ к своим документам`, // message
-        shareFirstDocument: 'Share your first document', // (not found) call to action
+        shareFirstDocument: 'Предоставьте доступ к документу', // (not found) call to action
 
         // empty state for an individual shared folder
-        emptyCollection: 'All documents have been removed from this folder.', // (not found) message
-        returnDashboard: 'Return to dashboard', // (not found) call to action
+        emptyCollection: 'В этой папке удалены все файлы.', // (not found) message
+        returnDashboard: 'Вернуться на панель', // (not found) call to action
 
         // empty state for list of clients who have shared collections with user
-        noSharedDocuments: "You haven't received any shared documents yet.", // not found
+        noSharedDocuments: 'Вам еще никто не предоставил доступ к документам.', // not found
 
         // title for collection table name column
-        collectionTableTitle: "Documents you've shared, organized by date", // not found
+        collectionTableTitle:
+          'Документы, к которым вы предоставили доступ, упорядоченные по дате', // not found
       },
 
       cbo: {
@@ -810,10 +811,10 @@ export default merge(
         noClientActionLabel: 'Not a government employee?', // not found
         noClientActionText:
           'If you are seeking permanent supportive housing, click here.', // not found
-        reorderFiles: 'Reorder Documents', // (not found) shown in agent view when downloading as PDF
+        reorderFiles: 'Изменить порядок документов', // (not found) shown in agent view when downloading as PDF
         selectClient:
           'Выберите клиента для предоставления доступа к общим документам',
-        sharedBy: 'Shared By', // (not found) label in side bar
+        sharedBy: 'Доступ предоставил пользователь:', // (not found) label in side bar
         sharedFolderNameLabel: 'Name', // (not found) label of shared folder name column in agent view
         sharedWith: 'Предоставить доступ (кому):', // promt for agency email
       },
