@@ -33,7 +33,6 @@
     <v-dialog
       v-model="showSelectionDialog"
       max-width="fit-content"
-      scrollable="false"
       @click:outside="closeDialog"
     >
       <template>

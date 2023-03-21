@@ -27,10 +27,6 @@ import { Vue, Component, Prop } from 'nuxt-property-decorator'
 export default class BackButton extends Vue {
   @Prop({ default: () => () => {} }) reset: () => void
 
-  // back() {
-  //   this.$router.back()
-  // }
-
   languageDashboard: string[] = [
     '/ar/dashboard',
     '/bn/dashboard',
