@@ -297,95 +297,95 @@ export default merge(
       toast: {
         acceptedDelegateInvite: 'Delegate Access Accepted', // not found
         delegateRemoved: 'Client Removed', // not found
-        downloadLoadingState: 'Preparing Download', // not found
+        downloadLoadingState: 'إعداد التنزيل',
         sharingComplete: 'اكتملت المشاركة',
-        uploading: 'Adding Document...', // not found displayed while a file is uploading
-        uploadComplete: 'Upload Complete', // not found
-        fileDeletedConfirmation: 'Document Deleted', // not found
-        fileTooLarge: 'Document too large (must be < 10MB)', // not found
+        uploading: 'إضافة مستند...', // displayed while a file is uploading
+        uploadComplete: 'اكتمل التحميل',
+        fileDeletedConfirmation: 'تم حذف المستند',
+        fileTooLarge: 'المستند كبير جدًا (يجب أن يكون أقل من 10 ميغا بايت)',
       },
 
       login: {
         loginButton: 'سَجِّل الدخول وابدأ',
         getStarted: {
-          client: 'Get Started', // not found
+          client: 'البدء',
           cityEmployee: 'City Employee Login', // not found
           cboWorker: 'CBO Worker Login', // not found
         },
-        welcomeTitle: 'Welcome', // not found
+        welcomeTitle: 'مرحباً',
         footerLogoAlt: 'Footer logo', // not found
       },
 
       navigation: {
-        about: 'About', // not found
+        about: 'عن',
         account: 'My Account Managers', // not found
         settings: 'ملفي الشخصي',
         settingsFirstRun:
-          'Welcome to #My File NYC&! Please answer a few questions about yourself to get started.', // not found
-        welcomeFirstRun: 'Welcome to My File NYC!', // not found
-        activity: 'Activity Log', // not found
-        back: 'Back', // not found
-        clients: 'Clients', // navigate back to agent view desktop not found
-        close: 'Close', // not found
-        dashboard: 'Dashboard', // not found
-        faq: 'FAQ', // not found
-        loading: 'Loading', // not found
-        loggingIn: 'Logging in...', // not found
+          'مرحبًا بك فيMy File NYC ! يرجى الإجابة على بعض الأسئلة عن نفسك للبدء',
+        welcomeFirstRun: 'مرحبًا بك فيMy File NYC !',
+        activity: 'سجل الأنشطة',
+        back: 'خلف',
+        clients: 'العملاء', // navigate back to agent view desktop not found
+        close: 'إغلاق',
+        dashboard: 'لوحة المعلومات',
+        faq: 'الأسئلة الشائعة',
+        loading: 'جارٍ التحميل',
+        loggingIn: 'جارٍ تسجيل الدخول...',
         manageAccounts: 'Manage Accounts', // not found
-        signIn: 'Sign in', // not found
+        signIn: 'تسجيل الدخول',
         signOut: 'تسجيل الخروج',
-        switchAccount: 'Switch Clients', // not found
-        termsOfUse: 'Terms of Use', // not found
+        switchAccount: 'تبديل العملاء',
+        termsOfUse: 'شروط الاستخدام',
         nycId: 'هل تواجه مشكلة في تسجيل الدخول؟',
       },
 
       document: {
         // This is the title of the confirmation dialog for deleting a document
-        deleteConfirmationTitle: 'Delete this document?', // not found
+        deleteConfirmationTitle: 'هل تريد حذف هذا المستند؟',
         // This is the body content of the confirmation dialog for deleting a document
         deleteConfirmationBody: `لن يتمكن أي شخص لديه حق الوصول المشترك من عرض هذا المستند بعد الآن. لا يمكن التراجع عن هذه الخطوة`,
-        documentMenu: 'Document menu', // not found
+        documentMenu: 'قائمة المستندات',
         documentOptions: 'الخيارات',
-        downloadZip: 'Download All', // not found
-        downloadPdf: 'Download PDF', // not found
+        downloadZip: 'تنزيل الكل',
+        downloadPdf: 'تنزيل ملف بصيغة PDF',
         description: 'وصف المستند', // displayed beneath the document and expands to show description (if any)
         editDetailsTitle: 'تعديل التفاصيل', // page title on edit details screen
-        enterNamePlaceholder: 'Give this document a name', // not found
+        enterNamePlaceholder: 'قم بتسمية هذا المستند»',
         enterDescriptionPlaceholder: 'قدم وصفًا لهذا المستند (اختياري)',
         documentName: 'ما نوع المستند الذي حملته؟', // shown as a label on edit details screen
 
-        noDocuments: 'There are no documents saved to your account yet.', // not found shown on dashboard when there are no documents
+        noDocuments: 'لا توجد مستندات محفوظة في حسابك حتى الآن.', // shown on dashboard when there are no documents
         previewOf: 'Preview of', // not found
-        uploadFirst: 'Add your first document', // not found label on the empty state upload button
+        uploadFirst: 'أضف مستندك الأول', // label on the empty state upload button
         thumbnailOf: 'Thumbnail of', // not found
         fileName: 'اسم المستند',
       },
 
       controls: {
-        accept: 'Accept', // (not found) eg. accept terms of use
-        add: 'Add', // (not found) eg. add a delegate
-        allFiles: 'Your Documents', // (not found) shown as tab label on the dashboard
+        accept: 'قبول', //  eg. accept terms of use
+        add: 'إضافة', //  eg. add a delegate
+        allFiles: 'المستندات الخاصة بك', // shown as tab label on the dashboard
         cancel: 'إلغاء', // cancel button
-        confirm: 'Confirm', // not found
+        confirm: 'تأكيد',
         confirmDelete: 'ہاں، حذف کریں',
-        declineAndLogOut: 'Decline & Log Out', // (not found) decline TOS button
+        declineAndLogOut: 'الرفض وتسجيل الخروج', // decline TOS button
         delete: 'حذف کریں', // delete document kebab item
-        done: 'Done', // not found
+        done: 'تم',
         download: 'تنزيل', // edit document kebab item and button text
         editDetails: 'تعديل التفاصيل', // edit document kebab item
         edit: 'تعديل', // edit account details
         continue: 'متابعة',
         share: 'مشاركة مع إدارة DHS', // share button
-        shared: 'Shared Documents', // (not found) label of shared tab on dashboard
-        upload: 'Upload a Document', // (not found)
-        uploadDocument: 'Upload Document', // not found
+        shared: 'المستندات المشتركة', // label of shared tab on dashboard
+        upload: 'تحميل أحد المستندات',
+        uploadDocument: 'تحميل مستند', // not found
         view: 'دیکھیں',
         save: 'محفوظ کریں',
       },
 
       // account settings page
       account: {
-        language: 'Language', // not found open language selector
+        language: 'لغة', // not found open language selector
         firstName: 'الاسم الأول',
         whatIsYourFirstName: 'ما هو اسمك الأول؟',
         lastName: 'اسم العائلة',
@@ -428,15 +428,15 @@ export default merge(
       },
 
       tabTitles: {
-        about: 'About', // not found
-        authorizing: 'Authorizing', // not found not important - used while logging in
-        dashboard: 'Dashboard', // not found
+        about: 'عن',
+        authorizing: 'Authorizing', // not important - used while logging in
+        dashboard: 'لوحة المعلومات',
         document: 'وثائق', // used for document preview while page is loading, then changes to document title
-        faq: 'FAQ', // not found
-        shared: 'Shared', // not found used in share flow
-        sharedBy: 'Shared by', // not found used in share flow
-        termsOfUse: 'Terms of Use', // not found used while viewing TOU
-        welcome: 'Welcome', // not found displayed on the initial landing page
+        faq: 'الأسئلة الشائعة',
+        shared: 'مشترك', // used in share flow
+        sharedBy: 'مت مشاركتها بواسطة', // not found used in share flow
+        termsOfUse: 'شروط الاستخدام', // not found used while viewing TOU
+        welcome: 'مرحباً', // not found displayed on the initial landing page
       },
 
       delegateAccess: {
@@ -466,8 +466,8 @@ export default merge(
 
       // Account Activity
       activity: {
-        accessed: 'accessed', // not found
-        added: 'added', // not afound
+        accessed: 'تم الوصول إليه',
+        added: ' تمت إضافة',
         delegateInvitedClient: 'to manage and share documents on your behalf', // not found
         delegateInvitedCbo: 'to manage and share documents on their behalf', // not found
         delegateAcceptedClient:
@@ -476,13 +476,13 @@ export default merge(
           'can now manage and share documents on this account', // not found
         delegateDeletedClient: 'has been removed from your account', // not found
         delegateDeletedCbo: 'has been removed from this account ', // not found
-        deleted: 'deleted', // not found
-        edited: 'edited details of', // not found
-        file: 'file', // not found
-        files: 'documents', // not found
-        invited: 'invited', // not found
-        pageTitle: 'Account Activity', // not found
-        shared: 'shared', // not found
+        deleted: 'تم الحذف',
+        edited: 'التفاصيل المحررة لـ',
+        file: 'الملف',
+        files: 'الوثائق',
+        invited: 'مدعو',
+        pageTitle: 'نشاط الحساب',
+        shared: 'مشترك',
         today: 'TODAY', // not found
         you: 'You', // not found
       },
@@ -491,18 +491,18 @@ export default merge(
       sharedFolder: {
         // empty state for list of shared folders
         noCollections: `لم تُشارك أي مستندات بعد`, // message
-        shareFirstDocument: 'Share your first document', // (not found) call to action
+        shareFirstDocument: 'شارك مستندك الأول', // call to action
 
         // empty state for an individual shared folder
-        emptyCollection: 'All documents have been removed from this folder.', // (not found) message
-        returnDashboard: 'Return to dashboard', // (not found) call to action
+        emptyCollection: 'تمت إزالة جميع المستندات من هذا المجلد', // message
+        returnDashboard: 'العودة إلى لوحة التحكم', // call to action
 
         // empty state for list of clients who have shared collections with user
-        noSharedDocuments: "You haven't received any shared documents yet.", // not found
+        noSharedDocuments: 'لم تستلم أي مستندات مشتركة حتى الآن',
 
         // title for collection table name column
-        collectionTableTitle: "Documents you've shared, organized by date", // not found
-      },
+        collectionTableTitle:
+          'المستندات التي قمت بمشاركتها وتنظيمها حسب التاريخ',
 
       cbo: {
         selectClient: 'Select a client to access their account', // not found
@@ -532,10 +532,10 @@ export default merge(
         noClientActionLabel: 'Not a government employee?', // not found
         noClientActionText:
           'If you are seeking permanent supportive housing, click here.', // not found
-        reorderFiles: 'Reorder Documents', // (not found) shown in agent view when downloading as PDF
+        reorderFiles: 'إعادة ترتيب المستندات', // shown in agent view when downloading as PDF
         selectClient:
           'اختر العميل الذي يمكنه الوصول إلى المستندات التي تمت مشاركتها',
-        sharedBy: 'Shared By', // (not found) label in side bar
+        sharedBy: 'تمت مشاركتها بواسطة', // (not found) label in side bar
         sharedFolderNameLabel: 'Name', // (not found) label of shared folder name column in agent view
         sharedWith: 'تمت المشاركة مع', // promt for agency email
       },
@@ -853,88 +853,89 @@ export default merge(
       toast: {
         acceptedDelegateInvite: 'Delegate Access Accepted', // not found
         delegateRemoved: 'Client Removed', // not found
-        downloadLoadingState: 'Preparing Download', // not found
+        downloadLoadingState: 'ڈاؤن لوڈ کی تیاری ہو رہی ہے',
         sharingComplete: 'اشتراک مکمل ہو گیا',
-        uploading: 'Adding Document...', // not found displayed while a file is uploading
-        uploadComplete: 'Upload Complete', // not found
-        fileDeletedConfirmation: 'Document Deleted', // not found
-        fileTooLarge: 'Document too large (must be < 10MB)', // not found
+        uploading: 'دستاویز شامل کی جا رہی ہے…', // displayed while a file is uploading
+        uploadComplete: 'اپ لوڈ مکمل ہو گیا',
+        fileDeletedConfirmation: 'دستاویز حذف ہو گئی',
+        fileTooLarge: 'دستاویز بہت بڑی ہے (<10MB ہونا چاہیے)',
       },
 
       login: {
         loginButton: 'لاگ ان کریں اور شروع کریں',
         getStarted: {
-          client: 'Get Started', // not found
+          client: 'شروع کرنے کے',
           cityEmployee: 'City Employee Login', // not found
           cboWorker: 'CBO Worker Login', // not found
         },
-        welcomeTitle: 'Welcome', // not found
+        welcomeTitle: 'خوش آمدید',
         footerLogoAlt: 'Footer logo', // not found
       },
 
       navigation: {
-        about: 'About', // not found
+        about: 'کے بارے میں',
         account: 'My Account Managers', // not found
         settings: 'میری پروفائل',
         settingsFirstRun:
-          'Welcome to #My File NYC&! Please answer a few questions about yourself to get started.', // not found
-        welcomeFirstRun: 'Welcome to My File NYC!', // not found
-        activity: 'Activity Log', // not found
-        back: 'Back', // not found
-        clients: 'Clients', // navigate back to agent view desktop not found
-        close: 'Close', // not found
-        dashboard: 'Dashboard', // not found
+          'My File NYC (مائی فائل NYC) میں خوش آمدید! براہ کرم شروع کرنے کے لیے اپنے بارے میں چند سوالوں کا جواب دیں۔',
+        welcomeFirstRun: 'My File NYC (مائی فائل NYC) میں خوش آمدید!',
+        activity: 'سرگرمی کی لاگ',
+        back: 'پیچھے',
+        clients: 'کلائنٹس', // navigate back to agent view desktop
+        close: 'بند کریں',
+        dashboard: 'ڈیش بورڈ ',
         faq: 'FAQ', // not found
-        loading: 'Loading', // not found
-        loggingIn: 'Logging in...', // not found
+        loading: 'لوڈ ہو رہا ہے',
+        loggingIn: 'لاگ ان ہو رہا ہے…',
         manageAccounts: 'Manage Accounts', // not found
-        signIn: 'Sign in', // not found
+        signIn: 'سائن ان کریں',
         signOut: 'سائن آؤٹ',
         switchAccount: 'Switch Clients', // not found
-        termsOfUse: 'Terms of Use', // not found
+        termsOfUse: 'استعمال کی شرائط',
         nycId: 'لاگ ان کرنے میں دشواری ہو رہی ہے؟',
       },
 
       document: {
         // This is the title of the confirmation dialog for deleting a document
-        deleteConfirmationTitle: 'Delete this document?', // not found
+        deleteConfirmationTitle: 'یہ دستاویز حذف کریں؟',
         // This is the body content of the confirmation dialog for deleting a document
         deleteConfirmationBody: `اشتراک کردہ رسائی والا کوئی بھی شخص اس دستاویز کو مزید نہیں دیکھ سکے گا۔ اسے کالعدم نہیں کیا جا سکتا`,
-        documentMenu: 'Document menu', // not found
+        documentMenu: 'دستاویز مینو',
         documentOptions: 'اختیارات',
-        downloadZip: 'Download All', // not found
-        downloadPdf: 'Download PDF', // not found
+        downloadZip: 'سبھی ڈاؤن لوڈ کریں',
+        downloadPdf: 'PDF ڈاؤن لوڈ کریں',
         description: 'دستاویز کی وضاحت', // displayed beneath the document and expands to show description (if any)
         editDetailsTitle: 'تفصیلات میں ترمیم کریں', // page title on edit details screen
-        enterNamePlaceholder: 'Give this document a name', // not found
+        enterNamePlaceholder: 'اس دستاویز کو ایک نام دیں',
         enterDescriptionPlaceholder: 'اس دستاویز کی وضاحت کریں (اختیاری)',
         documentName: 'آپ نے کس قسم کی دستاویز اپ لوڈ کی؟', // shown as a label on edit details screen
 
-        noDocuments: 'There are no documents saved to your account yet.', // not found shown on dashboard when there are no documents
+        noDocuments:
+          'آپ کے اکاؤنٹ میں ابھی تک کوئی دستاویز محفوظ نہیں کی گئی ہے۔', // shown on dashboard when there are no documents
         previewOf: 'Preview of', // not found
-        uploadFirst: 'Add your first document', // not found label on the empty state upload button
+        uploadFirst: 'اپنی پہلی دستاویز شامل کریں', // label on the empty state upload button
         thumbnailOf: 'Thumbnail of', // not found
         fileName: 'دستاویز کا نام',
       },
 
       controls: {
-        accept: 'Accept', // (not found) eg. accept terms of use
-        add: 'Add', // (not found) eg. add a delegate
-        allFiles: 'Your Documents', // (not found) shown as tab label on the dashboard
+        accept: 'قبول کریں', // eg. accept terms of use
+        add: 'شامل کریں', // eg. add a delegate
+        allFiles: 'آپ کی دستاویزات', // shown as tab label on the dashboard
         cancel: 'منسوخ کریں', // cancel button
-        confirm: 'Confirm', // not found
+        confirm: 'تصدیق کریں',
         confirmDelete: 'ہاں، حذف کریں',
-        declineAndLogOut: 'Decline & Log Out', // (not found) decline TOS button
+        declineAndLogOut: 'مسترد کریں اور لاگ آؤٹ کریں', // decline TOS button
         delete: 'حذف کریں', // delete document kebab item
-        done: 'Done', // not found
+        done: 'ہو گیا',
         download: 'ڈاؤن لوڈ کریں', // edit document kebab item and button text
         editDetails: 'تفصیلات میں ترمیم کریں', // edit document kebab item
         edit: 'ترمیم کریں', // edit account details
         continue: 'جاری رکھیں',
         share: 'DHS کے ساتھ اشتراک کریں', // share button
-        shared: 'Shared Documents', // (not found) label of shared tab on dashboard
-        upload: 'Upload a Document', // (not found)
-        uploadDocument: 'Upload Document', // not found
+        shared: 'شیئر کردہ دستاویزات', // label of shared tab on dashboard
+        upload: 'ایک دستاویز اپ لوڈ کریں',
+        uploadDocument: 'دستاویز اپ لوڈ کریں',
         view: 'دیکھیں',
         save: 'محفوظ کریں',
       },
@@ -984,15 +985,15 @@ export default merge(
       },
 
       tabTitles: {
-        about: 'About', // not found
+        about: 'کے بارے میں',
         authorizing: 'Authorizing', // not found not important - used while logging in
-        dashboard: 'Dashboard', // not found
+        dashboard: 'ڈیش بورڈ',
         document: 'دستاویزات', // used for document preview while page is loading, then changes to document title
-        faq: 'FAQ', // not found
-        shared: 'Shared', // not found used in share flow
-        sharedBy: 'Shared by', // not found used in share flow
-        termsOfUse: 'Terms of Use', // not found used while viewing TOU
-        welcome: 'Welcome', // not found displayed on the initial landing page
+        faq: 'FAQ',
+        shared: 'شیئر کردہ', // used in share flow
+        sharedBy: 'شیئر کردہ بذریعہ', // used in share flow
+        termsOfUse: 'استعمال کی شرائط', // used while viewing TOU
+        welcome: 'خوش آمدید', // displayed on the initial landing page
       },
 
       delegateAccess: {
@@ -1022,8 +1023,8 @@ export default merge(
 
       // Account Activity
       activity: {
-        accessed: 'accessed', // not found
-        added: 'added', // not afound
+        accessed: 'رسائی حاصل کردہ',
+        added: 'شامل کردہ',
         delegateInvitedClient: 'to manage and share documents on your behalf', // not found
         delegateInvitedCbo: 'to manage and share documents on their behalf', // not found
         delegateAcceptedClient:
@@ -1032,13 +1033,13 @@ export default merge(
           'can now manage and share documents on this account', // not found
         delegateDeletedClient: 'has been removed from your account', // not found
         delegateDeletedCbo: 'has been removed from this account ', // not found
-        deleted: 'deleted', // not found
-        edited: 'edited details of', // not found
-        file: 'file', // not found
-        files: 'documents', // not found
-        invited: 'invited', // not found
-        pageTitle: 'Account Activity', // not found
-        shared: 'shared', // not found
+        deleted: 'حذف کردہ',
+        edited: 'تفصیلات میں ترمیم کی گئی بابت',
+        file: 'فائل',
+        files: 'دستاویزات',
+        invited: 'مدعو کیا گیا',
+        pageTitle: 'اکاؤنٹ کی سرگرمی',
+        shared: 'شیئر کردہ', // not found
         today: 'TODAY', // not found
         you: 'You', // not found
       },
@@ -1047,17 +1048,19 @@ export default merge(
       sharedFolder: {
         // empty state for list of shared folders
         noCollections: `آپ نے ابھی تک کسی دستاویز کا اشتراک نہیں کیا ہے`, // message
-        shareFirstDocument: 'Share your first document', // (not found) call to action
+        shareFirstDocument: 'اپنی پہلی دستاویز شیئر کریں', // call to action
 
         // empty state for an individual shared folder
-        emptyCollection: 'All documents have been removed from this folder.', // (not found) message
-        returnDashboard: 'Return to dashboard', // (not found) call to action
+        emptyCollection: 'تمام دستاویزات کو اس فولڈر سے ہٹا دیا گیا ہے', // message
+        returnDashboard: 'ڈیش بورڈ پر لوٹیں', // call to action
 
         // empty state for list of clients who have shared collections with user
-        noSharedDocuments: "You haven't received any shared documents yet.", // not found
+        noSharedDocuments:
+          'آپ کو ابھی تک کوئی شیئر کردہ دستاویز موصول نہںي ہوئی ہے۔',
 
         // title for collection table name column
-        collectionTableTitle: "Documents you've shared, organized by date", // not found
+        collectionTableTitle:
+          'دستاویزات جو آپ نے شیئر کی ہیں، مرتب کردہ بہ لحاظ تاریخ',
       },
 
       cbo: {
@@ -1088,10 +1091,10 @@ export default merge(
         noClientActionLabel: 'Not a government employee?', // not found
         noClientActionText:
           'If you are seeking permanent supportive housing, click here.', // not found
-        reorderFiles: 'Reorder Documents', // (not found) shown in agent view when downloading as PDF
+        reorderFiles: 'ریکاردر دستاویزات', // shown in agent view when downloading as PDF
         selectClient:
           'اشتراک کردہ دستاویزات تک رسائی کے لیے کلائنٹ کو منتخب کریں',
-        sharedBy: 'Shared By', // (not found) label in side bar
+        sharedBy: 'شیئر کردہ بذریعہ', // label in side bar
         sharedFolderNameLabel: 'Name', // (not found) label of shared folder name column in agent view
         sharedWith: 'اس کے ساتھ اشتراک کردہ`:', // promt for agency email
       },
