@@ -2520,95 +2520,95 @@ export default merge(
       toast: {
         acceptedDelegateInvite: 'Delegate Access Accepted', // not found
         delegateRemoved: 'Client Removed', // not found
-        downloadLoadingState: 'Preparing Download', // not found
+        downloadLoadingState: 'Telechajman ankou',
         sharingComplete: 'Pataj konplete',
-        uploading: 'Adding Document...', // not found displayed while a file is uploading
-        uploadComplete: 'Upload Complete', // not found
-        fileDeletedConfirmation: 'Document Deleted', // not found
-        fileTooLarge: 'Document too large (must be < 10MB)', // not found
+        uploading: 'Ajoute Dokiman...', // displayed while a file is uploading
+        uploadComplete: 'Telechaje Dokiman',
+        fileDeletedConfirmation: 'Efase Dokiman an',
+        fileTooLarge: 'Dokiman twò gwo (dwe <10MB)',
       },
 
       login: {
         loginButton: 'Konekte epi kòmanse',
         getStarted: {
-          client: 'Get Started', // not found
+          client: 'Kòmanse', // not found
           cityEmployee: 'City Employee Login', // not found
           cboWorker: 'CBO Worker Login', // not found
         },
-        welcomeTitle: 'Welcome', // not found
+        welcomeTitle: 'Byenvini',
         footerLogoAlt: 'Footer logo', // not found
       },
 
       navigation: {
-        about: 'About', // not found
+        about: 'Konsènan',
         account: 'My Account Managers', // not found
         settings: 'Pwofil mwen',
         settingsFirstRun:
-          'Welcome to #My File NYC&! Please answer a few questions about yourself to get started.', // not found
-        welcomeFirstRun: 'Welcome to My File NYC!', // not found
-        activity: 'Activity Log', // not found
-        back: 'Back', // not found
-        clients: 'Clients', // navigate back to agent view desktop not found
-        close: 'Close', // not found
-        dashboard: 'Dashboard', // not found
-        faq: 'FAQ', // not found
-        loading: 'Loading', // not found
-        loggingIn: 'Logging in...', // not found
+          'Byenvini nanDosye m NYC (My File NYC)! Tanpri reponn kèk kesyon sou tèt ou pou w ka kòmanse.',
+        welcomeFirstRun: 'Byenvini nanDosye m NYC (My File NYC)!',
+        activity: 'Jounal Aktivite',
+        back: 'Retounen',
+        clients: 'Kliyan', // navigate back to agent view desktop
+        close: 'Fèmen',
+        dashboard: 'Tablodbò',
+        faq: 'Kesyon Moun Poze Souvan',
+        loading: 'L ap telechaje',
+        loggingIn: 'Koneksyon...',
         manageAccounts: 'Manage Accounts', // not found
-        signIn: 'Sign in', // not found
+        signIn: 'Konekte',
         signOut: 'Dekonekte',
-        switchAccount: 'Switch Clients', // not found
-        termsOfUse: 'Terms of Use', // not found
+        switchAccount: 'Chanje Kliyan',
+        termsOfUse: 'Kondisyon pou Itilizasyon',
         nycId: 'Ou gen difikilte pou w konekte?',
       },
 
       document: {
         // This is the title of the confirmation dialog for deleting a document
-        deleteConfirmationTitle: 'Delete this document?', // not found
+        deleteConfirmationTitle: 'Efase dokiman sa?',
         // This is the body content of the confirmation dialog for deleting a document
         deleteConfirmationBody: `Tout moun ki ka pataje dokiman sa pa p ka wè l ankò. Sa pa p ka defèt.`,
-        documentMenu: 'Document menu', // not found
+        documentMenu: 'Meni dokiman',
         documentOptions: 'Opsyon yo',
-        downloadZip: 'Download All', // not found
-        downloadPdf: 'Download PDF', // not found
+        downloadZip: 'Telechaje Tout',
+        downloadPdf: 'Telechaje PDF',
         description: 'Deskripsyon dokiman', // displayed beneath the document and expands to show description (if any)
         editDetailsTitle: 'Modifye detay yo', // page title on edit details screen
-        enterNamePlaceholder: 'Give this document a name', // not found
+        enterNamePlaceholder: 'Bay dokiman sa yon non',
         enterDescriptionPlaceholder: 'Dekri dokiman (se si w vle)',
         documentName: 'Ki tip dokiman ou te atache?', // shown as a label on edit details screen
 
-        noDocuments: 'There are no documents saved to your account yet.', // not found shown on dashboard when there are no documents
+        noDocuments: 'Poko gen okenn dokiman ki anrejistre sou kont ou an.', // shown on dashboard when there are no documents
         previewOf: 'Preview of', // not found
-        uploadFirst: 'Add your first document', // not found label on the empty state upload button
+        uploadFirst: 'Atache premye dokiman ou a', // label on the empty state upload button
         thumbnailOf: 'Thumbnail of', // not found
         fileName: 'Non dokiman an',
       },
 
       controls: {
-        accept: 'Accept', // (not found) eg. accept terms of use
-        add: 'Add', // (not found) eg. add a delegate
-        allFiles: 'Your Documents', // (not found) shown as tab label on the dashboard
+        accept: 'Aksepte', // eg. accept terms of use
+        add: 'Ajoute', // eg. add a delegate
+        allFiles: 'Dokiman ou yo', // (not found) shown as tab label on the dashboard
         cancel: 'Anile', // cancel button
-        confirm: 'Confirm', // not found
+        confirm: 'Konfime',
         confirmDelete: 'Wi, efase',
-        declineAndLogOut: 'Decline & Log Out', // (not found) decline TOS button
+        declineAndLogOut: 'Refize Ak Dekonekte', // decline TOS button
         delete: 'Efase', // delete document kebab item
-        done: 'Done', // not found
+        done: 'Fini',
         download: 'Telechaje', // edit document kebab item and button text
         editDetails: 'Modifye detay yo', // edit document kebab item
         edit: 'Modifye', // edit account details
         continue: 'Kontinye',
         share: 'Pataje ak DHS', // share button
-        shared: 'Shared Documents', // (not found) label of shared tab on dashboard
-        upload: 'Upload a Document', // (not found)
-        uploadDocument: 'Upload Document', // not found
+        shared: 'Pataje Dokiman', // label of shared tab on dashboard
+        upload: 'Telechaje yon Dokiman',
+        uploadDocument: 'Telechaje Dokiman',
         view: 'Afichaj',
         save: 'Anrejistre',
       },
 
       // account settings page
       account: {
-        language: 'Language', // not found open language selector
+        language: 'Lang', // open language selector
         firstName: 'Non',
         whatIsYourFirstName: 'Ki non w?',
         lastName: 'Siyati',
@@ -2631,12 +2631,12 @@ export default merge(
         recipients: 'Recipients', // not found
 
         // placeholder text for the add recipient email field
-        addRecipientPlaceholder: 'Enter email address', // not found
+        addRecipientPlaceholder: 'Antre adrès imèl la',
 
         // step titles in the share flow
-        confirmTitle: 'Are you sure you want to share these Documents?', // not found
-        addRecipientsTitle: 'Who are you sharing these document(s) with?', // not found
-        selectFilesTitle: 'Select Documents', // not found
+        confirmTitle: 'Èske ou sèten ou vle pataje Dokiman sa yo?',
+        addRecipientsTitle: 'Ak kiyès ou pataje dokiman sa yo?',
+        selectFilesTitle: 'Dokiman ou Chwazi a',
 
         disclaimerTitle: 'Reminder', // not found
         shareDocumentDisclaimer: [
@@ -2651,15 +2651,15 @@ export default merge(
       },
 
       tabTitles: {
-        about: 'About', // not found
+        about: 'Konsènan',
         authorizing: 'Authorizing', // not found not important - used while logging in
-        dashboard: 'Dashboard', // not found
+        dashboard: 'Tablodbò',
         document: 'Dokiman', // used for document preview while page is loading, then changes to document title
-        faq: 'FAQ', // not found
-        shared: 'Shared', // not found used in share flow
-        sharedBy: 'Shared by', // not found used in share flow
-        termsOfUse: 'Terms of Use', // not found used while viewing TOU
-        welcome: 'Welcome', // not found displayed on the initial landing page
+        faq: 'Kesyon Moun Poze Souvan',
+        shared: 'Pataj', // used in share flow
+        sharedBy: 'Pataje yo pa', // used in share flow
+        termsOfUse: 'Kondisyon pou Itilizasyon', // not found used while viewing TOU
+        welcome: 'Byenvini', // not found displayed on the initial landing page
       },
 
       delegateAccess: {
@@ -2689,8 +2689,8 @@ export default merge(
 
       // Account Activity
       activity: {
-        accessed: 'accessed', // not found
-        added: 'added', // not afound
+        accessed: 'aksè',
+        added: 'ajoute',
         delegateInvitedClient: 'to manage and share documents on your behalf', // not found
         delegateInvitedCbo: 'to manage and share documents on their behalf', // not found
         delegateAcceptedClient:
@@ -2699,13 +2699,13 @@ export default merge(
           'can now manage and share documents on this account', // not found
         delegateDeletedClient: 'has been removed from your account', // not found
         delegateDeletedCbo: 'has been removed from this account ', // not found
-        deleted: 'deleted', // not found
-        edited: 'edited details of', // not found
-        file: 'file', // not found
-        files: 'documents', // not found
-        invited: 'invited', // not found
-        pageTitle: 'Account Activity', // not found
-        shared: 'shared', // not found
+        deleted: 'efase',
+        edited: 'modifye detay nan',
+        file: 'fichye',
+        files: 'dokiman yo',
+        invited: 'envitasyon',
+        pageTitle: 'Aktivite Kont lan',
+        shared: 'pataj',
         today: 'TODAY', // not found
         you: 'You', // not found
       },
@@ -2714,17 +2714,17 @@ export default merge(
       sharedFolder: {
         // empty state for list of shared folders
         noCollections: `Ou poko pataje okenn dokiman`, // message
-        shareFirstDocument: 'Share your first document', // (not found) call to action
+        shareFirstDocument: 'Pataje premye dokiman ou an', // call to action
 
         // empty state for an individual shared folder
-        emptyCollection: 'All documents have been removed from this folder.', // (not found) message
-        returnDashboard: 'Return to dashboard', // (not found) call to action
+        emptyCollection: 'Tout dokiman yo te retire nan fichye sa a.', // (not found) message
+        returnDashboard: 'Retounen nan tablodbò a', // call to action
 
         // empty state for list of clients who have shared collections with user
-        noSharedDocuments: "You haven't received any shared documents yet.", // not found
+        noSharedDocuments: 'Ou poko resevwa okenn dokiman ki pataje ak ou.',
 
         // title for collection table name column
-        collectionTableTitle: "Documents you've shared, organized by date", // not found
+        collectionTableTitle: 'Dokiman ou pataje yo, klase pa dat',
       },
 
       cbo: {
@@ -2755,9 +2755,9 @@ export default merge(
         noClientActionLabel: 'Not a government employee?', // not found
         noClientActionText:
           'If you are seeking permanent supportive housing, click here.', // not found
-        reorderFiles: 'Reorder Documents', // (not found) shown in agent view when downloading as PDF
+        reorderFiles: 'Re-klase dokiman yo', // shown in agent view when downloading as PDF
         selectClient: 'Seleksyone kliyan pou jwenn aksè pou w pataje dokiman.',
-        sharedBy: 'Shared By', // (not found) label in side bar
+        sharedBy: 'Pataje yo pa', //  label in side bar
         sharedFolderNameLabel: 'Name', // (not found) label of shared folder name column in agent view
         sharedWith: 'Pataje li ak:', // promt for agency email
       },
