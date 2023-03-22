@@ -1135,95 +1135,95 @@ export default merge(
       toast: {
         acceptedDelegateInvite: 'Delegate Access Accepted', // not found
         delegateRemoved: 'Client Removed', // not found
-        downloadLoadingState: 'Preparing Download', // not found
+        downloadLoadingState: '다운로드 준비 중',
         sharingComplete: '공유 완료',
-        uploading: 'Adding Document...', // not found displayed while a file is uploading
-        uploadComplete: 'Upload Complete', // not found
-        fileDeletedConfirmation: 'Document Deleted', // not found
-        fileTooLarge: 'Document too large (must be < 10MB)', // not found
+        uploading: '서류 추가 중...', // displayed while a file is uploading
+        uploadComplete: '업로드 완료',
+        fileDeletedConfirmation: '서류 삭제됨',
+        fileTooLarge: '문서가 너무 큼(10MB 미만이어야 함)',
       },
 
       login: {
         loginButton: '로그인하고 시작하십시오.',
         getStarted: {
-          client: 'Get Started', // not found
+          client: '시작하다',
           cityEmployee: 'City Employee Login', // not found
           cboWorker: 'CBO Worker Login', // not found
         },
-        welcomeTitle: 'Welcome', // not found
+        welcomeTitle: '환영',
         footerLogoAlt: 'Footer logo', // not found
       },
 
       navigation: {
-        about: 'About', // not found
+        about: '에 대한',
         account: 'My Account Managers', // not found
         settings: '내 프로필',
         settingsFirstRun:
-          'Welcome to #My File NYC&! Please answer a few questions about yourself to get started.', // not found
-        welcomeFirstRun: 'Welcome to My File NYC!', // not found
-        activity: 'Activity Log', // not found
-        back: 'Back', // not found
-        clients: 'Clients', // navigate back to agent view desktop not found
-        close: 'Close', // not found
-        dashboard: 'Dashboard', // not found
+          'My File NYC에 오신 것을 환영합니다! 시작하려면 본인에 대한 몇 가지 질문에 답하십시오.', // not found
+        welcomeFirstRun: 'My File NYC에 오신 것을 환영합니다!',
+        activity: '활동 로그',
+        back: '뒤쪽에',
+        clients: '클라이언트', // navigate back to agent view desktop not found
+        close: '뒤쪽에',
+        dashboard: '대시보드',
         faq: 'FAQ', // not found
-        loading: 'Loading', // not found
-        loggingIn: 'Logging in...', // not found
+        loading: '로드 중',
+        loggingIn: '로그인 중...',
         manageAccounts: 'Manage Accounts', // not found
-        signIn: 'Sign in', // not found
+        signIn: '로그인',
         signOut: '로그아웃',
-        switchAccount: 'Switch Clients', // not found
-        termsOfUse: 'Terms of Use', // not found
+        switchAccount: '클라이언트 전환',
+        termsOfUse: '이용약관',
         nycId: '로그인하는 데 문제가 있습니까? ',
       },
 
       document: {
         // This is the title of the confirmation dialog for deleting a document
-        deleteConfirmationTitle: 'Delete this document?', // not found
+        deleteConfirmationTitle: '이 서류를 삭제하시겠습니까?',
         // This is the body content of the confirmation dialog for deleting a document
         deleteConfirmationBody: `공유 액세스 권한이 있는 사람은 더 이상 이 서류를 볼 수 없습니다. 취소할 수 없습니다.`,
-        documentMenu: 'Document menu', // not found
+        documentMenu: '서류 메뉴',
         documentOptions: '옵션',
-        downloadZip: 'Download All', // not found
-        downloadPdf: 'Download PDF', // not found
+        downloadZip: '모두 다운로드',
+        downloadPdf: 'PDF 다운로드',
         description: '서류 설명', // displayed beneath the document and expands to show description (if any)
         editDetailsTitle: '세부 정보 편집', // page title on edit details screen
-        enterNamePlaceholder: 'Give this document a name', // not found
+        enterNamePlaceholder: '이 서류에 이름을 지정하십시오',
         enterDescriptionPlaceholder: '이 서류에 대해 설명해주십시오(선택사항)',
         documentName: '어떤 종류의 서류를 업로드했습니까?', // shown as a label on edit details screen
 
-        noDocuments: 'There are no documents saved to your account yet.', // not found shown on dashboard when there are no documents
-        previewOf: 'Preview of', // not found
-        uploadFirst: 'Add your first document', // not found label on the empty state upload button
-        thumbnailOf: 'Thumbnail of', // not found
+        noDocuments: '아직 계정에 저장된 서류가 없습니다.', // shown on dashboard when there are no documents
+        previewOf: 'Preview of',
+        uploadFirst: '첫 번째 서류 추가', // label on the empty state upload button
+        thumbnailOf: 'Thumbnail of',
         fileName: '서류 이름',
       },
 
       controls: {
-        accept: 'Accept', // (not found) eg. accept terms of use
-        add: 'Add', // (not found) eg. add a delegate
-        allFiles: 'Your Documents', // (not found) shown as tab label on the dashboard
+        accept: '수락', // eg. accept terms of use
+        add: '추가', // eg. add a delegate
+        allFiles: '내 서류', // shown as tab label on the dashboard
         cancel: '취소', // cancel button
-        confirm: 'Confirm', // not found
+        confirm: '확인',
         confirmDelete: '네, 삭제합니다',
-        declineAndLogOut: 'Decline & Log Out', // (not found) decline TOS button
+        declineAndLogOut: '거부 및 로그아웃', // decline TOS button
         delete: '삭제', // delete document kebab item
-        done: 'Done', // not found
+        done: '완료', // not found
         download: '다운로드', // edit document kebab item and button text
         editDetails: '세부 정보 편집', // edit document kebab item
         edit: '편집', // edit account details
         continue: '계속',
         share: 'DHS와 공유', // share button
-        shared: 'Shared Documents', // (not found) label of shared tab on dashboard
-        upload: 'Upload a Document', // (not found)
-        uploadDocument: 'Upload Document', // not found
+        shared: '공유 서류', // label of shared tab on dashboard
+        upload: '서류 업로드',
+        uploadDocument: '서류 업로드',
         view: '보기',
         save: '저장',
       },
 
       // account settings page
       account: {
-        language: 'Language', // not found open language selector
+        language: '언어', // open language selector
         firstName: '이름',
         whatIsYourFirstName: '귀하의 이름은 무엇입니까?',
         lastName: '성',
@@ -1246,12 +1246,12 @@ export default merge(
         recipients: 'Recipients', // not found
 
         // placeholder text for the add recipient email field
-        addRecipientPlaceholder: 'Enter email address', // not found
+        addRecipientPlaceholder: '이메일 주소 입력',
 
         // step titles in the share flow
-        confirmTitle: 'Are you sure you want to share these Documents?', // not found
-        addRecipientsTitle: 'Who are you sharing these document(s) with?', // not found
-        selectFilesTitle: 'Select Documents', // not found
+        confirmTitle: '이 서류를 공유하시겠습니까?',
+        addRecipientsTitle: '이 서류를 누구와 공유하고 있습니까?',
+        selectFilesTitle: '서류 선택',
 
         disclaimerTitle: 'Reminder', // not found
         shareDocumentDisclaimer: [
@@ -1266,15 +1266,15 @@ export default merge(
       },
 
       tabTitles: {
-        about: 'About', // not found
+        about: '소개',
         authorizing: 'Authorizing', // not found not important - used while logging in
-        dashboard: 'Dashboard', // not found
+        dashboard: '대시보드',
         document: 'Dokument', // used for document preview while page is loading, then changes to document title
-        faq: 'FAQ', // not found
-        shared: 'Shared', // not found used in share flow
-        sharedBy: 'Shared by', // not found used in share flow
-        termsOfUse: 'Terms of Use', // not found used while viewing TOU
-        welcome: 'Welcome', // not found displayed on the initial landing page
+        faq: 'FAQ',
+        shared: '공유됨', //  used in share flow
+        sharedBy: '공유자', //  used in share flow
+        termsOfUse: '이용약관', //  used while viewing TOU
+        welcome: '환영', //  displayed on the initial landing page
       },
 
       delegateAccess: {
@@ -1304,8 +1304,8 @@ export default merge(
 
       // Account Activity
       activity: {
-        accessed: 'accessed', // not found
-        added: 'added', // not afound
+        accessed: '액세스됨',
+        added: '추가됨',
         delegateInvitedClient: 'to manage and share documents on your behalf', // not found
         delegateInvitedCbo: 'to manage and share documents on their behalf', // not found
         delegateAcceptedClient:
@@ -1314,13 +1314,13 @@ export default merge(
           'can now manage and share documents on this account', // not found
         delegateDeletedClient: 'has been removed from your account', // not found
         delegateDeletedCbo: 'has been removed from this account ', // not found
-        deleted: 'deleted', // not found
-        edited: 'edited details of', // not found
-        file: 'file', // not found
-        files: 'documents', // not found
-        invited: 'invited', // not found
-        pageTitle: 'Account Activity', // not found
-        shared: 'shared', // not found
+        deleted: '삭제됨',
+        edited: '편집된 세부정보:',
+        file: '파일',
+        files: '서류',
+        invited: '초대됨',
+        pageTitle: '계정 활동',
+        shared: '공유됨',
         today: 'TODAY', // not found
         you: 'You', // not found
       },
@@ -1329,17 +1329,17 @@ export default merge(
       sharedFolder: {
         // empty state for list of shared folders
         noCollections: `아직 공유한 서류가 없습니다`, // message
-        shareFirstDocument: 'Share your first document', // (not found) call to action
+        shareFirstDocument: '첫 번째 서류 공유', // call to action
 
         // empty state for an individual shared folder
-        emptyCollection: 'All documents have been removed from this folder.', // (not found) message
-        returnDashboard: 'Return to dashboard', // (not found) call to action
+        emptyCollection: '이 폴더에서 모든 서류가 제거되었습니다.', // message
+        returnDashboard: '대시보드로 돌아가기', // call to action
 
         // empty state for list of clients who have shared collections with user
-        noSharedDocuments: "You haven't received any shared documents yet.", // not found
+        noSharedDocuments: '아직 공유 서류를 받지 못하셨습니다.', // not found
 
         // title for collection table name column
-        collectionTableTitle: "Documents you've shared, organized by date", // not found
+        collectionTableTitle: '공유한 서류를 날짜별로 정리', // not found
       },
 
       cbo: {
@@ -1370,9 +1370,9 @@ export default merge(
         noClientActionLabel: 'Not a government employee?', // not found
         noClientActionText:
           'If you are seeking permanent supportive housing, click here.', // not found
-        reorderFiles: 'Reorder Documents', // (not found) shown in agent view when downloading as PDF
+        reorderFiles: '서류 재정렬', // shown in agent view when downloading as PDF
         selectClient: '공유 문서에 액세스할 고객 선택',
-        sharedBy: 'Shared By', // (not found) label in side bar
+        sharedBy: '공유자', // label in side bar
         sharedFolderNameLabel: 'Name', // (not found) label of shared folder name column in agent view
         sharedWith: '공유 대상:', // promt for agency email
       },
