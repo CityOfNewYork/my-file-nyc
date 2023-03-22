@@ -2801,95 +2801,95 @@ export default merge(
       toast: {
         acceptedDelegateInvite: 'Delegate Access Accepted', // not found
         delegateRemoved: 'Client Removed', // not found
-        downloadLoadingState: 'Preparing Download', // not found
+        downloadLoadingState: '準備下載',
         sharingComplete: '分享完成',
-        uploading: 'Adding Document...', // not found displayed while a file is uploading
-        uploadComplete: 'Upload Complete', // not found
-        fileDeletedConfirmation: 'Document Deleted', // not found
-        fileTooLarge: 'Document too large (must be < 10MB)', // not found
+        uploading: '正在新增文件…', // displayed while a file is uploading
+        uploadComplete: '上傳完成',
+        fileDeletedConfirmation: '文件已刪除',
+        fileTooLarge: '文檔太大（必須 < 10MB）',
       },
 
       login: {
         loginButton: '登錄並開始使用',
         getStarted: {
-          client: 'Get Started', // not found
+          client: '開始',
           cityEmployee: 'City Employee Login', // not found
           cboWorker: 'CBO Worker Login', // not found
         },
-        welcomeTitle: 'Welcome', // not found
+        welcomeTitle: '歡迎',
         footerLogoAlt: 'Footer logo', // not found
       },
 
       navigation: {
-        about: 'About', // not found
+        about: '關於',
         account: 'My Account Managers', // not found
         settings: '我的個人資料',
         settingsFirstRun:
-          'Welcome to #My File NYC&! Please answer a few questions about yourself to get started.', // not found
-        welcomeFirstRun: 'Welcome to My File NYC!', // not found
-        activity: 'Activity Log', // not found
-        back: 'Back', // not found
-        clients: 'Clients', // navigate back to agent view desktop not found
-        close: 'Close', // not found
-        dashboard: 'Dashboard', // not found
-        faq: 'FAQ', // not found
-        loading: 'Loading', // not found
-        loggingIn: 'Logging in...', // not found
+          '歡迎使用 My File NYC！開始前，請先回答幾個關於您本人的問題。',
+        welcomeFirstRun: '歡迎使用 My File NYC！',
+        activity: '活動記錄',
+        back: '後退',
+        clients: '客戶', // navigate back to agent view desktop not found
+        close: '關閉',
+        dashboard: '儀表板',
+        faq: '常見問題集',
+        loading: '載入',
+        loggingIn: '正在登入…',
         manageAccounts: 'Manage Accounts', // not found
-        signIn: 'Sign in', // not found
+        signIn: '登入',
         signOut: '登出',
-        switchAccount: 'Switch Clients', // not found
-        termsOfUse: 'Terms of Use', // not found
+        switchAccount: '切換客戶端',
+        termsOfUse: '使用條款',
         nycId: '登錄遇到困難?',
       },
 
       document: {
         // This is the title of the confirmation dialog for deleting a document
-        deleteConfirmationTitle: 'Delete this document?', // not found
+        deleteConfirmationTitle: '刪除此文件？',
         // This is the body content of the confirmation dialog for deleting a document
         deleteConfirmationBody: `任何擁有共享權限的人將不再能夠查看這份文件。無法撤銷。`,
-        documentMenu: 'Document menu', // not found
+        documentMenu: '文件功能表',
         documentOptions: '選項',
-        downloadZip: 'Download All', // not found
-        downloadPdf: 'Download PDF', // not found
+        downloadZip: '全部下載',
+        downloadPdf: '下載 PDF',
         description: '文件描述', // displayed beneath the document and expands to show description (if any)
         editDetailsTitle: '編輯詳細資訊', // page title on edit details screen
-        enterNamePlaceholder: 'Give this document a name', // not found
+        enterNamePlaceholder: '為此文件命名',
         enterDescriptionPlaceholder: '說明該文件（選填)',
         documentName: '您上傳了那種類型的文件？', // shown as a label on edit details screen
 
-        noDocuments: 'There are no documents saved to your account yet.', // not found shown on dashboard when there are no documents
+        noDocuments: '您的帳戶中還沒有儲存任何文件。', // shown on dashboard when there are no documents
         previewOf: 'Preview of', // not found
-        uploadFirst: 'Add your first document', // not found label on the empty state upload button
+        uploadFirst: '新增您的第一個文件', // label on the empty state upload button
         thumbnailOf: 'Thumbnail of', // not found
         fileName: '文件名稱',
       },
 
       controls: {
-        accept: 'Accept', // (not found) eg. accept terms of use
-        add: 'Add', // (not found) eg. add a delegate
-        allFiles: 'Your Documents', // (not found) shown as tab label on the dashboard
+        accept: '接受', //  eg. accept terms of use
+        add: '新增', //  eg. add a delegate
+        allFiles: '您的文件', // shown as tab label on the dashboard
         cancel: '取消', // cancel button
-        confirm: 'Confirm', // not found
+        confirm: '確認',
         confirmDelete: '是的，刪除',
-        declineAndLogOut: 'Decline & Log Out', // (not found) decline TOS button
+        declineAndLogOut: '拒絕並登出', // decline TOS button
         delete: '刪除', // delete document kebab item
-        done: 'Done', // not found
+        done: '完成',
         download: '下載', // edit document kebab item and button text
         editDetails: '編輯詳細資訊', // edit document kebab item
         edit: '編輯', // edit account details
         continue: '繼續',
         share: '分享至 DHS', // share button
-        shared: 'Shared Documents', // (not found) label of shared tab on dashboard
-        upload: 'Upload a Document', // (not found)
-        uploadDocument: 'Upload Document', // not found
+        shared: '分享文件', // label of shared tab on dashboard
+        upload: '上傳文件',
+        uploadDocument: '上傳文件',
         view: '查看',
         save: '儲存',
       },
 
       // account settings page
       account: {
-        language: 'Language', // not found open language selector
+        language: '語言', // not found open language selector
         firstName: '名字',
         whatIsYourFirstName: '您的名字是什麼？',
         lastName: '姓氏',
@@ -2912,12 +2912,12 @@ export default merge(
         recipients: 'Recipients', // not found
 
         // placeholder text for the add recipient email field
-        addRecipientPlaceholder: 'Enter email address', // not found
+        addRecipientPlaceholder: '輸入電子郵件地址',
 
         // step titles in the share flow
-        confirmTitle: 'Are you sure you want to share these Documents?', // not found
-        addRecipientsTitle: 'Who are you sharing these document(s) with?', // not found
-        selectFilesTitle: 'Select Documents', // not found
+        confirmTitle: '確定要分享這些文件嗎？',
+        addRecipientsTitle: '您要與誰分享這些文件？',
+        selectFilesTitle: '選擇文件',
 
         disclaimerTitle: 'Reminder', // not found
         shareDocumentDisclaimer: [
@@ -2932,15 +2932,15 @@ export default merge(
       },
 
       tabTitles: {
-        about: 'About', // not found
+        about: '關於',
         authorizing: 'Authorizing', // not found not important - used while logging in
-        dashboard: 'Dashboard', // not found
+        dashboard: '儀表板',
         document: '文件', // used for document preview while page is loading, then changes to document title
-        faq: 'FAQ', // not found
-        shared: 'Shared', // not found used in share flow
-        sharedBy: 'Shared by', // not found used in share flow
-        termsOfUse: 'Terms of Use', // not found used while viewing TOU
-        welcome: 'Welcome', // not found displayed on the initial landing page
+        faq: '常見問題集',
+        shared: '已分享', // used in share flow
+        sharedBy: '分享者：', //  used in share flow
+        termsOfUse: '使用條款', // not found used while viewing TOU
+        welcome: '歡迎', // displayed on the initial landing page
       },
 
       delegateAccess: {
@@ -2970,8 +2970,8 @@ export default merge(
 
       // Account Activity
       activity: {
-        accessed: 'accessed', // not found
-        added: 'added', // not afound
+        accessed: '已存取',
+        added: '已新增',
         delegateInvitedClient: 'to manage and share documents on your behalf', // not found
         delegateInvitedCbo: 'to manage and share documents on their behalf', // not found
         delegateAcceptedClient:
@@ -2980,13 +2980,13 @@ export default merge(
           'can now manage and share documents on this account', // not found
         delegateDeletedClient: 'has been removed from your account', // not found
         delegateDeletedCbo: 'has been removed from this account ', // not found
-        deleted: 'deleted', // not found
-        edited: 'edited details of', // not found
-        file: 'file', // not found
-        files: 'documents', // not found
-        invited: 'invited', // not found
-        pageTitle: 'Account Activity', // not found
-        shared: 'shared', // not found
+        deleted: '已刪除',
+        edited: '已編輯詳細資訊：',
+        file: '檔案',
+        files: '文件',
+        invited: '已邀請',
+        pageTitle: '帳戶活動',
+        shared: '已分享',
         today: 'TODAY', // not found
         you: 'You', // not found
       },
@@ -2995,17 +2995,16 @@ export default merge(
       sharedFolder: {
         // empty state for list of shared folders
         noCollections: `您還未分享任何文件`, // message
-        shareFirstDocument: 'Share your first document', // (not found) call to action
+        shareFirstDocument: '分享您的第一個文件', // call to action
 
         // empty state for an individual shared folder
-        emptyCollection: 'All documents have been removed from this folder.', // (not found) message
-        returnDashboard: 'Return to dashboard', // (not found) call to action
+        emptyCollection: '所有文件已從此資料夾中移除', // message
+        returnDashboard: '回到儀表板', // call to action
 
         // empty state for list of clients who have shared collections with user
-        noSharedDocuments: "You haven't received any shared documents yet.", // not found
-
+        noSharedDocuments: '您尚未收到任何分享的文件',
         // title for collection table name column
-        collectionTableTitle: "Documents you've shared, organized by date", // not found
+        collectionTableTitle: '您已分享的文件，依照日期排序', // not found
       },
 
       cbo: {
@@ -3036,9 +3035,9 @@ export default merge(
         noClientActionLabel: 'Not a government employee?', // not found
         noClientActionText:
           'If you are seeking permanent supportive housing, click here.', // not found
-        reorderFiles: 'Reorder Documents', // (not found) shown in agent view when downloading as PDF
+        reorderFiles: '重新排序文件', // shown in agent view when downloading as PDF
         selectClient: '選擇客戶以存取分享文件',
-        sharedBy: 'Shared By', // (not found) label in side bar
+        sharedBy: '分享者：', // label in side bar
         sharedFolderNameLabel: 'Name', // (not found) label of shared folder name column in agent view
         sharedWith: '分享文件至:', // promt for agency email
       },
