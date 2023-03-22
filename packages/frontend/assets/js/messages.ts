@@ -1970,95 +1970,95 @@ export default merge(
       toast: {
         acceptedDelegateInvite: 'Delegate Access Accepted', // not found
         delegateRemoved: 'Client Removed', // not found
-        downloadLoadingState: 'Preparing Download', // not found
+        downloadLoadingState: 'ডাউনলোডের প্রস্তুতি নিচ্ছে',
         sharingComplete: 'শেয়ার করা সম্পূর্ণ হয়েছে',
-        uploading: 'Adding Document...', // not found displayed while a file is uploading
-        uploadComplete: 'Upload Complete', // not found
-        fileDeletedConfirmation: 'Document Deleted', // not found
-        fileTooLarge: 'Document too large (must be < 10MB)', // not found
+        uploading: 'নথি যোগ করা হচ্ছে...', // displayed while a file is uploading
+        uploadComplete: 'আপলোড সম্পূর্ণ',
+        fileDeletedConfirmation: 'নথি ডিলিট কর হয়েছে৷',
+        fileTooLarge: 'নথিটি খুব বড় (অবশ্যই <10MB হতে হবে)',
       },
 
       login: {
         loginButton: 'শুরু করার জন্য লগইন করুন৷',
         getStarted: {
-          client: 'Get Started', // not found
+          client: 'এবার শুরু করা যাক',
           cityEmployee: 'City Employee Login', // not found
           cboWorker: 'CBO Worker Login', // not found
         },
-        welcomeTitle: 'Welcome', // not found
+        welcomeTitle: 'স্বাগত',
         footerLogoAlt: 'Footer logo', // not found
       },
 
       navigation: {
-        about: 'About', // not found
+        about: 'সম্পর্কিত',
         account: 'My Account Managers', // not found
         settings: 'আমার প্রোফাইল',
         settingsFirstRun:
-          'Welcome to #My File NYC&! Please answer a few questions about yourself to get started.', // not found
-        welcomeFirstRun: 'Welcome to My File NYC!', // not found
-        activity: 'Activity Log', // not found
-        back: 'Back', // not found
-        clients: 'Clients', // navigate back to agent view desktop not found
-        close: 'Close', // not found
-        dashboard: 'Dashboard', // not found
+          'স্বাগতম মাই ফাইল NYC তে! শুরু করতে দয়া করে নিজের সম্পর্কে কয়েকটি প্রশ্নের উত্তর দিন।.',
+        welcomeFirstRun: 'স্বাগতম মাই ফাইল NYC তে!',
+        activity: 'অ্যাকটিভিটি লগ',
+        back: 'পেছনে',
+        clients: 'ক্লায়েন্ট',
+        close: 'বন্ধ করুন',
+        dashboard: 'ড্যাশবোর্ড',
         faq: 'FAQ', // not found
-        loading: 'Loading', // not found
-        loggingIn: 'Logging in...', // not found
+        loading: 'লোড হচ্ছে',
+        loggingIn: 'লগ ইন হচ্ছে…',
         manageAccounts: 'Manage Accounts', // not found
-        signIn: 'Sign in', // not found
+        signIn: 'সাইন ইন করুন',
         signOut: 'সাইন আউট',
-        switchAccount: 'Switch Clients', // not found
-        termsOfUse: 'Terms of Use', // not found
+        switchAccount: 'ক্লায়েন্ট স্যুইচ করুন',
+        termsOfUse: 'ব্যবহারের শর্ত',
         nycId: 'লগইন করতে সমস্যা হচ্ছে?',
       },
 
       document: {
         // This is the title of the confirmation dialog for deleting a document
-        deleteConfirmationTitle: 'Delete this document?', // not found
+        deleteConfirmationTitle: 'এই নথিটি ডিলিট করবো?',
         // This is the body content of the confirmation dialog for deleting a document
         deleteConfirmationBody: `অ্যাক্সেস শেয়ার করা হয়েছে এমন কেউ আর এই নথিটি দেখতে পারবে না৷ এটি আর অসম্পাদিত করা যাবে না৷`,
-        documentMenu: 'Document menu', // not found
+        documentMenu: 'নথি মেনু',
         documentOptions: 'বিকল্প',
-        downloadZip: 'Download All', // not found
-        downloadPdf: 'Download PDF', // not found
+        downloadZip: 'সবগুলো ডাউনলোড করুন',
+        downloadPdf: 'PDF ডাউনলোড করুন',
         description: 'নথির বিবরণ', // displayed beneath the document and expands to show description (if any)
         editDetailsTitle: 'বিবরণ সম্পাদনা করুন', // page title on edit details screen
-        enterNamePlaceholder: 'Give this document a name', // not found
+        enterNamePlaceholder: 'এই নথিটির একটি নাম দিন',
         enterDescriptionPlaceholder: 'এই নথিটিকে বর্ণনা করুন (ঐচ্ছিক)',
         documentName: 'কোন ধরনের নথি আপনি আপলোড করেছেন?', // shown as a label on edit details screen
 
-        noDocuments: 'There are no documents saved to your account yet.', // not found shown on dashboard when there are no documents
+        noDocuments: 'আপনার অ্যাকাউন্টে এখনও কোনো নথি সংরক্ষিত নেই।.', // not found shown on dashboard when there are no documents
         previewOf: 'Preview of', // not found
-        uploadFirst: 'Add your first document', // not found label on the empty state upload button
+        uploadFirst: 'আপনার প্রথম নথি যোগ করুন', // label on the empty state upload button
         thumbnailOf: 'Thumbnail of', // not found
         fileName: 'নথির নাম',
       },
 
       controls: {
-        accept: 'Accept', // (not found) eg. accept terms of use
-        add: 'Add', // (not found) eg. add a delegate
-        allFiles: 'Your Documents', // (not found) shown as tab label on the dashboard
+        accept: 'গ্রহণ করছেন', // eg. accept terms of use
+        add: 'যোগ করুন', //  eg. add a delegate
+        allFiles: 'আপনার নথি', // shown as tab label on the dashboard
         cancel: 'বাতিল করুন', // cancel button
-        confirm: 'Confirm', // not found
+        confirm: 'নিশ্চিত করুন',
         confirmDelete: 'হ্যাঁ, ডিলিট করুন',
-        declineAndLogOut: 'Decline & Log Out', // (not found) decline TOS button
+        declineAndLogOut: 'প্রত্যাখ্যান করুন এবং লগ আউট করুন', // decline TOS button
         delete: 'ডিলিট করুন', // delete document kebab item
-        done: 'Done', // not found
+        done: 'সম্পন্ন হয়েছে',
         download: 'ডাউনলোড করুন', // edit document kebab item and button text
         editDetails: 'বিবরণ সম্পাদনা করুন', // edit document kebab item
         edit: 'সম্পাদনা করুন', // edit account details
         continue: 'চালিয়ে যান',
         share: 'DHS এর সাথে শেয়ার করুন', // share button
-        shared: 'Shared Documents', // (not found) label of shared tab on dashboard
-        upload: 'Upload a Document', // (not found)
-        uploadDocument: 'Upload Document', // not found
+        shared: 'শেয়ার করা নথি', //  label of shared tab on dashboard
+        upload: 'একটি নথি আপলোড করুন',
+        uploadDocument: 'নথি আপলোড করুন',
         view: 'দেখুন',
         save: 'সেভ করুন',
       },
 
       // account settings page
       account: {
-        language: 'Language', // not found open language selector
+        language: 'ভাষা', // not found open language selector
         firstName: 'নাম',
         whatIsYourFirstName: 'আপনার নাম কি?',
         lastName: 'পদবি',
@@ -2081,12 +2081,12 @@ export default merge(
         recipients: 'Recipients', // not found
 
         // placeholder text for the add recipient email field
-        addRecipientPlaceholder: 'Enter email address', // not found
+        addRecipientPlaceholder: 'ইমেল অ্যাড্রেস দিন',
 
         // step titles in the share flow
-        confirmTitle: 'Are you sure you want to share these Documents?', // not found
-        addRecipientsTitle: 'Who are you sharing these document(s) with?', // not found
-        selectFilesTitle: 'Select Documents', // not found
+        confirmTitle: 'আপনি কি এই নথিগুলি শেয়ার করার বিষয়ে নিশ্চিত?',
+        addRecipientsTitle: 'আপনি কার সাথে এই নথি(গুলি) শেয়ার করছেন?',
+        selectFilesTitle: 'নথি নির্বাচন করুন',
 
         disclaimerTitle: 'Reminder', // not found
         shareDocumentDisclaimer: [
@@ -2101,15 +2101,15 @@ export default merge(
       },
 
       tabTitles: {
-        about: 'About', // not found
+        about: 'সম্পর্কে',
         authorizing: 'Authorizing', // not found not important - used while logging in
-        dashboard: 'Dashboard', // not found
+        dashboard: 'ড্যাশবোর্ড',
         document: 'দলিল', // used for document preview while page is loading, then changes to document title
-        faq: 'FAQ', // not found
-        shared: 'Shared', // not found used in share flow
-        sharedBy: 'Shared by', // not found used in share flow
-        termsOfUse: 'Terms of Use', // not found used while viewing TOU
-        welcome: 'Welcome', // not found displayed on the initial landing page
+        faq: 'FAQ',
+        shared: 'শেয়ার করা হয়েছে', // used in share flow
+        sharedBy: 'দ্বারা শেয়ার করা', // used in share flow
+        termsOfUse: 'ব্যবহারের শর্ত', // used while viewing TOU
+        welcome: 'স্বাগত', // displayed on the initial landing page
       },
 
       delegateAccess: {
@@ -2139,8 +2139,8 @@ export default merge(
 
       // Account Activity
       activity: {
-        accessed: 'accessed', // not found
-        added: 'added', // not afound
+        accessed: 'অ্যাক্সেস করা হয়েছে',
+        added: 'যোগ করা হয়েছে',
         delegateInvitedClient: 'to manage and share documents on your behalf', // not found
         delegateInvitedCbo: 'to manage and share documents on their behalf', // not found
         delegateAcceptedClient:
@@ -2149,13 +2149,13 @@ export default merge(
           'can now manage and share documents on this account', // not found
         delegateDeletedClient: 'has been removed from your account', // not found
         delegateDeletedCbo: 'has been removed from this account ', // not found
-        deleted: 'deleted', // not found
-        edited: 'edited details of', // not found
-        file: 'file', // not found
-        files: 'documents', // not found
-        invited: 'invited', // not found
-        pageTitle: 'Account Activity', // not found
-        shared: 'shared', // not found
+        deleted: 'ডিলিট করুন',
+        edited: 'বিবরণ এডিট করুন',
+        file: 'ফাইল',
+        files: 'নথি',
+        invited: 'আমন্ত্রিত',
+        pageTitle: 'অ্যাকাউন্ট অ্যাক্টিভিটি',
+        shared: 'শেয়ার করা হয়েছে',
         today: 'TODAY', // not found
         you: 'You', // not found
       },
@@ -2164,17 +2164,17 @@ export default merge(
       sharedFolder: {
         // empty state for list of shared folders
         noCollections: `আপনি এখনও পর্যন্ত কোনো নথি শেয়ার করেননি`, // message
-        shareFirstDocument: 'Share your first document', // (not found) call to action
+        shareFirstDocument: 'আপনার প্রথম নথি শেয়ার করুন', // call to action
 
         // empty state for an individual shared folder
-        emptyCollection: 'All documents have been removed from this folder.', // (not found) message
-        returnDashboard: 'Return to dashboard', // (not found) call to action
+        emptyCollection: 'সমস্ত নথি এই ফোল্ডার থেকে সরানো হয়েছে', //  message
+        returnDashboard: 'ড্যাশবোর্ডে ফিরে যান', // call to action
 
         // empty state for list of clients who have shared collections with user
-        noSharedDocuments: "You haven't received any shared documents yet.", // not found
+        noSharedDocuments: 'আপনি এখনও কোনো শেয়ার করা নথি পাননি',
 
         // title for collection table name column
-        collectionTableTitle: "Documents you've shared, organized by date", // not found
+        collectionTableTitle: 'আপনার শেয়ার করা নথিগুলি, তারিখ অনুসারে সংগঠিত',
       },
 
       cbo: {
@@ -2205,10 +2205,10 @@ export default merge(
         noClientActionLabel: 'Not a government employee?', // not found
         noClientActionText:
           'If you are seeking permanent supportive housing, click here.', // not found
-        reorderFiles: 'Reorder Documents', // (not found) shown in agent view when downloading as PDF
+        reorderFiles: 'নথিগুলি পুনরায় সাজান', // shown in agent view when downloading as PDF
         selectClient:
           'শেয়ার করা নথিপত্র অ্যাক্সেস করতে ক্লায়েন্ট নির্বাচন করুন',
-        sharedBy: 'Shared By', // (not found) label in side bar
+        sharedBy: 'দ্বারা শেয়ার করা', //  label in side bar
         sharedFolderNameLabel: 'Name', // (not found) label of shared folder name column in agent view
         sharedWith: 'যার সাথে শেয়ার করা হয়েছে:', // promt for agency email
       },
