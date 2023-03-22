@@ -33,12 +33,15 @@
     <v-dialog
       v-model="showSelectionDialog"
       max-width="fit-content"
-      scrollable="false"
       @click:outside="closeDialog"
     >
       <template>
         <v-container>
-          <UploadButtonFileInput :on-file-input="onFileInput" :reset="reset" />
+          <UploadButtonFileInput
+            :on-file-input="onFileInput"
+            :close-selection-dialog="closeSelectionDialog"
+            :reset="reset"
+          />
         </v-container>
       </template>
     </v-dialog>
@@ -471,6 +474,11 @@ export default class UploadButton extends Vue {
 
   openFileInput() {
     ;(this as any).$refs.fileInput.click()
+  }
+
+  closeSelectionDialog() {
+    this.showDialog = false
+    this.showSelectionDialog = false
   }
 
   reset() {
