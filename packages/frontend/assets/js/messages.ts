@@ -2249,95 +2249,96 @@ export default merge(
       toast: {
         acceptedDelegateInvite: 'Delegate Access Accepted', // not found
         delegateRemoved: 'Client Removed', // not found
-        downloadLoadingState: 'Preparing Download', // not found
+        downloadLoadingState: 'Przygotowywanie pobierania',
         sharingComplete: 'Pomyślnie udostępniono',
-        uploading: 'Adding Document...', // not found displayed while a file is uploading
-        uploadComplete: 'Upload Complete', // not found
-        fileDeletedConfirmation: 'Document Deleted', // not found
-        fileTooLarge: 'Document too large (must be < 10MB)', // not found
+        uploading: 'Dodawanie dokumentu…', // displayed while a file is uploading
+        uploadComplete: 'Pobieranie zostało ukończone',
+        fileDeletedConfirmation: 'Dokument został usunięty',
+        fileTooLarge: 'Dokument za duży (musi być < 10 MB)',
       },
 
       login: {
         loginButton: 'Zaloguj się i rozpocznij',
         getStarted: {
-          client: 'Get Started', // not found
+          client: 'Zaczynaj',
           cityEmployee: 'City Employee Login', // not found
           cboWorker: 'CBO Worker Login', // not found
         },
-        welcomeTitle: 'Welcome', // not found
+        welcomeTitle: 'Powitanie',
         footerLogoAlt: 'Footer logo', // not found
       },
 
       navigation: {
-        about: 'About', // not found
+        about: 'O',
         account: 'My Account Managers', // not found
         settings: 'Mój profil',
         settingsFirstRun:
-          'Welcome to #My File NYC&! Please answer a few questions about yourself to get started.', // not found
-        welcomeFirstRun: 'Welcome to My File NYC!', // not found
-        activity: 'Activity Log', // not found
-        back: 'Back', // not found
-        clients: 'Clients', // navigate back to agent view desktop not found
-        close: 'Close', // not found
-        dashboard: 'Dashboard', // not found
-        faq: 'FAQ', // not found
-        loading: 'Loading', // not found
-        loggingIn: 'Logging in...', // not found
+          'Witamy w My File NYC! Prosimy o udzielenie odpowiedzi na kilka pytań wstępnych na swój temat.',
+        welcomeFirstRun: 'Witamy w My File NYC!',
+        activity: 'Dzienniczek działań',
+        back: 'Z powrotem',
+        clients: 'Klienci', // navigate back to agent view desktop not found
+        close: 'Zamknij',
+        dashboard: 'Pulpit nawigacyjny',
+        faq: 'Najczęściej zadawane pytania',
+        loading: 'Ładowanie',
+        loggingIn: 'Trwa logowanie…',
         manageAccounts: 'Manage Accounts', // not found
-        signIn: 'Sign in', // not found
+        signIn: 'Zarejestruj się',
         signOut: 'Wyloguj się',
-        switchAccount: 'Switch Clients', // not found
-        termsOfUse: 'Terms of Use', // not found
+        switchAccount: 'Zmień klientów',
+        termsOfUse: 'Warunki użytkowania',
         nycId: 'Masz problemy z zalogowaniem się?',
       },
 
       document: {
         // This is the title of the confirmation dialog for deleting a document
-        deleteConfirmationTitle: 'Delete this document?', // not found
+        deleteConfirmationTitle: 'Czy chcesz usunąć ten dokument?', // not found
         // This is the body content of the confirmation dialog for deleting a document
         deleteConfirmationBody: `Żadna osoba ze współdzielonym dostępem nie będzie mogła dłużej przeglądać tego dokumentu. Tej zmiany nie da się cofnąć.`,
-        documentMenu: 'Document menu', // not found
+        documentMenu: 'Menu dokumentu',
         documentOptions: 'Dostępne opcje',
-        downloadZip: 'Download All', // not found
-        downloadPdf: 'Download PDF', // not found
+        downloadZip: 'Pobierz wszystko',
+        downloadPdf: 'Pobierz plik PDF',
         description: 'Opis dokumentu', // displayed beneath the document and expands to show description (if any)
         editDetailsTitle: 'Edytuj szczegóły', // page title on edit details screen
-        enterNamePlaceholder: 'Give this document a name', // not found
+        enterNamePlaceholder: 'Nadaj temu dokumentowi nazwę',
         enterDescriptionPlaceholder: 'Opisz ten dokument (opcjonalnie)',
         documentName: 'Jaki dokument został przesłany?', // shown as a label on edit details screen
 
-        noDocuments: 'There are no documents saved to your account yet.', // not found shown on dashboard when there are no documents
+        noDocuments:
+          'Na Twoim koncie nie ma jeszcze żadnych zapisanych dokumentów.', // shown on dashboard when there are no documents
         previewOf: 'Preview of', // not found
-        uploadFirst: 'Add your first document', // not found label on the empty state upload button
+        uploadFirst: 'Dodaj pierwszy dokument', // label on the empty state upload button
         thumbnailOf: 'Thumbnail of', // not found
         fileName: 'Nazwa dokumentu',
       },
 
       controls: {
-        accept: 'Accept', // (not found) eg. accept terms of use
-        add: 'Add', // (not found) eg. add a delegate
-        allFiles: 'Your Documents', // (not found) shown as tab label on the dashboard
+        accept: 'Akceptuj', // eg. accept terms of use
+        add: 'Dodaj', // eg. add a delegate
+        allFiles: 'Twoje dokumenty', // shown as tab label on the dashboard
         cancel: 'Anuluj', // cancel button
-        confirm: 'Confirm', // not found
+        confirm: 'Zatwierdź',
         confirmDelete: 'Tak, usuń',
-        declineAndLogOut: 'Decline & Log Out', // (not found) decline TOS button
+        declineAndLogOut: 'Odrzuć i wyloguj się', // decline TOS button
         delete: 'Usuń', // delete document kebab item
-        done: 'Done', // not found
+        done: 'Gotowe',
         download: 'Pobierz', // edit document kebab item and button text
         editDetails: 'Edytuj szczegóły', // edit document kebab item
         edit: 'Edytuj', // edit account details
         continue: 'Kontynuuj',
         share: 'Udostępnij DHS', // share button
-        shared: 'Shared Documents', // (not found) label of shared tab on dashboard
-        upload: 'Upload a Document', // (not found)
-        uploadDocument: 'Upload Document', // not found
+        shared: 'Udostępnione dokumenty', // label of shared tab on dashboard
+        upload: 'Prześlij dokument',
+        uploadDocument: 'Prześlij dokument',
         view: 'Wyświetl',
         save: 'Zapisz',
       },
 
       // account settings page
       account: {
-        language: 'Language', // not found open language selector
+        language: 'Język', // not found open language selector
         firstName: 'Imię',
         whatIsYourFirstName: 'Podaj swoje imię.',
         lastName: 'Nazwisko',
@@ -2360,12 +2361,12 @@ export default merge(
         recipients: 'Recipients', // not found
 
         // placeholder text for the add recipient email field
-        addRecipientPlaceholder: 'Enter email address', // not found
+        addRecipientPlaceholder: 'Wprowadź adres e-mail',
 
         // step titles in the share flow
-        confirmTitle: 'Are you sure you want to share these Documents?', // not found
-        addRecipientsTitle: 'Who are you sharing these document(s) with?', // not found
-        selectFilesTitle: 'Select Documents', // not found
+        confirmTitle: 'Czy na pewno chcesz udostępnić te dokumenty?',
+        addRecipientsTitle: 'Komu udostępniasz te dokumenty?',
+        selectFilesTitle: 'Wybierz dokumenty',
 
         disclaimerTitle: 'Reminder', // not found
         shareDocumentDisclaimer: [
@@ -2380,15 +2381,15 @@ export default merge(
       },
 
       tabTitles: {
-        about: 'About', // not found
-        authorizing: 'Authorizing', // not found not important - used while logging in
-        dashboard: 'Dashboard', // not found
+        about: 'Informacje',
+        authorizing: 'Authorizing', // not important - used while logging in
+        dashboard: 'Pulpit nawigacyjny',
         document: 'Dokument', // used for document preview while page is loading, then changes to document title
-        faq: 'FAQ', // not found
-        shared: 'Shared', // not found used in share flow
-        sharedBy: 'Shared by', // not found used in share flow
-        termsOfUse: 'Terms of Use', // not found used while viewing TOU
-        welcome: 'Welcome', // not found displayed on the initial landing page
+        faq: 'Najczęściej zadawane pytania',
+        shared: 'Udostępniono', // used in share flow
+        sharedBy: 'Udostępniono przez', // used in share flow
+        termsOfUse: 'Warunki użytkowania', // used while viewing TOU
+        welcome: 'Powitanie', // displayed on the initial landing page
       },
 
       delegateAccess: {
@@ -2418,8 +2419,8 @@ export default merge(
 
       // Account Activity
       activity: {
-        accessed: 'accessed', // not found
-        added: 'added', // not afound
+        accessed: 'Uzyskano dostęp',
+        added: 'Dodano',
         delegateInvitedClient: 'to manage and share documents on your behalf', // not found
         delegateInvitedCbo: 'to manage and share documents on their behalf', // not found
         delegateAcceptedClient:
@@ -2428,13 +2429,13 @@ export default merge(
           'can now manage and share documents on this account', // not found
         delegateDeletedClient: 'has been removed from your account', // not found
         delegateDeletedCbo: 'has been removed from this account ', // not found
-        deleted: 'deleted', // not found
-        edited: 'edited details of', // not found
-        file: 'file', // not found
-        files: 'documents', // not found
-        invited: 'invited', // not found
-        pageTitle: 'Account Activity', // not found
-        shared: 'shared', // not found
+        deleted: 'Usunięto',
+        edited: 'Edytowano szczegóły',
+        file: 'Plik',
+        files: 'Dokumenty',
+        invited: 'Zaproszono',
+        pageTitle: 'Aktywność konta',
+        shared: 'Udostępniono',
         today: 'TODAY', // not found
         you: 'You', // not found
       },
@@ -2443,17 +2444,17 @@ export default merge(
       sharedFolder: {
         // empty state for list of shared folders
         noCollections: `Żadne dokumenty nie zostały jeszcze udostępnione`, // message
-        shareFirstDocument: 'Share your first document', // (not found) call to action
+        shareFirstDocument: 'Udostępnij swój pierwszy dokument', // call to action
 
         // empty state for an individual shared folder
-        emptyCollection: 'All documents have been removed from this folder.', // (not found) message
-        returnDashboard: 'Return to dashboard', // (not found) call to action
+        emptyCollection: 'Wszystkie dokumenty zostały usunięte z tego folderu.', // (not found) message
+        returnDashboard: 'Powrót do pulpitu nawigacyjnego', // call to action
 
         // empty state for list of clients who have shared collections with user
-        noSharedDocuments: "You haven't received any shared documents yet.", // not found
+        noSharedDocuments: 'Nie otrzymano jeszcze żadnych dokumentów.', // not found
 
         // title for collection table name column
-        collectionTableTitle: "Documents you've shared, organized by date", // not found
+        collectionTableTitle: 'Udostępnione dokumenty według daty',
       },
 
       cbo: {
@@ -2484,9 +2485,9 @@ export default merge(
         noClientActionLabel: 'Not a government employee?', // not found
         noClientActionText:
           'If you are seeking permanent supportive housing, click here.', // not found
-        reorderFiles: 'Reorder Documents', // (not found) shown in agent view when downloading as PDF
+        reorderFiles: 'Przeorganizuj dokumenty', // shown in agent view when downloading as PDF
         selectClient: 'Wybierz klienta dostępu do udostępnionych dokumentów',
-        sharedBy: 'Shared By', // (not found) label in side bar
+        sharedBy: 'Udostępniono przez', //  label in side bar
         sharedFolderNameLabel: 'Name', // (not found) label of shared folder name column in agent view
         sharedWith: 'Udostępniono:', // promt for agency email
       },
