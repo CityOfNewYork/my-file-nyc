@@ -49,7 +49,7 @@ export default class BackButton extends Vue {
 
     const isDashboard = this.languageDashboard.includes(pathForCompare)
 
-    if (isDashboard) {
+    if (isDashboard || window.location.pathname === '/dashboard') {
       this.reset()
     } else {
       const langPref = pathForCompare
