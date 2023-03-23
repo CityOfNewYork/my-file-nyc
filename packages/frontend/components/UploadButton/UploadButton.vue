@@ -303,15 +303,10 @@ export default class UploadButton extends Vue {
 
   hideToolTipDocument() {
     this.isShowToolTipDocument = !this.isShowToolTipDocument
-    // this.timeout = setTimeout(() => (this.isShowToolTipDocument = false), 4000)
   }
 
   hideToolTipDescription() {
     this.isShowToolTipDescription = !this.isShowToolTipDescription
-    // this.timeout = setTimeout(
-    //   () => (this.isShowToolTipDescription = false),
-    //   4000,
-    // )
   }
 
   closeDialog() {
@@ -446,7 +441,8 @@ export default class UploadButton extends Vue {
     snackbarStore.setVisible(true)
 
     this.showDialog = false
-    // this.multiple = false
+    this.files.length > 1 ? (this.multiple = true) : (this.multiple = false)
+
     const document = await this.$store.dispatch('user/uploadDocument', {
       fileList: this.files,
       name: this.documentNameSanitation(this.documentName),

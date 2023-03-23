@@ -38,6 +38,21 @@ export default class BackButton extends Vue {
     '/pl/dashboard',
     '/ru/dashboard',
     '/urd/dashboard',
+    '/ch/dashboard',
+  ]
+
+  languages: string[] = [
+    '/ar',
+    '/bn',
+    '/en',
+    '/es',
+    '/fr',
+    '/ht',
+    '/ko',
+    '/pl',
+    '/ru',
+    '/urd',
+    '/ch',
   ]
 
   navigationEvent() {
@@ -49,7 +64,7 @@ export default class BackButton extends Vue {
 
     const isDashboard = this.languageDashboard.includes(pathForCompare)
 
-    if (isDashboard) {
+    if (isDashboard || window.location.pathname === '/dashboard') {
       this.reset()
     } else {
       const langPref = pathForCompare
@@ -58,7 +73,12 @@ export default class BackButton extends Vue {
         .slice(0, 2)
         .join('/')
 
-      this.$router.push(langPref + '/dashboard')
+      const hasLangPrefix = this.languages.includes(langPref)
+      if (hasLangPrefix) {
+        this.$router.push(langPref + '/dashboard')
+      } else {
+        this.$router.push('/dashboard')
+      }
     }
   }
 }
