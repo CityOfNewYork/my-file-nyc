@@ -27,9 +27,17 @@ export const queueSharedCollectionNotification = async (
   opts: SendSharedCollectionOptions,
 ) => {
   const { emails, collection, ownerUser, numberOfDocuments, isQAUser } = opts
+  const scrubbedEmails = emails
+    .map((email: string) => {
+      console.log(`incoming email: ${email}`)
+      if (email.startsWith('myfile.sharedinbox@') && isQAUser) {
+        return email.replace('myfile.', 'myfile-qa.')
+      }
+      return email
+    })
   await sendEmailRequest({
     template: 'collectionSharedNotification',
-    toAddresses: emails,
+    toAddresses: scrubbedEmails,
     subject: `You’ve received new documents`,
     data: collection,
     isQAUser,
@@ -39,7 +47,7 @@ export const queueSharedCollectionNotification = async (
     toAddresses: [ownerUser.email as string],
     subject: 'My File Shared Document Receipt',
     data: {
-      toEmailList: emails.join(', '),
+      toEmailList: scrubbedEmails.join(', '),
       numberOfDocuments,
     },
     isQAUser,
@@ -50,12 +58,13 @@ type SendDelegateUserInvitationOptions = {
   email: string
   userName: string
   acceptLink: string
+  isQAUser?: boolean
 }
 
 export const queueDelegateUserInvitation = async (
   opts: SendDelegateUserInvitationOptions,
 ) => {
-  const { email, userName, acceptLink } = opts
+  const { email, userName, acceptLink, isQAUser = false } = opts
   await sendEmailRequest({
     template: 'delegateUserInvite',
     toAddresses: [email],
@@ -64,5 +73,6 @@ export const queueDelegateUserInvitation = async (
       name: userName,
       link: acceptLink,
     },
+    isQAUser,
   })
 }
