@@ -408,6 +408,18 @@ export interface Document {
      * @memberof Document
      */
     'links': Array<Link>;
+    /**
+     * Signifies whether or not this document was assembled as a pdf of multiple uploaded files.
+     * @type {boolean}
+     * @memberof Document
+     */
+    'isMultipageDocument'?: boolean;
+    /**
+     * The presigned url for downloading the assembled pdf document.
+     * @type {string}
+     * @memberof Document
+     */
+    'pdf'?: string;
 }
 /**
  * Request data to create a document
