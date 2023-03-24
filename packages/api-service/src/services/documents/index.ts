@@ -79,7 +79,7 @@ export const createDocumentListItem = (document: any) => {
     pdf = getPresignedDownloadUrl(
       `documents/${ownerId}/${id}.pdf`,
       name,
-      'attachment',
+      'inline',
       600,
     )
   }
@@ -98,7 +98,16 @@ export const singleDocumentResult = (
   document: Document,
   permissions: DocumentPermission[],
 ): DocumentContract => {
-  const { id, name, createdAt, description = null, files: baseFiles } = document
+  const {
+    id,
+    name,
+    createdAt,
+    thumbnailPath,
+    files: baseFiles,
+    description = null,
+    isMultipageDocument,
+    ownerId,
+  } = document
 
   const links = [
     {
@@ -123,6 +132,15 @@ export const singleDocumentResult = (
   }
 
   const files = baseFiles ? baseFiles : []
+  let pdf: string | undefined = undefined
+  if (isMultipageDocument) {
+    pdf = getPresignedDownloadUrl(
+      `documents/${ownerId}/${id}.pdf`,
+      name,
+      'inline',
+      600,
+    )
+  }
 
   return {
     createdDate: createdAt.toISOString(),
@@ -130,6 +148,8 @@ export const singleDocumentResult = (
     description,
     id,
     scanStatus: document.scanStatus,
+    isMultipageDocument,
+    pdf,
     files: files.map(
       (f): DocumentFileContract => ({
         id: f.id,
