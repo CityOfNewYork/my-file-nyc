@@ -420,6 +420,12 @@ export interface Document {
      * @memberof Document
      */
     'pdf'?: string;
+    /**
+     * The presigned url for downloading the assembled pdf document\'s thumbnail.
+     * @type {string}
+     * @memberof Document
+     */
+    'pdfThumbnail'?: string;
 }
 /**
  * Request data to create a document
@@ -549,6 +555,12 @@ export interface DocumentFile {
      * @memberof DocumentFile
      */
     'pdf'?: string;
+    /**
+     * The presigned url for downloading the assembled pdf document\'s thumbnail.
+     * @type {string}
+     * @memberof DocumentFile
+     */
+    'pdfThumbnail'?: string;
 }
 /**
  * A result containing a list of documents

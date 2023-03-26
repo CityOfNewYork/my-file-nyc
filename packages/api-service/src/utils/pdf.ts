@@ -1,3 +1,4 @@
+import gm from 'gm'
 import { PDFDocument, PDFEmbeddedPage, PDFImage, PDFPage } from 'pdf-lib'
 import fs from 'fs'
 import { createFilePath, downloadObject } from '@/utils/s3'
@@ -94,6 +95,32 @@ export async function generatePDF(
     const outputPdfFilepath = path.join('/tmp/', `${document.id}.pdf`)
     fs.writeFileSync(outputPdfFilepath, bytesFile)
     console.log('PDF bytestream generation complete. Returning raw data.')
-    return outputPdfFilepath
+    console.log('Generating thumbnail from first page...')
+    const outputPdfThumbnailFilepath = await createThumbnail(outputPdfFilepath)
+    return { outputPdfFilepath, outputPdfThumbnailFilepath }
   }
+}
+
+const createThumbnail = (
+  inputPath: string,
+) => {
+  const outputPath = `${inputPath.replace('.pdf', '.png')}`
+  return new Promise<string>((resolve, reject) => {
+    gm(`${inputPath}[0]`)
+    .setFormat('png')
+    .resize(128) // Resize to fixed 128px width, maintaining aspect ratio
+    // .quality(75) // Quality from 0 to 100
+    .write(outputPath, function(error){
+        // Callback function executed when finished
+        if (!error) {
+            console.log('Finished saving png thumbnail of pdf.')
+            resolve(outputPath)
+        } else {
+            console.log(`There was an error saving png thumbnail of pdf:
+            ${JSON.stringify(error, null, 2)}
+            `)
+            reject(error)
+        }
+    });
+  })
 }

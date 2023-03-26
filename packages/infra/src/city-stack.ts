@@ -782,7 +782,7 @@ export class CityStack extends Stack {
     multipageDocumentQueue: IQueue,
     apiProps: ApiProps,
   ) {
-    const { dbSecret, mySqlLayer } = apiProps
+    const { dbSecret, mySqlLayer, gmLayer } = apiProps
     const lambda = this.createLambda(
       'ProcessMultipageDocumentPdfAssembly',
       pathToApiServiceLambda('documents/processMultipageDocumentPdf'),
@@ -792,7 +792,7 @@ export class CityStack extends Stack {
           memorySize: 2048,
           timeout: Duration.seconds(15),
         },
-        layers: [mySqlLayer],
+        layers: [mySqlLayer, gmLayer],
         extraEnvironmentVariables: [
           EnvironmentVariables.MULTIPAGE_DOCUMENT_ASSEMBLY_PROCESSOR_SQS_QUEUE_URL,
           EnvironmentVariables.DOCUMENTS_BUCKET,

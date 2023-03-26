@@ -806,7 +806,11 @@ components:
         pdf:
           type: string
           description: The presigned url for downloading the assembled pdf document.
-          example: 'https://s3bucketname.aws.com/path/to/pdf/file'
+          example: 'https://s3bucketname.aws.com/path/to/pdf/file.pdf'
+        pdfThumbnail:
+          type: string
+          description: The presigned url for downloading the assembled pdf document's thumbnail.
+          example: 'https://s3bucketname.aws.com/path/to/pdf/file.png'
       type: object
     Document:
       description: A document
@@ -854,7 +858,11 @@ components:
         pdf:
           type: string
           description: The presigned url for downloading the assembled pdf document.
-          example: 'https://s3bucketname.aws.com/path/to/pdf/file'
+          example: 'https://s3bucketname.aws.com/path/to/pdf/file.pdf'
+        pdfThumbnail:
+          type: string
+          description: The presigned url for downloading the assembled pdf document's thumbnail.
+          example: 'https://s3bucketname.aws.com/path/to/pdf/file.png'
       type: object
     FileDownloadDispositionTypeEnum:
       description: The disposition type for the file download
