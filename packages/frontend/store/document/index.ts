@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Module, VuexModule, Action } from 'vuex-module-decorators'
 import { api } from '@/plugins/api-accessor'
-import { AxiosResponse } from 'axios'
+import axios, { AxiosResponse } from 'axios'
 import {
   Document,
   DocumentFile,
@@ -87,5 +87,16 @@ export default class DocumentStore extends VuexModule {
   @Action
   delete(document: Document | DocumentListItem): Promise<AxiosResponse<void>> {
     return api.document.deleteDocumentById(document.id)
+  }
+
+  @Action
+  getPDFPath(pdf: any) {
+    return axios
+      .get(pdf)
+      .then((response) => {
+        console.log(response)
+        return response.data
+      })
+      .catch(console.error)
   }
 }

@@ -31,17 +31,27 @@
     </AppBar>
     <v-main>
       <v-container v-if="document" class="pa-2 pa-sm-12">
-        <template v-if="document.files.length === 1">
-          <DocumentFile :document="document" :file="document.files[0]" />
+        <template v-if="document.files.length === 1 || document.pdf">
+          <DocumentFile
+            v-if="document.pdf"
+            :document="document"
+            :file="document.files[0]"
+            :pdf="document.pdf"
+          />
+          <DocumentFile v-else :document="document" :file="document.files[0]" />
         </template>
-        <v-carousel v-else v-model="currentPage">
+        <!-- <v-carousel v-else v-model="currentPage">
           <v-carousel-item
             v-for="(file, i) in document.files"
             :key="`page-${i}`"
           >
-            <DocumentFile :document="document" :file="file" />
+            <DocumentFile
+              :pdf="document.pdf"
+              :document="document"
+              :file="file"
+            />
           </v-carousel-item>
-        </v-carousel>
+        </v-carousel> -->
         <template v-if="document.description">
           <!-- <v-expansion-panels class="mt-4 px-2">
             <v-expansion-panel>
@@ -206,6 +216,7 @@ export default class ViewDocument extends Vue {
       this.$route.params.id,
     )
 
+    console.log(data)
     this.document = data
     this.newName = data.name
     this.newDescription = data.description ?? ''
