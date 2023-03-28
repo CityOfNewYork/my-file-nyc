@@ -80,13 +80,13 @@ export const createDocumentListItem = (document: any) => {
     pdf = getPresignedDownloadUrl(
       `documents/${ownerId}/${id}.pdf`,
       name,
-      'inline',
+      FileDownloadDispositionTypeEnum.Inline,
       600,
     )
     pdfThumbnail = getPresignedDownloadUrl(
       `documents/${ownerId}/${id}.png`,
       name,
-      'inline',
+      FileDownloadDispositionTypeEnum.Inline,
       600,
     )
   }
@@ -146,13 +146,13 @@ export const singleDocumentResult = (
     pdf = getPresignedDownloadUrl(
       `documents/${ownerId}/${id}.pdf`,
       name,
-      'inline',
+      FileDownloadDispositionTypeEnum.Inline,
       600,
     )
     pdfThumbnail = getPresignedDownloadUrl(
       `documents/${ownerId}/${id}.png`,
       name,
-      'inline',
+      FileDownloadDispositionTypeEnum.Inline,
       600,
     )
   }
