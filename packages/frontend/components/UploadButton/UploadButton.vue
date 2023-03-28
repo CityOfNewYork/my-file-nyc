@@ -534,6 +534,9 @@ export default class UploadButton extends Vue {
     this.documentName = ''
     this.documentDescription = ''
     ;(this as any).$refs.file3.value = ''
+    this.$nextTick(() => {
+      ;(this as any).$refs.observer.reset()
+    })
   }
 }
 </script>
