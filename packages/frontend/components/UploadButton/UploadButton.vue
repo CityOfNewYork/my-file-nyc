@@ -41,6 +41,7 @@
             :on-file-input="onFileInput"
             :close-selection-dialog="closeSelectionDialog"
             :reset="reset"
+            :multiple-input="multipleInput"
           />
         </v-container>
       </template>
@@ -70,37 +71,36 @@
         <v-container class="form-container">
           <ValidationObserver ref="observer">
             <v-form @submit.prevent>
+              <p class="form-title">
+                {{ $t('document.documentName') }}
+                <v-tooltip
+                  v-model="isShowToolTipDocument"
+                  :open-on-click="true"
+                  :open-on-hover="false"
+                  :right="$vuetify.breakpoint.smAndUp"
+                  :bottom="$vuetify.breakpoint.xsOnly"
+                  :max-width="$vuetify.breakpoint.smAndUp ? '200px' : '150px'"
+                >
+                  <template v-slot:activator="{ attrs }">
+                    <v-icon
+                      v-bind="attrs"
+                      :small="$vuetify.breakpoint.xsOnly"
+                      @click="hideToolTipDocument"
+                    >
+                      $info
+                    </v-icon>
+                  </template>
+                  <span class="form-tooltip">
+                    You can type either identity, prove of residency,
+                    application, etc.
+                  </span>
+                </v-tooltip>
+              </p>
               <ValidationProvider
                 v-slot="{ errors }"
                 name="name"
                 rules="required|max:255"
               >
-                <p class="form-title">
-                  {{ $t('document.documentName') }}
-                  <v-tooltip
-                    v-model="isShowToolTipDocument"
-                    :open-on-click="true"
-                    :open-on-hover="false"
-                    :right="$vuetify.breakpoint.smAndUp"
-                    :bottom="$vuetify.breakpoint.xsOnly"
-                    :max-width="$vuetify.breakpoint.smAndUp ? '200px' : '150px'"
-                  >
-                    <template v-slot:activator="{ attrs }">
-                      <v-icon
-                        v-bind="attrs"
-                        :small="$vuetify.breakpoint.xsOnly"
-                        @click="hideToolTipDocument"
-                      >
-                        $info
-                      </v-icon>
-                    </template>
-                    <span class="form-tooltip">
-                      You can type either identity, prove of residency,
-                      application, etc.
-                    </span>
-                  </v-tooltip>
-                </p>
-
                 <v-text-field
                   v-model="documentName"
                   class="form-input"
@@ -108,72 +108,74 @@
                   outlined
                   :placeholder="$t('document.enterNamePlaceholder')"
                 />
-                <p class="form-title">
-                  {{ $t('document.enterDescriptionPlaceholder') }}
-                  <v-tooltip
-                    v-model="isShowToolTipDescription"
-                    :open-on-click="true"
-                    :open-on-hover="false"
-                    :right="$vuetify.breakpoint.smAndUp"
-                    :bottom="$vuetify.breakpoint.xsOnly"
-                    :max-width="$vuetify.breakpoint.smAndUp ? '200px' : '150px'"
-                  >
-                    <template v-slot:activator="{ attrs }">
-                      <v-icon
-                        v-bind="attrs"
-                        :small="$vuetify.breakpoint.xsOnly"
-                        @click="hideToolTipDescription"
-                      >
-                        $info
-                      </v-icon>
-                    </template>
-                    <span class="form-tooltip">
-                      Provide a brief description of the files you uploaded for
-                      clarification.
-                    </span>
-                  </v-tooltip>
-                </p>
-
-                <v-textarea
-                  v-model="documentDescription"
-                  class="form-text-area hidden-xs-and-down"
-                  auto-grow
-                  :rows="$vuetify.breakpoint.xs ? 2 : 6"
-                  outlined
-                  dense
-                  :placeholder="$t('document.enterDescriptionPlaceholder')"
-                />
-
-                <p class="form-title-your-files">Your files</p>
-
-                <input
-                  ref="file3"
-                  type="file"
-                  style="display: none"
-                  accept="application/pdf, image/jpeg, image/png, image/tiff"
-                  @change="onAdditionalFileInput"
-                />
-                <v-btn
-                  min-height="26"
-                  :small="$vuetify.breakpoint.xsOnly"
-                  :large="$vuetify.breakpoint.mdAndUp"
-                  outlined
-                  color="primary"
-                  elevation="2"
-                  class="form-upload-button"
-                  @click="$refs.file3.click()"
-                >
-                  Upload new file
-                </v-btn>
-
-                <div class="form-divider"></div>
-                <p class="form-dnd-description">
-                  You can change positions of your files in any order by
-                  <b>drag and drop.</b>
-                </p>
               </ValidationProvider>
+              <p class="form-title">
+                {{ $t('document.enterDescriptionPlaceholder') }}
+                <v-tooltip
+                  v-model="isShowToolTipDescription"
+                  :open-on-click="true"
+                  :open-on-hover="false"
+                  :right="$vuetify.breakpoint.smAndUp"
+                  :bottom="$vuetify.breakpoint.xsOnly"
+                  :max-width="$vuetify.breakpoint.smAndUp ? '200px' : '150px'"
+                >
+                  <template v-slot:activator="{ attrs }">
+                    <v-icon
+                      v-bind="attrs"
+                      :small="$vuetify.breakpoint.xsOnly"
+                      @click="hideToolTipDescription"
+                    >
+                      $info
+                    </v-icon>
+                  </template>
+                  <span class="form-tooltip">
+                    Provide a brief description of the files you uploaded for
+                    clarification.
+                  </span>
+                </v-tooltip>
+              </p>
+
+              <v-textarea
+                v-model="documentDescription"
+                class="form-text-area hidden-xs-and-down"
+                auto-grow
+                :rows="$vuetify.breakpoint.xs ? 2 : 6"
+                outlined
+                dense
+                :placeholder="$t('document.enterDescriptionPlaceholder')"
+              />
+
+              <p class="form-title-your-files">
+                {{ multiple ? 'Your files' : 'Your file' }}
+              </p>
+
+              <input
+                ref="file3"
+                type="file"
+                style="display: none"
+                accept="application/pdf, image/jpeg, image/png, image/tiff"
+                @change="onAdditionalFileInput"
+              />
+              <v-btn
+                min-height="26"
+                :small="$vuetify.breakpoint.xsOnly"
+                :large="$vuetify.breakpoint.mdAndUp"
+                :disabled="!multiple && files.length > 0"
+                outlined
+                color="primary"
+                class="form-upload-button"
+                @click="$refs.file3.click()"
+              >
+                Upload new file
+              </v-btn>
+
+              <div class="form-divider"></div>
+              <p v-if="multiple" class="form-dnd-description">
+                You can change positions of your files in any order by
+                <b>drag and drop.</b>
+              </p>
               <div>
-                <draggable v-model="files">
+                <draggable v-if="multiple" v-model="files">
                   <div
                     v-for="(fileElement, index) in files"
                     :key="fileElement.file.name"
@@ -186,8 +188,8 @@
                       </div>
                       <button
                         class="remove-button"
-                        @click="$delete(files, index)"
-                        @keypress="$delete(files, index)"
+                        @click="removeItem(index)"
+                        @keypress="removeItem(index)"
                       >
                         Remove
                       </button>
@@ -211,6 +213,44 @@
                     ></v-img>
                   </div>
                 </draggable>
+                <div v-else>
+                  <div
+                    v-for="(fileElement, index) in files"
+                    :key="fileElement.file.name"
+                    class="drag-and-drop-div"
+                  >
+                    <div class="file-information">
+                      <div class="file-information-title">
+                        <b>#{{ index + 1 }}</b>
+                        {{ fileNameOverflow(fileElement.file.name) }}
+                      </div>
+                      <button
+                        class="remove-button"
+                        @click="removeItem(index)"
+                        @keypress="removeItem(index)"
+                      >
+                        Remove
+                      </button>
+                    </div>
+                    <div
+                      v-if="fileElement.file.type === 'application/pdf'"
+                      class="pdf-image"
+                    >
+                      <v-img
+                        :max-height="$vuetify.breakpoint.smAndUp ? 100 : 70"
+                        :max-width="$vuetify.breakpoint.smAndUp ? 80 : 50"
+                        :src="pdfLogo"
+                      ></v-img>
+                    </div>
+                    <v-img
+                      v-else
+                      max-height="400"
+                      max-width="600"
+                      class="mb-14"
+                      :src="fileElement.img"
+                    ></v-img>
+                  </div>
+                </div>
               </div>
             </v-form>
           </ValidationObserver>
@@ -283,17 +323,26 @@ export default class UploadButton extends Vue {
   documentName = ''
   documentDescription = ''
 
+  updated() {
+    console.log(this.multiple)
+  }
+
+  multipleInput() {
+    this.multiple = true
+  }
+
   get isLoading() {
     return snackbarStore.isVisible && snackbarStore.progress !== null
   }
 
   removeItem(index: any) {
     this.files.splice(index, 1)
+    ;(this as any).$refs.file3.value = ''
   }
 
   fileNameOverflow(fileName: any): String {
     if (fileName.length > 15 && this.$vuetify.breakpoint.name === 'xs') {
-      return fileName.substring(0, 15) + '...'
+      return fileName.substring(0, 10) + '...'
     } else if (fileName.length > 25 && this.$vuetify.breakpoint.smAndUp) {
       return fileName.substring(0, 25) + '...'
     } else {
@@ -348,7 +397,6 @@ export default class UploadButton extends Vue {
           return
         }
       }
-
       this.handleFileUpload(event)
       this.showDialog = true
       this.showSelectionDialog = false
@@ -485,6 +533,10 @@ export default class UploadButton extends Vue {
     this.snackMessage = ''
     this.documentName = ''
     this.documentDescription = ''
+    ;(this as any).$refs.file3.value = ''
+    this.$nextTick(() => {
+      ;(this as any).$refs.observer.reset()
+    })
   }
 }
 </script>

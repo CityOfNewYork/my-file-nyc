@@ -23,16 +23,13 @@
         <v-card-actions class="card-button-position">
           <input
             ref="file"
+            class="file-input"
             type="file"
             style="display: none"
             accept="application/pdf, image/jpeg, image/png, image/tiff"
             @change="onFileInput"
           />
-          <v-btn
-            color="primary"
-            class="card-button"
-            @click="$refs.file.click()"
-          >
+          <v-btn color="primary" class="card-button" @click="oneFileClick">
             {{ $t('controls.uploadFile') }}
           </v-btn>
         </v-card-actions>
@@ -52,17 +49,15 @@
         <v-card-actions class="card-button-position">
           <input
             ref="file2"
+            class="file-input"
             type="file"
             style="display: none"
             multiple
             accept="application/pdf, image/jpeg, image/png, image/tiff"
+            required
             @change="onFileInput"
           />
-          <v-btn
-            color="primary"
-            class="card-button"
-            @click="$refs.file2.click()"
-          >
+          <v-btn color="primary" class="card-button" @click="multipleFileClick">
             {{ $t('controls.uploadFiles') }}
           </v-btn>
         </v-card-actions>
@@ -73,14 +68,23 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'nuxt-property-decorator'
+import { any } from 'prop-types'
+import { event } from 'vue-analytics'
 
 @Component
 export default class UploadButtonFileInput extends Vue {
-  @Prop({ default: null })
-  onFileInput: () => void
-
+  @Prop({ default: null }) onFileInput: () => void
   @Prop({ default: () => () => {} }) reset: () => void
   @Prop({ default: () => {} }) closeSelectionDialog: () => void
+  @Prop({ default: false }) multipleInput: () => void
+  oneFileClick() {
+    return (this as any).$refs.file.click()
+  }
+
+  multipleFileClick() {
+    this.multipleInput()
+    return (this as any).$refs.file2.click()
+  }
 
   back() {
     if (window.history.length) {
