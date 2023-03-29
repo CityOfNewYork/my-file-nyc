@@ -323,10 +323,6 @@ export default class UploadButton extends Vue {
   documentName = ''
   documentDescription = ''
 
-  updated() {
-    console.log(this.multiple)
-  }
-
   multipleInput() {
     this.multiple = true
   }
@@ -398,6 +394,7 @@ export default class UploadButton extends Vue {
         }
       }
       this.handleFileUpload(event)
+      this.resetSelection(event)
       this.showDialog = true
       this.showSelectionDialog = false
     }
@@ -434,6 +431,7 @@ export default class UploadButton extends Vue {
       }
 
       this.handleAdditionalFileInput(event)
+      this.resetSelection(event)
       this.showDialog = true
       this.showSelectionDialog = false
     }
