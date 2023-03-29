@@ -3,7 +3,8 @@
     img="role"
     :alt="`${$t('myFileLogo')}`"
     :src="myFileLogo"
-    :width="width"
+    :width="$vuetify.breakpoint.smAndUp ? width : 250"
+    :class="$vuetify.breakpoint.xsOnly ? 'ma-4' : 'ma-2'"
   />
 </template>
 
@@ -12,7 +13,7 @@ import { Vue, Component, Prop } from 'nuxt-property-decorator'
 
 @Component
 export default class CityLogo extends Vue {
-  @Prop({ default: '250px' })
+  @Prop({ default: '280px' })
   width: string
 
   get myFileLogo(): string {

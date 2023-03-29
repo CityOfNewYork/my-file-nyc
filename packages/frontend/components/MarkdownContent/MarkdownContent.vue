@@ -1,5 +1,8 @@
 <template>
-  <article v-if="markdown" class="ma-8">
+  <article
+    v-if="markdown"
+    :class="$vuetify.breakpoint.smAndUp ? 'ma-8' : 'ma-2'"
+  >
     <VueShowdown :markdown="markdown.default" />
   </article>
 </template>

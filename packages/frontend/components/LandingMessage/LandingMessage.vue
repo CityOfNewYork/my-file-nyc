@@ -1,11 +1,11 @@
 <template>
   <div class="landing-container">
-    <CityLogo />
+    <CityLogo class="city-logo" />
     <MarkdownContent
-      class="pa-1"
       id="welcome-copy"
-      :content-path="welcomeMarkdown"
       :key="this.welcomeMarkdown['default']"
+      class="pa-1"
+      :content-path="welcomeMarkdown"
     />
     <ButtonLarge
       :label="$t('login.loginButton')"
@@ -18,10 +18,10 @@
     <LanguageChanger
       outlined="true"
       justify="center"
-      textColor="black"
+      text-color="black"
       padding="0 20px"
     />
-    <CityLogoFooter position="fixed" v-if="showFooterLogo" class="mt-10 mb-3" />
+    <CityLogoFooter v-if="showFooterLogo" position="fixed" class="mt-10 mb-3" />
     <FooterLinks
       justify="center"
       color="primary"
@@ -81,8 +81,9 @@ export default class LandingMessage extends Vue {
 .v-application {
   .landing-layout-container {
     display: flex;
-    flex-direction: column;
     padding: 0;
+    min-height: 100vh;
+    justify-content: center;
   }
   .landing-layout-container-inner {
     display: flex;
@@ -90,7 +91,7 @@ export default class LandingMessage extends Vue {
     justify-content: center;
   }
   .landing-container {
-    width: rem(320px);
+    width: 320px;
     margin-bottom: 100px;
     display: flex;
     flex-direction: column;
@@ -98,15 +99,36 @@ export default class LandingMessage extends Vue {
     text-align: center;
   }
   .welcome-message.body-1 {
-    font-size: rem(15px) !important;
+    font-size: rem(18px) !important;
   }
-  @media (min-height: 515px) {
+  @media (max-height: 700px) and (max-width: 400px) {
+    .landing-layout-container {
+      display: flex;
+      padding: 0;
+      height: 100dvh;
+      justify-content: start;
+    }
+
     .landing-layout-container-inner {
-      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .landing-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin-bottom: 0px !important;
+      width: 320px !important;
+    }
+    #welcome-copy {
+      font-size: rem(15px) !important;
     }
   }
-  #welcome-copy {
-    margin: 50px 20px 32px !important;
-  }
+  // #welcome-copy {
+  //   margin: 50px 20px 32px;
+  // }
 }
 </style>
