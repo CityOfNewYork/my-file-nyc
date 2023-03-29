@@ -79,8 +79,22 @@ export const handler = wrapAsyncHandler(
       // const writeStream = new WriteStream()
       // const duplexStream = new Duplex()
       // readableStreamBuffer.pipe(duplexStream)
-      const uploadPdfResponse = await uploadObject(pdfFilepath, s3PdfFileKey)
-      const uploadPdfThumbnailResponse = await uploadObject(pdfThumbnailFilepath, s3PdfThumbnailFileKey)
+      const uploadPdfResponse = await uploadObject(
+        pdfFilepath,
+        s3PdfFileKey,
+        {
+          ContentType: 'application/pdf',
+          ContentDisposition: `inline; filename="${document?.name}.pdf"`,
+        },
+      )
+      const uploadPdfThumbnailResponse = await uploadObject(
+        pdfThumbnailFilepath,
+        s3PdfThumbnailFileKey,
+        {
+          ContentType: 'image/png',
+          ContentDisposition: `inline; filename="${document?.name}.png"`,
+        },
+      )
       console.log(`s3 upload pdf response: 
       ${JSON.stringify(uploadPdfResponse, null, 2)}
 

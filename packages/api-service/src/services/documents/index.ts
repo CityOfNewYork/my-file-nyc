@@ -79,13 +79,13 @@ export const createDocumentListItem = (document: any) => {
   if (isMultipageDocument) {
     pdf = getPresignedDownloadUrl(
       `documents/${ownerId}/${id}.pdf`,
-      name,
+      `${name}.pdf`,
       FileDownloadDispositionTypeEnum.Inline,
       600,
     )
     pdfThumbnail = getPresignedDownloadUrl(
       `documents/${ownerId}/${id}.png`,
-      name,
+      'multipage-doc-thumbnail.png',
       FileDownloadDispositionTypeEnum.Inline,
       600,
     )
@@ -145,13 +145,13 @@ export const singleDocumentResult = (
   if (isMultipageDocument) {
     pdf = getPresignedDownloadUrl(
       `documents/${ownerId}/${id}.pdf`,
-      name,
+      `${name}.pdf`,
       FileDownloadDispositionTypeEnum.Inline,
       600,
     )
     pdfThumbnail = getPresignedDownloadUrl(
       `documents/${ownerId}/${id}.png`,
-      name,
+      'multipage-doc-thumbnail.png',
       FileDownloadDispositionTypeEnum.Inline,
       600,
     )

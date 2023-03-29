@@ -69,8 +69,8 @@ export const handler = createAuthenticatedApiGatewayHandler(
 
     return {
       href: getPresignedDownloadUrl(
-        file.path,
-        resolveFileName(document, file),
+        document.isMultipageDocument ? `documents/${document.ownerId}/${document.id}.pdf` : file.path,
+        document.isMultipageDocument ? `${document.name}.pdf` : resolveFileName(document, file),
         disposition,
       ),
     }
