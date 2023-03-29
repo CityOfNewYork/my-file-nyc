@@ -7,8 +7,10 @@
     v-else-if="isPdf"
     :src="url"
     :title="`${$t('document.previewOf')} ${document.name}`"
-    type="application/pdf"
-    class="pdf viewer"
+    scrolling="auto"
+    content-type="application/pdf"
+    height="1100"
+    width="850"
   >
     <p>PDF document: {{ document.name }}</p>
   </iframe>
@@ -17,10 +19,10 @@
       <template v-slot:activator="{ on, attrs }">
         <img
           v-bind="attrs"
-          v-on="on"
           :style="$vuetify.breakpoint.smAndUp && 'width: 50%'"
           :src="url"
           :alt="`${documentName} (${fileName})`"
+          v-on="on"
         />
       </template>
       <v-card>
@@ -53,17 +55,21 @@ import { Vue, Component, Prop } from 'nuxt-property-decorator'
 export default class DocumentFile extends Vue {
   @Prop({ required: true }) document: Document
   @Prop({ required: true }) file: DocumentFileType
-
   url = ''
   loading = true
   dialog = false
 
   async mounted() {
-    this.url = await this.$store.dispatch('document/downloadFile', {
-      document: this.document,
-      file: this.file,
-      disposition: FileDownloadDispositionTypeEnum.Inline,
-    })
+    if (this.document.pdf) {
+      this.url = this.document.pdf
+    } else {
+      this.url = await this.$store.dispatch('document/downloadFile', {
+        document: this.document,
+        file: this.file,
+        disposition: FileDownloadDispositionTypeEnum.Inline,
+      })
+    }
+
     if (this.isTiff) {
       await this.processTif()
     }
@@ -88,7 +94,11 @@ export default class DocumentFile extends Vue {
   }
 
   get isPdf() {
-    return this.file.contentType === FileContentTypeEnum.ApplicationPdf
+    if (this.document.pdf || this.document.files[0].name.slice(-3) == 'pdf') {
+      return true
+    } else {
+      return false
+    }
   }
 
   async processTif() {
