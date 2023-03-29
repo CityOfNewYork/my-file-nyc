@@ -89,14 +89,4 @@ export default class DocumentStore extends VuexModule {
     return api.document.deleteDocumentById(document.id)
   }
 
-  @Action
-  getPDFPath(pdf: any) {
-    return axios
-      .get(pdf)
-      .then((response) => {
-        console.log(response)
-        return response.data
-      })
-      .catch(console.error)
-  }
 }

@@ -36,7 +36,6 @@
             v-if="document.pdf"
             :document="document"
             :file="document.files[0]"
-            :pdf="document.pdf"
           />
           <DocumentFile v-else :document="document" :file="document.files[0]" />
         </template>
@@ -215,8 +214,6 @@ export default class ViewDocument extends Vue {
       'document/getById',
       this.$route.params.id,
     )
-
-    console.log(data)
     this.document = data
     this.newName = data.name
     this.newDescription = data.description ?? ''

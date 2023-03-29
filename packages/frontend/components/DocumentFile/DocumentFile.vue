@@ -55,18 +55,13 @@ import { Vue, Component, Prop } from 'nuxt-property-decorator'
 export default class DocumentFile extends Vue {
   @Prop({ required: true }) document: Document
   @Prop({ required: true }) file: DocumentFileType
-  @Prop({ required: true }) pdf: any
   url = ''
   loading = true
   dialog = false
 
   async mounted() {
-    console.log('File', this.file)
-    console.log('PDF', this.pdf)
-    if (this.pdf) {
-      this.url = await this.$store.dispatch('document/getPDFPath', {
-        pdf: this.pdf,
-      })
+    if (this.document.pdf) {
+      this.url = this.document.pdf
     } else {
       this.url = await this.$store.dispatch('document/downloadFile', {
         document: this.document,
@@ -99,7 +94,11 @@ export default class DocumentFile extends Vue {
   }
 
   get isPdf() {
-    return this.pdf
+    if (this.document.pdf || this.document.files[0].name.slice(-3) == 'pdf') {
+      return true
+    } else {
+      return false
+    }
   }
 
   async processTif() {
