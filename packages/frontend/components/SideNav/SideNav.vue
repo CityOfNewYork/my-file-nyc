@@ -128,8 +128,6 @@ export default class SideNav extends mixins(Navigation) {
   ]
 
   async mounted() {
-    console.log(this.$auth)
-
     this.$nuxt.$on('focusSideNav', this.focusSideNav)
 
     window.addEventListener('keydown', this.keyCloseMenu, true)
@@ -161,14 +159,14 @@ export default class SideNav extends mixins(Navigation) {
     clearTimeout(this.focusTimer)
   }
 
-  signOut() {
+  async signOut() {
     const authTokenKey = 'auth._token.oauth2'
     const logoutUrl = this.$config.logoutEndpoint
     const logoutWindow = window.open(logoutUrl, '_blank')
     const currentWindow = window
 
     // @ts-ignore
-    window.cookieStore.delete(authTokenKey)
+    await window.cookieStore.delete(authTokenKey)
     localStorage.removeItem(authTokenKey)
     localStorage.clear()
 
