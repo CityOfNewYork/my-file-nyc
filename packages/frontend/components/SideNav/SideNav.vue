@@ -10,16 +10,7 @@
     <v-btn
       text
       :to="localePath('/dashboard')"
-      class="
-        black--text
-        d-flex
-        text-heading-1
-        align-start
-        py-2
-        no-background-hover
-        mb-1
-        justify-start
-      "
+      class="black--text d-flex text-heading-1 align-start py-2 no-background-hover mb-1 justify-start"
     >
       <v-img
         contain
@@ -131,7 +122,7 @@ export default class SideNav extends mixins(Navigation) {
     {
       label: 'navigation.signOut',
       click: async () => {
-        await this.$auth.logout()
+        await this.signOut()
       },
     },
   ]
@@ -166,6 +157,38 @@ export default class SideNav extends mixins(Navigation) {
   beforeDestroy() {
     window.removeEventListener('keydown', this.keyCloseMenu, true)
     clearTimeout(this.focusTimer)
+  }
+
+  async signOut() {
+    const authTokenKey = 'auth._token.oauth2'
+    const logoutUrl = this.$config.logoutEndpoint
+    const logoutWindow = window.open(logoutUrl, '_blank')
+    const currentWindow = window
+
+    // @ts-ignore
+    await window.cookieStore.delete(authTokenKey)
+    localStorage.removeItem(authTokenKey)
+    localStorage.clear()
+
+    const thisRef = this
+    const host = window.location.hostname
+    const protocol = window.location.protocol
+    let path = ''
+    if (host == 'localhost') {
+      path = protocol + '//' + host + ':3000'
+    } else {
+      path = protocol + '//' + host
+    }
+
+    setTimeout(() => {
+      console.log('closing new window')
+      logoutWindow!.close()
+      console.log('reset focus')
+      currentWindow.focus()
+      console.log('logging out')
+      thisRef.$auth.logout()
+      currentWindow.location.replace(path)
+    }, 2000)
   }
 
   get cboNavItems() {
