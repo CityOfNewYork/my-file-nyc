@@ -789,7 +789,7 @@ export default class UploadButton extends Vue {
     .form-title {
       font-style: normal;
       font-weight: 700;
-      font-size: 18px;
+      font-size: 17px;
       line-height: 28px;
     }
 
