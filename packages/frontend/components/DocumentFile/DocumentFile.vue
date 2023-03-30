@@ -7,10 +7,10 @@
     v-else-if="isPdf"
     :src="url"
     :title="`${$t('document.previewOf')} ${document.name}`"
-    scrolling="auto"
+    scrolling="yes"
     content-type="application/pdf"
-    height="1100"
-    width="850"
+    :height="$vuetify.breakpoint.xsOnly ? 500 : 1200"
+    width="100%"
   >
     <p>PDF document: {{ document.name }}</p>
   </iframe>
