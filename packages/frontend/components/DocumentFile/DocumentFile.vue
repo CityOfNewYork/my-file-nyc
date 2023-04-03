@@ -41,7 +41,6 @@
     </v-dialog>
   </div>
 </template>
-
 <script lang="ts">
 import {
   Document,
@@ -60,6 +59,7 @@ export default class DocumentFile extends Vue {
   dialog = false
 
   async mounted() {
+    console.log('HELLO')
     if (this.document.pdf) {
       this.url = this.document.pdf
     } else {
