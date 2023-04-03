@@ -3,7 +3,7 @@
   <div v-else-if="isInfected">
     File is infected and should not be downloaded
   </div>
-  <iframe
+  <!-- <iframe
     v-else-if="isPdf"
     :src="url"
     :title="`${$t('document.previewOf')} ${document.name}`"
@@ -13,7 +13,9 @@
     width="100%"
   >
     <p>PDF document: {{ document.name }}</p>
-  </iframe>
+  </iframe> -->
+
+  <div class="adobe-container" v-else-if="isPdf" id="adobe-dc-view"></div>
   <div v-else class="text-center image viewer">
     <v-dialog v-model="dialog">
       <template v-slot:activator="{ on, attrs }">
@@ -59,6 +61,35 @@ export default class DocumentFile extends Vue {
   loading = true
   dialog = false
 
+  head() {
+    return {
+      script: [
+        {
+          src: 'https://documentservices.adobe.com/view-sdk/viewer.js',
+          type: 'text/javascript',
+          body: true,
+        },
+      ],
+    }
+  }
+
+  pdfrender(url: any, documentName: any, adobeClientId: any) {
+    document.addEventListener('adobe_dc_view_sdk.ready', function () {
+      const adobeDCView = new AdobeDC.View({
+        clientId: adobeClientId,
+        divId: 'adobe-dc-view',
+      })
+      adobeDCView.previewFile({
+        content: {
+          location: {
+            url: url,
+          },
+        },
+        metaData: { fileName: documentName },
+      })
+    })
+  }
+
   async mounted() {
     if (this.document.pdf) {
       this.url = this.document.pdf
@@ -69,6 +100,9 @@ export default class DocumentFile extends Vue {
         disposition: FileDownloadDispositionTypeEnum.Inline,
       })
     }
+
+    this.isPdf &&
+      this.pdfrender(this.url, this.document.name, this.$config.adobeClientId)
 
     if (this.isTiff) {
       await this.processTif()
@@ -138,6 +172,10 @@ export default class DocumentFile extends Vue {
 </script>
 
 <style scoped lang="scss">
+.adobe-container {
+  width: 100%;
+  height: calc(100vh - 20.5rem);
+}
 .viewer {
   &.pdf {
     width: 100%;
@@ -152,3 +190,4 @@ export default class DocumentFile extends Vue {
   }
 }
 </style>
+
