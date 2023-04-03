@@ -75,6 +75,7 @@ export default class DocumentFile extends Vue {
 
   pdfrender(url: any, documentName: any, adobeClientId: any) {
     document.addEventListener('adobe_dc_view_sdk.ready', function () {
+      // @ts-ignore
       const adobeDCView = new AdobeDC.View({
         clientId: adobeClientId,
         divId: 'adobe-dc-view',
