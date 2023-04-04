@@ -22,7 +22,7 @@
     </v-btn>
 
     <NavItemList :items="navItems" />
-    <LanguageChanger outlined="true" textColor="black" padding="0 12px" />
+    <LanguageChanger outlined="true" text-color="black" padding="0 12px" />
 
     <v-footer fixed class="pa-0">
       <!-- Turning off build version and time -->
@@ -162,7 +162,7 @@ export default class SideNav extends mixins(Navigation) {
   async signOut() {
     const authTokenKey = 'auth._token.oauth2'
     const logoutUrl = this.$config.logoutEndpoint
-    const logoutWindow = window.open(logoutUrl, '_blank')
+    // const logoutWindow = window.open(logoutUrl, '_blank')
     const currentWindow = window
 
     // @ts-ignore
@@ -180,15 +180,16 @@ export default class SideNav extends mixins(Navigation) {
       path = protocol + '//' + host
     }
 
-    setTimeout(() => {
-      console.log('closing new window')
-      logoutWindow!.close()
-      console.log('reset focus')
-      currentWindow.focus()
-      console.log('logging out')
-      thisRef.$auth.logout()
-      currentWindow.location.replace(path)
-    }, 2000)
+    // setTimeout(async () => {
+    //   console.log('closing new window')
+    //   logoutWindow!.close()
+    //   console.log('reset focus')
+    //   currentWindow.focus()
+    //   console.log('logging out')
+
+    // }, 2000)
+    await thisRef.$auth.logout()
+    currentWindow.location.replace(path)
   }
 
   get cboNavItems() {
