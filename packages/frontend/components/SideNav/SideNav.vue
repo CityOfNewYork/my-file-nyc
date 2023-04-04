@@ -122,6 +122,12 @@ export default class SideNav extends mixins(Navigation) {
     {
       label: 'navigation.signOut',
       click: async () => {
+        const authTokenKey = 'auth._token.oauth2'
+
+        // @ts-ignore
+        await window.cookieStore.delete(authTokenKey)
+        localStorage.removeItem(authTokenKey)
+        localStorage.clear()
         await this.$auth.logout()
         window.location.reload()
       },
