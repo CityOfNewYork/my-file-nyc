@@ -122,7 +122,8 @@ export default class SideNav extends mixins(Navigation) {
     {
       label: 'navigation.signOut',
       click: async () => {
-        await this.signOut()
+        await this.$auth.logout()
+        window.location.reload()
       },
     },
   ]
@@ -159,38 +160,24 @@ export default class SideNav extends mixins(Navigation) {
     clearTimeout(this.focusTimer)
   }
 
-  async signOut() {
-    const authTokenKey = 'auth._token.oauth2'
-    const logoutUrl = this.$config.logoutEndpoint
-    // const logoutWindow = window.open(logoutUrl, '_blank')
-    const currentWindow = window
+  // async signOut() {
+  //   const authTokenKey = 'auth._token.oauth2'
 
-    // @ts-ignore
-    await window.cookieStore.delete(authTokenKey)
-    localStorage.removeItem(authTokenKey)
-    localStorage.clear()
+  //   // @ts-ignore
+  //   await window.cookieStore.delete(authTokenKey)
+  //   localStorage.removeItem(authTokenKey)
+  //   localStorage.clear()
 
-    const thisRef = this
-    const host = window.location.hostname
-    const protocol = window.location.protocol
-    let path = ''
-    if (host == 'localhost') {
-      path = protocol + '//' + host + ':3000'
-    } else {
-      path = protocol + '//' + host
-    }
+  //   const host = window.location.hostname
+  //   const protocol = window.location.protocol
+  //   let path = ''
+  //   if (host === 'localhost') {
+  //     path = protocol + '//' + host + ':3000'
+  //   } else {
+  //     path = protocol + '//' + host
+  //   }
 
-    // setTimeout(async () => {
-    //   console.log('closing new window')
-    //   logoutWindow!.close()
-    //   console.log('reset focus')
-    //   currentWindow.focus()
-    //   console.log('logging out')
-
-    // }, 2000)
-    await thisRef.$auth.logout()
-    currentWindow.location.replace(path)
-  }
+  // }
 
   get cboNavItems() {
     return ([] as NavItem[])
