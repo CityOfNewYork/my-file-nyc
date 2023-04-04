@@ -23,6 +23,10 @@ const config = {
   // },
   head: {
     title: 'Loading...',
+    script: [{
+      src: "https://documentservices.adobe.com/view-sdk/viewer.js",
+      type: "text/javascript"
+    }],
     // titleTemplate: '%s | My File',
     titleTemplate: 'My File NYC - Easily and securely share Files with NYC DHS',
     meta: [
