@@ -57,9 +57,6 @@ CSP_SCRIPT_SRC=${process.env.CSP_SCRIPT_SRC}
 CSP_IMG_SRC=${process.env.CSP_IMG_SRC}
 CSP_FRAME_SRC=${process.env.CSP_FRAME_SRC}
 
-# Adobe clinet ID
-ADOBE_CLIENT_ID=${process.env.ADOBE_CLIENT_ID}
-
 # Landing page Footer logo toggle: 1 (true) or 0 (false)
 FOOTER_LOGO=${process.env.FOOTER_LOGO}
 
