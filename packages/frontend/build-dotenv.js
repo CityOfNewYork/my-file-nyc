@@ -60,6 +60,10 @@ CSP_FRAME_SRC=${process.env.CSP_FRAME_SRC}
 # Landing page Footer logo toggle: 1 (true) or 0 (false)
 FOOTER_LOGO=${process.env.FOOTER_LOGO}
 
+# Adobe credentials
+ADOBE_CLIENT_ID_LOCAL=${process.env.ADOBE_CLIENT_ID_LOCAL}
+ADOBE_CLIENT_ID=${process.env.ADOBE_CLIENT_ID}
+
 `;
 
 fs.writeFileSync(path.join(process.cwd(), '.env'), content);
