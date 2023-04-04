@@ -127,6 +127,8 @@ export default class SideNav extends mixins(Navigation) {
         localStorage.clear()
         await this.$auth.logout()
         window.location.reload()
+        // @ts-ignore
+        await window.cookieStore.delete(authTokenKey)
       },
     },
   ]
