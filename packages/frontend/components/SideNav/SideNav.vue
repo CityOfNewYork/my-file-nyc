@@ -160,25 +160,6 @@ export default class SideNav extends mixins(Navigation) {
     clearTimeout(this.focusTimer)
   }
 
-  // async signOut() {
-  //   const authTokenKey = 'auth._token.oauth2'
-
-  //   // @ts-ignore
-  //   await window.cookieStore.delete(authTokenKey)
-  //   localStorage.removeItem(authTokenKey)
-  //   localStorage.clear()
-
-  //   const host = window.location.hostname
-  //   const protocol = window.location.protocol
-  //   let path = ''
-  //   if (host === 'localhost') {
-  //     path = protocol + '//' + host + ':3000'
-  //   } else {
-  //     path = protocol + '//' + host
-  //   }
-
-  // }
-
   get cboNavItems() {
     return ([] as NavItem[])
       .concat(userStore.isActingAsDelegate ? [this.activityNavItem] : [])
