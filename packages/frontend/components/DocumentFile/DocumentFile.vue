@@ -3,9 +3,9 @@
   <div v-else-if="isInfected">
     File is infected and should not be downloaded
   </div>
-  <iframe
+  <!-- <iframe
     v-else-if="isPdf"
-    :src="url + '#zoom=FitH'"
+    :src="url"
     :title="`${$t('document.previewOf')} ${document.name}`"
     scrolling="yes"
     content-type="application/pdf"
@@ -13,8 +13,9 @@
     width="100%"
   >
     <p>PDF document: {{ document.name }}</p>
-  </iframe>
+  </iframe> -->
 
+  <div class="adobe-container" v-else-if="isPdf" id="adobe-dc-view"></div>
   <div v-else class="text-center image viewer">
     <v-dialog v-model="dialog">
       <template v-slot:activator="{ on, attrs }">
@@ -60,22 +61,35 @@ export default class DocumentFile extends Vue {
   loading = true
   dialog = false
 
-  // pdfrender(url: any, documentName: any, adobeClientId: any) {
-  //   document.addEventListener('adobe_dc_view_sdk.ready', function () {
-  //     const adobeDCView = new AdobeDC.View({
-  //       clientId: adobeClientId,
-  //       divId: 'adobe-dc-view',
-  //     })
-  //     adobeDCView.previewFile({
-  //       content: {
-  //         location: {
-  //           url: url,
-  //         },
-  //       },
-  //       metaData: { fileName: documentName },
-  //     })
-  //   })
-  // }
+  head() {
+    return {
+      script: [
+        {
+          src: 'https://documentservices.adobe.com/view-sdk/viewer.js',
+          type: 'text/javascript',
+          body: true,
+        },
+      ],
+    }
+  }
+
+  pdfrender(url: any, documentName: any, adobeClientId: any) {
+    document.addEventListener('adobe_dc_view_sdk.ready', function () {
+      // @ts-ignore
+      const adobeDCView = new AdobeDC.View({
+        clientId: adobeClientId,
+        divId: 'adobe-dc-view',
+      })
+      adobeDCView.previewFile({
+        content: {
+          location: {
+            url: url,
+          },
+        },
+        metaData: { fileName: documentName },
+      })
+    })
+  }
 
   async mounted() {
     if (this.document.pdf) {
@@ -88,17 +102,15 @@ export default class DocumentFile extends Vue {
       })
     }
 
+    this.isPdf &&
+      this.pdfrender(this.url, this.document.name, this.$config.adobeClientId)
+
     if (this.isTiff) {
       await this.processTif()
     }
 
     this.loading = false
   }
-
-  // updated() {
-  //   const iframe = document.querySelector('iframe')
-  //   console.log(iframe)
-  // }
 
   get fileName() {
     return this.file.name
