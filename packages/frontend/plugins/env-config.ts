@@ -19,6 +19,8 @@ export const envConfig = {
     features: {
       delegates: false,
     },
+    adobeClientIdLocal: process.env.ADOBE_CLIENT_ID_LOCAL,
+    adobeClientId: process.env.ADOBE_CLIENT_ID
   },
 }
 /**
