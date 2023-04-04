@@ -46,6 +46,7 @@
 </template>
 
 <script lang="ts">
+import { browser } from 'process'
 import { Component, mixins } from 'nuxt-property-decorator'
 import { format } from 'date-fns'
 import { userStore, navBarStore } from '@/plugins/store-accessor'
@@ -125,10 +126,9 @@ export default class SideNav extends mixins(Navigation) {
         const authTokenKey = 'auth._token.oauth2'
         localStorage.removeItem(authTokenKey)
         localStorage.clear()
+        sessionStorage.clear()
         await this.$auth.logout()
         window.location.reload()
-        // @ts-ignore
-        await window.cookieStore.delete(authTokenKey)
       },
     },
   ]
