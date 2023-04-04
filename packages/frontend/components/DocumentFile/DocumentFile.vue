@@ -11,6 +11,7 @@
     content-type="application/pdf"
     :height="$vuetify.breakpoint.xsOnly ? 500 : 1200"
     width="100%"
+    referrerpolicy="unsafe-url"
   >
     <p>PDF document: {{ document.name }}</p>
   </iframe>
