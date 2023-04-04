@@ -122,6 +122,9 @@ export default class SideNav extends mixins(Navigation) {
     {
       label: 'navigation.signOut',
       click: async () => {
+        const authTokenKey = 'auth._token.oauth2'
+        localStorage.removeItem(authTokenKey)
+        localStorage.clear()
         await this.$auth.logout()
         window.location.reload()
       },
@@ -159,6 +162,25 @@ export default class SideNav extends mixins(Navigation) {
     window.removeEventListener('keydown', this.keyCloseMenu, true)
     clearTimeout(this.focusTimer)
   }
+
+  // async signOut() {
+  //   const authTokenKey = 'auth._token.oauth2'
+
+  //   // @ts-ignore
+  //   await window.cookieStore.delete(authTokenKey)
+  //   localStorage.removeItem(authTokenKey)
+  //   localStorage.clear()
+
+  //   const host = window.location.hostname
+  //   const protocol = window.location.protocol
+  //   let path = ''
+  //   if (host === 'localhost') {
+  //     path = protocol + '//' + host + ':3000'
+  //   } else {
+  //     path = protocol + '//' + host
+  //   }
+
+  // }
 
   get cboNavItems() {
     return ([] as NavItem[])
