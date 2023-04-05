@@ -54,6 +54,7 @@ import { UserRole } from '@/types/user'
 import { NavItem } from '@/types/nav'
 import { RawLocation } from 'vue-router'
 import Navigation from '@/mixins/navigation'
+import { element } from 'prop-types'
 
 @Component({
   mixins: [Navigation],
@@ -125,6 +126,15 @@ export default class SideNav extends mixins(Navigation) {
       click: async () => {
         let path = ''
         const authTokenKey = 'auth._token.oauth2'
+        console.log('document.cookie', document.cookie)
+        // @ts-ignore
+        console.log(
+          'cookieStore GETALL()',
+          // @ts-ignore
+          await window.cookieStore.getAll().forEach((element) => {
+            console.log(element)
+          }),
+        )
         // @ts-ignore
         console.log(
           'cookieStore DELETE COOKIE',
@@ -145,9 +155,22 @@ export default class SideNav extends mixins(Navigation) {
           await window.cookieStore.delete(authTokenKey),
         )
         // @ts-ignore
-        console.log('cookieStore GETALL()', await window.cookieStore.getAll())
+        console.log(
+          'cookieStore GETALL()',
+          // @ts-ignore
+          await window.cookieStore.getAll().array.forEach((element) => {
+            console.log(element)
+          }),
+        )
 
         const logoutWindow = window.open(logoutUrl, '_blank')
+        console.log(
+          'cookies ALL from NYC.ID',
+          // @ts-ignore
+          logoutWindow.cookieStore.getAll().array.forEach((element) => {
+            console.log(element)
+          }),
+        )
         console.log('document.cookie', document.cookie)
         this.removeCookie(authTokenKey)
         console.log('document.cookie', document.cookie)
