@@ -103,13 +103,20 @@ export default class DocumentFile extends Vue {
     }
 
     this.isPdf &&
-      this.pdfrender(this.url, this.document.name, this.$config.adobeClientId)
+      this.pdfrender(this.url, this.document.name, this.adobeCredentials())
 
     if (this.isTiff) {
       await this.processTif()
     }
 
     this.loading = false
+  }
+
+  adobeCredentials() {
+    if (window.location.host.split(':')[0] === 'localhost') {
+      return this.$config.adobeClientIdLocal
+    }
+    return this.$config.adobeClientId
   }
 
   get fileName() {
