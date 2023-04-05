@@ -127,13 +127,13 @@ export default class SideNav extends mixins(Navigation) {
         let path = ''
         const authTokenKey = 'auth._token.oauth2'
         console.log('document.cookie', document.cookie)
-
+        console.log(caches)
         const host = window.location.hostname
         const protocol = window.location.protocol
         const logoutUrl = this.$config.logoutEndpoint
 
         // const logoutWindow = window.open(logoutUrl, '_blank')
-        this.removeCookie(authTokenKey)
+        this.removeCookie()
         console.log('document.cookie', document.cookie)
         localStorage.removeItem(authTokenKey)
         localStorage.clear()
@@ -145,13 +145,21 @@ export default class SideNav extends mixins(Navigation) {
         } else {
           path = protocol + '//' + host
         }
-        // window.location.replace(path)
+        window.location.replace(path)
       },
     },
   ]
 
-  removeCookie(name: any) {
-    document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;'
+  // removeCookie(name: any) {
+  //   document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;'
+  // }
+
+  removeCookie() {
+    const cookies = document.cookie.split(';')
+    for (let i = 0; i < cookies.length; i++) {
+      const spcook = cookies[i].split('=')
+      document.cookie = spcook[0] + '=;expires=Thu, 21 Sep 1979 00:00:01 UTC;'
+    }
   }
 
   async mounted() {
