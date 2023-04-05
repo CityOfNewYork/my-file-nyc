@@ -127,10 +127,15 @@ export default class SideNav extends mixins(Navigation) {
         let path = ''
         const authTokenKey = 'auth._token.oauth2'
         console.log('document.cookie', document.cookie)
-        console.log(caches)
+        // @ts-ignore
+        const logoutUrl = this.$config.logoutEndpoint
+        const logoutWindow = window.open(logoutUrl, '_blank')
+        // @ts-ignore
+        logoutWindow.focus()
+        // @ts-ignore
+        console.log(await logoutWindow.caches.keys())
         const host = window.location.hostname
         const protocol = window.location.protocol
-        const logoutUrl = this.$config.logoutEndpoint
 
         // const logoutWindow = window.open(logoutUrl, '_blank')
         this.removeCookie()
@@ -145,8 +150,7 @@ export default class SideNav extends mixins(Navigation) {
         } else {
           path = protocol + '//' + host
         }
-        // @ts-ignore
-        window.location.reload(true)
+        window.location.replace(path)
       },
     },
   ]
