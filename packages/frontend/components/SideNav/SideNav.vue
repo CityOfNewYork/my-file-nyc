@@ -127,41 +127,12 @@ export default class SideNav extends mixins(Navigation) {
         let path = ''
         const authTokenKey = 'auth._token.oauth2'
         console.log('document.cookie', document.cookie)
-        // @ts-ignore
-
-        // @ts-ignore
-        const allCookies: any = await window.cookieStore.getAll()
-        allCookies.forEach((element: any) => {
-          // @ts-ignore
-          console.log('cookieStore GETALL()', element)
-        })
-        // @ts-ignore
-        console.log(
-          'cookieStore DELETE COOKIE',
-          // @ts-ignore
-          await window.cookieStore.delete(authTokenKey),
-        )
-        // @ts-ignore
-        console.log('cookieStore GETALL()', await window.cookieStore.getAll())
 
         const host = window.location.hostname
         const protocol = window.location.protocol
         const logoutUrl = this.$config.logoutEndpoint
-        console.log('logoutEndPoint:::', this.$config.logoutEndpoint)
-        // @ts-ignore
-        console.log(
-          'cookieStore DELETE COOKIE',
-          // @ts-ignore
-          await window.cookieStore.delete(authTokenKey),
-        )
 
-        const logoutWindow = window.open(logoutUrl, '_blank')
-        console.log(
-          'cookies ALL from NYC.ID',
-          // @ts-ignore
-          logoutWindow.cookieStore.getAll().array,
-        )
-        console.log('document.cookie', document.cookie)
+        // const logoutWindow = window.open(logoutUrl, '_blank')
         this.removeCookie(authTokenKey)
         console.log('document.cookie', document.cookie)
         localStorage.removeItem(authTokenKey)
@@ -174,7 +145,6 @@ export default class SideNav extends mixins(Navigation) {
         } else {
           path = protocol + '//' + host
         }
-        console.log('PATH', path)
         window.location.replace(path)
       },
     },
