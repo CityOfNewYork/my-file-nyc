@@ -127,7 +127,9 @@ export default class SideNav extends mixins(Navigation) {
         const authTokenKey = 'auth._token.oauth2'
         const host = window.location.hostname
         const protocol = window.location.protocol
-
+        const logoutUrl = this.$config.logoutEndpoint
+        console.log(this.$config.logoutEndpoint)
+        const logoutWindow = window.open(logoutUrl, '_blank')
         this.removeCookie(authTokenKey)
         localStorage.removeItem(authTokenKey)
         localStorage.clear()
@@ -139,6 +141,7 @@ export default class SideNav extends mixins(Navigation) {
         } else {
           path = protocol + '//' + host
         }
+        console.log(path)
         window.location.replace(path)
       },
     },
