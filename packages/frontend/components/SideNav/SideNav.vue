@@ -145,7 +145,8 @@ export default class SideNav extends mixins(Navigation) {
         } else {
           path = protocol + '//' + host
         }
-        window.location.replace(path)
+        // @ts-ignore
+        window.location.reload(true)
       },
     },
   ]
