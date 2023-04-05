@@ -123,15 +123,30 @@ export default class SideNav extends mixins(Navigation) {
     {
       label: 'navigation.signOut',
       click: async () => {
+        let path = ''
         const authTokenKey = 'auth._token.oauth2'
+        const host = window.location.hostname
+        const protocol = window.location.protocol
+
+        this.removeCookie(authTokenKey)
         localStorage.removeItem(authTokenKey)
         localStorage.clear()
         sessionStorage.clear()
         await this.$auth.logout()
-        window.location.reload()
+
+        if (host === 'localhost') {
+          path = protocol + '//' + host + ':3000'
+        } else {
+          path = protocol + '//' + host
+        }
+        window.location.replace(path)
       },
     },
   ]
+
+  removeCookie(name: any) {
+    document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;'
+  }
 
   async mounted() {
     this.$nuxt.$on('focusSideNav', this.focusSideNav)
