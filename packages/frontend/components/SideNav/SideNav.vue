@@ -128,13 +128,13 @@ export default class SideNav extends mixins(Navigation) {
         const authTokenKey = 'auth._token.oauth2'
         console.log('document.cookie', document.cookie)
         // @ts-ignore
-        console.log(
-          'cookieStore GETALL()',
+
+        // @ts-ignore
+        const allCookies: any = await window.cookieStore.getAll()
+        allCookies.forEach((element: any) => {
           // @ts-ignore
-          await window.cookieStore.getAll().forEach((element) => {
-            console.log(element)
-          }),
-        )
+          console.log('cookieStore GETALL()', element)
+        })
         // @ts-ignore
         console.log(
           'cookieStore DELETE COOKIE',
@@ -154,22 +154,12 @@ export default class SideNav extends mixins(Navigation) {
           // @ts-ignore
           await window.cookieStore.delete(authTokenKey),
         )
-        // @ts-ignore
-        console.log(
-          'cookieStore GETALL()',
-          // @ts-ignore
-          await window.cookieStore.getAll().array.forEach((element) => {
-            console.log(element)
-          }),
-        )
 
         const logoutWindow = window.open(logoutUrl, '_blank')
         console.log(
           'cookies ALL from NYC.ID',
           // @ts-ignore
-          logoutWindow.cookieStore.getAll().array.forEach((element) => {
-            console.log(element)
-          }),
+          logoutWindow.cookieStore.getAll().array,
         )
         console.log('document.cookie', document.cookie)
         this.removeCookie(authTokenKey)
