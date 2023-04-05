@@ -125,12 +125,32 @@ export default class SideNav extends mixins(Navigation) {
       click: async () => {
         let path = ''
         const authTokenKey = 'auth._token.oauth2'
+        // @ts-ignore
+        console.log(
+          'cookieStore DELETE COOKIE',
+          // @ts-ignore
+          await window.cookieStore.delete(authTokenKey),
+        )
+        // @ts-ignore
+        console.log('cookieStore GETALL()', await window.cookieStore.getAll())
+
         const host = window.location.hostname
         const protocol = window.location.protocol
         const logoutUrl = this.$config.logoutEndpoint
-        console.log(this.$config.logoutEndpoint)
+        console.log('logoutEndPoint:::', this.$config.logoutEndpoint)
+        // @ts-ignore
+        console.log(
+          'cookieStore DELETE COOKIE',
+          // @ts-ignore
+          await window.cookieStore.delete(authTokenKey),
+        )
+        // @ts-ignore
+        console.log('cookieStore GETALL()', await window.cookieStore.getAll())
+
         const logoutWindow = window.open(logoutUrl, '_blank')
+        console.log('document.cookie', document.cookie)
         this.removeCookie(authTokenKey)
+        console.log('document.cookie', document.cookie)
         localStorage.removeItem(authTokenKey)
         localStorage.clear()
         sessionStorage.clear()
@@ -141,7 +161,7 @@ export default class SideNav extends mixins(Navigation) {
         } else {
           path = protocol + '//' + host
         }
-        console.log(path)
+        console.log('PATH', path)
         window.location.replace(path)
       },
     },
