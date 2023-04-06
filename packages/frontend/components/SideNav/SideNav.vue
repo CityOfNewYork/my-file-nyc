@@ -126,20 +126,13 @@ export default class SideNav extends mixins(Navigation) {
       click: async () => {
         let path = ''
         const authTokenKey = 'auth._token.oauth2'
-        console.log('document.cookie', document.cookie)
-        // @ts-ignore
         const logoutUrl = this.$config.logoutEndpoint
         const logoutWindow = window.open(logoutUrl, '_blank')
         // @ts-ignore
-        logoutWindow.focus()
-        // @ts-ignore
-        console.log(await logoutWindow.caches.keys())
         const host = window.location.hostname
         const protocol = window.location.protocol
 
-        // const logoutWindow = window.open(logoutUrl, '_blank')
         this.removeCookie()
-        console.log('document.cookie', document.cookie)
         localStorage.removeItem(authTokenKey)
         localStorage.clear()
         sessionStorage.clear()
@@ -150,15 +143,22 @@ export default class SideNav extends mixins(Navigation) {
         } else {
           path = protocol + '//' + host
         }
-        window.location.replace(path)
+
+        setTimeout(() => {
+          logoutWindow!.close()
+          window.focus()
+          window.location.replace(path)
+        }, 2000)
       },
     },
   ]
 
+  // remove specific cookie
   // removeCookie(name: any) {
   //   document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;'
   // }
 
+  // remove All cookies
   removeCookie() {
     const cookies = document.cookie.split(';')
     for (let i = 0; i < cookies.length; i++) {
@@ -198,25 +198,6 @@ export default class SideNav extends mixins(Navigation) {
     window.removeEventListener('keydown', this.keyCloseMenu, true)
     clearTimeout(this.focusTimer)
   }
-
-  // async signOut() {
-  //   const authTokenKey = 'auth._token.oauth2'
-
-  //   // @ts-ignore
-  //   await window.cookieStore.delete(authTokenKey)
-  //   localStorage.removeItem(authTokenKey)
-  //   localStorage.clear()
-
-  //   const host = window.location.hostname
-  //   const protocol = window.location.protocol
-  //   let path = ''
-  //   if (host === 'localhost') {
-  //     path = protocol + '//' + host + ':3000'
-  //   } else {
-  //     path = protocol + '//' + host
-  //   }
-
-  // }
 
   get cboNavItems() {
     return ([] as NavItem[])
