@@ -14,14 +14,7 @@
         v-if="$vuetify.breakpoint.mdAndUp"
         text
         :to="localePath('/dashboard')"
-        class="
-          white--text
-          d-flex
-          text-heading-1
-          align-start
-          py-2
-          no-background-hover
-        "
+        class="white--text d-flex text-heading-1 align-start py-2 no-background-hover"
       >
         <v-img
           contain
@@ -84,7 +77,7 @@
     />
     <!-- <slot v-if="!userStore.isAgent" name="actions" /> -->
     <template v-if="!empty && $vuetify.breakpoint.mdAndUp">
-      <LanguageChanger textColor="white" />
+      <LanguageChanger text-color="white" />
       <v-btn
         v-if="$vuetify.breakpoint.smAndUp && userStore.isClient"
         text
@@ -104,11 +97,13 @@
         v-if="showActivityButton"
         text
         color="white"
+        class="navigation-btn-style"
         @click.prevent="showActivity = !showActivity"
         @keydown.prevent.enter="showActivity = !showActivity"
-        class="navigation-btn-style"
       >
-        <v-icon class="navigation-icon-style" left color="white" small>$clock</v-icon>
+        <v-icon class="navigation-icon-style" left color="white" small>
+          $clock
+        </v-icon>
         {{ $t('navigation.activity') }}
       </v-btn>
       <v-btn
@@ -174,13 +169,7 @@
         <div class="px-4">
           <v-card rounded="0">
             <v-card-title
-              class="
-                text-heading-2
-                d-flex
-                justify-space-between
-                grey-9--text
-                pa-0
-              "
+              class="text-heading-2 d-flex justify-space-between grey-9--text pa-0"
             >
               {{ $t('navigation.activity') }}
               <v-btn
@@ -302,39 +291,40 @@ export default class AppBar extends mixins(Navigation) {
     return 0
   }
 
+  removeCookie() {
+    const cookies = document.cookie.split(';')
+    for (let i = 0; i < cookies.length; i++) {
+      const spcook = cookies[i].split('=')
+      document.cookie = spcook[0] + '=;expires=Thu, 21 Sep 1979 00:00:01 UTC;'
+    }
+  }
+
   async signOut() {
+    let path = ''
     const authTokenKey = 'auth._token.oauth2'
     const logoutUrl = this.$config.logoutEndpoint
     const logoutWindow = window.open(logoutUrl, '_blank')
-    const currentWindow = window
-
     // @ts-ignore
-    await window.cookieStore.delete(authTokenKey)
-    localStorage.removeItem(authTokenKey)
-    localStorage.clear()
-
-    const thisRef = this
     const host = window.location.hostname
     const protocol = window.location.protocol
-    let path = ''
-    if (host == 'localhost') {
+
+    this.removeCookie()
+    localStorage.removeItem(authTokenKey)
+    localStorage.clear()
+    sessionStorage.clear()
+    await this.$auth.logout()
+
+    if (host === 'localhost') {
       path = protocol + '//' + host + ':3000'
     } else {
       path = protocol + '//' + host
     }
 
     setTimeout(() => {
-      console.log('closing new window')
       logoutWindow!.close()
-      console.log('reset focus')
-      currentWindow.focus()
-      console.log('logging out')
-      thisRef.$auth.logout()
-      currentWindow.location.replace(path)
+      window.focus()
+      window.location.replace(path)
     }, 2000)
-
-    // await this.$auth.logout()
-    // this.$router.push(this.localePath('/'))
   }
 }
 </script>
