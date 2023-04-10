@@ -23,6 +23,7 @@ import streamBuffers from 'stream-buffers'
 import { WriteStream } from 'fs'
 import { Duplex } from 'stream'
 import { connectDatabase } from '@/utils/database'
+import { getUserById } from '@/models/user'
 
 const getQueueUrl = () =>
   requireConfiguration(
@@ -55,6 +56,7 @@ export const handler = wrapAsyncHandler(
       }
 
       const document = await getDocumentById(assembleRequest.documentId)
+      const docOwner = await getUserById(document!.ownerId)
       const documentFiles = await getFilesByDocumentId(document!.id)
       const {
         outputPdfFilepath: pdfFilepath,
