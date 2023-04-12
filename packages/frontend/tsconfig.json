@@ -23,7 +23,8 @@
       "nuxt-i18n",
       "@nuxtjs/vuetify",
       "@types/nuxtjs__auth",
-      "@nuxt/content"
+      "@nuxt/content",
+      "vite/client",
     ],
     "typeRoots": [
       "./types"

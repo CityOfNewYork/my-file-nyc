@@ -22,22 +22,5 @@ import { userStore } from '../plugins/store-accessor'
 })
 export default class DefaultLandingPage extends Vue {
   UserRole = UserRole
-
-  mounted() {
-    // if (!this.$auth.loggedIn) {
-    // console.log(UserRole);
-    // switch (userStore.role) {
-    //   case UserRole.CBO:
-    //     this.$router.push(this.localePath('/community'))
-    //     break
-    //   case UserRole.AGENT:
-    //     this.$router.push(this.localePath('/agency'))
-    //     break
-    //   default:
-    //     this.$router.push(this.localePath('/client'))
-    //     break
-    // }
-    // }
-  }
 }
 </script>

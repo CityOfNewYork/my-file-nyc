@@ -71,18 +71,17 @@ export default class DebugMenu extends Vue {
     this.$auth.logout()
   }
 
-  getDocuments() {
-    this.$store.dispatch('user/getDocuments').then((res) => {
-      console.log(res)
-    })
-  }
+  // getDocuments() {
+  //   this.$store.dispatch('user/getDocuments').then((res) => {
+  //     console.log(res)
+  //   })
+  // }
 
   setUserRole(v: UserRole) {
     this.$store.dispatch('user/setRole', v)
   }
 
   sendEvent() {
-    console.log('analytics instance:', this.$ga)
     this.$ga.event({
       eventCategory: 'debug',
       eventAction: 'click',
