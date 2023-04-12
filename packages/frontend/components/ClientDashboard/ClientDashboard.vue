@@ -78,8 +78,9 @@
             v-if="$vuetify.breakpoint.smAndDown && docsPresent"
             class="d-flex pb-1"
             style="
-              position: sticky;
+              position: fixed;
               bottom: 0%;
+              width: 100%;
               justify-content: space-evenly;
               background-color: #fff;
               height: 3rem;
@@ -189,9 +190,19 @@ export default class ClientDashboard extends Vue {
     padding-top: 1rem;
   }
   .v-window.v-tabs-items .v-window-item {
-    padding: 1rem 0 1rem 0;
+    padding: 0rem 0 5rem 0;
     background-color: var(--blue-super-light);
-    min-height: 100vh;
   }
+
+  // @media (min-width: 600px) {
+
+  // }
+
+  // @media (max-width: 599px) {
+  //   .v-window.v-tabs-items .v-window-item {
+  //     padding: 0rem 0 5rem 0;
+  //     background-color: var(--blue-super-light);
+  //   }
+  // }
 }
 </style>
