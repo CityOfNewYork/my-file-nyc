@@ -32,22 +32,34 @@ export const handler = wrapAsyncHandler(
     const fileNames = new Set<string>()
     const s3Objects: S3ObjectDetails[] = []
     for (const document of documents) {
-      // get received files for a document
-      const files = (await getFilesByDocumentId(document.id)).filter(
-        (f) => f.received,
-      )
-      // create stream for file
-      s3Objects.push(
-        ...files.map((f) => {
-          const filename = resolveFileName(document, f, files.length, fileNames)
-          fileNames.add(filename)
-          return {
-            key: f.path,
-            filename,
-          }
-        }),
-      )
+      if (document.isMultipageDocument) {
+        // create stream for file
+        s3Objects.push({
+          key: `documents/${document.ownerId}/${document.id}.pdf`,
+          filename: `${document.name}.pdf`,
+        })
+      } else {
+        // get received files for a document
+        const files = (await getFilesByDocumentId(document.id)).filter(
+          (f) => f.received,
+        )
+        // create stream for file
+        s3Objects.push(
+          ...files.map((f) => {
+            const filename = resolveFileName(document, f, files.length, fileNames)
+            fileNames.add(filename)
+            return {
+              key: f.path,
+              filename,
+            }
+          }),
+        )
+      }
     }
+
+    console.log(`S3 Objects for Archive:
+    ${JSON.stringify(s3Objects, null, 2)}
+    `)
 
     // stream files into zip
     return await createS3ZipFromS3Objects({
