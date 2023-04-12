@@ -63,8 +63,8 @@
         ]"
       >
         <v-toolbar-title
-          class="flex-grow-0 ml-12"
           v-if="step === 0 && $vuetify.breakpoint.smAndDown"
+          class="flex-grow-0 ml-12"
         >
           {{ $t('sharing.selectFilesTitle') }}
         </v-toolbar-title>
@@ -221,10 +221,9 @@
           </p>
           <v-img
             img="role"
-            :alt="`${$t('dhsLogo')}`"
             :src="dhsLogo"
             :style="
-              this.$vuetify.breakpoint.smAndDown
+              $vuetify.breakpoint.smAndDown
                 ? `width: 14rem; margin-left: 3rem`
                 : 'width: 27rem; margin-left: 3rem'
             "
@@ -341,7 +340,7 @@ export default class Share extends Vue {
       this.individualEmailAddresses.push(this.$config.agencyEmail)
   }
 
-  get dhsLogo(): string {
+  get dhsLogo(): NodeRequire {
     return require('@/assets/images/dhs-logo.svg')
   }
 
@@ -403,13 +402,11 @@ export default class Share extends Vue {
   }
 
   get toolbarTitle() {
-    return (
-      {
-        0: 'sharing.selectFilesTitle',
-        // 1: 'sharing.addRecipientsTitle',
-        // 2: 'sharing.confirmTitle',
-      } as Record<number, string>
-    )[this.step]
+    return ({
+      0: 'sharing.selectFilesTitle',
+      // 1: 'sharing.addRecipientsTitle',
+      // 2: 'sharing.confirmTitle',
+    } as Record<number, string>)[this.step]
   }
 
   get emailInputValid() {

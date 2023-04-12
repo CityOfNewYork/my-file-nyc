@@ -21,6 +21,7 @@
           tablet you can take a photo with your camera.
         </v-card-text>
         <v-card-actions class="card-button-position">
+          <!-- eslint-disable-next-line vue-a11y/form-has-label -->
           <input
             ref="file"
             class="file-input"
@@ -47,6 +48,7 @@
           mobile phone or tablet you can take photos with your camera.
         </v-card-text>
         <v-card-actions class="card-button-position">
+          <!-- eslint-disable-next-line vue-a11y/form-has-label -->
           <input
             ref="file2"
             class="file-input"
@@ -68,8 +70,6 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'nuxt-property-decorator'
-import { any } from 'prop-types'
-import { event } from 'vue-analytics'
 
 @Component
 export default class UploadButtonFileInput extends Vue {

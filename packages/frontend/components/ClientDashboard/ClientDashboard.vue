@@ -59,10 +59,15 @@
       <template>
         <v-tabs-items v-model="currentTab">
           <v-tab-item value="tab-docs" tabindex="0">
-            <DocumentList
-              :docsPresent="reload"
-              :onUpload="onUpload"
+            <!-- <DocumentList
               ref="documentList"
+              :docs-present="reload"
+              :on-upload="onUpload"
+              class="mx-sm-8"
+            /> -->
+            <DocumentList
+              ref="documentList"
+              :on-upload="onUpload"
               class="mx-sm-8"
             />
           </v-tab-item>
@@ -101,6 +106,7 @@ import Navigation from '@/mixins/navigation'
   mixins: [Navigation],
 })
 export default class ClientDashboard extends Vue {
+  [x: string]: any
   @Prop({ default: false }) customMobileNav: boolean
   currentTab = 'tab-docs'
   userStore = userStore

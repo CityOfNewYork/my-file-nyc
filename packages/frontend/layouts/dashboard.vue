@@ -22,12 +22,17 @@
           {{ timeoutWarningMessage }}
         </div>
 
-        <v-btn
+        <!-- attrs warning -->
+        <!-- <v-btn
           color="blue"
           text
           v-bind="attrs"
           @click="showTimeoutWarningMessage = false"
         >
+          Close
+        </v-btn> -->
+
+        <v-btn color="blue" text @click="showTimeoutWarningMessage = false">
           Close
         </v-btn>
       </div>
@@ -42,11 +47,12 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
-import { parseJwt } from '../lib/utils'
 import { userStore } from '@/plugins/store-accessor'
+import { parseJwt } from '../lib/utils'
 
 @Component
 export default class DashboardLayout extends Vue {
+  [x: string]: any
   overlay = false
   authTokenKey = 'auth._token.oauth2'
   logoutUrl = this.$config.logoutEndpoint
@@ -102,11 +108,8 @@ export default class DashboardLayout extends Vue {
     localStorage.removeItem(this.authTokenKey)
     const thisRef = this
     setTimeout(() => {
-      console.log('closing new window')
       logoutWindow!.close()
-      console.log('reset focus')
       currentWindow.focus()
-      console.log('logging out')
       thisRef.$auth.login()
     }, 2000)
   }
