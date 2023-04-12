@@ -79,7 +79,7 @@
             class="d-flex pb-1"
             style="
               position: fixed;
-              bottom: 0%;
+              bottom: 2%;
               width: 100%;
               justify-content: space-evenly;
               background-color: #fff;
@@ -194,15 +194,11 @@ export default class ClientDashboard extends Vue {
     background-color: var(--blue-super-light);
   }
 
-  // @media (min-width: 600px) {
-
-  // }
-
-  // @media (max-width: 599px) {
-  //   .v-window.v-tabs-items .v-window-item {
-  //     padding: 0rem 0 5rem 0;
-  //     background-color: var(--blue-super-light);
-  //   }
-  // }
+  @media (max-width: 599px) {
+    .v-window.v-tabs-items .v-window-item {
+      padding: 0rem 0 5rem 0;
+      background-color: #ffffff;
+    }
+  }
 }
 </style>
