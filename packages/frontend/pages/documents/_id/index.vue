@@ -30,7 +30,7 @@
       ></template>
     </AppBar>
     <v-main>
-      <v-container v-if="document" class="pa-2 pa-sm-12">
+      <v-container v-if="document" class="pa-2">
         <template v-if="document.files.length === 1 || document.pdf">
           <DocumentFile
             v-if="document.pdf"

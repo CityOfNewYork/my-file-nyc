@@ -15,7 +15,7 @@
     <p>PDF document: {{ document.name }}</p>
   </iframe> -->
 
-  <div class="adobe-container" v-else-if="isPdf" id="adobe-dc-view"></div>
+  <div v-else-if="isPdf" id="adobe-dc-view" class="adobe-container"></div>
   <div v-else class="text-center image viewer">
     <v-dialog v-model="dialog">
       <template v-slot:activator="{ on, attrs }">
@@ -83,7 +83,7 @@ export default class DocumentFile extends Vue {
       adobeDCView.previewFile({
         content: {
           location: {
-            url: url,
+            url,
           },
         },
         metaData: { fileName: documentName },
@@ -182,7 +182,7 @@ export default class DocumentFile extends Vue {
 <style scoped lang="scss">
 .adobe-container {
   width: 100%;
-  height: calc(100vh - 20.5rem);
+  height: calc(100vh - 18rem);
 }
 .viewer {
   &.pdf {
@@ -198,4 +198,3 @@ export default class DocumentFile extends Vue {
   }
 }
 </style>
-
