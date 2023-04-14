@@ -91,8 +91,7 @@
                     </v-icon>
                   </template>
                   <span class="form-tooltip">
-                    You can type either identity, prove of residency,
-                    application, etc.
+                    {{ $t('uploadInputButton.titleInfoButton') }}
                   </span>
                 </v-tooltip>
               </p>
@@ -129,8 +128,7 @@
                     </v-icon>
                   </template>
                   <span class="form-tooltip">
-                    Provide a brief description of the files you uploaded for
-                    clarification.
+                    {{ $t('uploadInputButton.descriptionInfoButton') }}
                   </span>
                 </v-tooltip>
               </p>
@@ -146,7 +144,11 @@
               />
 
               <p class="form-title-your-files">
-                {{ multiple ? 'Your files' : 'Your file' }}
+                {{
+                  multiple
+                    ? $t('uploadInputButton.yourFilesTitle')
+                    : $t('uploadInputButton.yourFileTitle')
+                }}
               </p>
 
               <input
@@ -166,13 +168,13 @@
                 class="form-upload-button"
                 @click="$refs.file3.click()"
               >
-                Upload new file
+                {{ $t('uploadInputButton.uploadNewFile') }}
               </v-btn>
 
               <div class="form-divider"></div>
               <p v-if="multiple" class="form-dnd-description">
-                You can change positions of your files in any order by
-                <b>drag and drop.</b>
+                {{ $t('uploadInputButton.dragAndDropDescription') }}
+                <b>{{ $t('uploadInputButton.dragAndDropDescriptionBold') }}</b>
               </p>
               <div>
                 <draggable v-if="multiple" v-model="files">
@@ -191,7 +193,7 @@
                         @click="removeItem(index)"
                         @keypress="removeItem(index)"
                       >
-                        Remove
+                        {{ $t('uploadInputButton.removeFile') }}
                       </button>
                     </div>
                     <div
@@ -229,7 +231,7 @@
                         @click="removeItem(index)"
                         @keypress="removeItem(index)"
                       >
-                        Remove
+                        {{ $t('uploadInputButton.removeFile') }}
                       </button>
                     </div>
                     <div

@@ -270,6 +270,17 @@ export default merge(
         multipleFilesTitle: 'Multiple-files',
         multipleFilesDescription:
           "The multiple-files option gives you the ability to upload as many files or images from your device management system. If you're using a mobile phone or tablet you can take photos with your camera.",
+        titleInfoButton:
+          'You can type either identity, proof of residency,application, etc.',
+        descriptionInfoButton:
+          'Provide a brief description of the files you uploaded for clarification.',
+        yourFileTitle: 'Your file',
+        yourFilesTitle: 'Your files',
+        uploadNewFile: 'Upload new file',
+        dragAndDropDescription:
+          'You can change positions of your files in any order by',
+        dragAndDropDescriptionBold: 'drag and drop.',
+        removeFile: 'Remove',
       },
 
       landing: {
@@ -566,6 +577,16 @@ export default merge(
         multipleFilesTitle: 'ملفات متعددة',
         multipleFilesDescription:
           'يمنحك خيار الملفات المتعددة القدرة على تحميل أكبر عدد ممكن من الملفات أو الصور من نظام إدارة جهازك. إذا كنت تستخدم هاتفًا محمولًا أو جهازًا لوحيًا ، فيمكنك التقاط صور بالكاميرا.',
+        titleInfoButton:
+          'يمكنك كتابة الهوية ، وإثبات الإقامة ، والتطبيق ، وما إلى ذلك.',
+        descriptionInfoButton:
+          'قدم وصفًا موجزًا للملفات التي قمت بتحميلها للتوضيح.',
+        yourFileTitle: 'ملفك',
+        yourFilesTitle: 'ملفاتك',
+        uploadNewFile: 'تحميل ملف جديد',
+        dragAndDropDescription: 'يمكنك تغيير أوضاع ملفاتك بأي ترتيب من خلال',
+        dragAndDropDescriptionBold: 'السحب والإفلات.',
+        removeFile: 'يزيل',
       },
       validations: {
         ...validationEn.messages,
@@ -852,6 +873,17 @@ export default merge(
         multipleFilesTitle: 'Несколько файлов',
         multipleFilesDescription:
           'Опция нескольких файлов дает вам возможность загружать столько файлов или изображений из вашей системы управления устройствами. Если вы используете мобильный телефон или планшет, вы можете делать фотографии с помощью камеры.',
+        titleInfoButton:
+          'Вы можете ввести удостоверение личности, подтверждение места жительства, заявление и т.д.',
+        descriptionInfoButton:
+          'Предоставьте краткое описание файлов, которые вы загрузили для разъяснения.',
+        yourFileTitle: 'Ваш файл',
+        yourFilesTitle: 'Ваши файлы',
+        uploadNewFile: 'Загрузить новый файл',
+        dragAndDropDescription:
+          'Вы можете изменить положение ваших файлов в любом порядке ',
+        dragAndDropDescriptionBold: 'путем перетаскивания.',
+        removeFile: 'Удалить',
       },
 
       landing: {
@@ -1146,6 +1178,17 @@ export default merge(
         multipleFilesTitle: 'متعدد فائلیں۔',
         multipleFilesDescription:
           'ایک سے زیادہ فائلوں کا آپشن آپ کو آپ کے ڈیوائس مینجمنٹ سسٹم سے زیادہ سے زیادہ فائلیں یا تصاویر اپ لوڈ کرنے کی صلاحیت فراہم کرتا ہے۔ اگر آپ موبائل فون یا ٹیبلیٹ استعمال کر رہے ہیں تو آپ اپنے کیمرے سے تصاویر لے سکتے ہیں۔',
+        titleInfoButton:
+          'آپ یا تو شناخت ٹائپ کر سکتے ہیں، رہائش کا ثبوت، درخواست وغیرہ۔',
+        descriptionInfoButton:
+          'وضاحت کے لیے آپ نے جو فائلیں اپ لوڈ کی ہیں ان کی مختصر تفصیل فراہم کریں۔',
+        yourFileTitle: 'آپ کی فائل',
+        yourFilesTitle: 'آپ کی فائلیں۔',
+        uploadNewFile: 'نئی فائل اپ لوڈ کریں۔',
+        dragAndDropDescription:
+          'آپ اپنی فائلوں کی پوزیشن کو کسی بھی ترتیب سے تبدیل کر سکتے ہیں۔',
+        dragAndDropDescriptionBold: 'ڈریگ اور ڈراپ.',
+        removeFile: 'دور',
       },
 
       landing: {
@@ -1434,6 +1477,16 @@ export default merge(
         multipleFilesTitle: '다중 파일',
         multipleFilesDescription:
           '여러 파일 옵션을 사용하면 장치 관리 시스템에서 많은 파일 또는 이미지를 업로드할 수 있습니다. 휴대폰이나 태블릿을 사용하는 경우 카메라로 사진을 찍을 수 있습니다.',
+        titleInfoButton: '신원, 거주 증명, 지원서 등을 입력할 수 있습니다.',
+        descriptionInfoButton:
+          '명확성을 위해 업로드한 파일에 대한 간략한 설명을 제공합니다.',
+        yourFileTitle: '귀하의 파일',
+        yourFilesTitle: '내 파일',
+        uploadNewFile: '새 파일 업로드',
+        dragAndDropDescription:
+          '순서에 상관없이 파일의 위치를 변경할 수 있습니다.',
+        dragAndDropDescriptionBold: '끌어서 놓기.',
+        removeFile: '제거하다',
       },
 
       landing: {
@@ -1725,6 +1778,17 @@ export default merge(
         multipleFilesTitle: 'Múltiples archivos',
         multipleFilesDescription:
           'La opción de archivos múltiples le brinda la posibilidad de cargar tantos archivos o imágenes desde el sistema de administración de su dispositivo. Si estás usando un teléfono móvil o una tableta, puedes tomar fotos con tu cámara.',
+        titleInfoButton:
+          'Puede escribir identidad, comprobante de residencia, solicitud, etc.',
+        descriptionInfoButton:
+          'Proporcione una breve descripción de los archivos que cargó como aclaración.',
+        yourFileTitle: 'Tu archivo',
+        yourFilesTitle: 'Tus archivos',
+        uploadNewFile: 'Subir archivo nuevo',
+        dragAndDropDescription:
+          'Puede cambiar las posiciones de sus archivos en cualquier orden',
+        dragAndDropDescriptionBold: 'arrastrando y soltando.',
+        removeFile: 'Eliminar',
       },
 
       landing: {
@@ -2018,6 +2082,17 @@ export default merge(
         multipleFilesTitle: 'Fichiers multiples',
         multipleFilesDescription:
           "L'option de fichiers multiples vous donne la possibilité de télécharger autant de fichiers ou d'images à partir de votre système de gestion d'appareils. Si vous utilisez un téléphone portable ou une tablette, vous pouvez prendre des photos avec votre appareil photo.",
+        titleInfoButton:
+          "Vous pouvez saisir l'identité, la preuve de résidence, la demande, etc.",
+        descriptionInfoButton:
+          'Fournissez une brève description des fichiers que vous avez téléchargés pour clarification.',
+        yourFileTitle: 'Votre dossier',
+        yourFilesTitle: 'Vos fichiers',
+        uploadNewFile: 'Télécharger un nouveau fichier',
+        dragAndDropDescription:
+          "Vous pouvez modifier les positions de vos fichiers dans n'importe quel ordre",
+        dragAndDropDescriptionBold: 'par glisser-déposer.',
+        removeFile: 'Retirer',
       },
 
       landing: {
@@ -2307,6 +2382,17 @@ export default merge(
         multipleFilesTitle: 'একাধিক ফাইল',
         multipleFilesDescription:
           'মাল্টিপল-ফাইল বিকল্প আপনাকে আপনার ডিভাইস ম্যানেজমেন্ট সিস্টেম থেকে যতগুলি ফাইল বা ছবি আপলোড করার ক্ষমতা দেয়। আপনি যদি মোবাইল ফোন বা ট্যাবলেট ব্যবহার করেন তবে আপনি আপনার ক্যামেরা দিয়ে ছবি তুলতে পারেন।.',
+        titleInfoButton:
+          'আপনি পরিচয় টাইপ করতে পারেন, বসবাসের প্রমাণ, আবেদনপত্র ইত্যাদি।',
+        descriptionInfoButton:
+          'স্পষ্টীকরণের জন্য আপনি আপলোড করা ফাইলগুলির একটি সংক্ষিপ্ত বিবরণ প্রদান করুন৷.',
+        yourFileTitle: 'আপনার ফাইল',
+        yourFilesTitle: 'আপনার ফাইল',
+        uploadNewFile: 'নতুন ফাইল আপলোড করুন',
+        dragAndDropDescription:
+          'আপনি ড্র্যাগ এবং ড্রপ করে যেকোনো ক্রমে আপনার ফাইলের অবস্থান',
+        dragAndDropDescriptionBold: 'পরিবর্তন করতে পারেন।.',
+        removeFile: 'অপসারণ',
       },
 
       landing: {
@@ -2598,6 +2684,17 @@ export default merge(
         multipleFilesTitle: 'Wiele plików',
         multipleFilesDescription:
           'Opcja wielu plików umożliwia przesłanie dowolnej liczby plików lub obrazów z systemu zarządzania urządzeniem. Jeśli używasz telefonu komórkowego lub tabletu, możesz robić zdjęcia aparatem.',
+        titleInfoButton:
+          'Możesz wpisać tożsamość, dowód zamieszkania, wniosek itp.',
+        descriptionInfoButton:
+          'W celu wyjaśnienia podaj krótki opis przesłanych plików.',
+        yourFileTitle: 'Plik',
+        yourFilesTitle: 'Twoje pliki',
+        uploadNewFile: 'Prześlij nowy plik',
+        dragAndDropDescription:
+          'Możesz zmieniać położenie plików w dowolnej kolejności,',
+        dragAndDropDescriptionBold: ' przeciągając je i upuszczając.',
+        removeFile: 'Usunąć',
       },
 
       landing: {
@@ -2885,6 +2982,17 @@ export default merge(
         multipleFilesTitle: 'Plizyè-fichye',
         multipleFilesDescription:
           'Opsyon plizyè fichye a ba ou kapasite pou w telechaje anpil fichye oswa imaj nan sistèm jesyon aparèy ou an. Si w ap itilize yon telefòn mobil oswa yon tablèt ou ka pran foto ak kamera w.',
+        titleInfoButton:
+          'Ou ka tape swa idantite, prèv rezidans, aplikasyon, elatriye.',
+        descriptionInfoButton:
+          'Bay yon deskripsyon tou kout sou dosye ou telechaje yo pou klarifikasyon.',
+        yourFileTitle: 'Dosye w la',
+        yourFilesTitle: 'Dosye ou yo',
+        uploadNewFile: 'Telechaje nouvo fichye',
+        dragAndDropDescription:
+          'Ou ka chanje pozisyon nan dosye ou yo nan nenpòt lòd pa ',
+        dragAndDropDescriptionBold: 'trennen ak gout.',
+        removeFile: 'Retire',
       },
 
       landing: {
@@ -3177,6 +3285,14 @@ export default merge(
         multipleFilesTitle: '多文件',
         multipleFilesDescription:
           '多文件選項使您能夠從設備管理系統上傳盡可能多的文件或圖像。 如果您使用的是手機或平板電腦，則可以使用相機拍照.',
+        titleInfoButton: '您可以輸入身份、居住證明、申請等。',
+        descriptionInfoButton: '提供您上傳的文件的簡要說明以進行說明。',
+        yourFileTitle: '你的檔案',
+        yourFilesTitle: '您的文件',
+        uploadNewFile: '上傳新文件',
+        dragAndDropDescription: '您可以按任何順序更改文件的位置',
+        dragAndDropDescriptionBold: '拖放。',
+        removeFile: '消除',
       },
 
       $vuetify: {
