@@ -161,7 +161,7 @@ export default class UploadButtonFileInput extends Vue {
       }
 
       .card-button {
-        width: 143px;
+        min-width: 143px;
         height: 56px;
         font-weight: 500;
         font-size: 18px;
@@ -244,7 +244,7 @@ export default class UploadButtonFileInput extends Vue {
         }
 
         .card-button {
-          width: 143px;
+          min-width: 143px;
           height: 56px;
           font-weight: 500;
           font-size: 17px;
@@ -326,7 +326,7 @@ export default class UploadButtonFileInput extends Vue {
         }
 
         .card-button {
-          width: 120px;
+          min-width: 120px;
           height: 45px;
           font-weight: 500;
           font-size: 14px;

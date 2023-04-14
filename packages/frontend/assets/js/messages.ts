@@ -390,6 +390,8 @@ export default merge(
         shared: 'المستندات المشتركة', // label of shared tab on dashboard
         upload: 'تحميل أحد المستندات',
         uploadDocument: 'تحميل مستند', // not found
+        uploadFile: 'رفع ملف',
+        uploadFiles: 'تحميل الملفات',
         view: 'دیکھیں',
         save: 'محفوظ کریں',
       },
@@ -551,36 +553,36 @@ export default merge(
           sharedWith: 'تمت المشاركة مع', // promt for agency email
         },
 
-        uploadInputButton: {
-          oneFileTitle: 'ملف واحد',
-          oneFileDescription:
-            'يمنحك خيار الملف الواحد القدرة على تحميل ملف أو صورة من نظام إدارة جهازك. إذا كنت تستخدم هاتفًا محمولًا أو جهازًا لوحيًا ، فيمكنك التقاط صورة بالكاميرا.',
-          multipleFilesTitle: 'ملفات متعددة',
-          multipleFilesDescription:
-            'يمنحك خيار الملفات المتعددة القدرة على تحميل أكبر عدد ممكن من الملفات أو الصور من نظام إدارة جهازك. إذا كنت تستخدم هاتفًا محمولًا أو جهازًا لوحيًا ، فيمكنك التقاط صور بالكاميرا.',
-        },
-
         landing: {
           community: 'COMMUNITY SERVICES', // not found
           agency: 'AGENCY SERVICES', // not found
         },
+      },
 
-        $vuetify: {
-          ...vuetifyEn,
-          dataTable: {
-            sortBy: 'Sort by', // not found
-            ariaLabel: {
-              sortNone: 'Do not sort', // not found
-              activateAscending: 'Sort ascending', // not found
-            },
+      uploadInputButton: {
+        oneFileTitle: 'ملف واحد',
+        oneFileDescription:
+          'يمنحك خيار الملف الواحد القدرة على تحميل ملف أو صورة من نظام إدارة جهازك. إذا كنت تستخدم هاتفًا محمولًا أو جهازًا لوحيًا ، فيمكنك التقاط صورة بالكاميرا.',
+        multipleFilesTitle: 'ملفات متعددة',
+        multipleFilesDescription:
+          'يمنحك خيار الملفات المتعددة القدرة على تحميل أكبر عدد ممكن من الملفات أو الصور من نظام إدارة جهازك. إذا كنت تستخدم هاتفًا محمولًا أو جهازًا لوحيًا ، فيمكنك التقاط صور بالكاميرا.',
+      },
+      validations: {
+        ...validationEn.messages,
+        whitelist: 'Must be an approved agency email', // not found
+        notSameAsUserEmail: 'You cannot enter your own email address', // not found
+      },
+
+      $vuetify: {
+        ...vuetifyEn,
+        dataTable: {
+          sortBy: 'Sort by', // not found
+          ariaLabel: {
+            sortNone: 'Do not sort', // not found
+            activateAscending: 'Sort ascending', // not found
           },
-          noDataText: 'No data', // no found
         },
-        validations: {
-          ...validationEn.messages,
-          whitelist: 'Must be an approved agency email', // not found
-          notSameAsUserEmail: 'You cannot enter your own email address', // not found
-        },
+        noDataText: 'No data', // no found
       },
     },
     ru: {
@@ -679,6 +681,8 @@ export default merge(
         shared: 'Общие документы', // label of shared tab on dashboard
         upload: 'Загрузите документ',
         uploadDocument: 'Загрузить документ',
+        uploadFile: 'Загрузить файл',
+        uploadFiles: 'Загрузить файлы',
         view: 'Просмотреть',
         save: 'Сохранить',
       },
@@ -970,6 +974,8 @@ export default merge(
         shared: 'شیئر کردہ دستاویزات', // label of shared tab on dashboard
         upload: 'ایک دستاویز اپ لوڈ کریں',
         uploadDocument: 'دستاویز اپ لوڈ کریں',
+        uploadFile: 'اپ لوڈ فائل',
+        uploadFiles: 'فائلیں اپ لوڈ کرو',
         view: 'دیکھیں',
         save: 'محفوظ کریں',
       },
@@ -1259,6 +1265,8 @@ export default merge(
         shared: '공유 서류', // label of shared tab on dashboard
         upload: '서류 업로드',
         uploadDocument: '서류 업로드',
+        uploadFile: '파일 업로드',
+        uploadFiles: '파일 업로드하다',
         view: '보기',
         save: '저장',
       },
@@ -1546,6 +1554,8 @@ export default merge(
         shared: 'Documentos compartidos', // label of shared tab on dashboard
         upload: 'Cargar un documento',
         uploadDocument: 'Cargar documento',
+        uploadFile: 'Subir archivo',
+        uploadFiles: 'Subir archivos',
         view: 'Vista',
         save: 'Guardar',
       },
@@ -1836,6 +1846,8 @@ export default merge(
         shared: 'Documents partagés', // label of shared tab on dashboard
         upload: 'Télécharger un document',
         uploadDocument: 'Télécharger un document',
+        uploadFile: 'Téléverser un fichier',
+        uploadFiles: 'Télécharger des fichiers',
         view: 'Consulter',
         save: 'Enregistrer',
       },
@@ -2125,6 +2137,8 @@ export default merge(
         shared: 'শেয়ার করা নথি', //  label of shared tab on dashboard
         upload: 'একটি নথি আপলোড করুন',
         uploadDocument: 'নথি আপলোড করুন',
+        uploadFile: 'ফাইল আপলোড করুন',
+        uploadFiles: 'ফাইল আপলোড',
         view: 'দেখুন',
         save: 'সেভ করুন',
       },
@@ -2415,6 +2429,8 @@ export default merge(
         shared: 'Udostępnione dokumenty', // label of shared tab on dashboard
         upload: 'Prześlij dokument',
         uploadDocument: 'Prześlij dokument',
+        uploadFile: 'Przesyłanie pliku',
+        uploadFiles: 'Prześlij pliki',
         view: 'Wyświetl',
         save: 'Zapisz',
       },
@@ -2701,6 +2717,8 @@ export default merge(
         shared: 'Pataje Dokiman', // label of shared tab on dashboard
         upload: 'Telechaje yon Dokiman',
         uploadDocument: 'Telechaje Dokiman',
+        uploadFile: 'Telechaje File',
+        uploadFiles: 'Voye Fichye yo',
         view: 'Afichaj',
         save: 'Anrejistre',
       },
@@ -2986,6 +3004,8 @@ export default merge(
         shared: '分享文件', // label of shared tab on dashboard
         upload: '上傳文件',
         uploadDocument: '上傳文件',
+        uploadFile: '上傳文件',
+        uploadFiles: '上傳文件',
         view: '查看',
         save: '儲存',
       },
