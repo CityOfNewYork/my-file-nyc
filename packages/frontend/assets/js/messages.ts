@@ -81,7 +81,7 @@ export default merge(
         uploadFirst: 'Add your first document', // label on the empty state upload button
         thumbnailOf: 'Thumbnail of',
         fileName: 'Document Name',
-        signleOrMultyple: 'Does your document have one or multiple files?',
+        singleOrMultiple: 'Does your document have one or multiple files?',
       },
 
       controls: {
@@ -263,6 +263,26 @@ export default merge(
         sharedWith: 'Shared With: ', // promt for agency email
       },
 
+      uploadInputButton: {
+        oneFileTitle: 'One-file',
+        oneFileDescription:
+          "The one-file option gives you the ability to upload a file or an image from your device management system. If you're using a mobile phone or tablet you can take a photo with your camera.",
+        multipleFilesTitle: 'Multiple-files',
+        multipleFilesDescription:
+          "The multiple-files option gives you the ability to upload as many files or images from your device management system. If you're using a mobile phone or tablet you can take photos with your camera.",
+        titleInfoButton:
+          'You can type either identity, proof of residency,application, etc.',
+        descriptionInfoButton:
+          'Provide a brief description of the files you uploaded for clarification.',
+        yourFileTitle: 'Your file',
+        yourFilesTitle: 'Your files',
+        uploadNewFile: 'Upload new file',
+        dragAndDropDescription:
+          'You can change positions of your files in any order by',
+        dragAndDropDescriptionBold: 'drag and drop.',
+        removeFile: 'Remove',
+      },
+
       landing: {
         community: 'COMMUNITY SERVICES',
         agency: 'AGENCY SERVICES',
@@ -359,6 +379,8 @@ export default merge(
         uploadFirst: 'أضف مستندك الأول', // label on the empty state upload button
         thumbnailOf: 'Thumbnail of', // not found
         fileName: 'اسم المستند',
+        singleOrMultiple:
+          'هل يحتوي المستند الخاص بك على ملف واحد أم ملفات متعددة؟',
       },
 
       controls: {
@@ -379,6 +401,8 @@ export default merge(
         shared: 'المستندات المشتركة', // label of shared tab on dashboard
         upload: 'تحميل أحد المستندات',
         uploadDocument: 'تحميل مستند', // not found
+        uploadFile: 'رفع ملف',
+        uploadFiles: 'تحميل الملفات',
         view: 'دیکھیں',
         save: 'محفوظ کریں',
       },
@@ -544,23 +568,42 @@ export default merge(
           community: 'COMMUNITY SERVICES', // not found
           agency: 'AGENCY SERVICES', // not found
         },
+      },
 
-        $vuetify: {
-          ...vuetifyEn,
-          dataTable: {
-            sortBy: 'Sort by', // not found
-            ariaLabel: {
-              sortNone: 'Do not sort', // not found
-              activateAscending: 'Sort ascending', // not found
-            },
+      uploadInputButton: {
+        oneFileTitle: 'ملف واحد',
+        oneFileDescription:
+          'يمنحك خيار الملف الواحد القدرة على تحميل ملف أو صورة من نظام إدارة جهازك. إذا كنت تستخدم هاتفًا محمولًا أو جهازًا لوحيًا ، فيمكنك التقاط صورة بالكاميرا.',
+        multipleFilesTitle: 'ملفات متعددة',
+        multipleFilesDescription:
+          'يمنحك خيار الملفات المتعددة القدرة على تحميل أكبر عدد ممكن من الملفات أو الصور من نظام إدارة جهازك. إذا كنت تستخدم هاتفًا محمولًا أو جهازًا لوحيًا ، فيمكنك التقاط صور بالكاميرا.',
+        titleInfoButton:
+          'يمكنك كتابة الهوية ، وإثبات الإقامة ، والتطبيق ، وما إلى ذلك.',
+        descriptionInfoButton:
+          'قدم وصفًا موجزًا للملفات التي قمت بتحميلها للتوضيح.',
+        yourFileTitle: 'ملفك',
+        yourFilesTitle: 'ملفاتك',
+        uploadNewFile: 'تحميل ملف جديد',
+        dragAndDropDescription: 'يمكنك تغيير أوضاع ملفاتك بأي ترتيب من خلال',
+        dragAndDropDescriptionBold: 'السحب والإفلات.',
+        removeFile: 'يزيل',
+      },
+      validations: {
+        ...validationEn.messages,
+        whitelist: 'Must be an approved agency email', // not found
+        notSameAsUserEmail: 'You cannot enter your own email address', // not found
+      },
+
+      $vuetify: {
+        ...vuetifyEn,
+        dataTable: {
+          sortBy: 'Sort by', // not found
+          ariaLabel: {
+            sortNone: 'Do not sort', // not found
+            activateAscending: 'Sort ascending', // not found
           },
-          noDataText: 'No data', // no found
         },
-        validations: {
-          ...validationEn.messages,
-          whitelist: 'Must be an approved agency email', // not found
-          notSameAsUserEmail: 'You cannot enter your own email address', // not found
-        },
+        noDataText: 'No data', // no found
       },
     },
     ru: {
@@ -637,6 +680,8 @@ export default merge(
         uploadFirst: 'Добавьте свой первый документ', // label on the empty state upload button
         thumbnailOf: 'Thumbnail of', // not found
         fileName: 'Название документа',
+        singleOrMultiple:
+          'Ваш документ содержит один файл или несколько файлов?',
       },
 
       controls: {
@@ -657,6 +702,8 @@ export default merge(
         shared: 'Общие документы', // label of shared tab on dashboard
         upload: 'Загрузите документ',
         uploadDocument: 'Загрузить документ',
+        uploadFile: 'Загрузить файл',
+        uploadFiles: 'Загрузить файлы',
         view: 'Просмотреть',
         save: 'Сохранить',
       },
@@ -819,6 +866,26 @@ export default merge(
         sharedWith: 'Предоставить доступ (кому):', // promt for agency email
       },
 
+      uploadInputButton: {
+        oneFileTitle: 'Один файл',
+        oneFileDescription:
+          'Вариант с одним файлом дает вам возможность загрузить файл или изображение из системы управления вашим устройством. Если вы используете мобильный телефон или планшет, вы можете сделать снимок с помощью камеры.',
+        multipleFilesTitle: 'Несколько файлов',
+        multipleFilesDescription:
+          'Опция нескольких файлов дает вам возможность загружать столько файлов или изображений из вашей системы управления устройствами. Если вы используете мобильный телефон или планшет, вы можете делать фотографии с помощью камеры.',
+        titleInfoButton:
+          'Вы можете ввести удостоверение личности, подтверждение места жительства, заявление и т.д.',
+        descriptionInfoButton:
+          'Предоставьте краткое описание файлов, которые вы загрузили для разъяснения.',
+        yourFileTitle: 'Ваш файл',
+        yourFilesTitle: 'Ваши файлы',
+        uploadNewFile: 'Загрузить новый файл',
+        dragAndDropDescription:
+          'Вы можете изменить положение ваших файлов в любом порядке ',
+        dragAndDropDescriptionBold: 'путем перетаскивания.',
+        removeFile: 'Удалить',
+      },
+
       landing: {
         community: 'COMMUNITY SERVICES', // not found
         agency: 'AGENCY SERVICES', // not found
@@ -918,6 +985,7 @@ export default merge(
         uploadFirst: 'اپنی پہلی دستاویز شامل کریں', // label on the empty state upload button
         thumbnailOf: 'Thumbnail of', // not found
         fileName: 'دستاویز کا نام',
+        singleOrMultiple: 'کیا آپ کی دستاویز میں ایک فائل یا متعدد فائلیں ہیں؟',
       },
 
       controls: {
@@ -938,6 +1006,8 @@ export default merge(
         shared: 'شیئر کردہ دستاویزات', // label of shared tab on dashboard
         upload: 'ایک دستاویز اپ لوڈ کریں',
         uploadDocument: 'دستاویز اپ لوڈ کریں',
+        uploadFile: 'اپ لوڈ فائل',
+        uploadFiles: 'فائلیں اپ لوڈ کرو',
         view: 'دیکھیں',
         save: 'محفوظ کریں',
       },
@@ -1101,6 +1171,26 @@ export default merge(
         sharedWith: 'اس کے ساتھ اشتراک کردہ`:', // promt for agency email
       },
 
+      uploadInputButton: {
+        oneFileTitle: 'ایک فائل',
+        oneFileDescription:
+          'ایک فائل کا آپشن آپ کو اپنے ڈیوائس مینجمنٹ سسٹم سے فائل یا تصویر اپ لوڈ کرنے کی صلاحیت فراہم کرتا ہے۔ اگر آپ موبائل فون یا ٹیبلیٹ استعمال کر رہے ہیں تو آپ اپنے کیمرے سے تصویر لے سکتے ہیں۔',
+        multipleFilesTitle: 'متعدد فائلیں۔',
+        multipleFilesDescription:
+          'ایک سے زیادہ فائلوں کا آپشن آپ کو آپ کے ڈیوائس مینجمنٹ سسٹم سے زیادہ سے زیادہ فائلیں یا تصاویر اپ لوڈ کرنے کی صلاحیت فراہم کرتا ہے۔ اگر آپ موبائل فون یا ٹیبلیٹ استعمال کر رہے ہیں تو آپ اپنے کیمرے سے تصاویر لے سکتے ہیں۔',
+        titleInfoButton:
+          'آپ یا تو شناخت ٹائپ کر سکتے ہیں، رہائش کا ثبوت، درخواست وغیرہ۔',
+        descriptionInfoButton:
+          'وضاحت کے لیے آپ نے جو فائلیں اپ لوڈ کی ہیں ان کی مختصر تفصیل فراہم کریں۔',
+        yourFileTitle: 'آپ کی فائل',
+        yourFilesTitle: 'آپ کی فائلیں۔',
+        uploadNewFile: 'نئی فائل اپ لوڈ کریں۔',
+        dragAndDropDescription:
+          'آپ اپنی فائلوں کی پوزیشن کو کسی بھی ترتیب سے تبدیل کر سکتے ہیں۔',
+        dragAndDropDescriptionBold: 'ڈریگ اور ڈراپ.',
+        removeFile: 'دور',
+      },
+
       landing: {
         community: 'COMMUNITY SERVICES', // not found
         agency: 'AGENCY SERVICES', // not found
@@ -1197,6 +1287,7 @@ export default merge(
         uploadFirst: '첫 번째 서류 추가', // label on the empty state upload button
         thumbnailOf: 'Thumbnail of',
         fileName: '서류 이름',
+        singleOrMultiple: '문서에 하나 또는 여러 개의 파일이 있습니까?',
       },
 
       controls: {
@@ -1217,6 +1308,8 @@ export default merge(
         shared: '공유 서류', // label of shared tab on dashboard
         upload: '서류 업로드',
         uploadDocument: '서류 업로드',
+        uploadFile: '파일 업로드',
+        uploadFiles: '파일 업로드하다',
         view: '보기',
         save: '저장',
       },
@@ -1377,6 +1470,25 @@ export default merge(
         sharedWith: '공유 대상:', // promt for agency email
       },
 
+      uploadInputButton: {
+        oneFileTitle: '단일 파일',
+        oneFileDescription:
+          '단일 파일 옵션을 사용하면 장치 관리 시스템에서 파일 또는 이미지를 업로드할 수 있습니다. 휴대폰이나 태블릿을 사용하는 경우 카메라로 사진을 찍을 수 있습니다.',
+        multipleFilesTitle: '다중 파일',
+        multipleFilesDescription:
+          '여러 파일 옵션을 사용하면 장치 관리 시스템에서 많은 파일 또는 이미지를 업로드할 수 있습니다. 휴대폰이나 태블릿을 사용하는 경우 카메라로 사진을 찍을 수 있습니다.',
+        titleInfoButton: '신원, 거주 증명, 지원서 등을 입력할 수 있습니다.',
+        descriptionInfoButton:
+          '명확성을 위해 업로드한 파일에 대한 간략한 설명을 제공합니다.',
+        yourFileTitle: '귀하의 파일',
+        yourFilesTitle: '내 파일',
+        uploadNewFile: '새 파일 업로드',
+        dragAndDropDescription:
+          '순서에 상관없이 파일의 위치를 변경할 수 있습니다.',
+        dragAndDropDescriptionBold: '끌어서 놓기.',
+        removeFile: '제거하다',
+      },
+
       landing: {
         community: 'COMMUNITY SERVICES', // not found
         agency: 'AGENCY SERVICES', // not found
@@ -1474,6 +1586,7 @@ export default merge(
         uploadFirst: 'Agregue su primer documento', // label on the empty state upload button
         thumbnailOf: 'Thumbnail of', // not found
         fileName: 'Nombre del documento',
+        singleOrMultiple: '¿Su documento tiene uno o varios archivos?',
       },
 
       controls: {
@@ -1494,6 +1607,8 @@ export default merge(
         shared: 'Documentos compartidos', // label of shared tab on dashboard
         upload: 'Cargar un documento',
         uploadDocument: 'Cargar documento',
+        uploadFile: 'Subir archivo',
+        uploadFiles: 'Subir archivos',
         view: 'Vista',
         save: 'Guardar',
       },
@@ -1656,6 +1771,26 @@ export default merge(
         sharedWith: 'Compartido con: ', // promt for agency email
       },
 
+      uploadInputButton: {
+        oneFileTitle: 'Un archivo',
+        oneFileDescription:
+          'La opción de un archivo le brinda la posibilidad de cargar un archivo o una imagen desde el sistema de administración de su dispositivo. Si estás usando un teléfono móvil o una tableta, puedes tomar una foto con tu cámara.',
+        multipleFilesTitle: 'Múltiples archivos',
+        multipleFilesDescription:
+          'La opción de archivos múltiples le brinda la posibilidad de cargar tantos archivos o imágenes desde el sistema de administración de su dispositivo. Si estás usando un teléfono móvil o una tableta, puedes tomar fotos con tu cámara.',
+        titleInfoButton:
+          'Puede escribir identidad, comprobante de residencia, solicitud, etc.',
+        descriptionInfoButton:
+          'Proporcione una breve descripción de los archivos que cargó como aclaración.',
+        yourFileTitle: 'Tu archivo',
+        yourFilesTitle: 'Tus archivos',
+        uploadNewFile: 'Subir archivo nuevo',
+        dragAndDropDescription:
+          'Puede cambiar las posiciones de sus archivos en cualquier orden',
+        dragAndDropDescriptionBold: 'arrastrando y soltando.',
+        removeFile: 'Eliminar',
+      },
+
       landing: {
         community: 'COMMUNITY SERVICES', // not found
         agency: 'AGENCY SERVICES', // not found
@@ -1753,6 +1888,8 @@ export default merge(
         uploadFirst: 'Ajouter votre premier document', // label on the empty state upload button
         thumbnailOf: 'Thumbnail of', // not found
         fileName: 'Nom du document',
+        singleOrMultiple:
+          'Votre document comporte-t-il un ou plusieurs fichiers ?',
       },
 
       controls: {
@@ -1773,6 +1910,8 @@ export default merge(
         shared: 'Documents partagés', // label of shared tab on dashboard
         upload: 'Télécharger un document',
         uploadDocument: 'Télécharger un document',
+        uploadFile: 'Téléverser un fichier',
+        uploadFiles: 'Télécharger des fichiers',
         view: 'Consulter',
         save: 'Enregistrer',
       },
@@ -1936,6 +2075,26 @@ export default merge(
         sharedWith: 'Partagé avec: ', // promt for agency email
       },
 
+      uploadInputButton: {
+        oneFileTitle: 'Fichier unique',
+        oneFileDescription:
+          "L'option de fichier unique vous permet de télécharger un fichier ou une image à partir de votre système de gestion d'appareils. Si vous utilisez un téléphone portable ou une tablette, vous pouvez prendre une photo avec votre appareil photo.",
+        multipleFilesTitle: 'Fichiers multiples',
+        multipleFilesDescription:
+          "L'option de fichiers multiples vous donne la possibilité de télécharger autant de fichiers ou d'images à partir de votre système de gestion d'appareils. Si vous utilisez un téléphone portable ou une tablette, vous pouvez prendre des photos avec votre appareil photo.",
+        titleInfoButton:
+          "Vous pouvez saisir l'identité, la preuve de résidence, la demande, etc.",
+        descriptionInfoButton:
+          'Fournissez une brève description des fichiers que vous avez téléchargés pour clarification.',
+        yourFileTitle: 'Votre dossier',
+        yourFilesTitle: 'Vos fichiers',
+        uploadNewFile: 'Télécharger un nouveau fichier',
+        dragAndDropDescription:
+          "Vous pouvez modifier les positions de vos fichiers dans n'importe quel ordre",
+        dragAndDropDescriptionBold: 'par glisser-déposer.',
+        removeFile: 'Retirer',
+      },
+
       landing: {
         community: 'COMMUNITY SERVICES', // not found
         agency: 'AGENCY SERVICES', // not found
@@ -2032,6 +2191,7 @@ export default merge(
         uploadFirst: 'আপনার প্রথম নথি যোগ করুন', // label on the empty state upload button
         thumbnailOf: 'Thumbnail of', // not found
         fileName: 'নথির নাম',
+        singleOrMultiple: 'আপনার নথিতে কি এক বা একাধিক ফাইল আছে?',
       },
 
       controls: {
@@ -2052,6 +2212,8 @@ export default merge(
         shared: 'শেয়ার করা নথি', //  label of shared tab on dashboard
         upload: 'একটি নথি আপলোড করুন',
         uploadDocument: 'নথি আপলোড করুন',
+        uploadFile: 'ফাইল আপলোড করুন',
+        uploadFiles: 'ফাইল আপলোড',
         view: 'দেখুন',
         save: 'সেভ করুন',
       },
@@ -2213,6 +2375,26 @@ export default merge(
         sharedWith: 'যার সাথে শেয়ার করা হয়েছে:', // promt for agency email
       },
 
+      uploadInputButton: {
+        oneFileTitle: 'এক-ফাইল',
+        oneFileDescription:
+          'এক-ফাইল বিকল্প আপনাকে আপনার ডিভাইস ম্যানেজমেন্ট সিস্টেম থেকে একটি ফাইল বা একটি ছবি আপলোড করার ক্ষমতা দেয়। আপনি যদি একটি মোবাইল ফোন বা ট্যাবলেট ব্যবহার করেন তবে আপনি আপনার ক্যামেরা দিয়ে একটি ছবি তুলতে পারেন।.',
+        multipleFilesTitle: 'একাধিক ফাইল',
+        multipleFilesDescription:
+          'মাল্টিপল-ফাইল বিকল্প আপনাকে আপনার ডিভাইস ম্যানেজমেন্ট সিস্টেম থেকে যতগুলি ফাইল বা ছবি আপলোড করার ক্ষমতা দেয়। আপনি যদি মোবাইল ফোন বা ট্যাবলেট ব্যবহার করেন তবে আপনি আপনার ক্যামেরা দিয়ে ছবি তুলতে পারেন।.',
+        titleInfoButton:
+          'আপনি পরিচয় টাইপ করতে পারেন, বসবাসের প্রমাণ, আবেদনপত্র ইত্যাদি।',
+        descriptionInfoButton:
+          'স্পষ্টীকরণের জন্য আপনি আপলোড করা ফাইলগুলির একটি সংক্ষিপ্ত বিবরণ প্রদান করুন৷.',
+        yourFileTitle: 'আপনার ফাইল',
+        yourFilesTitle: 'আপনার ফাইল',
+        uploadNewFile: 'নতুন ফাইল আপলোড করুন',
+        dragAndDropDescription:
+          'আপনি ড্র্যাগ এবং ড্রপ করে যেকোনো ক্রমে আপনার ফাইলের অবস্থান',
+        dragAndDropDescriptionBold: 'পরিবর্তন করতে পারেন।.',
+        removeFile: 'অপসারণ',
+      },
+
       landing: {
         community: 'COMMUNITY SERVICES', // not found
         agency: 'AGENCY SERVICES', // not found
@@ -2312,6 +2494,7 @@ export default merge(
         uploadFirst: 'Dodaj pierwszy dokument', // label on the empty state upload button
         thumbnailOf: 'Thumbnail of', // not found
         fileName: 'Nazwa dokumentu',
+        singleOrMultiple: 'Czy twój dokument zawiera jeden lub wiele plików?',
       },
 
       controls: {
@@ -2332,6 +2515,8 @@ export default merge(
         shared: 'Udostępnione dokumenty', // label of shared tab on dashboard
         upload: 'Prześlij dokument',
         uploadDocument: 'Prześlij dokument',
+        uploadFile: 'Przesyłanie pliku',
+        uploadFiles: 'Prześlij pliki',
         view: 'Wyświetl',
         save: 'Zapisz',
       },
@@ -2492,6 +2677,26 @@ export default merge(
         sharedWith: 'Udostępniono:', // promt for agency email
       },
 
+      uploadInputButton: {
+        oneFileTitle: 'Jeden plik',
+        oneFileDescription:
+          'Opcja jednego pliku daje możliwość przesłania pliku lub obrazu z systemu zarządzania urządzeniem. Jeśli używasz telefonu komórkowego lub tabletu, możesz zrobić zdjęcie aparatem.',
+        multipleFilesTitle: 'Wiele plików',
+        multipleFilesDescription:
+          'Opcja wielu plików umożliwia przesłanie dowolnej liczby plików lub obrazów z systemu zarządzania urządzeniem. Jeśli używasz telefonu komórkowego lub tabletu, możesz robić zdjęcia aparatem.',
+        titleInfoButton:
+          'Możesz wpisać tożsamość, dowód zamieszkania, wniosek itp.',
+        descriptionInfoButton:
+          'W celu wyjaśnienia podaj krótki opis przesłanych plików.',
+        yourFileTitle: 'Plik',
+        yourFilesTitle: 'Twoje pliki',
+        uploadNewFile: 'Prześlij nowy plik',
+        dragAndDropDescription:
+          'Możesz zmieniać położenie plików w dowolnej kolejności,',
+        dragAndDropDescriptionBold: ' przeciągając je i upuszczając.',
+        removeFile: 'Usunąć',
+      },
+
       landing: {
         community: 'COMMUNITY SERVICES', // not found
         agency: 'AGENCY SERVICES', // not found
@@ -2588,6 +2793,7 @@ export default merge(
         uploadFirst: 'Atache premye dokiman ou a', // label on the empty state upload button
         thumbnailOf: 'Thumbnail of', // not found
         fileName: 'Non dokiman an',
+        singleOrMultiple: 'Èske dokiman ou a gen youn oswa plizyè dosye?',
       },
 
       controls: {
@@ -2608,6 +2814,8 @@ export default merge(
         shared: 'Pataje Dokiman', // label of shared tab on dashboard
         upload: 'Telechaje yon Dokiman',
         uploadDocument: 'Telechaje Dokiman',
+        uploadFile: 'Telechaje File',
+        uploadFiles: 'Voye Fichye yo',
         view: 'Afichaj',
         save: 'Anrejistre',
       },
@@ -2767,6 +2975,25 @@ export default merge(
         sharedFolderNameLabel: 'Name', // (not found) label of shared folder name column in agent view
         sharedWith: 'Pataje li ak:', // promt for agency email
       },
+      uploadInputButton: {
+        oneFileTitle: 'Yon dosye',
+        oneFileDescription:
+          'Opsyon yon sèl fichye a ba ou kapasite pou w telechaje yon fichye oswa yon imaj nan sistèm jesyon aparèy ou an. Si w ap itilize yon telefòn mobil oswa yon tablèt ou ka pran yon foto ak kamera ou.',
+        multipleFilesTitle: 'Plizyè-fichye',
+        multipleFilesDescription:
+          'Opsyon plizyè fichye a ba ou kapasite pou w telechaje anpil fichye oswa imaj nan sistèm jesyon aparèy ou an. Si w ap itilize yon telefòn mobil oswa yon tablèt ou ka pran foto ak kamera w.',
+        titleInfoButton:
+          'Ou ka tape swa idantite, prèv rezidans, aplikasyon, elatriye.',
+        descriptionInfoButton:
+          'Bay yon deskripsyon tou kout sou dosye ou telechaje yo pou klarifikasyon.',
+        yourFileTitle: 'Dosye w la',
+        yourFilesTitle: 'Dosye ou yo',
+        uploadNewFile: 'Telechaje nouvo fichye',
+        dragAndDropDescription:
+          'Ou ka chanje pozisyon nan dosye ou yo nan nenpòt lòd pa ',
+        dragAndDropDescriptionBold: 'trennen ak gout.',
+        removeFile: 'Retire',
+      },
 
       landing: {
         community: 'COMMUNITY SERVICES', // not found
@@ -2864,6 +3091,7 @@ export default merge(
         uploadFirst: '新增您的第一個文件', // label on the empty state upload button
         thumbnailOf: 'Thumbnail of', // not found
         fileName: '文件名稱',
+        singleOrMultiple: '您的文檔有一個還是多個文件？',
       },
 
       controls: {
@@ -2884,6 +3112,8 @@ export default merge(
         shared: '分享文件', // label of shared tab on dashboard
         upload: '上傳文件',
         uploadDocument: '上傳文件',
+        uploadFile: '上傳文件',
+        uploadFiles: '上傳文件',
         view: '查看',
         save: '儲存',
       },
@@ -3046,6 +3276,23 @@ export default merge(
       landing: {
         community: 'COMMUNITY SERVICES', // not found
         agency: 'AGENCY SERVICES', // not found
+      },
+
+      uploadInputButton: {
+        oneFileTitle: '個文件',
+        oneFileDescription:
+          '單文件選項使您能夠從設備管理系統上傳文件或圖像。 如果您使用的是手機或平板電腦，則可以使用相機拍照。',
+        multipleFilesTitle: '多文件',
+        multipleFilesDescription:
+          '多文件選項使您能夠從設備管理系統上傳盡可能多的文件或圖像。 如果您使用的是手機或平板電腦，則可以使用相機拍照.',
+        titleInfoButton: '您可以輸入身份、居住證明、申請等。',
+        descriptionInfoButton: '提供您上傳的文件的簡要說明以進行說明。',
+        yourFileTitle: '你的檔案',
+        yourFilesTitle: '您的文件',
+        uploadNewFile: '上傳新文件',
+        dragAndDropDescription: '您可以按任何順序更改文件的位置',
+        dragAndDropDescriptionBold: '拖放。',
+        removeFile: '消除',
       },
 
       $vuetify: {
