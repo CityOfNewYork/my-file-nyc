@@ -551,6 +551,15 @@ export default merge(
           sharedWith: 'تمت المشاركة مع', // promt for agency email
         },
 
+        uploadInputButton: {
+          oneFileTitle: 'ملف واحد',
+          oneFileDescription:
+            'يمنحك خيار الملف الواحد القدرة على تحميل ملف أو صورة من نظام إدارة جهازك. إذا كنت تستخدم هاتفًا محمولًا أو جهازًا لوحيًا ، فيمكنك التقاط صورة بالكاميرا.',
+          multipleFilesTitle: 'ملفات متعددة',
+          multipleFilesDescription:
+            'يمنحك خيار الملفات المتعددة القدرة على تحميل أكبر عدد ممكن من الملفات أو الصور من نظام إدارة جهازك. إذا كنت تستخدم هاتفًا محمولًا أو جهازًا لوحيًا ، فيمكنك التقاط صور بالكاميرا.',
+        },
+
         landing: {
           community: 'COMMUNITY SERVICES', // not found
           agency: 'AGENCY SERVICES', // not found
@@ -830,6 +839,15 @@ export default merge(
         sharedBy: 'Доступ предоставил пользователь:', // (not found) label in side bar
         sharedFolderNameLabel: 'Name', // (not found) label of shared folder name column in agent view
         sharedWith: 'Предоставить доступ (кому):', // promt for agency email
+      },
+
+      uploadInputButton: {
+        oneFileTitle: 'Один файл',
+        oneFileDescription:
+          'Вариант с одним файлом дает вам возможность загрузить файл или изображение из системы управления вашим устройством. Если вы используете мобильный телефон или планшет, вы можете сделать снимок с помощью камеры.',
+        multipleFilesTitle: 'Несколько файлов',
+        multipleFilesDescription:
+          'Опция нескольких файлов дает вам возможность загружать столько файлов или изображений из вашей системы управления устройствами. Если вы используете мобильный телефон или планшет, вы можете делать фотографии с помощью камеры.',
       },
 
       landing: {
@@ -1115,6 +1133,15 @@ export default merge(
         sharedWith: 'اس کے ساتھ اشتراک کردہ`:', // promt for agency email
       },
 
+      uploadInputButton: {
+        oneFileTitle: 'ایک فائل',
+        oneFileDescription:
+          'ایک فائل کا آپشن آپ کو اپنے ڈیوائس مینجمنٹ سسٹم سے فائل یا تصویر اپ لوڈ کرنے کی صلاحیت فراہم کرتا ہے۔ اگر آپ موبائل فون یا ٹیبلیٹ استعمال کر رہے ہیں تو آپ اپنے کیمرے سے تصویر لے سکتے ہیں۔',
+        multipleFilesTitle: 'متعدد فائلیں۔',
+        multipleFilesDescription:
+          'ایک سے زیادہ فائلوں کا آپشن آپ کو آپ کے ڈیوائس مینجمنٹ سسٹم سے زیادہ سے زیادہ فائلیں یا تصاویر اپ لوڈ کرنے کی صلاحیت فراہم کرتا ہے۔ اگر آپ موبائل فون یا ٹیبلیٹ استعمال کر رہے ہیں تو آپ اپنے کیمرے سے تصاویر لے سکتے ہیں۔',
+      },
+
       landing: {
         community: 'COMMUNITY SERVICES', // not found
         agency: 'AGENCY SERVICES', // not found
@@ -1390,6 +1417,15 @@ export default merge(
         sharedBy: '공유자', // label in side bar
         sharedFolderNameLabel: 'Name', // (not found) label of shared folder name column in agent view
         sharedWith: '공유 대상:', // promt for agency email
+      },
+
+      uploadInputButton: {
+        oneFileTitle: '단일 파일',
+        oneFileDescription:
+          '단일 파일 옵션을 사용하면 장치 관리 시스템에서 파일 또는 이미지를 업로드할 수 있습니다. 휴대폰이나 태블릿을 사용하는 경우 카메라로 사진을 찍을 수 있습니다.',
+        multipleFilesTitle: '다중 파일',
+        multipleFilesDescription:
+          '여러 파일 옵션을 사용하면 장치 관리 시스템에서 많은 파일 또는 이미지를 업로드할 수 있습니다. 휴대폰이나 태블릿을 사용하는 경우 카메라로 사진을 찍을 수 있습니다.',
       },
 
       landing: {
@@ -1670,6 +1706,15 @@ export default merge(
         sharedBy: 'Compartido por', // label in side bar
         sharedFolderNameLabel: 'Name', // (not found) label of shared folder name column in agent view
         sharedWith: 'Compartido con: ', // promt for agency email
+      },
+
+      uploadInputButton: {
+        oneFileTitle: 'Un archivo',
+        oneFileDescription:
+          'La opción de un archivo le brinda la posibilidad de cargar un archivo o una imagen desde el sistema de administración de su dispositivo. Si estás usando un teléfono móvil o una tableta, puedes tomar una foto con tu cámara.',
+        multipleFilesTitle: 'Múltiples archivos',
+        multipleFilesDescription:
+          'La opción de archivos múltiples le brinda la posibilidad de cargar tantos archivos o imágenes desde el sistema de administración de su dispositivo. Si estás usando un teléfono móvil o una tableta, puedes tomar fotos con tu cámara.',
       },
 
       landing: {
@@ -1954,6 +1999,15 @@ export default merge(
         sharedWith: 'Partagé avec: ', // promt for agency email
       },
 
+      uploadInputButton: {
+        oneFileTitle: 'Fichier unique',
+        oneFileDescription:
+          "L'option de fichier unique vous permet de télécharger un fichier ou une image à partir de votre système de gestion d'appareils. Si vous utilisez un téléphone portable ou une tablette, vous pouvez prendre une photo avec votre appareil photo.",
+        multipleFilesTitle: 'Fichiers multiples',
+        multipleFilesDescription:
+          "L'option de fichiers multiples vous donne la possibilité de télécharger autant de fichiers ou d'images à partir de votre système de gestion d'appareils. Si vous utilisez un téléphone portable ou une tablette, vous pouvez prendre des photos avec votre appareil photo.",
+      },
+
       landing: {
         community: 'COMMUNITY SERVICES', // not found
         agency: 'AGENCY SERVICES', // not found
@@ -2230,6 +2284,15 @@ export default merge(
         sharedBy: 'দ্বারা শেয়ার করা', //  label in side bar
         sharedFolderNameLabel: 'Name', // (not found) label of shared folder name column in agent view
         sharedWith: 'যার সাথে শেয়ার করা হয়েছে:', // promt for agency email
+      },
+
+      uploadInputButton: {
+        oneFileTitle: 'এক-ফাইল',
+        oneFileDescription:
+          'এক-ফাইল বিকল্প আপনাকে আপনার ডিভাইস ম্যানেজমেন্ট সিস্টেম থেকে একটি ফাইল বা একটি ছবি আপলোড করার ক্ষমতা দেয়। আপনি যদি একটি মোবাইল ফোন বা ট্যাবলেট ব্যবহার করেন তবে আপনি আপনার ক্যামেরা দিয়ে একটি ছবি তুলতে পারেন।.',
+        multipleFilesTitle: 'একাধিক ফাইল',
+        multipleFilesDescription:
+          'মাল্টিপল-ফাইল বিকল্প আপনাকে আপনার ডিভাইস ম্যানেজমেন্ট সিস্টেম থেকে যতগুলি ফাইল বা ছবি আপলোড করার ক্ষমতা দেয়। আপনি যদি মোবাইল ফোন বা ট্যাবলেট ব্যবহার করেন তবে আপনি আপনার ক্যামেরা দিয়ে ছবি তুলতে পারেন।.',
       },
 
       landing: {
@@ -2512,6 +2575,15 @@ export default merge(
         sharedWith: 'Udostępniono:', // promt for agency email
       },
 
+      uploadInputButton: {
+        oneFileTitle: 'Jeden plik',
+        oneFileDescription:
+          'Opcja jednego pliku daje możliwość przesłania pliku lub obrazu z systemu zarządzania urządzeniem. Jeśli używasz telefonu komórkowego lub tabletu, możesz zrobić zdjęcie aparatem.',
+        multipleFilesTitle: 'Wiele plików',
+        multipleFilesDescription:
+          'Opcja wielu plików umożliwia przesłanie dowolnej liczby plików lub obrazów z systemu zarządzania urządzeniem. Jeśli używasz telefonu komórkowego lub tabletu, możesz robić zdjęcia aparatem.',
+      },
+
       landing: {
         community: 'COMMUNITY SERVICES', // not found
         agency: 'AGENCY SERVICES', // not found
@@ -2787,6 +2859,14 @@ export default merge(
         sharedBy: 'Pataje yo pa', //  label in side bar
         sharedFolderNameLabel: 'Name', // (not found) label of shared folder name column in agent view
         sharedWith: 'Pataje li ak:', // promt for agency email
+      },
+      uploadInputButton: {
+        oneFileTitle: 'Yon dosye',
+        oneFileDescription:
+          'Opsyon yon sèl fichye a ba ou kapasite pou w telechaje yon fichye oswa yon imaj nan sistèm jesyon aparèy ou an. Si w ap itilize yon telefòn mobil oswa yon tablèt ou ka pran yon foto ak kamera ou.',
+        multipleFilesTitle: 'Plizyè-fichye',
+        multipleFilesDescription:
+          'Opsyon plizyè fichye a ba ou kapasite pou w telechaje anpil fichye oswa imaj nan sistèm jesyon aparèy ou an. Si w ap itilize yon telefòn mobil oswa yon tablèt ou ka pran foto ak kamera w.',
       },
 
       landing: {
@@ -3068,6 +3148,15 @@ export default merge(
       landing: {
         community: 'COMMUNITY SERVICES', // not found
         agency: 'AGENCY SERVICES', // not found
+      },
+
+      uploadInputButton: {
+        oneFileTitle: '個文件',
+        oneFileDescription:
+          '單文件選項使您能夠從設備管理系統上傳文件或圖像。 如果您使用的是手機或平板電腦，則可以使用相機拍照。',
+        multipleFilesTitle: '多文件',
+        multipleFilesDescription:
+          '多文件選項使您能夠從設備管理系統上傳盡可能多的文件或圖像。 如果您使用的是手機或平板電腦，則可以使用相機拍照.',
       },
 
       $vuetify: {
