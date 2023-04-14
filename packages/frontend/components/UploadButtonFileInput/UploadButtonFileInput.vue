@@ -9,16 +9,16 @@
     >
       <v-icon :small="$vuetify.breakpoint.xsOnly">$close</v-icon>
     </v-btn>
-    <p class="header">{{ $t('document.signleOrMultyple') }}</p>
+    <p class="header">{{ $t('document.singleOrMultiple') }}</p>
     <div class="cards-container">
       <v-card width="390" height="276" class="card">
         <v-card-item class="card-title-position">
-          <v-card-title class="card-title">One-file</v-card-title>
+          <v-card-title class="card-title">
+            {{ $t('uploadInputButton.oneFileTitle') }}
+          </v-card-title>
         </v-card-item>
         <v-card-text class="card-text">
-          The one-file option gives you the ability to upload a file or an image
-          from your device management system. If you're using a mobile phone or
-          tablet you can take a photo with your camera.
+          {{ $t('uploadInputButton.oneFileDescription') }}
         </v-card-text>
         <v-card-actions class="card-button-position">
           <!-- eslint-disable-next-line vue-a11y/form-has-label -->
@@ -40,12 +40,12 @@
 
       <v-card width="390" height="276" class="card">
         <v-card-item class="card-title-position">
-          <v-card-title class="card-title">Multiple-files</v-card-title>
+          <v-card-title class="card-title">
+            {{ $t('uploadInputButton.multipleFilesTitle') }}
+          </v-card-title>
         </v-card-item>
         <v-card-text class="card-text">
-          The multiple-files option gives you the ability to upload as many
-          files or images from your device management system. If you're using a
-          mobile phone or tablet you can take photos with your camera.
+          {{ $t('uploadInputButton.multipleFilesDescription') }}
         </v-card-text>
         <v-card-actions class="card-button-position">
           <!-- eslint-disable-next-line vue-a11y/form-has-label -->

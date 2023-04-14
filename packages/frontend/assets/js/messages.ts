@@ -81,7 +81,7 @@ export default merge(
         uploadFirst: 'Add your first document', // label on the empty state upload button
         thumbnailOf: 'Thumbnail of',
         fileName: 'Document Name',
-        signleOrMultyple: 'Does your document have one or multiple files?',
+        singleOrMultiple: 'Does your document have one or multiple files?',
       },
 
       controls: {
@@ -263,6 +263,15 @@ export default merge(
         sharedWith: 'Shared With: ', // promt for agency email
       },
 
+      uploadInputButton: {
+        oneFileTitle: 'One-file',
+        oneFileDescription:
+          "The one-file option gives you the ability to upload a file or an image from your device management system. If you're using a mobile phone or tablet you can take a photo with your camera.",
+        multipleFilesTitle: 'Multiple-files',
+        multipleFilesDescription:
+          "The multiple-files option gives you the ability to upload as many files or images from your device management system. If you're using a mobile phone or tablet you can take photos with your camera.",
+      },
+
       landing: {
         community: 'COMMUNITY SERVICES',
         agency: 'AGENCY SERVICES',
@@ -359,6 +368,8 @@ export default merge(
         uploadFirst: 'أضف مستندك الأول', // label on the empty state upload button
         thumbnailOf: 'Thumbnail of', // not found
         fileName: 'اسم المستند',
+        singleOrMultiple:
+          'هل يحتوي المستند الخاص بك على ملف واحد أم ملفات متعددة؟',
       },
 
       controls: {
@@ -637,6 +648,8 @@ export default merge(
         uploadFirst: 'Добавьте свой первый документ', // label on the empty state upload button
         thumbnailOf: 'Thumbnail of', // not found
         fileName: 'Название документа',
+        singleOrMultiple:
+          'Ваш документ содержит один файл или несколько файлов?',
       },
 
       controls: {
@@ -918,6 +931,7 @@ export default merge(
         uploadFirst: 'اپنی پہلی دستاویز شامل کریں', // label on the empty state upload button
         thumbnailOf: 'Thumbnail of', // not found
         fileName: 'دستاویز کا نام',
+        singleOrMultiple: 'کیا آپ کی دستاویز میں ایک فائل یا متعدد فائلیں ہیں؟',
       },
 
       controls: {
@@ -1197,6 +1211,7 @@ export default merge(
         uploadFirst: '첫 번째 서류 추가', // label on the empty state upload button
         thumbnailOf: 'Thumbnail of',
         fileName: '서류 이름',
+        singleOrMultiple: '문서에 하나 또는 여러 개의 파일이 있습니까?',
       },
 
       controls: {
@@ -1474,6 +1489,7 @@ export default merge(
         uploadFirst: 'Agregue su primer documento', // label on the empty state upload button
         thumbnailOf: 'Thumbnail of', // not found
         fileName: 'Nombre del documento',
+        singleOrMultiple: '¿Su documento tiene uno o varios archivos?',
       },
 
       controls: {
@@ -1753,6 +1769,8 @@ export default merge(
         uploadFirst: 'Ajouter votre premier document', // label on the empty state upload button
         thumbnailOf: 'Thumbnail of', // not found
         fileName: 'Nom du document',
+        singleOrMultiple:
+          'Votre document comporte-t-il un ou plusieurs fichiers ?',
       },
 
       controls: {
@@ -2032,6 +2050,7 @@ export default merge(
         uploadFirst: 'আপনার প্রথম নথি যোগ করুন', // label on the empty state upload button
         thumbnailOf: 'Thumbnail of', // not found
         fileName: 'নথির নাম',
+        singleOrMultiple: 'আপনার নথিতে কি এক বা একাধিক ফাইল আছে?',
       },
 
       controls: {
@@ -2312,6 +2331,7 @@ export default merge(
         uploadFirst: 'Dodaj pierwszy dokument', // label on the empty state upload button
         thumbnailOf: 'Thumbnail of', // not found
         fileName: 'Nazwa dokumentu',
+        singleOrMultiple: 'Czy twój dokument zawiera jeden lub wiele plików?',
       },
 
       controls: {
@@ -2588,6 +2608,7 @@ export default merge(
         uploadFirst: 'Atache premye dokiman ou a', // label on the empty state upload button
         thumbnailOf: 'Thumbnail of', // not found
         fileName: 'Non dokiman an',
+        singleOrMultiple: 'Èske dokiman ou a gen youn oswa plizyè dosye?',
       },
 
       controls: {
@@ -2864,6 +2885,7 @@ export default merge(
         uploadFirst: '新增您的第一個文件', // label on the empty state upload button
         thumbnailOf: 'Thumbnail of', // not found
         fileName: '文件名稱',
+        singleOrMultiple: '您的文檔有一個還是多個文件？',
       },
 
       controls: {
