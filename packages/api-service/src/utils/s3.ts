@@ -69,9 +69,17 @@ export const downloadObject = async (key: string, outputPath: string) => {
 }
 
 export const getObjectReadStream = (key: string) => {
-  return s3
-    .getObject({ Bucket: getDocumentsBucket(), Key: key })
-    .createReadStream()
+  try {
+    console.log(`attempting to get s3 object read stream from key ${key}`)
+    const readStream = s3
+      .getObject({ Bucket: getDocumentsBucket(), Key: key })
+      .createReadStream()
+    console.log(`read stream obtained successfully for ${key}`)
+    return readStream
+  } catch (err) {
+    console.log(`error getting s3 object read stream: ${JSON.stringify(err, null, 2)}`)
+    throw err
+  }
 }
 
 export const uploadObject = async (

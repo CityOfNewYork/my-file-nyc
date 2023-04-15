@@ -1,5 +1,6 @@
 import { CollectionsPrefix } from '@/constants'
 import { getFilesByDocumentId } from '@/models/file'
+import { getDocumentById } from '@/models/document'
 import { createS3ZipFromS3Objects, S3ObjectDetails } from '@/utils/zip'
 import { getCollectionDetails } from '@/services/collections'
 import { connectDatabase } from '@/utils/database'
@@ -33,11 +34,14 @@ export const handler = wrapAsyncHandler(
     const s3Objects: S3ObjectDetails[] = []
     for (const document of documents) {
       if (document.isMultipageDocument) {
-        // create stream for file
-        s3Objects.push({
-          key: `documents/${document.ownerId}/${document.id}.pdf`,
-          filename: `${document.name}.pdf`,
-        })
+        const fetchedDocument = await getDocumentById(document.id)
+        if (fetchedDocument) {
+          // create stream for file
+          s3Objects.push({
+            key: `documents/${fetchedDocument.ownerId}/${document.id}.pdf`,
+            filename: `${document.name}.pdf`,
+          })
+        }
       } else {
         // get received files for a document
         const files = (await getFilesByDocumentId(document.id)).filter(
