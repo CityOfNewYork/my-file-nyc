@@ -23,6 +23,7 @@ import streamBuffers from 'stream-buffers'
 import { WriteStream } from 'fs'
 import { Duplex } from 'stream'
 import { connectDatabase } from '@/utils/database'
+import { getUserById } from '@/models/user'
 
 const getQueueUrl = () =>
   requireConfiguration(
@@ -55,17 +56,22 @@ export const handler = wrapAsyncHandler(
       }
 
       const document = await getDocumentById(assembleRequest.documentId)
+      const docOwner = await getUserById(document!.ownerId)
       const documentFiles = await getFilesByDocumentId(document!.id)
-      const pdfFilepath = await generatePDF(
+      const {
+        outputPdfFilepath: pdfFilepath,
+        outputPdfThumbnailFilepath: pdfThumbnailFilepath,
+      } = await generatePDF(
         document,
         documentFiles,
         document?.ownerId,
         `${document?.id}-pdf`,
       )
-      const s3FileKey = `documents/${document!.ownerId}/${document!.id}.pdf`
+      const s3PdfFileKey = `documents/${document!.ownerId}/${document!.id}.pdf`
+      const s3PdfThumbnailFileKey = `documents/${document!.ownerId}/${document!.id}.png`
       console.log(
         `pdf processing complete... uploading pdf to bucket as key: 
-        ${s3FileKey}`,
+        ${s3PdfFileKey}`,
       )
       // const readableStreamBuffer = new streamBuffers.ReadableStreamBuffer({
       //   frequency: 10,
@@ -75,9 +81,27 @@ export const handler = wrapAsyncHandler(
       // const writeStream = new WriteStream()
       // const duplexStream = new Duplex()
       // readableStreamBuffer.pipe(duplexStream)
-      const uploadResponse = await uploadObject(pdfFilepath, s3FileKey)
+      const uploadPdfResponse = await uploadObject(
+        pdfFilepath,
+        s3PdfFileKey,
+        {
+          ContentType: 'application/pdf',
+          ContentDisposition: `inline; filename="${document?.name}.pdf"`,
+        },
+      )
+      const uploadPdfThumbnailResponse = await uploadObject(
+        pdfThumbnailFilepath,
+        s3PdfThumbnailFileKey,
+        {
+          ContentType: 'image/png',
+          ContentDisposition: `inline; filename="${document?.name}.png"`,
+        },
+      )
       console.log(`s3 upload pdf response: 
-      ${JSON.stringify(uploadResponse, null, 2)}
+      ${JSON.stringify(uploadPdfResponse, null, 2)}
+
+      thumbnail response:
+      ${JSON.stringify(uploadPdfThumbnailResponse, null, 2)}
       `)
       await deleteMessages(getQueueUrl(), [record])
     }

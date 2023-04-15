@@ -75,11 +75,18 @@ export const createDocumentListItem = (document: any) => {
   }
 
   let pdf: string | undefined = undefined
+  let pdfThumbnail: string | undefined = undefined
   if (isMultipageDocument) {
     pdf = getPresignedDownloadUrl(
       `documents/${ownerId}/${id}.pdf`,
-      name,
-      'attachment',
+      `${name}.pdf`,
+      FileDownloadDispositionTypeEnum.Inline,
+      600,
+    )
+    pdfThumbnail = getPresignedDownloadUrl(
+      `documents/${ownerId}/${id}.png`,
+      'multipage-doc-thumbnail.png',
+      FileDownloadDispositionTypeEnum.Inline,
       600,
     )
   }
@@ -88,6 +95,7 @@ export const createDocumentListItem = (document: any) => {
     name,
     isMultipageDocument,
     pdf,
+    pdfThumbnail,
     createdDate: createdAt.toISOString(),
     id,
     links,
@@ -98,7 +106,16 @@ export const singleDocumentResult = (
   document: Document,
   permissions: DocumentPermission[],
 ): DocumentContract => {
-  const { id, name, createdAt, description = null, files: baseFiles } = document
+  const {
+    id,
+    name,
+    createdAt,
+    thumbnailPath,
+    files: baseFiles,
+    description = null,
+    isMultipageDocument,
+    ownerId,
+  } = document
 
   const links = [
     {
@@ -123,6 +140,22 @@ export const singleDocumentResult = (
   }
 
   const files = baseFiles ? baseFiles : []
+  let pdf: string | undefined = undefined
+  let pdfThumbnail: string | undefined = undefined
+  if (isMultipageDocument) {
+    pdf = getPresignedDownloadUrl(
+      `documents/${ownerId}/${id}.pdf`,
+      `${name}.pdf`,
+      FileDownloadDispositionTypeEnum.Inline,
+      600,
+    )
+    pdfThumbnail = getPresignedDownloadUrl(
+      `documents/${ownerId}/${id}.png`,
+      'multipage-doc-thumbnail.png',
+      FileDownloadDispositionTypeEnum.Inline,
+      600,
+    )
+  }
 
   return {
     createdDate: createdAt.toISOString(),
@@ -130,6 +163,9 @@ export const singleDocumentResult = (
     description,
     id,
     scanStatus: document.scanStatus,
+    isMultipageDocument,
+    pdf,
+    pdfThumbnail,
     files: files.map(
       (f): DocumentFileContract => ({
         id: f.id,

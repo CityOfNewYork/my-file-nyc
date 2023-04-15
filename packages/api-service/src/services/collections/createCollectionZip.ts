@@ -1,5 +1,6 @@
 import { CollectionsPrefix } from '@/constants'
 import { getFilesByDocumentId } from '@/models/file'
+import { getDocumentById } from '@/models/document'
 import { createS3ZipFromS3Objects, S3ObjectDetails } from '@/utils/zip'
 import { getCollectionDetails } from '@/services/collections'
 import { connectDatabase } from '@/utils/database'
@@ -32,22 +33,37 @@ export const handler = wrapAsyncHandler(
     const fileNames = new Set<string>()
     const s3Objects: S3ObjectDetails[] = []
     for (const document of documents) {
-      // get received files for a document
-      const files = (await getFilesByDocumentId(document.id)).filter(
-        (f) => f.received,
-      )
-      // create stream for file
-      s3Objects.push(
-        ...files.map((f) => {
-          const filename = resolveFileName(document, f, files.length, fileNames)
-          fileNames.add(filename)
-          return {
-            key: f.path,
-            filename,
-          }
-        }),
-      )
+      if (document.isMultipageDocument) {
+        const fetchedDocument = await getDocumentById(document.id)
+        if (fetchedDocument) {
+          // create stream for file
+          s3Objects.push({
+            key: `documents/${fetchedDocument.ownerId}/${document.id}.pdf`,
+            filename: `${document.name}.pdf`,
+          })
+        }
+      } else {
+        // get received files for a document
+        const files = (await getFilesByDocumentId(document.id)).filter(
+          (f) => f.received,
+        )
+        // create stream for file
+        s3Objects.push(
+          ...files.map((f) => {
+            const filename = resolveFileName(document, f, files.length, fileNames)
+            fileNames.add(filename)
+            return {
+              key: f.path,
+              filename,
+            }
+          }),
+        )
+      }
     }
+
+    console.log(`S3 Objects for Archive:
+    ${JSON.stringify(s3Objects, null, 2)}
+    `)
 
     // stream files into zip
     return await createS3ZipFromS3Objects({

@@ -782,7 +782,7 @@ export class CityStack extends Stack {
     multipageDocumentQueue: IQueue,
     apiProps: ApiProps,
   ) {
-    const { dbSecret, mySqlLayer } = apiProps
+    const { dbSecret, mySqlLayer, gmLayer } = apiProps
     const lambda = this.createLambda(
       'ProcessMultipageDocumentPdfAssembly',
       pathToApiServiceLambda('documents/processMultipageDocumentPdf'),
@@ -792,7 +792,7 @@ export class CityStack extends Stack {
           memorySize: 2048,
           timeout: Duration.seconds(15),
         },
-        layers: [mySqlLayer],
+        layers: [mySqlLayer, gmLayer],
         extraEnvironmentVariables: [
           EnvironmentVariables.MULTIPAGE_DOCUMENT_ASSEMBLY_PROCESSOR_SQS_QUEUE_URL,
           EnvironmentVariables.DOCUMENTS_BUCKET,
@@ -1717,7 +1717,7 @@ export class CityStack extends Stack {
         layers: [mySqlLayer],
         extraEnvironmentVariables: [
           ...authEnvironmentVariables,
-          // EnvironmentVariables.WEB_APP_DOMAIN, -- need to fix incorrect domain issue for processing email template
+          EnvironmentVariables.WEB_APP_DOMAIN,
           EnvironmentVariables.ACTIVITY_RECORD_SQS_QUEUE_URL,
           EnvironmentVariables.EMAIL_PROCESSOR_SQS_QUEUE_URL,
           EnvironmentVariables.SHARED_INBOX_CONFIG,
@@ -1732,13 +1732,6 @@ export class CityStack extends Stack {
         },
       },
     )
-
-    /* TEMPORARY BUILD FIX / CHECK -- NEED TO SET ENV VAR BASED ON ENVIRONMENT SPECIFIC SECRETS */
-    createCollectionFunction.addEnvironment(
-      'WEB_APP_DOMAIN',
-      'd3gtg3qw3q3xz9.cloudfront.net',
-    )
-    /* END TEMPORARY BUILD FIX */
 
     createCollectionFunction.addToRolePolicy(
       new PolicyStatement({

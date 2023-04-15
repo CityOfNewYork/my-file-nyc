@@ -39,21 +39,6 @@ export const handler = wrapAsyncHandler(
       // read out message data
       const { toAddresses, template, data, subject, isQAUser } = sendRequest
 
-      const x = {
-        "template": "collectionSharedNotificationOwnerAcknowledgement",
-        "toAddresses": ["mayordarnell@gmail.com"],
-        "subject": "My File Shared Document Receipt",
-        "data": { "toEmailList": "myfile.sharedinbox@nycopportunity.nyc.gov", "numberOfDocuments": 1 }
-      };
-      const y = { 
-        "template": "collectionSharedNotification", 
-        "toAddresses": ["myfile.sharedinbox@nycopportunity.nyc.gov"], 
-        "subject": "You’ve received new documents", 
-        "data": { 
-          "link": "https://d3gtg3qw3q3xz9.cloudfront.net/collections/382a7733-1fc9-4926-a07e-d841888219fe/documents?owner=172bfa4f7e3b433e9ae24c9668259e4f&role=2", 
-          "name": "Darnell Sessoms" }
-       };
-
     // shared inbox & qa user check
     const sharedInboxConfig = isQAUser
       ? (JSON.parse(
