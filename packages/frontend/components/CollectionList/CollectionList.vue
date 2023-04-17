@@ -27,7 +27,11 @@
         :class="{ 'mb-4': $vuetify.breakpoint.smAndUp }"
       />
     </template>
-    <div v-else>
+    <div
+      v-else
+      :style="$vuetify.breakpoint.xsOnly ? 'height: 80dvh;' : 'height: 65dvh;'"
+      class="d-flex justify-center align-center"
+    >
       <p class="d-flex justify-center">
         {{ $t('sharedFolder.noCollections') }}
       </p>
