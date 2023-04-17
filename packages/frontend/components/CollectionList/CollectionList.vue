@@ -30,7 +30,7 @@
     <div
       v-else
       :style="$vuetify.breakpoint.xsOnly ? 'height: 80dvh;' : 'height: 65dvh;'"
-      class="d-flex justify-center align-center"
+      class="d-flex justify-center align-center flex-column"
     >
       <p class="d-flex justify-center">
         {{ $t('sharedFolder.noCollections') }}
