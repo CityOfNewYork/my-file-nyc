@@ -187,7 +187,8 @@ export default class UploadButtonFileInput extends Vue {
   .dialog-container {
     background-color: rgb(255, 255, 255);
     width: 554px;
-    height: 690px;
+    min-height: 700px !important;
+    overflow: scroll !important;
     display: flex;
     flex-direction: column;
     padding-left: 60px;
@@ -213,7 +214,7 @@ export default class UploadButtonFileInput extends Vue {
       display: flex !important;
       flex-direction: column !important;
       width: 100%;
-      height: 100vh !important;
+      height: 100% !important;
       .card {
         display: flex !important;
         flex-direction: column !important;
@@ -269,7 +270,8 @@ export default class UploadButtonFileInput extends Vue {
     background-color: rgb(255, 255, 255);
     width: 330px;
     max-height: 660px;
-    min-height: 400px;
+    min-height: 450px !important;
+    overflow: scroll !important;
     display: flex;
     flex-direction: column;
     padding-left: 24px;
