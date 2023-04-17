@@ -6,10 +6,13 @@
   >
     <label
       for="file-input"
+      style="box-shadow: none"
       :class="[
         'upload-label',
         'font-weight-medium',
         'body-1',
+        'pa-2',
+        'ma-0',
         textButton ? 'text' : 'v-btn',
         { disabled: isLoading },
         { 'v-btn--outlined': outlined },

@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!loading" >
+  <div v-if="!loading">
     <template v-if="documents.length">
       <v-data-table
         v-show="$vuetify.breakpoint.smAndUp"
@@ -21,7 +21,7 @@
         </template>
 
         <template v-slot:item.actions="{ item }">
-          <DocumentMenu :onDelete="reload" :document="item" />
+          <DocumentMenu :on-delete="reload" :document="item" />
         </template>
       </v-data-table>
       <DocumentCard
@@ -38,16 +38,21 @@
         :show-actions="showActions"
       />
     </template>
-    <EmptyState v-else body="document.noDocuments">
+    <EmptyState
+      v-else
+      body="document.noDocuments"
+      :style="$vuetify.breakpoint.xsOnly ? 'height: 80dvh;' : 'height: 65dvh;'"
+      class="d-flex justify-center align-center"
+    >
       <template v-slot:action>
-        <div class="d-flex justify-center">
+        <div class="d-flex justify-center pa-0">
           <UploadButton
-            :docsPresent="reload"
-            @complete="onUpload"
+            :docs-present="reload"
             class="text-center"
             :label="$t('document.uploadFirst')"
             :outlined="true"
             px="12"
+            @complete="onUpload"
           />
         </div>
       </template>
@@ -195,8 +200,7 @@ export default class DocumentList extends Vue {
         }) as RawLocation,
       )
     } else if (userStore.isCbo && userStore.isActingAsDelegate) {
-      const delegate: DelegatedClient | null =
-        await userStore.fetchImpersonatedDelegate()
+      const delegate: DelegatedClient | null = await userStore.fetchImpersonatedDelegate()
       this.$router.push(
         this.localeRoute({
           path: `/documents/${document.id}`,

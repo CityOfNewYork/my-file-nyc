@@ -191,7 +191,7 @@ export default class ClientDashboard extends Vue {
   }
   .v-window.v-tabs-items .v-window-item {
     padding: 0rem 0 5rem 0;
-    background-color: var(--blue-super-light);
+    background-color: #ffffff;
   }
 
   @media (max-width: 599px) {
