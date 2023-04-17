@@ -65,14 +65,10 @@
               :on-upload="onUpload"
               class="mx-sm-8"
             /> -->
-            <DocumentList
-              ref="documentList"
-              :on-upload="onUpload"
-              class="mx-sm-8"
-            />
+            <DocumentList ref="documentList" :on-upload="onUpload" />
           </v-tab-item>
           <v-tab-item value="tab-collections" tabindex="0">
-            <CollectionList class="mx-sm-8" />
+            <CollectionList />
           </v-tab-item>
           <div
             v-if="$vuetify.breakpoint.smAndDown && docsPresent"
@@ -186,9 +182,6 @@ export default class ClientDashboard extends Vue {
 
 <style scoped lang="scss">
 #__nuxt {
-  .v-main {
-    padding-top: 1rem;
-  }
   .v-window.v-tabs-items .v-window-item {
     padding: 0rem 0 5rem 0;
     background-color: #ffffff;

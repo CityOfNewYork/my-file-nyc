@@ -149,8 +149,6 @@ export default class ViewCollection extends Vue {
     /* Ensure the user role is set from querystring role param if passed from incoming link */
     console.log('--- viewing shared document ---')
     const { role } = this.$route.query
-    console.log(this.$route)
-    console.log(role)
     if (
       role &&
       parseInt(role as string) >= 0 &&
@@ -214,9 +212,9 @@ export default class ViewCollection extends Vue {
 
   get sharedCollection(): TransformedSharedCollectionListItem | null {
     return (
-      (
-        userStore.sharedCollections as TransformedSharedCollectionListItem[]
-      ).find((c) => c.collection.id === this.$route.params.id) ?? null
+      (userStore.sharedCollections as TransformedSharedCollectionListItem[]).find(
+        (c) => c.collection.id === this.$route.params.id,
+      ) ?? null
     )
   }
 

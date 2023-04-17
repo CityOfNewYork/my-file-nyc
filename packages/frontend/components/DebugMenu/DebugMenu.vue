@@ -71,12 +71,6 @@ export default class DebugMenu extends Vue {
     this.$auth.logout()
   }
 
-  // getDocuments() {
-  //   this.$store.dispatch('user/getDocuments').then((res) => {
-  //     console.log(res)
-  //   })
-  // }
-
   setUserRole(v: UserRole) {
     this.$store.dispatch('user/setRole', v)
   }
