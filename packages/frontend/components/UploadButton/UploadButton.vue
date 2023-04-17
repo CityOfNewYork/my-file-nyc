@@ -724,9 +724,9 @@ export default class UploadButton extends Vue {
     }
 
     .form-upload-button {
-      width: 120px !important;
-      min-height: 24px !important;
-      padding: 0px !important;
+      width: 220px !important;
+      min-height: 26px !important;
+      padding: 0 0px 0 0px !important;
       font-size: 14px !important;
       font-weight: 500 !important;
       letter-spacing: 2% !important;
@@ -832,9 +832,9 @@ export default class UploadButton extends Vue {
     }
 
     .form-upload-button {
-      width: 120px !important;
+      min-width: 220px !important;
       min-height: 24px !important;
-      padding: 0px !important;
+      padding: 0 20px 0 20px !important;
       font-size: 12px !important;
       font-weight: 500 !important;
       letter-spacing: 2% !important;
