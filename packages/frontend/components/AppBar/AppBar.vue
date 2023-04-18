@@ -240,7 +240,7 @@ export default class AppBar extends mixins(Navigation) {
   }
 
   get pathShare() {
-    if (window.location.pathname === '/share') {
+    if (window.location.pathname.split('/').pop() === 'share') {
       return 'pr-2 d-flex justify-start align-center white'
     }
     return 'pr-2 d-flex justify-end align-center white'
@@ -248,8 +248,8 @@ export default class AppBar extends mixins(Navigation) {
 
   get headerHeight() {
     return this.$vuetify.breakpoint.smAndDown
-      ? window.location.pathname === '/share' ||
-        window.location.pathname === '/activity'
+      ? window.location.pathname.split('/').pop() === 'share' ||
+        window.location.pathname.split('/').pop() === 'activity'
         ? ''
         : '0px'
       : '95px'
