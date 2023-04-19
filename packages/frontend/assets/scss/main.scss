@@ -69,6 +69,15 @@
     .document-list-header-style{
       text-align: right;
     }
+    
+    @media (max-width: 600px) {
+        .documentMenu {
+        left: 1rem;
+        right: auto;
+      }
+    }
+    
+
   }
 
   // Base elements
