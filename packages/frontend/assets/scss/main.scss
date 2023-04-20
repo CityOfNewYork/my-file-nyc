@@ -69,6 +69,21 @@
     .document-list-header-style{
       text-align: right;
     }
+    
+    @media (max-width: 600px) {
+        .documentMenu {
+        left: 1rem;
+        right: auto;
+      }
+    }
+   
+    .clickable {
+      .text-start{
+        border-left: none !important;
+       border-right: none !important;
+      }
+    }
+
   }
 
   // Base elements

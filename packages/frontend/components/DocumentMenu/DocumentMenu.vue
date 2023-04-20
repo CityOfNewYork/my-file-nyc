@@ -2,8 +2,8 @@
   <v-menu
     v-if="userRole != 2"
     v-model="showMenu"
-    absolute
     offset-y
+    absolute
     :min-width="$vuetify.breakpoint.smAndDown ? '94%' : ''"
     :left="$vuetify.breakpoint.smAndDown ? '0px' : ''"
     :close-on-content-click="false"
@@ -41,7 +41,7 @@
     <DocumentActions
       ref="documentMenuList"
       :document="document"
-      :onDelete="onDelete"
+      :on-delete="onDelete"
       tabindex="-1"
     />
   </v-menu>
