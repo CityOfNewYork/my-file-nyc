@@ -3,7 +3,7 @@
     <CityLogo class="city-logo" />
     <MarkdownContent
       id="welcome-copy"
-      :key="this.welcomeMarkdown['default']"
+      :key="welcomeMarkdown['default']"
       class="pa-1"
       :content-path="welcomeMarkdown"
     />
@@ -44,19 +44,20 @@ import { userStore } from '../../plugins/store-accessor'
   auth: false,
 })
 export default class LandingMessage extends Vue {
-  welcomeMarkdown = ''
+  welcomeMarkdown = '' as any
+  locale = this.$i18n.locale
 
   beforeUpdate() {
     if (this.$i18n) {
-      const locale = this.$i18n.locale
-      this.welcomeMarkdown = require(`@/assets/content/welcome/${locale}.md`)
+      // const locale = this.$i18n.locale
+      this.welcomeMarkdown = require(`@/assets/content/welcome/${this.locale}.md`)
     }
   }
 
   created() {
     if (this.$i18n) {
       const locale = this.$i18n.locale
-      this.welcomeMarkdown = require(`@/assets/content/welcome/${locale}.md`)
+      this.welcomeMarkdown = require(`@/assets/content/welcome/${this.locale}.md`)
     }
   }
 
@@ -72,7 +73,14 @@ export default class LandingMessage extends Vue {
 
   logIn(role: UserRole = UserRole.CLIENT) {
     // localStorage.setItem('entry-role', role.toString())
-    this.$router.push(this.localePath(`/login?loginAs=${role}`))
+
+    if (this.$i18n.locale != 'en'){
+      // this.$router keep redirecting to /en rout, had to use window to force navigation to nycid
+      window.location.replace(this.localePath(`/login?loginAs=${role}`));
+    }
+    else {
+      this.$router.push(this.localePath(`/login?loginAs=${role}`))
+    }
   }
 }
 </script>
