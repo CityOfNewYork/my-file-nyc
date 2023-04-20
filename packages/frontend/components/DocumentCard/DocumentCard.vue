@@ -4,9 +4,9 @@
     class="a11y-focus"
     tabindex="0"
     :class="[
-      { 'pr-8': selectable },
+      { 'pr-8 dashboard-table-card': selectable },
       { mobile: $vuetify.breakpoint.xs },
-      { 'mx-4': $vuetify.breakpoint.smAndUp },
+      { 'mx-4 dashboard-table-card': $vuetify.breakpoint.smAndUp },
     ]"
     @click.native.stop="onClick"
     @keydown.native.self.stop.enter="onClick"

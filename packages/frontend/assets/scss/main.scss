@@ -76,7 +76,13 @@
         right: auto;
       }
     }
-    
+   
+    .clickable {
+      .text-start{
+        border-left: none !important;
+       border-right: none !important;
+      }
+    }
 
   }
 
