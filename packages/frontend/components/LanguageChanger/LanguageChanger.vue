@@ -53,8 +53,10 @@ export default class LanguageChanger extends Vue {
   
   updated() {
     this.$router.push(`/${this.$i18n.locale}/${window.location.toString().split("/").pop()}`)
-    if (this.userStore.profile.locale === this.$i18n.locale) {
+    if (this.userStore.profile){
+      if (this.userStore.profile.locale === this.$i18n.locale) {
       this.userPatch()
+    }
     }
   }
 
