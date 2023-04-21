@@ -31,6 +31,10 @@
     </AppBar>
     <v-main>
       <v-container v-if="document" class="pa-2">
+        <div
+          v-if="document.files.length === 1 || document.pdf"
+          class="white-square"
+        ></div>
         <template v-if="document.files.length === 1 || document.pdf">
           <DocumentFile
             v-if="document.pdf"
@@ -341,8 +345,16 @@ export default class ViewDocument extends Vue {
 <style lang="scss">
 .container {
   // min-height: calc(100vh - 4rem);
+  position: relative;
   .vertical-space {
     min-height: 20rem;
   }
+}
+
+.white-square {
+  position: absolute;
+  width: 100%;
+  height: 40px;
+  background-color: white;
 }
 </style>

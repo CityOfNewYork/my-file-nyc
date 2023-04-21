@@ -136,7 +136,7 @@ export default class DocumentFile extends Vue {
   }
 
   get isPdf() {
-    if (this.document.pdf || this.document.files[0].name.slice(-3) == 'pdf') {
+    if (this.document.pdf || this.document.files[0].name.slice(-3) === 'pdf') {
       return true
     } else {
       return false
@@ -184,6 +184,7 @@ export default class DocumentFile extends Vue {
   width: 100%;
   height: calc(100vh - 18rem);
 }
+
 .viewer {
   &.pdf {
     width: 100%;
