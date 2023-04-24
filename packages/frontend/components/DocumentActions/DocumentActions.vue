@@ -33,11 +33,11 @@
     />
   </v-list>
   <v-list
+    v-else-if="$vuetify.breakpoint.smAndDown || dasbboardDocMenu"
     class="d-flex"
     style="justify-content: space-evenly; flex-direction: column"
-    v-else-if="$vuetify.breakpoint.smAndDown || dasbboardDocMenu"
   >
-    <v-list-item class="justify-center" v-if="userRole != 2">
+    <v-list-item v-if="userRole != 2" class="justify-center">
       <v-btn
         class="actionButtonMobile"
         color="primary white--text"
@@ -46,7 +46,7 @@
         {{ $t('controls.editDetails') }}
       </v-btn>
     </v-list-item>
-    <v-list-item class="justify-center mb-2 mt-2" v-if="userRole != 2">
+    <v-list-item v-if="userRole != 2" class="justify-center mb-2 mt-2">
       <v-btn
         class="actionButtonMobile"
         color="primary white--text"
@@ -58,9 +58,9 @@
     </v-list-item>
     <v-list-item class="justify-center">
       <v-btn
-        @click="download"
         class="actionButtonMobile"
         color="primary white--text"
+        @click="download"
       >
         {{ $t('controls.download') }}
       </v-btn>
@@ -166,10 +166,11 @@ export default class DocumentActions extends Vue {
   async confirmDelete() {
     this.loading = true
     await this.deleteDoc()
-    if (this.$route.path === this.localePath(`/documents/${this.document.id}`))
-      this.$router.push(this.localePath('/dashboard'))
-    this.loading = false
-    this.showDeleteConfirmation = false
+    await this.$router.push(this.localePath('/dashboard'))
+    setTimeout(() => {
+      this.loading = false
+      this.showDeleteConfirmation = false
+    }, 2000)
   }
 
   async deleteDoc() {
