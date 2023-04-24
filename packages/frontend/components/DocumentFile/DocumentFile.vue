@@ -65,7 +65,9 @@ export default class DocumentFile extends Vue {
     return {
       script: [
         {
-          src: 'https://documentservices.adobe.com/view-sdk/viewer.js',
+          src: this.url
+            ? 'https://documentservices.adobe.com/view-sdk/viewer.js'
+            : '',
           type: 'text/javascript',
           body: true,
         },
@@ -80,6 +82,7 @@ export default class DocumentFile extends Vue {
         clientId: adobeClientId,
         divId: 'adobe-dc-view',
       })
+
       adobeDCView.previewFile({
         content: {
           location: {
