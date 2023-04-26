@@ -31,7 +31,6 @@
       :loading="loading"
       confirm-label="controls.confirmDelete"
     />
-    <div></div>
   </v-list>
   <v-list
     v-else-if="$vuetify.breakpoint.smAndDown || dasbboardDocMenu"
@@ -74,7 +73,6 @@
       :loading="loading"
       confirm-label="controls.confirmDelete"
     />
-    <div></div>
   </v-list>
 </template>
 
