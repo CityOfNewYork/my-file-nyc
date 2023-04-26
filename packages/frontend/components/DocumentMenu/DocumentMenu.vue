@@ -8,6 +8,7 @@
     :left="$vuetify.breakpoint.smAndDown ? '0px' : ''"
     :close-on-content-click="false"
     :close-on-click="true"
+    :class="showMenu && 'menuForward'"
   >
     <template v-slot:activator="{ on, attrs }">
       <v-btn
@@ -20,6 +21,7 @@
         @click.prevent="() => {}"
         @keydown.enter="focusDocumentMenuList"
         @keydown.space="focusDocumentMenuList"
+        @click="openMenu"
       >
         <v-row align="center">
           <v-btn
@@ -74,6 +76,37 @@ export default class DocumentMenu extends Vue {
   mounted() {
     this.userRole = localStorage.getItem('myfile.role')
   }
+  
+  openMenu() {
+    const clickBlockingDiv = document.createElement('div');
+      clickBlockingDiv.id = 'menuBackground'
+      clickBlockingDiv.style.position = 'fixed';
+      clickBlockingDiv.style.top = '0';
+      clickBlockingDiv.style.left = '0';
+      clickBlockingDiv.style.width = '100%';
+      clickBlockingDiv.style.height = '100%';
+      clickBlockingDiv.style.zIndex = '100';
+      clickBlockingDiv.style.backgroundColor = 'transparent';
+      // Add click event listener
+      clickBlockingDiv.addEventListener('click', (event) => {
+        // Check if the menu is open
+        if (this.showMenu) {
+          // Prevent default behavior of click event
+          event.preventDefault();
+          clickBlockingDiv.remove();
+          this.showMenu = false
+        }
+      })
+
+      clickBlockingDiv.addEventListener('touchstart', (event) => {
+        event.preventDefault();
+          clickBlockingDiv.remove();
+          this.showMenu = false
+      })
+
+      // Add the click-blocking div to the page
+      document.body.appendChild(clickBlockingDiv);
+    }
 
   closeMenu() {
     this.showMenu = false
@@ -102,3 +135,9 @@ export default class DocumentMenu extends Vue {
   }
 }
 </script>
+
+<style lang="scss">
+.menuForward {
+  z-index: 1000;
+}
+</style>

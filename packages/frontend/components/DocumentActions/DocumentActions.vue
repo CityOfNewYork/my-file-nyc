@@ -31,6 +31,7 @@
       :loading="loading"
       confirm-label="controls.confirmDelete"
     />
+    <div></div>
   </v-list>
   <v-list
     v-else-if="$vuetify.breakpoint.smAndDown || dasbboardDocMenu"
@@ -73,6 +74,7 @@
       :loading="loading"
       confirm-label="controls.confirmDelete"
     />
+    <div></div>
   </v-list>
 </template>
 
@@ -129,6 +131,11 @@ export default class DocumentActions extends Vue {
   }
 
   async editDetails() {
+    if (document.getElementById('menuBackground')){
+      // @ts-ignore
+      document.getElementById('menuBackground').remove();
+    }
+
     if (
       this.$route.path.includes(
         this.localePath(`/documents/${this.document.id}`),
