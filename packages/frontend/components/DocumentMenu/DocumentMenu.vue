@@ -6,7 +6,8 @@
     absolute
     :min-width="$vuetify.breakpoint.smAndDown ? '94%' : ''"
     :left="$vuetify.breakpoint.smAndDown ? '0px' : ''"
-    :close-on-content-click="false"
+    :close-on-content-click="true"
+    :close-on-click="true"
   >
     <template v-slot:activator="{ on, attrs }">
       <v-btn
