@@ -131,10 +131,7 @@ export default class DocumentActions extends Vue {
   }
 
   async editDetails() {
-    if (document.getElementById('menuBackground')){
-      // @ts-ignore
-      document.getElementById('menuBackground').remove();
-    }
+    this.removeBackgourndDiv()
 
     if (
       this.$route.path.includes(
@@ -185,8 +182,18 @@ export default class DocumentActions extends Vue {
   async deleteDoc() {
     await this.$store.dispatch('document/delete', this.document)
     this.onDelete()
+    this.removeBackgourndDiv()
   }
+  
+  removeBackgourndDiv(){
+    if (document.getElementById('menuBackground')){
+      // @ts-ignore
+      document.getElementById('menuBackground').remove();
+    }
+  }
+
 }
+
 </script>
 
 <style lang="scss">
