@@ -6,7 +6,7 @@
     absolute
     :min-width="$vuetify.breakpoint.smAndDown ? '94%' : ''"
     :left="$vuetify.breakpoint.smAndDown ? '0px' : ''"
-    :close-on-content-click="true"
+    :close-on-content-click="false"
     :close-on-click="true"
   >
     <template v-slot:activator="{ on, attrs }">
@@ -43,6 +43,7 @@
       ref="documentMenuList"
       :document="document"
       :on-delete="onDelete"
+      :close-menu="closeMenu"
       tabindex="-1"
     />
   </v-menu>
@@ -72,6 +73,10 @@ export default class DocumentMenu extends Vue {
 
   mounted() {
     this.userRole = localStorage.getItem('myfile.role')
+  }
+
+  closeMenu() {
+    this.showMenu = false
   }
 
   async download() {

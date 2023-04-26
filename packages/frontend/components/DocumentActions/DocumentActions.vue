@@ -90,6 +90,7 @@ import download from '@/assets/js/download'
 export default class DocumentActions extends Vue {
   @Prop({ required: true }) document: DocumentListItem | Document
   @Prop({ default: () => () => {} }) onDelete: () => void
+  @Prop({ default: () => () => {} }) closeMenu: () => void
 
   showDeleteConfirmation = false
   loading = false
@@ -166,11 +167,12 @@ export default class DocumentActions extends Vue {
   async confirmDelete() {
     this.loading = true
     await this.deleteDoc()
-    await this.$router.push(this.localePath('/dashboard'))
     setTimeout(() => {
       this.loading = false
       this.showDeleteConfirmation = false
-    }, 2000)
+      this.closeMenu()
+      this.$router.push(this.localePath('/dashboard'))
+    }, 3000)
   }
 
   async deleteDoc() {
