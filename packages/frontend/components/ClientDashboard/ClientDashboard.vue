@@ -81,6 +81,7 @@
               background-color: #fff;
               height: 3rem;
               align-items: center;
+              background-color: transparent;
             "
           >
             <ShareButton />

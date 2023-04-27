@@ -98,9 +98,9 @@ export default merge(
         editDetails: 'Edit Details', // edit document kebab item
         edit: 'Edit', // edit account details
         continue: 'Continue',
-        share: 'Share with DHS', // share button
+        share: 'Share', // share button
         shared: 'Shared Documents', // label of shared tab on dashboard
-        upload: 'Upload a Document',
+        upload: 'Upload',
         uploadDocument: 'Upload Document',
         uploadFile: 'Upload File',
         uploadFiles: 'Upload Files',
@@ -397,9 +397,9 @@ export default merge(
         editDetails: 'تعديل التفاصيل', // edit document kebab item
         edit: 'تعديل', // edit account details
         continue: 'متابعة',
-        share: 'مشاركة مع إدارة DHS', // share button
+        share: 'للمشاركه', // share button
         shared: 'المستندات المشتركة', // label of shared tab on dashboard
-        upload: 'تحميل أحد المستندات',
+        upload: 'رفع',
         uploadDocument: 'تحميل مستند', // not found
         uploadFile: 'رفع ملف',
         uploadFiles: 'تحميل الملفات',
@@ -698,9 +698,9 @@ export default merge(
         editDetails: 'Редактировать данные', // edit document kebab item
         edit: 'Редактировать', // edit account details
         continue: 'Продолжить',
-        share: 'Предоставить доступ DHS', // share button
+        share: 'Поделиться', // share button
         shared: 'Общие документы', // label of shared tab on dashboard
-        upload: 'Загрузите документ',
+        upload: 'Загрузить',
         uploadDocument: 'Загрузить документ',
         uploadFile: 'Загрузить файл',
         uploadFiles: 'Загрузить файлы',
@@ -1002,9 +1002,9 @@ export default merge(
         editDetails: 'تفصیلات میں ترمیم کریں', // edit document kebab item
         edit: 'ترمیم کریں', // edit account details
         continue: 'جاری رکھیں',
-        share: 'DHS کے ساتھ اشتراک کریں', // share button
+        share: 'بانٹیں', // share button
         shared: 'شیئر کردہ دستاویزات', // label of shared tab on dashboard
-        upload: 'ایک دستاویز اپ لوڈ کریں',
+        upload: 'اپ لوڈ کریں۔',
         uploadDocument: 'دستاویز اپ لوڈ کریں',
         uploadFile: 'اپ لوڈ فائل',
         uploadFiles: 'فائلیں اپ لوڈ کرو',
@@ -1304,9 +1304,9 @@ export default merge(
         editDetails: '세부 정보 편집', // edit document kebab item
         edit: '편집', // edit account details
         continue: '계속',
-        share: 'DHS와 공유', // share button
+        share: '공유하다', // share button
         shared: '공유 서류', // label of shared tab on dashboard
-        upload: '서류 업로드',
+        upload: '업로드',
         uploadDocument: '서류 업로드',
         uploadFile: '파일 업로드',
         uploadFiles: '파일 업로드하다',
@@ -1603,9 +1603,9 @@ export default merge(
         editDetails: 'Editar información', // edit document kebab item
         edit: 'Editar', // edit account details
         continue: 'Continuar',
-        share: 'Compartir con DHS', // share button
+        share: 'Compartir', // share button
         shared: 'Documentos compartidos', // label of shared tab on dashboard
-        upload: 'Cargar un documento',
+        upload: 'Cargar',
         uploadDocument: 'Cargar documento',
         uploadFile: 'Subir archivo',
         uploadFiles: 'Subir archivos',
@@ -1906,9 +1906,9 @@ export default merge(
         editDetails: 'Modifier les détails', // edit document kebab item
         edit: 'Modifier', // edit account details
         continue: 'Continuer',
-        share: 'Partager avec le DHS', // share button
+        share: 'Partager', // share button
         shared: 'Documents partagés', // label of shared tab on dashboard
-        upload: 'Télécharger un document',
+        upload: 'Télécharger',
         uploadDocument: 'Télécharger un document',
         uploadFile: 'Téléverser un fichier',
         uploadFiles: 'Télécharger des fichiers',
@@ -2208,9 +2208,9 @@ export default merge(
         editDetails: 'বিবরণ সম্পাদনা করুন', // edit document kebab item
         edit: 'সম্পাদনা করুন', // edit account details
         continue: 'চালিয়ে যান',
-        share: 'DHS এর সাথে শেয়ার করুন', // share button
+        share: 'শেয়ার করুন', // share button
         shared: 'শেয়ার করা নথি', //  label of shared tab on dashboard
-        upload: 'একটি নথি আপলোড করুন',
+        upload: 'আপলোড করুন',
         uploadDocument: 'নথি আপলোড করুন',
         uploadFile: 'ফাইল আপলোড করুন',
         uploadFiles: 'ফাইল আপলোড',
@@ -2511,9 +2511,9 @@ export default merge(
         editDetails: 'Edytuj szczegóły', // edit document kebab item
         edit: 'Edytuj', // edit account details
         continue: 'Kontynuuj',
-        share: 'Udostępnij DHS', // share button
+        share: 'Udostępnij', // share button
         shared: 'Udostępnione dokumenty', // label of shared tab on dashboard
-        upload: 'Prześlij dokument',
+        upload: 'Prześlij',
         uploadDocument: 'Prześlij dokument',
         uploadFile: 'Przesyłanie pliku',
         uploadFiles: 'Prześlij pliki',
@@ -2810,9 +2810,9 @@ export default merge(
         editDetails: 'Modifye detay yo', // edit document kebab item
         edit: 'Modifye', // edit account details
         continue: 'Kontinye',
-        share: 'Pataje ak DHS', // share button
+        share: 'Pataje', // share button
         shared: 'Pataje Dokiman', // label of shared tab on dashboard
-        upload: 'Telechaje yon Dokiman',
+        upload: 'Telechaje',
         uploadDocument: 'Telechaje Dokiman',
         uploadFile: 'Telechaje File',
         uploadFiles: 'Voye Fichye yo',
@@ -3108,9 +3108,9 @@ export default merge(
         editDetails: '編輯詳細資訊', // edit document kebab item
         edit: '編輯', // edit account details
         continue: '繼續',
-        share: '分享至 DHS', // share button
+        share: '分享', // share button
         shared: '分享文件', // label of shared tab on dashboard
-        upload: '上傳文件',
+        upload: '上傳',
         uploadDocument: '上傳文件',
         uploadFile: '上傳文件',
         uploadFiles: '上傳文件',

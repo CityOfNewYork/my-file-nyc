@@ -6,11 +6,17 @@
   >
     <label
       for="file-input"
-      style="box-shadow: none"
+      style="
+        box-shadow: none;
+        text-align: center !important;
+        min-width: 140px !important;
+        display: flex;
+        justify-content: center;
+      "
       :class="[
         'upload-label',
         'font-weight-medium',
-        'body-1',
+        'text-body-1',
         'pa-2',
         'ma-0',
         textButton ? 'text' : 'v-btn',
@@ -22,7 +28,7 @@
     >
       <v-icon
         v-if="prependIcon"
-        class="mr-4 upload-container-icon-style"
+        class="mr-2 upload-container-icon-style"
         small
         v-text="prependIcon"
       />
@@ -857,7 +863,7 @@ export default class UploadButton extends Vue {
 }
 
 .upload-label {
-  min-width: $button-min-width;
+  min-width: rem(140px);
   justify-content: start;
 
   &:not(.disabled) {
