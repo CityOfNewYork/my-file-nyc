@@ -9,7 +9,6 @@
           label="Search by name, last name, case number."
           prepend-inner-icon="mdi-magnify"
         ></v-text-field>
-        <div v-if="text.length > 0">{{ getFilteredOwners }}</div>
       </div>
       <v-data-table
         v-show="$vuetify.breakpoint.smAndUp"
@@ -159,6 +158,10 @@ export default class SharedOwnerList extends Vue {
     this.loading = false
   }
 
+  getUniqueListBy(arr: any[], key: any) {
+    return [...new Map(arr.map((item: any) => [item[key], item])).values()]
+  }
+
   filteredOwners() {
     if (this.text.length > 0) {
       const arr: any = []
@@ -183,7 +186,10 @@ export default class SharedOwnerList extends Vue {
         selectedOwner.email.toLowerCase().includes(this.text.toLowerCase()),
       )
       arr.push(...email)
-      return arr
+
+      const newArr = this.getUniqueListBy(arr, 'email')
+
+      return newArr
     }
     return []
   }
