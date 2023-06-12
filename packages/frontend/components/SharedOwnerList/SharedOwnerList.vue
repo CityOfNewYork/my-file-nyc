@@ -2,14 +2,20 @@
   <div v-if="!loading">
     <template v-if="owners.length">
       <div class="d-flexm mt-3 ml-9 p-5">
-        <b>{{ $t('agent.sharedWith') }}</b>
-        {{ inbox }}
+        <v-text-field
+          v-model="text"
+          :style="'width: 40%'"
+          outlined
+          label="Search by name, last name, case number."
+          prepend-inner-icon="mdi-magnify"
+        ></v-text-field>
+        <div v-if="text.length > 0">{{ getFilteredOwners }}</div>
       </div>
       <v-data-table
         v-show="$vuetify.breakpoint.smAndUp"
         :disable-pagination="true"
         :headers="headers"
-        :items="owners"
+        :items="text ? getFilteredOwners : owners"
         hide-default-footer
         :item-class="itemClass"
         :class="{ 'ma-8': $vuetify.breakpoint.smAndUp }"
@@ -85,13 +91,16 @@ import { SharedCollectionListItem } from '@/types/transformed'
 import { format } from 'date-fns'
 import { DataTableHeader } from 'vuetify'
 import { UserRole } from '@/types/user'
+import { select } from '@storybook/addon-knobs'
+import { push } from '@/templates/new/component/prompt'
 
-@Component
+@Component({})
 export default class SharedOwnerList extends Vue {
   @Prop({ default: 'false' }) inbox: string
 
   loading = true
   headers: DataTableHeader[] = []
+  text: any = ''
 
   async mounted() {
     // We have to define headers in mounted function since this.$i18n is undefined otherwise
@@ -148,6 +157,39 @@ export default class SharedOwnerList extends Vue {
     ]
     await this.$store.dispatch('user/getSharedCollections')
     this.loading = false
+  }
+
+  filteredOwners() {
+    if (this.text.length > 0) {
+      const arr: any = []
+      const firstName = this.owners.filter((selectedOwner: any) =>
+        selectedOwner.firstName.toLowerCase().includes(this.text.toLowerCase()),
+      )
+      arr.push(...firstName)
+
+      const lastName = this.owners.filter((selectedOwner: any) =>
+        selectedOwner.lastName.toLowerCase().includes(this.text.toLowerCase()),
+      )
+      arr.push(...lastName)
+
+      const dhsCaseNumber = this.owners.filter((selectedOwner: any) =>
+        selectedOwner.dhsCaseNumber
+          .toLowerCase()
+          .includes(this.text.toLowerCase()),
+      )
+      arr.push(...dhsCaseNumber)
+
+      const email = this.owners.filter((selectedOwner: any) =>
+        selectedOwner.email.toLowerCase().includes(this.text.toLowerCase()),
+      )
+      arr.push(...email)
+      return arr
+    }
+    return []
+  }
+
+  get getFilteredOwners() {
+    return this.filteredOwners()
   }
 
   get owners() {
