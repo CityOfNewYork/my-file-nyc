@@ -164,35 +164,28 @@ export default class SharedOwnerList extends Vue {
 
   filteredOwners() {
     if (this.text.length > 0) {
-      const arr: any = []
-      const firstName = this.owners.filter((selectedOwner: any) =>
-        selectedOwner.firstName.toLowerCase().includes(this.text.toLowerCase()),
-      )
-      arr.push(...firstName)
-
-      const lastName = this.owners.filter((selectedOwner: any) =>
-        selectedOwner.lastName.toLowerCase().includes(this.text.toLowerCase()),
-      )
-      arr.push(...lastName)
-
-      const dhsCaseNumber = this.owners.filter((selectedOwner: any) =>
-        selectedOwner.dhsCaseNumber
-          .toLowerCase()
-          .includes(this.text.toLowerCase()),
-      )
-      arr.push(...dhsCaseNumber)
-
-      const email = this.owners.filter((selectedOwner: any) =>
-        selectedOwner.email.toLowerCase().includes(this.text.toLowerCase()),
-      )
-      arr.push(...email)
-
-      const newArr = this.getUniqueListBy(arr, 'email')
-
-      return newArr
-    }
-    return []
+      const arr: any = [];
+      
+      this.owners.forEach((selectedOwner: any) => {
+        const { firstName, lastName, dhsCaseNumber, email } = selectedOwner;
+        const lowerText = this.text.toLowerCase();
+        
+        if (
+          firstName.toLowerCase().includes(lowerText) ||
+          lastName.toLowerCase().includes(lowerText) ||
+          dhsCaseNumber.toLowerCase().includes(lowerText) ||
+          email.toLowerCase().includes(lowerText)
+        ) {
+          arr.push(selectedOwner);
+        }
+      });
+      
+      const newArr = this.getUniqueListBy(arr, 'email');
+      return newArr;
   }
+  
+  return [];
+}
 
   get getFilteredOwners() {
     return this.filteredOwners()
