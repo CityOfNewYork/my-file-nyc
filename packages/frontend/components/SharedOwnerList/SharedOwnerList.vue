@@ -16,10 +16,29 @@
         :headers="headers"
         :items="text ? getFilteredOwners : owners"
         hide-default-footer
+        hide-default-header
         :item-class="itemClass"
         :class="{ 'ma-8': $vuetify.breakpoint.smAndUp }"
         @click:row="viewCollections"
       >
+        <template v-slot:header="{ props }">
+          <tr class="table-row">
+            <th v-for="header in props.headers" :key="header.text" class="">
+              <div class="header-cell">
+                <span class="header-text">{{ header.text }}</span>
+                <v-icon v-if="header.sortable" small>
+                  {{
+                    header.value === props.sortBy
+                      ? props.sortDesc
+                        ? 'mdi-sort-descending'
+                        : 'mdi-sort-ascending'
+                      : 'mdi-sort'
+                  }}
+                </v-icon>
+              </div>
+            </th>
+          </tr>
+        </template>
         <template v-slot:item.icon>
           <v-icon color="primary">$profile</v-icon>
         </template>
@@ -100,6 +119,7 @@ export default class SharedOwnerList extends Vue {
   loading = true
   headers: DataTableHeader[] = []
   text: any = ''
+  sortDesc: false
 
   async mounted() {
     // We have to define headers in mounted function since this.$i18n is undefined otherwise
@@ -236,5 +256,24 @@ export default class SharedOwnerList extends Vue {
 <style scoped lang="scss">
 a.dashboard-link {
   text-decoration: none;
+}
+
+.header-cell {
+  display: flex;
+  align-items: center;
+}
+
+.header-text {
+  margin-left: 14px; /* Adjust as needed */
+  margin-right: 8px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 20px;
+}
+
+.table-row {
+  background-color: lightblue;
+  height: 56px;
 }
 </style>
