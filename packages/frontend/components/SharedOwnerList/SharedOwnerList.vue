@@ -2,14 +2,19 @@
   <div v-if="!loading">
     <template v-if="owners.length">
       <div class="d-flexm mt-3 ml-9 p-5">
-        <b>{{ $t('agent.sharedWith') }}</b>
-        {{ inbox }}
+        <v-text-field
+          v-model="text"
+          :style="'width: 40%'"
+          outlined
+          label="Search by name, last name, case number."
+          prepend-inner-icon="mdi-magnify"
+        ></v-text-field>
       </div>
       <v-data-table
         v-show="$vuetify.breakpoint.smAndUp"
         :disable-pagination="true"
         :headers="headers"
-        :items="owners"
+        :items="text ? getFilteredOwners : owners"
         hide-default-footer
         :item-class="itemClass"
         :class="{ 'ma-8': $vuetify.breakpoint.smAndUp }"
@@ -85,20 +90,23 @@ import { SharedCollectionListItem } from '@/types/transformed'
 import { format } from 'date-fns'
 import { DataTableHeader } from 'vuetify'
 import { UserRole } from '@/types/user'
+import { select } from '@storybook/addon-knobs'
+import { push } from '@/templates/new/component/prompt'
 
-@Component
+@Component({})
 export default class SharedOwnerList extends Vue {
   @Prop({ default: 'false' }) inbox: string
 
   loading = true
   headers: DataTableHeader[] = []
+  text: any = ''
 
   async mounted() {
     // We have to define headers in mounted function since this.$i18n is undefined otherwise
     this.headers = [
       {
         text: '',
-        class: 'blue-super-light',
+        class: 'white',
         align: 'start',
         sortable: false,
         value: 'icon',
@@ -106,48 +114,81 @@ export default class SharedOwnerList extends Vue {
       },
       {
         text: this.$t('agent.clientFirstNameLabel') as string,
-        class: 'blue-super-light',
+        class: 'white',
         align: 'start',
         sortable: true,
         value: 'firstName',
       },
       {
         text: this.$t('agent.clientLastNameLabel') as string,
-        class: 'blue-super-light',
+        class: 'white',
         align: 'start',
         sortable: true,
         value: 'lastName',
       },
       {
         text: this.$t('agent.clientEmail') as string,
-        class: 'blue-super-light',
+        class: 'white',
         align: 'start',
         sortable: true,
         value: 'email',
       },
       {
         text: this.$t('agent.clientDob') as string,
-        class: 'blue-super-light',
+        class: 'white',
         align: 'start',
         sortable: true,
         value: 'dob',
       },
       {
         text: this.$t('agent.clientCaseNum') as string,
-        class: 'blue-super-light',
+        class: 'white',
         align: 'start',
         sortable: true,
         value: 'dhsCaseNumber',
       },
       {
         text: this.$t('agent.dateShared') as string,
-        class: 'blue-super-light',
+        class: 'white',
         value: 'createdDate',
         sortable: true,
       },
     ]
     await this.$store.dispatch('user/getSharedCollections')
     this.loading = false
+  }
+
+  getUniqueListBy(arr: any[], key: any) {
+    return [...new Map(arr.map((item: any) => [item[key], item])).values()]
+  }
+
+  filteredOwners() {
+    if (this.text.length > 0) {
+      const arr: any = [];
+      
+      this.owners.forEach((selectedOwner: any) => {
+        const { firstName, lastName, dhsCaseNumber, email } = selectedOwner;
+        const lowerText = this.text.toLowerCase();
+        
+        if (
+          firstName.toLowerCase().includes(lowerText) ||
+          lastName.toLowerCase().includes(lowerText) ||
+          dhsCaseNumber.toLowerCase().includes(lowerText) ||
+          email.toLowerCase().includes(lowerText)
+        ) {
+          arr.push(selectedOwner);
+        }
+      });
+      
+      const newArr = this.getUniqueListBy(arr, 'email');
+      return newArr;
+  }
+  
+  return [];
+}
+
+  get getFilteredOwners() {
+    return this.filteredOwners()
   }
 
   get owners() {
