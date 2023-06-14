@@ -164,28 +164,28 @@ export default class SharedOwnerList extends Vue {
 
   filteredOwners() {
     if (this.text.length > 0) {
-      const arr: any = [];
-      
+      const arr: any = []
+
       this.owners.forEach((selectedOwner: any) => {
-        const { firstName, lastName, dhsCaseNumber, email } = selectedOwner;
-        const lowerText = this.text.toLowerCase();
-        
+        const { firstName, lastName, dhsCaseNumber, email } = selectedOwner
+        const lowerText = this.text.toLowerCase()
+
         if (
           firstName.toLowerCase().includes(lowerText) ||
           lastName.toLowerCase().includes(lowerText) ||
           dhsCaseNumber.toLowerCase().includes(lowerText) ||
           email.toLowerCase().includes(lowerText)
         ) {
-          arr.push(selectedOwner);
+          arr.push(selectedOwner)
         }
-      });
-      
-      const newArr = this.getUniqueListBy(arr, 'email');
-      return newArr;
+      })
+
+      const newArr = this.getUniqueListBy(arr, 'email')
+      return newArr
+    }
+
+    return []
   }
-  
-  return [];
-}
 
   get getFilteredOwners() {
     return this.filteredOwners()
