@@ -424,7 +424,7 @@ export default class UploadButton extends Vue {
           img,
           file,
         }
-        this.files.unshift(obj)
+        this.files.push(obj)
       }
     }
   }
