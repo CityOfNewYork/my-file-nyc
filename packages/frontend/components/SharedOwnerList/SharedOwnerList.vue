@@ -1,12 +1,12 @@
 <template>
   <div v-if="!loading">
     <template v-if="owners.length">
-      <div class="d-flexm mt-3 ml-9 p-5">
+      <div class="d-flexm mt-3 ml-4 p-5 mb-0 pb-0">
         <v-text-field
           v-model="text"
-          :style="'width: 40%'"
+          :style="'width: 50%; margin-botton: 0px;'"
           outlined
-          label="Search by name, last name, case number."
+          label="Search by first name, last name, email or case number."
           prepend-inner-icon="mdi-magnify"
         ></v-text-field>
       </div>
@@ -14,12 +14,37 @@
         v-show="$vuetify.breakpoint.smAndUp"
         :disable-pagination="true"
         :headers="headers"
-        :items="text ? getFilteredOwners : owners"
+        :items="text ? getFilteredOwners : updatedOwners"
         hide-default-footer
+        hide-default-header
         :item-class="itemClass"
-        :class="{ 'ma-8': $vuetify.breakpoint.smAndUp }"
+        :class="[{ 'ma-4': $vuetify.breakpoint.smAndUp }, 'data-table']"
+        :sort-by="sortBy"
+        :sort-desc="sortDesc"
         @click:row="viewCollections"
       >
+        <template v-slot:header="{ props }">
+          <tr class="table-row">
+            <th
+              v-for="header in props.headers"
+              :key="header.text"
+              @click="sort(header.value)"
+            >
+              <div class="header-cell">
+                <span class="header-text">{{ header.text }}</span>
+                <v-icon v-if="header.sortable" small>
+                  {{
+                    header.value === sortBy
+                      ? sortDesc
+                        ? 'mdi-sort-descending'
+                        : 'mdi-sort-ascending'
+                      : 'mdi-sort'
+                  }}
+                </v-icon>
+              </div>
+            </th>
+          </tr>
+        </template>
         <template v-slot:item.icon>
           <v-icon color="primary">$profile</v-icon>
         </template>
@@ -100,18 +125,40 @@ export default class SharedOwnerList extends Vue {
   loading = true
   headers: DataTableHeader[] = []
   text: any = ''
+  sortField = '' // Field to sort by
+  sortDesc = false // Sort in descending order if true
+  sortBy = ''
+
+  sort(field: any) {
+    // Toggle sort order if the same field is clicked again
+    this.sortBy = field
+    if (this.sortField === field) {
+      this.sortDesc = !this.sortDesc
+    } else {
+      this.sortField = field
+      this.sortDesc = false // Reset to ascending order
+    }
+
+    // Perform sorting
+    this.owners.sort((a: any, b: any) => {
+      const aValue = a[field]
+      const bValue = b[field]
+
+      if (aValue < bValue) return this.sortDesc ? 1 : -1
+      if (aValue > bValue) return this.sortDesc ? -1 : 1
+      return 0
+    })
+
+    return this.owners
+  }
+
+  get updatedOwners() {
+    return this.owners
+  }
 
   async mounted() {
     // We have to define headers in mounted function since this.$i18n is undefined otherwise
     this.headers = [
-      {
-        text: '',
-        class: 'white',
-        align: 'start',
-        sortable: false,
-        value: 'icon',
-        width: '3rem',
-      },
       {
         text: this.$t('agent.clientFirstNameLabel') as string,
         class: 'white',
@@ -164,28 +211,28 @@ export default class SharedOwnerList extends Vue {
 
   filteredOwners() {
     if (this.text.length > 0) {
-      const arr: any = [];
-      
+      const arr: any = []
+
       this.owners.forEach((selectedOwner: any) => {
-        const { firstName, lastName, dhsCaseNumber, email } = selectedOwner;
-        const lowerText = this.text.toLowerCase();
-        
+        const { firstName, lastName, dhsCaseNumber, email } = selectedOwner
+        const lowerText = this.text.toLowerCase()
+
         if (
           firstName.toLowerCase().includes(lowerText) ||
           lastName.toLowerCase().includes(lowerText) ||
           dhsCaseNumber.toLowerCase().includes(lowerText) ||
           email.toLowerCase().includes(lowerText)
         ) {
-          arr.push(selectedOwner);
+          arr.push(selectedOwner)
         }
-      });
-      
-      const newArr = this.getUniqueListBy(arr, 'email');
-      return newArr;
+      })
+
+      const newArr = this.getUniqueListBy(arr, 'email')
+      return newArr
+    }
+
+    return []
   }
-  
-  return [];
-}
 
   get getFilteredOwners() {
     return this.filteredOwners()
@@ -234,7 +281,35 @@ export default class SharedOwnerList extends Vue {
 </script>
 
 <style scoped lang="scss">
+.data-table {
+  border: 1px solid #999ca4;
+  border-radius: 5px;
+}
+
 a.dashboard-link {
   text-decoration: none;
+}
+
+.header-cell {
+  display: flex;
+  align-items: center;
+}
+
+.header-text {
+  margin-left: 14px; /* Adjust as needed */
+  margin-right: 8px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 20px;
+}
+
+.table-row {
+  background-color: #f0f7fe;
+  height: 56px;
+}
+
+.v-text-field__details {
+  display: none !important;
 }
 </style>
