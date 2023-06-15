@@ -3,7 +3,7 @@
     <ApplicationHeader />
 
     <AppBar>
-      <template v-slot:extensions>
+      <!-- <template v-slot:extensions>
         <v-row no-gutters class="white" outlined rounded="0">
           <v-col cols="12">
             <div class="pa-3">
@@ -11,7 +11,7 @@
             </div>
           </v-col>
         </v-row>
-      </template>
+      </template> -->
     </AppBar>
 
     <v-main>
