@@ -1,6 +1,9 @@
 <template>
   <div v-if="!loading">
     <template v-if="owners.length">
+      <h2 class="mt-3 ml-4 select-client-header">
+        {{ $t('agent.selectClient') }}
+      </h2>
       <div class="d-flexm mt-3 ml-4 p-5 mb-0 pb-0">
         <v-text-field
           v-model="text"
@@ -311,5 +314,12 @@ a.dashboard-link {
 
 .v-text-field__details {
   display: none !important;
+}
+
+.select-client-header {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1.375rem;
+  line-height: 1.875rem;
 }
 </style>
