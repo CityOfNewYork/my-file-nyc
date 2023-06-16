@@ -217,13 +217,14 @@ export default class SharedOwnerList extends Vue {
       const arr: any = []
 
       this.owners.forEach((selectedOwner: any) => {
-        const { firstName, lastName, dhsCaseNumber, email } = selectedOwner
+        const { firstName, lastName, dhsCaseNumber, email, dob } = selectedOwner
         const lowerText = this.text.toLowerCase().trim()
         if (
           firstName.toLowerCase().includes(lowerText) ||
           lastName.toLowerCase().includes(lowerText) ||
           dhsCaseNumber.toLowerCase().includes(lowerText) ||
-          email.toLowerCase().includes(lowerText)
+          email.toLowerCase().includes(lowerText) ||
+          dob.toLowerCase().includes(lowerText)
         ) {
           arr.push(selectedOwner)
         }
