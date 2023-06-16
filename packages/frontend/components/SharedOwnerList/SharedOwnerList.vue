@@ -218,8 +218,7 @@ export default class SharedOwnerList extends Vue {
 
       this.owners.forEach((selectedOwner: any) => {
         const { firstName, lastName, dhsCaseNumber, email } = selectedOwner
-        const lowerText = this.text.toLowerCase()
-
+        const lowerText = this.text.toLowerCase().trim()
         if (
           firstName.toLowerCase().includes(lowerText) ||
           lastName.toLowerCase().includes(lowerText) ||
@@ -317,6 +316,7 @@ a.dashboard-link {
 }
 
 .select-client-header {
+  color: black;
   font-style: normal;
   font-weight: 700;
   font-size: 1.375rem;
