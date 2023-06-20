@@ -17,7 +17,7 @@
         v-show="$vuetify.breakpoint.smAndUp"
         :disable-pagination="true"
         :headers="headers"
-        :items="text ? getFilteredOwners : updatedOwners"
+        :items="text ? filteredOwners : updatedOwners"
         hide-default-footer
         hide-default-header
         :item-class="itemClass"
@@ -212,33 +212,28 @@ export default class SharedOwnerList extends Vue {
     return [...new Map(arr.map((item: any) => [item[key], item])).values()]
   }
 
-  filteredOwners() {
-    if (this.text.length > 0) {
-      const arr: any = []
-
-      this.owners.forEach((selectedOwner: any) => {
-        const { firstName, lastName, dhsCaseNumber, email, dob } = selectedOwner
-        const lowerText = this.text.toLowerCase().trim()
-        if (
-          firstName.toLowerCase().includes(lowerText) ||
-          lastName.toLowerCase().includes(lowerText) ||
-          dhsCaseNumber.toLowerCase().includes(lowerText) ||
-          email.toLowerCase().includes(lowerText) ||
-          dob.toLowerCase().includes(lowerText)
-        ) {
-          arr.push(selectedOwner)
-        }
-      })
-
-      const newArr = this.getUniqueListBy(arr, 'email')
-      return newArr
+  filterOwners(text: any) {
+    if (!text || !text.trim()) {
+      return this.owners // Return all items if search query is empty
+    } else {
+      const queries = text.toLowerCase().trim().split(' ')
+      return this.owners.filter((item: any) =>
+        queries.every(
+          (query: any) =>
+            item.firstName.toLowerCase().includes(query) ||
+            item.lastName.toLowerCase().includes(query) ||
+            item.dhsCaseNumber.toLowerCase().includes(query) ||
+            item.email.toLowerCase().includes(query) ||
+            item.dob.toLowerCase().includes(query),
+        ),
+      )
     }
-
-    return []
   }
 
-  get getFilteredOwners() {
-    return this.filteredOwners()
+  filteredOwners: any[] = []
+  @Watch('text', { immediate: true })
+  watchfilterOwners(val: any) {
+    this.filteredOwners = this.filterOwners(val)
   }
 
   get owners() {
