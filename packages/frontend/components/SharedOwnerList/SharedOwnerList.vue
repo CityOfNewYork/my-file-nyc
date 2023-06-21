@@ -24,7 +24,10 @@
         :class="[{ 'ma-4': $vuetify.breakpoint.smAndUp }, 'data-table']"
         :sort-by="sortBy"
         :sort-desc="sortDesc"
-        @click:row="viewCollections"
+        show-expand
+        :expanded.sync="expanded"
+        item-key="ownerId"
+        @click:row="handleExpansion"
       >
         <template v-slot:header="{ props }">
           <tr class="table-row">
@@ -50,6 +53,16 @@
         </template>
         <template v-slot:item.icon>
           <v-icon color="primary">$profile</v-icon>
+        </template>
+        <template v-slot:expanded-item="{ headers, item }">
+          <td :colspan="headers.length">
+            {{ item.firstName }}
+          </td>
+        </template>
+        <template v-slot:item.data-table-expand="{ isExpanded }">
+          <v-icon @click="handleExpansion">
+            {{ isExpanded ? 'mdi-chevron-up' : 'mdi-chevron-down' }}
+          </v-icon>
         </template>
       </v-data-table>
       <v-card
@@ -131,6 +144,25 @@ export default class SharedOwnerList extends Vue {
   sortField = '' // Field to sort by
   sortDesc = false // Sort in descending order if true
   sortBy = ''
+  expanded: any[] = []
+
+  handleExpansion(value: any) {
+    // Toggle the expansion state of the clicked row
+    const index = this.expanded.indexOf(value)
+    if (index === -1) {
+      this.expanded.push(value)
+    } else {
+      this.expanded.splice(index, 1)
+    }
+  }
+
+  scrollEvent() {
+    console.log(`scroll event`)
+  }
+
+  alertEvent() {
+    alert(`alert alert`)
+  }
 
   sort(field: any) {
     // Toggle sort order if the same field is clicked again
@@ -156,7 +188,6 @@ export default class SharedOwnerList extends Vue {
   }
 
   get updatedOwners() {
-    console.log(this.owners)
     return this.owners
   }
 
@@ -178,6 +209,7 @@ export default class SharedOwnerList extends Vue {
   async mounted() {
     // We have to define headers in mounted function since this.$i18n is undefined otherwise
     this.headers = [
+      { text: '', value: 'data-table-expand' },
       {
         text: this.$t('agent.clientFirstNameLabel') as string,
         class: 'white',
