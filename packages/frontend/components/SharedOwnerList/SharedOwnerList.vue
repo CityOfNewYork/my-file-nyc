@@ -54,9 +54,14 @@
         <template v-slot:item.icon>
           <v-icon color="primary">$profile</v-icon>
         </template>
-        <template v-slot:expanded-item="{ headers, item }">
+        <template v-slot:expanded-item="{ headers }">
           <td :colspan="headers.length">
-            {{ item.firstName }}
+            <ul v-for="col in collection" :key="col.collection.id">
+              <li @click="previewCollection(col.collection.id, col.owner.id)">
+                <v-icon small color="primary" class="my-2">$folder</v-icon>
+                {{ col.collection.name }}
+              </li>
+            </ul>
           </td>
         </template>
         <template v-slot:item.data-table-expand="{ isExpanded }">
@@ -133,6 +138,7 @@ import { DataTableHeader } from 'vuetify'
 import { UserRole } from '@/types/user'
 import { select } from '@storybook/addon-knobs'
 import { push } from '@/templates/new/component/prompt'
+import { RawLocation } from 'vue-router'
 
 @Component({})
 export default class SharedOwnerList extends Vue {
@@ -140,17 +146,40 @@ export default class SharedOwnerList extends Vue {
 
   loading = true
   headers: DataTableHeader[] = []
+  newHeaders: DataTableHeader[] = []
   text: any = ''
   sortField = '' // Field to sort by
   sortDesc = false // Sort in descending order if true
   sortBy = ''
   expanded: any[] = []
+  collection: any[] = []
+
+  previewCollection(collectionRowItem: any, ownerId: any) {
+    console.log(collectionRowItem)
+    this.$router.push(
+      this.localeRoute({
+        path: `/collections/${collectionRowItem}/documents`,
+        query: {
+          owner: ownerId,
+        },
+      }) as RawLocation,
+    )
+  }
+
+  get getCollection() {
+    return this.collection
+  }
+
+  updated() {
+    console.log(this.collection)
+  }
 
   handleExpansion(value: any) {
     // Toggle the expansion state of the clicked row
     const index = this.expanded.indexOf(value)
     if (index === -1) {
       this.expanded.push(value)
+      this.collection = this.sharedName(value.ownerId)
     } else {
       this.expanded.splice(index, 1)
     }
@@ -208,6 +237,35 @@ export default class SharedOwnerList extends Vue {
 
   async mounted() {
     // We have to define headers in mounted function since this.$i18n is undefined otherwise
+    this.newHeaders = [
+      {
+        text: '',
+        class: 'blue-super-light',
+        align: 'start',
+        sortable: false,
+        value: 'icon',
+        width: '3rem',
+      },
+      {
+        text: this.$t('agent.sharedFolderNameLabel') as string,
+        class: 'blue-super-light',
+        align: 'start',
+        sortable: true,
+        value: 'name',
+      },
+      {
+        text: this.$t('agent.sharedBy') as string,
+        class: 'blue-super-light',
+        value: 'sharerName',
+        sortable: true,
+      },
+      {
+        text: this.$t('agent.dateShared') as string,
+        class: 'blue-super-light',
+        value: 'sharedDate',
+        sortable: true,
+      },
+    ]
     this.headers = [
       { text: '', value: 'data-table-expand' },
       {
@@ -315,6 +373,13 @@ export default class SharedOwnerList extends Vue {
       }))
   }
 
+  sharedName(ownerId: any) {
+    const collections: SharedCollectionListItem[] = userStore.sharedCollections.filter(
+      (c: SharedCollectionListItem) => c.owner.id === ownerId,
+    )
+    return collections || 'No data'
+  }
+
   switchToClient() {
     userStore.setRole(UserRole.CLIENT)
     this.$router.replace(this.localePath('/dashboard'))
@@ -373,5 +438,9 @@ a.dashboard-link {
   font-weight: 700;
   font-size: 1.375rem;
   line-height: 1.875rem;
+}
+
+ul {
+  list-style: none;
 }
 </style>
