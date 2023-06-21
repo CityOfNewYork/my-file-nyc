@@ -156,7 +156,23 @@ export default class SharedOwnerList extends Vue {
   }
 
   get updatedOwners() {
+    console.log(this.owners)
     return this.owners
+  }
+
+  languagesObject: any = {
+    en: 'English',
+    'en-us': 'English',
+    es: 'Spanish',
+    ar: 'Arabic',
+    ch: 'Chinese',
+    ru: 'Russian',
+    urd: 'Urdu',
+    ko: 'Korean',
+    fr: 'French',
+    ht: 'Kreyol Ayisyen',
+    bn: 'Bengali',
+    pl: 'Polish',
   }
 
   async mounted() {
@@ -202,6 +218,13 @@ export default class SharedOwnerList extends Vue {
         class: 'white',
         value: 'createdDate',
         sortable: true,
+      },
+      {
+        text: 'Language',
+        class: 'white',
+        sortable: true,
+        align: 'start',
+        value: 'locale',
       },
     ]
     await this.$store.dispatch('user/getSharedCollections')
@@ -253,6 +276,7 @@ export default class SharedOwnerList extends Vue {
         email: c.shareInformation.sharedBy.email,
         firstName: c.owner.givenName,
         lastName: c.owner.familyName,
+        locale: this.languagesObject[c.owner.locale.toString()],
         dob: c.owner.dob,
         dhsCaseNumber: c.owner.dhsCaseNumber,
         createdDate: format(c.collection.createdDate, 'LLL d, yyyy'),
