@@ -22,7 +22,7 @@
     </v-btn>
 
     <NavItemList :items="navItems" />
-    <LanguageChanger outlined="true" text-color="black" padding="0 12px" />
+    <LanguageChanger v-if="userStore.isClient" outlined="true" text-color="black" padding="0 12px" />
 
     <v-footer fixed class="pa-0">
       <!-- Turning off build version and time -->

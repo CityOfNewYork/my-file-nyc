@@ -77,7 +77,7 @@
     />
     <!-- <slot v-if="!userStore.isAgent" name="actions" /> -->
     <template v-if="!empty && $vuetify.breakpoint.mdAndUp">
-      <LanguageChanger text-color="white" />
+      <LanguageChanger v-if="userStore.isClient" text-color="white" />
       <v-btn
         v-if="$vuetify.breakpoint.smAndUp && userStore.isClient"
         text
