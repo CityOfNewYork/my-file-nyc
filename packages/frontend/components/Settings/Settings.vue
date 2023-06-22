@@ -169,7 +169,7 @@
       <div>
         <p class="subtitle-1">{{ $t('account.locale') }}</p>
         <p :key="locale">
-          {{ locale }}
+          {{ localToRender }}
         </p>
       </div>
     </div>
@@ -219,7 +219,6 @@ extend('alpha_spaces', alpha_spaces)
 export default class Settings extends Vue {
   @Prop({ default: () => () => {} }) submit: (data: object) => void
   @Prop({ default: () => () => {} }) hasAccepted: () => void
-
   @Prop({ default: false }) editMode: boolean
   @Prop({ default: {} }) accountProfile: any
 
@@ -231,6 +230,20 @@ export default class Settings extends Vue {
       dhsCaseNumber: this.dhsCaseNumber,
       editMode: this.editMode,
       locale: this.$i18n.locale,
+      localToRender: '',
+      languagesObject: {
+        en: 'English',
+        es: 'Español',
+        ar: 'عرب',
+        ch: '中國人',
+        ru: 'Русский',
+        urd: 'اردو',
+        ko: '한국인',
+        fr: 'Français',
+        ht: 'Kreyol Ayisyen',
+        bn: 'বাংলা',
+        pl: 'Polskie',
+      }
     }
   }
 
@@ -242,7 +255,9 @@ export default class Settings extends Vue {
   month = ''
   year = ''
   dhsCaseNumber = ''
-  locale = this.$i18n.locale
+  locale = ''
+  localToRender = ''
+  languagesObject = ''
 
   settingsFirstRun = this.$t('navigation.settingsFirstRun') as string
 
@@ -255,6 +270,12 @@ export default class Settings extends Vue {
     this.familyName = this.accountProfile.familyName
     this.dhsCaseNumber = this.accountProfile.dhsCaseNumber
     this.locale = this.accountProfile.locale
+    this.localToRender = this.languagesObject[this.locale as any];
+  }
+
+  updated() {
+    this.locale = this.accountProfile.locale
+    this.localToRender = this.languagesObject[this.locale as any];
   }
 
   dobDistruct(dob: string) {

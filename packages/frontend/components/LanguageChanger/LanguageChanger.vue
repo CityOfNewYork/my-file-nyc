@@ -50,12 +50,18 @@ export default class LanguageChanger extends Vue {
     const response = await this.$store.dispatch('user/patchProfile', data)
     this.$i18n.locale = response.locale
   }
+
+  mounted() {
+    this.$i18n.locale = this.userStore.profile.locale
+  }
   
   updated() {
     this.$router.push(`/${this.$i18n.locale}/${window.location.toString().split("/").pop()}`)
+
     if (this.userStore.profile){
-      if (this.userStore.profile.locale === this.$i18n.locale) {
-      this.userPatch()
+      if (this.userStore.profile.locale !== this.$i18n.locale) {
+        // this.userStore.profile.locale = this.$i18n.locale
+        this.userPatch()
     }
     }
   }
