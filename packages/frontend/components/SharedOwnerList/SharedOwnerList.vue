@@ -56,16 +56,21 @@
         </template>
         <template v-slot:expanded-item="{ headers }">
           <td :colspan="headers.length">
-            <ul v-for="col in collection" :key="col.collection.id">
-              <li @click="previewCollection(col.collection.id, col.owner.id)">
-                <v-icon small color="primary" class="my-2">$folder</v-icon>
-                {{ col.collection.name }}
-              </li>
-            </ul>
+            <div class="expanded-content">
+              <ul v-for="col in collection" :key="col.collection.id">
+                <li
+                  style="color: blue; text-decoration: solid underline blue 1px"
+                  @click="previewCollection(col.collection.id, col.owner.id)"
+                >
+                  <v-icon small color="primary" class="my-2">$folder</v-icon>
+                  {{ col.collection.name }}
+                </li>
+              </ul>
+            </div>
           </td>
         </template>
         <template v-slot:item.data-table-expand="{ isExpanded }">
-          <v-icon @click="handleExpansion">
+          <v-icon>
             {{ isExpanded ? 'mdi-chevron-up' : 'mdi-chevron-down' }}
           </v-icon>
         </template>
@@ -155,7 +160,6 @@ export default class SharedOwnerList extends Vue {
   collection: any[] = []
 
   previewCollection(collectionRowItem: any, ownerId: any) {
-    console.log(collectionRowItem)
     this.$router.push(
       this.localeRoute({
         path: `/collections/${collectionRowItem}/documents`,
@@ -170,27 +174,20 @@ export default class SharedOwnerList extends Vue {
     return this.collection
   }
 
-  updated() {
-    console.log(this.collection)
-  }
+  updated() {}
 
   handleExpansion(value: any) {
     // Toggle the expansion state of the clicked row
     const index = this.expanded.indexOf(value)
     if (index === -1) {
+      if (this.expanded.length > 0) {
+        this.expanded.shift()
+      }
       this.expanded.push(value)
       this.collection = this.sharedName(value.ownerId)
     } else {
       this.expanded.splice(index, 1)
     }
-  }
-
-  scrollEvent() {
-    console.log(`scroll event`)
-  }
-
-  alertEvent() {
-    alert(`alert alert`)
   }
 
   sort(field: any) {
@@ -400,6 +397,10 @@ export default class SharedOwnerList extends Vue {
 </script>
 
 <style scoped lang="scss">
+.expanded-content {
+  max-height: 250px;
+  overflow-y: auto;
+}
 .data-table {
   border: 1px solid #999ca4;
   border-radius: 5px;
