@@ -14,8 +14,9 @@
           outlined
           label="Example: Jane Doe janedoe@gmail.com mm-dd-yyyy"
           prepend-inner-icon="mdi-magnify"
+          class="searchbar"
         >
-          <template v-slot:append>
+          <template v-if="text" v-slot:append>
             <v-icon
               class="clear-text-button"
               color="black"
@@ -71,16 +72,34 @@
           <td :colspan="headers.length">
             <div class="expanded-content">
               <ul v-for="col in collection" :key="col.collection.id">
-                <li
-                  style=""
-                  class="collection-item"
-                  @click="previewCollection(col.collection.id, col.owner.id)"
-                >
-                  <v-icon small color="primary" class="my-2 mx-3">
-                    $folder
-                  </v-icon>
-                  {{ col.collection.name }}
-                </li>
+                <v-hover v-slot="{ hover }">
+                  <li class="my-2 collection-item">
+                    <div
+                      class="column-1"
+                      @click="
+                        previewCollection(col.collection.id, col.owner.id)
+                      "
+                    >
+                      <v-icon
+                        small
+                        :color="hover ? `white` : `primary`"
+                        class="my-2 mx-3 collection-item-icon"
+                      >
+                        $folder
+                      </v-icon>
+
+                      {{ col.collection.name }}
+                    </div>
+                    <div class="column-2">
+                      <v-select
+                        style="width: 95px; font-size: 0.875rem; color: green"
+                        class="pt-2 selectField"
+                        :items="items"
+                        dense
+                      ></v-select>
+                    </div>
+                  </li>
+                </v-hover>
               </ul>
             </div>
           </td>
@@ -174,6 +193,7 @@ export default class SharedOwnerList extends Vue {
   sortBy = ''
   expanded: any[] = []
   collection: any[] = []
+  items = ['Pending', 'Complete']
 
   previewCollection(collectionRowItem: any, ownerId: any) {
     this.$router.push(
@@ -192,10 +212,6 @@ export default class SharedOwnerList extends Vue {
 
   clearSearchbar() {
     return (this.text = '')
-  }
-
-  updated() {
-    console.log(this.text)
   }
 
   handleExpansion(value: any) {
@@ -419,6 +435,12 @@ export default class SharedOwnerList extends Vue {
 </script>
 
 <style scoped lang="scss">
+.selectField.v-text-field > .v-input__control > .v-input__slot:before {
+  border-style: none;
+}
+.selectField.v-text-field > .v-input__control > .v-input__slot:after {
+  border-style: none;
+}
 .clear-text-button:hover {
   cursor: pointer;
   background-color: #e0e1e5;
@@ -429,17 +451,42 @@ export default class SharedOwnerList extends Vue {
   font-weight: 400;
 }
 .collection-item {
-  color: #004cbe;
+  font-size: 0.875rem;
+  line-height: 1.5rem;
+
+  border: 1px solid #004cbe;
+  width: 95%;
+  height: 44px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.column-1 {
+  font-size: 0.875rem;
+  line-height: 1.5rem;
   text-decoration: solid underline blue 1px;
   text-underline-offset: 4px;
+  color: #004cbe;
+  display: flex;
+  align-items: center;
+  flex-grow: 5;
+}
+
+.column-2 {
+  flex-grow: 1;
 }
 
 .collection-item:hover {
-  color: black;
   cursor: pointer;
+  background: #031553;
+  .column-1 {
+    color: white;
+    text-decoration: solid underline white 1px;
+  }
 }
 .expanded-content {
-  max-height: 250px;
+  max-height: 350px;
   overflow-y: auto;
 }
 .data-table {
