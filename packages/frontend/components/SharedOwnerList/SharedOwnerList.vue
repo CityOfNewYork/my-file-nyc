@@ -4,14 +4,27 @@
       <h2 class="mt-3 ml-4 select-client-header">
         {{ $t('agent.selectClient') }}
       </h2>
+      <p class="mt-3 ml-4 search-by-header">
+        Search by clients using their name, email, birthday, or case number.
+      </p>
       <div class="d-flexm mt-3 ml-4 p-5 mb-0 pb-0">
         <v-text-field
           v-model="text"
           :style="'width: 50%; margin-botton: 0px;'"
           outlined
-          label="Search by first name, last name, email or case number."
+          label="Example: Jane Doe janedoe@gmail.com mm-dd-yyyy"
           prepend-inner-icon="mdi-magnify"
-        ></v-text-field>
+        >
+          <template v-slot:append>
+            <v-icon
+              class="clear-text-button"
+              color="black"
+              @click="clearSearchbar"
+            >
+              mdi-close
+            </v-icon>
+          </template>
+        </v-text-field>
       </div>
       <v-data-table
         v-show="$vuetify.breakpoint.smAndUp"
@@ -59,10 +72,13 @@
             <div class="expanded-content">
               <ul v-for="col in collection" :key="col.collection.id">
                 <li
-                  style="color: blue; text-decoration: solid underline blue 1px"
+                  style=""
+                  class="collection-item"
                   @click="previewCollection(col.collection.id, col.owner.id)"
                 >
-                  <v-icon small color="primary" class="my-2">$folder</v-icon>
+                  <v-icon small color="primary" class="my-2 mx-3">
+                    $folder
+                  </v-icon>
                   {{ col.collection.name }}
                 </li>
               </ul>
@@ -174,7 +190,13 @@ export default class SharedOwnerList extends Vue {
     return this.collection
   }
 
-  updated() {}
+  clearSearchbar() {
+    return (this.text = '')
+  }
+
+  updated() {
+    console.log(this.text)
+  }
 
   handleExpansion(value: any) {
     // Toggle the expansion state of the clicked row
@@ -397,6 +419,25 @@ export default class SharedOwnerList extends Vue {
 </script>
 
 <style scoped lang="scss">
+.clear-text-button:hover {
+  cursor: pointer;
+  background-color: #e0e1e5;
+}
+.search-by-header {
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 400;
+}
+.collection-item {
+  color: #004cbe;
+  text-decoration: solid underline blue 1px;
+  text-underline-offset: 4px;
+}
+
+.collection-item:hover {
+  color: black;
+  cursor: pointer;
+}
 .expanded-content {
   max-height: 250px;
   overflow-y: auto;
