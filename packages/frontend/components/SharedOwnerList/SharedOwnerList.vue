@@ -87,16 +87,48 @@
                       >
                         $folder
                       </v-icon>
-
                       {{ col.collection.name }}
                     </div>
                     <div class="column-2">
                       <v-select
-                        style="width: 95px; font-size: 0.875rem; color: green"
-                        class="pt-2 selectField"
+                        v-model="col.status"
                         :items="items"
+                        class="selectField"
                         dense
-                      ></v-select>
+                        :style="{
+                          textAlign: 'center',
+                          marginTop: '10px',
+                          padding: '-1px 19px;',
+                        }"
+                        :item-text="items[0]"
+                      >
+                        <template v-slot:item="{ item }">
+                          <span
+                            :style="
+                              item === 'Pending'
+                                ? { color: '#8f5f00' }
+                                : { color: '#007539' }
+                            "
+                            class="my-option"
+                          >
+                            {{ item }}
+                          </span>
+                        </template>
+                        <!-- <template v-slot:append>
+                          <v-icon color="black">edit</v-icon>
+                        </template> -->
+                        <template v-slot:selection="{ item }">
+                          <span
+                            :style="
+                              item === 'Pending'
+                                ? { color: '#8f5f00' }
+                                : { color: '#007539' }
+                            "
+                          >
+                            {{ item }}
+                          </span>
+                        </template>
+                      </v-select>
                     </div>
                   </li>
                 </v-hover>
@@ -179,6 +211,8 @@ import { UserRole } from '@/types/user'
 import { select } from '@storybook/addon-knobs'
 import { push } from '@/templates/new/component/prompt'
 import { RawLocation } from 'vue-router'
+import { conforms } from 'lodash'
+import { DocumentListItem } from '@/../api-client'
 
 @Component({})
 export default class SharedOwnerList extends Vue {
@@ -194,6 +228,21 @@ export default class SharedOwnerList extends Vue {
   expanded: any[] = []
   collection: any[] = []
   items = ['Pending', 'Complete']
+  selectedOption = 'Pending'
+  documents: DocumentListItem[] = []
+
+  updated() {
+    console.log(this.collection)
+    console.log(this.countTotalDocuments())
+  }
+
+  countTotalDocuments() {
+    let count: number = 0
+    this.collection.forEach((item) => {
+      count += item.collection.links.length
+    })
+    return count
+  }
 
   previewCollection(collectionRowItem: any, ownerId: any) {
     this.$router.push(
@@ -270,37 +319,15 @@ export default class SharedOwnerList extends Vue {
     pl: 'Polish',
   }
 
+  fetchDocuments() {
+    return this.$store.dispatch(
+      'collection/getDocuments',
+      this.$route.params.id,
+    )
+  }
+
   async mounted() {
     // We have to define headers in mounted function since this.$i18n is undefined otherwise
-    this.newHeaders = [
-      {
-        text: '',
-        class: 'blue-super-light',
-        align: 'start',
-        sortable: false,
-        value: 'icon',
-        width: '3rem',
-      },
-      {
-        text: this.$t('agent.sharedFolderNameLabel') as string,
-        class: 'blue-super-light',
-        align: 'start',
-        sortable: true,
-        value: 'name',
-      },
-      {
-        text: this.$t('agent.sharedBy') as string,
-        class: 'blue-super-light',
-        value: 'sharerName',
-        sortable: true,
-      },
-      {
-        text: this.$t('agent.dateShared') as string,
-        class: 'blue-super-light',
-        value: 'sharedDate',
-        sortable: true,
-      },
-    ]
     this.headers = [
       { text: '', value: 'data-table-expand' },
       {
@@ -353,6 +380,12 @@ export default class SharedOwnerList extends Vue {
       },
     ]
     await this.$store.dispatch('user/getSharedCollections')
+    // const promises = [
+    //   this.fetchDocuments().then((res: DocumentListItem[]) => {
+    //     this.documents = res
+    //   }),
+    // ]
+    // await Promise.all(promises)
     this.loading = false
   }
 
@@ -409,9 +442,12 @@ export default class SharedOwnerList extends Vue {
   }
 
   sharedName(ownerId: any) {
-    const collections: SharedCollectionListItem[] = userStore.sharedCollections.filter(
-      (c: SharedCollectionListItem) => c.owner.id === ownerId,
-    )
+    const collections: SharedCollectionListItem[] = userStore.sharedCollections
+      .filter((c: SharedCollectionListItem) => c.owner.id === ownerId)
+      .map((c: any) => {
+        return { ...c, status: 'Pending' }
+      })
+
     return collections || 'No data'
   }
 
@@ -435,12 +471,66 @@ export default class SharedOwnerList extends Vue {
 </script>
 
 <style scoped lang="scss">
+// .select-status {
+//   border: none;
+//   background-color: transparent;
+//   padding: 5px;
+//   -webkit-appearance: listbox !important;
+//   font-size: 0.875rem;
+//   font-weight: 700;
+//   line-height: 1rem;
+
+//   .select-pending {
+//     color: #8f5f00 !important;
+//   }
+//   .select-complete {
+//     color: #007539 !important;
+//   }
+// }
+.selectField {
+  max-width: 120px;
+  height: 30px;
+}
+
+.my-option {
+  color: blue;
+}
 .selectField.v-text-field > .v-input__control > .v-input__slot:before {
   border-style: none;
 }
 .selectField.v-text-field > .v-input__control > .v-input__slot:after {
   border-style: none;
 }
+
+.selectField.v-text-field
+  > .v-input__control
+  > .v-input__slot
+  > .v-select__selections {
+  line-height: 30px;
+}
+
+.selectField.v-input__control
+  > .v-input__slot
+  > .v-select__selections
+  > .v-input__append-inner
+  > .v-input__icon
+  > .v-icon {
+  color: #004cbe;
+}
+
+// .selectField.v-input__control.v-input__slot.v-select__selections.v-input__append-inner.v-input__icon.v-icon:after {
+//   color: green;
+// }
+
+.selectField.v-text-field.v-input--dense:not(.v-text-field--enclosed):not(.v-text-field--full-width)
+  .v-input__append-inner
+  .v-input__icon
+  > .v-icon {
+  color: black;
+  margin-bottom: 15px;
+  padding-left: 10px;
+}
+
 .clear-text-button:hover {
   cursor: pointer;
   background-color: #e0e1e5;
