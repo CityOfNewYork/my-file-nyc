@@ -95,6 +95,7 @@
                         :items="items"
                         class="selectField"
                         dense
+                        :menu-props="{ contentClass: 'custom-menu' }"
                         :style="{
                           textAlign: 'center',
                           marginTop: '10px',
@@ -114,13 +115,19 @@
                             {{ item }}
                           </span>
                         </template>
-                        <!-- <template v-slot:append>
-                          <v-icon color="black">edit</v-icon>
-                        </template> -->
+                        <template v-slot:append>
+                          <v-icon class="icon-menu-down" color="black">
+                            mdi-menu-down
+                          </v-icon>
+                        </template>
                         <template v-slot:selection="{ item }">
                           <span
                             :style="
-                              item === 'Pending'
+                              hover
+                                ? item === 'Pending'
+                                  ? { color: '#ffdf8d' }
+                                  : { color: '#a8dd7c' }
+                                : item === 'Pending'
                                 ? { color: '#8f5f00' }
                                 : { color: '#007539' }
                             "
@@ -230,11 +237,6 @@ export default class SharedOwnerList extends Vue {
   items = ['Pending', 'Complete']
   selectedOption = 'Pending'
   documents: DocumentListItem[] = []
-
-  updated() {
-    console.log(this.collection)
-    console.log(this.countTotalDocuments())
-  }
 
   countTotalDocuments() {
     let count: number = 0
@@ -487,9 +489,14 @@ export default class SharedOwnerList extends Vue {
 //     color: #007539 !important;
 //   }
 // }
+
 .selectField {
-  max-width: 120px;
+  max-width: 100px;
   height: 30px;
+}
+
+.selectField > .v-select__menu-list {
+  background-color: #031553 !important;
 }
 
 .my-option {
@@ -509,18 +516,14 @@ export default class SharedOwnerList extends Vue {
   line-height: 30px;
 }
 
-.selectField.v-input__control
-  > .v-input__slot
-  > .v-select__selections
-  > .v-input__append-inner
-  > .v-input__icon
-  > .v-icon {
-  color: #004cbe;
+.v-select > .v-select__selections > input {
+  display: none !important;
 }
 
-// .selectField.v-input__control.v-input__slot.v-select__selections.v-input__append-inner.v-input__icon.v-icon:after {
-//   color: green;
-// }
+.v-select .v-select__selections input[type='text'] {
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
 
 .selectField.v-text-field.v-input--dense:not(.v-text-field--enclosed):not(.v-text-field--full-width)
   .v-input__append-inner
@@ -560,11 +563,11 @@ export default class SharedOwnerList extends Vue {
   color: #004cbe;
   display: flex;
   align-items: center;
-  flex-grow: 5;
+  width: 85%;
 }
 
 .column-2 {
-  flex-grow: 1;
+  width: 15%;
 }
 
 .collection-item:hover {
@@ -573,6 +576,9 @@ export default class SharedOwnerList extends Vue {
   .column-1 {
     color: white;
     text-decoration: solid underline white 1px;
+  }
+  .icon-menu-down {
+    color: white !important;
   }
 }
 .expanded-content {
@@ -609,6 +615,9 @@ a.dashboard-link {
 
 .v-text-field__details {
   display: none !important;
+  input {
+    display: none;
+  }
 }
 
 .select-client-header {
