@@ -4,14 +4,28 @@
       <h2 class="mt-3 ml-4 select-client-header">
         {{ $t('agent.selectClient') }}
       </h2>
+      <p class="mt-3 ml-4 search-by-header">
+        Search by clients using their name, email, birthday, or case number.
+      </p>
       <div class="d-flexm mt-3 ml-4 p-5 mb-0 pb-0">
         <v-text-field
           v-model="text"
           :style="'width: 50%; margin-botton: 0px;'"
           outlined
-          label="Search by first name, last name, email or case number."
+          label="Example: Jane Doe janedoe@gmail.com mm-dd-yyyy"
           prepend-inner-icon="mdi-magnify"
-        ></v-text-field>
+          class="searchbar"
+        >
+          <template v-if="text" v-slot:append>
+            <v-icon
+              class="clear-text-button"
+              color="black"
+              @click="clearSearchbar"
+            >
+              mdi-close
+            </v-icon>
+          </template>
+        </v-text-field>
       </div>
       <v-data-table
         v-show="$vuetify.breakpoint.smAndUp"
@@ -24,7 +38,10 @@
         :class="[{ 'ma-4': $vuetify.breakpoint.smAndUp }, 'data-table']"
         :sort-by="sortBy"
         :sort-desc="sortDesc"
-        @click:row="viewCollections"
+        show-expand
+        :expanded.sync="expanded"
+        item-key="ownerId"
+        @click:row="handleExpansion"
       >
         <template v-slot:header="{ props }">
           <tr class="table-row">
@@ -50,6 +67,86 @@
         </template>
         <template v-slot:item.icon>
           <v-icon color="primary">$profile</v-icon>
+        </template>
+        <template v-slot:expanded-item="{ headers }">
+          <td :colspan="headers.length">
+            <div class="expanded-content">
+              <ul v-for="col in collection" :key="col.collection.id">
+                <v-hover v-slot="{ hover }">
+                  <li class="my-2 collection-item">
+                    <div
+                      class="column-1"
+                      @click="
+                        previewCollection(col.collection.id, col.owner.id)
+                      "
+                    >
+                      <v-icon
+                        small
+                        :color="hover ? `white` : `primary`"
+                        class="my-2 mx-3 collection-item-icon"
+                      >
+                        $folder
+                      </v-icon>
+                      {{ col.collection.name }}
+                    </div>
+                    <div class="column-2">
+                      <v-select
+                        v-model="col.status"
+                        :items="items"
+                        class="selectField"
+                        dense
+                        :menu-props="{ contentClass: 'custom-menu' }"
+                        :style="{
+                          textAlign: 'center',
+                          marginTop: '10px',
+                          padding: '-1px 19px;',
+                        }"
+                        :item-text="items[0]"
+                      >
+                        <template v-slot:item="{ item }">
+                          <span
+                            :style="
+                              item === 'Pending'
+                                ? { color: '#8f5f00' }
+                                : { color: '#007539' }
+                            "
+                            class="my-option"
+                          >
+                            {{ item }}
+                          </span>
+                        </template>
+                        <template v-slot:append>
+                          <v-icon class="icon-menu-down" color="black">
+                            mdi-menu-down
+                          </v-icon>
+                        </template>
+                        <template v-slot:selection="{ item }">
+                          <span
+                            :style="
+                              hover
+                                ? item === 'Pending'
+                                  ? { color: '#ffdf8d' }
+                                  : { color: '#a8dd7c' }
+                                : item === 'Pending'
+                                ? { color: '#8f5f00' }
+                                : { color: '#007539' }
+                            "
+                          >
+                            {{ item }}
+                          </span>
+                        </template>
+                      </v-select>
+                    </div>
+                  </li>
+                </v-hover>
+              </ul>
+            </div>
+          </td>
+        </template>
+        <template v-slot:item.data-table-expand="{ isExpanded }">
+          <v-icon>
+            {{ isExpanded ? 'mdi-chevron-up' : 'mdi-chevron-down' }}
+          </v-icon>
         </template>
       </v-data-table>
       <v-card
@@ -120,6 +217,9 @@ import { DataTableHeader } from 'vuetify'
 import { UserRole } from '@/types/user'
 import { select } from '@storybook/addon-knobs'
 import { push } from '@/templates/new/component/prompt'
+import { RawLocation } from 'vue-router'
+import { conforms } from 'lodash'
+import { DocumentListItem } from '@/../api-client'
 
 @Component({})
 export default class SharedOwnerList extends Vue {
@@ -127,10 +227,57 @@ export default class SharedOwnerList extends Vue {
 
   loading = true
   headers: DataTableHeader[] = []
+  newHeaders: DataTableHeader[] = []
   text: any = ''
   sortField = '' // Field to sort by
   sortDesc = false // Sort in descending order if true
   sortBy = ''
+  expanded: any[] = []
+  collection: any[] = []
+  items = ['Pending', 'Complete']
+  selectedOption = 'Pending'
+  documents: DocumentListItem[] = []
+
+  countTotalDocuments() {
+    let count: number = 0
+    this.collection.forEach((item) => {
+      count += item.collection.links.length
+    })
+    return count
+  }
+
+  previewCollection(collectionRowItem: any, ownerId: any) {
+    this.$router.push(
+      this.localeRoute({
+        path: `/collections/${collectionRowItem}/documents`,
+        query: {
+          owner: ownerId,
+        },
+      }) as RawLocation,
+    )
+  }
+
+  get getCollection() {
+    return this.collection
+  }
+
+  clearSearchbar() {
+    return (this.text = '')
+  }
+
+  handleExpansion(value: any) {
+    // Toggle the expansion state of the clicked row
+    const index = this.expanded.indexOf(value)
+    if (index === -1) {
+      if (this.expanded.length > 0) {
+        this.expanded.shift()
+      }
+      this.expanded.push(value)
+      this.collection = this.sharedName(value.ownerId)
+    } else {
+      this.expanded.splice(index, 1)
+    }
+  }
 
   sort(field: any) {
     // Toggle sort order if the same field is clicked again
@@ -156,7 +303,6 @@ export default class SharedOwnerList extends Vue {
   }
 
   get updatedOwners() {
-    console.log(this.owners)
     return this.owners
   }
 
@@ -175,9 +321,17 @@ export default class SharedOwnerList extends Vue {
     pl: 'Polish',
   }
 
+  fetchDocuments() {
+    return this.$store.dispatch(
+      'collection/getDocuments',
+      this.$route.params.id,
+    )
+  }
+
   async mounted() {
     // We have to define headers in mounted function since this.$i18n is undefined otherwise
     this.headers = [
+      { text: '', value: 'data-table-expand' },
       {
         text: this.$t('agent.clientFirstNameLabel') as string,
         class: 'white',
@@ -228,6 +382,12 @@ export default class SharedOwnerList extends Vue {
       },
     ]
     await this.$store.dispatch('user/getSharedCollections')
+    // const promises = [
+    //   this.fetchDocuments().then((res: DocumentListItem[]) => {
+    //     this.documents = res
+    //   }),
+    // ]
+    // await Promise.all(promises)
     this.loading = false
   }
 
@@ -283,6 +443,16 @@ export default class SharedOwnerList extends Vue {
       }))
   }
 
+  sharedName(ownerId: any) {
+    const collections: SharedCollectionListItem[] = userStore.sharedCollections
+      .filter((c: SharedCollectionListItem) => c.owner.id === ownerId)
+      .map((c: any) => {
+        return { ...c, status: 'Pending' }
+      })
+
+    return collections || 'No data'
+  }
+
   switchToClient() {
     userStore.setRole(UserRole.CLIENT)
     this.$router.replace(this.localePath('/dashboard'))
@@ -303,6 +473,118 @@ export default class SharedOwnerList extends Vue {
 </script>
 
 <style scoped lang="scss">
+// .select-status {
+//   border: none;
+//   background-color: transparent;
+//   padding: 5px;
+//   -webkit-appearance: listbox !important;
+//   font-size: 0.875rem;
+//   font-weight: 700;
+//   line-height: 1rem;
+
+//   .select-pending {
+//     color: #8f5f00 !important;
+//   }
+//   .select-complete {
+//     color: #007539 !important;
+//   }
+// }
+
+.selectField {
+  max-width: 100px;
+  height: 30px;
+}
+
+.selectField > .v-select__menu-list {
+  background-color: #031553 !important;
+}
+
+.my-option {
+  color: blue;
+}
+.selectField.v-text-field > .v-input__control > .v-input__slot:before {
+  border-style: none;
+}
+.selectField.v-text-field > .v-input__control > .v-input__slot:after {
+  border-style: none;
+}
+
+.selectField.v-text-field
+  > .v-input__control
+  > .v-input__slot
+  > .v-select__selections {
+  line-height: 30px;
+}
+
+.v-select > .v-select__selections > input {
+  display: none !important;
+}
+
+.v-select .v-select__selections input[type='text'] {
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+.selectField.v-text-field.v-input--dense:not(.v-text-field--enclosed):not(.v-text-field--full-width)
+  .v-input__append-inner
+  .v-input__icon
+  > .v-icon {
+  color: black;
+  margin-bottom: 15px;
+  padding-left: 10px;
+}
+
+.clear-text-button:hover {
+  cursor: pointer;
+  background-color: #e0e1e5;
+}
+.search-by-header {
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 400;
+}
+.collection-item {
+  font-size: 0.875rem;
+  line-height: 1.5rem;
+
+  border: 1px solid #004cbe;
+  width: 95%;
+  height: 44px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.column-1 {
+  font-size: 0.875rem;
+  line-height: 1.5rem;
+  text-decoration: solid underline blue 1px;
+  text-underline-offset: 4px;
+  color: #004cbe;
+  display: flex;
+  align-items: center;
+  width: 85%;
+}
+
+.column-2 {
+  width: 15%;
+}
+
+.collection-item:hover {
+  cursor: pointer;
+  background: #031553;
+  .column-1 {
+    color: white;
+    text-decoration: solid underline white 1px;
+  }
+  .icon-menu-down {
+    color: white !important;
+  }
+}
+.expanded-content {
+  max-height: 350px;
+  overflow-y: auto;
+}
 .data-table {
   border: 1px solid #999ca4;
   border-radius: 5px;
@@ -333,6 +615,9 @@ a.dashboard-link {
 
 .v-text-field__details {
   display: none !important;
+  input {
+    display: none;
+  }
 }
 
 .select-client-header {
@@ -341,5 +626,9 @@ a.dashboard-link {
   font-weight: 700;
   font-size: 1.375rem;
   line-height: 1.875rem;
+}
+
+ul {
+  list-style: none;
 }
 </style>
