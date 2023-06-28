@@ -493,7 +493,6 @@ export default class SharedOwnerList extends Vue {
   display: flex;
   width: 100%;
   flex-direction: row;
-  position: relative;
 }
 .expanded-block-1 {
   flex-grow: 6;
@@ -506,20 +505,31 @@ export default class SharedOwnerList extends Vue {
   align-items: center;
   flex-direction: column;
   margin-left: 4px;
+  top: 0px;
+  position: -webkit-sticky !important; /* Safari */
+  position: sticky !important;
+  border-left: 1px solid black;
 }
 
-.divider {
-  margin-top: 15px;
-  width: 1px;
-  background-color: #000; /* Adjust to your preferred divider color */
-  position: fixed;
-  left: 65%;
-  transform: translateX(-50%);
-  height: 240px;
-}
+// .divider {
+//   margin-top: 15px;
+//   width: 1px;
+//   background-color: #000; /* Adjust to your preferred divider color */
+//   position: fixed;
+//   left: 70%;
+//   transform: translateX(-50%);
+//   height: 240px;
+// }
 .expended-content {
-  position: fixed;
 }
+
+// .total-amout-docs {
+//   position: sticky !important;
+// }
+
+// .view-all-btn {
+//   position: sticky !important;
+// }
 .expanded-titles {
   display: flex;
   flex-wrap: wrap;
