@@ -73,6 +73,10 @@
           <td :colspan="headers.length">
             <div class="expanded-content">
               <div class="expanded-block-1">
+                <div class="expanded-column-titles">
+                  <div class="expanded-column-1">Shared documents</div>
+                  <div class="expanded-column-2">Change status</div>
+                </div>
                 <ul v-for="col in collection" :key="col.collection.id">
                   <v-hover v-slot="{ hover }">
                     <li class="my-2 collection-item">
@@ -147,8 +151,15 @@
               <div class="divider"></div>
               <div class="expanded-block-2">
                 <div class="expended-content">
-                  <div class="total-amount-docs">Total amount documents:</div>
-                  <v-btn class="view-all-btn" color="primary">
+                  <div class="total-amount-docs">
+                    Total amount of documents:
+                  </div>
+                  <v-btn
+                    height="32px"
+                    width="170px"
+                    class="view-all-btn"
+                    color="primary"
+                  >
                     View all documents
                   </v-btn>
                 </div>
@@ -486,6 +497,24 @@ export default class SharedOwnerList extends Vue {
 </script>
 
 <style scoped lang="scss">
+.expanded-column-titles {
+  display: flex;
+  flex-direction: row;
+  margin-left: 35px;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: black;
+}
+.expanded-column-1 {
+  flex-grow: 7;
+}
+
+.expanded-column-2 {
+  flex-grow: 1;
+}
+
 .expanded-content {
   min-height: 270px;
   max-height: 270px;
@@ -508,28 +537,19 @@ export default class SharedOwnerList extends Vue {
   top: 0px;
   position: -webkit-sticky !important; /* Safari */
   position: sticky !important;
-  border-left: 1px solid black;
+  border-left: 1px solid #031553;
+
+  .total-amount-docs {
+    margin-bottom: 20px;
+    font-size: 1rem;
+    font-weight: 500;
+  }
+
+  .view-all-btn {
+    padding: 1px !important;
+  }
 }
 
-// .divider {
-//   margin-top: 15px;
-//   width: 1px;
-//   background-color: #000; /* Adjust to your preferred divider color */
-//   position: fixed;
-//   left: 70%;
-//   transform: translateX(-50%);
-//   height: 240px;
-// }
-.expended-content {
-}
-
-// .total-amout-docs {
-//   position: sticky !important;
-// }
-
-// .view-all-btn {
-//   position: sticky !important;
-// }
 .expanded-titles {
   display: flex;
   flex-wrap: wrap;
