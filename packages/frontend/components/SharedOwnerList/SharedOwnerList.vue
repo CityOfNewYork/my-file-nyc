@@ -41,6 +41,7 @@
         show-expand
         :expanded.sync="expanded"
         item-key="ownerId"
+        fixed-header
         @click:row="handleExpansion"
       >
         <template v-slot:header="{ props }">
@@ -71,75 +72,87 @@
         <template v-slot:expanded-item="{ headers }">
           <td :colspan="headers.length">
             <div class="expanded-content">
-              <ul v-for="col in collection" :key="col.collection.id">
-                <v-hover v-slot="{ hover }">
-                  <li class="my-2 collection-item">
-                    <div
-                      class="column-1"
-                      @click="
-                        previewCollection(col.collection.id, col.owner.id)
-                      "
-                    >
-                      <v-icon
-                        small
-                        :color="hover ? `white` : `primary`"
-                        class="my-2 mx-3 collection-item-icon"
+              <div class="expanded-block-1">
+                <ul v-for="col in collection" :key="col.collection.id">
+                  <v-hover v-slot="{ hover }">
+                    <li class="my-2 collection-item">
+                      <div
+                        class="column-1"
+                        @click="
+                          previewCollection(col.collection.id, col.owner.id)
+                        "
                       >
-                        $folder
-                      </v-icon>
-                      {{ col.collection.name }}
-                    </div>
-                    <div class="column-2">
-                      <v-select
-                        v-model="col.status"
-                        :items="items"
-                        class="selectField"
-                        dense
-                        :menu-props="{ contentClass: 'custom-menu' }"
-                        :style="{
-                          textAlign: 'center',
-                          marginTop: '10px',
-                          padding: '-1px 19px;',
-                        }"
-                        :item-text="items[0]"
-                      >
-                        <template v-slot:item="{ item }">
-                          <span
-                            :style="
-                              item === 'Pending'
-                                ? { color: '#8f5f00' }
-                                : { color: '#007539' }
-                            "
-                            class="my-option"
-                          >
-                            {{ item }}
-                          </span>
-                        </template>
-                        <template v-slot:append>
-                          <v-icon class="icon-menu-down" color="black">
-                            mdi-menu-down
-                          </v-icon>
-                        </template>
-                        <template v-slot:selection="{ item }">
-                          <span
-                            :style="
-                              hover
-                                ? item === 'Pending'
-                                  ? { color: '#ffdf8d' }
-                                  : { color: '#a8dd7c' }
-                                : item === 'Pending'
-                                ? { color: '#8f5f00' }
-                                : { color: '#007539' }
-                            "
-                          >
-                            {{ item }}
-                          </span>
-                        </template>
-                      </v-select>
-                    </div>
-                  </li>
-                </v-hover>
-              </ul>
+                        <v-icon
+                          small
+                          :color="hover ? `white` : `primary`"
+                          class="my-2 mx-3 collection-item-icon"
+                        >
+                          $folder
+                        </v-icon>
+                        {{ col.collection.name }}
+                      </div>
+                      <div class="column-2">
+                        <v-select
+                          v-model="col.status"
+                          :items="items"
+                          class="selectField"
+                          dense
+                          :menu-props="{ contentClass: 'custom-menu' }"
+                          :style="{
+                            textAlign: 'center',
+                            marginTop: '10px',
+                            padding: '-1px 19px;',
+                          }"
+                          :item-text="items[0]"
+                        >
+                          <template v-slot:item="{ item }">
+                            <span
+                              :style="
+                                item === 'Pending'
+                                  ? { color: '#8f5f00' }
+                                  : { color: '#007539' }
+                              "
+                              class="menu-option"
+                            >
+                              {{ item }}
+                            </span>
+                          </template>
+                          <template v-slot:append>
+                            <v-icon class="icon-menu-down" color="black">
+                              mdi-menu-down
+                            </v-icon>
+                          </template>
+                          <template v-slot:selection="{ item }">
+                            <span
+                              :style="
+                                hover
+                                  ? item === 'Pending'
+                                    ? { color: '#ffdf8d' }
+                                    : { color: '#a8dd7c' }
+                                  : item === 'Pending'
+                                  ? { color: '#8f5f00' }
+                                  : { color: '#007539' }
+                              "
+                              class="select-options"
+                            >
+                              {{ item }}
+                            </span>
+                          </template>
+                        </v-select>
+                      </div>
+                    </li>
+                  </v-hover>
+                </ul>
+              </div>
+              <div class="divider"></div>
+              <div class="expanded-block-2">
+                <div class="expended-content">
+                  <div class="total-amount-docs">Total amount documents:</div>
+                  <v-btn class="view-all-btn" color="primary">
+                    View all documents
+                  </v-btn>
+                </div>
+              </div>
             </div>
           </td>
         </template>
@@ -473,23 +486,55 @@ export default class SharedOwnerList extends Vue {
 </script>
 
 <style scoped lang="scss">
-// .select-status {
-//   border: none;
-//   background-color: transparent;
-//   padding: 5px;
-//   -webkit-appearance: listbox !important;
-//   font-size: 0.875rem;
-//   font-weight: 700;
-//   line-height: 1rem;
+.expanded-content {
+  min-height: 270px;
+  max-height: 270px;
+  overflow-y: auto;
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  position: relative;
+}
+.expanded-block-1 {
+  flex-grow: 6;
+}
 
-//   .select-pending {
-//     color: #8f5f00 !important;
-//   }
-//   .select-complete {
-//     color: #007539 !important;
-//   }
+.expanded-block-2 {
+  flex-grow: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-left: 4px;
+}
+
+.divider {
+  margin-top: 15px;
+  width: 1px;
+  background-color: #000; /* Adjust to your preferred divider color */
+  position: fixed;
+  left: 65%;
+  transform: translateX(-50%);
+  height: 240px;
+}
+.expended-content {
+  position: fixed;
+}
+.expanded-titles {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+// .total-amount-docs {
+//   flex-grow: 1;
 // }
 
+// .view-all-btn {
+//   flex-grow: 1;
+// }
+.expanded-total-amount-title {
+  flex: 50%;
+}
 .selectField {
   max-width: 100px;
   height: 30px;
@@ -499,8 +544,16 @@ export default class SharedOwnerList extends Vue {
   background-color: #031553 !important;
 }
 
-.my-option {
-  color: blue;
+.menu-option {
+  font-weight: 700;
+  font-size: 0.875rem;
+  line-height: 0.875rem;
+}
+
+.select-options {
+  font-weight: 700;
+  font-size: 0.875rem;
+  line-height: 0.875rem;
 }
 .selectField.v-text-field > .v-input__control > .v-input__slot:before {
   border-style: none;
@@ -548,11 +601,11 @@ export default class SharedOwnerList extends Vue {
   line-height: 1.5rem;
 
   border: 1px solid #004cbe;
-  width: 95%;
   height: 44px;
   border-radius: 5px;
   display: flex;
   align-items: center;
+  margin-right: 25px;
 }
 
 .column-1 {
@@ -581,10 +634,7 @@ export default class SharedOwnerList extends Vue {
     color: white !important;
   }
 }
-.expanded-content {
-  max-height: 350px;
-  overflow-y: auto;
-}
+
 .data-table {
   border: 1px solid #999ca4;
   border-radius: 5px;
@@ -611,6 +661,9 @@ a.dashboard-link {
 .table-row {
   background-color: #f0f7fe;
   height: 56px;
+  position: sticky !important;
+  position: -webkit-sticky !important;
+  overflow: auto;
 }
 
 .v-text-field__details {
