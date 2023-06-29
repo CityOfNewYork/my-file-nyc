@@ -14,6 +14,7 @@ export class Collection extends BaseModel {
   public createdAt: Date
   public updatedBy: string
   public updatedAt: Date
+  public status: string
 
   // navigation property
   public grants?: CollectionGrant[]
@@ -35,6 +36,7 @@ export class Collection extends BaseModel {
         createdAt: { type: 'date-time' },
         updatedBy: { type: 'string', minLength: 1, maxLength: 255 },
         updatedAt: { type: 'date-time' },
+        status: { type: 'string', maxLength: 20 },
       },
     }
   }
@@ -42,7 +44,7 @@ export class Collection extends BaseModel {
   static get modifiers() {
     return {
       fieldsForList(query: QueryBuilder<Collection>) {
-        const fields = ['id', 'name', 'createdAt', 'ownerId', 'createdBy']
+        const fields = ['id', 'name', 'createdAt', 'ownerId', 'createdBy', 'status']
         return query.select(...fields.map((f) => Collection.ref(f)))
       },
       byOwnerId(query: QueryBuilder<Document>, userId: string) {
@@ -104,6 +106,7 @@ export interface CreateCollectionInput {
   createdAt: Date
   updatedAt: Date
   updatedBy: string
+  status: string
   collectionDocuments: CreateCollectionDocumentInput[]
   grants: CreateCollectionGrantInput[]
 }

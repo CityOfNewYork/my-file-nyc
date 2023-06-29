@@ -676,6 +676,10 @@ components:
           type: string
           description: Document name.
           example: Sam's SSN
+        status:
+          type: string
+          description: Document status
+          example: active
         description:
           type: string
           nullable: true
@@ -691,6 +695,10 @@ components:
           type: string
           description: Document name (system or user provided)
           example: Sam's SSN
+        status:
+          type: string
+          description: Document status
+          example: active
         description:
           type: string
           description: Document description or notes
@@ -742,6 +750,7 @@ components:
       required:
         - id
         - name
+        - status
         - createdDate
         - links
       properties:
@@ -753,6 +762,10 @@ components:
           type: string
           description: The human readable name of the document
           example: Letter of Employment
+        status:
+          type: string
+          description: Document status
+          example: active
         createdDate:
           type: string
           description: Date the document was created
@@ -817,6 +830,7 @@ components:
       required:
         - id
         - name
+        - status
         - description
         - createdDate
         - scanStatus
@@ -831,6 +845,10 @@ components:
           type: string
           description: Document name (system or user provided)
           example: Sam's SSN
+        status:
+          type: string
+          description: Document status
+          example: active
         description:
           type: string
           nullable: true
@@ -1239,6 +1257,7 @@ components:
       required:
         - id
         - name
+        - status
         - createdDate
         - links
       properties:
@@ -1250,6 +1269,10 @@ components:
           type: string
           example: Housing application
           description: The name of the collection
+        status:
+          type: string
+          example: active
+          description: Status of the collection
         createdDate:
           type: string
           format: date-time
@@ -1265,6 +1288,7 @@ components:
         - name
         - createdDate
         - links
+        - status
       properties:
         id:
           type: string
@@ -1274,6 +1298,10 @@ components:
           type: string
           example: Housing application
           description: The name of the collection
+        status:
+          type: string
+          example: active
+          description: Status of the collection
         createdDate:
           type: string
           format: date-time
