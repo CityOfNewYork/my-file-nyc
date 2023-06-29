@@ -153,10 +153,11 @@
                 <div class="expended-content">
                   <div class="total-amount-docs">
                     Total amount of documents:
+                    <b>45</b>
                   </div>
                   <v-btn
-                    height="32px"
                     width="170px"
+                    height="32px"
                     class="view-all-btn"
                     color="primary"
                   >
@@ -539,6 +540,12 @@ export default class SharedOwnerList extends Vue {
   position: sticky !important;
   border-left: 1px solid #031553;
 
+  .expended-content {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
   .total-amount-docs {
     margin-bottom: 20px;
     font-size: 1rem;
@@ -546,7 +553,7 @@ export default class SharedOwnerList extends Vue {
   }
 
   .view-all-btn {
-    padding: 1px !important;
+    padding: 0 !important;
   }
 }
 
