@@ -155,11 +155,13 @@
                     Total amount of documents:
                     <b>45</b>
                   </div>
+
                   <v-btn
                     width="170px"
                     height="32px"
                     class="view-all-btn"
                     color="primary"
+                    @click="viewCollections(ownerId)"
                   >
                     View all documents
                   </v-btn>
@@ -180,7 +182,7 @@
         :key="`sharedOwner-${i}`"
         rounded="0"
       >
-        <v-list-item class="grow py-4" @click="viewCollections(owner)">
+        <v-list-item class="grow py-4" @click="viewCollections(owner.ownerId)">
           <v-list-item-avatar>
             <v-icon size="24">$profile</v-icon>
           </v-list-item-avatar>
@@ -262,6 +264,7 @@ export default class SharedOwnerList extends Vue {
   items = ['Pending', 'Complete']
   selectedOption = 'Pending'
   documents: DocumentListItem[] = []
+  ownerId: string = ''
 
   countTotalDocuments() {
     let count: number = 0
@@ -469,12 +472,12 @@ export default class SharedOwnerList extends Vue {
   }
 
   sharedName(ownerId: any) {
+    this.ownerId = ownerId
     const collections: SharedCollectionListItem[] = userStore.sharedCollections
       .filter((c: SharedCollectionListItem) => c.owner.id === ownerId)
       .map((c: any) => {
         return { ...c, status: 'Pending' }
       })
-
     return collections || 'No data'
   }
 
@@ -483,8 +486,8 @@ export default class SharedOwnerList extends Vue {
     this.$router.replace(this.localePath('/dashboard'))
   }
 
-  viewCollections(owner: any) {
-    this.$router.push(this.localePath(`/collections/owner/${owner.ownerId}`))
+  viewCollections(ownerId: any) {
+    this.$router.push(this.localePath(`/collections/owner/${ownerId}`))
   }
 
   itemClass(item: SharedCollectionListItem, i: number) {
