@@ -52,18 +52,19 @@ export default class LanguageChanger extends Vue {
   }
 
   mounted() {
-    this.$i18n.locale = this.userStore.profile.locale
+    if (this.userStore.profile){
+      this.$i18n.locale = this.userStore.profile.locale
+    }
   }
   
   updated() {
-    this.$router.push(`/${this.$i18n.locale}/${window.location.toString().split("/").pop()}`)
-
     if (this.userStore.profile){
       if (this.userStore.profile.locale !== this.$i18n.locale) {
         // this.userStore.profile.locale = this.$i18n.locale
         this.userPatch()
+      }
     }
-    }
+    this.$router.push(`/${this.$i18n.locale}/${window.location.toString().split("/").pop()}`)
   }
 
   languagesObject = {
