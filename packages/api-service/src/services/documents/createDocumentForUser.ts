@@ -83,7 +83,7 @@ export const handler = createAuthenticatedApiGatewayHandler(
 
     const createdDate = new Date()
     const id = uuidv4()
-    const { name, description, files, isMultipageDocument = false } = body
+    const { name, description, files, isMultipageDocument = false, status = 'pending' } = body
 
     if (isMultipageDocument && !validateFilesForMultipageDocument(files)) {
       throw new createError.BadRequest(
@@ -93,6 +93,7 @@ export const handler = createAuthenticatedApiGatewayHandler(
 
     const document: CreateDocumentInput = {
       name,
+      status,
       description,
       id,
       ownerId: ownerId,

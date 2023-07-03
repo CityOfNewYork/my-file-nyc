@@ -239,7 +239,7 @@ export const setDocumentThumbnailPath = async (id: string, path: string) => {
 export interface CreateDocumentInput {
   id: string
   name: string
-  status: string
+  status?: string
   description?: string
   ownerId: string
   createdBy: string

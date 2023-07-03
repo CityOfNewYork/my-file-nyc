@@ -60,6 +60,7 @@ describe('DocumentModel', () => {
       const doc = await createDocument({
         id: documentId,
         name,
+        status: 'active',
         createdAt: new Date(),
         updatedAt: new Date(),
         ownerId: userId,
@@ -126,6 +127,7 @@ describe('DocumentModel', () => {
         await createDocument({
           id: documentId,
           name,
+          status: 'active',
           createdAt: new Date(),
           updatedAt: new Date(),
           ownerId: userId,
@@ -372,7 +374,8 @@ describe('DocumentModel', () => {
       await createCollection({
         id: collectionId,
         // @ts-ignore
-        name,
+        name: 'My Test Collection',
+        status: 'active',
         createdAt: new Date(),
         updatedAt: new Date(),
         ownerId: userId,
@@ -443,6 +446,7 @@ describe('DocumentModel', () => {
         id: documentId,
         // @ts-ignore
         name,
+        status: 'active',
         createdAt: new Date(),
         updatedAt: new Date(),
         ownerId: userId,
@@ -467,6 +471,7 @@ describe('DocumentModel', () => {
         id: collectionId,
         // @ts-ignore
         name,
+        status: 'active',
         createdAt: new Date(),
         updatedAt: new Date(),
         ownerId: userId,
@@ -528,6 +533,7 @@ describe('DocumentModel', () => {
         id: collectionId1,
         // @ts-ignore
         name,
+        status: 'active',
         createdAt: new Date(),
         updatedAt: new Date(),
         ownerId,
@@ -560,6 +566,7 @@ describe('DocumentModel', () => {
         id: collectionId2,
         // @ts-ignore
         name,
+        status: 'active',
         createdAt: new Date(),
         updatedAt: new Date(),
         ownerId,

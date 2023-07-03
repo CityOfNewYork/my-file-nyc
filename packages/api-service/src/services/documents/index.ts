@@ -46,6 +46,7 @@ export const createDocumentListItem = (document: any) => {
   const {
     id,
     name,
+    status,
     createdAt,
     thumbnailPath,
     isMultipageDocument,
@@ -93,6 +94,7 @@ export const createDocumentListItem = (document: any) => {
 
   return {
     name,
+    status,
     isMultipageDocument,
     pdf,
     pdfThumbnail,
@@ -109,6 +111,7 @@ export const singleDocumentResult = (
   const {
     id,
     name,
+    status,
     createdAt,
     thumbnailPath,
     files: baseFiles,
@@ -160,6 +163,7 @@ export const singleDocumentResult = (
   return {
     createdDate: createdAt.toISOString(),
     name,
+    status,
     description,
     id,
     scanStatus: document.scanStatus,
