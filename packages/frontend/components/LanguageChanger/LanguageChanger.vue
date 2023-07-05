@@ -1,9 +1,9 @@
 <template>
   <div :class="!outlined ? 'langContainer' : 'langContainerOutlined'">
     <v-select
+      v-model="$i18n.locale"
       :class="!outlined ? 'selectField' : 'reset'"
       class="language-selection-style"
-      v-model="$i18n.locale"
       :items="$i18n.availableLocales"
       dense
       :outlined="outlined && 'outlined'"
@@ -36,7 +36,6 @@ export default class LanguageChanger extends Vue {
   @Prop({ default: '-1px 19px;' }) padding: string
   userStore = userStore as any
 
-
   // Update usere locale in database and app state
   async userPatch() {
     const data = {
@@ -52,19 +51,21 @@ export default class LanguageChanger extends Vue {
   }
 
   mounted() {
-    if (this.userStore.profile){
+    if (this.userStore.profile) {
       this.$i18n.locale = this.userStore.profile.locale
     }
   }
-  
+
   updated() {
-    if (this.userStore.profile){
+    if (this.userStore.profile) {
       if (this.userStore.profile.locale !== this.$i18n.locale) {
         // this.userStore.profile.locale = this.$i18n.locale
         this.userPatch()
       }
     }
-    this.$router.push(`/${this.$i18n.locale}/${window.location.toString().split("/").pop()}`)
+    this.$router.push(
+      `/${this.$i18n.locale}/${window.location.toString().split('/').pop()}`,
+    )
   }
 
   languagesObject = {
@@ -86,6 +87,21 @@ export default class LanguageChanger extends Vue {
 <style lang="scss">
 .reset {
   max-width: 100%;
+  height: 100%;
+}
+
+.langContainerOutlined {
+  width: 80%;
+  height: 100px;
+  .v-text-field.v-text-field--enclosed:not(.v-text-field--rounded)
+    > .v-input__control
+    > .v-input__slot {
+    padding: 8px 12px;
+  }
+
+  fieldset {
+    border-width: 1.5px;
+  }
 }
 
 .langContainer {

@@ -6,11 +6,12 @@
       </v-toolbar-title>
     </v-toolbar>
     <v-main>
-      <v-container class="landing-layout-container">
+      <div class="landing-layout-container">
         <div class="landing-layout-container-inner">
           <nuxt />
         </div>
-      </v-container>
+        <FooterLanding />
+      </div>
     </v-main>
   </v-app>
 </template>
@@ -50,17 +51,29 @@ export default class DefaultLayout extends Vue {
 }
 </script>
 
-<style scoped lang="scss">
-.v-application {
+<style lang="scss" scoped>
+.landing-layout-container {
+  overflow: auto;
+  min-height: 100vh;
+}
+.landing-layout-container-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 100vh;
+}
+
+@media (max-height: 900px) and (max-width: 700px) {
   .landing-layout-container {
-    display: flex;
-    flex-direction: column;
-    padding: 0;
+    position: relative;
+    min-height: 100vh;
   }
   .landing-layout-container-inner {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: flex !important;
+    align-items: start !important;
+    justify-content: center !important;
+    width: 100%;
   }
 }
 </style>

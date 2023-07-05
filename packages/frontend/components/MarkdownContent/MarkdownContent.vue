@@ -1,7 +1,7 @@
 <template>
   <article
     v-if="markdown"
-    :class="$vuetify.breakpoint.smAndUp ? 'ma-8' : 'ma-2'"
+    :class="$vuetify.breakpoint.smAndUp ? 'mx-8 my-4 text-article' : 'ma-4'"
   >
     <VueShowdown :markdown="markdown.default" />
   </article>
@@ -30,5 +30,11 @@ h5,
 h6 {
   color: var(--primary);
   margin-bottom: 16px;
+}
+
+@media (min-width: 1200px) and (min-height: 1000) {
+  .text-article {
+    font-size: 1.5rem;
+  }
 }
 </style>

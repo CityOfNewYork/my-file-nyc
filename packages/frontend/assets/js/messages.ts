@@ -27,7 +27,8 @@ export default merge(
       },
 
       login: {
-        loginButton: 'Log in and get started',
+        loginButton: 'Log in',
+        createAccountButton: 'Create account',
         getStarted: {
           client: 'Get Started',
           cityEmployee: 'City Employee Login',
