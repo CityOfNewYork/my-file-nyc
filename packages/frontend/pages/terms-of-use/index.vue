@@ -98,7 +98,8 @@ export default class TermsOfUse extends mixins(Navigation) {
   }
 
   get hasAccepted() {
-    return userStore.profile && userStore.profile.termsOfUseAccepted
+    // return userStore.profile && userStore.profile.termsOfUseAccepted
+    return false
   }
 
   async accept() {
@@ -115,6 +116,11 @@ export default class TermsOfUse extends mixins(Navigation) {
       this.step = 0
       this.$router.push(this.localePath('/dashboard'))
     } else {
+      // this.$store.commit('user/setProfileLocale', this.$i18n.locale);
+      if (userStore.profile?.locale == 'en-us'){
+        userStore.profile?.locale = this.$i18n.locale
+      }
+      console.log(userStore.profile?.locale)
       this.step++
     }
   }

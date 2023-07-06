@@ -157,7 +157,7 @@ export default class User extends VuexModule {
         givenName: registrationUser.givenName!,
         dob: registrationUser.dob!,
         dhsCaseNumber: registrationUser.dhsCaseNumber!,
-        locale: 'en-us',
+        locale: 'en',
       })
       .then((response) => {
         this.$ga.event({
