@@ -165,7 +165,7 @@ export const userToApiOwner = (user: {
   familyName: user.familyName || null,
   name: userName(user),
   dhsCaseNumber: user.dhsCaseNumber || '',
-  locale: user.locale || 'en-us',
+  locale: user.locale || 'en',
   dob: user.dob || '',
 })
 
@@ -203,7 +203,7 @@ export const userToApiUser = (user: {
   dob: user.dob || '',
   dhsCaseNumber: user.dhsCaseNumber || '',
   name: userName(user),
-  locale: user.locale || 'en-us',
+  locale: user.locale || 'en',
   termsOfUseAccepted: hasAcceptedTermsOfUse(user),
   links: [],
 })
