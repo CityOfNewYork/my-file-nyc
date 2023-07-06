@@ -90,10 +90,6 @@ export default class TermsOfUse extends mixins(Navigation) {
   agent = false
 
   mounted() {
-    if (userStore.profile?.locale == 'en-us'){
-       // @ts-ignore
-        userStore.profile?.locale = this.$i18n.locale
-      }
     this.agent = userStore.isAgent
   }
 
