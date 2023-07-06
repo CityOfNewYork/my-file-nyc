@@ -64,7 +64,7 @@ export default class DefaultLayout extends Vue {
   min-height: 100vh;
 }
 
-@media (max-height: 900px) and (max-width: 700px) {
+@media (max-height: 920px) and (max-width: 700px) {
   .landing-layout-container {
     position: relative;
     min-height: 100vh;

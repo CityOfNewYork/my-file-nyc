@@ -28,7 +28,7 @@
         text
         class="white--text button-list"
         :to="localePath('/terms-of-use')"
-        style="text-decoration: underline"
+        style="text-decoration: underline; font-weight: 700"
       >
         {{ $t('navigation.termsOfUse') }}
       </v-btn>
@@ -36,7 +36,7 @@
         text
         class="white--text button-list"
         :to="localePath('/about')"
-        style="text-decoration: underline"
+        style="text-decoration: underline; font-weight: 700"
       >
         {{ $t('navigation.about') }}
       </v-btn>
@@ -44,7 +44,7 @@
         text
         class="white--text button-list"
         :to="localePath('/faq')"
-        style="text-decoration: underline"
+        style="text-decoration: underline; font-weight: 700"
       >
         {{ $t('navigation.faq') }}
       </v-btn>
@@ -89,7 +89,7 @@ export default class FooterGlobal extends Vue {
 }
 
 .footer-large {
-  position: fixed;
+  position: absolute;
   bottom: 0;
 }
 

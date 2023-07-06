@@ -7,7 +7,13 @@
       :content-path="welcomeMarkdown"
       class="pl-2"
     />
-    <v-btn x-large outlined color="primary" class="create-account-btn">
+    <v-btn
+      x-large
+      outlined
+      color="primary"
+      class="create-account-btn"
+      @click="singUp"
+    >
       {{ $t('login.createAccountButton') }}
     </v-btn>
     <ButtonLarge
@@ -38,6 +44,12 @@ export default class LandingMessage extends Vue {
   welcomeMarkdown = '' as any
   locale = this.$i18n.locale
 
+  singUp() {
+    window.location.replace(
+      'https://accounts-nonprd.nyc.gov/account/register.htm',
+    )
+  }
+
   beforeUpdate() {
     if (this.$i18n) {
       // const locale = this.$i18n.locale
@@ -65,7 +77,7 @@ export default class LandingMessage extends Vue {
   logIn(role: UserRole = UserRole.CLIENT) {
     // localStorage.setItem('entry-role', role.toString())
 
-    if (this.$i18n.locale != 'en') {
+    if (this.$i18n.locale !== 'en') {
       // this.$router keep redirecting to /en rout, had to use window to force navigation to nycid
       window.location.replace(this.localePath(`/login?loginAs=${role}`))
     } else {
