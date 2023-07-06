@@ -52,6 +52,7 @@ describe('CollectionModel', () => {
       await createCollection({
         id: collectionId1,
         name: 'Collection 1',
+        status: 'active',
         createdAt: new Date(),
         updatedAt: new Date(),
         ownerId: userId,
@@ -72,6 +73,7 @@ describe('CollectionModel', () => {
       await createCollection({
         id: collectionId2,
         name: 'Collection 2',
+        status: 'active',
         createdAt: new Date(),
         updatedAt: new Date(),
         ownerId: userId,
@@ -117,6 +119,7 @@ describe('CollectionModel', () => {
         id: collectionId,
         // @ts-ignore
         name,
+        status: 'active',
         createdAt: new Date(),
         updatedAt: new Date(),
         ownerId: userId,
@@ -181,6 +184,7 @@ describe('CollectionModel', () => {
         id: collectionId,
         // @ts-ignore
         name,
+        status: 'active',
         createdAt: new Date(),
         updatedAt: new Date(),
         ownerId: userId,
@@ -229,6 +233,7 @@ describe('CollectionModel', () => {
         await createCollection({
           id: collectionId,
           name,
+          status: 'active',
           createdAt: new Date(),
           updatedAt: new Date(),
           ownerId: userId,

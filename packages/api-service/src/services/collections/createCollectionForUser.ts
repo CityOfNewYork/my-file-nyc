@@ -114,6 +114,7 @@ export const handler = createAuthenticatedApiGatewayHandler(
     // create model input
     const collection: CreateCollectionInput = {
       name,
+      status: 'active',
       id: uuidv4(),
       ownerId,
       createdBy,

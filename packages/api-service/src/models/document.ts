@@ -24,6 +24,7 @@ export class Document extends BaseModel {
   public thumbnailPath?: string
   public scanStatus: string
   public isMultipageDocument: boolean
+  public status: string
 
   // navigation property
   public files?: File[]
@@ -43,6 +44,7 @@ export class Document extends BaseModel {
           'updatedAt',
           'scanStatus',
           'isMultipageDocument',
+          'status',
         ]
         return query.select(...fields.map((f) => Document.ref(f)))
       },
@@ -56,6 +58,7 @@ export class Document extends BaseModel {
           'ownerId',
           'scanStatus',
           'isMultipageDocument',
+          'status',
         ]
         return query
           .select(...fields.map((f) => Document.ref(f)))
@@ -81,6 +84,7 @@ export class Document extends BaseModel {
       properties: {
         id: { type: 'string', minLength: 1, maxLength: 40 },
         name: { type: 'string', maxLength: 255 },
+        status: { type: 'string', maxLength: 20 },
         description: { type: ['string', 'null'], maxLength: 500 },
         ownerId: { type: 'string', minLength: 1, maxLength: 255 },
         source: { type: 'string', maxLength: 255 },
@@ -235,6 +239,7 @@ export const setDocumentThumbnailPath = async (id: string, path: string) => {
 export interface CreateDocumentInput {
   id: string
   name: string
+  status?: string
   description?: string
   ownerId: string
   createdBy: string
@@ -265,6 +270,7 @@ export const createDocument = async (document: CreateDocumentInput) => {
 
 export interface UpdateDocumentInput {
   name?: string
+  status?: string
   description?: string | null
   updatedAt: Date
   updatedBy: string

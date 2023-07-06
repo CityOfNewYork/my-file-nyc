@@ -26,6 +26,7 @@ describe('FileModel', () => {
       const data = await createDocument({
         id: documentId,
         name: 'my test document',
+        status: 'active',
         createdAt: new Date(),
         updatedAt: new Date(),
         ownerId: userId,
@@ -72,6 +73,7 @@ describe('FileModel', () => {
       const data = await createDocument({
         id: documentId,
         name: 'my test document',
+        status: 'active',
         createdAt: new Date(),
         updatedAt: new Date(),
         ownerId: userId,
@@ -118,6 +120,7 @@ describe('FileModel', () => {
       await createDocument({
         id: documentId,
         name: 'my test document',
+        status: 'active',
         createdAt: new Date(),
         updatedAt: new Date(),
         ownerId: userId,
@@ -179,6 +182,7 @@ describe('FileModel', () => {
       await createDocument({
         id: documentId1,
         name: documentId1,
+        status: 'active',
         createdAt: new Date(),
         updatedAt: new Date(),
         ownerId: userId,
@@ -202,6 +206,7 @@ describe('FileModel', () => {
       await createDocument({
         id: documentId2,
         name: documentId2,
+        status: 'active',
         createdAt: new Date(),
         updatedAt: new Date(),
         ownerId: userId,

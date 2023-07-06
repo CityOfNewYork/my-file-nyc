@@ -216,6 +216,12 @@ export interface Collection {
      */
     'name': string;
     /**
+     * Status of the collection
+     * @type {string}
+     * @memberof Collection
+     */
+    'status': string;
+    /**
      * The date the collection was created
      * @type {string}
      * @memberof Collection
@@ -348,6 +354,12 @@ export interface CollectionListItem {
      */
     'name': string;
     /**
+     * Status of the collection
+     * @type {string}
+     * @memberof CollectionListItem
+     */
+    'status': string;
+    /**
      * The date the collection was created
      * @type {string}
      * @memberof CollectionListItem
@@ -378,6 +390,12 @@ export interface Document {
      * @memberof Document
      */
     'name': string;
+    /**
+     * Document status
+     * @type {string}
+     * @memberof Document
+     */
+    'status': string;
     /**
      * Document description or notes
      * @type {string}
@@ -439,6 +457,12 @@ export interface DocumentCreate {
      * @memberof DocumentCreate
      */
     'name': string;
+    /**
+     * Document status
+     * @type {string}
+     * @memberof DocumentCreate
+     */
+    'status'?: string;
     /**
      * Document description or notes
      * @type {string}
@@ -594,6 +618,12 @@ export interface DocumentListItem {
      */
     'name': string;
     /**
+     * Document status
+     * @type {string}
+     * @memberof DocumentListItem
+     */
+    'status': string;
+    /**
      * Date the document was created
      * @type {string}
      * @memberof DocumentListItem
@@ -618,6 +648,12 @@ export interface DocumentUpdate {
      * @memberof DocumentUpdate
      */
     'name'?: string;
+    /**
+     * Document status
+     * @type {string}
+     * @memberof DocumentUpdate
+     */
+    'status'?: string;
     /**
      * Document description or notes
      * @type {string}
