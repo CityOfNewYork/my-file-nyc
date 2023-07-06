@@ -2,7 +2,7 @@
   <div
     :class="
       $vuetify.breakpoint.smAndUp
-        ? 'd-flex justify-space-between pt-2 pb-2 footer-large'
+        ? 'd-flex align-center justify-space-between pt-2 pb-2 footer-large'
         : 'mt-2 pt-3 footer-small'
     "
     style="bottom: 0%; width: 100%; background-color: #031553"
@@ -10,17 +10,25 @@
     <v-img
       :class="
         $vuetify.breakpoint.smAndUp
-          ? 'ml-3 mt-1 mb-2 d-flex'
-          : 'd-flex ml-1 mr-3 mt-1'
+          ? 'd-flex ml-4 mt-1 mb-1'
+          : 'd-flex ml-2 mt-1'
       "
-      style="max-width: 25rem; filter: invert(1)"
+      :style="
+        $vuetify.breakpoint.smAndUp
+          ? { maxWidth: '28rem', height: '55px', filter: 'invert(1)' }
+          : { maxWidth: '23rem', height: '45px', filter: 'invert(1)' }
+      "
       :src="require('@/assets/images/city-logo-footer.svg')"
     />
     <div
       :class="
-        $vuetify.breakpoint.smAndUp
-          ? 'd-flex justify-center ml-5 pr-10'
-          : 'd-flex flex-column align-start'
+        $vuetify.breakpoint.smAndDown
+          ? 'd-flex flex-column align-start'
+          : $vuetify.breakpoint.smOnly
+          ? 'd-flex flex-column align-start'
+          : $vuetify.breakpoint.mdAndUp
+          ? 'd-flex flex-row justify-center ml-5 pr-10'
+          : ''
       "
       style="text-decoration: underline"
     >

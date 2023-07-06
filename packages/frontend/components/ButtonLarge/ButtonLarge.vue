@@ -35,6 +35,11 @@ export default class ButtonLarge extends Vue {
   }
 }
 
+//  :class="
+//         $vuetify.breakpoint.smAndUp
+//           ? 'd-flex justify-center ml-5 pr-10'
+//           : 'd-flex flex-column align-start'
+//       "
 @media (max-height: 900px) and (max-width: 500px) {
   #__nuxt .v-btn.ButtonLarge {
     min-width: 90% !important;
