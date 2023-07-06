@@ -82,6 +82,7 @@ import Navigation from '@/mixins/navigation'
   mixins: [Navigation],
   auth: false,
 })
+
 export default class TermsOfUse extends mixins(Navigation) {
   loading = false
   markdown = ''
@@ -98,8 +99,7 @@ export default class TermsOfUse extends mixins(Navigation) {
   }
 
   get hasAccepted() {
-    // return userStore.profile && userStore.profile.termsOfUseAccepted
-    return false
+    return userStore.profile && userStore.profile.termsOfUseAccepted
   }
 
   async accept() {
@@ -116,11 +116,10 @@ export default class TermsOfUse extends mixins(Navigation) {
       this.step = 0
       this.$router.push(this.localePath('/dashboard'))
     } else {
-      // this.$store.commit('user/setProfileLocale', this.$i18n.locale);
-      if (userStore.profile?.locale == 'en-us'){
-        userStore.profile?.locale = this.$i18n.locale
-      }
-      console.log(userStore.profile?.locale)
+        if (userStore.profile?.locale == 'en-us'){
+        // @ts-ignore
+          userStore.profile?.locale = this.$i18n.locale
+        }
       this.step++
     }
   }
