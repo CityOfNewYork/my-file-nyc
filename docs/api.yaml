@@ -1280,6 +1280,10 @@ components:
           description: The date the collection was created
         links:
           $ref: '#/components/schemas/Links'
+        numberOfDocuments:
+          type: number
+          example: 4
+          description: The number of documents contained in the collection.
     Collection:
       type: object
       description: A collection of documents
@@ -1309,6 +1313,10 @@ components:
           description: The date the collection was created
         links:
           $ref: '#/components/schemas/Links'
+        numberOfDocuments:
+          type: number
+          example: 4
+          description: The number of documents contained in the collection.
     CollectionCreate:
       type: object
       description: Request data to create a collection

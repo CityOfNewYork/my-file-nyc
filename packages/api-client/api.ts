@@ -233,6 +233,12 @@ export interface Collection {
      * @memberof Collection
      */
     'links': Array<Link>;
+    /**
+     * The number of documents contained in the collection.
+     * @type {number}
+     * @memberof Collection
+     */
+    'numberOfDocuments'?: number;
 }
 /**
  * Request data to create a collection
@@ -371,6 +377,12 @@ export interface CollectionListItem {
      * @memberof CollectionListItem
      */
     'links': Array<Link>;
+    /**
+     * The number of documents contained in the collection.
+     * @type {number}
+     * @memberof CollectionListItem
+     */
+    'numberOfDocuments'?: number;
 }
 /**
  * A document

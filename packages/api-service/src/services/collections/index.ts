@@ -21,7 +21,7 @@ export const formatCollectionListItem = (
   collection: Collection,
   permissions: CollectionPermission[],
 ): CollectionListItem => {
-  const { id, name, status, createdAt } = collection
+  const { id, name, status, createdAt, documents = [] } = collection
   const links: Link[] = []
   if (permissions.includes(CollectionPermission.ListDocuments)) {
     links.push({
@@ -43,6 +43,7 @@ export const formatCollectionListItem = (
     createdDate: createdAt.toISOString(),
     id,
     links,
+    numberOfDocuments,
   }
 }
 export const formatCollections = (
