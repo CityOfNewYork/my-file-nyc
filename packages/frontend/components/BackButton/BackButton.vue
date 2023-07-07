@@ -65,7 +65,8 @@ export default class BackButton extends Vue {
     const isDashboard = this.languageDashboard.includes(pathForCompare)
 
     if (!this.$auth.loggedIn) {
-      this.$router.go(-1)
+      const path = window.location.pathname.toString().split('/')[1]
+      window.location.replace(`/${path}/`)
     }
 
     if (isDashboard || window.location.pathname === '/dashboard') {

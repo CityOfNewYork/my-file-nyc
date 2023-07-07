@@ -50,11 +50,11 @@ export default class LanguageChanger extends Vue {
     this.$i18n.locale = response.locale
   }
 
-  mounted() {
-    if (this.userStore.profile) {
-      this.$i18n.locale = this.userStore.profile.locale
-    }
-  }
+  // mounted() {
+  //   if (this.userStore.profile) {
+  //     this.$i18n.locale = this.userStore.profile.locale
+  //   }
+  // }
 
   updated() {
     if (this.userStore.profile) {

@@ -22,7 +22,7 @@
       @keydown.native.enter="logIn"
     />
     <div class="my-4 question">
-      <a href="/nycid">{{ $t('navigation.nycId') }}</a>
+      <a :href="`/${$i18n.locale}/nycid`">{{ $t('navigation.nycId') }}</a>
     </div>
     <div class="divider"></div>
     <LanguageChanger outlined="true" text-color="black" />
