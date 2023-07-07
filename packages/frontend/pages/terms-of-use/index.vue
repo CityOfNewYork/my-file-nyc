@@ -82,6 +82,7 @@ import Navigation from '@/mixins/navigation'
   mixins: [Navigation],
   auth: false,
 })
+
 export default class TermsOfUse extends mixins(Navigation) {
   loading = false
   markdown = ''
@@ -115,6 +116,10 @@ export default class TermsOfUse extends mixins(Navigation) {
       this.step = 0
       this.$router.push(this.localePath('/dashboard'))
     } else {
+        if (userStore.profile?.locale == 'en-us'){
+        // @ts-ignore
+          userStore.profile?.locale = this.$i18n.locale
+        }
       this.step++
     }
   }
