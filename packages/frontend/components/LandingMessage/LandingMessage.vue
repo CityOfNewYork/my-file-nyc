@@ -45,8 +45,9 @@ export default class LandingMessage extends Vue {
   locale = this.$i18n.locale
 
   singUp() {
-    window.location.replace(
+    window.open(
       'https://accounts-nonprd.nyc.gov/account/register.htm',
+      '_blank',
     )
   }
 
