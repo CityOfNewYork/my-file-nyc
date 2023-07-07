@@ -4,31 +4,28 @@
     <MarkdownContent
       id="welcome-copy"
       :key="welcomeMarkdown['default']"
-      class="pa-1"
       :content-path="welcomeMarkdown"
+      class="pl-2"
     />
+    <v-btn
+      x-large
+      outlined
+      color="primary"
+      class="create-account-btn"
+      @click="singUp"
+    >
+      {{ $t('login.createAccountButton') }}
+    </v-btn>
     <ButtonLarge
       :label="$t('login.loginButton')"
       @click.native="logIn(0)"
       @keydown.native.enter="logIn"
     />
-    <div class="my-5">
+    <div class="my-4 question">
       <a href="/nycid">{{ $t('navigation.nycId') }}</a>
     </div>
-    <LanguageChanger
-      outlined="true"
-      justify="center"
-      text-color="black"
-      padding="0 20px"
-    />
-    <CityLogoFooter v-if="showFooterLogo" position="fixed" class="mt-10 mb-3" />
-    <FooterLinks
-      justify="center"
-      color="primary"
-      background-color="none"
-      :always-show="true"
-      :fixed="$vuetify.breakpoint.height > 615"
-    />
+    <div class="divider"></div>
+    <LanguageChanger outlined="true" text-color="black" />
   </div>
 </template>
 
@@ -46,6 +43,12 @@ import { userStore } from '../../plugins/store-accessor'
 export default class LandingMessage extends Vue {
   welcomeMarkdown = '' as any
   locale = this.$i18n.locale
+
+  singUp() {
+    window.location.replace(
+      'https://accounts-nonprd.nyc.gov/account/register.htm',
+    )
+  }
 
   beforeUpdate() {
     if (this.$i18n) {
@@ -74,69 +77,76 @@ export default class LandingMessage extends Vue {
   logIn(role: UserRole = UserRole.CLIENT) {
     // localStorage.setItem('entry-role', role.toString())
 
-    if (this.$i18n.locale != 'en'){
+    if (this.$i18n.locale !== 'en') {
       // this.$router keep redirecting to /en rout, had to use window to force navigation to nycid
-      window.location.replace(this.localePath(`/login?loginAs=${role}`));
-    }
-    else {
+      window.location.replace(this.localePath(`/login?loginAs=${role}`))
+    } else {
       this.$router.push(this.localePath(`/login?loginAs=${role}`))
     }
   }
 }
 </script>
 
-<style lang="scss">
-.v-application {
-  .landing-layout-container {
-    display: flex;
-    padding: 0;
-    min-height: 100vh;
-    justify-content: center;
+<style lang="scss" scoped>
+.landing-container {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 55px;
+
+  .create-account-btn {
+    width: 320px !important;
+    font-weight: 700 !important;
+    height: 10px !important;
+    border-radius: 5px !important;
+    margin-bottom: 16px;
   }
-  .landing-layout-container-inner {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+
+  .question {
+    font-weight: 700;
   }
-  .landing-container {
+
+  .divider {
+    margin-top: 16px;
+    border-top: 2px solid black;
     width: 320px;
-    margin-bottom: 100px;
+    margin-bottom: 16px;
+  }
+}
+
+@media (max-height: 900px) and (max-width: 500px) {
+  .landing-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
-  }
-  .welcome-message.body-1 {
-    font-size: rem(18px) !important;
-  }
-  @media (max-height: 700px) and (max-width: 400px) {
-    .landing-layout-container {
-      display: flex;
-      padding: 0;
-      height: 100dvh;
-      justify-content: start;
+    text-align: start;
+    justify-content: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 100%;
+    padding-bottom: 150px;
+
+    .create-account-btn {
+      width: 90% !important;
+      font-weight: 700 !important;
+      border-radius: 5px !important;
     }
 
-    .landing-layout-container-inner {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .question {
+      font-weight: 700;
     }
 
-    .landing-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      margin-bottom: 0px !important;
-      width: 320px !important;
-    }
-    #welcome-copy {
-      font-size: rem(15px) !important;
+    .divider {
+      margin-top: 25px;
+      border-top: 2px solid black;
+      width: 90%;
+      margin-bottom: 25px;
     }
   }
-  // #welcome-copy {
-  //   margin: 50px 20px 32px;
-  // }
+  #welcome-copy {
+    font-size: rem(16px) !important;
+  }
 }
 </style>
