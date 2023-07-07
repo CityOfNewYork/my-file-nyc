@@ -35,7 +35,7 @@
       <v-btn
         text
         class="white--text button-list"
-        :to="localePath('/terms-of-use')"
+        :to="`/${this.$i18n.locale}/terms-of-use`"
         style="text-decoration: underline; font-weight: 700"
       >
         {{ $t('navigation.termsOfUse') }}
@@ -43,7 +43,7 @@
       <v-btn
         text
         class="white--text button-list"
-        :to="localePath('/about')"
+        :to="`/${this.$i18n.locale}/about`"
         style="text-decoration: underline; font-weight: 700"
       >
         {{ $t('navigation.about') }}
@@ -51,7 +51,7 @@
       <v-btn
         text
         class="white--text button-list"
-        :to="localePath('/faq')"
+        :to="`/${this.$i18n.locale}/faq`"
         style="text-decoration: underline; font-weight: 700"
       >
         {{ $t('navigation.faq') }}

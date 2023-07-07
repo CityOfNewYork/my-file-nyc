@@ -64,8 +64,12 @@ export default class BackButton extends Vue {
 
     const isDashboard = this.languageDashboard.includes(pathForCompare)
 
+    if (!this.$auth.loggedIn) {
+      this.$router.go(-1)
+    }
+
     if (isDashboard || window.location.pathname === '/dashboard') {
-      this.reset()
+      return this.reset()
     } else {
       const langPref = pathForCompare
         .toString()
@@ -75,9 +79,9 @@ export default class BackButton extends Vue {
 
       const hasLangPrefix = this.languages.includes(langPref)
       if (hasLangPrefix) {
-        this.$router.push(langPref + '/dashboard')
+        return this.$router.push(langPref + '/dashboard')
       } else {
-        this.$router.push('/dashboard')
+        return this.$router.push('/dashboard')
       }
     }
   }
