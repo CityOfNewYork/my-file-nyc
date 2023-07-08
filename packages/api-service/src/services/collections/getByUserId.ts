@@ -19,7 +19,8 @@ export const handler = createAuthenticatedApiGatewayHandler(
   async (request: APIGatewayRequest): Promise<CollectionListContract> => {
     const { ownerId } = request
     const foundCollections = await getCollectionsByOwnerId(ownerId)
-    return formatCollections(foundCollections, [
+
+    return await formatCollections(foundCollections, [
       CollectionPermission.ListDocuments,
       CollectionPermission.ListGrants,
     ])

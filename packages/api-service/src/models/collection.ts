@@ -45,7 +45,8 @@ export class Collection extends BaseModel {
     return {
       fieldsForList(query: QueryBuilder<Collection>) {
         const fields = ['id', 'name', 'createdAt', 'ownerId', 'createdBy', 'status']
-        return query.select(...fields.map((f) => Collection.ref(f)))
+        return query
+          .select(...fields.map((f) => Collection.ref(f)))
       },
       byOwnerId(query: QueryBuilder<Document>, userId: string) {
         return query.where({

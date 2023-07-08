@@ -16,12 +16,13 @@ import { userToApiOwner, userToApiSharer } from '../users'
 import { CollectionPermission } from './authorization'
 import { APIGatewayProxyEventV2 } from 'aws-lambda'
 import { Document } from '@/models/document'
+import { CollectionDocument } from '@/models/collectionDocument'
 
 export const formatCollectionListItem = (
   collection: Collection,
   permissions: CollectionPermission[],
 ): CollectionListItem => {
-  const { id, name, status, createdAt } = collection
+  const { id, name, status, createdAt, } = collection
   const links: Link[] = []
   if (permissions.includes(CollectionPermission.ListDocuments)) {
     links.push({
@@ -45,12 +46,33 @@ export const formatCollectionListItem = (
     links,
   }
 }
-export const formatCollections = (
+export const formatCollections = async (
   collections: Collection[],
   permissions: CollectionPermission[],
-) => ({
-  collections: collections.map((c) => formatCollectionListItem(c, permissions)),
-})
+) => {
+
+  const collectionDocumentCount = await CollectionDocument.query()
+    .select('collectionId')
+    .count('documentId', { as: 'numberOfDocuments' })
+    .groupBy('collectionId');
+
+  console.log('Collection Document Count Grouping:')
+  console.log(JSON.stringify(collectionDocumentCount, null, 2))
+  const formattedCollectionItems = collections
+    .map((c) => formatCollectionListItem(c, permissions))
+    .map((c) => {
+      const numberOfDocuments = (collectionDocumentCount.find((cdc) => cdc.collectionId === c.id) as any || { numberOfDocuments: 0 }).numberOfDocuments;
+      return {
+      ...c,
+      name: `${numberOfDocuments} documents shared on ${(new Date(c.createdDate)).toLocaleString()}`,
+      numberOfDocuments,
+    }
+  })
+
+  return {
+    collections: formattedCollectionItems,
+  }
+}
 
 export const formatSharedCollections = (
   collections: Collection[],
@@ -84,8 +106,8 @@ export const getCollectionDetails = async (collectionId: string) => {
   // create a consistent hash that can be used as the download file name
   const documentsHash = hashString(
     collectionId +
-      ':' +
-      documents.map((d) => d.id + d.updatedAt.toUTCString()).join(':'),
+    ':' +
+    documents.map((d) => d.id + d.updatedAt.toUTCString()).join(':'),
   )
 
   return {
