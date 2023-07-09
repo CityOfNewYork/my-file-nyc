@@ -548,6 +548,38 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/DocumentsDownloadCreate'
+  '/collections/{collectionId}':
+    patch:
+      tags:
+        - collections
+      summary: Patch collection status
+      description: Update the status for a collection
+      operationId: patchCollectionStatusById
+      parameters:
+        - name: collectionId
+          in: path
+          description: ID of collection
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Collection'
+        '400':
+          description: Bad Request
+      security:
+        - datalocker_auth: []
+      requestBody:
+        description: Payload of collection status patch
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CollectionStatusPatch'
   '/collections/{collectionId}/documents/downloads/{downloadId}':
     get:
       tags:
@@ -1347,6 +1379,19 @@ components:
       properties:
         format:
           $ref: '#/components/schemas/DocumentsDownloadFormatEnum'
+    CollectionStatusPatch:
+      type: object
+      description: Request data to create a collection
+      required:
+        - status
+      properties:
+        status:
+          type: string
+          enum:
+            - pending
+            - complete
+          example: pending
+          description: Status/state of the collection
     DocumentsDownloadFormatEnum:
       description: The valid formats for a requested download
       type: string

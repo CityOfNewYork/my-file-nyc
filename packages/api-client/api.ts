@@ -385,6 +385,27 @@ export interface CollectionListItem {
     'numberOfDocuments'?: number;
 }
 /**
+ * Request data to create a collection
+ * @export
+ * @interface CollectionStatusPatch
+ */
+export interface CollectionStatusPatch {
+    /**
+     * Status/state of the collection
+     * @type {string}
+     * @memberof CollectionStatusPatch
+     */
+    'status': CollectionStatusPatchStatusEnum;
+}
+
+export const CollectionStatusPatchStatusEnum = {
+    Pending: 'pending',
+    Complete: 'complete'
+} as const;
+
+export type CollectionStatusPatchStatusEnum = typeof CollectionStatusPatchStatusEnum[keyof typeof CollectionStatusPatchStatusEnum];
+
+/**
  * A document
  * @export
  * @interface Document
@@ -1369,6 +1390,50 @@ export const CollectionsApiAxiosParamCreator = function (configuration?: Configu
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * Update the status for a collection
+         * @summary Patch collection status
+         * @param {string} collectionId ID of collection
+         * @param {CollectionStatusPatch} collectionStatusPatch Payload of collection status patch
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        patchCollectionStatusById: async (collectionId: string, collectionStatusPatch: CollectionStatusPatch, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'collectionId' is not null or undefined
+            assertParamExists('patchCollectionStatusById', 'collectionId', collectionId)
+            // verify required parameter 'collectionStatusPatch' is not null or undefined
+            assertParamExists('patchCollectionStatusById', 'collectionStatusPatch', collectionStatusPatch)
+            const localVarPath = `/collections/{collectionId}`
+                .replace(`{${"collectionId"}}`, encodeURIComponent(String(collectionId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication datalocker_auth required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "datalocker_auth", [], configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(collectionStatusPatch, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -1425,6 +1490,18 @@ export const CollectionsApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getGrantsByCollectionId(collectionId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
+        /**
+         * Update the status for a collection
+         * @summary Patch collection status
+         * @param {string} collectionId ID of collection
+         * @param {CollectionStatusPatch} collectionStatusPatch Payload of collection status patch
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async patchCollectionStatusById(collectionId: string, collectionStatusPatch: CollectionStatusPatch, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Collection>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.patchCollectionStatusById(collectionId, collectionStatusPatch, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
     }
 };
 
@@ -1476,6 +1553,17 @@ export const CollectionsApiFactory = function (configuration?: Configuration, ba
          */
         getGrantsByCollectionId(collectionId: string, options?: any): AxiosPromise<CollectionGrantList> {
             return localVarFp.getGrantsByCollectionId(collectionId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Update the status for a collection
+         * @summary Patch collection status
+         * @param {string} collectionId ID of collection
+         * @param {CollectionStatusPatch} collectionStatusPatch Payload of collection status patch
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        patchCollectionStatusById(collectionId: string, collectionStatusPatch: CollectionStatusPatch, options?: any): AxiosPromise<Collection> {
+            return localVarFp.patchCollectionStatusById(collectionId, collectionStatusPatch, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -1535,6 +1623,19 @@ export class CollectionsApi extends BaseAPI {
      */
     public getGrantsByCollectionId(collectionId: string, options?: AxiosRequestConfig) {
         return CollectionsApiFp(this.configuration).getGrantsByCollectionId(collectionId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Update the status for a collection
+     * @summary Patch collection status
+     * @param {string} collectionId ID of collection
+     * @param {CollectionStatusPatch} collectionStatusPatch Payload of collection status patch
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CollectionsApi
+     */
+    public patchCollectionStatusById(collectionId: string, collectionStatusPatch: CollectionStatusPatch, options?: AxiosRequestConfig) {
+        return CollectionsApiFp(this.configuration).patchCollectionStatusById(collectionId, collectionStatusPatch, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
