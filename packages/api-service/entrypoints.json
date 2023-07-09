@@ -54,6 +54,9 @@
     "entrypoint": "collections/getByUserId"
   },
   {
+    "entrypoint": "collections/patchCollectionStatusById"
+  },
+  {
     "entrypoint": "collections/getDocumentsByCollectionId"
   },
   {

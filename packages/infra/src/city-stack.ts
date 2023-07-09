@@ -2154,6 +2154,8 @@ export class CityStack extends Stack {
       throttlingSettings: WriteRouteDefaultThrottling,
     })
 
+
+
     // add route and lambda to fetch a collection download
     this.addRoute(api, {
       name: 'GetDownloadForCollectionDocuments',
@@ -2181,6 +2183,47 @@ export class CityStack extends Stack {
       ),
       authorizer,
       throttlingSettings: ReadRouteDefaultThrottling,
+    })
+
+
+
+    // add route and lambda to patch a collection's status
+    const updateCollectionStatusFunction = this.createLambda(
+      'PatchUserCollectionStatus',
+      pathToApiServiceLambda('collections/patchCollectionStatusById'),
+      {
+        dbSecret,
+        layers: [mySqlLayer],
+        extraEnvironmentVariables: [
+          ...authEnvironmentVariables,
+          EnvironmentVariables.WEB_APP_DOMAIN,
+          EnvironmentVariables.ACTIVITY_RECORD_SQS_QUEUE_URL,
+          EnvironmentVariables.EMAIL_PROCESSOR_SQS_QUEUE_URL,
+          EnvironmentVariables.SHARED_INBOX_CONFIG,
+          EnvironmentVariables.SHARED_INBOX_CONFIG_QA,
+          EnvironmentVariables.QA_USER_EMAIL_LIST,
+        ],
+        emailProcessorSqsPermissions: {
+          includeWrite: true,
+        },
+        auditLogSqsPermissions: {
+          includeWrite: true,
+        },
+      },
+    )
+
+    updateCollectionStatusFunction.addToRolePolicy(
+      new PolicyStatement({
+        actions: ['ses:SendEmail'],
+        resources: ['*'],
+      }),
+    )
+    this.addRoute(api, {
+      name: 'PatchUserCollectionStatus',
+      routeKey: 'PATCH /collections/{collectionId}',
+      lambdaFunction: updateCollectionStatusFunction,
+      authorizer,
+      throttlingSettings: WriteRouteDefaultThrottling,
     })
   }
 
