@@ -225,6 +225,10 @@ export default class AppBar extends mixins(Navigation) {
     setTimeout(() => {
       this.recompute = !this.recompute
     }, 3000)
+
+    if (this.userStore.profile) {
+      this.$i18n.locale = this.userStore.profile.locale
+    }
   }
 
   get env() {

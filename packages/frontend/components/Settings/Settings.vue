@@ -47,7 +47,7 @@
             <div class="inputContainer">
               <ValidationProvider
                 name="Month"
-                rules="between:1,12|required"
+                rules="between:1,12|required|max:2"
                 v-slot="{ errors }"
               >
                 <label>Month</label>
@@ -63,7 +63,7 @@
             <div class="inputContainer">
               <ValidationProvider
                 name="Day"
-                rules="required|between:1,31"
+                rules="required|between:1,31|max:2"
                 v-slot="{ errors }"
               >
                 <label>Day</label>
@@ -345,7 +345,7 @@ export default class Settings extends Vue {
         locale: this.locale,
       }
 
-      if (this.location == `/${this.$i18n.locale}/account`) {
+      if (`${this.location}` == `/${this.$i18n.locale}/account` || `${this.location}` == `/account`) {
         this.patchUser(data)
       } else {
         this.submit(data)
