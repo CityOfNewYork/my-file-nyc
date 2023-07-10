@@ -1,4 +1,4 @@
-<template>
+LanguageSelector<template>
   <v-navigation-drawer
     ref="sideNav"
     v-model="isVisible"
