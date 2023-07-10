@@ -13,10 +13,11 @@
           ? 'd-flex ml-4 mt-1 mb-1'
           : 'd-flex ml-2 mt-1'
       "
+      class="landing-img-footer"
       :style="
         $vuetify.breakpoint.smAndUp
           ? { maxWidth: '28rem', height: '55px', filter: 'invert(1)' }
-          : { maxWidth: '23rem', height: '45px', filter: 'invert(1)' }
+          : { maxWidth: '23rem', height: '44px', filter: 'invert(1)' }
       "
       :src="require('@/assets/images/city-logo-footer.svg')"
     />
