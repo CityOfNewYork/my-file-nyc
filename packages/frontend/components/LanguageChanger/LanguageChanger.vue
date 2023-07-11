@@ -28,6 +28,10 @@
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
 import { userStore } from '@/plugins/store-accessor'
 
+interface Languages {
+  [key: string]: string;
+
+}
 @Component
 export default class LanguageChanger extends Vue {
   @Prop({ default: false }) outlined: boolean
@@ -48,15 +52,31 @@ export default class LanguageChanger extends Vue {
 
     const response = await this.$store.dispatch('user/patchProfile', data)
     this.$i18n.locale = response.locale
+  }
 
-    this.$router.push(
-      this.$router.currentRoute.fullPath
-    )
+  prefixRouteUpdate(route: any){
+    if (route.length <= 2) {
+      route[0] = this.$i18n.locale
+    }
+    else if (route.length >= 3){
+      if (this.languagesObject[route[1]]) {
+        route[1] = this.$i18n.locale
+      }
+      else {
+        route.splice(1, 0, this.$i18n.locale)
+      }
+    }    
+    this.$router.push(route.join('/'))
   }
 
   // mounted() {
   //   if (this.userStore.profile) {
-  //     this.$i18n.locale = this.userStore.profile.locale
+  //     if (this.userStore.profile.locale == 'en'){
+  //       this.prefixRouteUpdate(this.$router.currentRoute.fullPath.split('/'))
+  //     }
+  //     else{
+  //       this.$i18n.locale = this.userStore.profile.locale
+  //     }
   //   }
   // }
 
@@ -66,9 +86,11 @@ export default class LanguageChanger extends Vue {
         this.userPatch()
       }
     }
+
+    this.prefixRouteUpdate(this.$router.currentRoute.fullPath.split('/'))
   }
 
-  languagesObject = {
+  languagesObject: Languages = {
     en: 'English',
     es: 'Español',
     ar: 'عرب',
