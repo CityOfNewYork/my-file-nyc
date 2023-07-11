@@ -17,7 +17,7 @@
     <v-main>
       <!-- <DesktopSideBar /> -->
 
-      <SharedOwnerList :inbox="getAgeencyEmail" class="pb-12" />
+      <SharedOwnerList :inbox="getAgeencyEmail" class="pb-16" />
       <!-- <SharedOwnerList inbox="Personal email" /> -->
     </v-main>
   </div>
