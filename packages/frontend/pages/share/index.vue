@@ -359,11 +359,13 @@ export default class Share extends Vue {
 
   prevOrBack() {
     if (this.step === 0) {
-      if (window.history.length) {
-        this.$router.back()
-      } else {
-        this.$router.push(this.localePath('/dashboard'))
-      }
+      this.$router.push(this.localePath('/dashboard'))
+      // if (window.history.length) {
+      //   this.$router.push(this.localePath('/dashboard'))      
+      // }   
+      //   else {
+      //   this.$router.push(this.localePath('/dashboard'))
+      // }
     } else {
       this.prev()
     }
