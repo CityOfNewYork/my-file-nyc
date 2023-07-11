@@ -43,13 +43,16 @@
               <span>{{ $t('controls.shared') }}</span>
             </v-tab>
           </v-tabs>
-          <div v-if="$vuetify.breakpoint.smAndUp && docsPresent" class="d-flex">
+          <div
+            v-if="$vuetify.breakpoint.smAndUp && docsPresent"
+            class="d-flex mr-4"
+          >
+            <ShareButton class="my-2 mr-3" />
             <UploadButton
               prepend-icon="$plus"
               class="my-2"
               @complete="onUpload"
             />
-            <ShareButton class="ma-2" />
           </div>
         </div>
       </template>
