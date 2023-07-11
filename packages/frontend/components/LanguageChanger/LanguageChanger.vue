@@ -48,6 +48,10 @@ export default class LanguageChanger extends Vue {
 
     const response = await this.$store.dispatch('user/patchProfile', data)
     this.$i18n.locale = response.locale
+
+    this.$router.push(
+      this.$router.currentRoute.fullPath
+    )
   }
 
   // mounted() {
@@ -59,13 +63,9 @@ export default class LanguageChanger extends Vue {
   updated() {
     if (this.userStore.profile) {
       if (this.userStore.profile.locale !== this.$i18n.locale) {
-        // this.userStore.profile.locale = this.$i18n.locale
         this.userPatch()
       }
     }
-    this.$router.push(
-      `/${this.$i18n.locale}/${window.location.toString().split('/').pop()}`,
-    )
   }
 
   languagesObject = {
