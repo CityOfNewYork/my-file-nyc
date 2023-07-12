@@ -47,10 +47,10 @@
             v-if="$vuetify.breakpoint.smAndUp && docsPresent"
             class="d-flex mr-4"
           >
-            <ShareButton class="my-2 mr-3" />
+            <ShareButton class="my-2 mx-2" />
             <UploadButton
               prepend-icon="$plus"
-              class="my-2"
+              class="my-2 mx-2"
               @complete="onUpload"
             />
           </div>
