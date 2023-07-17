@@ -161,7 +161,7 @@ const config = {
           'connect-src': getSrc(CspEnum.CONNECT, process.env.CSP_CONNECT_SRC),
           'frame-src': getSrc(CspEnum.FRAME, process.env.CSP_FRAME_SRC),
           'form-action': ["'self'"],
-          'object-src': ["'none'"],
+          'object-src': ["'self' data:", "*"],
         },
         {
           enabled: true,
