@@ -15,7 +15,13 @@
     <p>PDF document: {{ document.name }}</p>
   </iframe> -->
 
-  <div v-else-if="isPdf" id="adobe-dc-view" class="adobe-container"></div>
+  <!-- <div v-else-if="isPdf" id="adobe-dc-view" class="adobe-container"></div> -->
+  <div v-else-if="isPdf" class="adobe-container">
+    <object v-if="url" :data="url" type="application/pdf" width="100%" height="100%"></object>
+    <p v-else>Loading PDF viewer...</p>
+
+  </div>
+
   <div v-else class="text-center image viewer">
     <v-dialog v-model="dialog">
       <template v-slot:activator="{ on, attrs }">
@@ -64,34 +70,38 @@ export default class DocumentFile extends Vue {
   head() {
     return {
       script: [
-        {
-          src: this.url
-            ? 'https://documentservices.adobe.com/view-sdk/viewer.js'
-            : '',
-          type: 'text/javascript',
-          body: true,
-        },
+        // {
+        //   src: this.url
+        //     ? 'https://documentservices.adobe.com/view-sdk/viewer.js'
+        //     : '',
+        //   type: 'text/javascript',
+        //   body: true,
+        // },
       ],
     }
   }
 
-  pdfrender(url: any, documentName: any, adobeClientId: any) {
-    document.addEventListener('adobe_dc_view_sdk.ready', function () {
-      // @ts-ignore
-      const adobeDCView = new AdobeDC.View({
-        clientId: adobeClientId,
-        divId: 'adobe-dc-view',
-      })
+  async pdfrender(url: any, documentName: any, adobeClientId: any) {
+    // const loadingTask = pdfjsLib.getDocument(url);
+    // const pdf = await loadingTask.promise;
 
-      adobeDCView.previewFile({
-        content: {
-          location: {
-            url,
-          },
-        },
-        metaData: { fileName: documentName },
-      })
-    })
+
+    // document.addEventListener('adobe_dc_view_sdk.ready', function () {
+    //   // @ts-ignore
+    //   const adobeDCView = new AdobeDC.View({
+    //     clientId: adobeClientId,
+    //     divId: 'adobe-dc-view',
+    //   })
+
+    //   adobeDCView.previewFile({
+    //     content: {
+    //       location: {
+    //         url,
+    //       },
+    //     },
+    //     metaData: { fileName: documentName },
+    //   })
+    // })
   }
 
   async mounted() {

@@ -23,10 +23,10 @@ const config = {
   // },
   head: {
     title: 'Loading...',
-    script: [{
-      src: "https://documentservices.adobe.com/view-sdk/viewer.js",
-      type: "text/javascript"
-    }],
+    // script: [{
+    //   src: "https://documentservices.adobe.com/view-sdk/viewer.js",
+    //   type: "text/javascript"
+    // }],
     // titleTemplate: '%s | My File',
     titleTemplate: 'My File NYC - Easily and securely share Files with NYC DHS',
     meta: [
@@ -161,7 +161,7 @@ const config = {
           'connect-src': getSrc(CspEnum.CONNECT, process.env.CSP_CONNECT_SRC),
           'frame-src': getSrc(CspEnum.FRAME, process.env.CSP_FRAME_SRC),
           'form-action': ["'self'"],
-          'object-src': ["'none'"],
+          'object-src': ["'self' data:", "*"],
         },
         {
           enabled: true,
