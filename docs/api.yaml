@@ -1387,9 +1387,6 @@ components:
       properties:
         status:
           type: string
-          enum:
-            - pending
-            - complete
           example: pending
           description: Status/state of the collection
     DocumentsDownloadFormatEnum:
