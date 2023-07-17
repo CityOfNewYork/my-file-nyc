@@ -395,16 +395,8 @@ export interface CollectionStatusPatch {
      * @type {string}
      * @memberof CollectionStatusPatch
      */
-    'status': CollectionStatusPatchStatusEnum;
+    'status': string;
 }
-
-export const CollectionStatusPatchStatusEnum = {
-    Pending: 'pending',
-    Complete: 'complete'
-} as const;
-
-export type CollectionStatusPatchStatusEnum = typeof CollectionStatusPatchStatusEnum[keyof typeof CollectionStatusPatchStatusEnum];
-
 /**
  * A document
  * @export
