@@ -17,6 +17,7 @@ import { CollectionPermission } from './authorization'
 import { APIGatewayProxyEventV2 } from 'aws-lambda'
 import { Document } from '@/models/document'
 import { CollectionDocument } from '@/models/collectionDocument'
+import dayjs from 'dayjs'
 
 export const formatCollectionListItem = (
   collection: Collection,
@@ -63,41 +64,54 @@ export const formatCollections = async (
     .map((c) => {
       const numberOfDocuments = (collectionDocumentCount.find((cdc) => cdc.collectionId === c.id) as any || { numberOfDocuments: 0 }).numberOfDocuments;
       return {
-      ...c,
-      name: `${numberOfDocuments} documents shared on ${(new Date(c.createdDate)).toLocaleString()}`,
-      numberOfDocuments,
-    }
-  })
+        ...c,
+        name: `${numberOfDocuments} documents shared on ${dayjs(new Date(c.createdDate)).format('ll [at] hh:mm')}`,
+        numberOfDocuments,
+      }
+    })
 
   return {
     collections: formattedCollectionItems,
   }
 }
 
-export const formatSharedCollections = (
+export const formatSharedCollections = async (
   collections: Collection[],
   users: User[],
   permissions: CollectionPermission[],
-): SharedCollectionList => ({
-  sharedCollections: collections
-    .map((collection): SharedCollectionListItem | null => {
-      const { ownerId, createdBy, createdAt } = collection
-      const owner = users.find((u) => u.id == ownerId)
-      const sharer = users.find((u) => u.id == createdBy)
-      if (!owner || !sharer) {
-        return null
-      }
-      return {
-        collection: formatCollectionListItem(collection, permissions),
-        owner: userToApiOwner(owner),
-        shareInformation: {
-          sharedBy: userToApiSharer(sharer),
-          sharedDate: createdAt.toISOString(),
-        },
-      }
-    })
-    .filter((c) => c !== null) as SharedCollectionListItem[],
-})
+): Promise<SharedCollectionList> => {
+
+  const collectionDocumentCount = await CollectionDocument.query()
+    .select('collectionId')
+    .count('documentId', { as: 'numberOfDocuments' })
+    .groupBy('collectionId');
+
+  return {
+    sharedCollections: collections
+      .map((c): SharedCollectionListItem | null => {
+        const { ownerId, createdBy, createdAt } = c
+        const owner = users.find((u) => u.id == ownerId)
+        const sharer = users.find((u) => u.id == createdBy)
+        const numberOfDocuments = (collectionDocumentCount.find((cdc) => cdc.collectionId === c.id) as any || { numberOfDocuments: 0 }).numberOfDocuments;
+        if (!owner || !sharer) {
+          return null
+        }
+        return {
+          collection: {
+            ...formatCollectionListItem(c, permissions),
+            name: `${numberOfDocuments} documents shared on ${dayjs(new Date(c.createdAt)).format('ll [at] hh:mm')}`,
+            numberOfDocuments,
+          },
+          owner: userToApiOwner(owner),
+          shareInformation: {
+            sharedBy: userToApiSharer(sharer),
+            sharedDate: createdAt.toISOString(),
+          },
+        }
+      })
+      .filter((c) => c !== null) as SharedCollectionListItem[],
+  }
+}
 
 export const getCollectionDetails = async (collectionId: string) => {
   // read in documents
