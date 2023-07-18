@@ -72,25 +72,30 @@ export default class DocumentFile extends Vue {
   loading = true
   dialog = false
 
-  // head() {
-  //   return {
-  //     script: [
-  //       {
-  //         src: this.url
-  //           ? 'https://documentservices.adobe.com/view-sdk/viewer.js'
-  //           : '',
-  //         type: 'text/javascript',
-  //         body: true,
-  //       },
-  //     ],
-  //   }
-  // }
-
   pdfrender(url: any, documentName: any, adobeClientId: any) {
     console.log('I AM EHRE')
-    console.log(document)
-    document.addEventListener('adobe_dc_view_sdk.ready', function () {
-      console.log('INSIDE ADOBE')
+
+    console.log('INSIDE ADOBE')
+
+    // @ts-ignore
+    if (window.AdobeDC) {
+      // @ts-ignore
+      const adobeDCView = new AdobeDC.View({
+      clientId: adobeClientId,
+      divId: 'adobe-dc-view',
+    })
+
+    adobeDCView.previewFile({
+      content: {
+        location: {
+          url,
+        },
+      },
+      metaData: { fileName: documentName },
+    })
+    }
+    else {
+      document.addEventListener("adobe_dc_view_sdk.ready", () => {
       // @ts-ignore
       const adobeDCView = new AdobeDC.View({
         clientId: adobeClientId,
@@ -105,17 +110,18 @@ export default class DocumentFile extends Vue {
         },
         metaData: { fileName: documentName },
       })
-    })
-  }
+      });
+    }
+    }
 
-  beforeMount() {
+
+  updated() {
     this.pdfrender(this.url, this.document.name, this.adobeCredentials())
   }
 
   async mounted() {
     if (this.document.pdf) {
       this.url = this.document.pdf
-      console.log(this.url)
     } else {
       this.url = await this.$store.dispatch('document/downloadFile', {
         document: this.document,
@@ -123,9 +129,6 @@ export default class DocumentFile extends Vue {
         disposition: FileDownloadDispositionTypeEnum.Inline,
       })
     }
-
-    // this.isPdf &&
-    //   this.pdfrender(this.url, this.document.name, this.adobeCredentials())
 
     if (this.isTiff) {
       await this.processTif()
