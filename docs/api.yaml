@@ -711,7 +711,7 @@ components:
         status:
           type: string
           description: Document status
-          example: active
+          example: pending
         description:
           type: string
           nullable: true
