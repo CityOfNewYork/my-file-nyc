@@ -62,10 +62,11 @@ export const formatCollections = async (
   const formattedCollectionItems = collections
     .map((c) => formatCollectionListItem(c, permissions))
     .map((c) => {
-      const numberOfDocuments = (collectionDocumentCount.find((cdc) => cdc.collectionId === c.id) as any || { numberOfDocuments: 0 }).numberOfDocuments;
+      const numberOfDocuments = (collectionDocumentCount.find((cdc) => cdc.collectionId === c.id) as any || { numberOfDocuments: 0 }).numberOfDocuments
+      const pluralOrSingularDocumentWord = numberOfDocuments === 1 ? 'document' : 'documents'
       return {
         ...c,
-        name: `${numberOfDocuments} documents shared on ${dayjs(new Date(c.createdDate)).format('ll [at] hh:mm')}`,
+        name: `${numberOfDocuments} ${pluralOrSingularDocumentWord} shared on ${dayjs(new Date(c.createdDate)).format('MMM D, YYYY [at] hh:mm')}`,
         numberOfDocuments,
       }
     })
@@ -96,10 +97,11 @@ export const formatSharedCollections = async (
         if (!owner || !sharer) {
           return null
         }
+        const pluralOrSingularDocumentWord = numberOfDocuments === 1 ? 'document' : 'documents'
         return {
           collection: {
             ...formatCollectionListItem(c, permissions),
-            name: `${numberOfDocuments} documents shared on ${dayjs(new Date(c.createdAt)).format('ll [at] hh:mm')}`,
+            name: `${numberOfDocuments} ${pluralOrSingularDocumentWord} shared on ${dayjs(new Date(c.createdAt)).format('MMM D, YYYY [at] hh:mm')}`,
             numberOfDocuments,
           },
           owner: userToApiOwner(owner),
