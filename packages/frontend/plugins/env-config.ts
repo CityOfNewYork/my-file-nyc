@@ -14,7 +14,7 @@ export const envConfig = {
     authStrategy: 'oauth2',
     authTokenIdClaim: process.env.AUTH_TOKEN_ID_CLAIM || 'sub',
     footerLogo: process.env.FOOTER_LOGO,
-    maxFileSize: 10000000,
+    maxFileSize: 100000000,
 
     features: {
       delegates: false,
