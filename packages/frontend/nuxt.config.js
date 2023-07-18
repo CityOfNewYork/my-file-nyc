@@ -23,10 +23,13 @@ const config = {
   // },
   head: {
     title: 'Loading...',
-    // script: [{
-    //   src: "https://documentservices.adobe.com/view-sdk/viewer.js",
-    //   type: "text/javascript"
-    // }],
+    script: [
+      // {
+      //   src: 'https://documentservices.adobe.com/view-sdk/viewer.js',
+      //   type: 'text/javascript',
+      //   async: true,
+      // },
+    ],
     // titleTemplate: '%s | My File',
     titleTemplate: 'My File NYC - Easily and securely share Files with NYC DHS',
     meta: [
@@ -64,6 +67,7 @@ const config = {
   plugins: [
     '@/plugins/vee-validate.js',
     '@/plugins/gtag',
+    '@/plugins/adobe-viewer.js',
     // consider re-enabling when https://github.com/vue-a11y/vue-axe/issues/32 is resolved
     // {
     //   src: '@/plugins/axe.ts',
@@ -161,7 +165,7 @@ const config = {
           'connect-src': getSrc(CspEnum.CONNECT, process.env.CSP_CONNECT_SRC),
           'frame-src': getSrc(CspEnum.FRAME, process.env.CSP_FRAME_SRC),
           'form-action': ["'self'"],
-          'object-src': ["'self' data:", "*"],
+          'object-src': ["'self' data:", '*'],
         },
         {
           enabled: true,

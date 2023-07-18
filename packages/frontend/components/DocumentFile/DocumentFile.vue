@@ -15,12 +15,17 @@
     <p>PDF document: {{ document.name }}</p>
   </iframe> -->
 
-  <!-- <div v-else-if="isPdf" id="adobe-dc-view" class="adobe-container"></div> -->
-  <div v-else-if="isPdf" class="adobe-container">
-    <object v-if="url" :data="url" type="application/pdf" width="100%" height="100%"></object>
+  <div v-else-if="isPdf" id="adobe-dc-view" class="adobe-container"></div>
+  <!-- <div v-else-if="isPdf" class="adobe-container">
+    <object
+      v-if="url"
+      :data="url"
+      type="application/pdf"
+      width="100%"
+      height="100%"
+    ></object>
     <p v-else>Loading PDF viewer...</p>
-
-  </div>
+  </div> -->
 
   <div v-else class="text-center image viewer">
     <v-dialog v-model="dialog">
@@ -67,46 +72,50 @@ export default class DocumentFile extends Vue {
   loading = true
   dialog = false
 
-  head() {
-    return {
-      script: [
-        // {
-        //   src: this.url
-        //     ? 'https://documentservices.adobe.com/view-sdk/viewer.js'
-        //     : '',
-        //   type: 'text/javascript',
-        //   body: true,
-        // },
-      ],
-    }
+  // head() {
+  //   return {
+  //     script: [
+  //       {
+  //         src: this.url
+  //           ? 'https://documentservices.adobe.com/view-sdk/viewer.js'
+  //           : '',
+  //         type: 'text/javascript',
+  //         body: true,
+  //       },
+  //     ],
+  //   }
+  // }
+
+  pdfrender(url: any, documentName: any, adobeClientId: any) {
+    console.log('I AM EHRE')
+    console.log(document)
+    document.addEventListener('adobe_dc_view_sdk.ready', function () {
+      console.log('INSIDE ADOBE')
+      // @ts-ignore
+      const adobeDCView = new AdobeDC.View({
+        clientId: adobeClientId,
+        divId: 'adobe-dc-view',
+      })
+
+      adobeDCView.previewFile({
+        content: {
+          location: {
+            url,
+          },
+        },
+        metaData: { fileName: documentName },
+      })
+    })
   }
 
-  async pdfrender(url: any, documentName: any, adobeClientId: any) {
-    // const loadingTask = pdfjsLib.getDocument(url);
-    // const pdf = await loadingTask.promise;
-
-
-    // document.addEventListener('adobe_dc_view_sdk.ready', function () {
-    //   // @ts-ignore
-    //   const adobeDCView = new AdobeDC.View({
-    //     clientId: adobeClientId,
-    //     divId: 'adobe-dc-view',
-    //   })
-
-    //   adobeDCView.previewFile({
-    //     content: {
-    //       location: {
-    //         url,
-    //       },
-    //     },
-    //     metaData: { fileName: documentName },
-    //   })
-    // })
+  beforeMount() {
+    this.pdfrender(this.url, this.document.name, this.adobeCredentials())
   }
 
   async mounted() {
     if (this.document.pdf) {
       this.url = this.document.pdf
+      console.log(this.url)
     } else {
       this.url = await this.$store.dispatch('document/downloadFile', {
         document: this.document,
@@ -115,8 +124,8 @@ export default class DocumentFile extends Vue {
       })
     }
 
-    this.isPdf &&
-      this.pdfrender(this.url, this.document.name, this.adobeCredentials())
+    // this.isPdf &&
+    //   this.pdfrender(this.url, this.document.name, this.adobeCredentials())
 
     if (this.isTiff) {
       await this.processTif()
