@@ -69,16 +69,11 @@ export default class LanguageChanger extends Vue {
     this.$router.push(route.join('/'))
   }
 
-  // mounted() {
-  //   if (this.userStore.profile) {
-  //     if (this.userStore.profile.locale == 'en'){
-  //       this.prefixRouteUpdate(this.$router.currentRoute.fullPath.split('/'))
-  //     }
-  //     else{
-  //       this.$i18n.locale = this.userStore.profile.locale
-  //     }
-  //   }
-  // }
+  mounted() {
+    if (this.userStore.profile) {
+      this.$i18n.locale = this.userStore.profile.locale
+    }
+  }
 
   updated() {
     if (this.userStore.profile) {
