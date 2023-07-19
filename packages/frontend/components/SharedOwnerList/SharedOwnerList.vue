@@ -44,7 +44,6 @@
           item-key="ownerId"
           fixed-header
           height="55vh"
-          :body-class="getRowColor"
           style="background-color: #fcfcfc; margin-bottom: 100px"
           @click:row="handleExpansion"
         >
@@ -101,7 +100,7 @@
                         </div>
                         <div class="column-2">
                           <v-select
-                            v-model="col.status"
+                            v-model="col.collection.status"
                             :items="items"
                             class="selectField"
                             dense
@@ -111,18 +110,22 @@
                               marginTop: '10px',
                               padding: '-1px 19px;',
                             }"
-                            :item-text="items[0]"
+                            item-text="text"
+                            item-value="value"
+                            @change="
+                              (event) => statusUpdate(event, col.collection.id)
+                            "
                           >
                             <template v-slot:item="{ item }">
                               <span
                                 :style="
-                                  item === 'Pending'
+                                  item.value === 'pending'
                                     ? { color: '#8f5f00' }
                                     : { color: '#007539' }
                                 "
                                 class="menu-option"
                               >
-                                {{ item }}
+                                {{ item.text }}
                               </span>
                             </template>
                             <template v-slot:append>
@@ -134,16 +137,16 @@
                               <span
                                 :style="
                                   hover
-                                    ? item === 'Pending'
+                                    ? item.value === 'pending'
                                       ? { color: '#ffdf8d' }
                                       : { color: '#a8dd7c' }
-                                    : item === 'Pending'
+                                    : item.value === 'pending'
                                     ? { color: '#8f5f00' }
                                     : { color: '#007539' }
                                 "
                                 class="select-options"
                               >
-                                {{ item }}
+                                {{ item.text }}
                               </span>
                             </template>
                           </v-select>
@@ -157,7 +160,7 @@
                   <div class="expended-content">
                     <div class="total-amount-docs">
                       Total amount of documents:
-                      <b>45</b>
+                      <b>{{ countTotalDocuments() }}</b>
                     </div>
 
                     <v-btn
@@ -266,15 +269,26 @@ export default class SharedOwnerList extends Vue {
   sortBy = ''
   expanded: any[] = []
   collection: any[] = []
-  items = ['Pending', 'Complete']
-  selectedOption = 'Pending'
+  items = [
+    { text: 'Pending', value: 'pending' },
+    { text: 'Complete', value: 'complete' },
+  ]
+
+  selectedOption = 'pending'
   documents: DocumentListItem[] = []
   ownerId: string = ''
+
+  statusUpdate(status: any, collectionId: any) {
+    return this.$store.dispatch('collection/patchStatus', {
+      collectionId,
+      status,
+    })
+  }
 
   countTotalDocuments() {
     let count: number = 0
     this.collection.forEach((item) => {
-      count += item.collection.links.length
+      count += item.collection.numberOfDocuments
     })
     return count
   }
@@ -349,7 +363,7 @@ export default class SharedOwnerList extends Vue {
     urd: 'Urdu',
     ko: 'Korean',
     fr: 'French',
-    ht: 'Kreyol Ayisyen',
+    ht: 'Haitian Creole',
     bn: 'Bengali',
     pl: 'Polish',
   }
@@ -481,7 +495,7 @@ export default class SharedOwnerList extends Vue {
     const collections: SharedCollectionListItem[] = userStore.sharedCollections
       .filter((c: SharedCollectionListItem) => c.owner.id === ownerId)
       .map((c: any) => {
-        return { ...c, status: 'Pending' }
+        return c
       })
     return collections || 'No data'
   }
@@ -502,18 +516,10 @@ export default class SharedOwnerList extends Vue {
     }
     return classes.join(' ')
   }
-
-  getRowColor() {
-    // Condition to check for a specific data value
-    return 'red-row' // CSS class for rows with age > 30
-  }
 }
 </script>
 
 <style scoped lang="scss">
-.red-row {
-  background-color: red !important;
-}
 table {
   min-height: 100vh;
   position: relative;
