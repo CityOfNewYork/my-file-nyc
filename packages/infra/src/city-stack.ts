@@ -1950,6 +1950,8 @@ export class CityStack extends Stack {
           onSuccess: new LambdaDestination(attachThumbnailToDocument, {
             responseOnly: true,
           }),
+          memorySize: 10240,
+          timeout: Duration.seconds(30),
         },
         // permission needed to upload and download files
         documentBucketPermissions: {
