@@ -24,6 +24,24 @@ export default class Collection extends VuexModule {
   }
 
   @Action({ rawError: true })
+  patchStatus({
+    collectionId,
+    status,
+  }: {
+    collectionId: string
+    status: string
+  }): Promise<void> {
+    return api.collection
+      .patchCollectionStatusById(collectionId, {
+        status,
+      })
+      .then((response) => {})
+      .catch((e) => {
+        console.log(e)
+      })
+  }
+
+  @Action({ rawError: true })
   download(collectionId: string): Promise<DocumentsDownload> {
     return new Promise<DocumentsDownload>((resolve) => {
       api.collection
