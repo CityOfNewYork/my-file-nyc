@@ -481,7 +481,6 @@ export default class SharedOwnerList extends Vue {
       )
       .map((c: SharedCollectionListItem) => {
         const dobFormat = c.owner.dob.split('-')
-        console.log(dobFormat)
         return {
           ownerId: c.owner.id,
           collectionId: c.collection.id,
@@ -492,8 +491,8 @@ export default class SharedOwnerList extends Vue {
           dob: format(
             new Date(
               parseInt(dobFormat[2]),
+              parseInt(dobFormat[0]) - 1,
               parseInt(dobFormat[1]),
-              parseInt(dobFormat[0]),
             ),
             'MM/dd/yyyy',
           ),
