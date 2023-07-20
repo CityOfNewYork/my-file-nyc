@@ -58,13 +58,15 @@ export const createThumbnail = (
     inputPath += '[0]'
   }
   return new Promise<string>((resolve, reject) => {
-    gm(inputPath).thumb(100, 100, outputPath, 80, function (error) {
-      if (!error) {
-        resolve(outputPath)
-      } else {
-        reject(error)
-      }
-    })
+    gm(inputPath)
+      .autoOrient()
+      .thumb(100, 100, outputPath, 80, function (error) {
+        if (!error) {
+          resolve(outputPath)
+        } else {
+          reject(error)
+        }
+      })
   })
 }
 

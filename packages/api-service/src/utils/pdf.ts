@@ -180,6 +180,7 @@ const getResizedImage = (
 ) => {
   return new Promise<Buffer>((resolve, reject) => {
     gm(inputPath)
+      .autoOrient()
       .resize(width) // Resize to fixed 128px width, maintaining aspect ratio
       .toBuffer(function (error: any, buffer: Buffer) {
         if (!error) {
