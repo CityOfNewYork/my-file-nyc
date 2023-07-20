@@ -247,7 +247,7 @@
 import { Vue, Component, Prop, Watch } from 'nuxt-property-decorator'
 import { userStore } from '@/plugins/store-accessor'
 import { SharedCollectionListItem } from '@/types/transformed'
-import { format } from 'date-fns'
+import { format, parseISO } from 'date-fns'
 import { DataTableHeader } from 'vuetify'
 import { UserRole } from '@/types/user'
 import { select } from '@storybook/addon-knobs'
@@ -406,6 +406,7 @@ export default class SharedOwnerList extends Vue {
         align: 'start',
         sortable: true,
         value: 'dob',
+        sort: (a, b) => new Date(a).getTime() - new Date(b).getTime(),
       },
       {
         text: this.$t('agent.clientCaseNum') as string,
@@ -419,6 +420,7 @@ export default class SharedOwnerList extends Vue {
         class: 'white',
         value: 'createdDate',
         sortable: true,
+        sort: (a, b) => new Date(a).getTime() - new Date(b).getTime(),
       },
       {
         text: 'Language',
@@ -477,17 +479,28 @@ export default class SharedOwnerList extends Vue {
           arr: SharedCollectionListItem[],
         ) => arr.findIndex((o) => o.owner.id === c.owner.id) === i,
       )
-      .map((c: SharedCollectionListItem) => ({
-        ownerId: c.owner.id,
-        collectionId: c.collection.id,
-        email: c.shareInformation.sharedBy.email,
-        firstName: c.owner.givenName,
-        lastName: c.owner.familyName,
-        locale: this.languagesObject[c.owner.locale.toString()],
-        dob: c.owner.dob,
-        dhsCaseNumber: c.owner.dhsCaseNumber,
-        createdDate: format(c.collection.createdDate, 'LLL d, yyyy'),
-      }))
+      .map((c: SharedCollectionListItem) => {
+        const dobFormat = c.owner.dob.split('-')
+        console.log(dobFormat)
+        return {
+          ownerId: c.owner.id,
+          collectionId: c.collection.id,
+          email: c.shareInformation.sharedBy.email,
+          firstName: c.owner.givenName,
+          lastName: c.owner.familyName,
+          locale: this.languagesObject[c.owner.locale.toString()],
+          dob: format(
+            new Date(
+              parseInt(dobFormat[2]),
+              parseInt(dobFormat[1]),
+              parseInt(dobFormat[0]),
+            ),
+            'MM/dd/yyyy',
+          ),
+          dhsCaseNumber: c.owner.dhsCaseNumber,
+          createdDate: format(c.collection.createdDate, 'LLL d, yyyy'),
+        }
+      })
   }
 
   sharedName(ownerId: any) {
