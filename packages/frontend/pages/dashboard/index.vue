@@ -32,6 +32,9 @@ export default class DashboardPage extends Vue {
       }
       this.$store.dispatch('user/fetchRole')
     }
+    
+    //@ts-ignore
+    this.$i18n.locale = this.userStore.profile.locale
   }
 
   get showClientDashboard() {
