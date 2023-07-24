@@ -253,7 +253,7 @@ import { UserRole } from '@/types/user'
 import { select } from '@storybook/addon-knobs'
 import { push } from '@/templates/new/component/prompt'
 import { RawLocation } from 'vue-router'
-import { conforms } from 'lodash'
+import { conforms, filter } from 'lodash'
 import { DocumentListItem } from '@/../api-client'
 
 @Component({})
@@ -471,7 +471,25 @@ export default class SharedOwnerList extends Vue {
   get owners() {
     // TODO: created date could be any of the dates of the collections shared by an owner
     //       not necessarily most or least recent
-    return userStore.sharedCollections
+    
+    const filtered = userStore.sharedCollections.filter(
+        (
+          c: SharedCollectionListItem,
+          i: number,
+          arr: SharedCollectionListItem[],
+        ) => arr.findIndex((o) => o.owner.id === c.owner.id) === i,
+      )
+
+    let sharedCollections = [] as any
+    
+    filtered.forEach((i: any) => {
+      // console.log(i.owner)
+      if (i.owner.dob) {
+        sharedCollections.push(i)
+      }
+    })
+
+    return sharedCollections
       .filter(
         (
           c: SharedCollectionListItem,
@@ -481,7 +499,6 @@ export default class SharedOwnerList extends Vue {
       )
       .map((c: SharedCollectionListItem) => {
         const dobFormat = c.owner.dob.split('-')
-        console.log(dobFormat)
         return {
           ownerId: c.owner.id,
           collectionId: c.collection.id,
