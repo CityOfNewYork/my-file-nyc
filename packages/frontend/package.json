@@ -45,6 +45,7 @@
     "csp-html-webpack-plugin": "^4.0.0",
     "date-fns": "^2.16.1",
     "eslint-plugin-vue-a11y": "^0.0.31",
+    "fibers": "^5.0.3",
     "flush-promises": "^1.0.2",
     "hygen": "^6.0.4",
     "jwt-claims": "^1.0.1",

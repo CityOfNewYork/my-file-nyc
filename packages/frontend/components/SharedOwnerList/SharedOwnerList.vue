@@ -481,6 +481,7 @@ export default class SharedOwnerList extends Vue {
       )
       .map((c: SharedCollectionListItem) => {
         const dobFormat = c.owner.dob.split('-')
+        console.log(dobFormat)
         return {
           ownerId: c.owner.id,
           collectionId: c.collection.id,

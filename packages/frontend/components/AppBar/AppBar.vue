@@ -328,7 +328,7 @@ export default class AppBar extends mixins(Navigation) {
       logoutWindow!.close()
       window.focus()
       window.location.replace(path)
-    }, 2000)
+    }, 3000)
   }
 }
 </script>
