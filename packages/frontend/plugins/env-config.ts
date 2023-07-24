@@ -14,13 +14,13 @@ export const envConfig = {
     authStrategy: 'oauth2',
     authTokenIdClaim: process.env.AUTH_TOKEN_ID_CLAIM || 'sub',
     footerLogo: process.env.FOOTER_LOGO,
-    maxFileSize: 100000000,
+    maxFileSize: 10000000, //10MB
 
     features: {
       delegates: false,
     },
     adobeClientIdLocal: process.env.ADOBE_CLIENT_ID_LOCAL,
-    adobeClientId: process.env.ADOBE_CLIENT_ID
+    adobeClientId: process.env.ADOBE_CLIENT_ID,
   },
 }
 /**
@@ -31,5 +31,5 @@ export const envConfig = {
  * the config object via compiled code.
  */
 if (typeof window !== 'undefined') {
-  ; (<any>window).__NUXT__ = envConfig
+  ;(<any>window).__NUXT__ = envConfig
 }

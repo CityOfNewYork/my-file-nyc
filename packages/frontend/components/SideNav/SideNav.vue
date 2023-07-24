@@ -1,4 +1,5 @@
-LanguageSelector<template>
+LanguageSelector
+<template>
   <v-navigation-drawer
     ref="sideNav"
     v-model="isVisible"
@@ -22,7 +23,12 @@ LanguageSelector<template>
     </v-btn>
 
     <NavItemList :items="navItems" />
-    <LanguageChanger v-if="userStore.isClient" outlined="true" text-color="black" padding="0 12px" />
+    <LanguageChanger
+      v-if="userStore.isClient"
+      outlined="true"
+      text-color="black"
+      padding="0 12px"
+    />
 
     <v-footer fixed class="pa-0">
       <!-- Turning off build version and time -->
@@ -148,7 +154,7 @@ export default class SideNav extends mixins(Navigation) {
           logoutWindow!.close()
           window.focus()
           window.location.replace(path)
-        }, 2000)
+        }, 3000)
       },
     },
   ]
