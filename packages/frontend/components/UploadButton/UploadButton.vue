@@ -118,7 +118,7 @@
                 />
               </ValidationProvider>
               <p class="form-title">
-                {{ $t('document.enterDescriptionPlaceholder') }}
+                {{ $t('document.titleDescription') }}
                 <v-tooltip
                   v-model="isShowToolTipDescription"
                   :open-on-click="true"
@@ -153,11 +153,7 @@
               />
 
               <p class="form-title-your-files">
-                {{
-                  multiple
-                    ? $t('uploadInputButton.yourFilesTitle')
-                    : $t('uploadInputButton.yourFileTitle')
-                }}
+                {{ $t('uploadInputButton.yourDocumentTitle') }}
               </p>
 
               <input
@@ -183,7 +179,6 @@
               <div class="form-divider"></div>
               <p v-if="multiple" class="form-dnd-description">
                 {{ $t('uploadInputButton.dragAndDropDescription') }}
-                <b>{{ $t('uploadInputButton.dragAndDropDescriptionBold') }}</b>
               </p>
               <div>
                 <draggable v-if="multiple" v-model="files">

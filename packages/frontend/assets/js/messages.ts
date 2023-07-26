@@ -15,6 +15,21 @@ export default merge(
         title: 'My File NYC',
       },
 
+      statusIndicator: {
+        clientInReview: 'In review',
+        clientReviewed: 'Reviewed',
+      },
+
+      forceLogout: {
+        firstTimeoutWarningMessage:
+          'You will be forced to login again in less than {warning1AtMinute - timeoutAtMinute} minutes',
+        secondTimeoutWarningMessage:
+          'You will be forced to login again in less than {warning2AtMinute - timeoutAtMinute} minutes',
+        loginAgain:
+          'You are required to login again if using MyFile more than 1 hour.',
+        btnLoginAgain: 'Login again',
+      },
+
       toast: {
         acceptedDelegateInvite: 'Delegate Access Accepted',
         delegateRemoved: 'Client Removed',
@@ -73,8 +88,9 @@ export default merge(
         downloadPdf: 'Download PDF',
         description: 'Document Description', // displayed beneath the document and expands to show description (if any)
         editDetailsTitle: 'Edit Details', // page title on edit details screen
-        enterNamePlaceholder: 'Give this document a name',
-        enterDescriptionPlaceholder: 'Describe this document (optional)',
+        enterNamePlaceholder: 'Give this document a name...',
+        enterDescriptionPlaceholder: 'Write a message here...',
+        titleDescription: 'Describe this document (optional)', // displayed beneath the document and expands to show description (if any)
         documentName: 'What kind of document did you upload?', // shown as a label on edit details screen
 
         noDocuments: 'There are no documents saved to your account yet.', // shown on dashboard when there are no documents
@@ -82,7 +98,7 @@ export default merge(
         uploadFirst: 'Add your first document', // label on the empty state upload button
         thumbnailOf: 'Thumbnail of',
         fileName: 'Document Name',
-        singleOrMultiple: 'Does your document have one or multiple files?',
+        singleOrMultiple: 'Pick an option',
       },
 
       controls: {
@@ -128,8 +144,7 @@ export default merge(
       // All copy related to the create shared folder flow
       sharing: {
         defaultName: 'Documents you shared with DHS on {date}',
-        confirmSharedFiles:
-          'Documents to be shared DHS | Documents to be shared DHS',
+        confirmSharedFiles: 'Documents to be shared DHS',
         plusNMore: '+ {count} more',
         recipients: 'Recipients',
 
@@ -148,7 +163,7 @@ export default merge(
         ],
 
         // on the confirmation step, could be "recipient" or "recipients" depending on number of items
-        confirmRecipientsLabel: 'You are sharing documents to | Recipients',
+        confirmRecipientsLabel: 'You are sharing documents to',
         tooManyRecipients: 'You can share with up to {count} people', // error text when trying to add more than 10 recipients
       },
 
@@ -208,7 +223,7 @@ export default merge(
         invited: 'invited',
         pageTitle: 'Account Activity',
         shared: 'shared',
-        today: 'TODAY',
+        today: 'Today',
         you: 'You',
       },
 
@@ -265,22 +280,21 @@ export default merge(
       },
 
       uploadInputButton: {
-        oneFileTitle: 'One-file',
-        oneFileDescription:
-          "The one-file option gives you the ability to upload a file or an image from your device management system. If you're using a mobile phone or tablet you can take a photo with your camera.",
-        multipleFilesTitle: 'Multiple-files',
+        oneFileTitle: 'One-page document',
+        oneFileDescription: 'Upload one page or photo from your device,',
+        multipleFilesTitle: 'Multiple-page document',
         multipleFilesDescription:
-          "The multiple-files option gives you the ability to upload as many files or images from your device management system. If you're using a mobile phone or tablet you can take photos with your camera.",
+          'Upload multiple pages or photos from your device.',
+        multipageCaution:
+          'Upload one document at a time. Do not combine documents while uploading.',
         titleInfoButton:
           'You can type either identity, proof of residency,application, etc.',
         descriptionInfoButton:
           'Provide a brief description of the files you uploaded for clarification.',
         yourFileTitle: 'Your file',
-        yourFilesTitle: 'Your files',
-        uploadNewFile: 'Upload new file',
-        dragAndDropDescription:
-          'You can change positions of your files in any order by',
-        dragAndDropDescriptionBold: 'drag and drop.',
+        yourDocumentTitle: 'Your document',
+        uploadNewFile: 'Choose new file',
+        dragAndDropDescription: 'Drag to re-order the pages.',
         removeFile: 'Remove',
       },
 
@@ -313,6 +327,20 @@ export default merge(
 
       application: {
         title: 'My File NYC',
+      },
+      statusIndicator: {
+        clientInReview: 'قيد المراجعة',
+        clientReviewed: 'تمت المراجعة',
+      },
+
+      forceLogout: {
+        firstTimeoutWarningMessage:
+          'ستضطر إلى تسجيل الدخول مرة أخرى في أقل من {warning1AtMinute - timeoutAtMinute} دقائق',
+        secondTimeoutWarningMessage:
+          'ستضطر إلى تسجيل الدخول مرة أخرى في أقل من {warning2AtMinute - timeoutAtMinute} دقائق',
+        loginAgain:
+          'يتعين عليك تسجيل الدخول مرة أخرى إذا كنت تستخدم تطبيق MyFile لأكثر من ساعة.',
+        btnLoginAgain: 'تسجيل الدخول مرة أخرى',
       },
 
       toast: {
@@ -371,8 +399,9 @@ export default merge(
         downloadPdf: 'تنزيل ملف بصيغة PDF',
         description: 'وصف المستند', // displayed beneath the document and expands to show description (if any)
         editDetailsTitle: 'تعديل التفاصيل', // page title on edit details screen
-        enterNamePlaceholder: 'قم بتسمية هذا المستند»',
-        enterDescriptionPlaceholder: 'قدم وصفًا لهذا المستند (اختياري)',
+        enterNamePlaceholder: '...قم بتسمية هذا المستند»',
+        enterDescriptionPlaceholder: '...اكتب رسالة هنا',
+        titleDescription: 'صِف هذا المستند (اختياري)',
         documentName: 'ما نوع المستند الذي حملته؟', // shown as a label on edit details screen
 
         noDocuments: 'لا توجد مستندات محفوظة في حسابك حتى الآن.', // shown on dashboard when there are no documents
@@ -380,8 +409,7 @@ export default merge(
         uploadFirst: 'أضف مستندك الأول', // label on the empty state upload button
         thumbnailOf: 'Thumbnail of', // not found
         fileName: 'اسم المستند',
-        singleOrMultiple:
-          'هل يحتوي المستند الخاص بك على ملف واحد أم ملفات متعددة؟',
+        singleOrMultiple: 'حدد خيارًا',
       },
 
       controls: {
@@ -398,9 +426,9 @@ export default merge(
         editDetails: 'تعديل التفاصيل', // edit document kebab item
         edit: 'تعديل', // edit account details
         continue: 'متابعة',
-        share: 'للمشاركه', // share button
+        share: 'مشاركة', // share button
         shared: 'المستندات المشتركة', // label of shared tab on dashboard
-        upload: 'رفع',
+        upload: 'تحميل',
         uploadDocument: 'تحميل مستند', // not found
         uploadFile: 'رفع ملف',
         uploadFiles: 'تحميل الملفات',
@@ -426,10 +454,9 @@ export default merge(
 
       // All copy related to the create shared folder flow
       sharing: {
-        defaultName: 'Documents you shared with DHS on {date}', // not found
-        confirmSharedFiles:
-          'Documents to be shared DHS | Documents to be shared DHS', // not found
-        plusNMore: '+ {count} more', // not found
+        defaultName: 'تمت مشاركة المستندات مع إدارة DHS في {date}',
+        confirmSharedFiles: 'المستندات التي ستتم مشاركتها مع إدارة DHS',
+        plusNMore: 'أكثر من {count} ',
         recipients: 'Recipients', // not found
 
         // placeholder text for the add recipient email field
@@ -438,17 +465,16 @@ export default merge(
         // step titles in the share flow
         confirmTitle: 'Are you sure you want to share these Documents?', // not found
         addRecipientsTitle: 'Who are you sharing these document(s) with?', // not found
-        selectFilesTitle: 'Select Documents', // not found
+        selectFilesTitle: 'حدد المستندات',
 
-        disclaimerTitle: 'Reminder', // not found
+        disclaimerTitle: 'تذكير',
         shareDocumentDisclaimer: [
           'My File NYC facilitates document sharing with {emails} email accounts',
           'Once documents are shared DHS employees may download and save your documents to submit as proof for your application. DHS may still have copies to support your case even if you unshare or delete them from My File.', // not found
         ],
 
         // on the confirmation step, could be "recipient" or "recipients" depending on number of items
-        confirmRecipientsLabel:
-          'Usted está compartiendo documentos con | Recipients', // not found
+        confirmRecipientsLabel: 'أنت تشارك مستندات مع',
         tooManyRecipients: 'You can share with up to {count} people', // (not found) error text when trying to add more than 10 recipients
       },
 
@@ -508,8 +534,8 @@ export default merge(
         invited: 'مدعو',
         pageTitle: 'نشاط الحساب',
         shared: 'مشترك',
-        today: 'TODAY', // not found
-        you: 'You', // not found
+        today: 'اليوم',
+        you: 'أنت',
       },
 
       // Copy where you are viewing shared folders
@@ -572,21 +598,20 @@ export default merge(
       },
 
       uploadInputButton: {
-        oneFileTitle: 'ملف واحد',
-        oneFileDescription:
-          'يمنحك خيار الملف الواحد القدرة على تحميل ملف أو صورة من نظام إدارة جهازك. إذا كنت تستخدم هاتفًا محمولًا أو جهازًا لوحيًا ، فيمكنك التقاط صورة بالكاميرا.',
-        multipleFilesTitle: 'ملفات متعددة',
-        multipleFilesDescription:
-          'يمنحك خيار الملفات المتعددة القدرة على تحميل أكبر عدد ممكن من الملفات أو الصور من نظام إدارة جهازك. إذا كنت تستخدم هاتفًا محمولًا أو جهازًا لوحيًا ، فيمكنك التقاط صور بالكاميرا.',
+        oneFileTitle: 'مستند من صفحة واحدة',
+        oneFileDescription: 'حمِّل صفحة واحدة أو صورة واحدة من جهازك',
+        multipleFilesTitle: 'مستند من عدة صفحات',
+        multipleFilesDescription: 'حمِّل عدة صفحات أو عدة صور من جهازك',
+        multipageCaution:
+          'حمِّل مستندًا واحدًا في كل مرة. لا تجمع بين المستندات في أثناء التحميل.',
         titleInfoButton:
           'يمكنك كتابة الهوية ، وإثبات الإقامة ، والتطبيق ، وما إلى ذلك.',
         descriptionInfoButton:
           'قدم وصفًا موجزًا للملفات التي قمت بتحميلها للتوضيح.',
         yourFileTitle: 'ملفك',
-        yourFilesTitle: 'ملفاتك',
-        uploadNewFile: 'تحميل ملف جديد',
+        yourDocumentTitle: 'مستندك',
+        uploadNewFile: 'اسحب لإعادة ترتيب الصفحات.',
         dragAndDropDescription: 'يمكنك تغيير أوضاع ملفاتك بأي ترتيب من خلال',
-        dragAndDropDescriptionBold: 'السحب والإفلات.',
         removeFile: 'يزيل',
       },
       validations: {
@@ -614,6 +639,21 @@ export default merge(
 
       application: {
         title: 'My File NYC',
+      },
+
+      statusIndicator: {
+        clientInReview: 'На рассмотрении',
+        clientReviewed: 'Рассмотрено',
+      },
+
+      forceLogout: {
+        firstTimeoutWarningMessage:
+          'Вы будете вынуждены повторно войти в систему менее чем через {warning1AtMinute - timeoutAtMinute} минут.',
+        secondTimeoutWarningMessage:
+          'Вы будете вынуждены повторно войти в систему менее чем через {warning2AtMinute - timeoutAtMinute} минут.',
+        loginAgain:
+          'При использовании MyFile более 1 часа требуется повторный вход в систему.',
+        btnLoginAgain: 'Повторно войдите в систему',
       },
 
       toast: {
@@ -672,8 +712,9 @@ export default merge(
         downloadPdf: 'Загрузить PDF', // not found
         description: 'Описание документа', // displayed beneath the document and expands to show description (if any)
         editDetailsTitle: 'Редактировать данные', // page title on edit details screen
-        enterNamePlaceholder: 'Присвойте этому документу имя',
-        enterDescriptionPlaceholder: 'Опишите этот документ (необязательно)',
+        enterNamePlaceholder: 'Присвойте этому документу имя...',
+        enterDescriptionPlaceholder: 'Введите текст сообщения здесь...',
+        titleDescription: 'Опишите этот документ (необязательно)',
         documentName: 'Какой документ вы загрузили？', // shown as a label on edit details screen
 
         noDocuments: 'В вашей учетной записи еще нет сохраненных документов.', // not found shown on dashboard when there are no documents
@@ -681,8 +722,7 @@ export default merge(
         uploadFirst: 'Добавьте свой первый документ', // label on the empty state upload button
         thumbnailOf: 'Thumbnail of', // not found
         fileName: 'Название документа',
-        singleOrMultiple:
-          'Ваш документ содержит один файл или несколько файлов?',
+        singleOrMultiple: 'Выберите опцию',
       },
 
       controls: {
@@ -727,10 +767,9 @@ export default merge(
 
       // All copy related to the create shared folder flow
       sharing: {
-        defaultName: 'Documents you shared with DHS on {date}', // not found
-        confirmSharedFiles:
-          'Documents to be shared DHS | Documents to be shared DHS', // not found
-        plusNMore: '+ {count} more', // not found
+        defaultName: 'Документы, к которым вы предоставили доступ DHS {date}', // not found
+        confirmSharedFiles: 'Документы, к которым DHS получит доступ',
+        plusNMore: 'Более {count}',
         recipients: 'Recipients', // not found
 
         // placeholder text for the add recipient email field
@@ -741,7 +780,7 @@ export default merge(
         addRecipientsTitle: 'Кому предоставить доступ к этим документам?',
         selectFilesTitle: 'Выбрать документы',
 
-        disclaimerTitle: 'Reminder', // not found
+        disclaimerTitle: 'Напоминание',
         shareDocumentDisclaimer: [
           'My File NYC facilitates document sharing with {emails} email accounts',
           'Once documents are shared DHS employees may download and save your documents to submit as proof for your application. DHS may still have copies to support your case even if you unshare or delete them from My File.', // not found
@@ -749,7 +788,7 @@ export default merge(
 
         // on the confirmation step, could be "recipient" or "recipients" depending on number of items
         confirmRecipientsLabel:
-          'Usted está compartiendo documentos con | Recipients', // not found
+          'Вы предоставляете доступ к документам следующим лицам:',
         tooManyRecipients: 'You can share with up to {count} people', // (not found) error text when trying to add more than 10 recipients
       },
 
@@ -808,9 +847,9 @@ export default merge(
         files: 'Документы', // not found
         invited: 'Приглашение отправлено', // not found
         pageTitle: 'Действия в учетной записи', // not found
-        shared: 'Доступ предоставлено:', // not found
-        today: 'TODAY', // not found
-        you: 'You', // not found
+        shared: 'Доступ предоставлено:',
+        today: 'Сегодня',
+        you: 'Вы',
       },
 
       // Copy where you are viewing shared folders
@@ -868,22 +907,23 @@ export default merge(
       },
 
       uploadInputButton: {
-        oneFileTitle: 'Один файл',
+        oneFileTitle: 'Одностраничный документ',
         oneFileDescription:
-          'Вариант с одним файлом дает вам возможность загрузить файл или изображение из системы управления вашим устройством. Если вы используете мобильный телефон или планшет, вы можете сделать снимок с помощью камеры.',
-        multipleFilesTitle: 'Несколько файлов',
+          'Загрузите одну страницу или фотографию с устройства',
+        multipleFilesTitle: 'Многостраничный документ',
         multipleFilesDescription:
-          'Опция нескольких файлов дает вам возможность загружать столько файлов или изображений из вашей системы управления устройствами. Если вы используете мобильный телефон или планшет, вы можете делать фотографии с помощью камеры.',
+          'Загрузите несколько страниц или фотографий с устройства',
+        multipageCaution:
+          'Загружайте один документ за раз. Не объединяйте документы при загрузке.',
         titleInfoButton:
           'Вы можете ввести удостоверение личности, подтверждение места жительства, заявление и т.д.',
         descriptionInfoButton:
           'Предоставьте краткое описание файлов, которые вы загрузили для разъяснения.',
         yourFileTitle: 'Ваш файл',
-        yourFilesTitle: 'Ваши файлы',
-        uploadNewFile: 'Загрузить новый файл',
-        dragAndDropDescription:
-          'Вы можете изменить положение ваших файлов в любом порядке ',
-        dragAndDropDescriptionBold: 'путем перетаскивания.',
+        yourDocumentTitle: 'Ваш документ',
+        uploadNewFile: 'Выбрать новый файл',
+        dragAndDropDescription: 'Перетащите, чтобы изменить порядок файлов.',
+
         removeFile: 'Удалить',
       },
 
@@ -918,6 +958,21 @@ export default merge(
 
       application: {
         title: 'My File NYC',
+      },
+
+      statusIndicator: {
+        clientInReview: 'نظرِ ثانی کی جا رہی ہے',
+        clientReviewed: 'نظرِ ثانی شدہ',
+      },
+
+      forceLogout: {
+        firstTimeoutWarningMessage:
+          'آپ کو مجبوراً {warning1AtMinute - timeoutAtMinute} منٹوں کے اندر دوبارہ لاگ ان کرنا ہو گا',
+        secondTimeoutWarningMessage:
+          'آپ کو مجبوراً {warning2AtMinute - timeoutAtMinute} منٹوں کے اندر دوبارہ لاگ ان کرنا ہو گا',
+        loginAgain:
+          'اگر آپ 1 گھنٹے سے زیادہ وقت کے لیے MyFile استعمال کر رہے ہوں تو آپ کو دوبارہ لاگ ان کرنے کی ضرورت ہو گی۔',
+        btnLoginAgain: 'دوبارہ لاگ ان کریں',
       },
 
       toast: {
@@ -976,8 +1031,9 @@ export default merge(
         downloadPdf: 'PDF ڈاؤن لوڈ کریں',
         description: 'دستاویز کی وضاحت', // displayed beneath the document and expands to show description (if any)
         editDetailsTitle: 'تفصیلات میں ترمیم کریں', // page title on edit details screen
-        enterNamePlaceholder: 'اس دستاویز کو ایک نام دیں',
-        enterDescriptionPlaceholder: 'اس دستاویز کی وضاحت کریں (اختیاری)',
+        enterNamePlaceholder: '...اس دستاویز کو ایک نام دیں',
+        enterDescriptionPlaceholder: '...یہاں ایک پیغام لکھیں',
+        titleDescription: 'اس دستاویز کی وضاحت کریں (اختیاری)',
         documentName: 'آپ نے کس قسم کی دستاویز اپ لوڈ کی؟', // shown as a label on edit details screen
 
         noDocuments:
@@ -986,7 +1042,7 @@ export default merge(
         uploadFirst: 'اپنی پہلی دستاویز شامل کریں', // label on the empty state upload button
         thumbnailOf: 'Thumbnail of', // not found
         fileName: 'دستاویز کا نام',
-        singleOrMultiple: 'کیا آپ کی دستاویز میں ایک فائل یا متعدد فائلیں ہیں؟',
+        singleOrMultiple: 'کسی اختیار کا انتخاب کریں',
       },
 
       controls: {
@@ -1003,9 +1059,9 @@ export default merge(
         editDetails: 'تفصیلات میں ترمیم کریں', // edit document kebab item
         edit: 'ترمیم کریں', // edit account details
         continue: 'جاری رکھیں',
-        share: 'بانٹیں', // share button
+        share: 'شیئر کریں', // share button
         shared: 'شیئر کردہ دستاویزات', // label of shared tab on dashboard
-        upload: 'اپ لوڈ کریں۔',
+        upload: 'اپ لوڈ کریں',
         uploadDocument: 'دستاویز اپ لوڈ کریں',
         uploadFile: 'اپ لوڈ فائل',
         uploadFiles: 'فائلیں اپ لوڈ کرو',
@@ -1015,7 +1071,7 @@ export default merge(
 
       // account settings page
       account: {
-        language: 'Language', // not found open language selector
+        language: 'زبان',
         firstName: 'پہلا نام',
         whatIsYourFirstName: 'آپ کا پہلا نام کیا ہے؟',
         lastName: 'پہلا نام',
@@ -1031,10 +1087,11 @@ export default merge(
 
       // All copy related to the create shared folder flow
       sharing: {
-        defaultName: 'Documents you shared with DHS on {date}', // not found
+        defaultName:
+          'ایسی دستاویزات جن کا آپ نے DHS کے ساتھ اشتراک کیا ہو {date}',
         confirmSharedFiles:
-          'Documents to be shared DHS | Documents to be shared DHS', // not found
-        plusNMore: '+ {count} more', // not found
+          'ایسی دستاویزات جو DHS کے ساتھ اشتراک کی جانی چاہیئیں', // not found
+        plusNMore: '+ {count} مزید',
         recipients: 'Recipients', // not found
 
         // placeholder text for the add recipient email field
@@ -1043,17 +1100,16 @@ export default merge(
         // step titles in the share flow
         confirmTitle: 'Are you sure you want to share these Documents?', // not found
         addRecipientsTitle: 'Who are you sharing these document(s) with?', // not found
-        selectFilesTitle: 'Select Documents', // not found
+        selectFilesTitle: 'دستاویزات منتخب کریں',
 
-        disclaimerTitle: 'Reminder', // not found
+        disclaimerTitle: 'یاد دہانی',
         shareDocumentDisclaimer: [
           'My File NYC facilitates document sharing with {emails} email accounts',
           'Once documents are shared DHS employees may download and save your documents to submit as proof for your application. DHS may still have copies to support your case even if you unshare or delete them from My File.', // not found
         ],
 
         // on the confirmation step, could be "recipient" or "recipients" depending on number of items
-        confirmRecipientsLabel:
-          'Usted está compartiendo documentos con | Recipients', // not found
+        confirmRecipientsLabel: 'آپ دستاویزات کا اشتراک کر رہے ہیں',
         tooManyRecipients: 'You can share with up to {count} people', // (not found) error text when trying to add more than 10 recipients
       },
 
@@ -1112,9 +1168,9 @@ export default merge(
         files: 'دستاویزات',
         invited: 'مدعو کیا گیا',
         pageTitle: 'اکاؤنٹ کی سرگرمی',
-        shared: 'شیئر کردہ', // not found
-        today: 'TODAY', // not found
-        you: 'You', // not found
+        shared: 'شیئر کردہ',
+        today: 'آج',
+        you: 'آپ',
       },
 
       // Copy where you are viewing shared folders
@@ -1173,22 +1229,21 @@ export default merge(
       },
 
       uploadInputButton: {
-        oneFileTitle: 'ایک فائل',
-        oneFileDescription:
-          'ایک فائل کا آپشن آپ کو اپنے ڈیوائس مینجمنٹ سسٹم سے فائل یا تصویر اپ لوڈ کرنے کی صلاحیت فراہم کرتا ہے۔ اگر آپ موبائل فون یا ٹیبلیٹ استعمال کر رہے ہیں تو آپ اپنے کیمرے سے تصویر لے سکتے ہیں۔',
-        multipleFilesTitle: 'متعدد فائلیں۔',
+        oneFileTitle: 'ایک-صفحے کی دستاویز',
+        oneFileDescription: 'اپنی ڈیوائس سے ایک صفحہ یا تصویر اپ لوڈ کریں',
+        multipleFilesTitle: 'کثیر صفحات کی دستاویز',
         multipleFilesDescription:
-          'ایک سے زیادہ فائلوں کا آپشن آپ کو آپ کے ڈیوائس مینجمنٹ سسٹم سے زیادہ سے زیادہ فائلیں یا تصاویر اپ لوڈ کرنے کی صلاحیت فراہم کرتا ہے۔ اگر آپ موبائل فون یا ٹیبلیٹ استعمال کر رہے ہیں تو آپ اپنے کیمرے سے تصاویر لے سکتے ہیں۔',
+          'اپنی ڈیوائس سے متعدد صفحات یا تصاویر اپ لوڈ کریں',
+        multipageCaution:
+          'ایک وقت میں ایک ہی دستاویز اپ لوڈ کریں۔ اپ لوڈ کرتے ہوئے دستاویزات کو یکجا نہ کریں۔',
         titleInfoButton:
           'آپ یا تو شناخت ٹائپ کر سکتے ہیں، رہائش کا ثبوت، درخواست وغیرہ۔',
         descriptionInfoButton:
           'وضاحت کے لیے آپ نے جو فائلیں اپ لوڈ کی ہیں ان کی مختصر تفصیل فراہم کریں۔',
         yourFileTitle: 'آپ کی فائل',
-        yourFilesTitle: 'آپ کی فائلیں۔',
-        uploadNewFile: 'نئی فائل اپ لوڈ کریں۔',
-        dragAndDropDescription:
-          'آپ اپنی فائلوں کی پوزیشن کو کسی بھی ترتیب سے تبدیل کر سکتے ہیں۔',
-        dragAndDropDescriptionBold: 'ڈریگ اور ڈراپ.',
+        yourDocumentTitle: 'آپ کی دستاویزات',
+        uploadNewFile: 'ایک نئی فائل کا انتخاب کریں',
+        dragAndDropDescription: 'صفحات کو دوبارہ ترتیب دینے کے لیے ڈریگ کریں۔',
         removeFile: 'دور',
       },
 
@@ -1221,6 +1276,21 @@ export default merge(
 
       application: {
         title: 'My File NYC',
+      },
+
+      statusIndicator: {
+        clientInReview: '검수 중',
+        clientReviewed: '검수 완료',
+      },
+
+      forceLogout: {
+        firstTimeoutWarningMessage:
+          '{warning1AtMinute - timeoutAtMinute}분 내에 다시 입력을 하셔야 합니다.',
+        secondTimeoutWarningMessage:
+          '{warning2AtMinute - timeoutAtMinute}분 내에 다시 입력을 하셔야 합니다.',
+        loginAgain:
+          'MyFile을 1시간 넘게 이용 중이라면 로그인을 다시 해 주셔야 합니다.',
+        btnLoginAgain: '다시 로그인하기',
       },
 
       toast: {
@@ -1279,8 +1349,9 @@ export default merge(
         downloadPdf: 'PDF 다운로드',
         description: '서류 설명', // displayed beneath the document and expands to show description (if any)
         editDetailsTitle: '세부 정보 편집', // page title on edit details screen
-        enterNamePlaceholder: '이 서류에 이름을 지정하십시오',
-        enterDescriptionPlaceholder: '이 서류에 대해 설명해주십시오(선택사항)',
+        enterNamePlaceholder: '이 서류에 이름을 지정하십시오...',
+        enterDescriptionPlaceholder: '여기서 메시지 쓰기...',
+        titleDescription: '이 문서에 대해 설명하세요(선택사항)',
         documentName: '어떤 종류의 서류를 업로드했습니까?', // shown as a label on edit details screen
 
         noDocuments: '아직 계정에 저장된 서류가 없습니다.', // shown on dashboard when there are no documents
@@ -1288,7 +1359,7 @@ export default merge(
         uploadFirst: '첫 번째 서류 추가', // label on the empty state upload button
         thumbnailOf: 'Thumbnail of',
         fileName: '서류 이름',
-        singleOrMultiple: '문서에 하나 또는 여러 개의 파일이 있습니까?',
+        singleOrMultiple: '옵션 선택',
       },
 
       controls: {
@@ -1305,7 +1376,7 @@ export default merge(
         editDetails: '세부 정보 편집', // edit document kebab item
         edit: '편집', // edit account details
         continue: '계속',
-        share: '공유하다', // share button
+        share: '공유', // share button
         shared: '공유 서류', // label of shared tab on dashboard
         upload: '업로드',
         uploadDocument: '서류 업로드',
@@ -1333,10 +1404,10 @@ export default merge(
 
       // All copy related to the create shared folder flow
       sharing: {
-        defaultName: 'Documents you shared with DHS on {date}', // not found
-        confirmSharedFiles:
-          'Documents to be shared DHS | Documents to be shared DHS', // not found
-        plusNMore: '+ {count} more', // not found
+        defaultName:
+          '{date}에 노숙자서비스부(Department of Homeless Services, DHS) 에 제출한 문서',
+        confirmSharedFiles: 'DHS 에 제출할 문서',
+        plusNMore: '+ {count} 추가',
         recipients: 'Recipients', // not found
 
         // placeholder text for the add recipient email field
@@ -1347,15 +1418,14 @@ export default merge(
         addRecipientsTitle: '이 서류를 누구와 공유하고 있습니까?',
         selectFilesTitle: '서류 선택',
 
-        disclaimerTitle: 'Reminder', // not found
+        disclaimerTitle: '알림',
         shareDocumentDisclaimer: [
           'My File NYC facilitates document sharing with {emails} email accounts',
           'Once documents are shared DHS employees may download and save your documents to submit as proof for your application. DHS may still have copies to support your case even if you unshare or delete them from My File.', // not found
         ],
 
         // on the confirmation step, could be "recipient" or "recipients" depending on number of items
-        confirmRecipientsLabel:
-          'Usted está compartiendo documentos con | Recipients', // not found
+        confirmRecipientsLabel: '서류 공유 대상',
         tooManyRecipients: 'You can share with up to {count} people', // (not found) error text when trying to add more than 10 recipients
       },
 
@@ -1415,8 +1485,8 @@ export default merge(
         invited: '초대됨',
         pageTitle: '계정 활동',
         shared: '공유됨',
-        today: 'TODAY', // not found
-        you: 'You', // not found
+        today: '오늘',
+        you: '본인',
       },
 
       // Copy where you are viewing shared folders
@@ -1472,21 +1542,20 @@ export default merge(
       },
 
       uploadInputButton: {
-        oneFileTitle: '단일 파일',
-        oneFileDescription:
-          '단일 파일 옵션을 사용하면 장치 관리 시스템에서 파일 또는 이미지를 업로드할 수 있습니다. 휴대폰이나 태블릿을 사용하는 경우 카메라로 사진을 찍을 수 있습니다.',
-        multipleFilesTitle: '다중 파일',
-        multipleFilesDescription:
-          '여러 파일 옵션을 사용하면 장치 관리 시스템에서 많은 파일 또는 이미지를 업로드할 수 있습니다. 휴대폰이나 태블릿을 사용하는 경우 카메라로 사진을 찍을 수 있습니다.',
+        oneFileTitle: '1페이지 문서',
+        oneFileDescription: '기기에서 1페이지 문서 또는 사진 업로드.',
+        multipleFilesTitle: '여러 페이지 문서',
+        multipleFilesDescription: '기기에서 여러 페이지 문서 또는 사진 업로드.',
+        multipageCaution:
+          '문서는 한 번에 하나씩 업로드하십시오. 업로딩 중에 문서를 결합하지 마십시오.',
         titleInfoButton: '신원, 거주 증명, 지원서 등을 입력할 수 있습니다.',
         descriptionInfoButton:
           '명확성을 위해 업로드한 파일에 대한 간략한 설명을 제공합니다.',
         yourFileTitle: '귀하의 파일',
-        yourFilesTitle: '내 파일',
-        uploadNewFile: '새 파일 업로드',
-        dragAndDropDescription:
-          '순서에 상관없이 파일의 위치를 변경할 수 있습니다.',
-        dragAndDropDescriptionBold: '끌어서 놓기.',
+        yourDocumentTitle: '문서',
+        uploadNewFile: '새 파일 선택',
+        dragAndDropDescription: '페이지를 드래그하면 순서가 다시 매겨집니다.',
+
         removeFile: '제거하다',
       },
 
@@ -1521,15 +1590,29 @@ export default merge(
         title: 'My File NYC',
       },
 
+      statusIndicator: {
+        clientInReview: 'En revisión',
+        clientReviewed: 'Revisado',
+      },
+
+      forceLogout: {
+        firstTimeoutWarningMessage:
+          'Deberá volver a iniciar sesión en menos de {warning1AtMinute - timeoutAtMinute} minutos.',
+        secondTimeoutWarningMessage:
+          'Deberá volver a iniciar sesión en menos de {warning2AtMinute - timeoutAtMinute} minutos.',
+        loginAgain:
+          'Deberá volver a iniciar sesión si utiliza MyFile durante más de 1 hora.',
+        btnLoginAgain: 'Volver a iniciar sesión',
+      },
+
       toast: {
         acceptedDelegateInvite: 'Delegate Access Accepted', // not found
         delegateRemoved: 'Client Removed', // not found
-        downloadLoadingState: 'Preparing Download', // not found
-        sharingComplete: 'Intercambio completo',
-        uploading: 'Adding Document...', // not found displayed while a file is uploading
-        uploadComplete: 'Upload Complete', // not found
-        fileDeletedConfirmation: 'Document Deleted', // not found
-        fileTooLarge: 'Document too large (must be < 10MB)', // not found
+        downloadLoadingState: 'Preparando la descarga',
+        sharingComplete: 'Intercambio completo', // displayed while a file is uploading
+        uploadComplete: 'Se completó la carga',
+        fileDeletedConfirmation: 'Se eliminó el documento',
+        fileTooLarge: 'El documento es demasiado grande (tamaño máximo: 10 MB)',
       },
 
       login: {
@@ -1578,8 +1661,9 @@ export default merge(
         downloadPdf: 'Descargar PDF',
         description: 'Descripción del documento', // displayed beneath the document and expands to show description (if any)
         editDetailsTitle: 'Editar información', // page title on edit details screen
-        enterNamePlaceholder: 'Nombrar este documento',
-        enterDescriptionPlaceholder: 'Describa este documento (opcional)',
+        enterNamePlaceholder: 'Nombrar este documento...',
+        enterDescriptionPlaceholder: 'Escriba aquí su mensaje...',
+        titleDescription: 'Describa este documento (opcional)',
         documentName: '¿Qué tipo de documento ha subido?', // shown as a label on edit details screen
 
         noDocuments: 'Aún no hay ningún documento guardado en su cuenta.', // not found shown on dashboard when there are no documents
@@ -1587,7 +1671,7 @@ export default merge(
         uploadFirst: 'Agregue su primer documento', // label on the empty state upload button
         thumbnailOf: 'Thumbnail of', // not found
         fileName: 'Nombre del documento',
-        singleOrMultiple: '¿Su documento tiene uno o varios archivos?',
+        singleOrMultiple: 'Elegir una opción',
       },
 
       controls: {
@@ -1632,10 +1716,9 @@ export default merge(
 
       // All copy related to the create shared folder flow
       sharing: {
-        defaultName: 'Documents you shared with DHS on {date}', // not found
-        confirmSharedFiles:
-          'Documents to be shared DHS | Documents to be shared DHS', // not found
-        plusNMore: '+ {count} more', // not found
+        defaultName: 'Documentos que compartió con DHS el {date}',
+        confirmSharedFiles: 'Documentos para compartir con DHS',
+        plusNMore: 'y {count} más',
         recipients: 'Recipients', // not found
 
         // placeholder text for the add recipient email field
@@ -1646,15 +1729,14 @@ export default merge(
         addRecipientsTitle: '¿A quién le compartirá estos documentos?',
         selectFilesTitle: 'Seleccionar documentos',
 
-        disclaimerTitle: 'Reminder', // not found
+        disclaimerTitle: 'Recordatorio',
         shareDocumentDisclaimer: [
           'My File NYC facilitates document sharing with {emails} email accounts',
           'Once documents are shared DHS employees may download and save your documents to submit as proof for your application. DHS may still have copies to support your case even if you unshare or delete them from My File.', // not found
         ],
 
         // on the confirmation step, could be "recipient" or "recipients" depending on number of items
-        confirmRecipientsLabel:
-          'Usted está compartiendo documentos con | Recipients', // not found
+        confirmRecipientsLabel: 'Usted está compartiendo documentos con',
         tooManyRecipients: 'You can share with up to {count} people', // (not found) error text when trying to add more than 10 recipients
       },
 
@@ -1712,10 +1794,10 @@ export default merge(
         file: 'archivo',
         files: 'documentos',
         invited: 'invitado',
-        pageTitle: 'Actividad de la cuenta', // not found
-        shared: 'compartido', // not found
-        today: 'TODAY', // not found
-        you: 'You', // not found
+        pageTitle: 'Actividad de la cuenta',
+        shared: 'compartido',
+        today: 'Hoy',
+        you: 'Usted', // not found
       },
 
       // Copy where you are viewing shared folders
@@ -1773,22 +1855,21 @@ export default merge(
       },
 
       uploadInputButton: {
-        oneFileTitle: 'Un archivo',
-        oneFileDescription:
-          'La opción de un archivo le brinda la posibilidad de cargar un archivo o una imagen desde el sistema de administración de su dispositivo. Si estás usando un teléfono móvil o una tableta, puedes tomar una foto con tu cámara.',
-        multipleFilesTitle: 'Múltiples archivos',
+        oneFileTitle: 'Documento de una página',
+        oneFileDescription: 'Subir una página o foto desde su dispositivo.',
+        multipleFilesTitle: 'Documento de varias páginas',
         multipleFilesDescription:
-          'La opción de archivos múltiples le brinda la posibilidad de cargar tantos archivos o imágenes desde el sistema de administración de su dispositivo. Si estás usando un teléfono móvil o una tableta, puedes tomar fotos con tu cámara.',
+          'Subir varias páginas o fotos desde su dispositivo.',
+        multipageCaution:
+          'Suba un documento cada vez. No combine documentos mientras se están subiendo.',
         titleInfoButton:
           'Puede escribir identidad, comprobante de residencia, solicitud, etc.',
         descriptionInfoButton:
           'Proporcione una breve descripción de los archivos que cargó como aclaración.',
         yourFileTitle: 'Tu archivo',
-        yourFilesTitle: 'Tus archivos',
-        uploadNewFile: 'Subir archivo nuevo',
-        dragAndDropDescription:
-          'Puede cambiar las posiciones de sus archivos en cualquier orden',
-        dragAndDropDescriptionBold: 'arrastrando y soltando.',
+        yourDocumentTitle: 'Su documento',
+        uploadNewFile: 'Elegir nuevo archivo',
+        dragAndDropDescription: 'Para reordenar las páginas, arrástrelas.',
         removeFile: 'Eliminar',
       },
 
@@ -1821,6 +1902,21 @@ export default merge(
 
       application: {
         title: 'My File NYC',
+      },
+
+      statusIndicator: {
+        clientInReview: 'En cours de vérification',
+        clientReviewed: 'Vérifié',
+      },
+
+      forceLogout: {
+        firstTimeoutWarningMessage:
+          'Vous devrez vous reconnecter dans moins de {warning1AtMinute - timeoutAtMinute} minutes.',
+        secondTimeoutWarningMessage:
+          'Vous devrez vous reconnecter dans moins de {warning2AtMinute - timeoutAtMinute} minutes.',
+        loginAgain:
+          'Il vous faudra vous connecter à nouveau si vous utilisez MyFile plus d’une heure.',
+        btnLoginAgain: 'Se reconnecter',
       },
 
       toast: {
@@ -1879,8 +1975,9 @@ export default merge(
         downloadPdf: 'Télécharger le PDF',
         description: 'Description du document', // displayed beneath the document and expands to show description (if any)
         editDetailsTitle: 'Modifier les détails', // page title on edit details screen
-        enterNamePlaceholder: 'Donner un nom à ce document',
-        enterDescriptionPlaceholder: 'Décrivez ce document (facultatif)',
+        enterNamePlaceholder: 'Donner un nom à ce document...',
+        enterDescriptionPlaceholder: 'Écrivez un message ici...',
+        titleDescription: 'Décrivez ce document (facultatif)',
         documentName: 'Quel type de document avez-vous téléchargé?', // shown as a label on edit details screen
 
         noDocuments:
@@ -1889,8 +1986,7 @@ export default merge(
         uploadFirst: 'Ajouter votre premier document', // label on the empty state upload button
         thumbnailOf: 'Thumbnail of', // not found
         fileName: 'Nom du document',
-        singleOrMultiple:
-          'Votre document comporte-t-il un ou plusieurs fichiers ?',
+        singleOrMultiple: 'Choisissez une option',
       },
 
       controls: {
@@ -1936,10 +2032,9 @@ export default merge(
 
       // All copy related to the create shared folder flow
       sharing: {
-        defaultName: 'Documents you shared with DHS on {date}', // not found
-        confirmSharedFiles:
-          'Documents to be shared DHS | Documents to be shared DHS', // not found
-        plusNMore: '+ {count} more', // not found
+        defaultName: 'Documents que vous avez partagés avec le DHS le {date}',
+        confirmSharedFiles: 'Documents à partager avec le DHS',
+        plusNMore: '+ {count}',
         recipients: 'Recipients', // not found
 
         // placeholder text for the add recipient email field
@@ -1950,15 +2045,14 @@ export default merge(
         addRecipientsTitle: 'Avec qui partagez-vous ces documents?',
         selectFilesTitle: 'Sélectionner des documents',
 
-        disclaimerTitle: 'Reminder', // not found
+        disclaimerTitle: 'Rappel', // not found
         shareDocumentDisclaimer: [
           'My File NYC facilitates document sharing with {emails} email accounts',
           'Once documents are shared DHS employees may download and save your documents to submit as proof for your application. DHS may still have copies to support your case even if you unshare or delete them from My File.', // not found
         ],
 
         // on the confirmation step, could be "recipient" or "recipients" depending on number of items
-        confirmRecipientsLabel:
-          'Usted está compartiendo documentos con | Recipients', // not found
+        confirmRecipientsLabel: 'Vous partagez vos documents avec',
         tooManyRecipients: 'You can share with up to {count} people', // (not found) error text when trying to add more than 10 recipients
       },
 
@@ -2018,8 +2112,8 @@ export default merge(
         invited: 'Invité',
         pageTitle: 'Activité du compte',
         shared: 'partagé',
-        today: 'TODAY', // not found
-        you: 'You', // not found
+        today: 'Aujourd’hui',
+        you: 'Vous',
       },
 
       // Copy where you are viewing shared folders
@@ -2077,22 +2171,23 @@ export default merge(
       },
 
       uploadInputButton: {
-        oneFileTitle: 'Fichier unique',
+        oneFileTitle: 'Document d’une page',
         oneFileDescription:
-          "L'option de fichier unique vous permet de télécharger un fichier ou une image à partir de votre système de gestion d'appareils. Si vous utilisez un téléphone portable ou une tablette, vous pouvez prendre une photo avec votre appareil photo.",
-        multipleFilesTitle: 'Fichiers multiples',
+          'Téléchargez une page ou une photo depuis votre appareil.',
+        multipleFilesTitle: 'Document de plusieurs pages',
         multipleFilesDescription:
-          "L'option de fichiers multiples vous donne la possibilité de télécharger autant de fichiers ou d'images à partir de votre système de gestion d'appareils. Si vous utilisez un téléphone portable ou une tablette, vous pouvez prendre des photos avec votre appareil photo.",
+          'Téléchargez plusieurs pages ou photos depuis votre appareil.',
+        multipageCaution:
+          'Téléchargez un document à la fois. Ne combinez pas les documents lors du téléchargement.',
         titleInfoButton:
           "Vous pouvez saisir l'identité, la preuve de résidence, la demande, etc.",
         descriptionInfoButton:
           'Fournissez une brève description des fichiers que vous avez téléchargés pour clarification.',
         yourFileTitle: 'Votre dossier',
-        yourFilesTitle: 'Vos fichiers',
-        uploadNewFile: 'Télécharger un nouveau fichier',
+        yourDocumentTitle: 'Votre document',
+        uploadNewFile: 'Choisir un nouveau fichier',
         dragAndDropDescription:
-          "Vous pouvez modifier les positions de vos fichiers dans n'importe quel ordre",
-        dragAndDropDescriptionBold: 'par glisser-déposer.',
+          'Faites glisser pour remettre les pages dans l’ordre.',
         removeFile: 'Retirer',
       },
 
@@ -2125,6 +2220,21 @@ export default merge(
 
       application: {
         title: 'My File NYC',
+      },
+
+      statusIndicator: {
+        clientInReview: 'পর্যালোচনা করা হচ্ছে',
+        clientReviewed: 'পর্যালোচনা করা হয়েছে',
+      },
+
+      forceLogout: {
+        firstTimeoutWarningMessage:
+          'আপনাকে {warning1AtMinute - timeoutAtMinute} মিনিটেরও কম সময়ে আবার লগইন করতে বাধ্য করা হবে.',
+        secondTimeoutWarningMessage:
+          'আপনাকে {warning2AtMinute - timeoutAtMinute} মিনিটেরও কম সময়ে আবার লগইন করতে বাধ্য করা হবে.',
+        loginAgain:
+          'মাই-ফাইল 1 ঘণ্টার বেশি ব্যবহার করলে আপনাকে আবার লগইন করতে হবে।.',
+        btnLoginAgain: 'আবার লগইন করুন',
       },
 
       toast: {
@@ -2183,8 +2293,9 @@ export default merge(
         downloadPdf: 'PDF ডাউনলোড করুন',
         description: 'নথির বিবরণ', // displayed beneath the document and expands to show description (if any)
         editDetailsTitle: 'বিবরণ সম্পাদনা করুন', // page title on edit details screen
-        enterNamePlaceholder: 'এই নথিটির একটি নাম দিন',
-        enterDescriptionPlaceholder: 'এই নথিটিকে বর্ণনা করুন (ঐচ্ছিক)',
+        enterNamePlaceholder: 'এই নথিটির একটি নাম দিন...',
+        enterDescriptionPlaceholder: 'এখানে একটি বার্তা লিখুন...',
+        titleDescription: 'এই নথিটি বর্ণনা করুন (ঐচ্ছিক)',
         documentName: 'কোন ধরনের নথি আপনি আপলোড করেছেন?', // shown as a label on edit details screen
 
         noDocuments: 'আপনার অ্যাকাউন্টে এখনও কোনো নথি সংরক্ষিত নেই।.', // not found shown on dashboard when there are no documents
@@ -2192,7 +2303,7 @@ export default merge(
         uploadFirst: 'আপনার প্রথম নথি যোগ করুন', // label on the empty state upload button
         thumbnailOf: 'Thumbnail of', // not found
         fileName: 'নথির নাম',
-        singleOrMultiple: 'আপনার নথিতে কি এক বা একাধিক ফাইল আছে?',
+        singleOrMultiple: 'একটি বিকল্প নির্বাচন করুন',
       },
 
       controls: {
@@ -2237,10 +2348,9 @@ export default merge(
 
       // All copy related to the create shared folder flow
       sharing: {
-        defaultName: 'Documents you shared with DHS on {date}', // not found
-        confirmSharedFiles:
-          'Documents to be shared DHS | Documents to be shared DHS', // not found
-        plusNMore: '+ {count} more', // not found
+        defaultName: 'আপনি DHS-এর সাথে যে নথিগুলি শেয়ার করেছেন {date}-এ', // not found
+        confirmSharedFiles: 'DHS-এর কাছে যে নথিগুলি শেয়ার করতে হবে', // not found
+        plusNMore: '+ আরও {count} টি',
         recipients: 'Recipients', // not found
 
         // placeholder text for the add recipient email field
@@ -2251,15 +2361,14 @@ export default merge(
         addRecipientsTitle: 'আপনি কার সাথে এই নথি(গুলি) শেয়ার করছেন?',
         selectFilesTitle: 'নথি নির্বাচন করুন',
 
-        disclaimerTitle: 'Reminder', // not found
+        disclaimerTitle: 'অনুস্মারক',
         shareDocumentDisclaimer: [
           'My File NYC facilitates document sharing with {emails} email accounts',
           'Once documents are shared DHS employees may download and save your documents to submit as proof for your application. DHS may still have copies to support your case even if you unshare or delete them from My File.', // not found
         ],
 
         // on the confirmation step, could be "recipient" or "recipients" depending on number of items
-        confirmRecipientsLabel:
-          'Usted está compartiendo documentos con | Recipients', // not found
+        confirmRecipientsLabel: 'আপনি এর সাথে নথি শেয়ার করছেন',
         tooManyRecipients: 'You can share with up to {count} people', // (not found) error text when trying to add more than 10 recipients
       },
 
@@ -2319,8 +2428,8 @@ export default merge(
         invited: 'আমন্ত্রিত',
         pageTitle: 'অ্যাকাউন্ট অ্যাক্টিভিটি',
         shared: 'শেয়ার করা হয়েছে',
-        today: 'TODAY', // not found
-        you: 'You', // not found
+        today: 'আজ',
+        you: 'আপনি',
       },
 
       // Copy where you are viewing shared folders
@@ -2377,22 +2486,21 @@ export default merge(
       },
 
       uploadInputButton: {
-        oneFileTitle: 'এক-ফাইল',
-        oneFileDescription:
-          'এক-ফাইল বিকল্প আপনাকে আপনার ডিভাইস ম্যানেজমেন্ট সিস্টেম থেকে একটি ফাইল বা একটি ছবি আপলোড করার ক্ষমতা দেয়। আপনি যদি একটি মোবাইল ফোন বা ট্যাবলেট ব্যবহার করেন তবে আপনি আপনার ক্যামেরা দিয়ে একটি ছবি তুলতে পারেন।.',
-        multipleFilesTitle: 'একাধিক ফাইল',
+        oneFileTitle: 'এক পৃষ্ঠার নথি',
+        oneFileDescription: 'আপনার ডিভাইস থেকে একটি পৃষ্ঠা বা ছবি আপলোড করুন.',
+        multipleFilesTitle: 'একাধিক পৃষ্ঠার নথি',
         multipleFilesDescription:
-          'মাল্টিপল-ফাইল বিকল্প আপনাকে আপনার ডিভাইস ম্যানেজমেন্ট সিস্টেম থেকে যতগুলি ফাইল বা ছবি আপলোড করার ক্ষমতা দেয়। আপনি যদি মোবাইল ফোন বা ট্যাবলেট ব্যবহার করেন তবে আপনি আপনার ক্যামেরা দিয়ে ছবি তুলতে পারেন।.',
+          'আপনার ডিভাইস থেকে একাধিক পৃষ্ঠা বা ফটো আপলোড করুন.',
+        multipageCaution:
+          'Upload one document at a time. Do not combine documents while uploading.',
         titleInfoButton:
           'আপনি পরিচয় টাইপ করতে পারেন, বসবাসের প্রমাণ, আবেদনপত্র ইত্যাদি।',
         descriptionInfoButton:
           'স্পষ্টীকরণের জন্য আপনি আপলোড করা ফাইলগুলির একটি সংক্ষিপ্ত বিবরণ প্রদান করুন৷.',
         yourFileTitle: 'আপনার ফাইল',
-        yourFilesTitle: 'আপনার ফাইল',
-        uploadNewFile: 'নতুন ফাইল আপলোড করুন',
-        dragAndDropDescription:
-          'আপনি ড্র্যাগ এবং ড্রপ করে যেকোনো ক্রমে আপনার ফাইলের অবস্থান',
-        dragAndDropDescriptionBold: 'পরিবর্তন করতে পারেন।.',
+        yourDocumentTitle: 'আপনার নথি',
+        uploadNewFile: 'নতুন ফাইল নির্বাচন করুন',
+        dragAndDropDescription: 'পৃষ্ঠাগুলি পুনরায় সাজাতে টেনে আনুন।',
         removeFile: 'অপসারণ',
       },
 
@@ -2427,6 +2535,21 @@ export default merge(
 
       application: {
         title: 'My File NYC',
+      },
+
+      statusIndicator: {
+        clientInReview: 'W trakcie weryfikacji',
+        clientReviewed: 'Zweryfikowano',
+      },
+
+      forceLogout: {
+        firstTimeoutWarningMessage:
+          'Za mniej niż {warning1AtMinute - timeoutAtMinute} min wymagane będzie ponowne zalogowanie.',
+        secondTimeoutWarningMessage:
+          'Za mniej niż {warning2AtMinute - timeoutAtMinute} min wymagane będzie ponowne zalogowanie.',
+        loginAgain:
+          'Przy korzystaniu z MyFile dłużej niż przez godzinę wymagane jest ponowne zalogowanie.',
+        btnLoginAgain: 'Zaloguj się ponownie',
       },
 
       toast: {
@@ -2485,8 +2608,9 @@ export default merge(
         downloadPdf: 'Pobierz plik PDF',
         description: 'Opis dokumentu', // displayed beneath the document and expands to show description (if any)
         editDetailsTitle: 'Edytuj szczegóły', // page title on edit details screen
-        enterNamePlaceholder: 'Nadaj temu dokumentowi nazwę',
-        enterDescriptionPlaceholder: 'Opisz ten dokument (opcjonalnie)',
+        enterNamePlaceholder: 'Nadaj temu dokumentowi nazwę...',
+        enterDescriptionPlaceholder: 'Napisz wiadomość tutaj...',
+        titleDescription: 'Opisz ten dokument (opcjonalnie)',
         documentName: 'Jaki dokument został przesłany?', // shown as a label on edit details screen
 
         noDocuments:
@@ -2495,7 +2619,7 @@ export default merge(
         uploadFirst: 'Dodaj pierwszy dokument', // label on the empty state upload button
         thumbnailOf: 'Thumbnail of', // not found
         fileName: 'Nazwa dokumentu',
-        singleOrMultiple: 'Czy twój dokument zawiera jeden lub wiele plików?',
+        singleOrMultiple: 'Wybierz opcję',
       },
 
       controls: {
@@ -2540,10 +2664,9 @@ export default merge(
 
       // All copy related to the create shared folder flow
       sharing: {
-        defaultName: 'Documents you shared with DHS on {date}', // not found
-        confirmSharedFiles:
-          'Documents to be shared DHS | Documents to be shared DHS', // not found
-        plusNMore: '+ {count} more', // not found
+        defaultName: 'Dokumenty udostępnione DHS na dzień {date}', // not found
+        confirmSharedFiles: 'Dokumenty do udostępnienia DHS',
+        plusNMore: '+ jeszcze {count}',
         recipients: 'Recipients', // not found
 
         // placeholder text for the add recipient email field
@@ -2554,15 +2677,14 @@ export default merge(
         addRecipientsTitle: 'Komu udostępniasz te dokumenty?',
         selectFilesTitle: 'Wybierz dokumenty',
 
-        disclaimerTitle: 'Reminder', // not found
+        disclaimerTitle: 'Przypomnienie',
         shareDocumentDisclaimer: [
           'My File NYC facilitates document sharing with {emails} email accounts',
           'Once documents are shared DHS employees may download and save your documents to submit as proof for your application. DHS may still have copies to support your case even if you unshare or delete them from My File.', // not found
         ],
 
         // on the confirmation step, could be "recipient" or "recipients" depending on number of items
-        confirmRecipientsLabel:
-          'Usted está compartiendo documentos con | Recipients', // not found
+        confirmRecipientsLabel: 'Dokumenty są aktualnie udostępniane',
         tooManyRecipients: 'You can share with up to {count} people', // (not found) error text when trying to add more than 10 recipients
       },
 
@@ -2622,8 +2744,8 @@ export default merge(
         invited: 'Zaproszono',
         pageTitle: 'Aktywność konta',
         shared: 'Udostępniono',
-        today: 'TODAY', // not found
-        you: 'You', // not found
+        today: 'Dzisiaj', // not found
+        you: 'Pan/Pani', // not found
       },
 
       // Copy where you are viewing shared folders
@@ -2679,22 +2801,20 @@ export default merge(
       },
 
       uploadInputButton: {
-        oneFileTitle: 'Jeden plik',
-        oneFileDescription:
-          'Opcja jednego pliku daje możliwość przesłania pliku lub obrazu z systemu zarządzania urządzeniem. Jeśli używasz telefonu komórkowego lub tabletu, możesz zrobić zdjęcie aparatem.',
-        multipleFilesTitle: 'Wiele plików',
-        multipleFilesDescription:
-          'Opcja wielu plików umożliwia przesłanie dowolnej liczby plików lub obrazów z systemu zarządzania urządzeniem. Jeśli używasz telefonu komórkowego lub tabletu, możesz robić zdjęcia aparatem.',
+        oneFileTitle: 'Dokument jednostronicowy',
+        oneFileDescription: 'Załaduj jedną stronę lub zdjęcie z urządzenia',
+        multipleFilesTitle: 'Dokument wielostronicowy',
+        multipleFilesDescription: 'Załaduj kilka stron lub zdjęć z urządzenia',
+        multipageCaution:
+          'Załaduj jeden dokument naraz. Nie łącz dokumentów podczas ładowania.',
         titleInfoButton:
           'Możesz wpisać tożsamość, dowód zamieszkania, wniosek itp.',
         descriptionInfoButton:
           'W celu wyjaśnienia podaj krótki opis przesłanych plików.',
         yourFileTitle: 'Plik',
-        yourFilesTitle: 'Twoje pliki',
-        uploadNewFile: 'Prześlij nowy plik',
-        dragAndDropDescription:
-          'Możesz zmieniać położenie plików w dowolnej kolejności,',
-        dragAndDropDescriptionBold: ' przeciągając je i upuszczając.',
+        yourDocumentTitle: 'Twój dokument',
+        uploadNewFile: 'Wybierz nowy plik',
+        dragAndDropDescription: 'Przeciągnij, aby zmienić kolejność stron.',
         removeFile: 'Usunąć',
       },
 
@@ -2727,6 +2847,21 @@ export default merge(
 
       application: {
         title: 'My File NYC',
+      },
+
+      statusIndicator: {
+        clientInReview: 'Nan etap Revizyon',
+        clientReviewed: 'Yo egzamine',
+      },
+
+      forceLogout: {
+        firstTimeoutWarningMessage:
+          'Ou ap oblije konekte ankò nan mwens pase {warning1AtMinute - timeoutAtMinute} minit.',
+        secondTimeoutWarningMessage:
+          'Ou ap oblije konekte ankò nan mwens pase {warning2AtMinute - timeoutAtMinute} minit.',
+        loginAgain:
+          'Ou oblije konekte ankò si ou ap sou MyFile pandan plis pase 1èdtan.',
+        btnLoginAgain: 'Konekte ankò',
       },
 
       toast: {
@@ -2785,8 +2920,9 @@ export default merge(
         downloadPdf: 'Telechaje PDF',
         description: 'Deskripsyon dokiman', // displayed beneath the document and expands to show description (if any)
         editDetailsTitle: 'Modifye detay yo', // page title on edit details screen
-        enterNamePlaceholder: 'Bay dokiman sa yon non',
-        enterDescriptionPlaceholder: 'Dekri dokiman (se si w vle)',
+        enterNamePlaceholder: 'Bay dokiman sa yon non...',
+        enterDescriptionPlaceholder: 'Ekri yon mesaj la...',
+        titleDescription: 'Dekri dokiman sa a (si ou vle)',
         documentName: 'Ki tip dokiman ou te atache?', // shown as a label on edit details screen
 
         noDocuments: 'Poko gen okenn dokiman ki anrejistre sou kont ou an.', // shown on dashboard when there are no documents
@@ -2794,7 +2930,7 @@ export default merge(
         uploadFirst: 'Atache premye dokiman ou a', // label on the empty state upload button
         thumbnailOf: 'Thumbnail of', // not found
         fileName: 'Non dokiman an',
-        singleOrMultiple: 'Èske dokiman ou a gen youn oswa plizyè dosye?',
+        singleOrMultiple: 'Chwazi yon opsyon',
       },
 
       controls: {
@@ -2839,10 +2975,9 @@ export default merge(
 
       // All copy related to the create shared folder flow
       sharing: {
-        defaultName: 'Documents you shared with DHS on {date}', // not found
-        confirmSharedFiles:
-          'Documents to be shared DHS | Documents to be shared DHS', // not found
-        plusNMore: '+ {count} more', // not found
+        defaultName: 'Dokiman ou te pataje ak DHS nan dat{date}',
+        confirmSharedFiles: 'Dokiman pou pataje ak DHS',
+        plusNMore: '+ {count} pou plis',
         recipients: 'Recipients', // not found
 
         // placeholder text for the add recipient email field
@@ -2853,15 +2988,14 @@ export default merge(
         addRecipientsTitle: 'Ak kiyès ou pataje dokiman sa yo?',
         selectFilesTitle: 'Dokiman ou Chwazi a',
 
-        disclaimerTitle: 'Reminder', // not found
+        disclaimerTitle: 'Rapèl',
         shareDocumentDisclaimer: [
           'My File NYC facilitates document sharing with {emails} email accounts',
           'Once documents are shared DHS employees may download and save your documents to submit as proof for your application. DHS may still have copies to support your case even if you unshare or delete them from My File.', // not found
         ],
 
         // on the confirmation step, could be "recipient" or "recipients" depending on number of items
-        confirmRecipientsLabel:
-          'Usted está compartiendo documentos con | Recipients', // not found
+        confirmRecipientsLabel: 'Ou ap pataje dokiman yo ak',
         tooManyRecipients: 'You can share with up to {count} people', // (not found) error text when trying to add more than 10 recipients
       },
 
@@ -2921,8 +3055,8 @@ export default merge(
         invited: 'envitasyon',
         pageTitle: 'Aktivite Kont lan',
         shared: 'pataj',
-        today: 'TODAY', // not found
-        you: 'You', // not found
+        today: 'Jodi a',
+        you: 'Ou menm',
       },
 
       // Copy where you are viewing shared folders
@@ -2977,22 +3111,21 @@ export default merge(
         sharedWith: 'Pataje li ak:', // promt for agency email
       },
       uploadInputButton: {
-        oneFileTitle: 'Yon dosye',
-        oneFileDescription:
-          'Opsyon yon sèl fichye a ba ou kapasite pou w telechaje yon fichye oswa yon imaj nan sistèm jesyon aparèy ou an. Si w ap itilize yon telefòn mobil oswa yon tablèt ou ka pran yon foto ak kamera ou.',
-        multipleFilesTitle: 'Plizyè-fichye',
+        oneFileTitle: 'Dokiman yon paj',
+        oneFileDescription: 'Telechaje yon paj oswa yon foto nan aparèy ou a',
+        multipleFilesTitle: 'Dokiman plizyè paj',
         multipleFilesDescription:
-          'Opsyon plizyè fichye a ba ou kapasite pou w telechaje anpil fichye oswa imaj nan sistèm jesyon aparèy ou an. Si w ap itilize yon telefòn mobil oswa yon tablèt ou ka pran foto ak kamera w.',
+          'Telechaje plizyè paj oswa plizyè foto nan aparèy ou a',
+        multipageCaution:
+          'Ou ka telechaje sèlman yon (1) dokiman alafwa. Pa mete dokiman youn nan lòt lè w ap fè telechajman.',
         titleInfoButton:
           'Ou ka tape swa idantite, prèv rezidans, aplikasyon, elatriye.',
         descriptionInfoButton:
           'Bay yon deskripsyon tou kout sou dosye ou telechaje yo pou klarifikasyon.',
         yourFileTitle: 'Dosye w la',
-        yourFilesTitle: 'Dosye ou yo',
-        uploadNewFile: 'Telechaje nouvo fichye',
-        dragAndDropDescription:
-          'Ou ka chanje pozisyon nan dosye ou yo nan nenpòt lòd pa ',
-        dragAndDropDescriptionBold: 'trennen ak gout.',
+        yourDocumentTitle: 'Dokiman ou yo',
+        uploadNewFile: 'Chwazi nouvo fichye',
+        dragAndDropDescription: 'Glise paj yo pou w ka mete yo nan lòd.',
         removeFile: 'Retire',
       },
 
@@ -3025,6 +3158,20 @@ export default merge(
 
       application: {
         title: 'My File NYC',
+      },
+
+      statusIndicator: {
+        clientInReview: '審查中',
+        clientReviewed: '已審查',
+      },
+
+      forceLogout: {
+        firstTimeoutWarningMessage:
+          '您將必須在{warning1AtMinute - timeoutAtMinute}分鐘內再次登入。',
+        secondTimeoutWarningMessage:
+          '您將必須在{warning2AtMinute - timeoutAtMinute}分鐘內再次登入。',
+        loginAgain: '如果使用 MyFile 超過 1 小時，您必須再次登入。',
+        btnLoginAgain: '再次登入',
       },
 
       toast: {
@@ -3083,8 +3230,9 @@ export default merge(
         downloadPdf: '下載 PDF',
         description: '文件描述', // displayed beneath the document and expands to show description (if any)
         editDetailsTitle: '編輯詳細資訊', // page title on edit details screen
-        enterNamePlaceholder: '為此文件命名',
-        enterDescriptionPlaceholder: '說明該文件（選填)',
+        enterNamePlaceholder: '為此文件命名...',
+        enterDescriptionPlaceholder: '在此處留言...',
+        titleDescription: '描述本文檔（可選）',
         documentName: '您上傳了那種類型的文件？', // shown as a label on edit details screen
 
         noDocuments: '您的帳戶中還沒有儲存任何文件。', // shown on dashboard when there are no documents
@@ -3092,7 +3240,7 @@ export default merge(
         uploadFirst: '新增您的第一個文件', // label on the empty state upload button
         thumbnailOf: 'Thumbnail of', // not found
         fileName: '文件名稱',
-        singleOrMultiple: '您的文檔有一個還是多個文件？',
+        singleOrMultiple: '選擇一項',
       },
 
       controls: {
@@ -3137,10 +3285,10 @@ export default merge(
 
       // All copy related to the create shared folder flow
       sharing: {
-        defaultName: 'Documents you shared with DHS on {date}', // not found
-        confirmSharedFiles:
-          'Documents to be shared DHS | Documents to be shared DHS', // not found
-        plusNMore: '+ {count} more', // not found
+        defaultName:
+          '您在 {date}與無家可歸者服務部 (Department of Homeless Services, DHS) 分享的檔案',
+        confirmSharedFiles: '與 DHS 分享的檔案',
+        plusNMore: '再+ {count}',
         recipients: 'Recipients', // not found
 
         // placeholder text for the add recipient email field
@@ -3151,15 +3299,14 @@ export default merge(
         addRecipientsTitle: '您要與誰分享這些文件？',
         selectFilesTitle: '選擇文件',
 
-        disclaimerTitle: 'Reminder', // not found
+        disclaimerTitle: '提醒',
         shareDocumentDisclaimer: [
           'My File NYC facilitates document sharing with {emails} email accounts',
           'Once documents are shared DHS employees may download and save your documents to submit as proof for your application. DHS may still have copies to support your case even if you unshare or delete them from My File.', // not found
         ],
 
         // on the confirmation step, could be "recipient" or "recipients" depending on number of items
-        confirmRecipientsLabel:
-          'Usted está compartiendo documentos con | Recipients', // not found
+        confirmRecipientsLabel: '您正在將檔案分享至',
         tooManyRecipients: 'You can share with up to {count} people', // (not found) error text when trying to add more than 10 recipients
       },
 
@@ -3219,8 +3366,8 @@ export default merge(
         invited: '已邀請',
         pageTitle: '帳戶活動',
         shared: '已分享',
-        today: 'TODAY', // not found
-        you: 'You', // not found
+        today: '今天',
+        you: '您',
       },
 
       // Copy where you are viewing shared folders
@@ -3280,19 +3427,17 @@ export default merge(
       },
 
       uploadInputButton: {
-        oneFileTitle: '個文件',
-        oneFileDescription:
-          '單文件選項使您能夠從設備管理系統上傳文件或圖像。 如果您使用的是手機或平板電腦，則可以使用相機拍照。',
-        multipleFilesTitle: '多文件',
-        multipleFilesDescription:
-          '多文件選項使您能夠從設備管理系統上傳盡可能多的文件或圖像。 如果您使用的是手機或平板電腦，則可以使用相機拍照.',
+        oneFileTitle: '單頁檔案',
+        oneFileDescription: '從您的設備上傳單頁檔案或相片',
+        multipleFilesTitle: '多頁檔案',
+        multipleFilesDescription: '從您的設備上傳多頁檔案或相片。',
+        multipageCaution: '一次上傳一份檔案。上傳時請勿合併檔案。',
         titleInfoButton: '您可以輸入身份、居住證明、申請等。',
         descriptionInfoButton: '提供您上傳的文件的簡要說明以進行說明。',
         yourFileTitle: '你的檔案',
-        yourFilesTitle: '您的文件',
-        uploadNewFile: '上傳新文件',
-        dragAndDropDescription: '您可以按任何順序更改文件的位置',
-        dragAndDropDescriptionBold: '拖放。',
+        yourDocumentTitle: '您的檔案',
+        uploadNewFile: '選擇新檔案',
+        dragAndDropDescription: '拖動以重新排序頁面。',
         removeFile: '消除',
       },
 

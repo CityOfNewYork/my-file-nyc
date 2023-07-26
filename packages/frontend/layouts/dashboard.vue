@@ -1,9 +1,9 @@
 <template>
   <v-app :class="rtlDirection && 'rtl'">
     <v-overlay style="text-align: center" :z-index="10000" :value="overlay">
-      <p>You are required to login again if using MyFile more than 1 hour.</p>
+      <p>{{ $t('forceLogout.loginAgain') }}</p>
       <v-btn class="white--text" color="teal" @click="logout()">
-        Login Again
+        {{ $t('forceLogout.btnLoginAgain') }}
       </v-btn>
     </v-overlay>
     <v-snackbar
@@ -19,7 +19,11 @@
     >
       <div style="display: flex; flex-direction: row">
         <div style="flex-grow: 1; align-self: center">
-          {{ timeoutWarningMessage }}
+          {{
+            newShowTimeoutWarningMessage
+              ? $t('forceLogout.firstTimeoutMessage')
+              : $t('forceLogout.secondTimeoutMessage')
+          }}
         </div>
 
         <!-- attrs warning -->
@@ -59,9 +63,13 @@ export default class DashboardLayout extends Vue {
 
   warningMsgTimeoutMs = 10 * 1000
   showTimeoutWarningMessage = false
-  timeoutWarningMessage = ''
+  timeoutWarningMessage: boolean
   intervalId: number | undefined = undefined
   userStore = userStore as any
+
+  get newShowTimeoutWarningMessage() {
+    return this.timeoutWarningMessage
+  }
 
   mounted() {
     if (this.$config.deploymentTarget == 'dev') {
@@ -149,16 +157,12 @@ export default class DashboardLayout extends Vue {
         const seconds = Math.floor((timeRemaining % 1) * 60)
         if (timeRemaining <= warning1AtMinute && !warning1Displayed) {
           warning1Displayed = true
-          this.timeoutWarningMessage = `You will be forced to login again in less than ${
-            warning1AtMinute - timeoutAtMinute
-          } minutes.`
+          this.timeoutWarningMessage = true
           this.showTimeoutWarningMessage = true
           console.log(this.timeoutWarningMessage)
         } else if (timeRemaining < warning2AtMinute && !warning2Displayed) {
           warning2Displayed = true
-          this.timeoutWarningMessage = `You will be forced to login again in less than ${
-            warning2AtMinute - timeoutAtMinute
-          } minutes.`
+          this.timeoutWarningMessage = false
           this.showTimeoutWarningMessage = true
           console.log(this.timeoutWarningMessage)
         } else if (timeRemaining <= timeoutAtMinute && !forceLoginModalOpen) {
