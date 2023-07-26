@@ -355,7 +355,8 @@ export default merge(
       },
 
       login: {
-        loginButton: 'سَجِّل الدخول وابدأ',
+        loginButton: 'تسجيل الدخول',
+        createAccountButton: 'إنشاء حساب',
         getStarted: {
           client: 'البدء',
           cityEmployee: 'City Employee Login', // not found
@@ -668,7 +669,8 @@ export default merge(
       },
 
       login: {
-        loginButton: 'Войдите в систему и приступайте',
+        loginButton: 'Войти в систему',
+        createAccountButton: 'Создать учетную запись',
         getStarted: {
           client: 'Начать',
           cityEmployee: 'City Employee Login', // not found
@@ -987,7 +989,8 @@ export default merge(
       },
 
       login: {
-        loginButton: 'لاگ ان کریں اور شروع کریں',
+        loginButton: 'لاگ ان ہوں',
+        createAccountButton: 'اکاؤنٹ بنائیں',
         getStarted: {
           client: 'شروع کرنے کے',
           cityEmployee: 'City Employee Login', // not found
@@ -1305,7 +1308,8 @@ export default merge(
       },
 
       login: {
-        loginButton: '로그인하고 시작하십시오.',
+        loginButton: '로그인',
+        createAccountButton: '계정 만들기',
         getStarted: {
           client: '시작하다',
           cityEmployee: 'City Employee Login', // not found
@@ -1616,7 +1620,8 @@ export default merge(
       },
 
       login: {
-        loginButton: 'Acceda y empiece',
+        loginButton: 'Iniciar sesión',
+        createAccountButton: 'Crear cuenta',
         getStarted: {
           client: 'Empezar',
           cityEmployee: 'City Employee Login', // not found
@@ -1931,7 +1936,8 @@ export default merge(
       },
 
       login: {
-        loginButton: 'Pour commencer, connectez-vous',
+        loginButton: 'Se connecter',
+        createAccountButton: 'Créer un compte',
         getStarted: {
           client: 'Commencer',
           cityEmployee: 'City Employee Login', // not found
@@ -2249,7 +2255,8 @@ export default merge(
       },
 
       login: {
-        loginButton: 'শুরু করার জন্য লগইন করুন৷',
+        loginButton: 'লগ ইন করুন',
+        createAccountButton: 'অ্যাকাউন্ট তৈরি করুন',
         getStarted: {
           client: 'এবার শুরু করা যাক',
           cityEmployee: 'City Employee Login', // not found
@@ -2564,7 +2571,8 @@ export default merge(
       },
 
       login: {
-        loginButton: 'Zaloguj się i rozpocznij',
+        loginButton: 'Zaloguj się',
+        createAccountButton: 'Utwórz konto',
         getStarted: {
           client: 'Zaczynaj',
           cityEmployee: 'City Employee Login', // not found
@@ -2876,7 +2884,8 @@ export default merge(
       },
 
       login: {
-        loginButton: 'Konekte epi kòmanse',
+        loginButton: 'Konekte',
+        createAccountButton: 'Kreye yon Kont',
         getStarted: {
           client: 'Kòmanse', // not found
           cityEmployee: 'City Employee Login', // not found
@@ -3186,7 +3195,8 @@ export default merge(
       },
 
       login: {
-        loginButton: '登錄並開始使用',
+        loginButton: '登入',
+        createAccountButton: '建立帳戶',
         getStarted: {
           client: '開始',
           cityEmployee: 'City Employee Login', // not found
