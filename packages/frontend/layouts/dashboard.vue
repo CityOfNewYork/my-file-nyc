@@ -21,8 +21,12 @@
         <div style="flex-grow: 1; align-self: center">
           {{
             newShowTimeoutWarningMessage
-              ? $t('forceLogout.firstTimeoutMessage')
-              : $t('forceLogout.secondTimeoutMessage')
+              ? $t('forceLogout.firstTimeoutWarningMessage', {
+                  warningMsg: timeout1,
+                })
+              : $t('forceLogout.secondTimeoutWarningMessage', {
+                  warningMsg: timeout2,
+                })
           }}
         </div>
 
@@ -66,6 +70,8 @@ export default class DashboardLayout extends Vue {
   timeoutWarningMessage: boolean
   intervalId: number | undefined = undefined
   userStore = userStore as any
+  timeout1: number = 5
+  timeout2: number = 2
 
   get newShowTimeoutWarningMessage() {
     return this.timeoutWarningMessage
@@ -79,6 +85,7 @@ export default class DashboardLayout extends Vue {
     if (this.$route.params.showSnack) {
       this.$store.dispatch('snackbar/show')
     }
+
     this.checkTimeout()
   }
 
@@ -147,7 +154,7 @@ export default class DashboardLayout extends Vue {
         token = storedBearer.replace('Bearer ', '')
         const jwt = parseJwt(token)
         if (jwt && jwt.exp) {
-          expDateOfToken = new Date(jwt.exp * 1000)
+          expDateOfToken = new Date(jwt.exp * 1000) //new Date(jwt.exp * 1000)
         }
       }
       if (expDateOfToken) {
@@ -159,11 +166,13 @@ export default class DashboardLayout extends Vue {
           warning1Displayed = true
           this.timeoutWarningMessage = true
           this.showTimeoutWarningMessage = true
+
           console.log(this.timeoutWarningMessage)
         } else if (timeRemaining < warning2AtMinute && !warning2Displayed) {
           warning2Displayed = true
           this.timeoutWarningMessage = false
           this.showTimeoutWarningMessage = true
+
           console.log(this.timeoutWarningMessage)
         } else if (timeRemaining <= timeoutAtMinute && !forceLoginModalOpen) {
           console.log('Pop up modal and force login')

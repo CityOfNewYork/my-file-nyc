@@ -22,9 +22,9 @@ export default merge(
 
       forceLogout: {
         firstTimeoutWarningMessage:
-          'You will be forced to login again in less than {warning1AtMinute - timeoutAtMinute} minutes',
+          'You will be forced to login again in less than {warningMsg} minutes',
         secondTimeoutWarningMessage:
-          'You will be forced to login again in less than {warning2AtMinute - timeoutAtMinute} minutes',
+          'You will be forced to login again in less than {warningMsg} minutes',
         loginAgain:
           'You are required to login again if using MyFile more than 1 hour.',
         btnLoginAgain: 'Login again',
@@ -335,9 +335,9 @@ export default merge(
 
       forceLogout: {
         firstTimeoutWarningMessage:
-          'ستضطر إلى تسجيل الدخول مرة أخرى في أقل من {warning1AtMinute - timeoutAtMinute} دقائق',
+          'ستضطر إلى تسجيل الدخول مرة أخرى في أقل من {warningMsg} دقائق',
         secondTimeoutWarningMessage:
-          'ستضطر إلى تسجيل الدخول مرة أخرى في أقل من {warning2AtMinute - timeoutAtMinute} دقائق',
+          'ستضطر إلى تسجيل الدخول مرة أخرى في أقل من {warningMsg} دقائق',
         loginAgain:
           'يتعين عليك تسجيل الدخول مرة أخرى إذا كنت تستخدم تطبيق MyFile لأكثر من ساعة.',
         btnLoginAgain: 'تسجيل الدخول مرة أخرى',
@@ -649,9 +649,9 @@ export default merge(
 
       forceLogout: {
         firstTimeoutWarningMessage:
-          'Вы будете вынуждены повторно войти в систему менее чем через {warning1AtMinute - timeoutAtMinute} минут.',
+          'Вы будете вынуждены повторно войти в систему менее чем через {warningMsg} минут.',
         secondTimeoutWarningMessage:
-          'Вы будете вынуждены повторно войти в систему менее чем через {warning2AtMinute - timeoutAtMinute} минут.',
+          'Вы будете вынуждены повторно войти в систему менее чем через {warningMsg} минут.',
         loginAgain:
           'При использовании MyFile более 1 часа требуется повторный вход в систему.',
         btnLoginAgain: 'Повторно войдите в систему',
@@ -969,9 +969,9 @@ export default merge(
 
       forceLogout: {
         firstTimeoutWarningMessage:
-          'آپ کو مجبوراً {warning1AtMinute - timeoutAtMinute} منٹوں کے اندر دوبارہ لاگ ان کرنا ہو گا',
+          'آپ کو مجبوراً {warningMsg}منٹوں کے اندر دوبارہ لاگ ان کرنا ہو گا',
         secondTimeoutWarningMessage:
-          'آپ کو مجبوراً {warning2AtMinute - timeoutAtMinute} منٹوں کے اندر دوبارہ لاگ ان کرنا ہو گا',
+          'آپ کو مجبوراً {warningMsg} منٹوں کے اندر دوبارہ لاگ ان کرنا ہو گا',
         loginAgain:
           'اگر آپ 1 گھنٹے سے زیادہ وقت کے لیے MyFile استعمال کر رہے ہوں تو آپ کو دوبارہ لاگ ان کرنے کی ضرورت ہو گی۔',
         btnLoginAgain: 'دوبارہ لاگ ان کریں',
@@ -1288,9 +1288,9 @@ export default merge(
 
       forceLogout: {
         firstTimeoutWarningMessage:
-          '{warning1AtMinute - timeoutAtMinute}분 내에 다시 입력을 하셔야 합니다.',
+          '{warningMsg}분 내에 다시 입력을 하셔야 합니다.',
         secondTimeoutWarningMessage:
-          '{warning2AtMinute - timeoutAtMinute}분 내에 다시 입력을 하셔야 합니다.',
+          '{warningMsg}분 내에 다시 입력을 하셔야 합니다.',
         loginAgain:
           'MyFile을 1시간 넘게 이용 중이라면 로그인을 다시 해 주셔야 합니다.',
         btnLoginAgain: '다시 로그인하기',
@@ -1601,9 +1601,9 @@ export default merge(
 
       forceLogout: {
         firstTimeoutWarningMessage:
-          'Deberá volver a iniciar sesión en menos de {warning1AtMinute - timeoutAtMinute} minutos.',
+          'Deberá volver a iniciar sesión en menos de {warningMsg} minutos.',
         secondTimeoutWarningMessage:
-          'Deberá volver a iniciar sesión en menos de {warning2AtMinute - timeoutAtMinute} minutos.',
+          'Deberá volver a iniciar sesión en menos de {warningMsg} minutos.',
         loginAgain:
           'Deberá volver a iniciar sesión si utiliza MyFile durante más de 1 hora.',
         btnLoginAgain: 'Volver a iniciar sesión',
@@ -1916,9 +1916,9 @@ export default merge(
 
       forceLogout: {
         firstTimeoutWarningMessage:
-          'Vous devrez vous reconnecter dans moins de {warning1AtMinute - timeoutAtMinute} minutes.',
+          'Vous devrez vous reconnecter dans moins de {warningMsg} minutes.',
         secondTimeoutWarningMessage:
-          'Vous devrez vous reconnecter dans moins de {warning2AtMinute - timeoutAtMinute} minutes.',
+          'Vous devrez vous reconnecter dans moins de {warningMsg} minutes.',
         loginAgain:
           'Il vous faudra vous connecter à nouveau si vous utilisez MyFile plus d’une heure.',
         btnLoginAgain: 'Se reconnecter',
@@ -2235,9 +2235,9 @@ export default merge(
 
       forceLogout: {
         firstTimeoutWarningMessage:
-          'আপনাকে {warning1AtMinute - timeoutAtMinute} মিনিটেরও কম সময়ে আবার লগইন করতে বাধ্য করা হবে.',
+          'আপনাকে {warningMsg} মিনিটেরও কম সময়ে আবার লগইন করতে বাধ্য করা হবে.',
         secondTimeoutWarningMessage:
-          'আপনাকে {warning2AtMinute - timeoutAtMinute} মিনিটেরও কম সময়ে আবার লগইন করতে বাধ্য করা হবে.',
+          'আপনাকে {warningMsg}মিনিটেরও কম সময়ে আবার লগইন করতে বাধ্য করা হবে.',
         loginAgain:
           'মাই-ফাইল 1 ঘণ্টার বেশি ব্যবহার করলে আপনাকে আবার লগইন করতে হবে।.',
         btnLoginAgain: 'আবার লগইন করুন',
@@ -2551,9 +2551,9 @@ export default merge(
 
       forceLogout: {
         firstTimeoutWarningMessage:
-          'Za mniej niż {warning1AtMinute - timeoutAtMinute} min wymagane będzie ponowne zalogowanie.',
+          'Za mniej niż {warningMsg} min wymagane będzie ponowne zalogowanie.',
         secondTimeoutWarningMessage:
-          'Za mniej niż {warning2AtMinute - timeoutAtMinute} min wymagane będzie ponowne zalogowanie.',
+          'Za mniej niż {warningMsg} min wymagane będzie ponowne zalogowanie.',
         loginAgain:
           'Przy korzystaniu z MyFile dłużej niż przez godzinę wymagane jest ponowne zalogowanie.',
         btnLoginAgain: 'Zaloguj się ponownie',
@@ -2864,9 +2864,9 @@ export default merge(
 
       forceLogout: {
         firstTimeoutWarningMessage:
-          'Ou ap oblije konekte ankò nan mwens pase {warning1AtMinute - timeoutAtMinute} minit.',
+          'Ou ap oblije konekte ankò nan mwens pase {warningMsg} minit.',
         secondTimeoutWarningMessage:
-          'Ou ap oblije konekte ankò nan mwens pase {warning2AtMinute - timeoutAtMinute} minit.',
+          'Ou ap oblije konekte ankò nan mwens pase {warningMsg} minit.',
         loginAgain:
           'Ou oblije konekte ankò si ou ap sou MyFile pandan plis pase 1èdtan.',
         btnLoginAgain: 'Konekte ankò',
@@ -3175,10 +3175,8 @@ export default merge(
       },
 
       forceLogout: {
-        firstTimeoutWarningMessage:
-          '您將必須在{warning1AtMinute - timeoutAtMinute}分鐘內再次登入。',
-        secondTimeoutWarningMessage:
-          '您將必須在{warning2AtMinute - timeoutAtMinute}分鐘內再次登入。',
+        firstTimeoutWarningMessage: '您將必須在{warningMsg}分鐘內再次登入。',
+        secondTimeoutWarningMessage: '您將必須在{warningMsg}分鐘內再次登入。',
         loginAgain: '如果使用 MyFile 超過 1 小時，您必須再次登入。',
         btnLoginAgain: '再次登入',
       },
