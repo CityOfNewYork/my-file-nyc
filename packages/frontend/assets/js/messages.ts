@@ -283,6 +283,7 @@ export default merge(
 
         // title for collection table name column
         collectionTableTitle: "Documents you've shared, organized by date",
+        folderName: '{num} documents shared on {date} at {time}',
       },
 
       cbo: {
@@ -633,47 +634,49 @@ export default merge(
         // title for collection table name column
         collectionTableTitle:
           'المستندات التي قمت بمشاركتها وتنظيمها حسب التاريخ',
+        folderName:
+          'تمت مشاركة {num} من المستندات في {date} في تمام الساعة {time}',
+      },
 
-        cbo: {
-          selectClient: 'Select a client to access their account', // not found
-          clickToRemove: 'Click {close} to remove a client', // not found
-          noClientsTitle:
-            'You have not been added to any client My File NYC accounts', // not found
-          noClientsBody:
-            "Once a client adds you to their My File NYC account, you'll be able to manage and share documents on their behalf from this screen.\n\nA client can provide access to their documents in the Account menu settings in My File NYC.", // not found
-          noClientActionLabel: 'Not a case manager?', // not found
-          noClientActionText:
-            'If you are seeking permanent supportive housing, click here.', // not found
-          removeConfirmationTitle: 'Remove this client from your My File NYC?', // not found
-          removeConfirmationBody:
-            'You will no longer be able to view, manage, or share documents on their behalf. This cannot be undone.', // not found
-          removeConfirmationAction: 'Yes, Remove', // not found
-          errorAcceptingInvite:
-            'Invite could not be accepted. Please ensure you are logged in with the email address that received the invite.', // not found
-        },
+      cbo: {
+        selectClient: 'Select a client to access their account', // not found
+        clickToRemove: 'Click {close} to remove a client', // not found
+        noClientsTitle:
+          'You have not been added to any client My File NYC accounts', // not found
+        noClientsBody:
+          "Once a client adds you to their My File NYC account, you'll be able to manage and share documents on their behalf from this screen.\n\nA client can provide access to their documents in the Account menu settings in My File NYC.", // not found
+        noClientActionLabel: 'Not a case manager?', // not found
+        noClientActionText:
+          'If you are seeking permanent supportive housing, click here.', // not found
+        removeConfirmationTitle: 'Remove this client from your My File NYC?', // not found
+        removeConfirmationBody:
+          'You will no longer be able to view, manage, or share documents on their behalf. This cannot be undone.', // not found
+        removeConfirmationAction: 'Yes, Remove', // not found
+        errorAcceptingInvite:
+          'Invite could not be accepted. Please ensure you are logged in with the email address that received the invite.', // not found
+      },
 
-        agent: {
-          clientFirstNameLabel: 'الاسم الأول', // label of client first name column in agent view
-          clientLastNameLabel: 'اسم العائلة', // label of client last name column in agent view
-          clientDob: 'تاريخ الميلاد', // label of client date of birth column in agent view
-          clientCaseNum: 'رقم الحالة', // label of client case number column in agent view
-          clientEmail: 'البريد الإلكتروني', // label of client case number column in agent view
-          dateShared: 'اشتراک کی تاریخ', // label in side bar
-          noClientActionLabel: 'Not a government employee?', // not found
-          noClientActionText:
-            'If you are seeking permanent supportive housing, click here.', // not found
-          reorderFiles: 'إعادة ترتيب المستندات', // shown in agent view when downloading as PDF
-          selectClient:
-            'اختر العميل الذي يمكنه الوصول إلى المستندات التي تمت مشاركتها',
-          sharedBy: 'تمت مشاركتها بواسطة', // (not found) label in side bar
-          sharedFolderNameLabel: 'Name', // (not found) label of shared folder name column in agent view
-          sharedWith: 'تمت المشاركة مع', // promt for agency email
-        },
+      agent: {
+        clientFirstNameLabel: 'الاسم الأول', // label of client first name column in agent view
+        clientLastNameLabel: 'اسم العائلة', // label of client last name column in agent view
+        clientDob: 'تاريخ الميلاد', // label of client date of birth column in agent view
+        clientCaseNum: 'رقم الحالة', // label of client case number column in agent view
+        clientEmail: 'البريد الإلكتروني', // label of client case number column in agent view
+        dateShared: 'اشتراک کی تاریخ', // label in side bar
+        noClientActionLabel: 'Not a government employee?', // not found
+        noClientActionText:
+          'If you are seeking permanent supportive housing, click here.', // not found
+        reorderFiles: 'إعادة ترتيب المستندات', // shown in agent view when downloading as PDF
+        selectClient:
+          'اختر العميل الذي يمكنه الوصول إلى المستندات التي تمت مشاركتها',
+        sharedBy: 'تمت مشاركتها بواسطة', // (not found) label in side bar
+        sharedFolderNameLabel: 'Name', // (not found) label of shared folder name column in agent view
+        sharedWith: 'تمت المشاركة مع', // promt for agency email
+      },
 
-        landing: {
-          community: 'COMMUNITY SERVICES', // not found
-          agency: 'AGENCY SERVICES', // not found
-        },
+      landing: {
+        community: 'COMMUNITY SERVICES', // not found
+        agency: 'AGENCY SERVICES', // not found
       },
 
       uploadInputButton: {
@@ -987,6 +990,8 @@ export default merge(
         // title for collection table name column
         collectionTableTitle:
           'Документы, к которым вы предоставили доступ, упорядоченные по дате', // not found
+        folderName:
+          'На момент {date} {time} к следующему количеству документов предоставлено доступ: {num}.',
       },
 
       cbo: {
@@ -1348,6 +1353,7 @@ export default merge(
         // title for collection table name column
         collectionTableTitle:
           'دستاویزات جو آپ نے شیئر کی ہیں، مرتب کردہ بہ لحاظ تاریخ',
+        folderName: '{num} دستاویزات کا اشتراک کیا گیا {date} بذریعہ {time}',
       },
 
       cbo: {
@@ -1698,6 +1704,7 @@ export default merge(
 
         // title for collection table name column
         collectionTableTitle: '공유한 서류를 날짜별로 정리', // not found
+        folderName: '{time}에 {date}에서 문서 {num}건 공유',
       },
 
       cbo: {
@@ -2048,6 +2055,7 @@ export default merge(
         // title for collection table name column
         collectionTableTitle:
           'Los documentos que ha compartido, organizados por fecha', // not found
+        folderName: '{num} documentos compartidos el {date} a las {time}',
       },
 
       cbo: {
@@ -2406,6 +2414,7 @@ export default merge(
         // title for collection table name column
         collectionTableTitle:
           'Documents que vous avez partagés, organisés par date',
+        folderName: '{num} documents partagés le {date} à {time}',
       },
 
       cbo: {
@@ -2760,6 +2769,7 @@ export default merge(
 
         // title for collection table name column
         collectionTableTitle: 'আপনার শেয়ার করা নথিগুলি, তারিখ অনুসারে সংগঠিত',
+        folderName: '{num} নথি শেয়ার করা হয়েছে {date} তারিখে {time} -এ',
       },
 
       cbo: {
@@ -3114,6 +3124,8 @@ export default merge(
 
         // title for collection table name column
         collectionTableTitle: 'Udostępnione dokumenty według daty',
+        folderName:
+          'Liczba dokumentów udostępnionych w dniu {date} o godz. {time}: {num}',
       },
 
       cbo: {
@@ -3462,6 +3474,7 @@ export default merge(
 
         // title for collection table name column
         collectionTableTitle: 'Dokiman ou pataje yo, klase pa dat',
+        folderName: '{num}dokiman ki pataje nan dat{date} nan{time}',
       },
 
       cbo: {
@@ -3806,6 +3819,7 @@ export default merge(
         noSharedDocuments: '您尚未收到任何分享的文件',
         // title for collection table name column
         collectionTableTitle: '您已分享的文件，依照日期排序', // not found
+        folderName: '在 {date} 分 {time} 次上傳 {num} 份檔案',
       },
 
       cbo: {
