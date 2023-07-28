@@ -15,6 +15,44 @@ export default merge(
         title: 'My File NYC',
       },
 
+      validationMsg: {
+        firstNameRequired: 'The First Name field is required.',
+        firstNameNotValid: 'First Name is not valid.',
+        firstNameMaxLength:
+          'The First Name field may not be greater than 50 characters.',
+        firstNameMinLength:
+          'The First Name field must be at least 2 characters long.',
+        firstNameAlpha: 'The First Name field may only contain letters.',
+
+        //Last Name
+        lastNameRequired: 'The Last Name field is required.',
+        lastNameNotValid: 'Last Name is not valid.',
+        lastNameMaxLength:
+          'The Last Name field may not be greater than 50 characters.',
+        lastNameMinLength:
+          'The Last Name field must be at least 2 characters long.',
+        lastNameAlpha: 'The Last Name field may only contain letters.',
+
+        //Month
+        monthNotValid: 'Month is not valid.',
+        monthRequired: 'Month is required.',
+
+        //Day
+        dayNotValid: 'Day is not valid.',
+        dayRequired: 'The Day field is required.',
+
+        //Year
+        yearRequired: 'The Year field is required.',
+        yearNotValid: 'Year is not valid.',
+
+        // Case Number
+        caseNumberRequired: 'The Case Number field is required.',
+        caseNumberMaxLength:
+          'The Case Number field may not be greater than 20 characters.',
+        caseNumberMinLength:
+          'The Case Number field must be at least 4 characters long.',
+      },
+
       statusIndicator: {
         clientInReview: 'In review',
         clientReviewed: 'Reviewed',
@@ -139,6 +177,9 @@ export default merge(
         dhsShow:
           'Add your DHS case number if you’re a returning family. If you’re new to PATH, add the ticket number you received when you came to PATH (example: CL ####).',
         locale: 'Select language',
+        month: 'Month',
+        day: 'Day',
+        year: 'Year',
       },
 
       // All copy related to the create shared folder flow
@@ -328,6 +369,40 @@ export default merge(
       application: {
         title: 'My File NYC',
       },
+
+      validationMsg: {
+        firstNameRequired: 'حقل الاسم الأول مطلوب.',
+        firstNameNotValid: 'الاسم الأول غير صالح.',
+        firstNameMaxLength: 'يجب ألا يزيد حقل الاسم الأول عن 50 حرفًا',
+        firstNameMinLength: 'يجب أن يتكون حقل الاسم الأول من حرفين على الأقل.',
+        firstNameAlpha: 'يمكن أن يحتوي حقل الاسم الأول على أحرف فقط.',
+
+        //Last Name
+        lastNameRequired: 'حقل الاسم الأخير مطلوب',
+        lastNameNotValid: 'الاسم الأخير غير صالح.',
+        lastNameMaxLength: 'يجب ألا يزيد حقل الاسم الأخير عن 50 حرفًا',
+        lastNameMinLength:
+          'يجب أن يتكون حقل "الاسم الأخير" من حرفين على الأقل.',
+        lastNameAlpha: 'قد يحتوي حقل الاسم الأخير على أحرف فقط.',
+
+        //Month
+        monthNotValid: 'الشهر غير صالح',
+        monthRequired: 'الشهر مطلوب.',
+
+        //Day
+        dayNotValid: 'اليوم غير صالح',
+        dayRequired: 'حقل اليوم مطلوب',
+
+        //Year
+        yearRequired: 'حقل السنة مطلوب.',
+        yearNotValid: 'حقل السنة مطلوب',
+
+        // Case Number
+        caseNumberRequired: 'حقل رقم الحالة مطلوب',
+        caseNumberMaxLength: 'يجب ألا يزيد حقل رقم الحالة عن 20 حرفًا',
+        caseNumberMinLength: 'يجب أن يتكون حقل رقم الحالة من حرفين على الأقل',
+      },
+
       statusIndicator: {
         clientInReview: 'قيد المراجعة',
         clientReviewed: 'تمت المراجعة',
@@ -451,6 +526,9 @@ export default merge(
         dhsShow:
           'أضف رقم حالتك لدى إدارة DHS إذا كنت فردًا بأسرة عائدة. أما إذا كنت جديدًا ببرنامج PATH، فأضف رقم التذكرة التي استلمتها عند مجيئك لبرنامج PATH (مثال: CL ####).',
         locale: 'اختر اللغة',
+        month: 'الشهر',
+        day: 'اليوم',
+        year: 'العام',
       },
 
       // All copy related to the create shared folder flow
@@ -642,6 +720,42 @@ export default merge(
         title: 'My File NYC',
       },
 
+      validationMsg: {
+        firstNameRequired: 'Поле «Имя» обязательно для заполнения',
+        firstNameNotValid: 'Имя не соответствует действительности',
+        firstNameMaxLength: 'Поле «Имя» не может содержать более 50 символов',
+        firstNameMinLength: 'Поле «Имя» должно содержать не менее 2 символов',
+        firstNameAlpha: 'Поле «Имя» может содержать только буквы',
+
+        //Last Name
+        lastNameRequired: 'Поле «Фамилия» обязательно для заполнения',
+        lastNameNotValid: 'Фамилия не соответствует действительности',
+        lastNameMaxLength:
+          'Поле «Фамилия» не может содержать более 50 символов',
+        lastNameMinLength:
+          'Поле «Фамилия» должно содержать не менее 2 символов',
+        lastNameAlpha: 'Поле «Фамилия» может содержать только буквы',
+
+        //Month
+        monthNotValid: 'Месяц не соответствует действительности',
+        monthRequired: 'Поле «Месяц» обязательно для заполнения',
+
+        //Day
+        dayNotValid: 'День не соответствует действительности',
+        dayRequired: 'Поле «День» обязательно для заполнения',
+
+        //Year
+        yearRequired: 'Поле «Год» обязательно для заполнения',
+        yearNotValid: 'Год не соответствует рамкам между 1920 и 2022 года',
+
+        // Case Number
+        caseNumberRequired: 'Поле «Номер дела» обязательно для заполнения',
+        caseNumberMaxLength:
+          'Поле «Номер дела» не может содержать более 20 символов',
+        caseNumberMinLength:
+          'Поле «Номер обращения» должно содержать не менее 4 символов.',
+      },
+
       statusIndicator: {
         clientInReview: 'На рассмотрении',
         clientReviewed: 'Рассмотрено',
@@ -765,6 +879,9 @@ export default merge(
         dhsShow:
           'Введите номер вашего дела DHS, если вы семья, которая снова возвращается в приют. Если вы новый участник PATH, введите номер билета, который вы получили, когда пришли в PATH (пример: CL ####).',
         locale: 'Выбрать язык',
+        month: 'Месяц',
+        day: 'День',
+        year: 'Год',
       },
 
       // All copy related to the create shared folder flow
@@ -962,6 +1079,41 @@ export default merge(
         title: 'My File NYC',
       },
 
+      validationMsg: {
+        firstNameRequired: 'آپ کے پہلے نام کی فیلڈ درکار ہے',
+        firstNameNotValid: 'پہلا نام قابلِ استعمال نہیں ہے۔',
+        firstNameMaxLength:
+          'پہلے نام کی فیلڈ 50 حروف سے زائد پر مشتمل نہیں ہو سکتی',
+        firstNameMinLength: 'پہلا نام کا فیلڈ کم از کم 2 حروف کا ہونا چاہیے۔.',
+        firstNameAlpha: 'پہلا نام والا فیلڈ صرف حروف پر مشتمل ہو سکتا ہے۔',
+
+        //Last Name
+        lastNameRequired: 'آخری نام کی فیلڈ درکار ہے',
+        lastNameNotValid: 'آخری نام قابلِ استعمال نہیں ہے۔',
+        lastNameMaxLength:
+          'آخری نام کی فیلڈ 50 حروف سے زائد پر مشتمل نہیں ہو سکتی',
+        lastNameMinLength: 'آخری نام کا فیلڈ کم از کم 2 حروف کا ہونا چاہیے۔',
+        lastNameAlpha: 'آخری نام کے خانے میں صرف حروف ہوسکتے ہیں۔',
+
+        //Month
+        monthNotValid: 'مہینہ کارآمد نہیں ہے۔',
+        monthRequired: 'مہینہ درکار ہے۔',
+
+        //Day
+        dayNotValid: 'دن درست نہیں ہے۔',
+        dayRequired: 'دن کی فیلڈ درکار ہے',
+
+        //Year
+        yearRequired: 'سال کی فیلڈ درکار ہے',
+        yearNotValid: 'سال درست نہیں ہے۔',
+
+        // Case Number
+        caseNumberRequired: 'کیس نمبر کی فیلڈ درکار ہے',
+        caseNumberMaxLength:
+          'کیس نمبر کی فیلڈ 20 حروف سے زائد پر مشتمل نہیں ہو سکتی',
+        caseNumberMinLength: 'کیس نمبر کا فیلڈ کم از کم 4 حروف کا ہونا چاہیے۔',
+      },
+
       statusIndicator: {
         clientInReview: 'نظرِ ثانی کی جا رہی ہے',
         clientReviewed: 'نظرِ ثانی شدہ',
@@ -1086,6 +1238,9 @@ export default merge(
         dhsShow:
           'اگر آپ واپس آنے والے خاندان ہیں تو اپنا DHS کیس نمبر شامل کریں۔ اگر آپ PATH میں نئے ہیں، تو وہ ٹکٹ نمبر شامل کریں جو آپ کو PATH پر آنے پر موصول ہوا تھا (مثال: CL ####)',
         locale: 'زبان منتخب کریں',
+        month: 'مہینہ',
+        day: 'دن',
+        year: 'سال',
       },
 
       // All copy related to the create shared folder flow
@@ -1281,6 +1436,38 @@ export default merge(
         title: 'My File NYC',
       },
 
+      validationMsg: {
+        firstNameRequired: '이름 필드는 필수입니다',
+        firstNameNotValid: '이름 필드가 유효하지 않습니다',
+        firstNameMaxLength: '이름 필드는 50자를 넘을 수 없습니다',
+        firstNameMinLength: '케이스 번호 필드는 최소 2자 이상이어야 합니다.',
+        firstNameAlpha: '이름 필드에는 문자만 사용할 수 있습니다.',
+
+        //Last Name
+        lastNameRequired: '성 필드는 필수입니다',
+        lastNameNotValid: '성 필드가 유효하지 않습니다',
+        lastNameMaxLength: '성 필드는 50자를 넘을 수 없습니다',
+        lastNameMinLength: '성 필드는 2자 이상이어야 합니다',
+        lastNameAlpha: '성 필드에는 문자만 포함할 수 있습니다',
+
+        //Month
+        monthNotValid: '월이 유효하지 않습니다',
+        monthRequired: '월이 필요합니다',
+
+        //Day
+        dayNotValid: '날짜가 유효하지 않습니다',
+        dayRequired: '일 필드는 필수입니다',
+
+        //Year
+        yearRequired: '년도 필드는 필수입니다',
+        yearNotValid: '연도가 유효하지 않습니다',
+
+        // Case Number
+        caseNumberRequired: '케이스 번호 필드는 필수입니다',
+        caseNumberMaxLength: '케이스 번호 필드는 20자를 넘을 수 없습니다',
+        caseNumberMinLength: '케이스 번호 필드는 최소 4자 이상이어야 합니다',
+      },
+
       statusIndicator: {
         clientInReview: '검수 중',
         clientReviewed: '검수 완료',
@@ -1404,6 +1591,9 @@ export default merge(
         dhsShow:
           '귀국 가족인 경우 DHS 케이스 번호를 추가하십시오. PATH를 처음 사용하는 경우 PATH에 왔을 때 받은 티켓 번호(예: CL ####)를 추가하십시오.',
         locale: '언어 선택',
+        month: '월',
+        day: '일',
+        year: '연도',
       },
 
       // All copy related to the create shared folder flow
@@ -1594,6 +1784,40 @@ export default merge(
         title: 'My File NYC',
       },
 
+      validationMsg: {
+        firstNameRequired: 'El campo Nombre es obligatorio',
+        firstNameNotValid: 'El nombre no es válido',
+        firstNameMaxLength: 'El campo Nombre admite 50 caracteres como máximo',
+        firstNameMinLength: 'El campo Nombre debe tener al menos 2 caracteres',
+        firstNameAlpha: 'El campo Nombre solo puede contener letras.',
+
+        //Last Name
+        lastNameRequired: 'El campo Apellido es obligatorio',
+        lastNameNotValid: 'El apellido no es válido',
+        lastNameMaxLength: 'El campo Apellido admite 50 caracteres como máximo',
+        lastNameMinLength: 'El campo Apellido debe tener al menos 2 caracteres',
+        lastNameAlpha: 'El campo Apellido solo puede contener letras',
+
+        //Month
+        monthNotValid: 'El mes no es válido',
+        monthRequired: 'Se requiere el mes',
+
+        //Day
+        dayNotValid: 'El dia no es valido',
+        dayRequired: 'El campo Día es obligatorio',
+
+        //Year
+        yearRequired: 'El campo Año es obligatorio',
+        yearNotValid: 'El año no es válido',
+
+        // Case Number
+        caseNumberRequired: 'El campo Número de caso es obligatorio',
+        caseNumberMaxLength:
+          'El campo Número de caso admite 20 caracteres como máximo',
+        caseNumberMinLength:
+          'El campo Número de caso debe tener al menos 4 caracteres',
+      },
+
       statusIndicator: {
         clientInReview: 'En revisión',
         clientReviewed: 'Revisado',
@@ -1717,6 +1941,9 @@ export default merge(
         dhsShow:
           'Agregue su número de caso de DHS si es una familia que regresa. Si es nuevo en PATH, agregue el número de ticket que recibió cuando llegó a PATH (ejemplo: CL ####).',
         locale: 'Seleccionar idioma',
+        month: 'Mes',
+        day: 'Día',
+        year: 'Año',
       },
 
       // All copy related to the create shared folder flow
@@ -1909,6 +2136,44 @@ export default merge(
         title: 'My File NYC',
       },
 
+      validationMsg: {
+        firstNameRequired: 'Le champ « Prénom » est obligatoire',
+        firstNameNotValid: 'Le prénom n’est pas valide.',
+        firstNameMaxLength:
+          'Le champ « Prénom » ne peut pas comporter plus de 50 caractères',
+        firstNameMinLength:
+          'Le champ « Prénom »  doit comporter au moins 2 caractères',
+        firstNameAlpha: 'Le champ « Prénom » ne peut contenir que des lettres',
+
+        //Last Name
+        lastNameRequired: 'Le champ « Nom » est obligatoire',
+        lastNameNotValid: 'Le nom n’est pas valide',
+        lastNameMaxLength:
+          'Le champ « Nom » ne peut pas comporter plus de 50 caractères',
+        lastNameMinLength:
+          'Le champ « Nom » de famille doit comporter au moins 2 caractères.',
+        lastNameAlpha: 'Le champ « Nom » ne peut contenir que des lettres.',
+
+        //Month
+        monthNotValid: "Le mois n'est pas valide",
+        monthRequired: 'Le champ « Mois » est obligatoire.',
+
+        //Day
+        dayNotValid: "Le jour n'est pas valide",
+        dayRequired: 'Le champ « Jour » est obligatoire',
+
+        //Year
+        yearRequired: 'Le champ « Année » est obligatoire',
+        yearNotValid: "Le annee n'est pas valid",
+
+        // Case Number
+        caseNumberRequired: 'Le champ « Numéro de dossier » est obligatoire',
+        caseNumberMaxLength:
+          'Le champ « Numéro de dossier » ne peut pas comporter plus de 20 caractères',
+        caseNumberMinLength:
+          'The Case Number field must be at least 4 characters long.',
+      },
+
       statusIndicator: {
         clientInReview: 'En cours de vérification',
         clientReviewed: 'Vérifié',
@@ -2034,6 +2299,9 @@ export default merge(
         dhsShow:
           'Indiquez votre numéro de dossier du DHS si votre famille est déjà enregistrée. Si vous êtes nouveau (nouvelle) client(e) de PATH, indiquez le numéro de ticket que vous avez reçu quand vous vous êtes rendu(e) dans le centre PATH (exemple: CL ####).',
         locale: 'Sélectionner la langue',
+        month: 'Mois',
+        day: 'Jour',
+        year: 'Année',
       },
 
       // All copy related to the create shared folder flow
@@ -2228,6 +2496,41 @@ export default merge(
         title: 'My File NYC',
       },
 
+      validationMsg: {
+        firstNameRequired: 'নাম ক্ষেত্রটি প্রয়োজন',
+        firstNameNotValid: 'নাম বৈধ নয়।',
+        firstNameMaxLength: 'নাম ক্ষেত্রটি 50 অক্ষরের বেশি নাও হতে পারে',
+        firstNameMinLength:
+          'প্রথম নাম ক্ষেত্রটি অবশ্যই কমপক্ষে 2 অক্ষর দীর্ঘ হতে হবে।',
+        firstNameAlpha: 'প্রথম নামের ক্ষেত্রে শুধুমাত্র অক্ষর থাকতে পারে।',
+
+        //Last Name
+        lastNameRequired: 'পদবি ক্ষেত্রটি প্রয়োজন',
+        lastNameNotValid: 'পদবি বৈধ নয়।',
+        lastNameMaxLength: 'পদবি ক্ষেত্রটি 50 অক্ষরের বেশি নাও হতে পারে',
+        lastNameMinLength:
+          'শেষ নাম ক্ষেত্রটি অবশ্যই কমপক্ষে 2 অক্ষর দীর্ঘ হতে হবে।',
+        lastNameAlpha: 'শেষ নামের ক্ষেত্রে শুধুমাত্র অক্ষর থাকতে পারে।',
+
+        //Month
+        monthNotValid: 'মাস বৈধ নয়।',
+        monthRequired: 'মাস প্রয়োজন',
+
+        //Day
+        dayNotValid: 'দিন বৈধ নয়',
+        dayRequired: 'দিন ক্ষেত্রটি প্রয়োজন',
+
+        //Year
+        yearRequired: 'বছর ক্ষেত্রটি প্রয়োজন',
+        yearNotValid: 'বছর বৈধ নয়।',
+
+        // Case Number
+        caseNumberRequired: 'কেস নম্বর ক্ষেত্রটি প্রয়োজন',
+        caseNumberMaxLength: 'কেস নম্বর ক্ষেত্রটি 20 অক্ষরের বেশি নাও হতে পারে',
+        caseNumberMinLength:
+          'কেস নম্বর ক্ষেত্রটি অবশ্যই কমপক্ষে 4 অক্ষর দীর্ঘ হতে হবে।',
+      },
+
       statusIndicator: {
         clientInReview: 'পর্যালোচনা করা হচ্ছে',
         clientReviewed: 'পর্যালোচনা করা হয়েছে',
@@ -2351,6 +2654,9 @@ export default merge(
         dhsShow:
           'আপনি যদি পুনরায় ফিরে আসা পরিবার হন তবে আপনার DHS কেস নম্বর যোগ করুন। আপনি যদি PATH-এ নতুন হয়ে থাকেন, সেক্ষেত্রে আপনি PATH-এ আসার সময় যে টিকিট নম্বর লাভ করেছিলেন সেটা যোগ করুন (উদাহরণ: CL ####)',
         locale: 'সেভ করুন',
+        month: 'মাস',
+        day: 'দিন',
+        year: 'বছর',
       },
 
       // All copy related to the create shared folder flow
@@ -2544,6 +2850,40 @@ export default merge(
         title: 'My File NYC',
       },
 
+      validationMsg: {
+        firstNameRequired: 'Pole „Imię” jest obowiązkowe',
+        firstNameNotValid: 'Imię jest niepoprawne.',
+        firstNameMaxLength: 'Pole „Imię” może zawierać maksymalnie 50 znaków',
+        firstNameMinLength: 'Pole „Imię” musi mieć co najmniej 2 znaki.',
+        firstNameAlpha: 'Pole „Imię” może zawierać tylko litery.',
+
+        //Last Name
+        lastNameRequired: 'Pole „Nazwisko” jest obowiązkowe',
+        lastNameNotValid: 'Nazwisko jest niepoprawne.',
+        lastNameMaxLength:
+          'Pole „Nazwisko” może zawierać maksymalnie 50 znaków',
+        lastNameMinLength: 'Pole „Nazwisko” musi mieć co najmniej 2 znaki.',
+        lastNameAlpha: 'Pole „Nazwisko” może zawierać tylko litery',
+
+        //Month
+        monthNotValid: 'Miesiąc jest niepoprawny',
+        monthRequired: 'Pole „Miesiąc” jest obowiązkowe.',
+
+        //Day
+        dayNotValid: 'Dzień jest nieprawidłowy',
+        dayRequired: 'Pole „Dzień” jest obowiązkowe',
+
+        //Year
+        yearRequired: 'Pole „Rok” jest obowiązkowe',
+        yearNotValid: 'Rok jest nieprawidłowy',
+
+        // Case Number
+        caseNumberRequired: 'Pole „Numer sprawy” jest obowiązkowe',
+        caseNumberMaxLength:
+          'Pole „Numer sprawy” może zawierać maksymalnie 20 znaków',
+        caseNumberMinLength: 'Pole Numer sprawy musi mieć co najmniej 4 znaki.',
+      },
+
       statusIndicator: {
         clientInReview: 'W trakcie weryfikacji',
         clientReviewed: 'Zweryfikowano',
@@ -2668,6 +3008,9 @@ export default merge(
         dhsShow:
           'Rodziny składające wniosek po raz kolejny są proszone o podanie numeru sprawy DHS. Nowi klienci PATH są proszeni o dołączenie numeru biletu otrzymanego podczas pierwszej wizyty w biurze PATH (na przykład: CL ####).',
         locale: 'Wybierz język',
+        month: 'Miesiąc',
+        day: 'Dzień',
+        year: 'Rok',
       },
 
       // All copy related to the create shared folder flow
@@ -2857,6 +3200,39 @@ export default merge(
         title: 'My File NYC',
       },
 
+      validationMsg: {
+        firstNameRequired: 'Pati Prenon an obligatwa',
+        firstNameNotValid: 'Prenon an pa valid',
+        firstNameMaxLength: 'Pati Prenon an pa dwe pi plis pase 50 karaktè',
+        firstNameMinLength: 'Field Non an dwe gen omwen 2 karaktè',
+        firstNameAlpha: 'Jaden Premye Non an ka genyen sèlman lèt.',
+
+        //Last Name
+        lastNameRequired: 'Pati Non an obligatwa',
+        lastNameNotValid: 'Non an pa valid',
+        lastNameMaxLength: 'Pati Non an pa dwe pi plis pase 50 karaktè.',
+        lastNameMinLength: 'Chan non siyati a dwe gen omwen 2 karaktè',
+        lastNameAlpha: 'Chan non siyati a ka sèlman genyen lèt.',
+
+        //Month
+        monthNotValid: 'Mwa pa valid.',
+        monthRequired: 'Mwa obligatwa.',
+
+        //Day
+        dayNotValid: 'Jounen pa valab',
+        dayRequired: 'Pati Jou a obligatwa',
+
+        //Year
+        yearRequired: 'Pati Ane a obligatwa',
+        yearNotValid: 'Ane pa valab.',
+
+        // Case Number
+        caseNumberRequired: 'Pati Nimewo Dosye a obligatwa',
+        caseNumberMaxLength:
+          'Pati Nimewo Dosye an pa dwe pi plis pase 20 karaktè',
+        caseNumberMinLength: 'Jaden Nimewo Ka a dwe gen omwen 4 karaktè.',
+      },
+
       statusIndicator: {
         clientInReview: 'Nan etap Revizyon',
         clientReviewed: 'Yo egzamine',
@@ -2980,6 +3356,9 @@ export default merge(
         dhsShow:
           'Mete nimewo dosye DHS ou, si ou se yon fanmi ki ap retounen. Si ou nouvo nan PATH, mete nimewo tikè ou te resevwa lè ou t ap vin nan PATH la (egzanp: CL ####).',
         locale: 'Chwazi lang lan',
+        month: 'Mwa',
+        day: 'Jou',
+        year: 'Ane',
       },
 
       // All copy related to the create shared folder flow
@@ -3169,6 +3548,38 @@ export default merge(
         title: 'My File NYC',
       },
 
+      validationMsg: {
+        firstNameRequired: '名字欄位必填',
+        firstNameNotValid: '名字無效',
+        firstNameMaxLength: '名字欄位不能超過 50 個字符',
+        firstNameMinLength: '名字字段的長度必須至少為 2 個字符',
+        firstNameAlpha: '名字字段只能包含字母',
+
+        //Last Name
+        lastNameRequired: '姓氏欄位必填',
+        lastNameNotValid: '姓氏無效',
+        lastNameMaxLength: '姓氏欄位不能超過 50 個字符',
+        lastNameMinLength: '姓氏字段的長度必須至少為 2 個字符',
+        lastNameAlpha: '姓氏字段只能包含字母。',
+
+        //Month
+        monthNotValid: '月份無效',
+        monthRequired: '需要月份',
+
+        //Day
+        dayNotValid: '日期無效',
+        dayRequired: '日期欄位必填',
+
+        //Year
+        yearRequired: '年份欄位必填',
+        yearNotValid: '年份無效',
+
+        // Case Number
+        caseNumberRequired: '個案編號欄位必填',
+        caseNumberMaxLength: '個案編號欄位不能超過 20 個字符',
+        caseNumberMinLength: '案例編號字段的長度必須至少為 4 個字符',
+      },
+
       statusIndicator: {
         clientInReview: '審查中',
         clientReviewed: '已審查',
@@ -3289,6 +3700,9 @@ export default merge(
         dhsShow:
           '如果您是返鄉人士，您的 DHS 個案號碼是多少？如果您還不瞭解 PATH，在您前往 PATH 時請添加您收到的票號（例如：CL ####）。',
         locale: '選擇語言',
+        month: '月',
+        day: '日',
+        year: '年',
       },
 
       // All copy related to the create shared folder flow
