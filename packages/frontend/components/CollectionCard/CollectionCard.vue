@@ -22,9 +22,17 @@
         <v-icon>$folder</v-icon>
       </v-col>
       <v-col>
-        <v-card-title>{{ collection.name }}</v-card-title>
+        <v-card-title>
+          {{
+            $t('sharedFolder.folderName', {
+              num: collection.numberOfDocuments,
+              date: format(new Date(collection.createdDate), 'MM/dd/yyyy'),
+              time: format(new Date(collection.createdDate), 'hh:mm a'),
+            })
+          }}
+        </v-card-title>
 
-        <v-card-subtitle>{{ collectionDate }}</v-card-subtitle>
+        <!-- <v-card-subtitle>{{ collectionDate }}</v-card-subtitle> -->
       </v-col>
     </v-row>
   </v-card>
@@ -43,6 +51,7 @@ export default class CollectionCard extends Vue {
   @Prop({ default: false }) selectable: boolean
   @Prop({ default: null }) value: boolean
   checked = false
+  format = format
 
   get collectionDate() {
     return format(new Date(this.collection.createdDate), 'LLL d, yyyy')
