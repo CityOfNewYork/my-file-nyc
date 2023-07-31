@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div v-if="!loading">
     <ApplicationHeader />
 
-    <AppBar :breadcrumbs="breadcrumbs">
+    <AppBar :breadcrumbs="breadcrumbs" :loadingUpdate="loadingUpdate">
       <template v-if="showActions" v-slot:actions>
         <v-btn
           v-if="$vuetify.breakpoint.smAndUp && userStore.isClient"
@@ -94,6 +94,14 @@
       </template>
     </v-main>
   </div>
+  <div v-else slot="spinner">
+      <v-progress-circular
+        :title="`${$t('navigation.loading')}`"
+        indeterminate
+        color="primary"
+        class="my-10"
+      />
+  </div>
 </template>
 
 <script lang="ts">
@@ -109,9 +117,22 @@ import Navigation from '@/mixins/navigation'
 export default class ClientDashboard extends Vue {
   [x: string]: any
   @Prop({ default: false }) customMobileNav: boolean
+
+  data() {
+    return {
+      loading: this.loading
+    }
+  }
+
   currentTab = 'tab-docs'
   userStore = userStore
   delegatedClient: DelegatedClient | null = null
+  loading = false
+
+  loadingUpdate(){
+    this.loading = !this.loading
+    console.log(this.loading)
+  }
 
   async mounted() {
     if (this.$route.query.tab) {

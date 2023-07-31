@@ -77,7 +77,7 @@
     />
     <!-- <slot v-if="!userStore.isAgent" name="actions" /> -->
     <template v-if="!empty && $vuetify.breakpoint.mdAndUp">
-      <LanguageChanger v-if="userStore.isClient" text-color="white" />
+      <LanguageChanger v-if="userStore.isClient" text-color="white" :loadingUpdate="loadingUpdate" />
       <v-btn
         v-if="$vuetify.breakpoint.smAndUp && userStore.isClient"
         text
@@ -209,7 +209,8 @@ export default class AppBar extends mixins(Navigation) {
   @Prop({ default: () => [] }) breadcrumbs: Breadcrumb[]
   @Prop({ default: '' }) title: string
   @Prop({ default: false }) customMobileNav: boolean
-
+  @Prop({ default: () => () => {} }) loadingUpdate: () => void
+  
   showActivity = false
   userStore = userStore
   recompute = false
