@@ -28,7 +28,7 @@
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
 
 @Component
-export default class LanguageChanger extends Vue {
+export default class LanguageSelector extends Vue {
   @Prop({ default: false }) outlined: boolean
   @Prop({ default: 'white' }) textColor: string
   @Prop({ default: 'center' }) textOrientation: string

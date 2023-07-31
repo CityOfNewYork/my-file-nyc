@@ -13,6 +13,7 @@
         marginTop: '10px',
         padding: padding,
       }"
+      v-on:change="userPatch"
     >
       <template v-slot:selection="{ item }">
         {{ languagesObject[item] }}
@@ -38,20 +39,30 @@ export default class LanguageChanger extends Vue {
   @Prop({ default: 'white' }) textColor: string
   @Prop({ default: 'center' }) textOrientation: string
   @Prop({ default: '-1px 19px;' }) padding: string
+  @Prop({ default: () => () => {} }) loadingUpdate: () => void
   userStore = userStore as any
 
-  // Update usere locale in database and app state
+ 
+    // Update usere locale in database and app state
   async userPatch() {
-    const data = {
-      givenName: this.userStore.profile.givenName,
-      familyName: this.userStore.profile.familyName,
-      dob: this.userStore.profile.dob,
-      dhsCaseNumber: this.userStore.profile.dhsCaseNumber,
-      locale: this.$i18n.locale,
-    }
+     if (!this.userStore.profile) {
+      this.prefixRouteUpdate(this.$router.currentRoute.fullPath.split('/'))
+     }
+    else{
+      this.loadingUpdate()
+    
+      const data = {
+        givenName: this.userStore.profile.givenName,
+        familyName: this.userStore.profile.familyName,
+        dob: this.userStore.profile.dob,
+        dhsCaseNumber: this.userStore.profile.dhsCaseNumber,
+        locale: this.$i18n.locale,
+      }
 
-    const response = await this.$store.dispatch('user/patchProfile', data)
-    this.$i18n.locale = response.locale
+      const response = await this.$store.dispatch('user/patchProfile', data)
+      this.$i18n.locale = response.locale
+      this.prefixRouteUpdate(this.$router.currentRoute.fullPath.split('/'))
+      }
   }
 
   prefixRouteUpdate(route: any){
@@ -65,19 +76,20 @@ export default class LanguageChanger extends Vue {
       else {
         route.splice(1, 0, this.$i18n.locale)
       }
-    }    
-    this.$router.push(route.join('/'))
-  }
-
-  updated() {
-    if (this.userStore.profile) {
-      if (this.userStore.profile.locale !== this.$i18n.locale) {
-        this.userPatch()
-      }
     }
-
-    this.prefixRouteUpdate(this.$router.currentRoute.fullPath.split('/'))
+    this.$router.push(route.join('/'))
+    this.loadingUpdate()
   }
+
+  // updated() {
+  //   // if (this.userStore.profile) {
+  //   //   if (this.userStore.profile.locale !== this.$i18n.locale) {
+  //   //     this.userPatch()
+  //   //   }
+  //   // }
+
+  //   console.log(this.$i18n.locale)
+  // }
 
   languagesObject: Languages = {
     en: 'English',
