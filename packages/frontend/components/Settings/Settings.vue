@@ -23,7 +23,19 @@
                 accountProfile.givenName ? '' : $t('account.firstName')
               "
             />
-            <span class="invalid">{{ errors[0] }}</span>
+            <!-- Display errors for each validation rule with translations -->
+            <span class="invalid" v-if="givenName.length === 0">
+              {{ $t('validationMsg.firstNameRequired') }}
+            </span>
+            <span class="invalid" v-else-if="givenName.length > 50">
+              {{ $t('validationMsg.firstNameMaxLength') }}
+            </span>
+            <span class="invalid" v-else-if="givenName.length < 2">
+              {{ $t('validationMsg.firstNameMinLength') }}
+            </span>
+            <span class="invalid" v-else-if="!givenName.match(/^[A-Za-z]+$/)">
+              {{ $t('validationMsg.firstNameAlpha') }}
+            </span>
           </ValidationProvider>
           <ValidationProvider
             name="Last Name"
@@ -39,7 +51,18 @@
                 accountProfile.familyName ? '' : $t('account.lastName')
               "
             />
-            <span class="invalid">{{ errors[0] }}</span>
+            <span class="invalid" v-if="familyName.length === 0">
+              {{ $t('validationMsg.lastNameRequired') }}
+            </span>
+            <span class="invalid" v-else-if="familyName.length > 50">
+              {{ $t('validationMsg.lasttNameMaxLength') }}
+            </span>
+            <span class="invalid" v-else-if="familyName.length < 2">
+              {{ $t('validationMsg.lastNameMinLength') }}
+            </span>
+            <span class="invalid" v-else-if="!familyName.match(/^[A-Za-z]+$/)">
+              {{ $t('validationMsg.lastNameAlpha') }}
+            </span>
           </ValidationProvider>
 
           <p class="subtitle-1">{{ $t('account.whatIsYourDob') }}</p>
@@ -50,14 +73,26 @@
                 rules="between:1,12|required|max:2"
                 v-slot="{ errors }"
               >
-                <label>Month</label>
+                <label>{{ $t('account.month') }}</label>
                 <v-text-field
                   type="number"
                   outlined
                   v-model="month"
                   :class="$vuetify.breakpoint.mdAndDown ? 'input' : ''"
                 />
-                <span class="invalid">{{ errors[0] }}</span>
+                <span class="invalid" v-if="month.length === 0">
+                  {{ $t('validationMsg.monthRequired') }}
+                </span>
+                <span
+                  class="invalid"
+                  v-if="
+                    month.length > 2 ||
+                    parseInt(month) <= 0 ||
+                    parseInt(month) > 12
+                  "
+                >
+                  {{ $t('validationMsg.monthNotValid') }}
+                </span>
               </ValidationProvider>
             </div>
             <div class="inputContainer">
@@ -66,14 +101,22 @@
                 rules="required|between:1,31|max:2"
                 v-slot="{ errors }"
               >
-                <label>Day</label>
+                <label>{{ $t('account.day') }}</label>
                 <v-text-field
                   type="number"
                   outlined
                   v-model="day"
                   :class="$vuetify.breakpoint.mdAndDown ? 'input' : ''"
                 />
-                <span class="invalid">{{ errors[0] }}</span>
+                <span class="invalid" v-if="day.length === 0">
+                  {{ $t('validationMsg.dayRequired') }}
+                </span>
+                <span
+                  class="invalid"
+                  v-if="parseInt(day) <= 0 || parseInt(day) > 31"
+                >
+                  {{ $t('validationMsg.dayNotValid') }}
+                </span>
               </ValidationProvider>
             </div>
             <div class="inputContainer">
@@ -82,14 +125,26 @@
                 rules="required|between:1900,2022|max:4"
                 v-slot="{ errors }"
               >
-                <label>Year</label>
+                <label>{{ $t('account.year') }}</label>
                 <v-text-field
                   type="number"
                   outlined
                   v-model="year"
                   :class="$vuetify.breakpoint.mdAndDown ? 'input' : ''"
                 />
-                <span class="invalid">{{ errors[0] }}</span>
+                <span class="invalid" v-if="year.length === 0">
+                  {{ $t('validationMsg.yearRequired') }}
+                </span>
+                <span
+                  class="invalid"
+                  v-if="
+                    (year.length !== 4 && year.length !== 0) ||
+                    parseInt(year) < 1920 ||
+                    parseInt(year) > 2022
+                  "
+                >
+                  {{ $t('validationMsg.yearNotValid') }}
+                </span>
               </ValidationProvider>
             </div>
           </div>
@@ -111,11 +166,27 @@
                   accountProfile.caseNumber ? '' : $t('account.caseNumber')
                 "
               />
-              <span class="invalid">{{ errors[0] }}</span>
+              <span class="invalid" v-if="dhsCaseNumber.length === 0">
+                {{ $t('validationMsg.caseNumberRequired') }}
+              </span>
+              <span class="invalid" v-if="dhsCaseNumber.length > 20">
+                {{ $t('validationMsg.caseNumberMaxLength') }}
+              </span>
+              <span
+                class="invalid"
+                v-if="dhsCaseNumber.length < 4 && dhsCaseNumber.length !== 0"
+              >
+                {{ $t('validationMsg.caseNumberMinLength') }}
+              </span>
             </div>
           </ValidationProvider>
           <!-- language changer component -->
-          <LanguageSelector :locale="locale" :localeChange="localeChange" textColor="black" outlined="true" />
+          <LanguageSelector
+            :locale="locale"
+            :localeChange="localeChange"
+            textColor="black"
+            outlined="true"
+          />
         </v-form>
         <v-btn
           color="primary white--text"
@@ -257,7 +328,7 @@ export default class Settings extends Vue {
         ht: 'Kreyol Ayisyen',
         bn: 'বাংলা',
         pl: 'Polskie',
-      }
+      },
     }
   }
 
@@ -285,11 +356,11 @@ export default class Settings extends Vue {
     this.familyName = this.accountProfile.familyName
     this.dhsCaseNumber = this.accountProfile.dhsCaseNumber
     this.locale = this.accountProfile.locale
-    this.localToRender = this.languagesObject[this.locale as any];
+    this.localToRender = this.languagesObject[this.locale as any]
   }
 
   updated() {
-    this.localToRender = this.languagesObject[this.locale as any];
+    this.localToRender = this.languagesObject[this.locale as any]
   }
 
   localeChange(locale: string) {
@@ -345,7 +416,10 @@ export default class Settings extends Vue {
         locale: this.locale,
       }
 
-      if (`${this.location}` == `/${this.$i18n.locale}/account` || `${this.location}` == `/account`) {
+      if (
+        `${this.location}` == `/${this.$i18n.locale}/account` ||
+        `${this.location}` == `/account`
+      ) {
         this.patchUser(data)
       } else {
         this.submit(data)

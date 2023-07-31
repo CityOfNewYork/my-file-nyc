@@ -10,11 +10,19 @@
         :item-class="() => 'clickable'"
         @click:row="previewCollection"
       >
-        <template v-slot:item.createdDate="{ item }">
-          {{ format(new Date(item.createdDate), 'LLL d, yyyy') }}
-        </template>
         <template v-slot:item.icon>
           <v-icon small color="primary" class="my-2">$folder</v-icon>
+        </template>
+        <template v-slot:item.name="{ item }">
+          <div>
+            {{
+              $t('sharedFolder.folderName', {
+                num: item.numberOfDocuments,
+                date: format(new Date(item.createdDate), 'MM/dd/yyyy'),
+                time: format(new Date(item.createdDate), 'hh:mm a'),
+              })
+            }}
+          </div>
         </template>
       </v-data-table>
       <CollectionCard
@@ -113,6 +121,11 @@ export default class CollectionList extends Vue {
 
   get collections() {
     return userStore.collections
+  }
+
+  changeColumnValueToIsActive() {
+    console.log(this.headers[1].value)
+    // Change the second column to use the 'isActive' field from the `collections` array
   }
 
   @Watch('selected')
