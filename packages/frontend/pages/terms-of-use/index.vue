@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :class="rtlDirection && 'rtl'">
     <AppBar v-if="hasAccepted || !$auth.loggedIn" :empty="true">
       <template v-slot:nav-action>
         <BackButton
@@ -88,6 +88,18 @@ export default class TermsOfUse extends mixins(Navigation) {
   markdown = ''
   step = 0
   agent = false
+
+  get rtlDirection() {
+    const langs: any = {
+      ar: 'ar',
+      urd: 'urd',
+    }
+
+    if (langs[this.$i18n.locale]) {
+      return true
+    }
+    return false
+  }
 
   mounted() {
     this.agent = userStore.isAgent
