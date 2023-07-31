@@ -17,7 +17,7 @@
         </template>
 
         <template v-slot:item.createdDate="{ item }">
-          {{ format(new Date(item.createdDate), 'LLL d, yyyy') }}
+          {{ format(new Date(item.createdDate), 'MM/dd/yyyy') }}
         </template>
 
         <template v-slot:item.actions="{ item }">

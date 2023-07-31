@@ -30,11 +30,13 @@
         }`"
       >
         {{
-          $t('sharedFolder.folderName', {
-            num: crumb.numberOfDocuments,
-            date: format(new Date(crumb.date), 'MM/dd/yyyy'),
-            time: format(new Date(crumb.date), 'hh:mm a'),
-          })
+          crumb.title && crumb.date && crumb.numberOfDocuments
+            ? $t('sharedFolder.folderName', {
+                num: crumb.numberOfDocuments,
+                date: format(new Date(crumb.date), 'MM/dd/yyyy'),
+                time: format(new Date(crumb.date), 'hh:mm a'),
+              })
+            : $t(crumb.title)
         }}
       </span>
       <v-icon
