@@ -33,7 +33,7 @@
             <span class="invalid" v-else-if="givenName.length < 2">
               {{ $t('validationMsg.firstNameMinLength') }}
             </span>
-            <span class="invalid" v-else-if="!givenName.match(/^[A-Za-z]+$/)">
+            <span class="invalid" v-else-if="!givenName.match(/^[A-Za-z'-a-zñáéíóúü]+$/)">
               {{ $t('validationMsg.firstNameAlpha') }}
             </span>
           </ValidationProvider>
@@ -60,7 +60,7 @@
             <span class="invalid" v-else-if="familyName.length < 2">
               {{ $t('validationMsg.lastNameMinLength') }}
             </span>
-            <span class="invalid" v-else-if="!familyName.match(/^[A-Za-z]+$/)">
+            <span class="invalid" v-else-if="!familyName.match(/^[A-Za-z'-a-zñáéíóúü]+$/)">
               {{ $t('validationMsg.lastNameAlpha') }}
             </span>
           </ValidationProvider>
