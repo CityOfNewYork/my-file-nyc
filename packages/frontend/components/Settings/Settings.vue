@@ -9,7 +9,7 @@
         <v-form @submit.prevent ref="form">
           <ValidationProvider
             name="First Name"
-            rules="required|max:50|min:2|alpha_spaces"
+            rules="required|max:50|min:2|alpha_spaces_with_chars"
             v-slot="{ errors }"
           >
             <p class="subtitle-1 mt-1">
@@ -39,7 +39,7 @@
           </ValidationProvider>
           <ValidationProvider
             name="Last Name"
-            rules="required|max:50|min:2|alpha_spaces"
+            rules="required|max:50|min:2|alpha_spaces_with_chars"
             v-slot="{ errors }"
           >
             <p class="subtitle-1">{{ $t('account.whatIsYourLastName') }}</p>
@@ -293,6 +293,31 @@ extend('min', min)
 extend('between', between)
 
 extend('alpha_spaces', alpha_spaces)
+
+extend('name', alpha_spaces)
+
+interface AllowedChars {
+  [key: string]: string;
+}
+
+const allowedChars: AllowedChars = {
+  '-': '-',
+  "'": "'",
+};
+
+
+extend('alpha_spaces_with_chars', {
+  ...alpha_spaces,
+  message: 'The {_field_} may only contain letters, spaces, and the following characters: - \'',
+  validate(value: any) {
+    for (const char of value) {
+      if (!/^[a-zA-Z\s]$/.test(char) && !allowedChars[char] && !/^[a-zñáéíóúü]+$/i.test(char)) {
+        return false;
+      }
+    }
+    return true;
+  },
+});
 
 @Component({
   components: {
