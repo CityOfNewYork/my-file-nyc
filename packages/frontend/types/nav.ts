@@ -8,6 +8,8 @@ export interface NavItem {
 
 export interface Breadcrumb {
   title: string
+  numberOfDocuments?: string | number
+  date?: string | Date | number | any
   to?: string
   click?: () => void // on click handler (choose either to or click)
 }

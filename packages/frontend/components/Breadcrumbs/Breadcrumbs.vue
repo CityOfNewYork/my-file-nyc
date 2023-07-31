@@ -29,7 +29,13 @@
           i === 0 ? ' font-weight-bold' : ''
         }`"
       >
-        {{ $t(crumb.title) }}
+        {{
+          $t('sharedFolder.folderName', {
+            num: crumb.numberOfDocuments,
+            date: format(new Date(crumb.date), 'MM/dd/yyyy'),
+            time: format(new Date(crumb.date), 'hh:mm a'),
+          })
+        }}
       </span>
       <v-icon
         v-if="i < value.length - 1"
@@ -48,10 +54,12 @@
 <script lang="ts">
 import { Vue, Component, Prop } from 'nuxt-property-decorator'
 import { Breadcrumb } from '@/types/nav'
+import { format } from 'date-fns'
 
 @Component
 export default class Breadcrumbs extends Vue {
   @Prop({ required: true }) value: Breadcrumb[]
+  format = format
 }
 </script>
 

@@ -225,7 +225,25 @@ export default class ViewCollection extends Vue {
   }
 
   get name() {
-    return this.collection?.name ?? this.sharedCollection?.collection.name ?? ''
+    return (
+      this.collection?.name ?? this.sharedCollection?.collection?.name ?? ''
+    )
+  }
+
+  get collectionDate() {
+    return (
+      this.collection?.createdDate ??
+      this.sharedCollection?.collection?.createdDate ??
+      ''
+    )
+  }
+
+  get collectionNumberOfDocuments() {
+    return (
+      this.collection?.numberOfDocuments ??
+      this.sharedCollection?.collection?.numberOfDocuments ??
+      ''
+    )
   }
 
   get breadcrumbs() {
@@ -269,6 +287,8 @@ export default class ViewCollection extends Vue {
 
     crumbs.push({
       title: this.name,
+      numberOfDocuments: this.collectionNumberOfDocuments,
+      date: this.collectionDate,
     })
 
     return crumbs
