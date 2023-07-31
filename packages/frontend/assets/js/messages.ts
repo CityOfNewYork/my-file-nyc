@@ -550,7 +550,7 @@ export default merge(
         disclaimerTitle: 'تذكير',
         shareDocumentDisclaimer: [
           'My File NYC facilitates document sharing with {emails} email accounts',
-          'Once documents are shared DHS employees may download and save your documents to submit as proof for your application. DHS may still have copies to support your case even if you unshare or delete them from My File.', // not found
+          'تذكير: بمجرد مشاركة المستندات مع إدارة DHS، يمكن للموظفين تنزيل مستنداتك وحفظها لتقديمها دليلًا علي طلبك. وقد تظل لدى إدارة DHS نسخ لدعم حالتك حتى إذا ألغيت مشاركة المستندات أو حذفتها من تطبيق My File.', // not found
         ],
 
         // on the confirmation step, could be "recipient" or "recipients" depending on number of items
@@ -905,7 +905,7 @@ export default merge(
         disclaimerTitle: 'Напоминание',
         shareDocumentDisclaimer: [
           'My File NYC facilitates document sharing with {emails} email accounts',
-          'Once documents are shared DHS employees may download and save your documents to submit as proof for your application. DHS may still have copies to support your case even if you unshare or delete them from My File.', // not found
+          'Напоминание. После предоставления DHS доступа к документам сотрудники могут загружать и сохранять ваши документы, чтобы предоставлять их в качестве доказательств в поддержку вашего заявления. У DHS могут остаться копии для обоснования вашего дела, даже если вы не предоставите доступ к документам или удалите их из сервиса My File.', // not found
         ],
 
         // on the confirmation step, could be "recipient" or "recipients" depending on number of items
@@ -1268,7 +1268,7 @@ export default merge(
         disclaimerTitle: 'یاد دہانی',
         shareDocumentDisclaimer: [
           'My File NYC facilitates document sharing with {emails} email accounts',
-          'Once documents are shared DHS employees may download and save your documents to submit as proof for your application. DHS may still have copies to support your case even if you unshare or delete them from My File.', // not found
+          'یاد دہانی: جب DHS کے ساتھ دستاویزات کا اشتراک ہو جائے گا تو ملازمین آپ کی درخواست کے ثبوت کے طور پر جمع کروانے کے لیے آپ کی دستاویزات کو ڈاؤن لوڈ اور محفوظ کر سکتے ہیں۔ DHS کے پاس اب بھی آپ کے کیس کی حمایت کے لیے نقول موجود ہو سکتی ہیں چاہے آپ ان کا اشتراک ختم کر دیں یا My File سے حذف کر دیں۔', // not found
         ],
 
         // on the confirmation step, could be "recipient" or "recipients" depending on number of items
@@ -1621,7 +1621,7 @@ export default merge(
         disclaimerTitle: '알림',
         shareDocumentDisclaimer: [
           'My File NYC facilitates document sharing with {emails} email accounts',
-          'Once documents are shared DHS employees may download and save your documents to submit as proof for your application. DHS may still have copies to support your case even if you unshare or delete them from My File.', // not found
+          '알려 드립니다. 직원은 서류를 DHS 와 공유한 후 서류를 다운로드하고 저장하여 신청에 대한 증빙 자료로 제출할 수 있습니다. DHS 는 귀하가 "My File"(내 파일) 에서 공유를 취소하거나 삭제하더라도 귀하의 사례를 뒷받침하는 사본을 가지고 있을 수 있습니다.', // not found
         ],
 
         // on the confirmation step, could be "recipient" or "recipients" depending on number of items
@@ -1971,7 +1971,7 @@ export default merge(
         disclaimerTitle: 'Recordatorio',
         shareDocumentDisclaimer: [
           'My File NYC facilitates document sharing with {emails} email accounts',
-          'Once documents are shared DHS employees may download and save your documents to submit as proof for your application. DHS may still have copies to support your case even if you unshare or delete them from My File.', // not found
+          'Recordatorio: Una vez compartidos los documentos, los empleados de DHS pueden descargar y guardar sus documentos para presentarlos como prueba de su solicitud. Aunque usted deje de compartir o elimine documentos de MyFile, DHS puede conservar copias para documentar su caso.', // not found
         ],
 
         // on the confirmation step, could be "recipient" or "recipients" depending on number of items
@@ -2330,7 +2330,7 @@ export default merge(
         disclaimerTitle: 'Rappel', // not found
         shareDocumentDisclaimer: [
           'My File NYC facilitates document sharing with {emails} email accounts',
-          'Once documents are shared DHS employees may download and save your documents to submit as proof for your application. DHS may still have copies to support your case even if you unshare or delete them from My File.', // not found
+          'Rappel : Une fois les documents partagés, les employés du DHS pourront télécharger et enregistrer vos documents pour les soumettre en tant que justificatifs de votre demande. Il est possible que le DHS conserve en sa possession des copies pour étayer votre dossier même si vous annulez le partage ou si vous supprimez ces documents de MyFile.', // not found
         ],
 
         // on the confirmation step, could be "recipient" or "recipients" depending on number of items
@@ -2686,7 +2686,7 @@ export default merge(
         disclaimerTitle: 'অনুস্মারক',
         shareDocumentDisclaimer: [
           'My File NYC facilitates document sharing with {emails} email accounts',
-          'Once documents are shared DHS employees may download and save your documents to submit as proof for your application. DHS may still have copies to support your case even if you unshare or delete them from My File.', // not found
+          'Oঅনুস্মারক: একবার নথি শেয়ার করা হলে, DHS কর্মীরা আপনার আবেদনের প্রমাণ হিসাবে জমা দেওয়ার জন্য আপনার নথিগুলি ডাউনলোড এবং সংরক্ষণ করতে পারে। আপনি ‘মাই ফাইল’ থেকে শেয়ার বন্ধ করলে বা মুছে দিলেও DHS-এর কাছে আপনার কেস সমর্থন করার জন্য কপি থাকতে পারে।.', // not found
         ],
 
         // on the confirmation step, could be "recipient" or "recipients" depending on number of items
@@ -3041,7 +3041,7 @@ export default merge(
         disclaimerTitle: 'Przypomnienie',
         shareDocumentDisclaimer: [
           'My File NYC facilitates document sharing with {emails} email accounts',
-          'Once documents are shared DHS employees may download and save your documents to submit as proof for your application. DHS may still have copies to support your case even if you unshare or delete them from My File.', // not found
+          'Przypomnienie: Po udostępnieniu dokumentów DHS pracownicy będą mogli pobierać je i zapisywać w celu późniejszego przesłania jako formy potwierdzenia Pana/Pani wniosku. DHS może nadal dysponować kopiami dokumentów dotyczących Pana/Pani sprawy, nawet jeżeli wyłączy Pan/Pani opcję ich udostępniania lub usunie je Pan/Pani z My File.', // not found
         ],
 
         // on the confirmation step, could be "recipient" or "recipients" depending on number of items
@@ -3391,7 +3391,7 @@ export default merge(
         disclaimerTitle: 'Rapèl',
         shareDocumentDisclaimer: [
           'My File NYC facilitates document sharing with {emails} email accounts',
-          'Once documents are shared DHS employees may download and save your documents to submit as proof for your application. DHS may still have copies to support your case even if you unshare or delete them from My File.', // not found
+          'Pa bliye: Yon fwa dokiman w yo pataje ak DHS, anplwaye yo ka telechaje ak anrejistre yo pou soumèt kòm prèv pou aplikasyon w la. DHS ka toujou gen kopi yo pou kore dosye w la menm si ou retire pataj la oswa efase yo sou My File.', // not found
         ],
 
         // on the confirmation step, could be "recipient" or "recipients" depending on number of items
@@ -3737,7 +3737,7 @@ export default merge(
         disclaimerTitle: '提醒',
         shareDocumentDisclaimer: [
           'My File NYC facilitates document sharing with {emails} email accounts',
-          'Once documents are shared DHS employees may download and save your documents to submit as proof for your application. DHS may still have copies to support your case even if you unshare or delete them from My File.', // not found
+          '提醒事項：分享檔案後，DHS 員工可下載並保存您的檔案，以作為您的申請證明來提交。即使您從「My File」（我的檔案）中取消共享或刪除檔案，DHS 可能仍然存有支持您個案的副本。', // not found
         ],
 
         // on the confirmation step, could be "recipient" or "recipients" depending on number of items
