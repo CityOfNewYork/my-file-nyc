@@ -33,7 +33,7 @@
             <span class="invalid" v-else-if="givenName.length < 2">
               {{ $t('validationMsg.firstNameMinLength') }}
             </span>
-            <span class="invalid" v-else-if="!givenName.match(/^[A-Za-z'-a-zñáéíóúü]+$/)">
+            <span class="invalid" v-else-if="!givenName.match(/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'`-]+$/u)">
               {{ $t('validationMsg.firstNameAlpha') }}
             </span>
           </ValidationProvider>
@@ -303,6 +303,7 @@ interface AllowedChars {
 const allowedChars: AllowedChars = {
   '-': '-',
   "'": "'",
+  "`": "`",
 };
 
 
