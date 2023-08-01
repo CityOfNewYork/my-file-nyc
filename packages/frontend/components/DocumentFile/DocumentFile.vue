@@ -3,30 +3,82 @@
   <div v-else-if="isInfected">
     File is infected and should not be downloaded
   </div>
-  <!-- <iframe
-    v-else-if="isPdf"
-    :src="url"
-    :title="`${$t('document.previewOf')} ${document.name}`"
-    scrolling="yes"
-    content-type="application/pdf"
-    :height="$vuetify.breakpoint.xsOnly ? 500 : 1200"
-    width="100%"
-  >
-    <p>PDF document: {{ document.name }}</p>
-  </iframe> -->
-
-  <div v-else-if="isPdf" id="adobe-dc-view" class="adobe-container"></div>
-  <!-- <div v-else-if="isPdf" class="adobe-container">
-    <object
-      v-if="url"
-      :data="url"
-      type="application/pdf"
-      width="100%"
-      height="100%"
-    ></object>
-    <p v-else>Loading PDF viewer...</p>
-  </div> -->
-
+  <div v-else-if="isPdf">
+    <div v-if="isPdfBrowser" id="adobe-dc-view" class="adobe-container"></div>
+    <div v-else-if="!isPdfBrowser && !isMobile" class="adobe-container">
+      <div class="unsupported">
+        <div class="warning-text">
+          <h1 class="warning-header">
+            <v-icon color="black" class="warning-icon" :size="iconHeight">
+              mdi-alert-outline
+            </v-icon>
+            Unsupported Browser
+          </h1>
+          <p class="warning-paragraph">
+            PDF Viewer does not support Firefox or Internet Explorer. Please use
+            a different web browser such as
+            <a
+              class="warning-link"
+              href="https://www.google.com/chrome/"
+              target="_blank"
+            >
+              Google Chrome
+            </a>
+            ,
+            <a
+              class="warning-link"
+              href="https://www.microsoft.com/en-us/edge"
+              target="_blank"
+            >
+              Microsoft Edge
+            </a>
+            or
+            <a
+              class="warning-link"
+              href="https://support.apple.com/downloads/safari"
+              target="_blank"
+            >
+              Safari
+            </a>
+            .
+          </p>
+        </div>
+      </div>
+    </div>
+    <div
+      v-else-if="!isPdfBrowser && isMobile"
+      class="adobe-container unsupported"
+    >
+      <div class="warning-text">
+        <h1 class="warning-header">
+          <v-icon color="black" class="warning-icon" :size="iconHeight">
+            mdi-alert-outline
+          </v-icon>
+          Unsupported Browser
+        </h1>
+        <p class="warning-paragraph">
+          PDF Viewer does not support Microsoft Edge, Firefox, Samsung Internet,
+          or Internet Explorer. Please use a different web browser such as
+          <a
+            class="warning-link"
+            href="https://www.google.com/chrome/"
+            target="_blank"
+          >
+            Google Chrome
+          </a>
+          or
+          <a
+            class="warning-link"
+            href="https://support.apple.com/downloads/safari"
+            target="_blank"
+          >
+            Safari
+          </a>
+          .
+        </p>
+      </div>
+    </div>
+  </div>
   <div v-else class="text-center image viewer">
     <v-dialog v-model="dialog">
       <template v-slot:activator="{ on, attrs }">
@@ -71,31 +123,58 @@ export default class DocumentFile extends Vue {
   url = ''
   loading = true
   dialog = false
+  isPdfBrowser = false
+  isMobile = false
+
+  get iconHeight() {
+    if (this.$vuetify.breakpoint.xs) {
+      return '24'
+    } else if (this.$vuetify.breakpoint.smAndUp) {
+      return '44'
+    } else {
+      return
+    }
+  }
+
+  getBrowserName() {
+    const userAgent = navigator.userAgent
+    console.log(navigator)
+    // @ts-ignore
+    this.isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
+    console.log(this.isMobile)
+    let browserName = 'Another Browser'
+
+    if (!this.isMobile) {
+      if (userAgent.includes('Chrome')) {
+        browserName = 'Google Chrome'
+        this.isPdfBrowser = true
+      } else if (userAgent.includes('Safari')) {
+        browserName = 'Apple Safari'
+        this.isPdfBrowser = true
+      } else if (userAgent.includes('Edge')) {
+        browserName = 'Microsoft Edge'
+        this.isPdfBrowser = true
+      } else {
+        this.isPdfBrowser = false
+      }
+    } else {
+      if (userAgent.includes('Chrome')) {
+        browserName = 'Google Chrome'
+        this.isPdfBrowser = true
+      } else if (userAgent.includes('Safari')) {
+        browserName = 'Apple Safari'
+        this.isPdfBrowser = true
+      } else {
+        this.isPdfBrowser = false
+      }
+    }
+
+    return browserName
+  }
 
   pdfrender(url: any, documentName: any, adobeClientId: any) {
-    console.log('I AM EHRE')
-
-    console.log('INSIDE ADOBE')
-
     // @ts-ignore
     if (window.AdobeDC) {
-      // @ts-ignore
-      const adobeDCView = new AdobeDC.View({
-      clientId: adobeClientId,
-      divId: 'adobe-dc-view',
-    })
-
-    adobeDCView.previewFile({
-      content: {
-        location: {
-          url,
-        },
-      },
-      metaData: { fileName: documentName },
-    })
-    }
-    else {
-      document.addEventListener("adobe_dc_view_sdk.ready", () => {
       // @ts-ignore
       const adobeDCView = new AdobeDC.View({
         clientId: adobeClientId,
@@ -110,18 +189,36 @@ export default class DocumentFile extends Vue {
         },
         metaData: { fileName: documentName },
       })
-      });
-    }
-    }
+    } else {
+      document.addEventListener('adobe_dc_view_sdk.ready', () => {
+        // @ts-ignore
+        const adobeDCView = new AdobeDC.View({
+          clientId: adobeClientId,
+          divId: 'adobe-dc-view',
+        })
 
+        adobeDCView.previewFile({
+          content: {
+            location: {
+              url,
+            },
+          },
+          metaData: { fileName: documentName },
+        })
+      })
+    }
+  }
 
   updated() {
-    this.pdfrender(this.url, this.document.name, this.adobeCredentials())
+    if (this.isPdfBrowser) {
+      this.pdfrender(this.url, this.document.name, this.adobeCredentials())
+    }
   }
 
   async mounted() {
     if (this.document.pdf) {
       this.url = this.document.pdf
+      this.getBrowserName()
     } else {
       this.url = await this.$store.dispatch('document/downloadFile', {
         document: this.document,
@@ -205,6 +302,161 @@ export default class DocumentFile extends Vue {
 </script>
 
 <style scoped lang="scss">
+.unsupported {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  // text-align: center;
+}
+
+@media (max-width: 480px) {
+  .warning-header {
+    color: #000;
+    text-align: center;
+    font-size: 1.225rem;
+    font-weight: bold;
+    line-height: 1.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .warning-paragraph {
+    color: #000;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: Regular;
+    line-height: 1.5rem;
+    max-width: 500px;
+    text-align: start;
+
+    // Link text
+  }
+
+  .warning-link {
+    color: #1642df;
+    font-weight: 700;
+    text-decoration: underline;
+  }
+
+  .warning-text {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+@media (min-width: 481px) and (max-width: 1024px) {
+  .warning-header {
+    color: #000;
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+    line-height: 2.938rem;
+    margin-bottom: 2rem;
+  }
+
+  .warning-paragraph {
+    color: #000;
+    text-align: center;
+    font-size: 1.125rem;
+    font-weight: Regular;
+    line-height: 28px;
+    max-width: 400px;
+    text-align: start;
+
+    // Link text
+  }
+
+  .warning-link {
+    color: #1642df;
+    font-weight: 700;
+    text-decoration: underline;
+  }
+
+  .warning-text {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+/* Media Query for Laptops and Desktops */
+@media (min-width: 1025px) {
+  .warning-header {
+    color: #000;
+    text-align: center;
+    font-size: 3.438rem;
+    font-weight: bold;
+    line-height: 4rem;
+    margin-bottom: 2rem;
+  }
+
+  .warning-paragraph {
+    color: #000;
+    text-align: center;
+    font-size: 1.188rem;
+    font-weight: Regular;
+    line-height: 28px;
+    max-width: 600px;
+    text-align: start;
+
+    // Link text
+  }
+
+  .warning-link {
+    color: #1642df;
+    font-weight: 700;
+    text-decoration: underline;
+  }
+
+  .warning-text {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+/* Media Query for low resolution  Tablets, Ipads */
+
+// .warning-header {
+//   color: #000;
+//   text-align: center;
+//   font-size: 3.438rem;
+//   font-weight: bold;
+//   line-height: 4rem;
+//   margin-bottom: 2rem;
+// }
+
+// .warning-paragraph {
+//   color: #000;
+//   text-align: center;
+//   font-size: 1.188rem;
+//   font-weight: Regular;
+//   line-height: 28px;
+//   max-width: 600px;
+//   text-align: start;
+
+//   // Link text
+// }
+
+// .warning-link {
+//   color: #1642df;
+//   font-weight: 700;
+//   text-decoration: underline;
+// }
+
+// .warning-text {
+//   width: 60%;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+// }
 .adobe-container {
   width: 100%;
   height: calc(100vh - 18rem);
