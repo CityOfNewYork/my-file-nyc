@@ -131,7 +131,6 @@ export default class ClientDashboard extends Vue {
 
   loadingUpdate(){
     this.loading = !this.loading
-    console.log(this.loading)
   }
 
   async mounted() {
