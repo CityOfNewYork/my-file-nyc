@@ -61,7 +61,10 @@
       </v-row>
     </v-container>
     <div v-else-if="!agent">
-      <Settings :hasAccepted="hasAccepted" :submit="submit" editMode="true" />
+      <Settings         
+      :accountProfile="accountProfile"
+      :hasAccepted="hasAccepted" 
+      :submit="submit" editMode="true" />
     </div>
     <SnackBar v-if="hasAccepted && $auth.loggedIn" />
   </div>
@@ -110,8 +113,13 @@ export default class TermsOfUse extends mixins(Navigation) {
     this.markdown = require(`@/assets/content/terms-of-use/${locale}.md`)
   }
 
+  get accountProfile() {
+    return userStore.profile
+  }
+
   get hasAccepted() {
-    return userStore.profile && userStore.profile.termsOfUseAccepted
+    // return userStore.profile && userStore.profile.termsOfUseAccepted
+    return false
   }
 
   async accept() {

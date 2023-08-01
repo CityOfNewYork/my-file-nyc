@@ -283,6 +283,8 @@ import {
   alpha_spaces,
   min,
 } from 'vee-validate/dist/rules'
+import { userStore } from '@/plugins/store-accessor'
+
 
 extend('required', required)
 
@@ -373,7 +375,7 @@ export default class Settings extends Vue {
 
   settingsFirstRun = this.$t('navigation.settingsFirstRun') as string
 
-  mounted() {
+  beforeMount() {
     this.accountProfile.dob && this.dobDistruct(this.accountProfile.dob)
 
     this.location = window.location.pathname
