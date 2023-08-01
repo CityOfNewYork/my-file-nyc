@@ -118,7 +118,8 @@ export default class TermsOfUse extends mixins(Navigation) {
   }
 
   get hasAccepted() {
-    return userStore.profile && userStore.profile.termsOfUseAccepted
+    // return userStore.profile && userStore.profile.termsOfUseAccepted
+    return false
   }
 
   async accept() {
