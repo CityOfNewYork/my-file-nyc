@@ -60,7 +60,7 @@
             <span class="invalid" v-else-if="familyName.length < 2">
               {{ $t('validationMsg.lastNameMinLength') }}
             </span>
-            <span class="invalid" v-else-if="!familyName.match(/^[A-Za-z'-a-zñáéíóúü]+$/)">
+            <span class="invalid" v-else-if="!familyName.match(/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'`-]+$/u)">
               {{ $t('validationMsg.lastNameAlpha') }}
             </span>
           </ValidationProvider>
@@ -309,10 +309,10 @@ const allowedChars: AllowedChars = {
 
 extend('alpha_spaces_with_chars', {
   ...alpha_spaces,
-  message: 'The {_field_} may only contain letters, spaces, and the following characters: - \'',
+  message: 'The {_field_} may only contain letters, spaces, and the following characters: - \'`',
   validate(value: any) {
     for (const char of value) {
-      if (!/^[a-zA-Z\s]$/.test(char) && !allowedChars[char] && !/^[a-zñáéíóúü]+$/i.test(char)) {
+      if (!/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'`-]+$/u.test(char) && !allowedChars[char]) {
         return false;
       }
     }
