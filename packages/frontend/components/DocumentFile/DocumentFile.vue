@@ -140,7 +140,9 @@ export default class DocumentFile extends Vue {
     const userAgent = navigator.userAgent
     console.log(navigator)
     // @ts-ignore
-    this.isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
+    this.isMobile = /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator.userAgent,
+    )
     console.log(this.isMobile)
     let browserName = 'Another Browser'
 
