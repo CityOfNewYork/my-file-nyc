@@ -4,11 +4,9 @@
 
     <AppBar :breadcrumbs="breadcrumbs" />
 
-    <DesktopSideBar />
-
     <!-- <SideNav /> -->
 
-    <SharedCollectionList :owner-id="$route.params.ownerid" class="ma-8" />
+    <SharedCollectionList :owner-id="$route.params.ownerid" class="ma-2" />
   </div>
 </template>
 
@@ -38,11 +36,10 @@ export default class OwnerCollections extends Vue {
   }
 
   get sharerName() {
-    const collections: SharedCollectionListItem[] =
-      userStore.sharedCollections.filter(
-        (c: SharedCollectionListItem) =>
-          c.owner.id === this.$route.params.ownerid,
-      )
+    const collections: SharedCollectionListItem[] = userStore.sharedCollections.filter(
+      (c: SharedCollectionListItem) =>
+        c.owner.id === this.$route.params.ownerid,
+    )
     return collections.length ? `${collections[0].owner.name}` : ''
   }
 
@@ -68,7 +65,7 @@ export default class OwnerCollections extends Vue {
   margin-top: 64px;
 
   .v-toolbar__extension {
-    height: 100% !important;
+    height: 50px !important;
   }
 }
 </style>

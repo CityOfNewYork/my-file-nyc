@@ -1,11 +1,10 @@
 <template>
-  <v-toolbar flat>
+  <v-toolbar class="toolbar" flat @click="navigationEvent">
     <v-btn
       :title="`${$t('navigation.back')}`"
       icon
       small
       class="ml-xs-20 ml-sm-8 mt-sm-3 ml-lg-20 ml-xl-40 a11y-focus"
-      @click="navigationEvent"
     >
       <v-icon
         :small="$vuetify.breakpoint.smAndUp"
@@ -90,6 +89,10 @@ export default class BackButton extends Vue {
 </script>
 
 <style scoped>
+.toolbar {
+  cursor: pointer;
+}
+
 @media (max-width: 600px) {
   .toolbar-font {
     font-weight: 500;
