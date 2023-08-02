@@ -138,13 +138,24 @@ export default class DocumentFile extends Vue {
 
   getBrowserName() {
     const userAgent = navigator.userAgent
-    console.log(navigator)
-    // @ts-ignore
     this.isMobile = /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
       navigator.userAgent,
     )
     console.log(this.isMobile)
     let browserName = 'Another Browser'
+
+    function isMobileAndroidChrome() {
+      const userAgent = navigator.userAgent
+      return /Android/i.test(userAgent) && /Chrome/i.test(userAgent)
+    }
+
+    function isMobileSafari() {
+      const userAgent = navigator.userAgent
+      return (
+        (/iPhone|iPad|iPod/i.test(userAgent) && /Safari/i.test(userAgent)) ||
+        (/iPhone|iPad|iPod/i.test(userAgent) && /CriOS/i.test(userAgent))
+      )
+    }
 
     if (!this.isMobile) {
       if (userAgent.includes('Chrome')) {
@@ -160,11 +171,11 @@ export default class DocumentFile extends Vue {
         this.isPdfBrowser = false
       }
     } else {
-      if (userAgent.includes('Chrome')) {
-        browserName = 'Google Chrome'
+      if (isMobileAndroidChrome()) {
+        browserName = 'Android Google Chrome'
         this.isPdfBrowser = true
-      } else if (userAgent.includes('Safari')) {
-        browserName = 'Apple Safari'
+      } else if (isMobileSafari()) {
+        browserName = 'Mobile Safari or Chrome'
         this.isPdfBrowser = true
       } else {
         this.isPdfBrowser = false
