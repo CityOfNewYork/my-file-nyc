@@ -283,8 +283,6 @@ import {
   alpha_spaces,
   min,
 } from 'vee-validate/dist/rules'
-import { userStore } from '@/plugins/store-accessor'
-
 
 extend('required', required)
 
@@ -362,6 +360,9 @@ export default class Settings extends Vue {
 
   location = ''
   givenName = ''
+
+  // givenName: string = userStore.profile.givenName !== null ? userStore.profile.givenName : '';
+
   familyName = ''
   dob = ''
   day = ''
@@ -375,8 +376,8 @@ export default class Settings extends Vue {
 
   settingsFirstRun = this.$t('navigation.settingsFirstRun') as string
 
-  beforeMount() {
-    if (this.accountProfile.profile){
+  beforeMount(){
+    if (this.accountProfile){
       this.accountProfile.dob && this.dobDistruct(this.accountProfile.dob)
 
       this.location = window.location.pathname
@@ -387,15 +388,22 @@ export default class Settings extends Vue {
       this.locale = this.accountProfile.locale
       this.localToRender = this.languagesObject[this.locale as any]
     }
-    else {
-      this.accountProfile.dob = ''
-      this.givenName = ''
-      this.familyName = ''
-      this.dhsCaseNumber = ''
-      this.locale = 'en'
-    }
   }
 
+  mounted() {
+    if (this.accountProfile){
+      this.accountProfile.dob && this.dobDistruct(this.accountProfile.dob)
+
+      this.location = window.location.pathname
+
+      this.givenName = this.accountProfile.givenName
+      this.familyName = this.accountProfile.familyName
+      this.dhsCaseNumber = this.accountProfile.dhsCaseNumber
+      this.locale = this.accountProfile.locale
+      this.localToRender = this.languagesObject[this.locale as any]
+    }
+  }
+  
   updated() {
     this.localToRender = this.languagesObject[this.locale as any]
   }
@@ -453,6 +461,7 @@ export default class Settings extends Vue {
         locale: this.locale,
       }
 
+      console.log(data)
       if (
         `${this.location}` == `/${this.$i18n.locale}/account` ||
         `${this.location}` == `/account`
