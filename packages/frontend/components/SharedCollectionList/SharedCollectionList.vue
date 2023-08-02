@@ -8,6 +8,7 @@
       hide-default-footer
       :item-class="() => 'clickable'"
       @click:row="previewCollection"
+      width="100"
     >
       <template v-slot:item.icon>
         <v-icon small color="primary" class="my-2">$folder</v-icon>
@@ -62,7 +63,7 @@ export default class SharedCollectionList extends Vue {
     this.headers = [
       {
         text: '',
-        class: 'blue-super-light',
+        class: 'white',
         align: 'start',
         sortable: false,
         value: 'icon',
@@ -70,20 +71,20 @@ export default class SharedCollectionList extends Vue {
       },
       {
         text: this.$t('agent.sharedFolderNameLabel') as string,
-        class: 'blue-super-light',
+        class: 'white',
         align: 'start',
         sortable: true,
         value: 'name',
       },
       {
         text: this.$t('agent.sharedBy') as string,
-        class: 'blue-super-light',
+        class: 'white',
         value: 'sharerName',
         sortable: true,
       },
       {
         text: this.$t('agent.dateShared') as string,
-        class: 'blue-super-light',
+        class: 'white',
         value: 'sharedDate',
         sortable: true,
       },
