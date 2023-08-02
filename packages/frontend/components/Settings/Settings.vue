@@ -376,15 +376,24 @@ export default class Settings extends Vue {
   settingsFirstRun = this.$t('navigation.settingsFirstRun') as string
 
   beforeMount() {
-    this.accountProfile.dob && this.dobDistruct(this.accountProfile.dob)
+    if (this.accountProfile.profile){
+      this.accountProfile.dob && this.dobDistruct(this.accountProfile.dob)
 
-    this.location = window.location.pathname
+      this.location = window.location.pathname
 
-    this.givenName = this.accountProfile.givenName
-    this.familyName = this.accountProfile.familyName
-    this.dhsCaseNumber = this.accountProfile.dhsCaseNumber
-    this.locale = this.accountProfile.locale
-    this.localToRender = this.languagesObject[this.locale as any]
+      this.givenName = this.accountProfile.givenName
+      this.familyName = this.accountProfile.familyName
+      this.dhsCaseNumber = this.accountProfile.dhsCaseNumber
+      this.locale = this.accountProfile.locale
+      this.localToRender = this.languagesObject[this.locale as any]
+    }
+    else {
+      this.accountProfile.dob = ''
+      this.givenName = ''
+      this.familyName = ''
+      this.dhsCaseNumber = ''
+      this.locale = 'en'
+    }
   }
 
   updated() {
