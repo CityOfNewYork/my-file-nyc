@@ -11,7 +11,7 @@
     </v-btn>
     <p class="header">{{ $t('document.singleOrMultiple') }}</p>
     <div class="cards-container">
-      <v-card width="390" height="276" class="card">
+      <v-card width="280" height="300" class="card">
         <v-card-item class="card-title-position">
           <v-card-title class="card-title">
             {{ $t('uploadInputButton.oneFileTitle') }}
@@ -38,7 +38,7 @@
 
       <div class="divider"></div>
 
-      <v-card width="390" height="276" class="card">
+      <v-card width="280" height="300" class="card">
         <v-card-item class="card-title-position">
           <v-card-title class="card-title">
             {{ $t('uploadInputButton.multipleFilesTitle') }}
@@ -63,6 +63,7 @@
             {{ $t('controls.uploadFiles') }}
           </v-btn>
         </v-card-actions>
+        <div></div>
       </v-card>
     </div>
   </div>
@@ -104,8 +105,8 @@ export default class UploadButtonFileInput extends Vue {
 @media (min-width: 1300px) {
   .dialog-container {
     background-color: rgb(255, 255, 255);
-    width: 1150px;
-    height: 600px;
+    width: 800px;
+    height: 480px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -118,7 +119,6 @@ export default class UploadButtonFileInput extends Vue {
     .header {
       text-align: center;
       margin-top: 22px;
-      margin-bottom: 50px;
       color: black;
       font-style: normal;
       font-weight: 700;
@@ -128,19 +128,22 @@ export default class UploadButtonFileInput extends Vue {
     .cards-container {
       display: flex;
       flex-direction: row;
-      justify-content: space-around;
       align-items: center;
+      justify-content: space-evenly;
       width: 100%;
-      height: 386px;
+      height: 66%;
       .card {
         display: flex;
         flex-direction: column;
         height: 100%;
+        width: 100%;
+        align-items: start;
+        justify-content: center;
       }
       .card-title-position {
         padding: 0px;
         margin-bottom: 16px;
-        height: 15%;
+        min-height: 15%;
       }
 
       .card-title {
@@ -151,13 +154,13 @@ export default class UploadButtonFileInput extends Vue {
         line-height: 32px;
       }
       .card-text {
-        height: 70%;
+        min-height: 20%;
         padding: 0px;
         font-weight: 400;
         font-size: 18px;
         line-height: 28px;
         color: #000000;
-        margin-bottom: 32px;
+        margin-bottom: 30px;
       }
 
       .card-button {
@@ -173,7 +176,7 @@ export default class UploadButtonFileInput extends Vue {
       }
       .divider {
         border-left: 3px solid #4157aa;
-        height: 100%;
+        height: 70%;
         padding-left: 0px;
         padding-right: 0px;
         margin-left: 0px;
@@ -183,11 +186,11 @@ export default class UploadButtonFileInput extends Vue {
   }
 }
 
-@media (min-width: 733px) and (max-width: 1300px) {
+@media (min-width: 733px) and (max-width: 1299px) {
   .dialog-container {
     background-color: rgb(255, 255, 255);
-    width: 554px;
-    min-height: 700px !important;
+    width: 450px;
+    min-height: 624px !important;
     overflow: scroll !important;
     display: flex;
     flex-direction: column;
@@ -215,6 +218,8 @@ export default class UploadButtonFileInput extends Vue {
       flex-direction: column !important;
       width: 100%;
       height: 100% !important;
+      align-items: center !important;
+      justify-content: center !important;
       .card {
         display: flex !important;
         flex-direction: column !important;
@@ -269,7 +274,6 @@ export default class UploadButtonFileInput extends Vue {
   .dialog-container {
     background-color: rgb(255, 255, 255);
     width: 330px;
-    max-height: 660px;
     min-height: 450px !important;
     overflow: scroll !important;
     display: flex;
@@ -280,24 +284,26 @@ export default class UploadButtonFileInput extends Vue {
     position: relative;
     .close-button {
       position: absolute;
-      top: 3px;
-      right: 5px;
+      top: 5px;
+      right: 12px;
     }
     .header {
-      text-align: center;
+      text-align: left;
       margin-top: 26px;
       color: black;
       font-style: bold;
       font-weight: 700;
       font-size: 20px;
       line-height: 30px;
-      padding: 0px 0px 0px 0px;
+      padding: 0px 0px 0px 5px;
     }
     .cards-container {
       display: flex !important;
       flex-direction: column !important;
       width: 100%;
-      height: 100vh !important;
+      height: 100% !important;
+      justify-content: center !important;
+      align-items: center !important;
       .card {
         display: flex !important;
         flex-direction: column !important;
