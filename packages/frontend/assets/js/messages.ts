@@ -323,7 +323,7 @@ export default merge(
 
       uploadInputButton: {
         oneFileTitle: 'One-page document',
-        oneFileDescription: 'Upload one page or photo from your device,',
+        oneFileDescription: 'Upload one page or photo from your device.',
         multipleFilesTitle: 'Multiple-page document',
         multipleFilesDescription:
           'Upload multiple pages or photos from your device.',
