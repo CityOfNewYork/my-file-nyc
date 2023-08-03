@@ -360,9 +360,6 @@ export default class Settings extends Vue {
 
   location = ''
   givenName = ''
-
-  // givenName: string = userStore.profile.givenName !== null ? userStore.profile.givenName : '';
-
   familyName = ''
   dob = ''
   day = ''
@@ -377,11 +374,16 @@ export default class Settings extends Vue {
   settingsFirstRun = this.$t('navigation.settingsFirstRun') as string
 
   beforeMount(){
-    if (this.accountProfile){
-      this.accountProfile.dob && this.dobDistruct(this.accountProfile.dob)
-
+    if (!this.accountProfile.familyName && !this.accountProfile.givenName){
+      this.givenName = ''
+      this.familyName = ''
+      this.dhsCaseNumber = ''
+      this.accountProfile.dob = ''
+    }
+    else {
       this.location = window.location.pathname
 
+      this.accountProfile.dob && this.dobDistruct(this.accountProfile.dob)
       this.givenName = this.accountProfile.givenName
       this.familyName = this.accountProfile.familyName
       this.dhsCaseNumber = this.accountProfile.dhsCaseNumber
@@ -391,11 +393,16 @@ export default class Settings extends Vue {
   }
 
   mounted() {
-    if (this.accountProfile){
-      this.accountProfile.dob && this.dobDistruct(this.accountProfile.dob)
-
+    if(!this.accountProfile.familyName && !this.accountProfile.givenName){
+      this.givenName = ''
+      this.familyName = ''
+      this.dhsCaseNumber = ''
+      this.accountProfile.dob = ''
+    }
+    else {
       this.location = window.location.pathname
 
+      this.accountProfile.dob && this.dobDistruct(this.accountProfile.dob)
       this.givenName = this.accountProfile.givenName
       this.familyName = this.accountProfile.familyName
       this.dhsCaseNumber = this.accountProfile.dhsCaseNumber
