@@ -115,7 +115,7 @@ import {
   FileDownloadDispositionTypeEnum,
 } from 'api-client'
 import { Vue, Component, Prop } from 'nuxt-property-decorator'
-
+import { browserDetector } from '@/plugins/browser-detector'
 @Component
 export default class DocumentFile extends Vue {
   @Prop({ required: true }) document: Document
@@ -123,7 +123,7 @@ export default class DocumentFile extends Vue {
   url = ''
   loading = true
   dialog = false
-  isPdfBrowser = false
+  isPdfBrowser = browserDetector()
   isMobile = false
 
   get iconHeight() {
@@ -134,87 +134,6 @@ export default class DocumentFile extends Vue {
     } else {
       return
     }
-  }
-
-  getBrowserName() {
-    const userAgent = navigator.userAgent    
-    this.isMobile = /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-      navigator.userAgent,
-    )
-    console.log(this.isMobile)
-    let browserName = 'Another Browser'
-
-    // function isMobileAndroidChrome() {
-    //   const userAgent = navigator.userAgent
-    //   return /Android/i.test(userAgent) && /Chrome/i.test(userAgent)
-    // }
-
-    // function isMobileSafari() {
-    //   const userAgent = navigator.userAgent
-    //   return (
-    //     (/iPhone|iPad|iPod/i.test(userAgent) && /Safari/i.test(userAgent)) ||
-    //     (/iPhone|iPad|iPod/i.test(userAgent) && /CriOS/i.test(userAgent))
-    //   )
-    // }
-
-    if (!this.isMobile) {
-      if (userAgent.includes('Chrome')) {
-        browserName = 'Google Chrome'
-        this.isPdfBrowser = true
-      } else if (userAgent.includes('Safari')) {
-        browserName = 'Apple Safari'
-        this.isPdfBrowser = true
-      } else if (userAgent.includes('Edge')) {
-        browserName = 'Microsoft Edge'
-        this.isPdfBrowser = true
-      } else {
-        this.isPdfBrowser = false
-      }
-    } else {
-      if (/Android/i.test(userAgent)){
-        if (/Chrome/i.test(userAgent) && /Safari/i.test(userAgent) && /SamsungBrowser/i.test(userAgent)){
-          this.isPdfBrowser = false
-        }
-        else if (/Chrome/i.test(userAgent) && /Safari/i.test(userAgent) && !/SamsungBrowser/i.test(userAgent)){
-          this.isPdfBrowser = true
-        }
-        else if (/Chrome/i.test(userAgent) && !/Safari/i.test(userAgent) && !/SamsungBrowser/i.test(userAgent)){
-          this.isPdfBrowser = true
-        }
-        else {
-          this.isPdfBrowser = false
-        }
-      }
-      else if (/iPhone|iPad|iPod/i.test(userAgent)) {
-        if (/Safari/i.test(userAgent) && /CriOS/i.test(userAgent) && /FxiOS/i.test(userAgent)){
-          this.isPdfBrowser = false
-        }
-        else if (/Safari/i.test(userAgent) && /CriOS/i.test(userAgent) && !/FxiOS/i.test(userAgent)){
-          this.isPdfBrowser = true
-        }
-        if (/Safari/i.test(userAgent) && /FxiOS/i.test(userAgent)){
-          this.isPdfBrowser = false
-        }
-        else if (/Safari/i.test(userAgent) && !/CriOS/i.test(userAgent) && !/FxiOS/i.test(userAgent)){
-          this.isPdfBrowser = true
-        }
-        else {
-          this.isPdfBrowser = false
-        }
-      }
-
-      // if (isMobileAndroidChrome()) {
-      //   browserName = 'Android Google Chrome'
-      //   this.isPdfBrowser = true
-      // } else if (isMobileSafari()) {
-      //   browserName = 'Mobile Safari or Chrome'
-      //   this.isPdfBrowser = true
-      // } else {
-      //   this.isPdfBrowser = false
-      // }
-    }
-
-    return browserName
   }
 
   pdfrender(url: any, documentName: any, adobeClientId: any) {
@@ -255,16 +174,15 @@ export default class DocumentFile extends Vue {
   }
 
   updated() {
-    if (this.isPdfBrowser) {
+    if (browserDetector()) {
       this.pdfrender(this.url, this.document.name, this.adobeCredentials())
     }
-    this.getBrowserName()
   }
 
   async mounted() {
     if (this.document.pdf) {
       this.url = this.document.pdf
-      this.getBrowserName()
+      browserDetector()
     } else {
       this.url = await this.$store.dispatch('document/downloadFile', {
         document: this.document,
