@@ -26,7 +26,7 @@ export const browserDetector = () => {
         /Safari/i.test(userAgent) &&
         /SamsungBrowser/i.test(userAgent)
       ) {
-        isPdfBrowser = true
+        isPdfBrowser = false
         return isPdfBrowser
       } else if (
         /Chrome/i.test(userAgent) &&
@@ -43,7 +43,7 @@ export const browserDetector = () => {
         isPdfBrowser = true
         return isPdfBrowser
       } else {
-        isPdfBrowser = true
+        isPdfBrowser = false
         return isPdfBrowser
       }
     } else if (/iPhone|iPad|iPod/i.test(userAgent)) {
@@ -52,7 +52,7 @@ export const browserDetector = () => {
         /CriOS/i.test(userAgent) &&
         /FxiOS/i.test(userAgent)
       ) {
-        isPdfBrowser = true
+        isPdfBrowser = false
         return isPdfBrowser
       } else if (
         /Safari/i.test(userAgent) &&
@@ -73,7 +73,7 @@ export const browserDetector = () => {
         isPdfBrowser = true
         return isPdfBrowser
       } else {
-        isPdfBrowser = true
+        isPdfBrowser = false
         return isPdfBrowser
       }
     }
