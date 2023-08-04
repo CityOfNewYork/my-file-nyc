@@ -63,7 +63,7 @@ export const browserDetector = () => {
         return isPdfBrowser
       }
       if (/Safari/i.test(userAgent) && /FxiOS/i.test(userAgent)) {
-        isPdfBrowser = true
+        isPdfBrowser = false
         return isPdfBrowser
       } else if (
         /Safari/i.test(userAgent) &&
