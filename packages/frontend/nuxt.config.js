@@ -68,6 +68,7 @@ const config = {
     '@/plugins/vee-validate.js',
     '@/plugins/gtag',
     '@/plugins/adobe-viewer.js',
+    '@/plugins/browser-detector.js',
     // consider re-enabling when https://github.com/vue-a11y/vue-axe/issues/32 is resolved
     // {
     //   src: '@/plugins/axe.ts',
