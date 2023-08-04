@@ -375,10 +375,13 @@ export default class Settings extends Vue {
 
   beforeMount(){
     if (!this.accountProfile.familyName && !this.accountProfile.givenName){
-      this.givenName = ''
-      this.familyName = ''
-      this.dhsCaseNumber = ''
+      this.givenName = '  '
+      this.familyName = '  '
+      this.dhsCaseNumber = '  '
       this.accountProfile.dob = ''
+      this.day = ' '
+      this.month = ' '
+      this.year = '   ' 
     }
     else {
       this.location = window.location.pathname
@@ -394,9 +397,12 @@ export default class Settings extends Vue {
 
   mounted() {
     if(!this.accountProfile.familyName && !this.accountProfile.givenName){
-      this.givenName = ''
-      this.familyName = ''
-      this.dhsCaseNumber = ''
+      this.givenName = '  '
+      this.familyName = '  '
+      this.dhsCaseNumber = '    '
+      this.day = ' '
+      this.month = ' '
+      this.year = '    '
       this.accountProfile.dob = ''
     }
     else {
@@ -461,10 +467,10 @@ export default class Settings extends Vue {
       this.dob = this.dobConstruct()
 
       const data = {
-        givenName: this.givenName,
-        familyName: this.familyName,
-        dob: this.dob,
-        dhsCaseNumber: this.dhsCaseNumber,
+        givenName: this.givenName.trim(),
+        familyName: this.familyName.trim(),
+        dob: this.dob.trim(),
+        dhsCaseNumber: this.dhsCaseNumber.trim(),
         locale: this.locale,
       }
 
