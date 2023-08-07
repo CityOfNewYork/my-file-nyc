@@ -109,7 +109,8 @@ const createThumbnail = (
   return new Promise<string>((resolve, reject) => {
     gm(`${inputPath}[0]`)
     .setFormat('png')
-    .resize(128) // Resize to fixed 128px width, maintaining aspect ratio
+    .resize(128, 128) 
+    .extent(128, 128)
     // .quality(75) // Quality from 0 to 100
     .write(outputPath, function(error){
         // Callback function executed when finished
