@@ -1,6 +1,6 @@
-export const MaxFilesPerDocument = 10
+export const MaxFilesPerDocument = 100
 
-export const MaxDocumentsPerUser = 100
+export const MaxDocumentsPerUser = 500
 
 export const MaxDelegatesPerAccount = 10
 
