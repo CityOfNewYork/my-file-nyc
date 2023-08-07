@@ -1785,7 +1785,7 @@ export default merge(
     es: {
       // label appearing in tabular content (list of users, list of shared collections etc)
       // as well as side bar on document view
-      dateAdded: 'Fecha de adición',
+      dateAdded: 'Fecha Agregada',
 
       application: {
         title: 'My File NYC',
@@ -1844,7 +1844,7 @@ export default merge(
         acceptedDelegateInvite: 'Delegate Access Accepted', // not found
         delegateRemoved: 'Client Removed', // not found
         downloadLoadingState: 'Preparando la descarga',
-        sharingComplete: 'Intercambio completo', // displayed while a file is uploading
+        sharingComplete: 'Compartido', // displayed while a file is uploading
         uploadComplete: 'Se completó la carga',
         fileDeletedConfirmation: 'Se eliminó el documento',
         fileTooLarge: 'El documento es demasiado grande (tamaño máximo: 10 MB)',
@@ -1863,18 +1863,18 @@ export default merge(
       },
 
       navigation: {
-        about: 'À propos',
+        about: 'Sobre',
         account: 'My Account Managers', // not found
         settings: 'Mi perfil',
         settingsFirstRun:
           '¡Le damos la bienvenida a Mi archivo NYC! Para comenzar, responda unas preguntas sobre usted.',
         welcomeFirstRun: '¡Le damos la bienvenida a Mi archivo NYC!',
-        activity: 'Journal des activités',
+        activity: 'Registro de actividades',
         back: 'Atrás',
         clients: 'Clientes', // navigate back to agent view desktop
         close: 'Cerrar',
         dashboard: 'Panel',
-        faq: 'PREGUNTAS FRECUENTES',
+        faq: 'Preguntas frecuentes',
         loading: 'Cargando',
         loggingIn: 'Registrándose...',
         manageAccounts: 'Manage Accounts', // not found
@@ -1930,7 +1930,7 @@ export default merge(
         uploadDocument: 'Cargar documento',
         uploadFile: 'Subir archivo',
         uploadFiles: 'Subir archivos',
-        view: 'Vista',
+        view: 'Ver',
         save: 'Guardar',
       },
 
@@ -1942,7 +1942,7 @@ export default merge(
         lastName: 'Apellido',
         whatIsYourLastName: '¿Cuál es su apellido?',
         dob: 'Fecha de nacimiento',
-        whatIsYourDob: '¿Dónde nació?',
+        whatIsYourDob: '¿Cuando naciste?',
         caseNumber: 'Número de caso',
         whatIsYourDshCaseNumber: '¿Cuál es su número de caso de DHS?',
         dhsShow:
@@ -1971,7 +1971,7 @@ export default merge(
         disclaimerTitle: 'Recordatorio',
         shareDocumentDisclaimer: [
           'My File NYC facilitates document sharing with {emails} email accounts',
-          'Recordatorio: Una vez compartidos los documentos, los empleados de DHS pueden descargar y guardar sus documentos para presentarlos como prueba de su solicitud. Aunque usted deje de compartir o elimine documentos de MyFile, DHS puede conservar copias para documentar su caso.', // not found
+          'Una vez compartidos los documentos, los empleados de DHS pueden descargar y guardar sus documentos para presentarlos como prueba de su solicitud. Aunque usted deje de compartir o elimine documentos de MyFile, DHS puede conservar copias para documentar su caso.', // not found
         ],
 
         // on the confirmation step, could be "recipient" or "recipients" depending on number of items
@@ -2221,7 +2221,7 @@ export default merge(
       },
 
       navigation: {
-        about: 'À propos',
+        about: '',
         account: 'My Account Managers', // not found
         settings: 'Mon profil',
         settingsFirstRun:
