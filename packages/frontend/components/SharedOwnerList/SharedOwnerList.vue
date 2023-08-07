@@ -96,7 +96,20 @@
                           >
                             $folder
                           </v-icon>
-                          {{ col.collection.name }}
+
+                          {{
+                            $t('sharedFolder.folderName', {
+                              num: col.collection.numberOfDocuments,
+                              date: format(
+                                new Date(col.collection.createdDate),
+                                'MM/dd/yyyy',
+                              ),
+                              time: format(
+                                new Date(col.collection.createdDate),
+                                'hh:mm a',
+                              ),
+                            })
+                          }}
                         </div>
                         <div class="column-2">
                           <v-select
@@ -259,7 +272,7 @@ import { DocumentListItem } from '@/../api-client'
 @Component({})
 export default class SharedOwnerList extends Vue {
   @Prop({ default: 'false' }) inbox: string
-
+  format = format
   loading = true
   headers: DataTableHeader[] = []
   newHeaders: DataTableHeader[] = []
@@ -471,17 +484,17 @@ export default class SharedOwnerList extends Vue {
   get owners() {
     // TODO: created date could be any of the dates of the collections shared by an owner
     //       not necessarily most or least recent
-    
+
     const filtered = userStore.sharedCollections.filter(
-        (
-          c: SharedCollectionListItem,
-          i: number,
-          arr: SharedCollectionListItem[],
-        ) => arr.findIndex((o) => o.owner.id === c.owner.id) === i,
-      )
+      (
+        c: SharedCollectionListItem,
+        i: number,
+        arr: SharedCollectionListItem[],
+      ) => arr.findIndex((o) => o.owner.id === c.owner.id) === i,
+    )
 
     let sharedCollections = [] as any
-    
+
     filtered.forEach((i: any) => {
       // console.log(i.owner)
       if (i.owner.dob) {
