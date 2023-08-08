@@ -5,7 +5,6 @@
   "version": "0.1.0",
   "license": "MIT",
   "scripts": {
-    "build": ". ./params.env && tsc && webpack",
     "compile": "tsc",
     "watch": "tsc -w",
     "test": "jest",
@@ -14,16 +13,23 @@
     "lint": "eslint --ext .ts --ignore-path .gitignore .",
     "cdk-bootstrap": ". ./params.env && npx cdk bootstrap --public-access-block-configuration false --debug",
 
+    "build-dev": "DEPLOYMENT_TARGET=dev . ./params.env && tsc && webpack",
+    "build-staging": "DEPLOYMENT_TARGET=staging-02 . ./params.env && tsc && webpack",
+    "build-production": "DEPLOYMENT_TARGET=production . ./params.env && tsc && webpack",
+
     "synth-dev": "DEPLOYMENT_TARGET=dev yarn cdk-synth",
     "synth-staging": "DEPLOYMENT_TARGET=staging-02 yarn cdk-synth",
+    "synth-production": "DEPLOYMENT_TARGET=production yarn cdk-synth",
     "cdk-synth": ". ./params.env && npx cdk synth --debug",
 
     "diff-dev": "DEPLOYMENT_TARGET=dev yarn cdk-diff",
     "diff-staging": "DEPLOYMENT_TARGET=staging-02 yarn cdk-diff",
+    "diff-production": "DEPLOYMENT_TARGET=production yarn cdk-diff",
     "cdk-diff": ". ./params.env && npx cdk diff --debug",
 
     "deploy-dev": "DEPLOYMENT_TARGET=dev yarn cdk-deploy",
     "deploy-staging": "DEPLOYMENT_TARGET=staging-02 yarn cdk-deploy",
+    "deploy-production": "DEPLOYMENT_TARGET=production yarn cdk-deploy",
     "cdk-deploy": ". ./params.env && npx cdk deploy $DEPLOY_STACK --debug --require-approval never"
   },
   "devDependencies": {
