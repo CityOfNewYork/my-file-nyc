@@ -53,7 +53,6 @@
     "nuxt": "^2.14.6",
     "nuxt-i18n": "^6.15.1",
     "nuxt-property-decorator": "^2.8.8",
-    "pspdfkit": "^2023.3.5",
     "raw-loader": "^4.0.2",
     "utif": "^3.1.0",
     "vee-validate": "^3.4.2",
