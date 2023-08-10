@@ -15,6 +15,9 @@ AUTH_URL=${process.env.AUTH_URL}
 # Logout URL - called after user presses logout to clear session in identity provider
 AUTH_LOGOUT_URL=${process.env.AUTH_LOGOUT_URL}
 
+# Logout URL - called after user presses logout to clear session in identity provider
+AUTH_REGISTRATION_URL=${process.env.AUTH_REGISTRATION_URL}
+
 # OAuth2 scopes to request. Do not include this variable for NYC.ID integration
 # AUTH_SCOPES=openid,profile,email
 AUTH_SCOPES=${process.env.AUTH_SCOPES}
