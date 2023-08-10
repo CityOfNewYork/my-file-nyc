@@ -12,7 +12,7 @@
       outlined
       color="primary"
       class="create-account-btn"
-      @click="singUp"
+      @click="signUp"
     >
       {{ $t('login.createAccountButton') }}
     </v-btn>
@@ -44,7 +44,7 @@ export default class LandingMessage extends Vue {
   welcomeMarkdown = '' as any
   locale = this.$i18n.locale
 
-  singUp() {
+  signUp() {
     window.open(
       this.$config.registrationEndpoint,
       '_blank',
