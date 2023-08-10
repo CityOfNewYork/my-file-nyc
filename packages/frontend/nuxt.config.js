@@ -155,11 +155,8 @@ const config = {
         {
           'default-src': ["'self'"],
           'base-uri': ["'self'"],
-          'img-src': [
-            '* blob: data:',
-            // getSrc(CspEnum.IMAGE, process.env.CSP_IMG_SRC),
-          ],
-          'worker-src': ["'self' blob:"],
+          'img-src': getSrc(CspEnum.IMAGE, process.env.CSP_IMG_SRC),
+          'worker-src': ["'self'"],
           'style-src': ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
           'script-src': [
             ...getSrc(CspEnum.SCRIPT, process.env.CSP_SCRIPT_SRC),
