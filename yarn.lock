@@ -14732,6 +14732,11 @@ psl@^1.1.28:
   resolved "https://registry.yarnpkg.com/psl/-/psl-1.8.0.tgz#9326f8bcfb013adcc005fdff056acce020e51c24"
   integrity sha512-RIdOzyoavK+hA18OGGWDqUTsCLhtA7IcZ/6NCs4fFJaHBDab+pDDmDIByWFRQJq2Cd7r1OoQxBGKOaztq+hjIQ==
 
+pspdfkit@^2023.3.5:
+  version "2023.3.5"
+  resolved "https://registry.yarnpkg.com/pspdfkit/-/pspdfkit-2023.3.5.tgz#d55edc49669097ab97ccb8e18511b09978f56d8c"
+  integrity sha512-zv1GMmMxMPd8SMuVhoTDoaxjHCzrofdudZJ9U6BKmJhtjNM1vaIvIY8jsb9CLR9ODx00V2gqtn+fgM7u4kPrJg==
+
 public-encrypt@^4.0.0:
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/public-encrypt/-/public-encrypt-4.0.3.tgz#4fcc9d77a07e48ba7527e7cbe0de33d0701331e0"
