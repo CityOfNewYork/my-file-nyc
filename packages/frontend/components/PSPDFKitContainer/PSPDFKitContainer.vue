@@ -16,9 +16,7 @@ export default class PSPDFKitContainer extends Vue {
   @Prop({ required: true }) pdfFile: String
   PSPDFKit: any = null
   loaded: any = null
-  /**
-   * Wait until the template has been rendered to load the document into the library.
-   */
+
   @Watch('pdfFile')
   pdfFileVal(val: any) {
     if (val) {
@@ -38,7 +36,7 @@ export default class PSPDFKitContainer extends Vue {
         return PSPDFKit.load({
           document: this.pdfFile,
           container: '.pdf-container',
-          baseUrl: 'https://localhost:3000/',
+          baseUrl: window.location.origin + '/',
         })
       })
       .catch((error) => {
