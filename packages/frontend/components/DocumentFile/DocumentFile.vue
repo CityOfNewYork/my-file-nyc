@@ -4,12 +4,7 @@
     File is infected and should not be downloaded
   </div>
   <div v-else-if="isPdf">
-    <!-- <div id="adobe-dc-view" class="adobe-container"></div> -->
-    <PSPDFKitContainer
-      v-if="isPdfBrowser"
-      :pdfFile="url"
-      :loaded="handleLoaded"
-    />
+    <div v-if="isPdfBrowser" id="adobe-dc-view" class="adobe-container"></div>
     <div v-else-if="!isPdfBrowser && !isMobile" class="adobe-container">
       <div class="unsupported">
         <div class="warning-text">
@@ -121,14 +116,7 @@ import {
 } from 'api-client'
 import { Vue, Component, Prop } from 'nuxt-property-decorator'
 import { browserDetector } from '@/plugins/browser-detector'
-import PSPDFKitContainer from '../PSPDFKitContainer/PSPDFKitContainer.vue'
-//@ts-ignore
-
-@Component({
-  components: {
-    PSPDFKitContainer,
-  },
-})
+@Component
 export default class DocumentFile extends Vue {
   @Prop({ required: true }) document: Document
   @Prop({ required: true }) file: DocumentFileType
@@ -148,65 +136,53 @@ export default class DocumentFile extends Vue {
     }
   }
 
-  handleLoaded(instance: any) {
-    console.log('PSPDFKit has loaded: ', instance)
-    // Do something.
-  }
+  pdfrender(url: any, documentName: any, adobeClientId: any) {
+    // @ts-ignore
+    if (window.AdobeDC) {
+      // @ts-ignore
+      const adobeDCView = new AdobeDC.View({
+        clientId: adobeClientId,
+        divId: 'adobe-dc-view',
+      })
 
-  openDocument(event: any) {
-    if (this.url && this.url.startsWith('blob:')) {
-      window.URL.revokeObjectURL(this.url)
+      adobeDCView.previewFile({
+        content: {
+          location: {
+            url,
+          },
+        },
+        metaData: { fileName: documentName },
+      })
+    } else {
+      document.addEventListener('adobe_dc_view_sdk.ready', () => {
+        // @ts-ignore
+        const adobeDCView = new AdobeDC.View({
+          clientId: adobeClientId,
+          divId: 'adobe-dc-view',
+        })
+
+        adobeDCView.previewFile({
+          content: {
+            location: {
+              url,
+            },
+          },
+          metaData: { fileName: documentName },
+        })
+      })
     }
-    this.url = window.URL.createObjectURL(event.target.files[0])
   }
-
-  // pdfrender(url: any, documentName: any, adobeClientId: any) {
-  //   // @ts-ignore
-  //   if (window.AdobeDC) {
-  //     // @ts-ignore
-  //     const adobeDCView = new AdobeDC.View({
-  //       clientId: adobeClientId,
-  //       divId: 'adobe-dc-view',
-  //     })
-
-  //     adobeDCView.previewFile({
-  //       content: {
-  //         location: {
-  //           url,
-  //         },
-  //       },
-  //       metaData: { fileName: documentName },
-  //     })
-  //   } else {
-  //     document.addEventListener('adobe_dc_view_sdk.ready', () => {
-  //       // @ts-ignore
-  //       const adobeDCView = new AdobeDC.View({
-  //         clientId: adobeClientId,
-  //         divId: 'adobe-dc-view',
-  //       })
-
-  //       adobeDCView.previewFile({
-  //         content: {
-  //           location: {
-  //             url,
-  //           },
-  //         },
-  //         metaData: { fileName: documentName },
-  //       })
-  //     })
-  //   }
-  // }
 
   updated() {
-    // if (browserDetector()) {
-    //   this.pdfrender(this.url, this.document.name, this.adobeCredentials())
-    // }
+    if (browserDetector()) {
+      this.pdfrender(this.url, this.document.name, this.adobeCredentials())
+    }
   }
 
   async mounted() {
     if (this.document.pdf) {
       this.url = this.document.pdf
-      // browserDetector()
+      browserDetector()
     } else {
       this.url = await this.$store.dispatch('document/downloadFile', {
         document: this.document,
