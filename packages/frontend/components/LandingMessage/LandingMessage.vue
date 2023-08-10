@@ -46,7 +46,7 @@ export default class LandingMessage extends Vue {
 
   singUp() {
     window.open(
-      'https://accounts-nonprd.nyc.gov/account/register.htm',
+      this.$config.registrationEndpoint,
       '_blank',
     )
   }
