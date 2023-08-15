@@ -62,6 +62,7 @@ export default class PSPDFKitContainer extends Vue {
 
 <style scoped>
 .pdf-container {
-  height: 75vh !important;
+  width: 100%;
+  height: calc(100vh - 17rem);
 }
 </style>

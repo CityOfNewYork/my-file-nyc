@@ -31,10 +31,10 @@
     </AppBar>
     <v-main>
       <v-container v-if="document" class="pa-2">
-        <div
+        <!-- <div
           v-if="document.files[0].name.slice(-3) === 'pdf' || document.pdf"
           class="white-square"
-        ></div>
+        ></div> -->
         <template v-if="document.files.length === 1 || document.pdf">
           <DocumentFile
             v-if="document.pdf"
