@@ -109,7 +109,7 @@ export const handler = createAuthenticatedApiGatewayHandler(
         validatedEmailRecipients.push(...sharedInboxConfig[address])
       }
     })
-    console.log(`sharedInboxConfig: ${JSON.stringify(sharedInboxConfig, null, 2)}`)
+    console.log(`validatedEmailRecipients: ${JSON.stringify(validatedEmailRecipients, null, 2)}`)
 
     // create model input
     const collection: CreateCollectionInput = {
@@ -135,6 +135,10 @@ export const handler = createAuthenticatedApiGatewayHandler(
         ownerId,
       })),
     }
+
+    console.log(`collection to be created:
+    ${JSON.stringify(collection, null, 2)}
+    `)
 
     // submit audit activity
     await submitCollectionCreatedEvent({
