@@ -511,7 +511,10 @@ export default class SharedOwnerList extends Vue {
         ) => arr.findIndex((o) => o.owner.id === c.owner.id) === i,
       )
       .map((c: SharedCollectionListItem) => {
-        const dobFormat = c.owner.dob.split('-')
+        let dobFormat = c.owner.dob.split('-')
+        if (c.owner.dob.indexOf('/') > 0) {
+          dobFormat = c.owner.dob.split('/')
+        }
         return {
           ownerId: c.owner.id,
           collectionId: c.collection.id,
