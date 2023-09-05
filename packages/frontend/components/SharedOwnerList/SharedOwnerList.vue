@@ -493,44 +493,41 @@ export default class SharedOwnerList extends Vue {
       ) => arr.findIndex((o) => o.owner.id === c.owner.id) === i,
     )
 
-    let sharedCollections = [] as any
+    const sharedCollections = [] as any
 
     filtered.forEach((i: any) => {
       // console.log(i.owner)
-      if (i.owner.dob) {
+      if (
+        i.owner.dob &&
+        i.owner.familyName &&
+        i.owner.givenName &&
+        i.owner.name
+      ) {
         sharedCollections.push(i)
       }
     })
 
-    return sharedCollections
-      .filter(
-        (
-          c: SharedCollectionListItem,
-          i: number,
-          arr: SharedCollectionListItem[],
-        ) => arr.findIndex((o) => o.owner.id === c.owner.id) === i,
-      )
-      .map((c: SharedCollectionListItem) => {
-        const dobFormat = c.owner.dob.split('-')
-        return {
-          ownerId: c.owner.id,
-          collectionId: c.collection.id,
-          email: c.shareInformation.sharedBy.email,
-          firstName: c.owner.givenName,
-          lastName: c.owner.familyName,
-          locale: this.languagesObject[c.owner.locale.toString()],
-          dob: format(
-            new Date(
-              parseInt(dobFormat[2]),
-              parseInt(dobFormat[0]) - 1,
-              parseInt(dobFormat[1]),
-            ),
-            'MM/dd/yyyy',
+    return sharedCollections.map((c: SharedCollectionListItem) => {
+      const dobFormat = c.owner.dob.split('-')
+      return {
+        ownerId: c.owner.id,
+        collectionId: c.collection.id,
+        email: c.shareInformation.sharedBy.email,
+        firstName: c.owner.givenName,
+        lastName: c.owner.familyName,
+        locale: this.languagesObject[c.owner.locale.toString()],
+        dob: format(
+          new Date(
+            parseInt(dobFormat[2]),
+            parseInt(dobFormat[0]) - 1,
+            parseInt(dobFormat[1]),
           ),
-          dhsCaseNumber: c.owner.dhsCaseNumber,
-          createdDate: format(c.collection.createdDate, 'LLL d, yyyy'),
-        }
-      })
+          'MM/dd/yyyy',
+        ),
+        dhsCaseNumber: c.owner.dhsCaseNumber,
+        createdDate: format(c.collection.createdDate, 'LLL d, yyyy'),
+      }
+    })
   }
 
   sharedName(ownerId: any) {
