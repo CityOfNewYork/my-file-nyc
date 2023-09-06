@@ -97,6 +97,7 @@ export const handler = createAuthenticatedApiGatewayHandler(
     const flatListOfSharedInboxRecipients = uniq(
       flatMap(Object.values(sharedInboxConfig)),
     )
+    console.log(`flatListOfSharedInboxRecipients: ${JSON.stringify(flatListOfSharedInboxRecipients, null, 2)}`)
     const sharedInboxList = Object.keys(sharedInboxConfig)
     const validatedEmailRecipients: Array<string> = []
     individualEmailAddresses.forEach((address) => {
@@ -126,7 +127,7 @@ export const handler = createAuthenticatedApiGatewayHandler(
         createdBy,
         createdAt,
       })),
-      grants: validatedEmailRecipients.map((email) => ({
+      grants: flatListOfSharedInboxRecipients.map((email) => ({
         id: uuidv4(),
         requirementType: CollectionGrantType.IndividualEmail,
         requirementValue: email,
@@ -135,6 +136,10 @@ export const handler = createAuthenticatedApiGatewayHandler(
         ownerId,
       })),
     }
+
+    console.log(`collection to be created:
+    ${JSON.stringify(collection, null, 2)}
+    `)
 
     // submit audit activity
     await submitCollectionCreatedEvent({
@@ -152,6 +157,14 @@ export const handler = createAuthenticatedApiGatewayHandler(
         'collection could not be created',
       )
     }
+
+    console.log(`collection created result:
+    ${JSON.stringify(createdCollection, null, 2)}
+    `)
+
+    console.log(`email addresses to send notifications:
+    ${JSON.stringify(individualEmailAddresses, null, 2)}
+    `)
 
     await queueSharedCollectionNotification({
       collection: {
