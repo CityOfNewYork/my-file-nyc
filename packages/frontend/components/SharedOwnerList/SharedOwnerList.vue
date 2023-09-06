@@ -268,11 +268,13 @@ import { push } from '@/templates/new/component/prompt'
 import { RawLocation } from 'vue-router'
 import { conforms, filter } from 'lodash'
 import { DocumentListItem } from '@/../api-client'
+// import { data } from '@/components/SharedOwnerList/data'
 
 @Component({})
 export default class SharedOwnerList extends Vue {
   @Prop({ default: 'false' }) inbox: string
   format = format
+  parseISO = parseISO
   loading = true
   headers: DataTableHeader[] = []
   newHeaders: DataTableHeader[] = []
@@ -493,22 +495,73 @@ export default class SharedOwnerList extends Vue {
       ) => arr.findIndex((o) => o.owner.id === c.owner.id) === i,
     )
 
+    // const dataFiltered = data.filter(
+    //   (c: any, i: any, arr: any) =>
+    //     arr.findIndex((o: any) => o.owner.id === c.owner.id) === i,
+    // )
+    // const dataCollected = [] as any
+    // dataFiltered.forEach((i: any) => {
+    //   // console.log(i.owner)
+    //   if (
+    //     i.owner.dob &&
+    //     i.owner.familyName &&
+    //     i.owner.givenName &&
+    //     i.owner.name
+    //   ) {
+    //     dataCollected.push(i)
+    //   }
+    // })
     const sharedCollections = [] as any
 
     filtered.forEach((i: any) => {
       // console.log(i.owner)
-      if (
-        i.owner.dob &&
-        i.owner.familyName &&
-        i.owner.givenName &&
-        i.owner.name
-      ) {
-        sharedCollections.push(i)
-      }
+      // if (
+      //   i.owner.dob &&
+      //   i.owner.familyName &&
+      //   i.owner.givenName &&
+      //   i.owner.name &&
+      //   i.owner.caseNumber
+      // ) {
+      //   sharedCollections.push(i)
+      // }
+      // console.log(i)
+      sharedCollections.push(i)
     })
 
     return sharedCollections.map((c: SharedCollectionListItem) => {
-      const dobFormat = c.owner.dob.split('-')
+      let dobFormat = c.owner.dob.split('-')
+      if (c.owner.dob.indexOf('/') > 0) {
+        dobFormat = c.owner.dob.split('/')
+      }
+      let readyFormat: string
+      try {
+        if (dobFormat[0].length <= 2 && parseInt(dobFormat[0]) < 13) {
+          readyFormat = format(
+            new Date(
+              parseInt(dobFormat[2]),
+              parseInt(dobFormat[0]) - 1,
+              parseInt(dobFormat[1]),
+            ),
+            'MM/dd/yyyy',
+          )
+        } else {
+          readyFormat = format(
+            new Date(
+              parseInt(dobFormat[0]),
+              parseInt(dobFormat[1]) - 1,
+              parseInt(dobFormat[2]),
+            ),
+            'MM/dd/yyyy',
+          )
+        }
+      } catch (error: any) {
+        readyFormat = c.owner.dob
+        console.log(error.name)
+        console.log(error.message + ': ' + c.owner.dob)
+      }
+      // console.log(readyFormat)
+      // console.log(dobFormat)
+      // const createdDateParsed = parseISO(c.collection.createdDate.toString())
       return {
         ownerId: c.owner.id,
         collectionId: c.collection.id,
@@ -516,14 +569,7 @@ export default class SharedOwnerList extends Vue {
         firstName: c.owner.givenName,
         lastName: c.owner.familyName,
         locale: this.languagesObject[c.owner.locale.toString()],
-        dob: format(
-          new Date(
-            parseInt(dobFormat[2]),
-            parseInt(dobFormat[0]) - 1,
-            parseInt(dobFormat[1]),
-          ),
-          'MM/dd/yyyy',
-        ),
+        dob: readyFormat,
         dhsCaseNumber: c.owner.dhsCaseNumber,
         createdDate: format(c.collection.createdDate, 'LLL d, yyyy'),
       }
