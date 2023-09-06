@@ -6,7 +6,7 @@
       max-height="112"
       max-width="112"
       contain
-      style="border-radius: 0.4rem"
+      style="border-radius: 0.4rem; max-height: 112px; max-width: 112px;"
       :src="thumbnail"
     />
     <v-skeleton-loader
