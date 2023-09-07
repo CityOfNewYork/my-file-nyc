@@ -14,7 +14,7 @@ a. Vil la te kreye My File NYC pou bay Nouyòkè yo yon zouti gratis, senp epi a
 b. Itilizatè yo ka itilize My File NYC pou:
 mwen. magazen dokiman ki ka bezwen pou aplike pou sèvis Vil la;
 ii. pataje dokiman ak ajans vil la; epi
-iii. bay fidbak sou NYC Datalocker.
+iii. bay fidbak sou My File NYC.
 
 **III. Sèvi ak**
 a. Vil la pa garanti tout ajans Vil la aksepte enfòmasyon ki telechaje nan My File NYC.
@@ -44,7 +44,7 @@ x. modifye, reverse engineering, dekonpile, oswa demonte My File NYC oswa eseye 
 xi. kreye nenpòt travay ki sòti nan My File NYC;
 xii. kontourne, modifye, defèt, oswa manyen oswa kontourne nenpòt nan fonksyon oswa pwoteksyon My File NYC oswa nenpòt mekanis ki lye fonksyonman ak My File NYC, pa egzanp, nan ogmante oswa ranplase nenpòt fonksyonalite jesyon dwa dijital.
 
-**VI. Enfòmasyon Itilizatè yo bay NYC Datalocker**
+**VI. Enfòmasyon Itilizatè yo bay My File NYC**
 a. Vil la pral itilize kontni Itilizatè yo bay My File NYC sèlman pou opere My File NYC, sof si lalwa egzije sa. Vil la pral divilge kontni Itilizatè yo sèlman bay ajans Vil la yo, anplwaye yo, ak ajan ki gen aksè ki nesesè pou opere ak amelyore My File NYC, bay lòt moun jan Itilizatè yo mande l, e jan lalwa egzije sa. Pou aprann kijan Vil la ka itilize enfòmasyon sa yo, Itilizatè yo ta dwe vizite [Politik sou enfòmasyon prive vil la](https://www1.nyc.gov/home/privacy-policy.page).
 b. Vil la kapab kreye epi divilge estatistik total ak anonim sou Itilizatè yo ak enfòmasyon Itilizatè yo bay nan My File NYC.
 c. Vil la pral transmèt, itilize, epi estoke Itilizatè yo

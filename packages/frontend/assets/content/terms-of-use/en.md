@@ -5,16 +5,16 @@ Please read the following terms of use (**Terms**) carefully before using My Fil
 **I. Definitions**
 a. **Account**: an account that a User creates to use My File NYC.
 b. **City**: the City of New York.
-c. **User**: a person who, on their own or with the assistance of another, has created an Account to use My File NYC. 
-d. **My File NYC**:  My File NYC, where a User can upload, store, and share documents with City agencies.
-e. **NYC.ID**: the City’s centralized user authentication and self-service account management system. 
+c. **User**: a person who, on their own or with the assistance of another, has created an Account to use My File NYC.
+d. **My File NYC**: My File NYC, where a User can upload, store, and share documents with City agencies.
+e. **NYC.ID**: the City’s centralized user authentication and self-service account management system.
 
 **II. Purpose**
 a. The City has created My File NYC to provide a free, simple, and secure tool for New Yorkers to store and share any documents required by City agencies to apply for City programs and benefits; to reduce the overall effort expended by residents to retrieve and produce documentation necessary to receive services from the City; and to improve the provision of government services.
 b. Users may use My File NYC to:
 i. store documents that may be needed to apply for City services;
 ii. share documents with City agencies; and
-iii. provide feedback on the NYC Datalocker.
+iii. provide feedback on the My File NYC.
 
 **III. Use**
 a. The City does not guarantee that information uploaded to My File NYC will be accepted by all City agencies.
@@ -26,11 +26,11 @@ d. Login for My File NYC is managed by NYC.ID.
 a. These Terms set forth the rights and responsibilities of Users.
 b. These Terms supplement the [Terms of Use for NYC.gov](https://www1.nyc.gov/home/terms-of-use.page), the [Privacy Policy for NYC.gov](https://www1.nyc.gov/home/privacy-policy.page), and NYC.ID’s Terms of Use. By using My File NYC, Users agree to those Terms.
 c. These Terms are effective upon the User’s acceptance of the terms.
-d. If a person is authorized by a User to assist a User in creating or using an Account on My File NYC, the User represents that the person: (i) has the full legal authority to bind the User to these Terms; (ii) the person has have read and understands these Terms; and (iii) the person agrees,  on behalf of the User, to these Terms. 
+d. If a person is authorized by a User to assist a User in creating or using an Account on My File NYC, the User represents that the person: (i) has the full legal authority to bind the User to these Terms; (ii) the person has have read and understands these Terms; and (iii) the person agrees, on behalf of the User, to these Terms.
 
 **V. Restrictions**
 a. Users must be at least 18 years old or be legally emancipated to use My File NYC.
-b. Users will only access My File NYC for lawful purposes. Users will not: 
+b. Users will only access My File NYC for lawful purposes. Users will not:
 i. use My File NYC to commit a criminal offense or to encourage others to engage in any conduct which would constitute a criminal offense;
 ii. use My File NYC in a way to give rise to civil liability or encourage others to engage in any conduct which would give rise to civil liability;
 iii. use My File NYC to impersonate without authorization other parties or entities;
@@ -44,10 +44,10 @@ x. modify, reverse engineer, decompile, or disassemble My File NYC or attempt to
 xi. create any derivative works from the My File NYC;
 xii. bypass, modify, defeat, or tamper with or circumvent any of the functions or protections of My File NYC or any mechanisms operatively linked to My File NYC, for example, by augmenting or substituting any digital rights management functionality.
 
-**VI. Information Users Supply to the NYC Datalocker**
+**VI. Information Users Supply to the My File NYC**
 a. Content that Users supply to the My File NYC will be used by the City solely for operating the My File NYC, unless otherwise required by law. The City will disclose Users’ content only to City agencies, employees, and agents whose access is necessary to operate and improve the My File NYC, to others as directed by Users, and as required by law. To learn how the City may use this information, Users should visit the [City’s Privacy Policy](https://www1.nyc.gov/home/privacy-policy.page).
 b. The City may create and disclose aggregated and anonymized statistics of Users and information that Users supply to the My File NYC.
-c. The City will transmit, use, and store Users’ information in accordance with all applicable federal, state, and city laws and regulations. 
+c. The City will transmit, use, and store Users’ information in accordance with all applicable federal, state, and city laws and regulations.
 d. The City will use appropriate physical, technological, and procedural safeguards to protect information that Users supply to the My File NYC pursuant to the citywide security standards and data security requirements. The City will treat this information as at least “Restricted” under the Citywide Cybersecurity Program Policies and Standards.
 e. The City will delete all information supplied by a User to the My File NYC when the User deletes their Account, except that if the User has already shared information with a City agency through the My File NYC, that agency will retain the information pursuant to its policies.
 

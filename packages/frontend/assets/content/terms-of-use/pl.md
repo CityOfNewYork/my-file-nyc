@@ -14,7 +14,7 @@ A. Miasto stworzyło My File NYC, aby zapewnić nowojorczykom bezpłatne, proste
 B. Użytkownicy mogą używać My File NYC do:
 I. przechowywać dokumenty, które mogą być potrzebne do ubiegania się o usługi Miejskie;
 II. udostępniać dokumenty agencjom miejskim; I
-iii. przekazać opinię na temat NYC Datalocker.
+iii. przekazać opinię na temat My File NYC.
 
 **III. Używać**
 A. Miasto nie gwarantuje, że informacje przesłane do My File NYC zostaną zaakceptowane przez wszystkie agencje miejskie.
@@ -44,7 +44,7 @@ X. modyfikować, odtwarzać kodu źródłowego, dekompilować lub dezasemblować
 xi. tworzyć żadnych dzieł pochodnych z My File NYC;
 XII. omijać, modyfikować, blokować ani manipulować ani obchodzić żadnych funkcji lub zabezpieczeń My File NYC ani żadnych mechanizmów operacyjnie powiązanych z My File NYC, na przykład poprzez rozszerzanie lub zastępowanie jakichkolwiek funkcji zarządzania prawami cyfrowymi.
 
-** VI. Informacje dostarczane przez użytkowników do NYC Datalocker**
+** VI. Informacje dostarczane przez użytkowników do My File NYC**
 A. Treści, które Użytkownicy dostarczają do My File NYC, będą wykorzystywane przez Miasto wyłącznie do obsługi My File NYC, o ile prawo nie stanowi inaczej. Miasto będzie ujawniać treści Użytkowników wyłącznie agencjom, pracownikom i agentom Miasta, których dostęp jest niezbędny do obsługi i ulepszania My File NYC, innym osobom zgodnie z zaleceniami Użytkowników i zgodnie z wymogami prawa. Aby dowiedzieć się, w jaki sposób Miasto może wykorzystywać te informacje, Użytkownicy powinni odwiedzić [Politykę prywatności Miasta] (https://www1.nyc.gov/home/privacy-policy.page).
 B. Miasto może tworzyć i ujawniać zagregowane i anonimowe statystyki Użytkowników oraz informacje, które Użytkownicy dostarczają do My File NYC.
 C. Miasto będzie przekazywać, wykorzystywać i przechowywać Użytkowników
