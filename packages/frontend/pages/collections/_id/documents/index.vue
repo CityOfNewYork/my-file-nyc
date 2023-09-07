@@ -11,7 +11,7 @@
     <AppBar :custom-mobile-nav="true" :breadcrumbs="breadcrumbs">
       <template v-if="$vuetify.breakpoint.xs" v-slot:nav-action>
         <BackButton
-          :class="$vuetify.breakpoint.smAndDown ? 'mt-12' : ''"
+          :class="$vuetify.breakpoint.smAndDown ? 'mt-16' : ''"
           tabindex="0"
         />
       </template>
@@ -30,15 +30,15 @@
           <UploadButton prepend-icon="$plus" class="float-right ml-2" />
         </template>
       </template>
-      <template
+      <!-- <template
         v-if="$vuetify.breakpoint.smAndUp && !userStore.isAgent"
         v-slot:actionsBeneath
       >
         <ShareButton class="float-right my-2" />
         <UploadButton prepend-icon="$plus" class="float-right ml-2 my-2" />
-      </template>
+      </template> -->
       <template v-if="$vuetify.breakpoint.xs" v-slot:extensions>
-        <div class="text-heading-2 mt-7 pa-4">{{ name }}</div>
+        <div class="text-heading-2 pl-4 pb-4 mt-15">{{ name }}</div>
       </template>
     </AppBar>
     <div v-if="loading">
@@ -84,7 +84,7 @@
           </v-btn>
         </nuxt-link>
       </template>
-      <DesktopSideBar>
+      <!-- <DesktopSideBar>
         <template v-if="userStore.isAgent">
           <template v-if="documents.length">
             <v-btn
@@ -104,7 +104,7 @@
             class="px-8 mt-5"
           />
         </template>
-      </DesktopSideBar>
+      </DesktopSideBar> -->
     </v-main>
   </div>
 </template>
@@ -302,4 +302,12 @@ export default class ViewCollection extends Vue {
   padding-left: 0;
   padding-right: 0;
 }
+
+.v-toolbar__content {
+  padding: 4px 9px !important;
+}
+
+// .v-toolbar__extension {
+//   height: 80px !important;
+// }
 </style>
