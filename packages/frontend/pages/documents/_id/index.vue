@@ -13,7 +13,6 @@
       <template
         v-if="!!document && userStore.isClient && $vuetify.breakpoint.xs"
         v-slot:actions
-        class="ml=10"
       >
         <DocumentMenu
           color="primary"
@@ -112,7 +111,7 @@
       <v-card rounded="0">
         <v-toolbar flat>
           <v-btn
-            class="mr-2 a11y-focus"
+            class="ml-1"
             :title="`${$t('navigation.close')}`"
             icon
             :disabled="loading"
@@ -120,11 +119,15 @@
             @click.stop="closeDetails"
           >
             <v-icon small>$chevron-left</v-icon>
+            <!-- <div style="color: black; font-size: large" class="ml-2">Back</div> -->
           </v-btn>
-          <v-toolbar-title>{{ $t('controls.editDetails') }}</v-toolbar-title>
+          <v-toolbar-title @click.stop="closeDetails">
+            {{ $t('navigation.back') }}
+          </v-toolbar-title>
           <v-spacer />
           <v-btn
             color="primary"
+            class="pr-5"
             text
             :disabled="!valid || loading"
             @click="editDetails"
@@ -132,7 +135,8 @@
             {{ $t('controls.done') }}
           </v-btn>
         </v-toolbar>
-        <v-container class="pa-8">
+        <v-container class="px-8 py-4">
+          <h2 class="pb-4">{{ $t('controls.editDetails') }}</h2>
           <ValidationObserver ref="observer">
             <v-form @submit.prevent>
               <p class="subtitle-1">{{ $t('document.documentName') }}</p>
