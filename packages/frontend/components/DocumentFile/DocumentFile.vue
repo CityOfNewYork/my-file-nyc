@@ -4,7 +4,14 @@
     File is infected and should not be downloaded
   </div>
   <div v-else-if="isPdf">
-    <div v-if="isPdfBrowser" id="adobe-dc-view" class="adobe-container"></div>
+    <div v-if="isPdfBrowser" ref="pdfContainer" class="adobe-container">
+      <div v-if="pdfViewerChildren.length < 1" class="unsupported">
+        <h2 class="warning-paragraph">
+          PDF Viewer cannot open your document. Please, use the button
+          "Download" to download your PDF file and open on your device.
+        </h2>
+      </div>
+    </div>
     <div v-else-if="!isPdfBrowser && !isMobile" class="adobe-container">
       <div class="unsupported">
         <div class="warning-text">
@@ -114,7 +121,7 @@ import {
   DocumentFile as DocumentFileType,
   FileDownloadDispositionTypeEnum,
 } from 'api-client'
-import { Vue, Component, Prop } from 'nuxt-property-decorator'
+import { Vue, Component, Prop, Watch } from 'nuxt-property-decorator'
 import { browserDetector } from '@/plugins/browser-detector'
 @Component
 export default class DocumentFile extends Vue {
@@ -125,6 +132,7 @@ export default class DocumentFile extends Vue {
   dialog = false
   isPdfBrowser = browserDetector()
   isMobile = false
+  pdfViewerChildren = 0
 
   get iconHeight() {
     if (this.$vuetify.breakpoint.xs) {
@@ -132,57 +140,104 @@ export default class DocumentFile extends Vue {
     } else if (this.$vuetify.breakpoint.smAndUp) {
       return '44'
     } else {
-      return
     }
   }
 
-  pdfrender(url: any, documentName: any, adobeClientId: any) {
-    // @ts-ignore
-    if (window.AdobeDC) {
-      // @ts-ignore
-      const adobeDCView = new AdobeDC.View({
-        clientId: adobeClientId,
-        divId: 'adobe-dc-view',
-      })
-
-      adobeDCView.previewFile({
+  // pdfrender(url: any, documentName: any, adobeClientId: any) {
+  //   // @ts-ignore
+  //   if (window.AdobeDC) {
+  //     // @ts-ignore
+  //     const adobeDCView = new window.AdobeDC.View({
+  //       clientId: adobeClientId,
+  //       divId: 'adobe-dc-view',
+  //     })
+  //     adobeDCView.previewFile({
+  //       content: {
+  //         location: {
+  //           url,
+  //         },
+  //       },
+  //       metaData: { fileName: documentName },
+  //     })
+  //   } else {
+  //     document.addEventListener('adobe_dc_view_sdk.ready', () => {
+  //       // @ts-ignore
+  //       const adobeDCView = new window.AdobeDC.View({
+  //         clientId: adobeClientId,
+  //         divId: 'adobe-dc-view',
+  //       })
+  //       adobeDCView.previewFile({
+  //         content: {
+  //           location: {
+  //             url,
+  //           },
+  //         },
+  //         metaData: { fileName: documentName },
+  //       })
+  //     })
+  //   }
+  // }
+  adobeApiReady = false
+  previewFilePromise = null
+  renderPdf(url: any, fileName: any) {
+    if (!this.adobeApiReady) {
+      return
+    }
+    const previewConfig = {
+      // defaultViewMode: 'FIT_WIDTH',
+      showAnnotationTools: false,
+    }
+    this.$refs.pdfContainer.innerHTML = ''
+    const viewer = document.createElement('div')
+    viewer.id = 'viewer'
+    this.$refs.pdfContainer.appendChild(viewer)
+    const adobeDCView = new AdobeDC.View({
+      clientId: this.adobeCredentials(),
+      divId: 'viewer',
+    })
+    this.previewFilePromise = adobeDCView.previewFile(
+      {
         content: {
           location: {
             url,
           },
         },
-        metaData: { fileName: documentName },
-      })
-    } else {
-      document.addEventListener('adobe_dc_view_sdk.ready', () => {
-        // @ts-ignore
-        const adobeDCView = new AdobeDC.View({
-          clientId: adobeClientId,
-          divId: 'adobe-dc-view',
-        })
-
-        adobeDCView.previewFile({
-          content: {
-            location: {
-              url,
-            },
-          },
-          metaData: { fileName: documentName },
-        })
-      })
-    }
+        metaData: {
+          fileName,
+          id: fileName,
+        },
+      },
+      previewConfig,
+    )
   }
 
   updated() {
-    if (browserDetector()) {
-      this.pdfrender(this.url, this.document.name, this.adobeCredentials())
+    if (this.$refs.pdfContainer) {
+      // @ts-ignore
+      this.pdfViewerChildren = this.$refs.pdfContainer.children
     }
+
+    console.log(this.pdfViewerChildren)
   }
 
   async mounted() {
     if (this.document.pdf) {
       this.url = this.document.pdf
       browserDetector()
+
+      // @ts-ignore
+      if (window.AdobeDC) {
+        this.adobeApiReady = true
+      } else {
+        document.addEventListener('adobe_dc_view_sdk.ready', () => {
+          this.adobeApiReady = true
+        })
+      }
+      this.$nextTick().then(() => {
+        if (browserDetector() && this.isPdf && this.url) {
+          return this.renderPdf(this.url, this.document.name)
+        }
+      })
     } else {
       this.url = await this.$store.dispatch('document/downloadFile', {
         document: this.document,
