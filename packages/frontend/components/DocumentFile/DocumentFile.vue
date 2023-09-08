@@ -134,6 +134,7 @@ export default class DocumentFile extends Vue {
   isMobile = false
   pdfViewerChildren = 0
 
+  // @ts-ignore
   get iconHeight() {
     if (this.$vuetify.breakpoint.xs) {
       return '24'
@@ -187,11 +188,14 @@ export default class DocumentFile extends Vue {
       // defaultViewMode: 'FIT_WIDTH',
       showAnnotationTools: false,
     }
+    // @ts-ignore
     this.$refs.pdfContainer.innerHTML = ''
     const viewer = document.createElement('div')
     viewer.id = 'viewer'
+    // @ts-ignore
     this.$refs.pdfContainer.appendChild(viewer)
-    const adobeDCView = new AdobeDC.View({
+    // @ts-ignore
+    const adobeDCView = new window.AdobeDC.View({
       clientId: this.adobeCredentials(),
       divId: 'viewer',
     })
