@@ -8,9 +8,9 @@
     <v-main
       :class="this.$router.currentRoute.path !== '/' ? '' : 'blue-super-light'"
     >
-      <v-container>
+      <div style="width: 100% !important">
         <nuxt />
-      </v-container>
+      </div>
     </v-main>
     <FooterGlobal />
 
