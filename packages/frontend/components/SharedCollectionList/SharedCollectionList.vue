@@ -1,18 +1,65 @@
 <template>
-  <div v-if="!loading">
+  <div v-if="!loading" class="second-layer-table">
     <v-data-table
       v-show="$vuetify.breakpoint.smAndUp"
       :disable-pagination="true"
       :headers="headers"
       :items="collections"
       hide-default-footer
-      :item-class="() => 'clickable'"
       @click:row="previewCollection"
-      width="100"
     >
       <template v-slot:item.icon>
         <v-icon small color="primary" class="my-2">$folder</v-icon>
       </template>
+      <!-- <template v-slot:item.status="{ item }">
+        <v-select
+          v-model="item.status"
+          :items="items"
+          class="selectField"
+          dense
+          :style="{
+            textAlign: 'center',
+            marginTop: '10px',
+            padding: '-1px 19px;',
+            width: '200px',
+          }"
+          item-text="text"
+          item-value="value"
+          @change="(event) => statusUpdate(event, item.id)"
+          @click.stop
+        >
+          <span
+            :style="
+              item.status === 'pending'
+                ? { color: '#8f5f00' }
+                : { color: '#007539' }
+            "
+            class="menu-option"
+          >
+            {{ item.status }}
+          </span>
+
+          <template v-slot:append>
+            <v-icon class="icon-menu-down" color="black">mdi-menu-down</v-icon>
+          </template> -->
+      <!-- <template v-slot:selection="{ item }">
+            <span
+              :style="
+                hover
+                  ? item.value === 'pending'
+                    ? { color: '#ffdf8d' }
+                    : { color: '#a8dd7c' }
+                  : item.value === 'pending'
+                  ? { color: '#8f5f00' }
+                  : { color: '#007539' }
+              "
+              class="select-options"
+            >
+              {{ item.text }}
+            </span>
+          </template> -->
+      <!-- </v-select>
+      </template> -->
     </v-data-table>
     <v-card
       v-for="(collection, i) in collections"
@@ -55,8 +102,21 @@ import { RawLocation } from 'vue-router'
 export default class SharedCollectionList extends Vue {
   loading = true
   headers: DataTableHeader[] = []
+  // items = [
+  //   { text: 'Pending', value: 'pending' },
+  //   { text: 'Complete', value: 'complete' },
+  // ]
+
+  // selectedOption: string = 'pending'
 
   @Prop({ default: '' }) ownerId: string
+
+  statusUpdate(status: any, collectionId: any) {
+    return this.$store.dispatch('collection/patchStatus', {
+      collectionId,
+      status,
+    })
+  }
 
   async mounted() {
     // We have to define headers in mounted function since this.$i18n is undefined otherwise
@@ -88,8 +148,15 @@ export default class SharedCollectionList extends Vue {
         value: 'sharedDate',
         sortable: true,
       },
+      // {
+      //   text: 'Status',
+      //   class: 'white',
+      //   value: 'status',
+      //   align: 'start',
+      // },
     ]
-    await this.$store.dispatch('user/getSharedCollections')
+    const collec = await this.$store.dispatch('user/getSharedCollections')
+    console.log(collec)
     this.loading = false
   }
 
@@ -106,6 +173,7 @@ export default class SharedCollectionList extends Vue {
           new Date(c.shareInformation.sharedDate),
           'LLL d, yyyy',
         ),
+        status: c.collection.status,
       }))
   }
 
@@ -121,3 +189,14 @@ export default class SharedCollectionList extends Vue {
   }
 }
 </script>
+
+<style lang="scss">
+.second-layer-table > .v-data-table {
+  width: 66% !important;
+}
+
+.second-layer-table {
+  display: flex !important;
+  justify-content: center !important;
+}
+</style>

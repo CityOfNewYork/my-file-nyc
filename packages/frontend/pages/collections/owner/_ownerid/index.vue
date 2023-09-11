@@ -63,6 +63,7 @@ export default class OwnerCollections extends Vue {
 <style lang="scss">
 .collection-owner-container {
   margin-top: 64px;
+  width: 100%;
 
   .v-toolbar__extension {
     height: 50px !important;
