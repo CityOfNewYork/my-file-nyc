@@ -7,8 +7,8 @@
       :items="collections"
       hide-default-footer
       :item-class="() => 'clickable'"
+      width="66"
       @click:row="previewCollection"
-      width="100"
     >
       <template v-slot:item.icon>
         <v-icon small color="primary" class="my-2">$folder</v-icon>

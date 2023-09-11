@@ -220,8 +220,6 @@ export default class DocumentFile extends Vue {
       // @ts-ignore
       this.pdfViewerChildren = this.$refs.pdfContainer.children
     }
-
-    console.log(this.pdfViewerChildren)
   }
 
   async mounted() {
