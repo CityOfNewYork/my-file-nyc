@@ -28,10 +28,18 @@
         v-if="pdfViewerChildren.length < 1 && !loadingPDF"
         class="unsupported"
       >
-        <h2 class="warning-paragraph">
-          PDF Viewer cannot open your document. Please, use the button
-          "Download" to download your PDF file and open on your device.
-        </h2>
+        <div class="warning-text">
+          <h1 class="warning-header">
+            <v-icon color="black" class="warning-icon" :size="iconHeight">
+              mdi-alert-outline
+            </v-icon>
+            Cannot display document
+          </h1>
+          <p class="warning-paragraph">
+            Unable to show the document at this time. Please download the
+            document instead.
+          </p>
+        </div>
       </div>
     </div>
     <div v-else-if="!isPdfBrowser && !isMobile" class="adobe-container">
@@ -254,10 +262,10 @@ export default class DocumentFile extends Vue {
 
       // @ts-ignore
       if (window.AdobeDC) {
-        this.adobeApiReady = true
+        // this.adobeApiReady = true
       } else {
         document.addEventListener('adobe_dc_view_sdk.ready', () => {
-          this.adobeApiReady = true
+          // this.adobeApiReady = true
         })
       }
       this.$nextTick().then(() => {
@@ -439,6 +447,7 @@ export default class DocumentFile extends Vue {
     font-weight: bold;
     line-height: 4rem;
     margin-bottom: 2rem;
+    width: 80%;
   }
 
   .warning-paragraph {
@@ -449,7 +458,7 @@ export default class DocumentFile extends Vue {
     line-height: 28px;
     max-width: 600px;
     text-align: start;
-
+    width: 40%;
     // Link text
   }
 
@@ -460,7 +469,7 @@ export default class DocumentFile extends Vue {
   }
 
   .warning-text {
-    width: 60%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
