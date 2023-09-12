@@ -4,12 +4,42 @@
     File is infected and should not be downloaded
   </div>
   <div v-else-if="isPdf">
+    <div
+      v-if="loadingPDF"
+      slot="spinner"
+      style="
+        width: 100%;
+        height: calc(100vh - 18rem);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      "
+    >
+      <v-progress-circular
+        :title="`${$t('navigation.loading')}`"
+        indeterminate
+        color="primary"
+        :size="60"
+        :width="4"
+      />
+    </div>
     <div v-if="isPdfBrowser" ref="pdfContainer" class="adobe-container">
-      <div v-if="pdfViewerChildren.length < 1" class="unsupported">
-        <h2 class="warning-paragraph">
-          PDF Viewer cannot open your document. Please, use the button
-          "Download" to download your PDF file and open on your device.
-        </h2>
+      <div
+        v-if="pdfViewerChildren.length < 1 && !loadingPDF"
+        class="unsupported"
+      >
+        <div class="warning-text">
+          <h1 class="warning-header">
+            <v-icon color="black" class="warning-icon" :size="iconHeight">
+              mdi-alert-outline
+            </v-icon>
+            Cannot display document
+          </h1>
+          <p class="warning-paragraph">
+            Unable to show the document at this time. Please download the
+            document instead.
+          </p>
+        </div>
       </div>
     </div>
     <div v-else-if="!isPdfBrowser && !isMobile" class="adobe-container">
@@ -133,6 +163,7 @@ export default class DocumentFile extends Vue {
   isPdfBrowser = browserDetector()
   isMobile = false
   pdfViewerChildren = 0
+  loadingPDF = true
 
   // @ts-ignore
   get iconHeight() {
@@ -182,6 +213,7 @@ export default class DocumentFile extends Vue {
   previewFilePromise = null
   renderPdf(url: any, fileName: any) {
     if (!this.adobeApiReady) {
+      this.loadingPDF = false
       return
     }
     const previewConfig = {
@@ -213,6 +245,7 @@ export default class DocumentFile extends Vue {
       },
       previewConfig,
     )
+    this.loadingPDF = false
   }
 
   updated() {
@@ -414,6 +447,7 @@ export default class DocumentFile extends Vue {
     font-weight: bold;
     line-height: 4rem;
     margin-bottom: 2rem;
+    width: 80%;
   }
 
   .warning-paragraph {
@@ -424,7 +458,7 @@ export default class DocumentFile extends Vue {
     line-height: 28px;
     max-width: 600px;
     text-align: start;
-
+    width: 40%;
     // Link text
   }
 
@@ -435,7 +469,7 @@ export default class DocumentFile extends Vue {
   }
 
   .warning-text {
-    width: 60%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
