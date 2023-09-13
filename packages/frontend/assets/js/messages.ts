@@ -15,6 +15,18 @@ export default merge(
         title: 'My File NYC',
       },
 
+      errorMessages: {
+        cannotDisplayDocumentHeader: 'Cannot display document',
+        cannotDisplayDocumentText:
+          'Unable to show the document at this time. Please download the document instead.',
+        unsupportedBrowserHeader: 'Unsupported Browser',
+        unsupportedBrowserTextDesktop:
+          'PDF Viewer does not support Firefox or Internet Explorer. Please use a different web browser such as',
+        or: 'or',
+        unsupportedBrowserTextMobile:
+          'PDF Viewer does not support Microsoft Edge, Firefox, Samsung Internet, or Internet Explorer. Please use a different web browser such as',
+      },
+
       validationMsg: {
         firstNameRequired: 'The First Name field is required.',
         firstNameNotValid: 'First Name is not valid.',
@@ -24,7 +36,7 @@ export default merge(
           'The First Name field must be at least 2 characters long.',
         firstNameAlpha: 'The First Name field may only contain letters.',
 
-        //Last Name
+        // Last Name
         lastNameRequired: 'The Last Name field is required.',
         lastNameNotValid: 'Last Name is not valid.',
         lastNameMaxLength:
@@ -33,15 +45,15 @@ export default merge(
           'The Last Name field must be at least 2 characters long.',
         lastNameAlpha: 'The Last Name field may only contain letters.',
 
-        //Month
+        // Month
         monthNotValid: 'Month is not valid.',
         monthRequired: 'Month is required.',
 
-        //Day
+        // Day
         dayNotValid: 'Day is not valid.',
         dayRequired: 'The Day field is required.',
 
-        //Year
+        // Year
         yearRequired: 'The Year field is required.',
         yearNotValid: 'Year is not valid.',
 
@@ -371,6 +383,18 @@ export default merge(
         title: 'My File NYC',
       },
 
+      errorMessages: {
+        cannotDisplayDocumentHeader: 'لا يمكن عرض المستند',
+        cannotDisplayDocumentText:
+          'غير قادر على إظهار المستند في هذا الوقت. يرجى تحميل الوثيقة بدلا من ذلك.',
+        unsupportedBrowserHeader: 'متصفح غير مدعوم',
+        unsupportedBrowserTextDesktop:
+          'لا يدعم عارض PDF متصفح Firefox أو Internet Explorer. الرجاء استخدام متصفح ويب مختلف مثل',
+        or: 'أو',
+        unsupportedBrowserTextMobile:
+          'لا يدعم عارض PDF Microsoft Edge أو Firefox أو Samsung Internet أو Internet Explorer. الرجاء استخدام متصفح ويب مختلف مثل',
+      },
+
       validationMsg: {
         firstNameRequired: 'حقل الاسم الأول مطلوب.',
         firstNameNotValid: 'الاسم الأول غير صالح.',
@@ -378,7 +402,7 @@ export default merge(
         firstNameMinLength: 'يجب أن يتكون حقل الاسم الأول من حرفين على الأقل.',
         firstNameAlpha: 'يمكن أن يحتوي حقل الاسم الأول على أحرف فقط.',
 
-        //Last Name
+        // Last Name
         lastNameRequired: 'حقل الاسم الأخير مطلوب',
         lastNameNotValid: 'الاسم الأخير غير صالح.',
         lastNameMaxLength: 'يجب ألا يزيد حقل الاسم الأخير عن 50 حرفًا',
@@ -386,15 +410,15 @@ export default merge(
           'يجب أن يتكون حقل "الاسم الأخير" من حرفين على الأقل.',
         lastNameAlpha: 'قد يحتوي حقل الاسم الأخير على أحرف فقط.',
 
-        //Month
+        // Month
         monthNotValid: 'الشهر غير صالح',
         monthRequired: 'الشهر مطلوب.',
 
-        //Day
+        // Day
         dayNotValid: 'اليوم غير صالح',
         dayRequired: 'حقل اليوم مطلوب',
 
-        //Year
+        // Year
         yearRequired: 'حقل السنة مطلوب.',
         yearNotValid: 'حقل السنة مطلوب',
 
@@ -723,6 +747,18 @@ export default merge(
         title: 'My File NYC',
       },
 
+      errorMessages: {
+        cannotDisplayDocumentHeader: 'Невозможно отобразить документ',
+        cannotDisplayDocumentText:
+          'В настоящее время невозможно показать документ. Вместо этого загрузите документ.',
+        unsupportedBrowserHeader: 'Неподдерживаемый браузер',
+        unsupportedBrowserTextDesktop:
+          'PDF Viewer не поддерживает Firefox или Internet Explorer. Пожалуйста, используйте другой веб-браузер, например',
+        or: 'или',
+        unsupportedBrowserTextMobile:
+          'PDF Viewer не поддерживает Microsoft Edge, Firefox, Samsung Internet или Internet Explorer. Пожалуйста, используйте другой веб-браузер, например',
+      },
+
       validationMsg: {
         firstNameRequired: 'Поле «Имя» обязательно для заполнения',
         firstNameNotValid: 'Имя не соответствует действительности',
@@ -730,7 +766,7 @@ export default merge(
         firstNameMinLength: 'Поле «Имя» должно содержать не менее 2 символов',
         firstNameAlpha: 'Поле «Имя» может содержать только буквы',
 
-        //Last Name
+        // Last Name
         lastNameRequired: 'Поле «Фамилия» обязательно для заполнения',
         lastNameNotValid: 'Фамилия не соответствует действительности',
         lastNameMaxLength:
@@ -739,15 +775,15 @@ export default merge(
           'Поле «Фамилия» должно содержать не менее 2 символов',
         lastNameAlpha: 'Поле «Фамилия» может содержать только буквы',
 
-        //Month
+        // Month
         monthNotValid: 'Месяц не соответствует действительности',
         monthRequired: 'Поле «Месяц» обязательно для заполнения',
 
-        //Day
+        // Day
         dayNotValid: 'День не соответствует действительности',
         dayRequired: 'Поле «День» обязательно для заполнения',
 
-        //Year
+        // Year
         yearRequired: 'Поле «Год» обязательно для заполнения',
         yearNotValid: 'Год не соответствует рамкам между 1920 и 2022 года',
 
@@ -1084,6 +1120,18 @@ export default merge(
         title: 'My File NYC',
       },
 
+      errorMessages: {
+        cannotDisplayDocumentHeader: 'دستاویز ڈسپلے نہیں کر سکتا',
+        cannotDisplayDocumentText:
+          'اس وقت دستاویز دکھانے سے قاصر ہے۔ اس کے بجائے براہ کرم دستاویز ڈاؤن لوڈ کریں۔',
+        unsupportedBrowserHeader: 'معاون براؤزر',
+        unsupportedBrowserTextDesktop:
+          'پی ڈی ایف ویور فائر فاکس یا انٹرنیٹ ایکسپلورر کو سپورٹ نہیں کرتا ہے۔ براہ کرم ایک مختلف ویب براؤزر استعمال کریں جیسے',
+        or: 'یا',
+        unsupportedBrowserTextMobile:
+          'PDF Viewer Microsoft Edge، Firefox، Samsung Internet، یا Internet Explorer کو سپورٹ نہیں کرتا ہے۔ براہ کرم ایک مختلف ویب براؤزر استعمال کریں جیسے',
+      },
+
       validationMsg: {
         firstNameRequired: 'آپ کے پہلے نام کی فیلڈ درکار ہے',
         firstNameNotValid: 'پہلا نام قابلِ استعمال نہیں ہے۔',
@@ -1092,7 +1140,7 @@ export default merge(
         firstNameMinLength: 'پہلا نام کا فیلڈ کم از کم 2 حروف کا ہونا چاہیے۔.',
         firstNameAlpha: 'پہلا نام والا فیلڈ صرف حروف پر مشتمل ہو سکتا ہے۔',
 
-        //Last Name
+        // Last Name
         lastNameRequired: 'آخری نام کی فیلڈ درکار ہے',
         lastNameNotValid: 'آخری نام قابلِ استعمال نہیں ہے۔',
         lastNameMaxLength:
@@ -1100,15 +1148,15 @@ export default merge(
         lastNameMinLength: 'آخری نام کا فیلڈ کم از کم 2 حروف کا ہونا چاہیے۔',
         lastNameAlpha: 'آخری نام کے خانے میں صرف حروف ہوسکتے ہیں۔',
 
-        //Month
+        // Month
         monthNotValid: 'مہینہ کارآمد نہیں ہے۔',
         monthRequired: 'مہینہ درکار ہے۔',
 
-        //Day
+        // Day
         dayNotValid: 'دن درست نہیں ہے۔',
         dayRequired: 'دن کی فیلڈ درکار ہے',
 
-        //Year
+        // Year
         yearRequired: 'سال کی فیلڈ درکار ہے',
         yearNotValid: 'سال درست نہیں ہے۔',
 
@@ -1442,6 +1490,18 @@ export default merge(
         title: 'My File NYC',
       },
 
+      errorMessages: {
+        cannotDisplayDocumentHeader: '문서를 표시할 수 없습니다',
+        cannotDisplayDocumentText:
+          '지금은 문서를 표시할 수 없습니다. 대신 문서를 다운로드하세요.',
+        unsupportedBrowserHeader: '지원되지 않는 브라우저',
+        unsupportedBrowserTextDesktop:
+          'PDF 뷰어는 Firefox 또는 Internet Explorer를 지원하지 않습니다. 다음과 같은 다른 웹 브라우저를 사용하십시오.',
+        or: '또는',
+        unsupportedBrowserTextMobile:
+          'PDF 뷰어는 Microsoft Edge, Firefox, Samsung Internet 또는 Internet Explorer를 지원하지 않습니다. 다음과 같은 다른 웹 브라우저를 사용하십시오.',
+      },
+
       validationMsg: {
         firstNameRequired: '이름 필드는 필수입니다',
         firstNameNotValid: '이름 필드가 유효하지 않습니다',
@@ -1449,22 +1509,22 @@ export default merge(
         firstNameMinLength: '케이스 번호 필드는 최소 2자 이상이어야 합니다.',
         firstNameAlpha: '이름 필드에는 문자만 사용할 수 있습니다.',
 
-        //Last Name
+        // Last Name
         lastNameRequired: '성 필드는 필수입니다',
         lastNameNotValid: '성 필드가 유효하지 않습니다',
         lastNameMaxLength: '성 필드는 50자를 넘을 수 없습니다',
         lastNameMinLength: '성 필드는 2자 이상이어야 합니다',
         lastNameAlpha: '성 필드에는 문자만 포함할 수 있습니다',
 
-        //Month
+        // Month
         monthNotValid: '월이 유효하지 않습니다',
         monthRequired: '월이 필요합니다',
 
-        //Day
+        // Day
         dayNotValid: '날짜가 유효하지 않습니다',
         dayRequired: '일 필드는 필수입니다',
 
-        //Year
+        // Year
         yearRequired: '년도 필드는 필수입니다',
         yearNotValid: '연도가 유효하지 않습니다',
 
@@ -1791,6 +1851,18 @@ export default merge(
         title: 'My File NYC',
       },
 
+      errorMessages: {
+        cannotDisplayDocumentHeader: 'No se puede mostrar el documento',
+        cannotDisplayDocumentText:
+          'No se puede mostrar el documento en este momento. Descargue el documento en su lugar.',
+        unsupportedBrowserHeader: 'Navegador no soportado',
+        unsupportedBrowserTextDesktop:
+          'PDF Viewer no es compatible con Firefox o Internet Explorer. Utilice un navegador web diferente, como por ejemplo',
+        or: 'o',
+        unsupportedBrowserTextMobile:
+          'PDF Viewer no es compatible con Microsoft Edge, Firefox, Samsung Internet o Internet Explorer. Utilice un navegador web diferente, como por ejemplo',
+      },
+
       validationMsg: {
         firstNameRequired: 'El campo Nombre es obligatorio',
         firstNameNotValid: 'El nombre no es válido',
@@ -1798,22 +1870,22 @@ export default merge(
         firstNameMinLength: 'El campo Nombre debe tener al menos 2 caracteres',
         firstNameAlpha: 'El campo Nombre solo puede contener letras.',
 
-        //Last Name
+        // Last Name
         lastNameRequired: 'El campo Apellido es obligatorio',
         lastNameNotValid: 'El apellido no es válido',
         lastNameMaxLength: 'El campo Apellido admite 50 caracteres como máximo',
         lastNameMinLength: 'El campo Apellido debe tener al menos 2 caracteres',
         lastNameAlpha: 'El campo Apellido solo puede contener letras',
 
-        //Month
+        // Month
         monthNotValid: 'El mes no es válido',
         monthRequired: 'Se requiere el mes',
 
-        //Day
+        // Day
         dayNotValid: 'El dia no es valido',
         dayRequired: 'El campo Día es obligatorio',
 
-        //Year
+        // Year
         yearRequired: 'El campo Año es obligatorio',
         yearNotValid: 'El año no es válido',
 
@@ -2144,6 +2216,18 @@ export default merge(
         title: 'My File NYC',
       },
 
+      errorMessages: {
+        cannotDisplayDocumentHeader: "Impossible d'afficher le document",
+        cannotDisplayDocumentText:
+          "Impossible d'afficher le document pour le moment. Veuillez plutôt télécharger le document.",
+        unsupportedBrowserHeader: 'Navigateur non supporté',
+        unsupportedBrowserTextDesktop:
+          'PDF Viewer ne prend pas en charge Firefox ou Internet Explorer. Veuillez utiliser un autre navigateur Web tel que',
+        or: 'ou',
+        unsupportedBrowserTextMobile:
+          'PDF Viewer ne prend pas en charge Microsoft Edge, Firefox, Samsung Internet ou Internet Explorer. Veuillez utiliser un autre navigateur Web tel que',
+      },
+
       validationMsg: {
         firstNameRequired: 'Le champ « Prénom » est obligatoire',
         firstNameNotValid: 'Le prénom n’est pas valide.',
@@ -2153,7 +2237,7 @@ export default merge(
           'Le champ « Prénom »  doit comporter au moins 2 caractères',
         firstNameAlpha: 'Le champ « Prénom » ne peut contenir que des lettres',
 
-        //Last Name
+        // Last Name
         lastNameRequired: 'Le champ « Nom » est obligatoire',
         lastNameNotValid: 'Le nom n’est pas valide',
         lastNameMaxLength:
@@ -2162,15 +2246,15 @@ export default merge(
           'Le champ « Nom » de famille doit comporter au moins 2 caractères.',
         lastNameAlpha: 'Le champ « Nom » ne peut contenir que des lettres.',
 
-        //Month
+        // Month
         monthNotValid: "Le mois n'est pas valide",
         monthRequired: 'Le champ « Mois » est obligatoire.',
 
-        //Day
+        // Day
         dayNotValid: "Le jour n'est pas valide",
         dayRequired: 'Le champ « Jour » est obligatoire',
 
-        //Year
+        // Year
         yearRequired: 'Le champ « Année » est obligatoire',
         yearNotValid: "Le annee n'est pas valid",
 
@@ -2505,6 +2589,18 @@ export default merge(
         title: 'My File NYC',
       },
 
+      errorMessages: {
+        cannotDisplayDocumentHeader: 'নথি প্রদর্শন করা যাবে না',
+        cannotDisplayDocumentText:
+          'এই মুহুর্তে নথিটি দেখাতে অক্ষম৷ পরিবর্তে নথি ডাউনলোড করুন.',
+        unsupportedBrowserHeader: 'অসমর্থিত ব্রাউজার',
+        unsupportedBrowserTextDesktop:
+          'পিডিএফ ভিউয়ার ফায়ারফক্স বা ইন্টারনেট এক্সপ্লোরার সমর্থন করে না। যেমন একটি ভিন্ন ওয়েব ব্রাউজার ব্যবহার করুন',
+        or: 'বা',
+        unsupportedBrowserTextMobile:
+          'পিডিএফ ভিউয়ার মাইক্রোসফট এজ, ফায়ারফক্স, স্যামসাং ইন্টারনেট, বা ইন্টারনেট এক্সপ্লোরার সমর্থন করে না। যেমন একটি ভিন্ন ওয়েব ব্রাউজার ব্যবহার করুন',
+      },
+
       validationMsg: {
         firstNameRequired: 'নাম ক্ষেত্রটি প্রয়োজন',
         firstNameNotValid: 'নাম বৈধ নয়।',
@@ -2513,7 +2609,7 @@ export default merge(
           'প্রথম নাম ক্ষেত্রটি অবশ্যই কমপক্ষে 2 অক্ষর দীর্ঘ হতে হবে।',
         firstNameAlpha: 'প্রথম নামের ক্ষেত্রে শুধুমাত্র অক্ষর থাকতে পারে।',
 
-        //Last Name
+        // Last Name
         lastNameRequired: 'পদবি ক্ষেত্রটি প্রয়োজন',
         lastNameNotValid: 'পদবি বৈধ নয়।',
         lastNameMaxLength: 'পদবি ক্ষেত্রটি 50 অক্ষরের বেশি নাও হতে পারে',
@@ -2521,15 +2617,15 @@ export default merge(
           'শেষ নাম ক্ষেত্রটি অবশ্যই কমপক্ষে 2 অক্ষর দীর্ঘ হতে হবে।',
         lastNameAlpha: 'শেষ নামের ক্ষেত্রে শুধুমাত্র অক্ষর থাকতে পারে।',
 
-        //Month
+        // Month
         monthNotValid: 'মাস বৈধ নয়।',
         monthRequired: 'মাস প্রয়োজন',
 
-        //Day
+        // Day
         dayNotValid: 'দিন বৈধ নয়',
         dayRequired: 'দিন ক্ষেত্রটি প্রয়োজন',
 
-        //Year
+        // Year
         yearRequired: 'বছর ক্ষেত্রটি প্রয়োজন',
         yearNotValid: 'বছর বৈধ নয়।',
 
@@ -2860,6 +2956,18 @@ export default merge(
         title: 'My File NYC',
       },
 
+      errorMessages: {
+        cannotDisplayDocumentHeader: 'Nie można wyświetlić dokumentu',
+        cannotDisplayDocumentText:
+          'W tej chwili nie można pokazać dokumentu. Zamiast tego, prosimy ściągnąć dokument.',
+        unsupportedBrowserHeader: 'Nieobsługiwane przeglądarki',
+        unsupportedBrowserTextDesktop:
+          'Przeglądarka PDF nie obsługuje przeglądarek Firefox ani Internet Explorer. Użyj innej przeglądarki internetowej, np',
+        or: 'lub',
+        unsupportedBrowserTextMobile:
+          'Przeglądarka PDF nie obsługuje przeglądarek Microsoft Edge, Firefox, Samsung Internet ani Internet Explorer. Użyj innej przeglądarki internetowej, np',
+      },
+
       validationMsg: {
         firstNameRequired: 'Pole „Imię” jest obowiązkowe',
         firstNameNotValid: 'Imię jest niepoprawne.',
@@ -2867,7 +2975,7 @@ export default merge(
         firstNameMinLength: 'Pole „Imię” musi mieć co najmniej 2 znaki.',
         firstNameAlpha: 'Pole „Imię” może zawierać tylko litery.',
 
-        //Last Name
+        // Last Name
         lastNameRequired: 'Pole „Nazwisko” jest obowiązkowe',
         lastNameNotValid: 'Nazwisko jest niepoprawne.',
         lastNameMaxLength:
@@ -2875,15 +2983,15 @@ export default merge(
         lastNameMinLength: 'Pole „Nazwisko” musi mieć co najmniej 2 znaki.',
         lastNameAlpha: 'Pole „Nazwisko” może zawierać tylko litery',
 
-        //Month
+        // Month
         monthNotValid: 'Miesiąc jest niepoprawny',
         monthRequired: 'Pole „Miesiąc” jest obowiązkowe.',
 
-        //Day
+        // Day
         dayNotValid: 'Dzień jest nieprawidłowy',
         dayRequired: 'Pole „Dzień” jest obowiązkowe',
 
-        //Year
+        // Year
         yearRequired: 'Pole „Rok” jest obowiązkowe',
         yearNotValid: 'Rok jest nieprawidłowy',
 
@@ -3212,6 +3320,18 @@ export default merge(
         title: 'My File NYC',
       },
 
+      errorMessages: {
+        cannotDisplayDocumentHeader: 'Pa ka montre dokiman an',
+        cannotDisplayDocumentText:
+          'Pa kapab montre dokiman an nan moman sa a. Tanpri telechaje dokiman an pito.',
+        unsupportedBrowserHeader: 'Navigatè ki pa sipòte',
+        unsupportedBrowserTextDesktop:
+          'PDF Viewer pa sipòte Firefox oswa Internet Explorer. Tanpri itilize yon navigatè entènèt diferan tankou',
+        or: 'oswa',
+        unsupportedBrowserTextMobile:
+          'PDF Viewer pa sipòte Microsoft Edge, Firefox, Samsung Entènèt, oswa Internet Explorer. Tanpri itilize yon navigatè entènèt diferan tankou',
+      },
+
       validationMsg: {
         firstNameRequired: 'Pati Prenon an obligatwa',
         firstNameNotValid: 'Prenon an pa valid',
@@ -3219,22 +3339,22 @@ export default merge(
         firstNameMinLength: 'Field Non an dwe gen omwen 2 karaktè',
         firstNameAlpha: 'Jaden Premye Non an ka genyen sèlman lèt.',
 
-        //Last Name
+        // Last Name
         lastNameRequired: 'Pati Non an obligatwa',
         lastNameNotValid: 'Non an pa valid',
         lastNameMaxLength: 'Pati Non an pa dwe pi plis pase 50 karaktè.',
         lastNameMinLength: 'Chan non siyati a dwe gen omwen 2 karaktè',
         lastNameAlpha: 'Chan non siyati a ka sèlman genyen lèt.',
 
-        //Month
+        // Month
         monthNotValid: 'Mwa pa valid.',
         monthRequired: 'Mwa obligatwa.',
 
-        //Day
+        // Day
         dayNotValid: 'Jounen pa valab',
         dayRequired: 'Pati Jou a obligatwa',
 
-        //Year
+        // Year
         yearRequired: 'Pati Ane a obligatwa',
         yearNotValid: 'Ane pa valab.',
 
@@ -3561,6 +3681,17 @@ export default merge(
         title: 'My File NYC',
       },
 
+      errorMessages: {
+        cannotDisplayDocumentHeader: '無法顯示文檔',
+        cannotDisplayDocumentText: '目前無法顯示該文檔。請下載這份文件來代替。',
+        unsupportedBrowserHeader: '不支持的瀏覽器',
+        unsupportedBrowserTextDesktop:
+          'PDF 查看器不支持 Firefox 或 Internet Explorer。請使用不同的網絡瀏覽器，例如',
+        or: '或者',
+        unsupportedBrowserTextMobile:
+          'PDF 查看器不支持 Microsoft Edge、Firefox、Samsung Internet 或 Internet Explorer。請使用不同的網絡瀏覽器，例如',
+      },
+
       validationMsg: {
         firstNameRequired: '名字欄位必填',
         firstNameNotValid: '名字無效',
@@ -3568,22 +3699,22 @@ export default merge(
         firstNameMinLength: '名字字段的長度必須至少為 2 個字符',
         firstNameAlpha: '名字字段只能包含字母',
 
-        //Last Name
+        // Last Name
         lastNameRequired: '姓氏欄位必填',
         lastNameNotValid: '姓氏無效',
         lastNameMaxLength: '姓氏欄位不能超過 50 個字符',
         lastNameMinLength: '姓氏字段的長度必須至少為 2 個字符',
         lastNameAlpha: '姓氏字段只能包含字母。',
 
-        //Month
+        // Month
         monthNotValid: '月份無效',
         monthRequired: '需要月份',
 
-        //Day
+        // Day
         dayNotValid: '日期無效',
         dayRequired: '日期欄位必填',
 
-        //Year
+        // Year
         yearRequired: '年份欄位必填',
         yearNotValid: '年份無效',
 

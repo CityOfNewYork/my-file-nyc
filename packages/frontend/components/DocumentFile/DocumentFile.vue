@@ -5,7 +5,7 @@
   </div>
   <div v-else-if="isPdf">
     <div
-      v-if="loadingPDF"
+      v-if="loadingPDF && isPdfBrowser"
       slot="spinner"
       style="
         width: 100%;
@@ -33,11 +33,10 @@
             <v-icon color="black" class="warning-icon" :size="iconHeight">
               mdi-alert-outline
             </v-icon>
-            Cannot display document
+            {{ $t('errorMessages.cannotDisplayDocumentHeader') }}
           </h1>
           <p class="warning-paragraph">
-            Unable to show the document at this time. Please download the
-            document instead.
+            {{ $t('errorMessages.cannotDisplayDocumentText') }}
           </p>
         </div>
       </div>
@@ -49,11 +48,10 @@
             <v-icon color="black" class="warning-icon" :size="iconHeight">
               mdi-alert-outline
             </v-icon>
-            Unsupported Browser
+            {{ $t('errorMessages.unsupportedBrowserHeader') }}
           </h1>
           <p class="warning-paragraph">
-            PDF Viewer does not support Firefox or Internet Explorer. Please use
-            a different web browser such as
+            {{ $t('errorMessages.unsupportedBrowserTextDesktop') }}
             <a
               class="warning-link"
               href="https://www.google.com/chrome/"
@@ -69,7 +67,7 @@
             >
               Microsoft Edge
             </a>
-            or
+            {{ $t('errorMessages.or') }}
             <a
               class="warning-link"
               href="https://support.apple.com/downloads/safari"
@@ -91,11 +89,10 @@
           <v-icon color="black" class="warning-icon" :size="iconHeight">
             mdi-alert-outline
           </v-icon>
-          Unsupported Browser
+          {{ $t('errorMessages.unsupportedBrowserHeader') }}
         </h1>
         <p class="warning-paragraph">
-          PDF Viewer does not support Microsoft Edge, Firefox, Samsung Internet,
-          or Internet Explorer. Please use a different web browser such as
+          {{ $t('errorMessages.unsupportedBrowserTextMobile') }}
           <a
             class="warning-link"
             href="https://www.google.com/chrome/"
@@ -103,7 +100,7 @@
           >
             Google Chrome
           </a>
-          or
+          {{ $t('errorMessages.or') }}
           <a
             class="warning-link"
             href="https://support.apple.com/downloads/safari"
