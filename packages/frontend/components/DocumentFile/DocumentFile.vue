@@ -259,10 +259,10 @@ export default class DocumentFile extends Vue {
 
       // @ts-ignore
       if (window.AdobeDC) {
-        // this.adobeApiReady = true
+        this.adobeApiReady = true
       } else {
         document.addEventListener('adobe_dc_view_sdk.ready', () => {
-          // this.adobeApiReady = true
+          this.adobeApiReady = true
         })
       }
       this.$nextTick().then(() => {
