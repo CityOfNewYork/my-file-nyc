@@ -84,7 +84,7 @@
           </v-btn>
         </nuxt-link>
       </template>
-      <!-- <DesktopSideBar>
+      <DesktopSideBar v-if="userStore.isAgent">
         <template v-if="userStore.isAgent">
           <template v-if="documents.length">
             <v-btn
@@ -104,7 +104,7 @@
             class="px-8 mt-5"
           />
         </template>
-      </DesktopSideBar> -->
+      </DesktopSideBar>
     </v-main>
   </div>
 </template>
