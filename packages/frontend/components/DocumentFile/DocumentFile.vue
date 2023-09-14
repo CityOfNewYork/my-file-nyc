@@ -275,18 +275,6 @@ export default class DocumentFile extends Vue {
     if (this.document.pdf) {
       this.url = this.document.pdf
       browserDetector()
-
-      // @ts-ignore
-      if (window.AdobeDC) {
-        this.adobeApiReady = true
-      } else {
-        document.addEventListener('adobe_dc_view_sdk.ready', () => {
-          this.adobeApiReady = true
-        })
-      }
-      this.$nextTick().then(() => {
-        return this.renderPdf(this.url, this.document.name)
-      })
     } else {
       this.url = await this.$store.dispatch('document/downloadFile', {
         document: this.document,
@@ -294,6 +282,18 @@ export default class DocumentFile extends Vue {
         disposition: FileDownloadDispositionTypeEnum.Inline,
       })
     }
+
+    // @ts-ignore
+    if (window.AdobeDC) {
+      this.adobeApiReady = true
+    } else {
+      document.addEventListener('adobe_dc_view_sdk.ready', () => {
+        this.adobeApiReady = true
+      })
+    }
+    this.$nextTick().then(() => {
+      return this.renderPdf(this.url, this.document.name)
+    })
 
     if (this.isTiff) {
       await this.processTif()
