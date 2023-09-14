@@ -23,11 +23,18 @@
         :width="4"
       />
     </div>
-    <div v-if="isPdfBrowser" ref="pdfContainer" class="adobe-container">
-      <div
+    <div
+      v-if="isPdfBrowser && !errorRender"
+      ref="pdfContainer"
+      class="adobe-container"
+    >
+      <!-- <div
         v-if="pdfViewerChildren.length < 1 && !loadingPDF"
         class="unsupported"
-      >
+      > -->
+    </div>
+    <div v-else-if="errorRender" class="adobe-container">
+      <div class="unsupported">
         <div class="warning-text">
           <h1 class="warning-header">
             <v-icon color="black" class="warning-icon" :size="iconHeight">
@@ -172,6 +179,10 @@ export default class DocumentFile extends Vue {
     }
   }
 
+  get errorRender() {
+    return this.errorPdf
+  }
+
   // pdfrender(url: any, documentName: any, adobeClientId: any) {
   //   // @ts-ignore
   //   if (window.AdobeDC) {
@@ -208,7 +219,8 @@ export default class DocumentFile extends Vue {
   // }
   adobeApiReady = false
   previewFilePromise = null
-  renderPdf(url: any, fileName: any) {
+  errorPdf = false
+  async renderPdf(url: any, fileName: any) {
     if (!this.adobeApiReady) {
       this.loadingPDF = false
       return
@@ -228,21 +240,28 @@ export default class DocumentFile extends Vue {
       clientId: this.adobeCredentials(),
       divId: 'viewer',
     })
-    this.previewFilePromise = adobeDCView.previewFile(
-      {
-        content: {
-          location: {
-            url,
+    this.loadingPDF = false
+    try {
+      this.previewFilePromise = await adobeDCView.previewFile(
+        {
+          content: {
+            location: {
+              url,
+            },
+          },
+          metaData: {
+            fileName,
+            id: fileName,
           },
         },
-        metaData: {
-          fileName,
-          id: fileName,
-        },
-      },
-      previewConfig,
-    )
-    this.loadingPDF = false
+        previewConfig,
+      )
+    } catch (e: any) {
+      console.log(e.code)
+      this.errorPdf = true
+      // @ts-ignore
+      this.$refs.pdfContainer.innerHTML = ''
+    }
   }
 
   updated() {
@@ -266,9 +285,7 @@ export default class DocumentFile extends Vue {
         })
       }
       this.$nextTick().then(() => {
-        if (browserDetector() && this.isPdf && this.url) {
-          return this.renderPdf(this.url, this.document.name)
-        }
+        return this.renderPdf(this.url, this.document.name)
       })
     } else {
       this.url = await this.$store.dispatch('document/downloadFile', {
