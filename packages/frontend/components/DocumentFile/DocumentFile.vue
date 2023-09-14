@@ -4,7 +4,7 @@
     File is infected and should not be downloaded
   </div>
   <div v-else-if="isPdf">
-    <div
+    <!-- <div
       v-if="loadingPDF && isPdfBrowser"
       slot="spinner"
       style="
@@ -22,7 +22,7 @@
         :size="60"
         :width="4"
       />
-    </div>
+    </div> -->
     <div
       v-if="isPdfBrowser && !errorRender"
       ref="pdfContainer"
@@ -222,7 +222,7 @@ export default class DocumentFile extends Vue {
   errorPdf = false
   async renderPdf(url: any, fileName: any) {
     if (!this.adobeApiReady) {
-      this.loadingPDF = false
+      // this.loadingPDF = false
       return
     }
     const previewConfig = {
@@ -240,7 +240,7 @@ export default class DocumentFile extends Vue {
       clientId: this.adobeCredentials(),
       divId: 'viewer',
     })
-    this.loadingPDF = false
+    // this.loadingPDF = false
     try {
       this.previewFilePromise = await adobeDCView.previewFile(
         {
