@@ -233,6 +233,7 @@ export default class DocumentFile extends Vue {
     this.$refs.pdfContainer.innerHTML = ''
     const viewer = document.createElement('div')
     viewer.id = 'viewer'
+
     // @ts-ignore
     this.$refs.pdfContainer.appendChild(viewer)
     // @ts-ignore
@@ -472,7 +473,7 @@ export default class DocumentFile extends Vue {
     line-height: 28px;
     max-width: 600px;
     text-align: start;
-    width: 40%;
+    width: 30%;
     // Link text
   }
 
