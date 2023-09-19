@@ -71,11 +71,11 @@ export const createS3ZipFromS3Objects = async (
           console.log(`S3 object does not exist: ${o.key}.
           This object will be skipped and not added to the archived download.`)
         }
-
-        console.log('calling archive.finalize()')
-        await archive.finalize()
-        console.log('archive.finalize() completed.')
       }
+
+      console.log('calling archive.finalize()')
+      await archive.finalize()
+      console.log('archive.finalize() completed.')
     })
     console.log('archive creation complete...')
     console.log('attempting archive upload to s3...')
