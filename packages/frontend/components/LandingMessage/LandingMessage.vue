@@ -45,8 +45,16 @@ export default class LandingMessage extends Vue {
   locale = this.$i18n.locale
 
   signUp() {
+    let language = this.locale
+    if (this.locale === 'ch') {
+      language = 'zh'
+    }
+    if (this.locale === 'urd') {
+      language = 'ur'
+    }
+
     window.open(
-      this.$config.registrationEndpoint,
+      this.$config.registrationEndpoint.concat(`&lang=${language}`),
       '_blank',
     )
   }
