@@ -273,9 +273,9 @@ export default class UploadButtonFileInput extends Vue {
 @media (max-width: 733px) {
   .dialog-container {
     background-color: rgb(255, 255, 255);
-    width: 330px;
+    width: 300px;
     min-height: 450px !important;
-    overflow: scroll !important;
+    overflow-y: auto !important;
     display: flex;
     flex-direction: column;
     padding-left: 24px;

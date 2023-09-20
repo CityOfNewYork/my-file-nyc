@@ -37,8 +37,16 @@
         <ShareButton class="float-right my-2" />
         <UploadButton prepend-icon="$plus" class="float-right ml-2 my-2" />
       </template> -->
-      <template v-if="$vuetify.breakpoint.xs" v-slot:extensions>
-        <div class="text-heading-2 pl-4 pb-4 mt-15">{{ name }}</div>
+      <template v-if="$vuetify.breakpoint.xs && collection" v-slot:extensions>
+        <div class="text-heading-2 pl-4 pb-4 mt-15">
+          {{
+            $t('sharedFolder.folderName', {
+              num: collection.numberOfDocuments,
+              date: format(new Date(collection.createdDate), 'MM/dd/yyyy'),
+              time: format(new Date(collection.createdDate), 'hh:mm a'),
+            })
+          }}
+        </div>
       </template>
     </AppBar>
     <div v-if="loading">
@@ -127,6 +135,7 @@ import { Breadcrumb } from '@/types/nav'
 import { DelegatedClient } from '@/types/delegate'
 import { SharedCollectionListItem as TransformedSharedCollectionListItem } from '@/types/transformed'
 import SnackParams from '@/types/snackbar'
+import { format, parseISO } from 'date-fns'
 
 @Component({
   head() {
@@ -140,6 +149,8 @@ export default class ViewCollection extends Vue {
   loading = true
   documents: DocumentListItem[] = []
   title = ''
+  format = format
+  date: any
 
   sharer: ApiUser | null
   userStore = userStore
@@ -225,9 +236,7 @@ export default class ViewCollection extends Vue {
   }
 
   get name() {
-    return (
-      this.collection?.name ?? this.sharedCollection?.collection?.name ?? ''
-    )
+    return this.date ?? this.sharedCollection?.collection?.name ?? ''
   }
 
   get collectionDate() {

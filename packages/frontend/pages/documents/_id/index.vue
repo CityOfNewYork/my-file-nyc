@@ -136,7 +136,9 @@
           </v-btn>
         </v-toolbar>
         <v-container class="px-8 py-4">
-          <h2 class="pb-4">{{ $t('controls.editDetails') }}</h2>
+          <h2 class="pb-4 edit-dialog-header">
+            {{ $t('controls.editDetails') }}
+          </h2>
           <ValidationObserver ref="observer">
             <v-form @submit.prevent>
               <p class="subtitle-1">{{ $t('document.documentName') }}</p>
@@ -353,6 +355,10 @@ export default class ViewDocument extends Vue {
   .vertical-space {
     min-height: 20rem;
   }
+}
+
+.edit-dialog-header {
+  color: rgb(0, 0, 0) !important;
 }
 
 .white-square {
