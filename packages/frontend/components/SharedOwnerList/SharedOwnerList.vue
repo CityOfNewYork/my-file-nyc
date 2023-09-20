@@ -463,15 +463,16 @@ export default class SharedOwnerList extends Vue {
     if (!text || !text.trim()) {
       return this.owners // Return all items if search query is empty
     } else {
+      console.log(text)
       const queries = text.toLowerCase().trim().split(' ')
       return this.owners.filter((item: any) =>
         queries.every(
           (query: any) =>
-            item.firstName.toLowerCase().includes(query) ||
-            item.lastName.toLowerCase().includes(query) ||
-            item.dhsCaseNumber.toLowerCase().includes(query) ||
-            item.email.toLowerCase().includes(query) ||
-            item.dob.toLowerCase().includes(query),
+            item.firstName?.toLowerCase().includes(query) ||
+            item.lastName?.toLowerCase().includes(query) ||
+            item.dhsCaseNumber?.toLowerCase().includes(query) ||
+            item.email?.toLowerCase().includes(query) ||
+            item.dob?.toLowerCase().includes(query),
         ),
       )
     }
