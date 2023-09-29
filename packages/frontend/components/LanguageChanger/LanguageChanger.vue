@@ -13,7 +13,7 @@
         marginTop: '10px',
         padding: padding,
       }"
-      v-on:change="userPatch"
+      @change="userPatch"
     >
       <template v-slot:selection="{ item }">
         {{ languagesObject[item] }}
@@ -30,8 +30,7 @@ import { Component, Vue, Prop } from 'nuxt-property-decorator'
 import { userStore } from '@/plugins/store-accessor'
 
 interface Languages {
-  [key: string]: string;
-
+  [key: string]: string
 }
 @Component
 export default class LanguageChanger extends Vue {
@@ -42,15 +41,13 @@ export default class LanguageChanger extends Vue {
   @Prop({ default: () => () => {} }) loadingUpdate: () => void
   userStore = userStore as any
 
- 
-    // Update usere locale in database and app state
+  // Update usere locale in database and app state
   async userPatch() {
-     if (!this.userStore.profile) {
+    if (!this.userStore.profile) {
       this.prefixRouteUpdate(this.$router.currentRoute.fullPath.split('/'))
-     }
-    else{
+    } else {
       this.loadingUpdate()
-    
+
       const data = {
         givenName: this.userStore.profile.givenName,
         familyName: this.userStore.profile.familyName,
@@ -62,18 +59,16 @@ export default class LanguageChanger extends Vue {
       const response = await this.$store.dispatch('user/patchProfile', data)
       this.$i18n.locale = response.locale
       this.prefixRouteUpdate(this.$router.currentRoute.fullPath.split('/'))
-      }
+    }
   }
 
-  prefixRouteUpdate(route: any){
+  prefixRouteUpdate(route: any) {
     if (route.length <= 2) {
       route[0] = this.$i18n.locale
-    }
-    else if (route.length >= 3){
+    } else if (route.length >= 3) {
       if (this.languagesObject[route[1]]) {
         route[1] = this.$i18n.locale
-      }
-      else {
+      } else {
         route.splice(1, 0, this.$i18n.locale)
       }
     }
@@ -95,7 +90,7 @@ export default class LanguageChanger extends Vue {
     en: 'English',
     es: 'Español',
     ar: 'عرب',
-    ch: '中國人',
+    ch: '中文',
     ru: 'Русский',
     urd: 'اردو',
     ko: '한국인',

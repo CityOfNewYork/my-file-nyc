@@ -91,6 +91,15 @@
             {{ $t('sharedFolder.returnDashboard') }}
           </v-btn>
         </nuxt-link>
+        <!-- <div v-if="collection">
+          {{
+            $t('sharedFolder.folderName', {
+              num: collection.numberOfDocuments,
+              date: format(new Date(collection.createdDate), 'MM/dd/yyyy'),
+              time: format(new Date(collection.createdDate), 'hh:mm a'),
+            })
+          }}
+        </div> -->
       </template>
       <DesktopSideBar v-if="userStore.isAgent">
         <template v-if="userStore.isAgent">
