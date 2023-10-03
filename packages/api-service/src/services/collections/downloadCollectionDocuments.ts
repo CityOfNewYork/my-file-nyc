@@ -25,8 +25,63 @@ import { EnvironmentVariable, requireConfiguration } from '@/config'
 import { invokeFunction } from '@/utils/lambda'
 import { CreateCollectionZipEvent } from './createCollectionZip'
 import { createAuthenticatedApiGatewayHandler } from '@/services/users/middleware'
+import { S3ObjectDetails, createS3ZipFromS3Objects } from '@/utils/zip'
+import { getDocumentById } from '@/models/document'
+import { getFilesByDocumentId } from '@/models/file'
+import { resolveFileName } from '@/utils/fileNamer'
 
 connectDatabase()
+
+const createCollectionZip = async (collectionId: string, userId: string) => {
+  // read in documents
+  const { documents, documentsHash } = await getCollectionDetails(
+    collectionId,
+  )
+  const downloadPath = `${CollectionsPrefix}/${collectionId}/${documentsHash}`
+
+  // prepare file streams of files already in s3
+  const fileNames = new Set<string>()
+  const s3Objects: S3ObjectDetails[] = []
+  for (const document of documents) {
+    if (document.isMultipageDocument) {
+      const fetchedDocument = await getDocumentById(document.id)
+      if (fetchedDocument) {
+        // create stream for file
+        s3Objects.push({
+          key: `documents/${fetchedDocument.ownerId}/${document.id}.pdf`,
+          filename: `${document.name}.pdf`,
+        })
+      }
+    } else {
+      // get received files for a document
+      const files = (await getFilesByDocumentId(document.id)).filter(
+        (f) => f.received,
+      )
+      // create stream for file
+      s3Objects.push(
+        ...files.map((f) => {
+          const filename = resolveFileName(document, f, files.length, fileNames)
+          fileNames.add(filename)
+          return {
+            key: f.path,
+            filename,
+          }
+        }),
+      )
+    }
+  }
+
+  console.log(`S3 Objects for Archive:
+  ${JSON.stringify(s3Objects, null, 2)}
+  `)
+
+  // stream files into zip
+  return await createS3ZipFromS3Objects({
+    key: downloadPath,
+    objects: s3Objects,
+    tags: `CreatedBy=${userId}`,
+  })
+}
 
 export const handler = createAuthenticatedApiGatewayHandler(
   setContext('collectionId', (r) =>
@@ -43,6 +98,8 @@ export const handler = createAuthenticatedApiGatewayHandler(
     const { documents, documentsHash } = await getCollectionDetails(
       collectionId,
     )
+    console.log(`documents to download: ${JSON.stringify(documents, null, 2)}`)
+    
     const downloadPath = `${CollectionsPrefix}/${collectionId}/${documentsHash}`
 
     if (await objectExists(downloadPath)) {
@@ -66,12 +123,16 @@ export const handler = createAuthenticatedApiGatewayHandler(
     const functionName = requireConfiguration(
       EnvironmentVariable.CREATE_COLLECTION_ZIP_FUNCTION_NAME,
     )
-    await invokeFunction<CreateCollectionZipEvent>(functionName, {
-      collectionId,
-      userId,
-    })
+    // await invokeFunction<CreateCollectionZipEvent>(functionName, {
+    //   collectionId,
+    //   userId,
+    // })
 
+    console.log('creating collection zip locally vs lambda invocation')
+    await createCollectionZip(collectionId, userId)
+    
     // return handle to file
+    console.log('zip created... returning data')
     return {
       id: documentsHash,
       status: DocumentsDownloadStatusEnum.Pending,

@@ -25,7 +25,9 @@ export default class Login extends Vue {
       userStore.setRole(index)
       this.$router.push(this.localePath('/'))
     } else {
-      this.$auth.loginWith(this.$config.authStrategy)
+      console.log(this.$config)
+      console.log(this.$config.authStrategy)
+      this.$auth.loginWith(this.$config.authStrategy, { params: { test: 'one', another: 'two' } })
     }
   }
 }

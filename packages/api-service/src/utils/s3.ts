@@ -146,6 +146,7 @@ export const objectExists = async (key: string): Promise<boolean> => {
       .promise()
     return true
   } catch (err) {
+    console.log(`error on checking if object exists: ${JSON.stringify(err, null, 2)}`)
     return false
   }
 }

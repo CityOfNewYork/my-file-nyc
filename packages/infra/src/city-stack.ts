@@ -2139,6 +2139,11 @@ export class CityStack extends Stack {
         collectionBucketPermissions: {
           // can read collections
           includeRead: true,
+          includeWrite: true,
+          includeTagging: true,
+        },
+        documentBucketPermissions: {
+          includeRead: true,
         },
         auditLogSqsPermissions: {
           includeWrite: true,
