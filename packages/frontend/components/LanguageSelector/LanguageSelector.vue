@@ -36,7 +36,7 @@ export default class LanguageSelector extends Vue {
   @Prop({ default: 'en' }) locale: string
   @Prop({ default: () => () => {} }) localeChange: (local: string) => void
 
-  updated(){
+  updated() {
     this.localeChange(this.locale)
   }
 
@@ -44,7 +44,7 @@ export default class LanguageSelector extends Vue {
     en: 'English',
     es: 'Español',
     ar: 'عرب',
-    ch: '中國人',
+    ch: '中文',
     ru: 'Русский',
     urd: 'اردو',
     ko: '한국인',
