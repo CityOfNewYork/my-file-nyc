@@ -1,6 +1,6 @@
 # My File NYC
 
-My Digital Data Locker is designed to help families who are seeking permanent supportive housing. My Digital Data Locker facilitates the storage and sharing of personal documents with case managers and relevant City agencies in a way that is both easy and secure.
+My File NYC is designed to help families who are seeking permanent supportive housing. My File NYC facilitates the storage and sharing of personal documents with case managers and relevant City agencies in a way that is both easy and secure.
 
 ## Getting Started
 
