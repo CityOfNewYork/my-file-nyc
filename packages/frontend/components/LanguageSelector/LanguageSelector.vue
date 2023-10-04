@@ -15,7 +15,12 @@
       }"
     >
       <template v-slot:selection="{ item }">
-        {{ languagesObject[item] }}
+        <div style="margin-top: 5px">
+          <v-icon style="margin-right: 10px; color: #2f3033">
+            mdi-translate
+          </v-icon>
+          {{ languagesObject[item] }}
+        </div>
       </template>
       <template v-slot:item="{ item }">
         {{ languagesObject[item] }}
@@ -63,7 +68,7 @@ export default class LanguageSelector extends Vue {
 }
 
 .langContainerOutlined {
-  width: 80%;
+  width: 100% !important;
   height: 100px;
   .v-text-field.v-text-field--enclosed:not(.v-text-field--rounded)
     > .v-input__control

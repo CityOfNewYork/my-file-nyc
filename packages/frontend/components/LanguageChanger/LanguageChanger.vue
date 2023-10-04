@@ -16,7 +16,12 @@
       @change="userPatch"
     >
       <template v-slot:selection="{ item }">
-        {{ languagesObject[item] }}
+        <div class="input-language" style="display: flex; flex-direction: row">
+          <v-icon size="20" style="margin-right: 10px; color: #2f3033">
+            mdi-translate
+          </v-icon>
+          {{ languagesObject[item] }}
+        </div>
       </template>
       <template v-slot:item="{ item }">
         {{ languagesObject[item] }}
@@ -108,8 +113,19 @@ export default class LanguageChanger extends Vue {
   height: 100%;
 }
 
+@media (min-width: 501px) {
+  .langContainerOutlined {
+    width: 80%;
+  }
+}
+
+@media (max-width: 500px) {
+  .langContainerOutlined {
+    width: 89%;
+  }
+}
+
 .langContainerOutlined {
-  width: 80%;
   height: 100px;
   .v-text-field.v-text-field--enclosed:not(.v-text-field--rounded)
     > .v-input__control
@@ -123,11 +139,18 @@ export default class LanguageChanger extends Vue {
 }
 
 .langContainer {
-  padding: -1px 19px;
+  // padding: -1px 19px;
+  .v-icon {
+    color: white !important;
+  }
+  margin-right: 10px;
+  .input-language {
+    width: 100px;
+  }
 }
 
 .selectField {
-  max-width: 80px;
+  max-width: 115px;
   height: 30px;
 }
 
@@ -151,6 +174,6 @@ export default class LanguageChanger extends Vue {
   > .v-icon {
   color: white;
   margin-bottom: 15px;
-  padding-left: 10px;
+  padding-left: 2px;
 }
 </style>
