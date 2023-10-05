@@ -35,7 +35,7 @@ export default class SharedCollectionDetails extends Vue {
     return this.collection
       ? format(
           new Date(this.collection.shareInformation.sharedDate),
-          'LLL d, yyyy - k:mm',
+          'LLL d, yyyy - hh:mm a',
         )
       : ''
   }

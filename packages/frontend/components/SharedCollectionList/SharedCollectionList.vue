@@ -11,6 +11,15 @@
       <template v-slot:item.icon>
         <v-icon small color="primary" class="my-2">$folder</v-icon>
       </template>
+      <template v-slot:item.name="{ item }">
+        {{
+          $t('sharedFolder.folderName', {
+            num: item.numberOfDocuments,
+            date: format(new Date(item.sharedDateNoFormat), 'MM/dd/yyyy'),
+            time: format(new Date(item.sharedDateNoFormat), 'hh:mm a'),
+          })
+        }}
+      </template>
       <!-- <template v-slot:item.status="{ item }">
         <v-select
           v-model="item.status"
@@ -102,6 +111,7 @@ import { RawLocation } from 'vue-router'
 export default class SharedCollectionList extends Vue {
   loading = true
   headers: DataTableHeader[] = []
+  format = format
   // items = [
   //   { text: 'Pending', value: 'pending' },
   //   { text: 'Complete', value: 'complete' },
@@ -156,7 +166,6 @@ export default class SharedCollectionList extends Vue {
       // },
     ]
     const collec = await this.$store.dispatch('user/getSharedCollections')
-    console.log(collec)
     this.loading = false
   }
 
@@ -165,16 +174,20 @@ export default class SharedCollectionList extends Vue {
       .filter((c: SharedCollectionListItem) =>
         this.ownerId ? c.owner.id === this.$route.params.ownerid : true,
       )
-      .map((c: SharedCollectionListItem) => ({
-        id: c.collection.id,
-        name: c.collection.name,
-        sharerName: c.shareInformation.sharedBy.name,
-        sharedDate: format(
-          new Date(c.shareInformation.sharedDate),
-          'LLL d, yyyy',
-        ),
-        status: c.collection.status,
-      }))
+      .map((c: SharedCollectionListItem) => {
+        return {
+          id: c.collection.id,
+          name: c.collection.name,
+          sharerName: c.shareInformation.sharedBy.name,
+          sharedDate: format(
+            new Date(c.shareInformation.sharedDate),
+            'LLL d, yyyy',
+          ),
+          sharedDateNoFormat: c.shareInformation.sharedDate,
+          status: c.collection.status,
+          numberOfDocuments: c.collection.numberOfDocuments,
+        }
+      })
   }
 
   previewCollection(collectionRowItem: any) {
