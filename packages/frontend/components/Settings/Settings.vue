@@ -3,64 +3,78 @@
     <v-container v-if="editMode" class="pa-5 mb-10">
       <div class="mt-1" style="text-align: center">
         <CityLogo class="mx-auto my-8" />
-        <p class="my-8" v-html="boldMyFile"></p>
+        <!-- <p class="my-8" v-html="boldMyFile"></p> -->
       </div>
       <ValidationObserver ref="observer" v-slot="{ invalid }">
-        <v-form @submit.prevent ref="form">
+        <v-form ref="form" style="margin-bottom: 40px" @submit.prevent>
           <ValidationProvider
+            v-slot="{ errors }"
             name="First Name"
             rules="required|max:50|min:2|alpha_spaces_with_chars"
-            v-slot="{ errors }"
           >
             <p class="subtitle-1 mt-1">
               {{ $t('account.whatIsYourFirstName') }}
             </p>
             <v-text-field
-              outlined
               v-model="givenName"
+              outlined
               type="text"
               :placeholder="
                 accountProfile.givenName ? '' : $t('account.firstName')
               "
             />
             <!-- Display errors for each validation rule with translations -->
-            <span class="invalid" v-if="givenName.length === 0">
+            <span v-if="givenName.length === 0" class="invalid">
               {{ $t('validationMsg.firstNameRequired') }}
             </span>
-            <span class="invalid" v-else-if="givenName.length > 50">
+            <span v-else-if="givenName.length > 50" class="invalid">
               {{ $t('validationMsg.firstNameMaxLength') }}
             </span>
-            <span class="invalid" v-else-if="givenName.length < 2">
+            <span v-else-if="givenName.length < 2" class="invalid">
               {{ $t('validationMsg.firstNameMinLength') }}
             </span>
-            <span class="invalid" v-else-if="!givenName.match(/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'`-]+$/u)">
+            <span
+              v-else-if="
+                !givenName.match(
+                  /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'`-]+$/u,
+                )
+              "
+              class="invalid"
+            >
               {{ $t('validationMsg.firstNameAlpha') }}
             </span>
           </ValidationProvider>
           <ValidationProvider
+            v-slot="{ errors }"
             name="Last Name"
             rules="required|max:50|min:2|alpha_spaces_with_chars"
-            v-slot="{ errors }"
           >
             <p class="subtitle-1">{{ $t('account.whatIsYourLastName') }}</p>
             <v-text-field
-              outlined
               v-model="familyName"
+              outlined
               type="text"
               :placeholder="
                 accountProfile.familyName ? '' : $t('account.lastName')
               "
             />
-            <span class="invalid" v-if="familyName.length === 0">
+            <span v-if="familyName.length === 0" class="invalid">
               {{ $t('validationMsg.lastNameRequired') }}
             </span>
-            <span class="invalid" v-else-if="familyName.length > 50">
+            <span v-else-if="familyName.length > 50" class="invalid">
               {{ $t('validationMsg.lasttNameMaxLength') }}
             </span>
-            <span class="invalid" v-else-if="familyName.length < 2">
+            <span v-else-if="familyName.length < 2" class="invalid">
               {{ $t('validationMsg.lastNameMinLength') }}
             </span>
-            <span class="invalid" v-else-if="!familyName.match(/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'`-]+$/u)">
+            <span
+              v-else-if="
+                !familyName.match(
+                  /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'`-]+$/u,
+                )
+              "
+              class="invalid"
+            >
               {{ $t('validationMsg.lastNameAlpha') }}
             </span>
           </ValidationProvider>
@@ -69,27 +83,27 @@
           <div class="d-flex justify-space-between">
             <div class="inputContainer">
               <ValidationProvider
+                v-slot="{ errors }"
                 name="Month"
                 rules="between:1,12|required|max:2"
-                v-slot="{ errors }"
               >
                 <label>{{ $t('account.month') }}</label>
                 <v-text-field
+                  v-model="month"
                   type="number"
                   outlined
-                  v-model="month"
                   :class="$vuetify.breakpoint.mdAndDown ? 'input' : ''"
                 />
-                <span class="invalid" v-if="month.length === 0">
+                <span v-if="month.length === 0" class="invalid">
                   {{ $t('validationMsg.monthRequired') }}
                 </span>
                 <span
-                  class="invalid"
                   v-if="
                     month.length > 2 ||
                     parseInt(month) <= 0 ||
                     parseInt(month) > 12
                   "
+                  class="invalid"
                 >
                   {{ $t('validationMsg.monthNotValid') }}
                 </span>
@@ -97,23 +111,23 @@
             </div>
             <div class="inputContainer">
               <ValidationProvider
+                v-slot="{ errors }"
                 name="Day"
                 rules="required|between:1,31|max:2"
-                v-slot="{ errors }"
               >
                 <label>{{ $t('account.day') }}</label>
                 <v-text-field
+                  v-model="day"
                   type="number"
                   outlined
-                  v-model="day"
                   :class="$vuetify.breakpoint.mdAndDown ? 'input' : ''"
                 />
-                <span class="invalid" v-if="day.length === 0">
+                <span v-if="day.length === 0" class="invalid">
                   {{ $t('validationMsg.dayRequired') }}
                 </span>
                 <span
-                  class="invalid"
                   v-if="parseInt(day) <= 0 || parseInt(day) > 31"
+                  class="invalid"
                 >
                   {{ $t('validationMsg.dayNotValid') }}
                 </span>
@@ -121,37 +135,50 @@
             </div>
             <div class="inputContainer">
               <ValidationProvider
+                v-slot="{ errors }"
                 name="Year"
                 rules="required|between:1900,2022|max:4"
-                v-slot="{ errors }"
               >
                 <label>{{ $t('account.year') }}</label>
                 <v-text-field
+                  v-model="year"
                   type="number"
                   outlined
-                  v-model="year"
                   :class="$vuetify.breakpoint.mdAndDown ? 'input' : ''"
                 />
-                <span class="invalid" v-if="year.length === 0">
+                <span v-if="year.length === 0" class="invalid">
                   {{ $t('validationMsg.yearRequired') }}
                 </span>
                 <span
-                  class="invalid"
                   v-if="
                     (year.length !== 4 && year.length !== 0) ||
                     parseInt(year) < 1920 ||
                     parseInt(year) > 2022
                   "
+                  class="invalid"
                 >
                   {{ $t('validationMsg.yearNotValid') }}
                 </span>
               </ValidationProvider>
             </div>
           </div>
+          <div>
+            <p class="subtitle-1">
+              <!-- {{ $t('account.whatIsYourDshCaseNumber') }} -->
+              What is your preferred language?
+            </p>
+            <LanguageSelector
+              :locale="locale"
+              :locale-change="localeChange"
+              text-color="black"
+              outlined="true"
+            />
+          </div>
+
           <ValidationProvider
+            v-slot="{ errors }"
             name="Case Number"
             rules="required|max:20|min:4"
-            v-slot="{ errors }"
           >
             <div>
               <p class="subtitle-1">
@@ -159,34 +186,28 @@
               </p>
               <p>{{ $t('account.dhsShow') }}</p>
               <v-text-field
-                outlined
                 v-model="dhsCaseNumber"
+                outlined
                 type="text"
                 :placeholder="
                   accountProfile.caseNumber ? '' : $t('account.caseNumber')
                 "
               />
-              <span class="invalid" v-if="dhsCaseNumber.length === 0">
+              <span v-if="dhsCaseNumber.length === 0" class="invalid">
                 {{ $t('validationMsg.caseNumberRequired') }}
               </span>
-              <span class="invalid" v-if="dhsCaseNumber.length > 20">
+              <span v-if="dhsCaseNumber.length > 20" class="invalid">
                 {{ $t('validationMsg.caseNumberMaxLength') }}
               </span>
               <span
-                class="invalid"
                 v-if="dhsCaseNumber.length < 4 && dhsCaseNumber.length !== 0"
+                class="invalid"
               >
                 {{ $t('validationMsg.caseNumberMinLength') }}
               </span>
             </div>
           </ValidationProvider>
           <!-- language changer component -->
-          <LanguageSelector
-            :locale="locale"
-            :localeChange="localeChange"
-            textColor="black"
-            outlined="true"
-          />
         </v-form>
         <v-btn
           color="primary white--text"
@@ -205,15 +226,15 @@
         </v-btn>
       </ValidationObserver>
     </v-container>
-    <v-container class="pa-8" v-else>
+    <v-container v-else class="pa-8">
       <div class="d-flex justify-space-between">
-        <div class="pt-2 v-toolbar__title">
+        <h2 class="pt-2">
           {{ `${$t('navigation.settings')}` }}
-        </div>
+        </h2>
       </div>
       <div
         :class="
-          $vuetify.breakpoint.smAndUp ? 'mt-10  justify-space-between' : 'mt-10'
+          $vuetify.breakpoint.smAndUp ? 'mt-6  justify-space-between' : 'mt-6'
         "
       >
         <div>
@@ -247,7 +268,7 @@
       </div>
       <v-btn
         color="primary white--text"
-        class="px-8 d-flex justify-center -10"
+        class="px-8 d-flex justify-center my-10"
         style="
           background-color: #2157e4;
           height: 3rem;
@@ -297,28 +318,33 @@ extend('alpha_spaces', alpha_spaces)
 extend('name', alpha_spaces)
 
 interface AllowedChars {
-  [key: string]: string;
+  [key: string]: string
 }
 
 const allowedChars: AllowedChars = {
   '-': '-',
   "'": "'",
-  "`": "`",
-};
-
+  '`': '`',
+}
 
 extend('alpha_spaces_with_chars', {
   ...alpha_spaces,
-  message: 'The {_field_} may only contain letters, spaces, and the following characters: - \'`',
+  message:
+    "The {_field_} may only contain letters, spaces, and the following characters: - '`",
   validate(value: any) {
     for (const char of value) {
-      if (!/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'`-]+$/u.test(char) && !allowedChars[char]) {
-        return false;
+      if (
+        !/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'`-]+$/u.test(
+          char,
+        ) &&
+        !allowedChars[char]
+      ) {
+        return false
       }
     }
-    return true;
+    return true
   },
-});
+})
 
 @Component({
   components: {
@@ -373,17 +399,16 @@ export default class Settings extends Vue {
 
   settingsFirstRun = this.$t('navigation.settingsFirstRun') as string
 
-  beforeMount(){
-    if (!this.accountProfile.familyName && !this.accountProfile.givenName){
+  beforeMount() {
+    if (!this.accountProfile.familyName && !this.accountProfile.givenName) {
       this.givenName = '  '
       this.familyName = '  '
       this.dhsCaseNumber = '  '
       this.accountProfile.dob = ''
       this.day = ' '
       this.month = ' '
-      this.year = '   ' 
-    }
-    else {
+      this.year = '   '
+    } else {
       this.location = window.location.pathname
 
       this.accountProfile.dob && this.dobDistruct(this.accountProfile.dob)
@@ -396,7 +421,7 @@ export default class Settings extends Vue {
   }
 
   mounted() {
-    if(!this.accountProfile.familyName && !this.accountProfile.givenName){
+    if (!this.accountProfile.familyName && !this.accountProfile.givenName) {
       this.givenName = '  '
       this.familyName = '  '
       this.dhsCaseNumber = '    '
@@ -404,8 +429,7 @@ export default class Settings extends Vue {
       this.month = ' '
       this.year = '    '
       this.accountProfile.dob = ''
-    }
-    else {
+    } else {
       this.location = window.location.pathname
 
       this.accountProfile.dob && this.dobDistruct(this.accountProfile.dob)
@@ -416,7 +440,7 @@ export default class Settings extends Vue {
       this.localToRender = this.languagesObject[this.locale as any]
     }
   }
-  
+
   updated() {
     this.localToRender = this.languagesObject[this.locale as any]
   }
