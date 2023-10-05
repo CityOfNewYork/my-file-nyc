@@ -1,55 +1,55 @@
-name: UI deployment
-description: This actions sets env variables, builds the app and moves artifacts to the S3 bucket
+# name: UI deployment
+# description: This actions sets env variables, builds the app and moves artifacts to the S3 bucket
 
-inputs:
-  git_branch_env:
-    description: 'Git branch or name of the environment'
-    required: true
-  s3_bucket:
-    description: 'Name of the bucket where artifacts of the UI are deployed'
-    required: true
-  s3_bucket_region:
-    description: 'Region the bucket'
-    required: true
-  cloudfront_distribution_id:
-    description: 'ID of the cloudfront distribution'
-    required: true
+# inputs:
+#   git_branch_env:
+#     description: 'Git branch or name of the environment'
+#     required: true
+#   s3_bucket:
+#     description: 'Name of the bucket where artifacts of the UI are deployed'
+#     required: true
+#   s3_bucket_region:
+#     description: 'Region the bucket'
+#     required: true
+#   cloudfront_distribution_id:
+#     description: 'ID of the cloudfront distribution'
+#     required: true
 
-runs:
-  using: "composite"
-  steps:
-    - name: Checkout
-      uses: actions/checkout@v1
-    - name: Setup node version
-      uses: actions/setup-node@v1
-      with:
-        node-version: '14.x'
-    - name: Setup Yarn
-      shell: bash
-      run: npm i -g yarn
-    - name: Install NPM dependencies
-      shell: bash
-      run: yarn
-    - name: Build from sources
-      shell: bash
-      run: OUTPUT_DIR=build yarn fe generate
-    # - name: Run tests
-    #   shell: bash
-    #   run: npm run test
-    - name: Move build assets
-      shell: bash
-      run: |
-        mkdir s3deploy
-        mkdir "s3deploy/${{ inputs.git_branch_env }}"
-        mv packages/frontend/dist/build/* "s3deploy/${{ inputs.git_branch_env }}"
-    - name: Deploy
-      uses: reggionick/s3-deploy@v3
-      with:
-        folder: s3deploy
-        bucket: ${{ inputs.s3_bucket }}
-        bucket-region: ${{ inputs.s3_bucket_region }}
-        dist-id: ${{ inputs.cloudfront_distribution_id }}
-        invalidation: /
-        delete-removed: false
-        no-cache: true
-        private: false
+# runs:
+#   using: "composite"
+#   steps:
+#     - name: Checkout
+#       uses: actions/checkout@v1
+#     - name: Setup node version
+#       uses: actions/setup-node@v1
+#       with:
+#         node-version: '14.x'
+#     - name: Setup Yarn
+#       shell: bash
+#       run: npm i -g yarn
+#     - name: Install NPM dependencies
+#       shell: bash
+#       run: yarn
+#     - name: Build from sources
+#       shell: bash
+#       run: OUTPUT_DIR=build yarn fe generate
+#     # - name: Run tests
+#     #   shell: bash
+#     #   run: npm run test
+#     - name: Move build assets
+#       shell: bash
+#       run: |
+#         mkdir s3deploy
+#         mkdir "s3deploy/${{ inputs.git_branch_env }}"
+#         mv packages/frontend/dist/build/* "s3deploy/${{ inputs.git_branch_env }}"
+#     - name: Deploy
+#       uses: reggionick/s3-deploy@v3
+#       with:
+#         folder: s3deploy
+#         bucket: ${{ inputs.s3_bucket }}
+#         bucket-region: ${{ inputs.s3_bucket_region }}
+#         dist-id: ${{ inputs.cloudfront_distribution_id }}
+#         invalidation: /
+#         delete-removed: false
+#         no-cache: true
+#         private: false
