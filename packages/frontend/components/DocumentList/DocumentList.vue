@@ -239,6 +239,7 @@ export default class DocumentList extends Vue {
 a.dashboard-link {
   text-decoration: none;
 }
+
 // document filename cell
 .document-row td.text-start:nth-child(2) {
   @include ellipsis;

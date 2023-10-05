@@ -30,7 +30,7 @@
         }`"
       >
         {{
-          crumb.date && crumb.numberOfDocuments
+          crumb.date
             ? $t('sharedFolder.folderName', {
                 num: crumb.numberOfDocuments,
                 date: format(new Date(crumb.date), 'MM/dd/yyyy'),

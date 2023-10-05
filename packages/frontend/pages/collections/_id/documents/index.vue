@@ -80,18 +80,27 @@
         </div>
       </template>
       <template v-else>
-        <p class="d-flex justify-center">
-          {{ $t('sharedFolder.emptyCollection') }}
-        </p>
-        <nuxt-link
-          class="d-flex justify-center nuxt-link"
-          :to="localePath('/dashboard')"
+        <div
+          style="
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 100%;
+          "
         >
-          <v-btn text color="primary" class="body-1 font-weight-bold">
-            {{ $t('sharedFolder.returnDashboard') }}
-          </v-btn>
-        </nuxt-link>
-        <!-- <div v-if="collection">
+          <p class="d-flex justify-center">
+            {{ $t('sharedFolder.emptyCollection') }}
+          </p>
+          <nuxt-link
+            class="d-flex justify-center nuxt-link"
+            :to="localePath('/dashboard')"
+          >
+            <v-btn text color="primary" class="body-1 font-weight-bold">
+              {{ $t('sharedFolder.returnDashboard') }}
+            </v-btn>
+          </nuxt-link>
+          <!-- <div v-if="collection">
           {{
             $t('sharedFolder.folderName', {
               num: collection.numberOfDocuments,
@@ -100,6 +109,7 @@
             })
           }}
         </div> -->
+        </div>
       </template>
       <DesktopSideBar v-if="userStore.isAgent">
         <template v-if="userStore.isAgent">
