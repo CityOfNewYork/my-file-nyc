@@ -274,6 +274,37 @@
           @click="uploadDocument"
         >
           {{ $t('controls.uploadDocument') }}
+          <v-dialog
+            v-model="afterUploadDialog"
+            style="display: flex; justify-content: center; align-items: center"
+            max-width="fit-content"
+          >
+            <div
+              style="
+                background-color: white;
+                width: 300px;
+                height: 300px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+              "
+            >
+              <v-progress-circular
+                v-if="afterUploadLoadingDialog"
+                :size="100"
+                :width="10"
+                indeterminate
+                color="primary"
+              >
+                WAIT
+              </v-progress-circular>
+              <UploadShareDialog
+                v-else
+                :submit="submit"
+                :after-share-dialog="afterShareDialog"
+              />
+            </div>
+          </v-dialog>
         </v-btn>
       </v-card>
     </v-dialog>
@@ -286,12 +317,15 @@ import { snackbarStore } from '@/plugins/store-accessor'
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
 import SnackParams from '@/types/snackbar'
 import draggable from 'vuedraggable'
+import { format } from 'date-fns'
 import UploadButtonFileInput from '../UploadButtonFileInput/UploadButtonFileInput.vue'
+import UploadShareDialog from '../UploadShareDialog/UploadShareDialog.vue'
 @Component({
   components: {
     ValidationObserver,
     ValidationProvider,
     UploadButtonFileInput,
+    UploadShareDialog,
     draggable,
   },
 })
@@ -319,18 +353,57 @@ export default class UploadButton extends Vue {
   showDialog = false
   isShowToolTipDocument = false
   isShowToolTipDescription = false
+  afterUploadDialog = false
+  afterUploadLoadingDialog = false
+  afterShareDialog = false
 
   timeout: any = null
+  progressValue: any = 0
+  uploadedDocument: any = null
 
   files: any = []
   newFile: any = []
+  agentEmailAddress: any = []
 
   snackMessage = ''
   documentName = ''
   documentDescription = ''
+  name = ''
+
+  format = format
 
   multipleInput() {
     this.multiple = true
+  }
+
+  mounted() {
+    this.name = this.$t('sharing.defaultName', {
+      date: format(Date.now(), 'LLL d, yyyy k:mm'),
+    }) as string
+    this.name = [this.name.slice(0, 45), ' at', this.name.slice(45)].join('')
+
+    // we wait until mounted to assign this since jest cannot mock $config
+    // until the component is mounted
+    this.agentEmailAddress.push(this.$config.agencyEmail)
+  }
+
+  async submit() {
+    this.afterShareDialog = true
+    try {
+      const collection = await this.$store.dispatch('user/createCollection', {
+        name: this.name,
+        documentIds: new Array(this.uploadedDocument.id),
+        individualEmailAddresses: this.agentEmailAddress,
+        agencyOfficersEmailAddresses: [], // TODO: implement
+      })
+
+      if (collection) {
+        // this.afterShareDialog = false
+        this.afterUploadDialog = false
+      }
+    } catch (e) {
+      console.log(e)
+    }
   }
 
   get isLoading() {
@@ -493,6 +566,8 @@ export default class UploadButton extends Vue {
     snackbarStore.setVisible(true)
 
     this.showDialog = false
+    this.afterUploadDialog = true
+    this.afterUploadLoadingDialog = true
     this.files.length > 1 ? (this.multiple = true) : (this.multiple = false)
 
     const document = await this.$store.dispatch('user/uploadDocument', {
@@ -504,6 +579,11 @@ export default class UploadButton extends Vue {
         snackbarStore.setProgress(Math.round((e.loaded / e.total) * 100))
       },
     })
+
+    if (document) {
+      this.uploadedDocument = document
+      this.afterUploadLoadingDialog = false
+    }
 
     snackbarStore.setParams({
       message: 'toast.uploadComplete',
@@ -518,6 +598,10 @@ export default class UploadButton extends Vue {
     this.$emit('complete')
     this.reset()
     this.docsPresent()
+  }
+
+  async finisedUploadDocument() {
+    const uploadedFinished = await this.uploadDocument()
   }
 
   openFileInput() {
