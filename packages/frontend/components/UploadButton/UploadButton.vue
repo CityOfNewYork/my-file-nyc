@@ -287,21 +287,21 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                position: relative;
               "
             >
-              <v-progress-circular
-                v-if="afterUploadLoadingDialog"
+              <!-- <v-progress-circular
+                v-if="afterUploadDialogSpinner"
                 :size="100"
-                :width="10"
+                :width="5"
                 indeterminate
                 color="primary"
               >
                 WAIT
-              </v-progress-circular>
+              </v-progress-circular> -->
               <UploadShareDialog
-                v-else
-                :submit="submit"
-                :after-share-dialog="afterShareDialog"
+                :close-after-upload-dialog="closeAfterUploadDialog"
+                :redirect-to-share-page="redirectToSharePage"
               />
             </div>
           </v-dialog>
@@ -354,8 +354,9 @@ export default class UploadButton extends Vue {
   isShowToolTipDocument = false
   isShowToolTipDescription = false
   afterUploadDialog = false
-  afterUploadLoadingDialog = false
-  afterShareDialog = false
+  // afterUploadDialogSpinner = false
+  // afterShareDialog = false
+  // afterShareSuccess = false
 
   timeout: any = null
   progressValue: any = 0
@@ -376,34 +377,65 @@ export default class UploadButton extends Vue {
     this.multiple = true
   }
 
-  mounted() {
-    this.name = this.$t('sharing.defaultName', {
-      date: format(Date.now(), 'LLL d, yyyy k:mm'),
-    }) as string
-    this.name = [this.name.slice(0, 45), ' at', this.name.slice(45)].join('')
+  closeAfterUploadDialog() {
+    this.afterUploadDialog = false
+  }
+  // FOR SHARE DIALOG BUTTON 'SHARE'
+  // mounted() {
+  //   this.name = this.$t('sharing.defaultName', {
+  //     date: format(Date.now(), 'LLL d, yyyy k:mm'),
+  //   }) as string
+  //   this.name = [this.name.slice(0, 45), ' at', this.name.slice(45)].join('')
 
-    // we wait until mounted to assign this since jest cannot mock $config
-    // until the component is mounted
-    this.agentEmailAddress.push(this.$config.agencyEmail)
+  //   // we wait until mounted to assign this since jest cannot mock $config
+  //   // until the component is mounted
+  //   this.agentEmailAddress.push(this.$config.agencyEmail)
+  // }
+
+  // FOR SHARE DIALOG BUTTON 'SHARE'
+  // async submit() {
+  //   this.afterShareDialog = true
+  //   try {
+  //     const collection = await this.$store.dispatch('user/createCollection', {
+  //       name: this.name,
+  //       documentIds: new Array(this.uploadedDocument.id),
+  //       individualEmailAddresses: this.agentEmailAddress,
+  //       agencyOfficersEmailAddresses: [], // TODO: implement
+  //     })
+
+  //     if (collection) {
+  //       this.afterShareDialog = false
+  //       // this.afterUploadDialog = false
+  //       this.afterShareSuccess = true
+  //     }
+  //   } catch (e) {
+  //     console.log(e)
+  //   }
+  // }
+  languagesObject: any = {
+    en: 'English',
+    'en-us': 'English',
+    es: 'Spanish',
+    ar: 'Arabic',
+    ch: 'Chinese',
+    ru: 'Russian',
+    urd: 'Urdu',
+    ko: 'Korean',
+    fr: 'French',
+    ht: 'Haitian Creole',
+    bn: 'Bengali',
+    pl: 'Polish',
   }
 
-  async submit() {
-    this.afterShareDialog = true
-    try {
-      const collection = await this.$store.dispatch('user/createCollection', {
-        name: this.name,
-        documentIds: new Array(this.uploadedDocument.id),
-        individualEmailAddresses: this.agentEmailAddress,
-        agencyOfficersEmailAddresses: [], // TODO: implement
-      })
-
-      if (collection) {
-        // this.afterShareDialog = false
-        this.afterUploadDialog = false
-      }
-    } catch (e) {
-      console.log(e)
+  redirectToSharePage() {
+    const lang = Object.keys(this.languagesObject)
+    const windowUrlLang = window.location.pathname.split('/')[1]
+    if (lang.includes(windowUrlLang)) {
+      this.$router.push({ path: `/${windowUrlLang}/share`, replace: true })
+    } else {
+      this.$router.push({ path: '/share', replace: true })
     }
+    this.afterUploadDialog = false
   }
 
   get isLoading() {
@@ -566,8 +598,6 @@ export default class UploadButton extends Vue {
     snackbarStore.setVisible(true)
 
     this.showDialog = false
-    this.afterUploadDialog = true
-    this.afterUploadLoadingDialog = true
     this.files.length > 1 ? (this.multiple = true) : (this.multiple = false)
 
     const document = await this.$store.dispatch('user/uploadDocument', {
@@ -581,8 +611,7 @@ export default class UploadButton extends Vue {
     })
 
     if (document) {
-      this.uploadedDocument = document
-      this.afterUploadLoadingDialog = false
+      this.afterUploadDialog = true
     }
 
     snackbarStore.setParams({
