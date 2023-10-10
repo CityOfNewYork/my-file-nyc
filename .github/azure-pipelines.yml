@@ -7,7 +7,7 @@ trigger:
 - dev
 
 pool:
-  name: My File
+  name: Hosted
   vmImage: ubuntu-latest
 
 steps:
