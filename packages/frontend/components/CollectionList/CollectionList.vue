@@ -15,13 +15,26 @@
         </template>
         <template v-slot:item.name="{ item }">
           <div>
-            {{
-              $t('sharedFolder.folderName', {
-                num: item.numberOfDocuments,
-                date: format(new Date(item.createdDate), 'MM/dd/yyyy'),
-                time: format(new Date(item.createdDate), 'hh:mm a'),
-              })
-            }}
+            <template v-if="item.numberOfDocuments > 1">
+              {{
+                $t('sharedFolder.folderName', {
+                  num: item.numberOfDocuments,
+                  date: format(new Date(item.createdDate), 'MM/dd/yyyy'),
+                  time: format(new Date(item.createdDate), 'hh:mm a'),
+                })
+              }}
+            </template>
+            <template v-else-if="item.numberOfDocuments === 1">
+              {{
+                $t('sharedFolder.folderNameWithOneDocument', {
+                  date: format(new Date(item.createdDate), 'MM/dd/yyyy'),
+                  time: format(new Date(item.createdDate), 'hh:mm a'),
+                })
+              }}
+            </template>
+            <template v-else>
+              {{ $t('sharedFolder.emptyCollection') }}
+            </template>
           </div>
         </template>
       </v-data-table>

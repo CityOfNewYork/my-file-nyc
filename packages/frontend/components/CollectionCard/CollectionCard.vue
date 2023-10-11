@@ -23,13 +23,33 @@
       </v-col>
       <v-col>
         <v-card-title>
-          {{
+          <!-- {{
             $t('sharedFolder.folderName', {
               num: collection.numberOfDocuments,
               date: format(new Date(collection.createdDate), 'MM/dd/yyyy'),
               time: format(new Date(collection.createdDate), 'hh:mm a'),
             })
-          }}
+          }} -->
+          <template v-if="collection.numberOfDocuments > 1">
+            {{
+              $t('sharedFolder.folderName', {
+                num: collection.numberOfDocuments,
+                date: format(new Date(collection.createdDate), 'MM/dd/yyyy'),
+                time: format(new Date(collection.createdDate), 'hh:mm a'),
+              })
+            }}
+          </template>
+          <template v-else-if="collection.numberOfDocuments === 1">
+            {{
+              $t('sharedFolder.folderNameWithOneDocument', {
+                date: format(new Date(collection.createdDate), 'MM/dd/yyyy'),
+                time: format(new Date(collection.createdDate), 'hh:mm a'),
+              })
+            }}
+          </template>
+          <template v-else>
+            {{ $t('sharedFolder.emptyCollection') }}
+          </template>
         </v-card-title>
 
         <!-- <v-card-subtitle>{{ collectionDate }}</v-card-subtitle> -->
