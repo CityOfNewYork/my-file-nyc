@@ -3,6 +3,7 @@
     <v-data-table
       v-show="$vuetify.breakpoint.smAndUp"
       :disable-pagination="true"
+      style="margin-bottom: 70px"
       :headers="headers"
       :items="collections"
       hide-default-footer
@@ -12,13 +13,33 @@
         <v-icon small color="primary" class="my-2">$folder</v-icon>
       </template>
       <template v-slot:item.name="{ item }">
-        {{
+        <!-- {{
           $t('sharedFolder.folderName', {
             num: item.numberOfDocuments,
             date: format(new Date(item.sharedDateNoFormat), 'MM/dd/yyyy'),
             time: format(new Date(item.sharedDateNoFormat), 'hh:mm a'),
           })
-        }}
+        }} -->
+        <template v-if="item.numberOfDocuments > 1">
+          {{
+            $t('sharedFolder.folderName', {
+              num: item.numberOfDocuments,
+              date: format(new Date(item.sharedDateNoFormat), 'MM/dd/yyyy'),
+              time: format(new Date(item.sharedDateNoFormat), 'hh:mm a'),
+            })
+          }}
+        </template>
+        <template v-else-if="item.numberOfDocuments === 1">
+          {{
+            $t('sharedFolder.folderNameWithOneDocument', {
+              date: format(new Date(item.sharedDateNoFormat), 'MM/dd/yyyy'),
+              time: format(new Date(item.sharedDateNoFormat), 'hh:mm a'),
+            })
+          }}
+        </template>
+        <template v-else>
+          {{ $t('sharedFolder.emptyCollection') }}
+        </template>
       </template>
       <!-- <template v-slot:item.status="{ item }">
         <v-select

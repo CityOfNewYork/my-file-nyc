@@ -97,7 +97,7 @@
                             $folder
                           </v-icon>
 
-                          {{
+                          <!-- {{
                             $t('sharedFolder.folderName', {
                               num: col.collection.numberOfDocuments,
                               date: format(
@@ -109,7 +109,41 @@
                                 'hh:mm a',
                               ),
                             })
-                          }}
+                          }} -->
+                          <template v-if="col.collection.numberOfDocuments > 1">
+                            {{
+                              $t('sharedFolder.folderName', {
+                                num: col.collection.numberOfDocuments,
+                                date: format(
+                                  new Date(col.collection.createdDate),
+                                  'MM/dd/yyyy',
+                                ),
+                                time: format(
+                                  new Date(col.collection.createdDate),
+                                  'hh:mm a',
+                                ),
+                              })
+                            }}
+                          </template>
+                          <template
+                            v-else-if="col.collection.numberOfDocuments === 1"
+                          >
+                            {{
+                              $t('sharedFolder.folderNameWithOneDocument', {
+                                date: format(
+                                  new Date(col.collection.createdDate),
+                                  'MM/dd/yyyy',
+                                ),
+                                time: format(
+                                  new Date(col.collection.createdDate),
+                                  'hh:mm a',
+                                ),
+                              })
+                            }}
+                          </template>
+                          <template v-else>
+                            {{ $t('sharedFolder.emptyCollection') }}
+                          </template>
                         </div>
                         <div class="column-2">
                           <v-select
