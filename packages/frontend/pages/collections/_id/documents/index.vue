@@ -39,13 +39,26 @@
       </template> -->
       <template v-if="$vuetify.breakpoint.xs && collection" v-slot:extensions>
         <div class="text-heading-2 pl-4 pb-4 mt-15">
-          {{
-            $t('sharedFolder.folderName', {
-              num: collection.numberOfDocuments,
-              date: format(new Date(collection.createdDate), 'MM/dd/yyyy'),
-              time: format(new Date(collection.createdDate), 'hh:mm a'),
-            })
-          }}
+          <template v-if="collection.numberOfDocuments > 1">
+            {{
+              $t('sharedFolder.folderName', {
+                num: collection.numberOfDocuments,
+                date: format(new Date(collection.createdDate), 'MM/dd/yyyy'),
+                time: format(new Date(collection.createdDate), 'hh:mm a'),
+              })
+            }}
+          </template>
+          <template v-else-if="collection.numberOfDocuments === 1">
+            {{
+              $t('sharedFolder.folderNameWithOneDocument', {
+                date: format(new Date(collection.createdDate), 'MM/dd/yyyy'),
+                time: format(new Date(collection.createdDate), 'hh:mm a'),
+              })
+            }}
+          </template>
+          <template v-else>
+            {{ $t('sharedFolder.emptyCollection') }}
+          </template>
         </div>
       </template>
     </AppBar>

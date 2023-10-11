@@ -296,6 +296,7 @@ export default merge(
         // title for collection table name column
         collectionTableTitle: "Documents you've shared, organized by date",
         folderName: '{num} documents shared on {date} at {time}',
+        folderNameWithOneDocument: '1 document shared on {date} at {time}',
       },
 
       cbo: {

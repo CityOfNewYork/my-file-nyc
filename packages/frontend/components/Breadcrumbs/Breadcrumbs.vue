@@ -29,7 +29,7 @@
           i === 0 ? ' font-weight-bold' : ''
         }`"
       >
-        {{
+        <!-- {{
           crumb.date
             ? $t('sharedFolder.folderName', {
                 num: crumb.numberOfDocuments,
@@ -37,7 +37,30 @@
                 time: format(new Date(crumb.date), 'hh:mm a'),
               })
             : $t(crumb.title)
-        }}
+        }} -->
+        <template v-if="crumb.date">
+          <template v-if="crumb.numberOfDocuments > 1">
+            {{
+              $t('sharedFolder.folderName', {
+                num: crumb.numberOfDocuments,
+                date: format(new Date(crumb.date), 'MM/dd/yyyy'),
+                time: format(new Date(crumb.date), 'hh:mm a'),
+              })
+            }}
+          </template>
+          <template v-else-if="crumb.numberOfDocuments === 1">
+            {{
+              $t('sharedFolder.folderNameWithOneDocument', {
+                date: format(new Date(crumb.date), 'MM/dd/yyyy'),
+                time: format(new Date(crumb.date), 'hh:mm a'),
+              })
+            }}
+          </template>
+          <template v-else>
+            {{ $t('sharedFolder.emptyCollection') }}
+          </template>
+        </template>
+        <template v-else>{{ $t(crumb.title) }}</template>
       </span>
       <v-icon
         v-if="i < value.length - 1"
