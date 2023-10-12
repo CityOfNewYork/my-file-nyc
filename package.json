@@ -1,6 +1,6 @@
 {
   "name": "my-file",
-  "version": "1.4.0",
+  "version": "2.0.5",
   "private": true,
   "workspaces": [
     "packages/*"
