@@ -9,6 +9,7 @@ import collection from '@/store/collection'
 import snackbar from '@/store/snackbar'
 import delegate from '@/store/delegate'
 import navBar from '@/store/navBar'
+import shareDialog from '@/store/shareDialog'
 // import insertion point (do not change this text, it is being used by hygen cli)
 
 let userStore: user
@@ -17,6 +18,7 @@ let collectionStore: collection
 let snackbarStore: snackbar
 let delegateStore: delegate
 let navBarStore: navBar
+let shareDialogStore: shareDialog
 // variable insertion point (do not change this text, it is being used by hygen cli)
 
 export default ({ store, $ga }: { store: Store<any>; $ga: VueAnalytics }) => {
@@ -32,6 +34,8 @@ export default ({ store, $ga }: { store: Store<any>; $ga: VueAnalytics }) => {
   delegateStore.$ga = $ga
   navBarStore = getModule(navBar, store)
   navBarStore.$ga = $ga
+  shareDialogStore = getModule(shareDialog, store)
+  shareDialogStore.$ga = $ga
   // getModule insertion point (do not change this text, it is being used by hygen cli)
 }
 
@@ -42,5 +46,6 @@ export {
   snackbarStore,
   delegateStore,
   navBarStore,
+  shareDialogStore,
   // export insertion point (do not change this text, it is being used by hygen cli)
 }
