@@ -58,7 +58,7 @@
     <v-dialog
       v-model="showDialog"
       fullscreen
-      hide-overlay
+      hide-overldiay
       transition="dialog-bottom-transition"
       class="upload-dialog"
     >
@@ -274,37 +274,6 @@
           @click="uploadDocument"
         >
           {{ $t('controls.uploadDocument') }}
-          <v-dialog
-            v-model="afterUploadDialog"
-            style="display: flex; justify-content: center; align-items: center"
-            max-width="fit-content"
-          >
-            <div
-              style="
-                background-color: white;
-                width: 300px;
-                height: 300px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                position: relative;
-              "
-            >
-              <!-- <v-progress-circular
-                v-if="afterUploadDialogSpinner"
-                :size="100"
-                :width="5"
-                indeterminate
-                color="primary"
-              >
-                WAIT
-              </v-progress-circular> -->
-              <UploadShareDialog
-                :close-after-upload-dialog="closeAfterUploadDialog"
-                :redirect-to-share-page="redirectToSharePage"
-              />
-            </div>
-          </v-dialog>
         </v-btn>
       </v-card>
     </v-dialog>
@@ -313,7 +282,7 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'nuxt-property-decorator'
-import { snackbarStore } from '@/plugins/store-accessor'
+import { snackbarStore, shareDialogStore } from '@/plugins/store-accessor'
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
 import SnackParams from '@/types/snackbar'
 import draggable from 'vuedraggable'
@@ -353,10 +322,6 @@ export default class UploadButton extends Vue {
   showDialog = false
   isShowToolTipDocument = false
   isShowToolTipDescription = false
-  afterUploadDialog = false
-  // afterUploadDialogSpinner = false
-  // afterShareDialog = false
-  // afterShareSuccess = false
 
   timeout: any = null
   progressValue: any = 0
@@ -377,9 +342,6 @@ export default class UploadButton extends Vue {
     this.multiple = true
   }
 
-  closeAfterUploadDialog() {
-    this.afterUploadDialog = false
-  }
   // FOR SHARE DIALOG BUTTON 'SHARE'
   // mounted() {
   //   this.name = this.$t('sharing.defaultName', {
@@ -412,31 +374,6 @@ export default class UploadButton extends Vue {
   //     console.log(e)
   //   }
   // }
-  languagesObject: any = {
-    en: 'English',
-    'en-us': 'English',
-    es: 'Spanish',
-    ar: 'Arabic',
-    ch: 'Chinese',
-    ru: 'Russian',
-    urd: 'Urdu',
-    ko: 'Korean',
-    fr: 'French',
-    ht: 'Haitian Creole',
-    bn: 'Bengali',
-    pl: 'Polish',
-  }
-
-  redirectToSharePage() {
-    const lang = Object.keys(this.languagesObject)
-    const windowUrlLang = window.location.pathname.split('/')[1]
-    if (lang.includes(windowUrlLang)) {
-      this.$router.push({ path: `/${windowUrlLang}/share`, replace: true })
-    } else {
-      this.$router.push({ path: '/share', replace: true })
-    }
-    this.afterUploadDialog = false
-  }
 
   get isLoading() {
     return snackbarStore.isVisible && snackbarStore.progress !== null
@@ -611,7 +548,7 @@ export default class UploadButton extends Vue {
     })
 
     if (document) {
-      this.afterUploadDialog = true
+      shareDialogStore.setVisible(true)
     }
 
     snackbarStore.setParams({

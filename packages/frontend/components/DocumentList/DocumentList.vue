@@ -37,6 +37,35 @@
         :owner="owner"
         :show-actions="showActions"
       />
+      <v-dialog
+        v-model="afterUploadingDialog"
+        style="display: flex; justify-content: center; align-items: center"
+        max-width="fit-content"
+        @click:outside="closeDialog"
+      >
+        <div
+          style="
+            background-color: white;
+            width: 300px;
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+          "
+        >
+          <!-- <v-progress-circular
+                v-if="afterUploadDialogSpinner"
+                :size="100"
+                :width="5"
+                indeterminate
+                color="primary"
+              >
+                WAIT
+              </v-progress-circular> -->
+          <UploadShareDialog />
+        </div>
+      </v-dialog>
     </template>
     <EmptyState
       v-else
@@ -88,7 +117,7 @@
 <script lang="ts">
 import { Vue, Component, Prop, Watch } from 'nuxt-property-decorator'
 import { DocumentListItem, Owner } from 'api-client'
-import { userStore } from '@/plugins/store-accessor'
+import { userStore, shareDialogStore } from '@/plugins/store-accessor'
 import { DataTableHeader } from 'vuetify'
 import { format } from 'date-fns'
 import { RawLocation } from 'vue-router'
@@ -113,6 +142,14 @@ export default class DocumentList extends Vue {
   headers: DataTableHeader[] = []
   format = format
   cachedDocuments: DocumentListItem[] = []
+
+  get afterUploadingDialog() {
+    return shareDialogStore.isVisible
+  }
+
+  closeDialog() {
+    shareDialogStore.setVisible(false)
+  }
 
   async mounted() {
     await this.reload()

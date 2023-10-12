@@ -47,12 +47,41 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'nuxt-property-decorator'
+import { shareDialogStore } from '@/plugins/store-accessor'
 @Component
 export default class UploadShareDialog extends Vue {
   //   @Prop({ default: () => {} }) submit: () => void
   //   @Prop({ default: false }) afterShareDialog: boolean
-  @Prop() closeAfterUploadDialog: () => void
-  @Prop() redirectToSharePage: () => void
+
+  languagesObject: any = {
+    en: 'English',
+    'en-us': 'English',
+    es: 'Spanish',
+    ar: 'Arabic',
+    ch: 'Chinese',
+    ru: 'Russian',
+    urd: 'Urdu',
+    ko: 'Korean',
+    fr: 'French',
+    ht: 'Haitian Creole',
+    bn: 'Bengali',
+    pl: 'Polish',
+  }
+
+  closeAfterUploadDialog() {
+    shareDialogStore.setVisible(false)
+  }
+
+  redirectToSharePage() {
+    const lang = Object.keys(this.languagesObject)
+    const windowUrlLang = window.location.pathname.split('/')[1]
+    if (lang.includes(windowUrlLang)) {
+      this.$router.push({ path: `/${windowUrlLang}/share`, replace: true })
+    } else {
+      this.$router.push({ path: '/share', replace: true })
+    }
+    shareDialogStore.setVisible(false)
+  }
   //   @Prop({ default: false }) afterShareSuccess: boolean
 }
 </script>
