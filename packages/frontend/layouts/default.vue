@@ -1,13 +1,11 @@
 <template>
   <v-app :class="rtlDirection && 'rtl'">
-    <AppBar v-if="this.$router.currentRoute.path !== '/'" :empty="true">
+    <AppBar v-if="$router.currentRoute.path !== '/'" :empty="true">
       <template v-slot:nav-action>
         <BackButton tabindex="0" />
       </template>
     </AppBar>
-    <v-main
-      :class="this.$router.currentRoute.path !== '/' ? '' : 'blue-super-light'"
-    >
+    <v-main :class="$router.currentRoute.path !== '/' ? '' : ''">
       <div style="width: 100% !important">
         <nuxt />
       </div>

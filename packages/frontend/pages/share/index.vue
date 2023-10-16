@@ -50,16 +50,11 @@
         </v-btn> -->
       </template>
     </AppBar>
-    <v-window-item
-      :class="[
-        { mobile: $vuetify.breakpoint.smAndUp },
-        'blue-super-light pt-15',
-      ]"
-    >
+    <v-window-item :class="[{ mobile: $vuetify.breakpoint.smAndUp }, 'pt-15']">
       <div
         :class="[
-          { 'blue-super-light pt-14': $vuetify.breakpoint.smAndUp },
-          { 'blue-super-light pt-1': $vuetify.breakpoint.smAndDown },
+          { 'pt-14': $vuetify.breakpoint.smAndUp },
+          { 'pt-1 pb-10': $vuetify.breakpoint.smAndDown },
         ]"
       >
         <v-toolbar-title
@@ -179,12 +174,12 @@
     <v-window-item>
       <div
         :class="[
-          { 'blue-super-light pt-12': $vuetify.breakpoint.smAndUp },
-          { 'blue-super-light pt-1': $vuetify.breakpoint.smAndDown },
+          { ' pt-14': $vuetify.breakpoint.smAndUp },
+          { ' pt-0 pb-14': $vuetify.breakpoint.smAndDown },
         ]"
-        class="window-container px-8 d-flex justify-center"
+        class="window-container d-flex justify-center"
       >
-        <div>
+        <div :style="$vuetify.breakpoint.smAndDown ? 'width: 80%;' : ''">
           <p class="font-weight-bold pt-4">
             {{ $tc('sharing.confirmSharedFiles', selectedDocs.length) }}
           </p>
@@ -361,8 +356,8 @@ export default class Share extends Vue {
     if (this.step === 0) {
       this.$router.push(this.localePath('/dashboard'))
       // if (window.history.length) {
-      //   this.$router.push(this.localePath('/dashboard'))      
-      // }   
+      //   this.$router.push(this.localePath('/dashboard'))
+      // }
       //   else {
       //   this.$router.push(this.localePath('/dashboard'))
       // }
@@ -506,7 +501,6 @@ export default class Share extends Vue {
 
 <style lang="scss">
 .v-window {
-  height: 100vh;
   .window-container {
     margin: 4rem auto 0rem auto;
   }
