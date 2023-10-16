@@ -226,15 +226,21 @@
         </v-btn>
       </ValidationObserver>
     </v-container>
-    <v-container v-else class="pa-8">
+    <v-container
+      v-else
+      class="pa-8 d-flex justify-space-between flex-column"
+      style="width: 80%"
+    >
       <div class="d-flex justify-space-between">
-        <h2 class="pt-2">
+        <h2 class="pt-2" style="color: black">
           {{ `${$t('navigation.settings')}` }}
         </h2>
       </div>
       <div
         :class="
-          $vuetify.breakpoint.smAndUp ? 'mt-6  justify-space-between' : 'mt-6'
+          $vuetify.breakpoint.smAndUp
+            ? 'mt-6 d-flex flex-column justify-center'
+            : 'mt-6'
         "
       >
         <div>
