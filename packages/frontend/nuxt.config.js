@@ -90,7 +90,11 @@ const config = {
     '@nuxtjs/pwa',
     'nuxt-i18n',
     '@nuxtjs/sentry',
+    '@nuxtjs/gtm',
   ],
+  gtm: {
+    id: process.env.GTM_ID
+  },
   pwa: {
     // TODO: other PWA features like icon and colour scheme
     manifest: {
