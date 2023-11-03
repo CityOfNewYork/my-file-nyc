@@ -149,6 +149,9 @@ export default merge(
         thumbnailOf: 'Thumbnail of',
         fileName: 'Document Name',
         singleOrMultiple: 'Pick an option',
+        addedDocument: 'Document Added',
+        confirmUploadMsg:
+          'Now that you uploaded your document, you can share it with DHS PATH.',
       },
 
       controls: {
@@ -173,6 +176,7 @@ export default merge(
         uploadFiles: 'Upload Files',
         view: 'View',
         save: 'Save',
+        shareWithDHS: 'Share With DHS', // label
       },
 
       // account settings page
@@ -192,6 +196,7 @@ export default merge(
         month: 'Month',
         day: 'Day',
         year: 'Year',
+        preferredLanguage: 'What is your preferred language?',
       },
 
       // All copy related to the create shared folder flow
@@ -512,6 +517,9 @@ export default merge(
         thumbnailOf: 'Thumbnail of', // not found
         fileName: 'اسم المستند',
         singleOrMultiple: 'حدد خيارًا',
+        addedDocument: 'Document Added',
+        confirmUploadMsg:
+          'Now that you uploaded your document, you can share it with DHS PATH.',
       },
 
       controls: {
@@ -536,6 +544,7 @@ export default merge(
         uploadFiles: 'تحميل الملفات',
         view: 'دیکھیں',
         save: 'محفوظ کریں',
+        shareWithDHS: 'Share With DHS', // label
       },
 
       // account settings page
@@ -661,6 +670,8 @@ export default merge(
           'المستندات التي قمت بمشاركتها وتنظيمها حسب التاريخ',
         folderName:
           'تمت مشاركة {num} من المستندات في {date} في تمام الساعة {time}',
+
+        folderNameWithOneDocument: '1 document shared on {date} at {time}',
       },
 
       cbo: {
@@ -879,6 +890,9 @@ export default merge(
         thumbnailOf: 'Thumbnail of', // not found
         fileName: 'Название документа',
         singleOrMultiple: 'Выберите опцию',
+        addedDocument: 'Document Added',
+        confirmUploadMsg:
+          'Now that you uploaded your document, you can share it with DHS PATH.',
       },
 
       controls: {
@@ -903,6 +917,7 @@ export default merge(
         uploadFiles: 'Загрузить файлы',
         view: 'Просмотреть',
         save: 'Сохранить',
+        shareWithDHS: 'Share With DHS', // label
       },
 
       // account settings page
@@ -1029,6 +1044,7 @@ export default merge(
           'Документы, к которым вы предоставили доступ, упорядоченные по дате', // not found
         folderName:
           'На момент {date} {time} к следующему количеству документов предоставлено доступ: {num}.',
+        folderNameWithOneDocument: '1 document shared on {date} at {time}',
       },
 
       cbo: {
@@ -1252,6 +1268,9 @@ export default merge(
         thumbnailOf: 'Thumbnail of', // not found
         fileName: 'دستاویز کا نام',
         singleOrMultiple: 'کسی اختیار کا انتخاب کریں',
+        addedDocument: 'Document Added',
+        confirmUploadMsg:
+          'Now that you uploaded your document, you can share it with DHS PATH.',
       },
 
       controls: {
@@ -1276,6 +1295,7 @@ export default merge(
         uploadFiles: 'فائلیں اپ لوڈ کرو',
         view: 'دیکھیں',
         save: 'محفوظ کریں',
+        shareWithDHS: 'Share With DHS', // label
       },
 
       // account settings page
@@ -1403,6 +1423,7 @@ export default merge(
         collectionTableTitle:
           'دستاویزات جو آپ نے شیئر کی ہیں، مرتب کردہ بہ لحاظ تاریخ',
         folderName: '{num} دستاویزات کا اشتراک کیا گیا {date} بذریعہ {time}',
+        folderNameWithOneDocument: '1 document shared on {date} at {time}',
       },
 
       cbo: {
@@ -1618,6 +1639,9 @@ export default merge(
         thumbnailOf: 'Thumbnail of',
         fileName: '서류 이름',
         singleOrMultiple: '옵션 선택',
+        addedDocument: 'Document Added',
+        confirmUploadMsg:
+          'Now that you uploaded your document, you can share it with DHS PATH.',
       },
 
       controls: {
@@ -1642,6 +1666,7 @@ export default merge(
         uploadFiles: '파일 업로드하다',
         view: '보기',
         save: '저장',
+        shareWithDHS: 'Share With DHS', // label
       },
 
       // account settings page
@@ -1766,6 +1791,7 @@ export default merge(
         // title for collection table name column
         collectionTableTitle: '공유한 서류를 날짜별로 정리', // not found
         folderName: '{time}에 {date}에서 문서 {num}건 공유',
+        folderNameWithOneDocument: '1 document shared on {date} at {time}',
       },
 
       cbo: {
@@ -1981,6 +2007,9 @@ export default merge(
         thumbnailOf: 'Thumbnail of', // not found
         fileName: 'Nombre del documento',
         singleOrMultiple: 'Elegir una opción',
+        addedDocument: 'Document Added',
+        confirmUploadMsg:
+          'Now that you uploaded your document, you can share it with DHS PATH.',
       },
 
       controls: {
@@ -2005,6 +2034,7 @@ export default merge(
         uploadFiles: 'Subir archivos',
         view: 'Ver',
         save: 'Guardar',
+        shareWithDHS: 'Share With DHS', // label
       },
 
       // account settings page
@@ -2129,6 +2159,7 @@ export default merge(
         collectionTableTitle:
           'Los documentos que ha compartido, organizados por fecha', // not found
         folderName: '{num} documentos compartidos el {date} a las {time}',
+        folderNameWithOneDocument: '1 document shared on {date} at {time}',
       },
 
       cbo: {
@@ -2351,6 +2382,9 @@ export default merge(
         thumbnailOf: 'Thumbnail of', // not found
         fileName: 'Nom du document',
         singleOrMultiple: 'Choisissez une option',
+        addedDocument: 'Document Added',
+        confirmUploadMsg:
+          'Now that you uploaded your document, you can share it with DHS PATH.',
       },
 
       controls: {
@@ -2375,6 +2409,7 @@ export default merge(
         uploadFiles: 'Télécharger des fichiers',
         view: 'Consulter',
         save: 'Enregistrer',
+        shareWithDHS: 'Share With DHS', // label
       },
 
       // account settings page
@@ -2500,6 +2535,7 @@ export default merge(
         collectionTableTitle:
           'Documents que vous avez partagés, organisés par date',
         folderName: '{num} documents partagés le {date} à {time}',
+        folderNameWithOneDocument: '1 document shared on {date} at {time}',
       },
 
       cbo: {
@@ -2720,6 +2756,9 @@ export default merge(
         thumbnailOf: 'Thumbnail of', // not found
         fileName: 'নথির নাম',
         singleOrMultiple: 'একটি বিকল্প নির্বাচন করুন',
+        addedDocument: 'Document Added',
+        confirmUploadMsg:
+          'Now that you uploaded your document, you can share it with DHS PATH.',
       },
 
       controls: {
@@ -2744,6 +2783,7 @@ export default merge(
         uploadFiles: 'ফাইল আপলোড',
         view: 'দেখুন',
         save: 'সেভ করুন',
+        shareWithDHS: 'Share With DHS', // label
       },
 
       // account settings page
@@ -2867,6 +2907,7 @@ export default merge(
         // title for collection table name column
         collectionTableTitle: 'আপনার শেয়ার করা নথিগুলি, তারিখ অনুসারে সংগঠিত',
         folderName: '{num} নথি শেয়ার করা হয়েছে {date} তারিখে {time} -এ',
+        folderNameWithOneDocument: '1 document shared on {date} at {time}',
       },
 
       cbo: {
@@ -3087,6 +3128,9 @@ export default merge(
         thumbnailOf: 'Thumbnail of', // not found
         fileName: 'Nazwa dokumentu',
         singleOrMultiple: 'Wybierz opcję',
+        addedDocument: 'Document Added',
+        confirmUploadMsg:
+          'Now that you uploaded your document, you can share it with DHS PATH.',
       },
 
       controls: {
@@ -3111,6 +3155,7 @@ export default merge(
         uploadFiles: 'Prześlij pliki',
         view: 'Wyświetl',
         save: 'Zapisz',
+        shareWithDHS: 'Share With DHS', // label
       },
 
       // account settings page
@@ -3235,6 +3280,7 @@ export default merge(
         collectionTableTitle: 'Udostępnione dokumenty według daty',
         folderName:
           'Liczba dokumentów udostępnionych w dniu {date} o godz. {time}: {num}',
+        folderNameWithOneDocument: '1 document shared on {date} at {time}',
       },
 
       cbo: {
@@ -3449,6 +3495,9 @@ export default merge(
         thumbnailOf: 'Thumbnail of', // not found
         fileName: 'Non dokiman an',
         singleOrMultiple: 'Chwazi yon opsyon',
+        addedDocument: 'Document Added',
+        confirmUploadMsg:
+          'Now that you uploaded your document, you can share it with DHS PATH.',
       },
 
       controls: {
@@ -3473,6 +3522,7 @@ export default merge(
         uploadFiles: 'Voye Fichye yo',
         view: 'Afichaj',
         save: 'Anrejistre',
+        shareWithDHS: 'Share With DHS', // label
       },
 
       // account settings page
@@ -3596,6 +3646,7 @@ export default merge(
         // title for collection table name column
         collectionTableTitle: 'Dokiman ou pataje yo, klase pa dat',
         folderName: '{num}dokiman ki pataje nan dat{date} nan{time}',
+        folderNameWithOneDocument: '1 document shared on {date} at {time}',
       },
 
       cbo: {
@@ -3805,6 +3856,9 @@ export default merge(
         thumbnailOf: 'Thumbnail of', // not found
         fileName: '文件名稱',
         singleOrMultiple: '選擇一項',
+        addedDocument: 'Document Added',
+        confirmUploadMsg:
+          'Now that you uploaded your document, you can share it with DHS PATH.',
       },
 
       controls: {
@@ -3829,6 +3883,7 @@ export default merge(
         uploadFiles: '上傳文件',
         view: '查看',
         save: '儲存',
+        shareWithDHS: 'Share With DHS', // label
       },
 
       // account settings page
@@ -3952,6 +4007,7 @@ export default merge(
         // title for collection table name column
         collectionTableTitle: '您已分享的文件，依照日期排序', // not found
         folderName: '在 {date} 分 {time} 次上傳 {num} 份檔案',
+        folderNameWithOneDocument: '1 document shared on {date} at {time}',
       },
 
       cbo: {
@@ -4007,6 +4063,753 @@ export default merge(
         uploadNewFile: '選擇新檔案',
         dragAndDropDescription: '拖動以重新排序頁面。',
         removeFile: '消除',
+      },
+
+      $vuetify: {
+        ...vuetifyEn,
+        dataTable: {
+          sortBy: 'Sort by', // not found
+          ariaLabel: {
+            sortNone: 'Do not sort', // not found
+            activateAscending: 'Sort ascending', // not found
+          },
+        },
+        noDataText: 'No data', // no found
+      },
+      validations: {
+        ...validationEn.messages,
+        whitelist: 'Must be an approved agency email', // not found
+        notSameAsUserEmail: 'You cannot enter your own email address', // not found
+      },
+    },
+    uk: {
+      // label appearing in tabular content (list of users, list of shared collections etc)
+      // as well as side bar on document view
+      dateAdded: `Дата додавання`,
+
+      application: {
+        title: 'My File NYC',
+      },
+
+      errorMessages: {
+        cannotDisplayDocumentHeader: 'Не вдається відобразити документ',
+        cannotDisplayDocumentText:
+          'Наразі неможливо відобразити документ. Замість цього скачайте його.',
+        unsupportedBrowserHeader: 'Непідтримуваний браузер',
+        unsupportedBrowserTextDesktop:
+          'PDF Viewer не підтримує Firefox або Internet Explorer. Будь ласка, використовуйте інший веб-браузер, наприклад',
+        or: 'або',
+        unsupportedBrowserTextMobile:
+          'PDF Viewer не підтримує Microsoft Edge, Firefox, Samsung Internet або Internet Explorer. Будь ласка, використовуйте інший веб-браузер, наприклад',
+      },
+
+      validationMsg: {
+        firstNameRequired: 'Потрібно вказати ім’я.',
+        firstNameNotValid: 'Ім’я неприпустиме.',
+        firstNameMaxLength: 'Поле "Ім’я" має містити не більше 50 символів.',
+        firstNameMinLength: 'Поле "Ім’я" має містити не менше 2 символів.',
+        firstNameAlpha: 'Ім’я має містити тільки букви.',
+
+        // Last Name
+        lastNameRequired: 'Потрібно вказати прізвище.',
+        lastNameNotValid: 'Прізвище неприпустиме.',
+        lastNameMaxLength: 'Поле "Прізвище" має містити не більше 50 символів.',
+        lastNameMinLength: 'Поле "Прізвище" має містити не менше 2 символів.',
+        lastNameAlpha: 'Прізвище має містити тільки букви.',
+
+        // Month
+        monthNotValid: 'Місяць неприпустимий.',
+        monthRequired: 'Потрібно вказати місяць.',
+
+        // Day
+        dayNotValid: 'День неприпустимий.',
+        dayRequired: 'Потрібно вказати день.',
+
+        // Year
+        yearRequired: 'Потрібно вказати рік.',
+        yearNotValid: 'Рік неприпустимий',
+
+        // Case Number
+        caseNumberRequired: 'Потрібно вказати номер справи.',
+        caseNumberMaxLength:
+          'Поле "Номер справи" має містити не більше 20 символів.',
+        caseNumberMinLength:
+          'Поле "Номер справи" має складатись не менш ніж з 4 символів.',
+      },
+
+      statusIndicator: {
+        clientInReview: 'На перегляді',
+        clientReviewed: 'Переглянуто',
+      },
+
+      forceLogout: {
+        firstTimeoutWarningMessage:
+          'Ви будете змушені ввійти знову менш ніж за {number} хв.',
+        secondTimeoutWarningMessage:
+          'Ви будете змушені ввійти знову менш ніж за {number} хв.',
+        loginAgain:
+          'Якщо ви працюєте в системі MyFile понад 1 годину, вам знадобиться ввійти повторно.',
+        btnLoginAgain: 'Увійти ще раз',
+      },
+
+      toast: {
+        acceptedDelegateInvite: 'Delegate Access Accepted', // not found
+        delegateRemoved: 'Client Removed', // not found
+        downloadLoadingState: 'Підготовка до скачування',
+        sharingComplete: 'Надання доступу завершено',
+        uploading: 'Додавання документа…', // displayed while a file is uploading
+        uploadComplete: 'Завантаження завершено',
+        fileDeletedConfirmation: 'Документ видалено',
+        fileTooLarge: 'Документ завеликий (має бути <10 МБ)',
+      },
+
+      login: {
+        loginButton: 'Вхід',
+        createAccountButton: 'Створити обліковий запис',
+        getStarted: {
+          client: 'Розпочати',
+          cityEmployee: 'City Employee Login', // not found
+          cboWorker: 'CBO Worker Login', // not found
+        },
+        welcomeTitle: 'Ласкаво просимо',
+        footerLogoAlt: 'Footer logo', // not found
+      },
+
+      navigation: {
+        about: 'Відомості',
+        account: 'My Account Managers', // not found
+        settings: 'Мій профіль',
+        settingsFirstRun:
+          'Ласкаво просимо до My File NYC! Дайте відповідь на кілька запитань про себе, щоб розпочати.',
+        welcomeFirstRun: 'Ласкаво просимо до My File NYC!',
+        activity: 'Журнал активності',
+        back: 'Назад',
+        clients: 'Клієнти', // navigate back to agent view desktop not found
+        close: 'Закрити',
+        dashboard: 'Інформаційна панель',
+        faq: 'Поширені запитання',
+        loading: 'Завантаження',
+        loggingIn: 'Вхід у систему…',
+        manageAccounts: 'Manage Accounts', // not found
+        signIn: 'Вхід',
+        signOut: 'Вихід',
+        switchAccount: '切換客戶端',
+        termsOfUse: 'Умови використання',
+        nycId: 'Виникли проблеми зі входом?',
+      },
+
+      document: {
+        // This is the title of the confirmation dialog for deleting a document
+        deleteConfirmationTitle: 'Видалити цей документ?',
+        // This is the body content of the confirmation dialog for deleting a document
+        deleteConfirmationBody: `Користувачі, яким надано доступ, більше не зможуть переглядати цей документ. Цю операцію неможливо скасувати.`,
+        documentMenu: 'Меню документа',
+        documentOptions: 'Параметри',
+        downloadZip: 'Скачати всі',
+        downloadPdf: 'Скачати PDF',
+        description: 'Опис документа', // displayed beneath the document and expands to show description (if any)
+        editDetailsTitle: 'Редагувати деталі', // page title on edit details screen
+        enterNamePlaceholder: 'Дайте назву цьому документу',
+        enterDescriptionPlaceholder: 'Напишіть повідомлення в цьому полі',
+        titleDescription: 'Опишіть цей документ (необов’язково)',
+        documentName: 'Який тип документа ви завантажили ?', // shown as a label on edit details screen
+
+        noDocuments:
+          'У вашому обліковому записі ще немає збережених документів.', // shown on dashboard when there are no documents
+        previewOf: 'Preview of', // not found
+        uploadFirst: 'Додати перший документ', // label on the empty state upload button
+        thumbnailOf: 'Thumbnail of', // not found
+        fileName: 'Назва документа',
+        singleOrMultiple: 'Виберіть варіант',
+        addedDocument: 'Документ додано ',
+        confirmUploadMsg:
+          'Тепер, коли ви завантажили свій документ, ви можете надати DHS PATH доступ до нього.',
+      },
+
+      controls: {
+        accept: 'Прийняти', //  eg. accept terms of use
+        add: 'Додати', //  eg. add a delegate
+        allFiles: 'Ваші документи', // shown as tab label on the dashboard
+        cancel: 'Скасувати', // cancel button
+        confirm: 'Підтвердити',
+        confirmDelete: 'Так, видалити',
+        declineAndLogOut: 'Відхилити й вийти', // decline TOS button
+        delete: 'Видалити', // delete document kebab item
+        done: 'Готово',
+        download: 'Скачати', // edit document kebab item and button text
+        editDetails: 'Редагувати деталі', // edit document kebab item
+        edit: 'Редагувати', // edit account details
+        continue: 'Продовжити',
+        share: 'Поділитися', // share button
+        shared: 'Спільні документи', // label of shared tab on dashboard
+        upload: 'Завантажити',
+        uploadDocument: 'Завантажити документ',
+        uploadFile: 'Завантажити файл',
+        uploadFiles: 'Завантажити файли',
+        view: 'Переглянути',
+        save: 'Зберегти',
+        shareWithDHS: 'Надати доступ DHS', // label
+      },
+
+      // account settings page
+      account: {
+        language: 'Мова', // not found open language selector
+        firstName: 'Ім’я',
+        whatIsYourFirstName: 'Як вас звати?',
+        lastName: 'Прізвище',
+        whatIsYourLastName: 'Яке ваше прізвище?',
+        dob: 'Дата народження',
+        whatIsYourDob: 'Коли ви народилися?',
+        caseNumber: 'Номер справи',
+        whatIsYourDshCaseNumber: 'Який номер вашої справи DHS?',
+        dhsShow:
+          'Укажіть номер справи DHS, якщо ви – уже зареєстрована родина. Якщо ви ще не працювали з PATH, укажіть номер звернення, який ви отримали, коли звернулися в програму PATH (наприклад, CL ####).',
+        locale: 'Виберіть мову',
+        month: 'Місяць',
+        day: 'День',
+        year: 'Рік',
+        preferredLanguage: 'Яка ваша мова?',
+      },
+
+      // All copy related to the create shared folder flow
+      sharing: {
+        defaultName: 'Документи, доступ до яких ви надали DHS {date}',
+        confirmSharedFiles: 'Документи, доступ до яких буде надано DHS',
+        plusNMore: '+ ще {count}',
+        recipients: 'Одержувачі', // not found
+
+        // placeholder text for the add recipient email field
+        addRecipientPlaceholder: '輸入電子郵件地址',
+
+        // step titles in the share flow
+        confirmTitle: '確定要分享這些文件嗎？',
+        addRecipientsTitle: '您要與誰分享這些文件？',
+        selectFilesTitle: 'Виберіть документи',
+
+        disclaimerTitle: 'Нагадування',
+        shareDocumentDisclaimer: [
+          'My File NYC facilitates document sharing with {emails} email accounts',
+          'Нагадування. Після надання доступу до документів співробітники DHS можуть скачати й зберегти ваші документи, щоб подати їх на підтвердження вашої заявки. DHS може зберігати копії документів у вашій справі, навіть якщо ви скасуєте доступ до них або видалите їх із системи My File.', // not found
+        ],
+
+        // on the confirmation step, could be "recipient" or "recipients" depending on number of items
+        confirmRecipientsLabel: 'Ви надаєте доступ до документів для',
+        tooManyRecipients: 'You can share with up to {count} people', // (not found) error text when trying to add more than 10 recipients
+      },
+
+      tabTitles: {
+        about: 'Відомості',
+        authorizing: 'Authorizing', // not found not important - used while logging in
+        dashboard: 'Інформаційна панель',
+        document: 'Документ', // used for document preview while page is loading, then changes to document title
+        faq: 'Часті запитання',
+        shared: 'Надано доступ', // used in share flow
+        sharedBy: 'Хто надав доступ：', //  used in share flow
+        termsOfUse: 'Умови використання', // not found used while viewing TOU
+        welcome: 'Ласкаво просимо', // displayed on the initial landing page
+      },
+
+      delegateAccess: {
+        disabledNotice: 'The delegation feature is currently disabled.', // not found
+        pageTitle: 'Account Access', // not found title in account menu and page title of delegation flow
+        menuTitle: 'Who Can Manage My Documents', // (not found) title in account menu and page title of delegation flow
+        emailPlaceholder: 'Add people via email', // not found
+        addConfirmationTitle:
+          'Let this person manage documents on your account?', // not found
+        addConfirmationBody:
+          'They will be able to upload and share documents for you. They cannot delete documents. You can always remove their access to your account.', // not found
+        addConfirmationAction: 'Yes, Give Access', // not found
+        removeConfirmationTitle:
+          'Remove this person from accessing your account?', // not found
+        removeConfirmationBody:
+          'They will no longer be able to manage or share documents for you. You can always give them access to your documents again in the Account menu settings.', // not found
+        removeConfirmationAction: 'Yes, Remove', // not found
+        uninviteConfirmationTitle: 'Cancel this invitation?', // not found
+        uninviteConfirmationBody:
+          'You can invite someone to manage your account from the Account menu settings.', // not found
+        uninviteConfirmationAction: 'Yes, Cancel', // not found
+        tooManyDelegates: 'Up to {count} people can access your account', // not found
+        invitePending: 'Invitation pending', // not found
+        inviteExpired: 'Invitation expired.', // not found
+        resendInvite: 'Resend?', // not found
+      },
+
+      // Account Activity
+      activity: {
+        accessed: 'отримав(-ла) доступ',
+        added: 'додав(-ла)',
+        delegateInvitedClient: 'to manage and share documents on your behalf', // not found
+        delegateInvitedCbo: 'to manage and share documents on their behalf', // not found
+        delegateAcceptedClient:
+          'can now manage and share documents on your behalf', // not found
+        delegateAcceptedCbo:
+          'can now manage and share documents on this account', // not found
+        delegateDeletedClient: 'has been removed from your account', // not found
+        delegateDeletedCbo: 'has been removed from this account ', // not found
+        deleted: 'видалив(-ла)',
+        edited: 'відредагував(-ла) дані про',
+        file: 'файл',
+        files: 'документи',
+        invited: 'запросив(-ла)',
+        pageTitle: 'Активність облікового запису',
+        shared: 'надав(-ла) доступ',
+        today: 'СЬОГОДНІ',
+        you: 'Ви',
+      },
+
+      // Copy where you are viewing shared folders
+      sharedFolder: {
+        // empty state for list of shared folders
+        noCollections: `Ви ще не поділилися жодним документом.`, // message
+        shareFirstDocument: 'Поділіться своїм першим документом', // call to action
+
+        // empty state for an individual shared folder
+        emptyCollection: 'Усі документи було видалено з цієї папки.', // message
+        returnDashboard: 'Повернутися до інформаційної панелі', // call to action
+
+        // empty state for list of clients who have shared collections with user
+        noSharedDocuments: 'Вам ще не надано доступ до жодного документа.',
+        // title for collection table name column
+        collectionTableTitle:
+          'Документи, до яких ви надали доступ, відсортовані за датою', // not found
+        folderName: 'Доступ до документів ({num} шт.) надано {date} о {time}.',
+        folderNameWithOneDocument:
+          'Доступ до 1 документа надано {date} о {time}',
+      },
+
+      cbo: {
+        selectClient: 'Select a client to access their account', // not found
+        clickToRemove: 'Click {close} to remove a client', // not found
+        noClientsTitle:
+          'You have not been added to any client My File NYC accounts', // not found
+        noClientsBody:
+          "Once a client adds you to their My File NYC account, you'll be able to manage and share documents on their behalf from this screen.\n\nA client can provide access to their documents in the Account menu settings in My File NYC.", // not found
+        noClientActionLabel: 'Not a case manager?', // not found
+        noClientActionText:
+          'If you are seeking permanent supportive housing, click here.', // not found
+        removeConfirmationTitle: 'Remove this client from your My File NYC?', // not found
+        removeConfirmationBody:
+          'You will no longer be able to view, manage, or share documents on their behalf. This cannot be undone.', // not found
+        removeConfirmationAction: 'Yes, Remove', // not found
+        errorAcceptingInvite:
+          'Invite could not be accepted. Please ensure you are logged in with the email address that received the invite.', // not found
+      },
+
+      agent: {
+        clientFirstNameLabel: '名字', // label of client first name column in agent view
+        clientLastNameLabel: '姓氏', // label of client last name column in agent view
+        clientDob: '出生日期', // label of client date of birth column in agent view
+        clientCaseNum: '個案號碼', // label of client case number column in agent view
+        clientEmail: '電子郵件', // label of client case number column in agent view
+        dateShared: '分享日期', // label in side bar
+        noClientActionLabel: 'Not a government employee?', // not found
+        noClientActionText:
+          'If you are seeking permanent supportive housing, click here.', // not found
+        reorderFiles: '重新排序文件', // shown in agent view when downloading as PDF
+        selectClient: '選擇客戶以存取分享文件',
+        sharedBy: '分享者：', // label in side bar
+        sharedFolderNameLabel: 'Name', // (not found) label of shared folder name column in agent view
+        sharedWith: '分享文件至:', // promt for agency email
+      },
+
+      landing: {
+        community: 'COMMUNITY SERVICES', // not found
+        agency: 'AGENCY SERVICES', // not found
+      },
+
+      uploadInputButton: {
+        oneFileTitle: 'Односторінковий документ',
+        oneFileDescription:
+          'Завантажте одну сторінку або фотографію зі свого пристрою.',
+        multipleFilesTitle: 'Багатосторінковий документ.',
+        multipleFilesDescription:
+          'Завантажте кілька сторінок або фотографій зі свого пристрою.',
+        multipageCaution:
+          'Завантажуйте по одному документу за раз. Не об’єднуйте документи під час завантаження.',
+        titleInfoButton:
+          'Ви можете ввести посвідчення особи, або підтвердження місця проживання, або заяву, тощо.',
+        descriptionInfoButton:
+          'Для пояснення, надайте короткий опис завантажених файлів.',
+        yourFileTitle: 'Ваш файл',
+        yourDocumentTitle: 'Ваш документ',
+        uploadNewFile: 'Завантажити новий файл',
+        dragAndDropDescription:
+          'Перетягніть сторінки, щоб перевпорядкувати їх.',
+        removeFile: 'Вилучити',
+      },
+
+      $vuetify: {
+        ...vuetifyEn,
+        dataTable: {
+          sortBy: 'Sort by', // not found
+          ariaLabel: {
+            sortNone: 'Do not sort', // not found
+            activateAscending: 'Sort ascending', // not found
+          },
+        },
+        noDataText: 'No data', // no found
+      },
+      validations: {
+        ...validationEn.messages,
+        whitelist: 'Must be an approved agency email', // not found
+        notSameAsUserEmail: 'You cannot enter your own email address', // not found
+      },
+    },
+    pt: {
+      // label appearing in tabular content (list of users, list of shared collections etc)
+      // as well as side bar on document view
+      dateAdded: `Data em que foi adicionado`,
+
+      application: {
+        title: 'My File NYC',
+      },
+
+      errorMessages: {
+        cannotDisplayDocumentHeader: 'Não é possível exibir o documento',
+        cannotDisplayDocumentText:
+          'Não é possível mostrar o documento no momento. Em vez disso, faça download do documento.',
+        unsupportedBrowserHeader: 'Navegador não suportado',
+        unsupportedBrowserTextDesktop:
+          'O PDF Viewer não oferece suporte ao Firefox ou Internet Explorer. Por favor, use um navegador diferente, por exemplo',
+        or: 'ou',
+        unsupportedBrowserTextMobile:
+          'O PDF Viewer não oferece suporte a Microsoft Edge, Firefox, Samsung Internet ou Internet Explorer. Por favor, use um navegador diferente, por exemplo',
+      },
+
+      validationMsg: {
+        firstNameRequired: 'O campo Nome é obrigatório.',
+        firstNameNotValid: 'Nome inválido.',
+        firstNameMaxLength: 'O campo Nome não pode ter mais de 50 caracteres.',
+        firstNameMinLength: 'O campo Nome deve conter pelo menos 2 caracteres.',
+        firstNameAlpha: 'O nome deve conter apenas letras.',
+
+        // Last Name
+        lastNameRequired: 'O campo Sobrenome é obrigatório.',
+        lastNameNotValid: 'Sobrenome inválido.',
+        lastNameMaxLength:
+          'O campo Sobrenome não pode ter mais de 50 caracteres.',
+        lastNameMinLength:
+          'O campo Sobrenome deve conter pelo menos 2 caracteres.',
+        lastNameAlpha: 'O sobrenome deve conter apenas letras.',
+
+        // Month
+        monthNotValid: 'Mês inválido.',
+        monthRequired: 'Você precisa especificar o mês.',
+
+        // Day
+        dayNotValid: 'O dia não é permitido.',
+        dayRequired: 'O campo Dia é obrigatório.',
+
+        // Year
+        yearRequired: 'Você precisa especificar o ano.',
+        yearNotValid: 'Ano inválido',
+
+        // Case Number
+        caseNumberRequired: 'O campo Número do processo é obrigatório',
+        caseNumberMaxLength:
+          'O campo Número do procecsso não pode ter mais de 20 caracteres.',
+        caseNumberMinLength:
+          'O campo Número do Caso deve conter no mínimo 4 caracteres.',
+      },
+
+      statusIndicator: {
+        clientInReview: 'Em revisão',
+        clientReviewed: 'Revisado',
+      },
+
+      forceLogout: {
+        firstTimeoutWarningMessage:
+          'Você terá que fazer login novamente em menos de {number} minutos',
+        secondTimeoutWarningMessage:
+          'Você terá que fazer login novamente em menos de {number} minutos',
+        loginAgain:
+          'Você receberá solicitação para fazer login novamente se estiver usando o Meu arquivo por mais de 1 hora.',
+        btnLoginAgain: 'Fazer login novamente',
+      },
+
+      toast: {
+        acceptedDelegateInvite: 'Delegate Access Accepted', // not found
+        delegateRemoved: 'Client Removed', // not found
+        downloadLoadingState: 'Preparando o download',
+        sharingComplete: 'Compartilhamento concluído',
+        uploading: 'Adicionando documento...', // displayed while a file is uploading
+        uploadComplete: 'Upload concluído',
+        fileDeletedConfirmation: 'Documento excluído',
+        fileTooLarge: 'Documento muito grande (deve ser < 10 MB)',
+      },
+
+      login: {
+        loginButton: 'Fazer login',
+        createAccountButton: 'Criar conta',
+        getStarted: {
+          client: 'Iniciar',
+          cityEmployee: 'City Employee Login', // not found
+          cboWorker: 'CBO Worker Login', // not found
+        },
+        welcomeTitle: 'Boas vindas',
+        footerLogoAlt: 'Footer logo', // not found
+      },
+
+      navigation: {
+        about: 'Sobre',
+        account: 'My Account Managers', // not found
+        settings: 'Meu perfil',
+        settingsFirstRun:
+          'Boas vindas ao Meu arquivo NYC! Responda algumas perguntas sobre você para começar.',
+        welcomeFirstRun: 'Boas vindas ao Meu arquivo NYC!',
+        activity: 'Registro de atividades',
+        back: 'Voltar',
+        clients: 'Clientes', // navigate back to agent view desktop not found
+        close: 'Fechar',
+        dashboard: 'Painel',
+        faq: 'Perguntas frequentes',
+        loading: 'Carregando',
+        loggingIn: 'ВFazendo login...',
+        manageAccounts: 'Manage Accounts', // not found
+        signIn: 'Entrar',
+        signOut: 'Sair',
+        switchAccount: '切換客戶端',
+        termsOfUse: 'Termos de uso',
+        nycId: 'Está tendo problemas para fazer login?',
+      },
+
+      document: {
+        // This is the title of the confirmation dialog for deleting a document
+        deleteConfirmationTitle: 'Excluir este documento?',
+        // This is the body content of the confirmation dialog for deleting a document
+        deleteConfirmationBody: `Qualquer pessoa com acesso compartilhado não poderá mais visualizar este documento. Isto não pode ser desfeito.`,
+        documentMenu: 'Menu de documentos',
+        documentOptions: 'Opções',
+        downloadZip: 'Fazer download de todos',
+        downloadPdf: 'Fazer download de PDF',
+        description: 'Descrição do documento', // displayed beneath the document and expands to show description (if any)
+        editDetailsTitle: 'Editar detalhes', // page title on edit details screen
+        enterNamePlaceholder: 'Dê um nome a este documento',
+        enterDescriptionPlaceholder: 'Escreva uma mensagem neste campo',
+        titleDescription: 'Descreva este documento (opcional)',
+        documentName: 'Que tipo de documento você baixou?', // shown as a label on edit details screen
+
+        noDocuments: 'Ainda não há documentos salvos em sua conta.', // shown on dashboard when there are no documents
+        previewOf: 'Preview of', // not found
+        uploadFirst: 'Adicione seu primeiro documento', // label on the empty state upload button
+        thumbnailOf: 'Thumbnail of', // not found
+        fileName: 'Nome do documento',
+        singleOrMultiple: 'Selecione uma opção',
+        addedDocument: 'Documento adicionado ',
+        confirmUploadMsg:
+          'Agora que carregou seu documento, você pode compartilhá-lo com o PATH do DHS.',
+      },
+
+      controls: {
+        accept: 'Aceitar', //  eg. accept terms of use
+        add: 'Adicionar', //  eg. add a delegate
+        allFiles: 'Seus documentos', // shown as tab label on the dashboard
+        cancel: 'Cancelar', // cancel button
+        confirm: 'Confirmar',
+        confirmDelete: 'Sim, excluir',
+        declineAndLogOut: 'Recusar e sair', // decline TOS button
+        delete: 'Excluir', // delete document kebab item
+        done: 'Feito',
+        download: 'Fazer download', // edit document kebab item and button text
+        editDetails: 'Editar detalhes', // edit document kebab item
+        edit: 'Editar', // edit account details
+        continue: 'Continuar',
+        share: 'Compartilhar', // share button
+        shared: 'Documentos compartilhados', // label of shared tab on dashboard
+        upload: 'Fazer upload',
+        uploadDocument: 'Fazer upload de documento',
+        uploadFile: 'Fazer upload de arquivo',
+        uploadFiles: 'Fazer upload de arquivos',
+        view: 'Exibir',
+        save: 'Salvar',
+        shareWithDHS: 'Compartilhar com o DHS', // label
+      },
+
+      // account settings page
+      account: {
+        language: 'Idioma', // not found open language selector
+        firstName: 'Nome',
+        whatIsYourFirstName: 'Qual é o seu nome?',
+        lastName: 'Sobrenome',
+        whatIsYourLastName: 'Qual é o seu sobrenome?',
+        dob: 'Data de nascimento',
+        whatIsYourDob: 'Quando você nasceu?',
+        caseNumber: 'Número do processo',
+        whatIsYourDshCaseNumber: 'Qual o seu Número de processo do DHS?',
+        dhsShow:
+          'Adicione o seu número de processo do DHS se você for uma família que retorna. Se você é novo(a) no PATH, adicione o número do tíquete que você recebeu quando chegou ao PATH (exemplo: CL ####).',
+        locale: 'Selecione o idioma',
+        month: 'Mês',
+        day: 'Dia',
+        year: 'Ano',
+        preferredLanguage: 'Qual é o seu idioma preferido?',
+      },
+
+      // All copy related to the create shared folder flow
+      sharing: {
+        defaultName: 'Documentos que você compartilhou com o DHS em {date}',
+        confirmSharedFiles: 'Documentos a serem compartilhados com o DHS',
+        plusNMore: '+ {count} mais',
+        recipients: 'Destinatários',
+
+        // placeholder text for the add recipient email field
+        addRecipientPlaceholder: '輸入電子郵件地址',
+
+        // step titles in the share flow
+        confirmTitle: '確定要分享這些文件嗎？',
+        addRecipientsTitle: '您要與誰分享這些文件？',
+        selectFilesTitle: 'Selecionar documentos',
+
+        disclaimerTitle: 'Lembrete',
+        shareDocumentDisclaimer: [
+          'My File NYC facilitates document sharing with {emails} email accounts',
+          'Lembrete: Assim que os documentos forem compartilhados, os funcionários do DHS poderão fazer download e salvar seus documentos para enviá-los como prova de sua inscrição. O DHS ainda poderá ter cópias para apoiar o seu caso, mesmo se você cancelar o compartilhamento ou excluí-las do Meu arquivo.', // not found
+        ],
+
+        // on the confirmation step, could be "recipient" or "recipients" depending on number of items
+        confirmRecipientsLabel: 'Você está compartilhando documentos com',
+        tooManyRecipients: 'You can share with up to {count} people', // (not found) error text when trying to add more than 10 recipients
+      },
+
+      tabTitles: {
+        about: 'Sobre',
+        authorizing: 'Authorizing', // not found not important - used while logging in
+        dashboard: 'Painel',
+        document: 'Documento', // used for document preview while page is loading, then changes to document title
+        faq: 'Perguntas frequentes',
+        shared: 'Compartilhado', // used in share flow
+        sharedBy: 'Compartilhado por', //  used in share flow
+        termsOfUse: 'Termos de uso', // not found used while viewing TOU
+        welcome: 'Boas vindas', // displayed on the initial landing page
+      },
+
+      delegateAccess: {
+        disabledNotice: 'The delegation feature is currently disabled.', // not found
+        pageTitle: 'Account Access', // not found title in account menu and page title of delegation flow
+        menuTitle: 'Who Can Manage My Documents', // (not found) title in account menu and page title of delegation flow
+        emailPlaceholder: 'Add people via email', // not found
+        addConfirmationTitle:
+          'Let this person manage documents on your account?', // not found
+        addConfirmationBody:
+          'They will be able to upload and share documents for you. They cannot delete documents. You can always remove their access to your account.', // not found
+        addConfirmationAction: 'Yes, Give Access', // not found
+        removeConfirmationTitle:
+          'Remove this person from accessing your account?', // not found
+        removeConfirmationBody:
+          'They will no longer be able to manage or share documents for you. You can always give them access to your documents again in the Account menu settings.', // not found
+        removeConfirmationAction: 'Yes, Remove', // not found
+        uninviteConfirmationTitle: 'Cancel this invitation?', // not found
+        uninviteConfirmationBody:
+          'You can invite someone to manage your account from the Account menu settings.', // not found
+        uninviteConfirmationAction: 'Yes, Cancel', // not found
+        tooManyDelegates: 'Up to {count} people can access your account', // not found
+        invitePending: 'Invitation pending', // not found
+        inviteExpired: 'Invitation expired.', // not found
+        resendInvite: 'Resend?', // not found
+      },
+
+      // Account Activity
+      activity: {
+        accessed: 'acessado',
+        added: 'adicionado',
+        delegateInvitedClient: 'to manage and share documents on your behalf', // not found
+        delegateInvitedCbo: 'to manage and share documents on their behalf', // not found
+        delegateAcceptedClient:
+          'can now manage and share documents on your behalf', // not found
+        delegateAcceptedCbo:
+          'can now manage and share documents on this account', // not found
+        delegateDeletedClient: 'has been removed from your account', // not found
+        delegateDeletedCbo: 'has been removed from this account ', // not found
+        deleted: 'excluído',
+        edited: 'editados os detalhes de',
+        file: 'arquivo',
+        files: 'documentos',
+        invited: 'convidado',
+        pageTitle: 'Atividade da conta',
+        shared: 'compartilhado',
+        today: 'HOJE',
+        you: 'Você',
+      },
+
+      // Copy where you are viewing shared folders
+      sharedFolder: {
+        // empty state for list of shared folders
+        noCollections: `Você ainda não compartilhou documentos.`, // message
+        shareFirstDocument: 'Compartilhe seu primeiro documento', // call to action
+
+        // empty state for an individual shared folder
+        emptyCollection: 'Todos os documentos foram removidos desta pasta.', // message
+        returnDashboard: 'Retornar ao painel', // call to action
+
+        // empty state for list of clients who have shared collections with user
+        noSharedDocuments:
+          'Você ainda não recebeu nenhum documento compartilhado.',
+        // title for collection table name column
+        collectionTableTitle:
+          'Documentos que você compartilhou, organizados por data', // not found
+        folderName: '{num} documentos compartilhados em {date} às {time}',
+        folderNameWithOneDocument:
+          '1 documento compartilhado em {date} às {time}',
+      },
+
+      cbo: {
+        selectClient: 'Select a client to access their account', // not found
+        clickToRemove: 'Click {close} to remove a client', // not found
+        noClientsTitle:
+          'You have not been added to any client My File NYC accounts', // not found
+        noClientsBody:
+          "Once a client adds you to their My File NYC account, you'll be able to manage and share documents on their behalf from this screen.\n\nA client can provide access to their documents in the Account menu settings in My File NYC.", // not found
+        noClientActionLabel: 'Not a case manager?', // not found
+        noClientActionText:
+          'If you are seeking permanent supportive housing, click here.', // not found
+        removeConfirmationTitle: 'Remove this client from your My File NYC?', // not found
+        removeConfirmationBody:
+          'You will no longer be able to view, manage, or share documents on their behalf. This cannot be undone.', // not found
+        removeConfirmationAction: 'Yes, Remove', // not found
+        errorAcceptingInvite:
+          'Invite could not be accepted. Please ensure you are logged in with the email address that received the invite.', // not found
+      },
+
+      agent: {
+        clientFirstNameLabel: '名字', // label of client first name column in agent view
+        clientLastNameLabel: '姓氏', // label of client last name column in agent view
+        clientDob: '出生日期', // label of client date of birth column in agent view
+        clientCaseNum: '個案號碼', // label of client case number column in agent view
+        clientEmail: '電子郵件', // label of client case number column in agent view
+        dateShared: '分享日期', // label in side bar
+        noClientActionLabel: 'Not a government employee?', // not found
+        noClientActionText:
+          'If you are seeking permanent supportive housing, click here.', // not found
+        reorderFiles: '重新排序文件', // shown in agent view when downloading as PDF
+        selectClient: '選擇客戶以存取分享文件',
+        sharedBy: '分享者：', // label in side bar
+        sharedFolderNameLabel: 'Name', // (not found) label of shared folder name column in agent view
+        sharedWith: '分享文件至:', // promt for agency email
+      },
+
+      landing: {
+        community: 'COMMUNITY SERVICES', // not found
+        agency: 'AGENCY SERVICES', // not found
+      },
+
+      uploadInputButton: {
+        oneFileTitle: 'Documento de uma página',
+        oneFileDescription:
+          'Faça upload de uma página ou foto a partir de seu dispositivo.',
+        multipleFilesTitle: 'Documentos de várias páginas',
+        multipleFilesDescription:
+          'Faça upload de várias páginas ou fotos a partir de seu dispositivo.',
+        multipageCaution:
+          'Faça upload de um documento de cada vez. Não combine documentos ao fazer upload.',
+        titleInfoButton:
+          'Você pode inserir um cartão de identificação, ou comprovante de residência, ou um extrato, etc.',
+        descriptionInfoButton:
+          'Para explicar, forneça uma breve descrição dos arquivos baixados.',
+        yourFileTitle: 'Seu arquivo',
+        yourDocumentTitle: 'Seus arquivos',
+        uploadNewFile: 'Fazer upload de novo arquivo',
+        dragAndDropDescription: 'Arraste para reorganizar as páginas.',
+        removeFile: 'Remover',
       },
 
       $vuetify: {
