@@ -26,12 +26,6 @@ a. **Обліковий запис**: обліковий запис, який К
 Б. Надаючи доступ до документа установі Міста, Користувачі дають цій установі дозвіл скачувати, зберігати й використовувати документ із будь-якою метою, з якою ця установа Міста використовувала б аналогічний фізичний документ. В. Користувачі можуть видаляти документи, що зберігаються в системі My File NYC. Ця функція не впливає на копії документів, які вже були скачані установами Міста.
 Г. Для входу в My File NYC використовується система NYC.ID.
 
-**IV. Scope**
-a. These Terms set forth the rights and responsibilities of Users.
-b. These Terms supplement the [Terms of Use for NYC.gov](https://www1.nyc.gov/home/terms-of-use.page), the [Privacy Policy for NYC.gov](https://www1.nyc.gov/home/privacy-policy.page), and NYC.ID’s Terms of Use. By using My File NYC, Users agree to those Terms.
-c. These Terms are effective upon the User’s acceptance of the terms.
-d. If a person is authorized by a User to assist a User in creating or using an Account on My File NYC, the User represents that the person: (i) has the full legal authority to bind the User to these Terms; (ii) the person has have read and understands these Terms; and (iii) the person agrees, on behalf of the User, to these Terms.
-
 **IV. Сфера застосування**
 А. Ці Умови визначають права й обов’язки Користувачів.
 Б. Ці Умови доповнюють собою [Умови використання NYC.gov](https://www1.nyc.gov/home/terms-of-use.page), [Політику конфіденційності NYC.gov](https://www1.nyc.gov/home/privacy-policy.page) і Умови використання NYC.ID. Використовуючи систему My File NYC, Користувачі погоджуються із цими Умовами.
