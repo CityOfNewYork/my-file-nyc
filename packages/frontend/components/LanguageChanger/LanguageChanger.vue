@@ -103,6 +103,8 @@ export default class LanguageChanger extends Vue {
     ht: 'Kreyol Ayisyen',
     bn: 'বাংলা',
     pl: 'Polskie',
+    uk: 'Українська',
+    pt: 'Português',
   }
 }
 </script>

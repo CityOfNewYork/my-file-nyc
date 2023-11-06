@@ -8,9 +8,11 @@
     >
       <v-icon small>$close</v-icon>
     </v-btn>
-    <h2 style="margin-bottom: 10px; color: black">Document added</h2>
+    <h2 style="margin-bottom: 10px; color: black">
+      {{ $t('document.addedDocument') }}
+    </h2>
     <p style="text-align: center; margin-bottom: 25px; width: 84%">
-      Now that you uploaded your document, you can share it with DHS PATH.
+      {{ $t('document.confirmUploadMsg') }}
     </p>
     <v-btn
       outlined
@@ -19,7 +21,7 @@
       style="font-size: 16px; font-weight: bold"
       @click="redirectToSharePage"
     >
-      Share with DHS
+      {{ $t('controls.shareWithDHS') }}
     </v-btn>
   </div>
   <!-- <div
@@ -66,6 +68,8 @@ export default class UploadShareDialog extends Vue {
     ht: 'Haitian Creole',
     bn: 'Bengali',
     pl: 'Polish',
+    uk: 'Ukrainian',
+    pt: 'Portuguese',
   }
 
   closeAfterUploadDialog() {
@@ -88,7 +92,7 @@ export default class UploadShareDialog extends Vue {
 
 <style scoped lang="scss">
 .share-dialog-container {
-  width: 80%;
+  min-width: 80%;
   display: flex;
   flex-direction: column;
   justify-content: center;

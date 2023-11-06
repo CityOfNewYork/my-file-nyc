@@ -93,7 +93,7 @@ const config = {
     '@nuxtjs/gtm',
   ],
   gtm: {
-    id: process.env.GTM_ID
+    id: process.env.GTM_ID,
   },
   pwa: {
     // TODO: other PWA features like icon and colour scheme
@@ -120,6 +120,8 @@ const config = {
       'ht',
       'pl',
       'en',
+      'uk',
+      'pt',
     ],
     defaultLocale: 'en',
     vueI18n: {

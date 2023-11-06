@@ -415,6 +415,8 @@ export default class SharedOwnerList extends Vue {
     ht: 'Haitian Creole',
     bn: 'Bengali',
     pl: 'Polish',
+    uk: 'Ukrainian',
+    pt: 'Portuguese',
   }
 
   fetchDocuments() {

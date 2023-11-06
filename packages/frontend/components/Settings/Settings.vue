@@ -165,7 +165,7 @@
           <div>
             <p class="subtitle-1">
               <!-- {{ $t('account.whatIsYourDshCaseNumber') }} -->
-              What is your preferred language?
+              {{ $t('account.preferredLanguage') }}
             </p>
             <LanguageSelector
               :locale="locale"
@@ -378,7 +378,7 @@ export default class Settings extends Vue {
         en: 'English',
         es: 'Español',
         ar: 'عرب',
-        ch: '中國人',
+        ch: '中文',
         ru: 'Русский',
         urd: 'اردو',
         ko: '한국인',
@@ -386,6 +386,8 @@ export default class Settings extends Vue {
         ht: 'Kreyol Ayisyen',
         bn: 'বাংলা',
         pl: 'Polskie',
+        uk: 'Українська',
+        pt: 'Português',
       },
     }
   }
