@@ -57,6 +57,8 @@ export default class LanguageSelector extends Vue {
     ht: 'Kreyol Ayisyen',
     bn: 'বাংলা',
     pl: 'Polskie',
+    uk: 'Українська',
+    pt: 'Português',
   }
 }
 </script>

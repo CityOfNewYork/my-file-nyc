@@ -517,9 +517,9 @@ export default merge(
         thumbnailOf: 'Thumbnail of', // not found
         fileName: 'اسم المستند',
         singleOrMultiple: 'حدد خيارًا',
-        addedDocument: 'Document Added',
+        addedDocument: 'أُضيف المستند',
         confirmUploadMsg:
-          'Now that you uploaded your document, you can share it with DHS PATH.',
+          'الآن وقد رفعت مستندك، يمكنك مشاركته مع مركز PATH التابع لإدارة DHS.',
       },
 
       controls: {
@@ -544,7 +544,7 @@ export default merge(
         uploadFiles: 'تحميل الملفات',
         view: 'دیکھیں',
         save: 'محفوظ کریں',
-        shareWithDHS: 'Share With DHS', // label
+        shareWithDHS: 'المشاركة مع إدارة DHS', // label
       },
 
       // account settings page
@@ -564,6 +564,7 @@ export default merge(
         month: 'الشهر',
         day: 'اليوم',
         year: 'العام',
+        preferredLanguage: 'ما لغتك المفضلة؟',
       },
 
       // All copy related to the create shared folder flow
@@ -671,7 +672,8 @@ export default merge(
         folderName:
           'تمت مشاركة {num} من المستندات في {date} في تمام الساعة {time}',
 
-        folderNameWithOneDocument: '1 document shared on {date} at {time}',
+        folderNameWithOneDocument:
+          'تمت مشاركة مستند واحد بتاريخ {date} الساعة{time}ءً',
       },
 
       cbo: {
@@ -890,9 +892,9 @@ export default merge(
         thumbnailOf: 'Thumbnail of', // not found
         fileName: 'Название документа',
         singleOrMultiple: 'Выберите опцию',
-        addedDocument: 'Document Added',
+        addedDocument: 'Документ добавлен ',
         confirmUploadMsg:
-          'Now that you uploaded your document, you can share it with DHS PATH.',
+          'Теперь, когда вы загрузили документ, вы можете отправить его в DHS PATH.',
       },
 
       controls: {
@@ -917,7 +919,7 @@ export default merge(
         uploadFiles: 'Загрузить файлы',
         view: 'Просмотреть',
         save: 'Сохранить',
-        shareWithDHS: 'Share With DHS', // label
+        shareWithDHS: 'Предоставить доступ DHS', // label
       },
 
       // account settings page
@@ -937,6 +939,7 @@ export default merge(
         month: 'Месяц',
         day: 'День',
         year: 'Год',
+        preferredLanguage: 'Укажите предпочтительный язык',
       },
 
       // All copy related to the create shared folder flow
@@ -1044,7 +1047,7 @@ export default merge(
           'Документы, к которым вы предоставили доступ, упорядоченные по дате', // not found
         folderName:
           'На момент {date} {time} к следующему количеству документов предоставлено доступ: {num}.',
-        folderNameWithOneDocument: '1 document shared on {date} at {time}',
+        folderNameWithOneDocument: '1 документ отправлен {date} в {time}',
       },
 
       cbo: {
@@ -1268,9 +1271,9 @@ export default merge(
         thumbnailOf: 'Thumbnail of', // not found
         fileName: 'دستاویز کا نام',
         singleOrMultiple: 'کسی اختیار کا انتخاب کریں',
-        addedDocument: 'Document Added',
+        addedDocument: 'دستاویز شامل کر دی گئی۔ ',
         confirmUploadMsg:
-          'Now that you uploaded your document, you can share it with DHS PATH.',
+          'اب جب کہ آپ نے اپنی دستاویز اپ لوڈ کیا ہے، آپ اسے DHS PATH کے ساتھ اشتراک کر سکتے ہیں۔',
       },
 
       controls: {
@@ -1295,7 +1298,7 @@ export default merge(
         uploadFiles: 'فائلیں اپ لوڈ کرو',
         view: 'دیکھیں',
         save: 'محفوظ کریں',
-        shareWithDHS: 'Share With DHS', // label
+        shareWithDHS: 'DHS کے ساتھ اشتراک کریں', // label
       },
 
       // account settings page
@@ -1315,6 +1318,7 @@ export default merge(
         month: 'مہینہ',
         day: 'دن',
         year: 'سال',
+        preferredLanguage: 'آپ کی ترجیحی زبان کونسی ہے؟',
       },
 
       // All copy related to the create shared folder flow
@@ -1423,7 +1427,8 @@ export default merge(
         collectionTableTitle:
           'دستاویزات جو آپ نے شیئر کی ہیں، مرتب کردہ بہ لحاظ تاریخ',
         folderName: '{num} دستاویزات کا اشتراک کیا گیا {date} بذریعہ {time}',
-        folderNameWithOneDocument: '1 document shared on {date} at {time}',
+        folderNameWithOneDocument:
+          '1 دستاویز کا اشتراک {date} پر {time}پر کیا گیا۔',
       },
 
       cbo: {
@@ -1639,9 +1644,9 @@ export default merge(
         thumbnailOf: 'Thumbnail of',
         fileName: '서류 이름',
         singleOrMultiple: '옵션 선택',
-        addedDocument: 'Document Added',
+        addedDocument: '문서 추가됨 ',
         confirmUploadMsg:
-          'Now that you uploaded your document, you can share it with DHS PATH.',
+          '이제 문서를 업로드했으므로 DHS PATH와 공유할 수 있습니다.',
       },
 
       controls: {
@@ -1666,7 +1671,7 @@ export default merge(
         uploadFiles: '파일 업로드하다',
         view: '보기',
         save: '저장',
-        shareWithDHS: 'Share With DHS', // label
+        shareWithDHS: 'DHS와 공유', // label
       },
 
       // account settings page
@@ -1686,6 +1691,7 @@ export default merge(
         month: '월',
         day: '일',
         year: '연도',
+        preferredLanguage: '선호 언어는 무엇입니까?',
       },
 
       // All copy related to the create shared folder flow
@@ -1791,7 +1797,8 @@ export default merge(
         // title for collection table name column
         collectionTableTitle: '공유한 서류를 날짜별로 정리', // not found
         folderName: '{time}에 {date}에서 문서 {num}건 공유',
-        folderNameWithOneDocument: '1 document shared on {date} at {time}',
+        folderNameWithOneDocument:
+          '1개의 문서가 {date} {time}에 공유되었습니다.',
       },
 
       cbo: {
@@ -2007,9 +2014,9 @@ export default merge(
         thumbnailOf: 'Thumbnail of', // not found
         fileName: 'Nombre del documento',
         singleOrMultiple: 'Elegir una opción',
-        addedDocument: 'Document Added',
+        addedDocument: 'Documento agregado ',
         confirmUploadMsg:
-          'Now that you uploaded your document, you can share it with DHS PATH.',
+          'Ahora que subió su documento, puede compartirlo con DHS PATH.',
       },
 
       controls: {
@@ -2034,7 +2041,7 @@ export default merge(
         uploadFiles: 'Subir archivos',
         view: 'Ver',
         save: 'Guardar',
-        shareWithDHS: 'Share With DHS', // label
+        shareWithDHS: 'Compartir con DHS', // label
       },
 
       // account settings page
@@ -2054,6 +2061,7 @@ export default merge(
         month: 'Mes',
         day: 'Día',
         year: 'Año',
+        preferredLanguage: '¿Cuál es su idioma preferido?',
       },
 
       // All copy related to the create shared folder flow
@@ -2159,7 +2167,8 @@ export default merge(
         collectionTableTitle:
           'Los documentos que ha compartido, organizados por fecha', // not found
         folderName: '{num} documentos compartidos el {date} a las {time}',
-        folderNameWithOneDocument: '1 document shared on {date} at {time}',
+        folderNameWithOneDocument:
+          '1 documento compartido el {date} a las {time}',
       },
 
       cbo: {
@@ -2382,9 +2391,9 @@ export default merge(
         thumbnailOf: 'Thumbnail of', // not found
         fileName: 'Nom du document',
         singleOrMultiple: 'Choisissez une option',
-        addedDocument: 'Document Added',
+        addedDocument: 'Document ajouté ',
         confirmUploadMsg:
-          'Now that you uploaded your document, you can share it with DHS PATH.',
+          'Maintenant que vous avez téléchargé votre document, vous pouvez le partager avec DHS PATH.',
       },
 
       controls: {
@@ -2409,7 +2418,7 @@ export default merge(
         uploadFiles: 'Télécharger des fichiers',
         view: 'Consulter',
         save: 'Enregistrer',
-        shareWithDHS: 'Share With DHS', // label
+        shareWithDHS: 'Partager avec le DHS', // label
       },
 
       // account settings page
@@ -2430,6 +2439,7 @@ export default merge(
         month: 'Mois',
         day: 'Jour',
         year: 'Année',
+        preferredLanguage: 'Quelle est votre langue préférée ?',
       },
 
       // All copy related to the create shared folder flow
@@ -2535,7 +2545,7 @@ export default merge(
         collectionTableTitle:
           'Documents que vous avez partagés, organisés par date',
         folderName: '{num} documents partagés le {date} à {time}',
-        folderNameWithOneDocument: '1 document shared on {date} at {time}',
+        folderNameWithOneDocument: '1 document partagé le {date} à {time}',
       },
 
       cbo: {
@@ -2756,9 +2766,9 @@ export default merge(
         thumbnailOf: 'Thumbnail of', // not found
         fileName: 'নথির নাম',
         singleOrMultiple: 'একটি বিকল্প নির্বাচন করুন',
-        addedDocument: 'Document Added',
+        addedDocument: 'নথিপত্র যুক্ত করা হয়েছে ',
         confirmUploadMsg:
-          'Now that you uploaded your document, you can share it with DHS PATH.',
+          'এখন যেহেতু আপনি আপনার নথি আপলোড করেছেন, আপনি এটি DHS PATH এর সাথে ভাগ করে নিতে পারেন৷.',
       },
 
       controls: {
@@ -2783,7 +2793,7 @@ export default merge(
         uploadFiles: 'ফাইল আপলোড',
         view: 'দেখুন',
         save: 'সেভ করুন',
-        shareWithDHS: 'Share With DHS', // label
+        shareWithDHS: 'DHS এর সাথে শেয়ার করুন', // label
       },
 
       // account settings page
@@ -2803,6 +2813,7 @@ export default merge(
         month: 'মাস',
         day: 'দিন',
         year: 'বছর',
+        preferredLanguage: 'আপনার পছন্দের ভাষা কী?',
       },
 
       // All copy related to the create shared folder flow
@@ -2907,7 +2918,8 @@ export default merge(
         // title for collection table name column
         collectionTableTitle: 'আপনার শেয়ার করা নথিগুলি, তারিখ অনুসারে সংগঠিত',
         folderName: '{num} নথি শেয়ার করা হয়েছে {date} তারিখে {time} -এ',
-        folderNameWithOneDocument: '1 document shared on {date} at {time}',
+        folderNameWithOneDocument:
+          '1টি নথি {date} {time} ভাগ করে নেওয়া হয়েছে৷',
       },
 
       cbo: {
@@ -3128,9 +3140,9 @@ export default merge(
         thumbnailOf: 'Thumbnail of', // not found
         fileName: 'Nazwa dokumentu',
         singleOrMultiple: 'Wybierz opcję',
-        addedDocument: 'Document Added',
+        addedDocument: 'Dokument został dodany ',
         confirmUploadMsg:
-          'Now that you uploaded your document, you can share it with DHS PATH.',
+          'Dokument został przesłany – teraz możesz udostępnić go DHS PATH.',
       },
 
       controls: {
@@ -3155,7 +3167,7 @@ export default merge(
         uploadFiles: 'Prześlij pliki',
         view: 'Wyświetl',
         save: 'Zapisz',
-        shareWithDHS: 'Share With DHS', // label
+        shareWithDHS: 'Udostępnij DHS', // label
       },
 
       // account settings page
@@ -3175,6 +3187,7 @@ export default merge(
         month: 'Miesiąc',
         day: 'Dzień',
         year: 'Rok',
+        preferredLanguage: 'Jaki jest Twój preferowany język?',
       },
 
       // All copy related to the create shared folder flow
@@ -3280,7 +3293,8 @@ export default merge(
         collectionTableTitle: 'Udostępnione dokumenty według daty',
         folderName:
           'Liczba dokumentów udostępnionych w dniu {date} o godz. {time}: {num}',
-        folderNameWithOneDocument: '1 document shared on {date} at {time}',
+        folderNameWithOneDocument:
+          '1 dokument udostępniony {date} o godzinie {time}',
       },
 
       cbo: {
@@ -3495,9 +3509,9 @@ export default merge(
         thumbnailOf: 'Thumbnail of', // not found
         fileName: 'Non dokiman an',
         singleOrMultiple: 'Chwazi yon opsyon',
-        addedDocument: 'Document Added',
+        addedDocument: 'Nou ajoute dokiman an ',
         confirmUploadMsg:
-          'Now that you uploaded your document, you can share it with DHS PATH.',
+          'Kounye a, ou ka telechaje dokiman w, ou ka pataje l ak  DHS PATH.',
       },
 
       controls: {
@@ -3522,7 +3536,7 @@ export default merge(
         uploadFiles: 'Voye Fichye yo',
         view: 'Afichaj',
         save: 'Anrejistre',
-        shareWithDHS: 'Share With DHS', // label
+        shareWithDHS: 'Pataje ak DHS', // label
       },
 
       // account settings page
@@ -3542,6 +3556,7 @@ export default merge(
         month: 'Mwa',
         day: 'Jou',
         year: 'Ane',
+        preferredLanguage: 'Ki Lang ou pi Pito?',
       },
 
       // All copy related to the create shared folder flow
@@ -3645,8 +3660,9 @@ export default merge(
 
         // title for collection table name column
         collectionTableTitle: 'Dokiman ou pataje yo, klase pa dat',
-        folderName: '{num}dokiman ki pataje nan dat{date} nan{time}',
-        folderNameWithOneDocument: '1 document shared on {date} at {time}',
+        folderName: '{num} dokiman ki pataje nan dat {date} nan {time}',
+        folderNameWithOneDocument:
+          'Nou te pataje 1 dokiman jou ki te {date} nan lè {time} nan maten/nan apre midi',
       },
 
       cbo: {
@@ -3856,9 +3872,8 @@ export default merge(
         thumbnailOf: 'Thumbnail of', // not found
         fileName: '文件名稱',
         singleOrMultiple: '選擇一項',
-        addedDocument: 'Document Added',
-        confirmUploadMsg:
-          'Now that you uploaded your document, you can share it with DHS PATH.',
+        addedDocument: '文件已新增 ',
+        confirmUploadMsg: '現在您已上傳文件，您可以與 DHS PATH 分享該文件。',
       },
 
       controls: {
@@ -3883,7 +3898,7 @@ export default merge(
         uploadFiles: '上傳文件',
         view: '查看',
         save: '儲存',
-        shareWithDHS: 'Share With DHS', // label
+        shareWithDHS: '分享至 DHS', // label
       },
 
       // account settings page
@@ -3903,6 +3918,7 @@ export default merge(
         month: '月',
         day: '日',
         year: '年',
+        preferredLanguage: '您的偏好語言是哪種？',
       },
 
       // All copy related to the create shared folder flow
@@ -4007,7 +4023,8 @@ export default merge(
         // title for collection table name column
         collectionTableTitle: '您已分享的文件，依照日期排序', // not found
         folderName: '在 {date} 分 {time} 次上傳 {num} 份檔案',
-        folderNameWithOneDocument: '1 document shared on {date} at {time}',
+        folderNameWithOneDocument:
+          '1개의 문서가 {date} {time}에 공유되었습니다.',
       },
 
       cbo: {

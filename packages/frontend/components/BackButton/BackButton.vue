@@ -38,6 +38,8 @@ export default class BackButton extends Vue {
     '/ru/dashboard',
     '/urd/dashboard',
     '/ch/dashboard',
+    '/uk/dashboard',
+    '/pt/dashboard',
   ]
 
   languages: string[] = [
@@ -52,6 +54,8 @@ export default class BackButton extends Vue {
     '/ru',
     '/urd',
     '/ch',
+    '/uk',
+    '/pt',
   ]
 
   navigationEvent() {
