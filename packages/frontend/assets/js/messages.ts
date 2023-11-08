@@ -1009,7 +1009,7 @@ export default merge(
       // Account Activity
       activity: {
         accessed: 'Доступ получен', // not found
-        added: 'Добавлено', // not afound
+        added: 'добавели', // not afound
         delegateInvitedClient: 'to manage and share documents on your behalf', // not found
         delegateInvitedCbo: 'to manage and share documents on their behalf', // not found
         delegateAcceptedClient:
@@ -1020,11 +1020,11 @@ export default merge(
         delegateDeletedCbo: 'has been removed from this account ', // not found
         deleted: 'Удалено', // not found
         edited: 'Отредактированные данные касательно', // not found
-        file: 'Файл', // not found
-        files: 'Документы', // not found
+        file: 'файл', // not found
+        files: 'документа', // not found
         invited: 'Приглашение отправлено', // not found
         pageTitle: 'Действия в учетной записи', // not found
-        shared: 'Доступ предоставлено:',
+        shared: 'дали доступ к',
         today: 'Сегодня',
         you: 'Вы',
       },
@@ -2346,7 +2346,7 @@ export default merge(
       },
 
       navigation: {
-        about: '',
+        about: 'À propos',
         account: 'My Account Managers', // not found
         settings: 'Mon profil',
         settingsFirstRun:
