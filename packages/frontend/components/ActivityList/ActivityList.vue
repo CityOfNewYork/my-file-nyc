@@ -222,21 +222,18 @@ export default class ActivityList extends Vue {
       if ($state) {
         $state.loaded()
       }
-    } else {
-      if ($state) {
-        $state.complete()
-      }
+    } else if ($state) {
+      $state.complete()
     }
   }
-
-  
 
   /**
    * Returns action type as UI label
    * @param action {ActivityActionTypeEnum}
    */
   action(action: ActivityActionTypeEnum) {
-    return ActivityResourceTypeEnumMessageMap.get(action)
+    const savedAction = ActivityResourceTypeEnumMessageMap.get(action)
+    return this.$t(`activity.${savedAction}`)
   }
 
   /**
@@ -264,13 +261,17 @@ export default class ActivityList extends Vue {
         this.relatedDocuments(activity?.relatedResources),
       )
     } else if (
-      [ActivityActionTypeEnum.DocumentEdited as ActivityActionTypeEnum].includes(activity.type)
+      [
+        ActivityActionTypeEnum.DocumentEdited as ActivityActionTypeEnum,
+      ].includes(activity.type)
     ) {
       return `<span class='primary--text'>${this.resourceName(
         activity.resource,
       )}</span>`
     } else if (
-      [ActivityActionTypeEnum.DelegateduserInvited as ActivityActionTypeEnum].includes(activity.type)
+      [
+        ActivityActionTypeEnum.DelegateduserInvited as ActivityActionTypeEnum,
+      ].includes(activity.type)
     ) {
       return `<span class='primary--text'>${this.resourceName(
         activity.resource,
@@ -278,9 +279,9 @@ export default class ActivityList extends Vue {
         this.delegatedUserMessageName('activity.delegateInvited'),
       )}`
     } else if (
-      [ActivityActionTypeEnum.DelegateduserInviteAccepted as ActivityActionTypeEnum].includes(
-        activity.type,
-      )
+      [
+        ActivityActionTypeEnum.DelegateduserInviteAccepted as ActivityActionTypeEnum,
+      ].includes(activity.type)
     ) {
       return `<span class='primary--text'>${this.resourceName(
         activity.resource,
@@ -288,7 +289,9 @@ export default class ActivityList extends Vue {
         this.delegatedUserMessageName('activity.delegateAccepted'),
       )}`
     } else if (
-      [ActivityActionTypeEnum.DelegateduserDeleted as ActivityActionTypeEnum].includes(activity.type)
+      [
+        ActivityActionTypeEnum.DelegateduserDeleted as ActivityActionTypeEnum,
+      ].includes(activity.type)
     ) {
       return `<span class='primary--text'>${this.resourceName(
         activity.resource,
@@ -306,7 +309,8 @@ export default class ActivityList extends Vue {
   canShowActionResult(activity: Activity) {
     return (
       activity.relatedResources &&
-      activity.type !== (ActivityActionTypeEnum.DelegateduserInviteAccepted  as ActivityActionTypeEnum)&&
+      activity.type !==
+        (ActivityActionTypeEnum.DelegateduserInviteAccepted as ActivityActionTypeEnum) &&
       activity.type !== ActivityActionTypeEnum.DelegateduserDeleted
     )
   }
@@ -327,7 +331,11 @@ export default class ActivityList extends Vue {
     const arr = cloneDeep(this.activities.slice(0, index))
 
     const found = arr.find((item) => {
-      if ([ActivityActionTypeEnum.DocumentAccessed as ActivityActionTypeEnum].includes(item.type)) {
+      if (
+        [
+          ActivityActionTypeEnum.DocumentAccessed as ActivityActionTypeEnum,
+        ].includes(item.type)
+      ) {
         const itemMetadata: ResourceMetadata = {
           principalId: item.principal.id,
           resourceId: item.resource.id,

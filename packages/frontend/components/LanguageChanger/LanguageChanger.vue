@@ -135,47 +135,73 @@ export default class LanguageChanger extends Vue {
     padding: 8px 12px;
   }
 
-  fieldset {
+  .fieldset {
     border-width: 1.5px;
+  }
+
+  .selectField {
+    width: 132px;
+    height: 30px;
+  }
+
+  .selectField.v-text-field > .v-input__control > .v-input__slot:before {
+    border-style: none;
+  }
+  .selectField.v-text-field > .v-input__control > .v-input__slot:after {
+    border-style: none;
+  }
+
+  .selectField.v-text-field
+    > .v-input__control
+    > .v-input__slot
+    > .v-select__selections {
+    line-height: 30px;
+  }
+
+  .selectField.v-text-field.v-input--dense:not(.v-text-field--enclosed):not(.v-text-field--full-width)
+    .v-input__append-inner
+    .v-input__icon
+    > .v-icon {
+    color: white;
+    margin-bottom: 15px;
+    padding-left: 2px;
   }
 }
 
 .langContainer {
   // padding: -1px 19px;
+  margin-right: 7px;
+  padding-bottom: 3px;
+
   .v-icon {
     color: white !important;
   }
-  margin-right: 10px;
-  .input-language {
-    width: 100px;
+
+  .selectField {
+    width: min-content;
+    height: 30px;
   }
-}
 
-.selectField {
-  max-width: 115px;
-  height: 30px;
-}
+  .selectField.v-text-field > .v-input__control > .v-input__slot:before {
+    border-style: none;
+  }
+  .selectField.v-text-field > .v-input__control > .v-input__slot:after {
+    border-style: none;
+  }
 
-.selectField.v-text-field > .v-input__control > .v-input__slot:before {
-  border-style: none;
-}
-.selectField.v-text-field > .v-input__control > .v-input__slot:after {
-  border-style: none;
-}
+  .selectField.v-text-field
+    > .v-input__control
+    > .v-input__slot
+    > .v-select__selections {
+    line-height: 30px;
+  }
 
-.selectField.v-text-field
-  > .v-input__control
-  > .v-input__slot
-  > .v-select__selections {
-  line-height: 30px;
-}
-
-.selectField.v-text-field.v-input--dense:not(.v-text-field--enclosed):not(.v-text-field--full-width)
-  .v-input__append-inner
-  .v-input__icon
-  > .v-icon {
-  color: white;
-  margin-bottom: 15px;
-  padding-left: 2px;
+  .selectField.v-text-field.v-input--dense:not(.v-text-field--enclosed):not(.v-text-field--full-width)
+    .v-input__append-inner
+    .v-input__icon
+    > .v-icon {
+    color: white;
+    margin-bottom: 11px;
+  }
 }
 </style>
