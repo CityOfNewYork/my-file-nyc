@@ -2110,6 +2110,7 @@ export class CityStack extends Stack {
         documentBucketPermissions: {
           // can read documents
           includeRead: true,
+          includeWrite: true,
         },
         collectionBucketPermissions: {
           // can read and write collections
@@ -2139,10 +2140,18 @@ export class CityStack extends Stack {
         collectionBucketPermissions: {
           // can read collections
           includeRead: true,
+          includeWrite: true,
+          includeTagging: true,
+        },
+        documentBucketPermissions: {
+          includeRead: true,
+          includeWrite: true,
+          includeTagging: true,
         },
         auditLogSqsPermissions: {
           includeWrite: true,
         },
+        timeoutSeconds: 60 * 5,
       },
     )
 
@@ -2176,6 +2185,9 @@ export class CityStack extends Stack {
           ],
           collectionBucketPermissions: {
             // can read collections
+            includeRead: true,
+          },
+          documentBucketPermissions: {
             includeRead: true,
           },
           auditLogSqsPermissions: {

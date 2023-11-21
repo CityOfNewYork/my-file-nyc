@@ -1,6 +1,7 @@
-import { getObjectReadStream, objectExists, uploadObjectStream } from './s3'
+import { getObjectReadStream, objectExists, uploadObjectStream, uploadObject } from './s3'
 import { PassThrough } from 'stream'
 import Archiver from 'archiver'
+import fs from 'fs'
 
 export type S3ObjectDetails = { key: string; filename: string }
 
@@ -17,12 +18,9 @@ export const createS3ZipFromS3Objects = async (
     const { key, tags, objects } = params
 
     // create write stream
+    const outputFile = `/tmp/output-${Date.now().toString()}.zip`
+    const fsWriteFileStream = fs.createWriteStream(outputFile);
     const streamPassThrough = new PassThrough()
-    const s3Upload = await uploadObjectStream(streamPassThrough, key, {
-      ContentType: 'application/zip',
-      Tagging: tags,
-    })
-    console.log(`s3 upload setup: ${JSON.stringify(s3Upload, null, 2)}`)
     console.log('attempting to create archive...')
 
     // attach object streams from S3 to archive
@@ -41,20 +39,20 @@ export const createS3ZipFromS3Objects = async (
         console.log('archiver close event called.')
       })
       archive.on('finish', () => console.log('archiver finish event called.'))
-      streamPassThrough.on('close', () => {
+      fsWriteFileStream.on('close', () => {
         console.log(`streamPassThrough close event called`)
         resolve(undefined)
       })
-      streamPassThrough.on('end', () => {
+      fsWriteFileStream.on('end', () => {
         console.log(`streamPassThrough end event called`)
         resolve(undefined)
       })
-      streamPassThrough.on('error', (err) => {
+      fsWriteFileStream.on('error', (err) => {
         console.log(`streamPassThrough error: ${JSON.stringify(err, null, 2)}`)
         reject(err)
       })
 
-      archive.pipe(streamPassThrough)
+      archive.pipe(fsWriteFileStream)
 
       for (let i = 0; i < objects.length; i++) {
         const o = objects[i];
@@ -76,13 +74,24 @@ export const createS3ZipFromS3Objects = async (
       console.log('calling archive.finalize()')
       await archive.finalize()
       console.log('archive.finalize() completed.')
+      
     })
     console.log('archive creation complete...')
     console.log('attempting archive upload to s3...')
 
     // wait for the upload to complete
-    const response = await s3Upload.promise()
+    const response = await uploadObject(outputFile, key, {
+      ContentType: 'application/zip',
+      Tagging: tags,
+    })
+    // const s3Upload = await uploadObjectStream(streamPassThrough, key, {
+    //   ContentType: 'application/zip',
+    //   Tagging: tags,
+    // })
+    // console.log(`s3 upload setup: ${JSON.stringify(s3Upload, null, 2)}`)
+    // const response = await s3Upload.promise()
     console.log(`s3 upload response: ${JSON.stringify(response, null, 2)}`)
+    fs.unlinkSync(outputFile)
     return response
   } catch (err) {
     console.log(`Error uploading zip file: ${JSON.stringify(err, null, 2)}`)

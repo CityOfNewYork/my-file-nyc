@@ -11,8 +11,11 @@ const s3 = captureAWSClient(
     region: process.env.AWS_REGION || undefined,
   }),
 )
-const getDocumentsBucket = () =>
-  requireConfiguration(EnvironmentVariable.DOCUMENTS_BUCKET)
+const getDocumentsBucket = () => {
+  const documentsBucket = requireConfiguration(EnvironmentVariable.DOCUMENTS_BUCKET)
+  console.log(`getDocumentsBucket -> ${documentsBucket}`)
+  return documentsBucket
+}
 
 export const createFilePath = (
   ownerId: string,
@@ -94,7 +97,7 @@ export const uploadObject = async (
     Key: key,
     Body: data,
   }
-  await s3.upload(params).promise()
+  return s3.upload(params).promise()
 }
 
 export const uploadObjectStream = (

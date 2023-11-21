@@ -66,7 +66,7 @@ export const handler = createAuthenticatedApiGatewayHandler(
         ? {
             href: getPresignedDownloadUrl(
               downloadPath,
-              collection.name + '.zip',
+              collection.name.replace('you ', '') + '.zip',
               'attachment',
             ),
           }
