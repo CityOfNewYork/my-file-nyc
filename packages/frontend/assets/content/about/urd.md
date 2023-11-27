@@ -2,7 +2,7 @@
 
 میری فائل NYC خاندانوں کو پناہ کے لیے درخواستوں کے دوران ڈپارٹمنٹ آف ہوم لیس سروسز (DHS) کے ساتھ دستاویزات اپ لوڈ اور شیئر کرنے کی اجازت دیتی ہے۔ یہ خاندانوں کے لیے اپنی نجی دستاویزات کو محفوظ رکھنے کے لیے محفوظ کرنے کے لیے بھی ایک محفوظ اور محفوظ جگہ ہے تاکہ اسے ڈاؤن لوڈ اور دوسری چیزوں کے لیے استعمال کیا جا سکے۔
 
-میری فائل NYC کا انتظام [NYC میئرز آفس آف مواقع](https://www1.nyc.gov/site/opportunity/index.page) کے تعاون سے [محکمہ بے گھر خدمات](https://www1. nyc.gov/site/dhs/index.page)۔ پوری ترقی کے دوران، My File NYC کو دیگر تنظیموں بشمول [New America](https://www.newamerica.org/)، [Two Bulls](https://www.twobulls.com/) اور [The Rockefeller فاؤنڈیشن](https://www.rockefellerfoundation.org/)۔
+میری فائل NYC کا انتظام [NYC میئرز آفس آف مواقع](https://www1.nyc.gov/site/opportunity/index.page) کے تعاون سے [محکمہ بے گھر خدمات](https://www1.nyc.gov/site/dhs/index.page)۔ پوری ترقی کے دوران، My File NYC کو دیگر تنظیموں بشمول [New America](https://www.newamerica.org/)، [Two Bulls](https://www.twobulls.com/) اور [The Rockefeller فاؤنڈیشن](https://www.rockefellerfoundation.org/)۔
 
 My File NYC تک ڈیسک ٹاپ اور موبائل آلات پر ویب براؤزر کے ذریعے رسائی حاصل کی جا سکتی ہے۔ یہ ایک اوپن سورس ٹول ہے جسے نیو یارک سٹی میئر کے آفس آف مواقع اور ہمارے پارٹنرز کے ذریعے برقرار رکھا جاتا ہے۔
 
