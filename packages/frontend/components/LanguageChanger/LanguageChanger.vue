@@ -179,7 +179,7 @@ export default class LanguageChanger extends Vue {
 
   .selectField {
     width: min-content;
-    min-width: 100px;
+    min-width: 105px;
     height: 30px;
   }
 
