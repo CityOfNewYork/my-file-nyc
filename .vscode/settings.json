@@ -10,7 +10,7 @@
   },
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit"
+    "source.fixAll.eslint": true
   },
   "vetur.format.defaultFormatter.html": "prettier",
   "vetur.format.defaultFormatter.ts": "prettier",
