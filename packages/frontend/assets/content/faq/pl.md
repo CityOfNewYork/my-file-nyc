@@ -28,7 +28,7 @@ Gdy udostępnisz dokumenty DHS za pośrednictwem My File NYC, tylko zespół DHS
 
 Dokładamy wszelkich starań, aby serwis My File NYC był tak bezpieczny, jak to tylko możliwe, aby chronić Twoją prywatność. Dokumenty przechowywane w My File NYC będą bezpiecznie przechowywane na bezpiecznych serwerach miasta. Ponieważ dokumenty są przechowywane w chmurze, możesz uzyskać do nich dostęp z dowolnego miejsca na dowolnym urządzeniu z połączeniem internetowym.
 
-Tylko Ty masz dostęp do swoich dokumentów, dopóki nie udostępnisz ich za pomocą centrum DHS PATH.
+Dopóki nie udostępni Pan/Pani swoich dokumentów centrum DHS PATH za pośrednictwem portalu My File NYC, nikt poza Panem/Panią nie będzie mieć do nich dostępu.
 
 Więcej informacji technicznych o tym, jak chronimy Twoje dokumenty i informacje:
 

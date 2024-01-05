@@ -28,7 +28,7 @@ Une fois que vous avez partagé des documents avec le DHS via My File NYC, seule
 
 Nous nous engageons à faire en sorte que My File NYC soit aussi sécurisé que possible pour protéger votre vie privée. Les documents que vous stockez sur My File NYC seront stockés en toute sécurité sur les serveurs sécurisés de la ville. Les documents étant stockés dans le cloud, vous pouvez y accéder de n'importe où sur n'importe quel appareil disposant d'une connexion Internet.
 
-Vous seul avez accès à vos documents jusqu'à ce que vous les partagiez avec le centre DHS PATH en utilisant.
+Vous seul(e) avez accès à vos documents jusqu’à ce que vous les partagiez avec le centre d’hébergement du service d’Aide à la prévention et du logement provisoire (Prevention Assistance and Temporary Housing, PATH) du Département des services pour les sans-abri (Department of Homeless Services, DHS) à l’aide de My File NYC.
 
 Plus d'informations techniques sur la manière dont nous protégeons vos documents et informations :
 

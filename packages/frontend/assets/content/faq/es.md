@@ -28,7 +28,7 @@ Una vez que comparta documentos con el DHS a través de My File NYC, solo el equ
 
 Estamos comprometidos a garantizar que My File NYC sea lo más seguro posible para proteger su privacidad. Los documentos que almacene en My File NYC se almacenarán de forma segura en los servidores seguros de la ciudad. Dado que los documentos se almacenan en la nube, puede acceder a ellos desde cualquier lugar en cualquier dispositivo con conexión a Internet.
 
-Solo usted tiene acceso a sus documentos hasta que los comparta con el centro PATH del DHS.
+Solo usted tiene acceso a sus documentos hasta que los comparta con el centro DHS PATH usando My File NYC.
 
 Más información técnica sobre cómo protegemos sus documentos e información:
 

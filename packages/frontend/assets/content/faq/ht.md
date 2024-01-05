@@ -28,7 +28,7 @@ Yon fwa ou pataje dokiman yo bay DHS atravè My File NYC, se sèlman ekip DHS ki
 
 Nou pran angajman pou asire My File NYC an sekirite otank posib pou pwoteje vi prive w. Dokiman ou estoke nan My File NYC yo pral estoke san danje sou sèvè vil la an sekirite. Depi dokiman yo estoke nan nwaj la, ou ka jwenn aksè nan yo nenpòt kote sou nenpòt aparèy ki gen yon koneksyon entènèt.
 
-Ou sèlman gen aksè a dokiman ou jiskaske ou pataje yo ak sant DHS PATH lè l sèvi avèk yo.
+Se oumenm sèlman ki gen aksè ak dokiman w yo toutotan ou pako pataje yo ak sant DHS PATH lè w itilize My File NYC.
 
 Plis enfòmasyon teknik sou fason nou pwoteje dokiman ak enfòmasyon ou yo:
 
